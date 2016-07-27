@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>11.3. 编写过滤器</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="prev" href="zend.filter.filter_chains.html" title="11.2. 过滤器链">
+<link rel="next" href="zend.filter.input.html" title="11.4. Zend_Filter_Input">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">11.3. 编写过滤器</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.filter.filter_chains.html">上一页</a> </td>
+<th width="60%" align="center">第 11 章 Zend_Filter</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.filter.input.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.filter.writing_filters"></a>11.3. 编写过滤器</h2></div></div></div>
+<p>
+        Zend_Filter提供了一系列常用的过滤器，但是开发者经常需要为他们特殊的用例编写定制的过滤器。编写定制的过滤器很容易，只要实现<code class="code">Zend_Filter_Interface</code>接口。
+    </p>
+<p>
+        <code class="code">Zend_Filter_Interface</code>接口定义了一个方法<code class="code">filter()</code>，可被用户的类实现。使用<code class="code">Zend_Filter::addFilter()</code>方法，可以把一个实现了这个接口的对象添加到过滤器链中。
+    </p>
+<p>
+        下面的例子，示范了怎样编写一个定制的过滤器：
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Filter/Interface.php';
+
+class MyFilter implements Zend_Filter_Interface
+{
+    public function filter($value)
+    {
+        // perform some transformation upon $value to arrive on $valueFiltered
+
+        return $valueFiltered;
+    }
+}</pre>
+<p>
+
+    </p>
+<p>
+        添加上述过滤器的实例到过滤器链中：
+
+        </p>
+<pre class="programlisting">&lt;?php
+$filterChain = new Zend_Filter();
+$filterChain-&gt;addFilter(new MyFilter());</pre>
+<p>
+
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.filter.filter_chains.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.filter.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.filter.input.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">11.2. 过滤器链 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 11.4. Zend_Filter_Input</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

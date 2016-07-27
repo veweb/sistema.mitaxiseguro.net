@@ -1,0 +1,328 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.2. Начало работы</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="prev" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="next" href="zend.controller.subclassing.html" title="7.3. Создание подклассов">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.introduction" title="7.2.1. Введение">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration" title="7.2.2. Конфигурация сервера">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap" title="7.2.3. Файл загрузки">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure" title="7.2.4. Структура каталогов">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.overview.indexcontroller" title="7.2.5. Контроллер по умолчанию">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.2. Начало работы</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.subclassing.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.getting-started"></a>7.2. Начало работы</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.introduction"></a>7.2.1. Введение</h3></div></div></div>
+<p>
+            Система <code class="code">Zend_Controller</code> построена с расчетом на
+            расширение посредством создания подклассов от существующих классов
+            или написания новых классов, реализующих различные
+            интерфейсы и абстрактные классы, которые представляют собой основу
+            семейства классов контроллера.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.server-configuration"></a>7.2.2. Конфигурация сервера</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller</code> создан для поддержки современных
+            веб-сайтов с "чистыми" URI (с небольшим количеством или полным
+            отсутствием параметров запроса). Предлагаемая конфигурация требует
+            поддержки со стороны веб-сервера в виде перезаписи URI (URI rewriting)
+            для перенаправления всех запросов одному файлу, называемому здесь
+            "<code class="code">index.php</code>", который будет просто загружать
+            <code class="code">Zend_Controller_Front</code>. На веб-сервере Apache это
+            осуществляется дополнительным модулем, называемом mod_rewrite.
+
+        </p>
+<p>
+            Первым шагом в конфигурировании сервера должна быть успешная
+            установка и активация модуля mod_rewrite. Следующим шагом является
+            размещение в корневом каталоге сайта двух файлов: <code class="code">.htaccess</code>
+            и <code class="code">index.php</code>. Файл <code class="code">.htaccess</code> используется
+            веб-сервером Apache и должен содержать правила mod_rewrite для
+            перенаправления всех запросов к <code class="code">index.php</code>. Для целей
+            разработки часто самым простым решением будет написать такие правила
+            mod_rewrite, которые будут перенаправлять все запросы к
+            <code class="code">index.php</code>, за исключением
+            определенных расширений файлов. Ниже пример такого файла:
+
+         </p>
+<pre class="programlisting">
+RewriteEngine on
+RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php
+</pre>
+<p>
+            В приведенном выше примере все запросы, не содержащие ни одного
+            из указанных расширений, будут переданы <code class="code">index.php</code>. Это
+            полезно для разработки, но в производственной версии правила
+            пререзаписи должны быть составлены таким образом, чтобы исключать
+            директории.
+
+        </p>
+<div class="note"><table border="0" summary="Note: Местонахождение файла загрузки
+            ">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Местонахождение файла загрузки
+            </th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Файл загрузки должен быть единственным PHP-файлом, хранящимся в
+                корневом каталоге сайта.
+
+            </p></td></tr>
+</table></div>
+<p>
+            Основной набор функциональных возможностей Zend_Controller также
+            поддерживает URL-ы вида
+            <code class="code">index.php?controller=foo&amp;action=bar</code>,
+            использующие параметры запроса. Кроме того, другой поставляемый в
+            дистрибутиве маршрутизатор,
+            <code class="code">Zend_Controller_RewriteRouter</code>, может работать в
+            различных окружениях, включая те, в которых отсутствует возможность
+            перезаписи запросов. Вы можете использовать Zend_Controller на своем
+            сайте даже если не можете использовать mod_rewrite или его аналог.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.bootstrap"></a>7.2.3. Файл загрузки</h3></div></div></div>
+<p>
+            После настройки файла <code class="code">.htaccess</code>, создайте новый файл
+            с именем <code class="code">index.php</code>. Это файл загрузки.
+            Назначением файла является только загрузка
+            <code class="code">Zend_Controller_Front</code>,
+            который в идеале должен быть расположен вне корневого каталога
+            сайта.
+
+        </p>
+<div class="note"><table border="0" summary="Note: Местонахождение файла загрузки
+            ">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Местонахождение файла загрузки
+            </th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Файл загрузки должен быть единственным PHP-файлом, хранящимся в
+                корневом каталоге сайта.
+
+            </p></td></tr>
+</table></div>
+<p>
+            Из соображений безопасности Zend крайне не рекомендует хранить
+            какие-либо файлы PHP в каталогах, которые доступны через веб-сервер
+            (те, что находятся в корневом каталоге сайта). Несмотря на то, что
+            это возможно не во всех ситуациях (таких, как разделяемый хостинг),
+            это должно считаться наилучшей практикой и по возможности
+            соблюдаться.
+
+        </p>
+<p>
+            Создайте файл загрузки <code class="code">index.php</code> в корневом каталоге
+            сайта для загрузки <code class="code">Zend_Controller_Front</code>:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/Controller/Front.php';
+
+Zend_Controller_Front::run('/path/to/your/controllers');
+
+?&gt;</pre>
+<p>
+            Подробнее про <code class="code">/path/to/your/controllers</code> см. следующий
+            за этим раздел.
+
+            Как написано в <code class="code">README.txt</code>, каталог с библиотекой Zend
+            Framework должен быть прописан в <code class="code">include_path</code>. Если
+            <code class="code">include_path</code> не установлен в <code class="code">php.ini</code>,
+            можно вызывать функцию <code class="code">set_include_path()</code> перед
+            <code class="code">require_once()</code> в этом файле.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.directory-structure"></a>7.2.4. Структура каталогов</h3></div></div></div>
+<p>
+            Рекомендуется, чтобы сайты, построенные с Zend Framework,
+            использовали общую структуру каталогов. Несмотря на то, что это
+            возможно не во всех случаях, это реализуемо для многих (или даже
+            большинства) случаев. Следование данной структуре сделает ваш код
+            более легким для понимания теми, кто знаком с соглашениями
+            Zend Framework.
+
+        </p>
+<p>
+            Предлагаемая структура каталогов состоит из каталогов библиотек
+            (от Zend и каких-либо других) и каталогов приложений.
+
+        </p>
+<pre class="programlisting">
+/application
+  /models
+  /views
+  /controllers
+/document_root
+  /images
+  /styles
+  .htaccess
+  index.php
+/library
+  /Zend
+     </pre>
+<div class="note"><table border="0" summary="Note: В стадии разработки">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">В стадии разработки</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Этот раздел еще не завершен. Он на стадии интенсивной разработки и
+                подвержен изменениям.
+
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.indexcontroller"></a>7.2.5. Контроллер по умолчанию</h3></div></div></div>
+<p>
+            Каждый сайт должен определять контроллер по умолчанию. Это
+            контроллер, который вступает в действие, когда в URI не
+            определен контроллер, как в этом URI:
+
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/
+</pre>
+<p>
+            В поставляемой конфигурации используемый по умолчанию контроллер
+            должен называться <code class="code">IndexController</code> и должен быть
+            определен в файле <code class="code">IndexController.php</code>. В коде на него
+            ссылаются как на контроллер 'index'.
+
+        </p>
+<p>
+            Вы можете изменить контроллер по умолчанию до начала диспетчеризации
+            посредством вызова метода <code class="code">setDefaultController()</code>
+            объектов <code class="code">Zend_Controller_Front</code> или
+            <code class="code">Zend_Controller_Dispatcher</code>. При этом соблюдайте
+            внутренние соглашения по именованию. В соотвествии с этими
+            соглашениями на класс <code class="code">HomeController</code> (в файле
+            <code class="code">HomeController.php</code>) нужно ссылаться как на
+            <code class="code">home</code>.  
+
+        </p>
+<p>
+            Все контроллеры должны наследовать от класса
+            <code class="code">Zend_Controller_Action</code> и размещаться в каталоге
+            контроллеров.
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/Controller/Action.php';
+
+class IndexController extends Zend_Controller_Action
+{
+    public function indexAction()
+    {
+        echo 'Hello from IndexController';
+    }
+
+    public function noRouteAction()
+    {
+        $this-&gt;_redirect('/');
+    }
+}
+
+?&gt;</pre>
+<p>
+            Подробнее о контроллере и действии по умолчанию и о написании
+            классов контроллеров будет изложено в следующих разделах.  
+
+        </p>
+<div class="note"><table border="0" summary="Note: В стадии разработки">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">В стадии разработки</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Этот раздел еще не завершен. Он на стадии интенсивной разработки
+                и подвержен изменениям. 
+ 
+          </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.subclassing.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Глава 7. Zend_Controller </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 7.3. Создание подклассов</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

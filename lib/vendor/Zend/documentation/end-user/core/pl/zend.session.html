@@ -1,0 +1,189 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Rozdział 25. Zend_Session</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="index.html" title="Przewodnik Programisty">
+<link rel="prev" href="zend.service.yahoo.html" title="24.5. Zend_Service_Yahoo">
+<link rel="next" href="zend.session.basicusage.html" title="25.2. Podstawowe użycie">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="section" href="zend.session.html#zend.session.introduction" title="25.1. Wprowadzenie">
+<link rel="section" href="zend.session.basicusage.html" title="25.2. Podstawowe użycie">
+<link rel="section" href="zend.session.advancedusage.html" title="25.3. Użycie zaawansowane">
+<link rel="section" href="zend.session.globalsessionmanagement.html" title="25.4. Global Session Management">
+<link rel="section" href="zend.session.theory.html" title="25.5. Teoria">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Rozdział 25. Zend_Session</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.service.yahoo.html">Poprzedni</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.session.basicusage.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="pl">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.session"></a>Rozdział 25. Zend_Session</h2></div></div></div>
+<div class="toc">
+<p><b>Spis treści</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.session.html#zend.session.introduction">25.1. Wprowadzenie</a></span></dt>
+<dt><span class="sect1"><a href="zend.session.basicusage.html">25.2. Podstawowe użycie</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.basicexamples">25.2.1. Przykłady</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.iteration">25.2.2. Iteracja poprzez przestrzenie nazw sesji</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.accessors">25.2.3. Metody dostępowe do przestrzeni nazw sesji</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.advancedusage.html">25.3. Użycie zaawansowane</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.startingasession">25.3.1. Rozpoczynanie sesji</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.locking">25.3.2. Locking Session Namespaces</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.controllers">25.3.3. Session Encapsulation and Controllers</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.limitinginstances">25.3.4. Limiting Instances of Zend_Session_Namespace to One Per Namespace</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.modifyingarray">25.3.5. Working with Arrays in Namespaces</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.auth">25.3.6. Using Sessions with Authentication</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.testing">25.3.7. Using Sessions with Unit Tests</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.globalsessionmanagement.html">25.4. Global Session Management</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.setoptions">25.4.1. Zend_Session::setOptions()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.options">25.4.2. Options</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.regenerateid">25.4.3. regenerateId()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.rememberme">25.4.4. rememberMe(integer $seconds)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.forgetme">25.4.5. forgetMe()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.sessionexists">25.4.6. sessionExists()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.destroy">25.4.7. destroy(bool $remove_cookie = true, bool $readonly = true)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.stop">25.4.8. stop()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.writeClose">25.4.9. writeClose($readonly = true)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.expiresessioncookie">25.4.10. expireSessionCookie()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.savehandler">25.4.11. setSaveHandler(Zend_Session_SaveHandler_Interface $interface)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceisset">25.4.12. namespaceIsset($namespace)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceunset">25.4.13. namespaceUnset($namespace)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceget">25.4.14. namespaceGet($namespace)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.getiterator">25.4.15. getIterator()</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.theory.html">25.5. Teoria</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.session.introduction"></a>25.1. Wprowadzenie</h2></div></div></div>
+<p>
+        Zobacz
+        <a href="http://framework.zend.com/wiki/display/ZFDOC/Zend_Session" target="_top">najbardziej
+        aktualną opublikowaną wersję tego dokumentu</a>. Ponadto zespół
+        Zend Framework Auth bardzo docenia twój wkład w naszą listę email:
+        <a href="mailto:fw-auth@lists.zend.com" target="_top">fw-auth@lists.zend.com</a>
+    </p>
+<p>
+        W aplikacjach web używających PHP, a <span class="bold"><strong>sesja</strong></span> 
+        reprezentuje logiczne połączenie jeden-do-jednego pomiędzy danymi o stanie
+        użytkownika znajdującymi się na serwerze, a konkretną aplikacją 
+        użytkownika (np. przeglądarka stron internetowych). 
+        <code class="code">Zend_Session</code> pomaga w zarządzaniu i zabezpieczaniu danych 
+        sesji, które są logicznym dopełnieniem danych w ciasteczku, pomiędzy
+        wieloma żądaniami do serwisu przez tego samego klienta. W 
+        przeciwieństwie do danych z ciasteczka, dane sesji nie są przechowywane 
+        po stronie klienta i są one dostępne dla klienta tylko wtedy, gdy kod po 
+        stronie serwera dobrowolnie udostępni dane poprzez obiekt odpowiedzi na 
+        żądanie klienta. Dla celów tego komponentu oraz dokumentacji, dane sesji 
+        odnoszą się do danych przechowywanych po stronie serwera w tablicy 
+        <code class="code">$_SESSION[]</code>, zarządzanych przez <code class="code">Zend_Session</code>, 
+        oraz indywidualnie manipulowanych przez obiekty dostępowe 
+        <code class="code">Zend_Session_Namespace</code>.
+        <span class="bold"><strong>Przestrzenie nazw sesji</strong></span> zapewniają 
+        dostęp do danych sesji używając klasycznych 
+        <a href="http://en.wikipedia.org/wiki/Namespace_%28computer_science%29" target="_top">przestrzeni nazw</a>
+        implementowanych logicznie jako nazwane grupy asocjacyjnych tablic, o
+        kluczach będących łańcuchami znaków. (analogicznie jak tablice PHP).
+    </p>
+<p>
+        <code class="code">Zend_Session_Namespace</code> tworzy instancje obiektów 
+        dostępowych dla przestrzeni nazw będących wycinkami <code class="code">$_SESSION[]</code>. 
+        Komponent <code class="code">Zend_Session</code> wraps the existing PHP ext/session 
+        with an administration and management interface, as well as providing an 
+        API for <code class="code">Zend_Session_Namespace</code> to persist session namespaces. 
+        <code class="code">Zend_Session_Namespace</code> zapewnia ustandaryzowany zorientowany
+        obiektowo interfejs do pracy z przestrzeniami nazw istniejącymi wewnątrz
+        standardowego mechanizmu sesji PHP. Wspierane są zarówno przestrzenie 
+        nazw dla anonimowych użytkowników, jak i dla zalogowanych. 
+        <code class="code">Zend_Auth</code>, komponent autentykacji w ZF używa 
+        <code class="code">Zend_Session_Namespace</code> do przechowywania informacji 
+        związanych z autentykowanymi użytkownikami w przestrzeni nazw "Zend_Auth". 
+        Z tego względu, że <code class="code">Zend_Session</code> używa normalnych 
+        wewnętrznych funkcji modułu sesji, oraz umożliwia użycie wszystkich
+        znanych opcji konfiguracyjnych i ustawień (zobacz
+        <a href="http://www.php.net/session" target="_top">http://www.php.net/session</a>), 
+        a dodatkowo umożliwia dostęp za pomocą zorientowanego obiektowo
+        interfejsu, to użycie tego modułu jest przykładem dobrej praktyki
+        programowania, a także gładko integruje się z  Zend Framework. 
+        Zatem standardowy identyfikator sesji PHP przechowywany albo w
+        ciasteczku klienta, albo dołączony do adresów URL, umożliwia połączenie
+        klienta oraz danych stanu sesji.
+    </p>
+<p>
+        Domyślna <a href="http://www.php.net/manual/en/function.session-set-save-handler.php" target="_top">obsługa 
+        zapisu sesji</a> nie rozwiązuje problemu zarządzania tym powiązaniem, 
+        gdy klient może połączyć się z dowolnym serwerem w klastrze serwerów, 
+        ponieważ dane stanu sesji są zapisywane jedynie na danym serwerze z tego 
+        klastra. Dodatkowe odpowiednie możliwości obsługi zapisu będą zapewnione,
+        gdy będą dostępne. Namawiamy członków społeczności aby wysyłali 
+        propozycje możliwości obsługi zapisu na listę
+        <a href="mailto:fw-auth@lists.zend.com" target="_top">fw-auth@lists.zend.com</a>. 
+        Obsługa zapisu kompatybilna z Zend_Db została opisana na liście.
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.service.yahoo.html">Poprzedni</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.session.basicusage.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">24.5. Zend_Service_Yahoo </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 25.2. Podstawowe użycie</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

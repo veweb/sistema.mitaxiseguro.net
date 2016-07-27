@@ -1,0 +1,139 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>17.6. 
+        Вложения
+
+    </title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="prev" href="zend.mail.html-mails.html" title="17.5. 
+        Сообщение в формате HTML 
+
+    ">
+<link rel="next" href="zend.mail.adding-recipients.html" title="17.7. 
+        Добавление получателей
+
+    ">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">17.6. 
+        Вложения
+
+    </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mail.html-mails.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 17. Zend_Mail</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.mail.adding-recipients.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mail.attachments"></a>17.6. 
+        Вложения
+
+    </h2></div></div></div>
+<p>
+        Файлы могут быть прикреплены к почтовому сообщению методом
+        <code class="code">addAttachment()</code>. По умолчанию <code class="code">Zend_Mail</code>
+        предполагает, что прикрепляемый файл является бинарным (<code class="code">application/octet-stream</code>),
+        должен передаваться в кодировке base64 и обрабатывается как вложение.
+        Эти предполагаемые значения могут быть изменены передачей большего
+        количества параметров методу <code class="code">addAttachment()</code>.
+
+    </p>
+<div class="example">
+<a name="id4870454"></a><p class="title"><b>Пример 17.6. 
+            Почтовые сообщения со вложениями
+
+        </b></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'Zend/Mail.php';
+$mail = new Zend_Mail();
+// формирование сообщения...
+$mail-&gt;addAttachment($someBinaryString);
+$mail-&gt;addAttachment($myImage, 'image/gif', Zend_Mime::DISPOSITION_INLINE, Zend_Mime::ENCODING_8BIT);
+?&gt;   </pre>
+</div>
+<p>
+        Если хотите иметь больший контроль над частями MIME, генерируемыми
+        для данного вложения, то можете использовать возвращаемое методом
+        <code class="code">addAttachment()</code> значение для изменения атрибутов.
+        Метод <code class="code">addAttachment()</code> возвращает объект <code class="code">Zend_Mime_Part</code>. 
+
+    </p>
+<pre class="programlisting">
+&lt;?php
+require_once 'Zend/Mail.php';
+$mail = new Zend_Mail();
+
+$at = $mail-&gt;addAttachment($myImage);
+$at-&gt;type        = 'image/gif';
+$at-&gt;disposition = Zend_Mime::DISPOSITION_INLINE;
+$at-&gt;encoding    = Zend_Mime::ENCODING_8BIT;
+$at-&gt;filename    = 'test.gif';
+
+$mail-&gt;send();
+?&gt;</pre>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mail.html-mails.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.mail.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.mail.adding-recipients.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">17.5. 
+        Сообщение в формате HTML 
+
+     </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 17.7. 
+        Добавление получателей
+
+    </td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

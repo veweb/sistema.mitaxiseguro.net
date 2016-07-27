@@ -1,0 +1,137 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.2. Zasady działania</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="prev" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="next" href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.2. Zasady działania</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.config.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 5. Zend_Config</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.adapters.ini.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.config.theory_of_operation"></a>5.2. Zasady działania</h2></div></div></div>
+<p>
+        Dane konfiguracyjne są przekazywane do konstruktora <code class="code">Zend_Config</code> 
+        w postaci asocjacyjnej tablicy, która może być wielowymiarowa, po to, aby
+        obsłużyć dane zorganizowane w różny sposób, od prostych po specyficzne.
+        Konkretny adapter posiada funkcjonalność przystosowującą przechowywane dane 
+        konfiguracyjne do wygenerowania tablicy asocjacyjnej dla konstruktora 
+        <code class="code">Zend_Config</code>. Skrypt użytkownika może przekazać taką tablicę 
+        bezpośrednio do konstruktora <code class="code">Zend_Config</code>, nie używając klasy 
+        adaptera, since it may be appropriate to do so in certain situations.
+    </p>
+<p>
+        Klasa <code class="code">Zend_Config</code> implementuje interfejsy <code class="code">Countable</code> 
+        oraz <code class="code">Iterator</code> w celu zapewnienia łatwego dostępu do danych 
+        konfiguracyjnych. Dzięki temu można użyć funkcji 
+        <a href="http://php.net/count" target="_top"><code class="code">count()</code></a> oraz składni 
+        PHP takiej jak <a href="http://php.net/foreach" target="_top"><code class="code">foreach</code></a> 
+        na obiektach <code class="code">Zend_Config</code>.
+    </p>
+<p>
+        Domyślnie dane konfiguracyjne dostępne poprzez <code class="code">Zend_Config</code> 
+        są tylko do odczytu, i próba przypisania (np., <code class="code">$config-&gt;database-&gt;host = 'example.com'</code>) 
+        spowoduje wyrzucenie wyjątku. Te domyślne zachowanie może być zmienione
+        poprzez konstruktor, aby pozwolić na modyfikację wartości danych konfiguracyjnych.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Notatka</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Jest ważne, aby nie mylić modyfikacji danych konfiguracyjnych w pamięci z
+                zapisywaniem danych konfiguracyjnych do konkretnych środków przechowywania.
+                Narzędzia do tworzenia i modyfikowania danych konfiguracyjnych dla rożnych
+                środków przechowywania są poza zakresem klasy <code class="code">Zend_Config</code>. 
+                Są dostępne zewnętrzne rozwiązania open source służące do
+                tworzenia oraz modyfikowania danych konfiguracyjnych dla różnych 
+                środków przechowywania.
+            </p></td></tr>
+</table></div>
+<p>
+    </p>
+<p>
+        Klasy adapterów dziedziczą z klasy <code class="code">Zend_Config</code> więc wykorzystują
+        ich funkconalność.
+    </p>
+<p>
+        Rodzina klas <code class="code">Zend_Config</code> pozwala na zorganizowanie danych 
+        konfiguracyjnych w sekcje. Obiekty adapterów <code class="code">Zend_Config</code> 
+        mogą załadować jedną określoną sekcję, wiele określonych sekcji lub 
+        wszystkie sekcje (gdy żadna nie jest określona).
+    </p>
+<p>
+        Klasy adapterów <code class="code">Zend_Config</code> wspierają model pojedynczego dziedziczenia, 
+        w którym jedna sekcja danych konfiguracyjnych może dziedziczyć z innej sekcji. 
+        Jest to zapewnione w celu zredukowania lub wyeliminowania potrzeby 
+        duplikowania danych konfiguracyjnych z różnych powodów. Sekcja dziedzicząca
+        może nadpisać wartości, które dziedziczy z sekcji rodzica. Tak jak w 
+        dziedziczeniu klas PHP, sekcja może dziedziczyć z sekcji rodzica, która
+        może dziedziczyć z innej sekcji rodzica i tak dalej, ale wielokrotne 
+        dziedziczenie (np., sekcja C dziedzicząca bezpośrednio z sekcji A oraz B) 
+        nie jest obsługiwane.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.config.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.config.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.adapters.ini.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Rozdział 5. Zend_Config </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 5.3. Zend_Config_Ini</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

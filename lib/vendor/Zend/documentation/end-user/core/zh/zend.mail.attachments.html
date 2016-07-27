@@ -1,0 +1,107 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>17.6. 附件</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="prev" href="zend.mail.html-mails.html" title="17.5. HTML邮件">
+<link rel="next" href="zend.mail.adding-recipients.html" title="17.7. 增加收件人">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">17.6. 附件</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mail.html-mails.html">上一页</a> </td>
+<th width="60%" align="center">第 17 章 Zend_Mail</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.mail.adding-recipients.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mail.attachments"></a>17.6. 附件</h2></div></div></div>
+<p>
+        使用<code class="code">addAttachment()</code>方法可以将文件附加到邮件中。
+       <code class="code">Zend_Mail</code>会缺省地认为该文件是二进制对象(application/octet-stream)，以 base64编码传输, 并且作为邮件的附件处理。
+        通过传递额外的参数给<code class="code">addAttachment()</code>方法可以覆盖上述缺省设定：
+    </p>
+<div class="example">
+<a name="id4791300"></a><p class="title"><b>例 17.6. 带附件的邮件</b></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'Zend/Mail.php';
+$mail = new Zend_Mail();
+// build message...
+$mail-&gt;addAttachment($someBinaryString);
+$mail-&gt;addAttachment($myImage, 'image/gif', Zend_Mime::DISPOSITION_INLINE, Zend_Mime::ENCODING_8BIT);
+?&gt;   </pre>
+</div>
+<p>如果你想得到对此附件MIME段产生的更多控制，你可以使用<code class="code">addAttachment()</code>方法的返回值来修改它的属性。
+     方法<code class="code">addAttachment()</code>返回了一个<code class="code">Zend_Mime_Part</code>对象：</p>
+<pre class="programlisting">
+&lt;?php
+require_once 'Zend/Mail.php';
+$mail = new Zend_Mail();
+
+$at = $mail-&gt;addAttachment($myImage);
+$at-&gt;type        = 'image/gif';
+$at-&gt;disposition = Zend_Mime::DISPOSITION_INLINE;
+$at-&gt;encoding    = Zend_Mime::ENCODING_8BIT;
+$at-&gt;filename    = 'test.gif';
+
+$mail-&gt;send();
+?&gt;</pre>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mail.html-mails.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.mail.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.mail.adding-recipients.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">17.5. HTML邮件 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 17.7. 增加收件人</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

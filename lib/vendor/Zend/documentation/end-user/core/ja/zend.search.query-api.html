@@ -1,0 +1,395 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.5. クエリ作成用の API</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="prev" href="zend.search.query-language.html" title="22.4. クエリ言語">
+<link rel="next" href="zend.search.charset.html" title="22.6. 文字セット">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.search.query-api.html#zend.search.queries.exceptions" title="22.5.1. クエリパーサの例外">
+<link rel="subsection" href="zend.search.query-api.html#zend.search.queries.term-query" title="22.5.2. 単一の単語のクエリ">
+<link rel="subsection" href="zend.search.query-api.html#zend.search.queries.multiterm-query" title="22.5.3. 複数の単語のクエリ">
+<link rel="subsection" href="zend.search.query-api.html#zend.search.queries.phrase-query" title="22.5.4. フレーズクエリ">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.5. クエリ作成用の API</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.query-language.html">前のページ</a> </td>
+<th width="60%" align="center">第22章 Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.charset.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.query-api"></a>22.5. クエリ作成用の API</h2></div></div></div>
+<p>
+        クエリを自動的にパースするだけではなく、クエリを API で作成することもできます。
+    </p>
+<p>
+        ユーザクエリは、API で作成したクエリを組み合わせて作成することができます。
+        クエリパーサを使用して、文字列からクエリを作成します。
+        </p>
+<pre class="programlisting">&lt;?php
+$query = Zend_Search_Lucene_Search_QueryParser::parse($queryString);
+?&gt;</pre>
+<p>
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.queries.exceptions"></a>22.5.1. クエリパーサの例外</h3></div></div></div>
+<p>
+        クエリパーサは、二種類の例外を発生させます。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">Zend_Search_Lucene_Exception</code> がスローされるのは、
+                    クエリパーサ自体に何らかの問題が発生した場合です。
+                </p></li>
+<li><p>
+                    <code class="code">Zend_Search_Lucene_Search_QueryParserException</code> がスローされるのは、
+                    クエリの構文エラーが発生した場合です。
+                </p></li>
+</ul></div>
+<p>
+        つまり、Zend_Search_Lucene_Search_QueryParserException
+        を捕捉して適切なメッセージを表示させるようにしておくことが大切です。
+        </p>
+<pre class="programlisting">&lt;?php
+try {
+    $query = Zend_Search_Lucene_Search_QueryParser::parse($queryString);
+} catch (Zend_Search_Lucene_Search_QueryParserException $e) {
+    echo "クエリの構文エラー: " . $e-&gt;getMessage() . "\n";
+}
+?&gt;</pre>
+<p>
+        </p>
+<p>
+            Zend_Search_Lucene オブジェクトの find() メソッドでも同様のテクニックを使えます。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.queries.term-query"></a>22.5.2. 単一の単語のクエリ</h3></div></div></div>
+<p>
+            ひとつの単語を使用した検索を行うためのものです。
+        </p>
+<p>
+        文字列によるクエリ
+        </p>
+<pre class="programlisting">word1
+        </pre>
+<p>あるいは</p>
+<p>
+        API で作成するクエリ
+        </p>
+<pre class="programlisting">&lt;?php
+
+    $term  = new Zend_Search_Lucene_Index_Term('word1');
+    $query = new Zend_Search_Lucene_Search_Query_Term($term);
+    $hits  = $index-&gt;find($query);
+?&gt;</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.queries.multiterm-query"></a>22.5.3. 複数の単語のクエリ</h3></div></div></div>
+<p>
+            単語の組み合わせによる検索を行うためのものです。
+        </p>
+<p>
+            各単語は、<span class="emphasis"><em>required (必須)</em></span>・<span class="emphasis"><em>prohibited (禁止)</em></span>・
+            <span class="emphasis"><em>neither (どちらでもない)</em></span>
+            のいずれかを指定することができます。
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <span class="emphasis"><em>required</em></span> を指定した場合、
+                        この単語を含まないドキュメントはクエリにマッチしません。
+                    </p></li>
+<li><p>
+                        <span class="emphasis"><em>prohibited</em></span> を指定した場合、
+                        この単語を含むドキュメントはクエリにマッチしません。
+                    </p></li>
+<li><p>
+                        <span class="emphasis"><em>neither</em></span> を指定した場合、
+                        この単語を含むドキュメントは除外されるわけでもなく、
+                        この単語を含まなければマッチしないというわけでもありません。
+                        ただし、クエリにマッチするためには、
+                        この単語のうち最低ひとつを含まなければなりません。
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            つまり、必須単語のみのクエリに「どちらでもない (オプション)」
+            単語を追加しても、結果セットは変わりません。
+            ただ、オプションの単語にマッチした結果が結果セットの先頭に移動します。
+        </p>
+<p>
+            以下の両方の方法が使用可能です。
+        </p>
+<p>
+            文字列によるクエリ
+        </p>
+<pre class="programlisting">+word1 author:word2 -word3</pre>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    必須の単語には '+' を使用します。
+                </p></li>
+<li><p>
+                    禁止する単語には '-' を使用します。
+                </p></li>
+<li><p>
+                    検索するドキュメントフィールドを指定するには 'field:'
+                    を先頭につけます。これが省略された場合は 'contents' が使用されます。
+                </p></li>
+</ul></div>
+<p>あるいは</p>
+<p>
+        API で作成するクエリ
+        </p>
+<pre class="programlisting">&lt;?php
+
+    $query = new Zend_Search_Lucene_Search_Query_MultiTerm();
+
+    $query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word1'), true);
+    $query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word2'), null);
+    $query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word3'), false);
+
+    $hits  = $index-&gt;find($query);
+
+?&gt;</pre>
+<p>
+            <code class="code">$signs</code> 配列に、単語の種別についての情報を含めます。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        必須の単語には <code class="code">true</code> を使用します。
+                    </p></li>
+<li><p>
+                        禁止する単語には <code class="code">false</code> を使用します。
+                    </p></li>
+<li><p>
+                        必須・禁止のどちらでもない場合は <code class="code">null</code> を使用します。
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.queries.phrase-query"></a>22.5.4. フレーズクエリ</h3></div></div></div>
+<p>
+            熟語による検索を行うためのものです。
+        </p>
+<p>
+            フレーズクエリはとても柔軟性の高いもので、
+            完全な熟語だけでなく曖昧な熟語の検索も可能になります。
+        </p>
+<p>
+            熟語の途中で隙間をあけたり、複数の単語を同じ位置に指定したりもできます
+            (これは、解析器によって別の目的で作成されます。
+            例えば、単語の重みを増すためにある単語を重複させたり、
+            類義語をひとつの位置にまとめたりします)。
+        </p>
+<pre class="programlisting">&lt;?php
+$query1 = new Zend_Search_Lucene_Search_Query_Phrase();
+
+// 'word1' を 0 番目の位置に追加します。
+$query1-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word1'));
+
+// 'word2' を 1 番目の位置に追加します。
+$query1-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word2'));
+
+// 'word3' を 3 番目の位置に追加します。
+$query1-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word3'), 3);
+
+...
+
+$query2 = new Zend_Search_Lucene_Search_Query_Phrase(
+                array('word1', 'word2', 'word3'), array(0,1,3));
+
+...
+
+// 隙間をあけないクエリ
+$query3 = new Zend_Search_Lucene_Search_Query_Phrase(
+                array('word1', 'word2', 'word3'));
+
+...
+
+$query4 = new Zend_Search_Lucene_Search_Query_Phrase(
+                array('word1', 'word2'), array(0,1), 'annotation');
+
+?&gt;</pre>
+<p>
+            フレーズクエリを作成するには、コンストラクタで一気に構築してしまう方法と
+            <code class="code">Zend_Search_Lucene_Search_Query_Phrase::addTerm()</code>
+            メソッドでひとつひとつ作成する方法に 2 通りがあります。
+        </p>
+<p>
+            Zend_Search_Lucene_Search_Query_Phrase クラスのコンストラクタで、
+            オプションの 3 つの引数を指定することができます。
+        </p>
+<pre class="programlisting">Zend_Search_Lucene_Search_Query_Phrase([array $terms[, array $offsets[, string $field]]]);</pre>
+<p>
+            <code class="code">$terms</code> は文字列の配列で、
+            フレーズを構成する単語が含まれます。指定しなかったり
+            null を渡したりした場合は、空のクエリが作成されます。
+        </p>
+<p>
+            <code class="code">$offsets</code> は整数の配列で、
+            フレーズ内の単語の位置を指定します。指定しなかったり
+            null を渡したりした場合は、単語の位置は
+            <code class="code">array(0, 1, 2, 3, ...)</code> であると解釈されます。
+        </p>
+<p>
+            <code class="code">$field</code> は文字列で、検索対象となるドキュメントのフィールドを指定します。
+            指定しなかったり null を渡したりした場合は、デフォルトのフィールドが対象となります。
+            このバージョンの Zend_Search_Lucene では、デフォルトのフィールドは
+            'contents' となります。しかし、次のバージョンではこれを
+            "any field" に変更する予定です。
+        </p>
+<p>
+            したがって、
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase(array('zend', 'framework'));</pre>
+<p>
+            は 'zend framework' を検索します。
+        </p>
+<pre class="programlisting">&lt;$query = new Zend_Search_Lucene_Search_Query_Phrase(array('zend', 'download'), array(0, 2));</pre>
+<p>
+            は 'zend ????? download' を検索し、'zend platform download' や 'zend studio download'、
+            'zend core download'、'zend framework download' などがマッチします
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase(array('zend', 'framework'), null, 'title');</pre>
+<p>
+            は 'title' フィールドから 'zend framework' を検索します。
+        </p>
+<p>
+            <code class="code">Zend_Search_Lucene_Search_Query_Phrase::addTerm()</code> メソッドは
+            2 つの引数をとります。<code class="code">Zend_Search_Lucene_Index_Term</code>
+            オブジェクトが必須で、position はオプションです。
+        </p>
+<pre class="programlisting">Zend_Search_Lucene_Search_Query_Phrase::addTerm(Zend_Search_Lucene_Index_Term $term[, integer $position]);</pre>
+<p>
+            <code class="code">$term</code> はフレーズ内の次の単語を指定します。
+            前の単語と同じフィールドを指していなければなりません。
+            そうでない場合は例外がスローされます。
+        </p>
+<p>
+            <code class="code">$position</code> は単語の位置を指定します。
+        </p>
+<p>
+            したがって、
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase();
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('zend'));
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('framework'));</pre>
+<p>
+            は 'zend framework' を検索します。
+         </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase();
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('zend'), 0);
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('framework'), 2);</pre>
+<p>
+            は 'zend ????? download' を検索し、'zend platform download' や 'zend studio download'、
+            'zend core download'、'zend framework download' などがマッチします
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase();
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('zend', 'title'));
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('framework', 'title'));</pre>
+<p>
+            は 'title' フィールドから 'zend framework' を検索します。
+        </p>
+<p>
+            曖昧度は、フレーズの間に別の単語が何個まで入ることを許すのかを設定します。
+            ゼロの場合は、完全な熟語検索となります。大きな値を指定すると、
+            WITHIN 演算子や NEAR 演算子と同様な動作となります。
+        </p>
+<p>
+            曖昧度とは、クエリの中で各単語の位置を何段階移動させられるかを表します。
+            例えば、2 つの単語の順番を入れ替えるには 2 段階の移動が必要です
+            (最初の単語を、次の単語のもうひとつ先まで移動させます)。
+            そのため、語順を入れ替えることを許可したいのなら、曖昧度は少なくとも
+            2 以上にしなければなりません。
+        </p>
+<p>
+            正確にマッチしているほうが、曖昧に (sloppy)
+            マッチしているものより高スコアとなります。そのため、
+            検索結果は正確度の順に並べ替えられます。曖昧度のデフォルトはゼロで、
+            これは完全に一致するもののみを対象とします。
+        </p>
+<p>
+            曖昧度は、クエリを作成した後で設定することができます。
+        </p>
+<pre class="programlisting">&lt;?php
+
+// 隙間をあけないクエリ
+$query = new Zend_Search_Lucene_Search_Query_Phrase(array('word1', 'word2'));
+
+// 'word1 word2'、'word1 ... word2' を検索します
+$query-&gt;setSlop(1);
+$hits1 = $index-&gt;find($query);
+
+// 'word1 word2'、'word1 ... word2'、
+// 'word1 ... ... word2'、'word2 word1' を検索します
+$query-&gt;setSlop(2);
+$hits2 = $index-&gt;find($query);
+
+?&gt;</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.query-language.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.charset.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.4. クエリ言語 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 22.6. 文字セット</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

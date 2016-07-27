@@ -1,0 +1,355 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.8. MVC での例外</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="prev" href="zend.controller.modular.html" title="7.7. モジュラーディレクトリ構造の規約の使用">
+<link rel="next" href="zend.controller.migration.html" title="7.9. 以前のバージョンからの移行">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.controller.exceptions.html#zend.controller.exceptions.introduction" title="7.8.1. 導入">
+<link rel="subsection" href="zend.controller.exceptions.html#zend.controller.exceptions.handling" title="7.8.2. 例外を処理する方法は?">
+<link rel="subsection" href="zend.controller.exceptions.html#zend.controller.exceptions.internal" title="7.8.3. MVC で遭遇するであろう例外">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.8. MVC での例外</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.modular.html">前のページ</a> </td>
+<th width="60%" align="center">第7章 Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.migration.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.exceptions"></a>7.8. MVC での例外</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.exceptions.introduction"></a>7.8.1. 導入</h3></div></div></div>
+<p>
+            Zend Framework の MVC コンポーネントは、
+            フロントコントローラを使用しています。
+            つまり、あるサイトに対するすべてのリクエストを
+            ひとつのエントリポイントで処理するということです。その結果、
+            すべての例外は最終的にフロントコントローラに到達することになります。
+            開発者は、例外をここでまとめて処理することができます。
+        </p>
+<p>
+            しかし、例外のメッセージやバックトレースの中には、
+            システムの重要な情報が含まれていることがあります。
+            たとえば SQL 文の内容やファイルの位置といった情報です。
+            あなたのサイトを守るため、デフォルトでは
+            Zend_Controller_Front がすべての例外を捕捉し、
+            それをレスポンスオブジェクトに登録するようになっています。
+            また、レスポンスオブジェクトは、
+            デフォルトではそれらの例外メッセージを表示しません。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.exceptions.handling"></a>7.8.2. 例外を処理する方法は?</h3></div></div></div>
+<p>
+            MVC コンポーネント内で例外を処理するための仕組みが組み込まれています。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>Zend_Controller_Front::throwExceptions()</p>
+<p>
+                    このメソッドに true を渡すと、
+                    フロントコントローラがレスポンスオブジェクトに例外をまとめるかわりに
+                    例外を自分自身で処理できるようになります。たとえば次のようになります。
+                </p>
+<pre class="programlisting">&lt;?php
+$front-&gt;throwExceptions(true);
+try {
+    $front-&gt;dispatch();
+} catch (Exception $e) {
+    // ここで、自分自身で例外を処理します
+}
+</pre>
+<p>
+                    これが、自分のアプリケーションで独自の例外処理を行うための
+                    もっとも簡単な方法でしょう。
+                </p>
+</li>
+<li>
+<p>Zend_Controller_Response_Abstract::renderExceptions()</p>
+<p>
+                    このメソッドに true を渡すと、
+                    レスポンスオブジェクトをレンダリングする際に
+                    例外メッセージやバックトレースも表示するようになります。
+                    これを行うと、アプリケーションで発生したすべての例外が表示されるようになります。
+                    実際の運用環境以外でのみ使用するようにしましょう。
+                </p>
+</li>
+<li>
+<p>Zend_Controller_Front::returnResponse() および
+                    Zend_Controller_Response_Abstract::isException()</p>
+<p>
+                    Zend_Controller_Front::returnResponse() に true を渡すと、
+                    Zend_Controller_Front::dispatch() はレスポンスをレンダリングせず、
+                    そのまま返します。レスポンスを受け取った後で、
+                    処理すべき例外があるかどうかを isException()
+                    メソッドで調べ、その内容を getException() メソッドで取得します。
+                    たとえば次のようになります。
+                </p>
+<pre class="programlisting">&lt;?php
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+if ($response-&gt;isException()) {
+    $exceptions = $response-&gt;getException();
+    // 例外を処理します ...
+} else {
+    $response-&gt;sendHeaders();
+    $response-&gt;outputBody();
+}
+</pre>
+<p>
+                    Zend_Controller_Front::throwExceptions()
+                    に比べてこの方法が優れている点は、例外を処理した後で、
+                    それをレンダリングするかどうかを判断できるところです。
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.exceptions.internal"></a>7.8.3. MVC で遭遇するであろう例外</h3></div></div></div>
+<p>
+            各 MVC コンポーネント群 -- リクエスト、ルータ、ディスパッチャ、
+            アクションコントローラそしてレスポンスオブジェクト --
+            はそれぞれ例外をスローします。
+            条件によっては上書きされる例外もありますし、
+            中には開発者がアプリケーションの構造を見直さなければならないような例外もあるでしょう。
+        </p>
+<p>いくつか例を示します。</p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    Zend_Controller_Dispatcher::dispatch() は、デフォルトでは、
+                    無効なコントローラがリクエストされた際に例外をスローします。
+                    この例外への対処方法としては、次のふたつを推奨します。
+                </p>
+<div class="itemizedlist"><ul type="circle">
+<li>
+<p>パラメータ 'useDefaultControllerAlways' を設定します。</p>
+<p>
+                            フロントコントローラかディスパッチャのいずれかで、
+                            以下のディレクティブを追加します。
+                        </p>
+<pre class="programlisting">&lt;?php
+$front-&gt;setParam('useDefaultControllerAlways', true);
+
+// あるいは
+$dispatcher-&gt;setParam('useDefaultControllerAlways', true);
+</pre>
+<p>
+                            このフラグを設定すると、
+                            ディスパッチャは例外をスローせず、
+                            かわりにデフォルトのコントローラとアクションを使用するようになります。
+                            この方式の欠点は、ユーザがサイトのアドレスを打ち間違えた際にも
+                            ホームページが表示されてしまうことです。これは
+                            サーチエンジン最適化を台無しにしてしまう可能性があります。
+                        </p>
+</li>
+<li><p>
+                            dispatch() がスローする例外は
+                            Zend_Controller_Dispatcher_Exception で、この中には
+                            'Invalid controller specified' というテキストが含まれます。
+                            <a href="zend.controller.exceptions.html#zend.controller.exceptions.handling" title="7.8.2. 例外を処理する方法は?">項7.8.2. 「例外を処理する方法は?」</a>
+                            でとりあげられているメソッドのいずれかでこの例外を捕捉し、
+                            共通のエラーページあるいはホームページにリダイレクトします。
+                        </p></li>
+</ul></div>
+</li>
+<li>
+<p>
+                    Zend_Controller_Action::__call() は、存在しないアクションを
+                    メソッドにディスパッチできなかった場合に例外をスローします。
+                    このような場合は、何らかのデフォルトアクションを
+                    コントローラで使用したいことでしょう。そのためには次のようにします。
+                </p>
+<div class="itemizedlist"><ul type="circle">
+<li>
+<p>
+                            Zend_Controller_Action のサブクラスを作成し、
+                            __call() メソッドをオーバーライドします。
+                            たとえば次のようになります。
+                        </p>
+<pre class="programlisting">&lt;?php
+class My_Controller_Action extends Zend_Controller_Action
+{
+    public function __call($method, $args)
+    {
+        if ('Action' == substr($method, -6)) {
+            $controller = $this-&gt;getRequest()-&gt;getControllerName();
+            $url = '/' . $controller . '/index';
+            return $this-&gt;_redirect($url);
+        }
+
+        throw new Exception('Invalid method');
+    }
+}
+</pre>
+<p>
+                            上の例は、未定義のアクションメソッドがコールされた場合にそれをすべて受け取り、
+                            そのコントローラのデフォルトアクションにリダイレクトします。
+                        </p>
+</li>
+<li>
+<p>
+                            Zend_Controller_Dispatcher のサブクラスを作成し、
+                            getAction() メソッドをオーバーライドして、
+                            アクションが存在するかどうかを調べます。
+                            たとえば次のようになります。
+                        </p>
+<pre class="programlisting">&lt;?php
+class My_Controller_Dispatcher extends Zend_Controller_Dispatcher
+{
+    public function getAction($request)
+    {
+        $action = $request-&gt;getActionName();
+        if (empty($action)) {
+            $action = $this-&gt;getDefaultAction();
+            $request-&gt;setActionName($action);
+            $action = $this-&gt;formatActionName($action);
+        } else {
+            $controller = $this-&gt;getController();
+            $action     = $this-&gt;formatActionName($action);
+            if (!method_exists($controller, $action)) {
+                $action = $this-&gt;getDefaultAction();
+                $request-&gt;setActionName($action);
+                $action = $this-&gt;formatActionName($action);
+            }
+        }
+
+        return $action;
+    }
+}
+</pre>
+<p>
+                            上のコードは、指定したアクションが
+                            そのコントローラクラスに存在するかどうかを調べます。
+                            存在しない場合は、デフォルトのアクションにリセットします。
+                        </p>
+<p>
+                            この方式の利点は、最終的にディスパッチが行われる前に
+                            透過的にアクションを変更できるとうことです。しかしこれは、
+                            URL を打ち間違えた際にも正しくディスパッチされてしまうということでもあります。
+                            これは、サーチエンジン最適化のためにはあまりよくありません。
+                        </p>
+</li>
+<li>
+<p>
+                            Zend_Controller_Action::preDispatch() あるいは
+                            Zend_Controller_Plugin_Abstract::preDispatch()
+                            を使用して、無効なアクションを判別します。
+                        </p>
+<p>
+                            Zend_Controller_Action のサブクラスを作成して
+                            preDispatch() を変更することで、
+                            実際にアクションをディスパッチする前に
+                            コントローラ内で別のアクションに転送したり
+                            リダイレクトしたりすることが可能となります。
+                            このコードは、先ほど説明した __call()
+                            をオーバーライドするコードと似たものになります。
+                        </p>
+<p>
+                            もうひとつの方法としては、
+                            この情報をグローバルプラグインで調べることもできます。
+                            この方式の利点は、アクションコントローラとは独立しているというところです。
+                            アプリケーション内でさまざまなアクションコントローラを使用しているとしましょう。
+                            それらがすべて同一のクラスを継承しているとは限りません。
+                            そのような場合にこの方式を使用すると、
+                            さまざまなクラスに対して一貫した処理を行うことができます。
+                        </p>
+<p>
+                            たとえば次のようになります。
+                        </p>
+<pre class="programlisting">&lt;?php
+class My_Controller_PreDispatchPlugin extends Zend_Controller_Plugin_Abstract
+{
+    public function preDispatch(Zend_Controller_Request_Abstract $request)
+    {
+        $dispatcher = Zend_Controller_Front::getInstance()-&gt;getDispatcher();
+        $controller = $dispatcher-&gt;getController($request);
+        if (!$controller) {
+            $controller = $dispatcher-&gt;getDefaultControllerName($request);
+        }
+        $action     = $dispatcher-&gt;getAction($request);
+
+        if (!method_exists($controller, $action)) {
+            $defaultAction = $dispatcher-&gt;getDefaultAction();
+            $controllerName = $request-&gt;getControllerName();
+            $response = Zend_Controller_Front::getInstance()-&gt;getResponse();
+            $response-&gt;setRedirect('/' . $controllerName . '/' . $defaultAction);
+            $response-&gt;sendHeaders();
+            exit;
+        }
+    }
+}
+</pre>
+<p>
+                            この例では、
+                            リクエストされたアクションがそのコントローラに存在するかどうかを調べます。
+                            存在しない場合は、そのコントローラのデフォルトアクションにリダイレクトします。
+                            そしてそこでスクリプトの実行を終了します。
+                        </p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.modular.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.migration.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.7. モジュラーディレクトリ構造の規約の使用 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 7.9. 以前のバージョンからの移行</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第27章 Zend_Validate</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="next" href="zend.validate.validator_chains.html" title="27.2. バリデータチェイン">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.validate.html#zend.validate.introduction" title="27.1. 導入">
+<link rel="section" href="zend.validate.validator_chains.html" title="27.2. バリデータチェイン">
+<link rel="section" href="zend.validate.writing_validators.html" title="27.3. バリデータの書き方">
+<link rel="section" href="zend.validate.validating_email_addresses.html" title="27.4. メールアドレスの検証">
+<link rel="section" href="zend.validate.validating_hostnames.html" title="27.5. ホスト名の検証">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第27章 Zend_Validate</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.uri.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.validate.validator_chains.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.validate"></a>第27章 Zend_Validate</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.validate.html#zend.validate.introduction">27.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validator_chains.html">27.2. バリデータチェイン</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.writing_validators.html">27.3. バリデータの書き方</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_email_addresses.html">27.4. メールアドレスの検証</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_hostnames.html">27.5. ホスト名の検証</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.validate.introduction"></a>27.1. 導入</h2></div></div></div>
+<p>
+        Zend_Validate コンポーネントは、一般的に必要となるバリデータを提供します。
+        シンプルなバリデータチェイン機能も持っており、
+        ひとつのデータに対して複数のバリデータを指定した順に適用することができます。
+    </p>
+<p>
+        <span class="strong"><strong>バリデータとは?</strong></span>
+    </p>
+<p>
+        バリデータは、入力が何らかの要件を満たしているかどうかを調べ、
+        結果を boolean 値で返します。これは、入力が要件を満たしているかどうかを表します。
+        入力が要件を満たさなかった場合、バリデータは
+        その入力がどのように要件を満たさなかったのかについての追加情報も提供します。
+    </p>
+<p>
+        たとえば、あるウェブアプリケーションでは
+        「ユーザ名は 6 文字から 12 文字、かつ英数字のみが使用可能」
+        という要件があるものとします。
+        このような場合に入力がそれを満たしているかどうかを調べるために
+        バリデータを使用できます。
+        選択したユーザ名がいずれかひとつあるいは両方の要件を満たしていない場合に、
+        どちらの条件に反していたのかを知ることができるので便利です。
+    </p>
+<p>
+        ここで考えたバリデータについての定義をもとにして
+        <code class="code">Zend_Validate_Interface</code> が作成されました。これは、
+        <code class="code">isValid()</code> および <code class="code">getMessages()</code>
+        のふたつのメソッドを定義するものです。
+        <code class="code">isValid()</code> メソッドは指定した値に対する検証を行います。
+        値が検証条件を満たしている場合にのみ <code class="code">true</code> を返します。
+        <code class="code">isValid()</code> が <code class="code">false</code> を返した場合、
+        <code class="code">getMessages()</code> がメッセージの配列を提供します。
+        ここには検証が失敗した理由が含まれます。
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            <code class="code">getMessages()</code> が返す検証エラーメッセージは、
+            直近の <code class="code">isValid()</code> コールに関するもののみです。
+            <code class="code">isValid()</code> をコールすると、それまでに実行された
+            <code class="code">isValid()</code> によるメッセージはすべて消去されます。
+        </p></td></tr>
+</table></div>
+<p>
+        以下の例では、電子メールアドレスの検証方法を説明します。
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/EmailAddress.php';
+$validator = new Zend_Validate_EmailAddress();
+if ($validator-&gt;isValid($email)) {
+    // email は妥当な形式です
+} else {
+    // email は無効な形式です。理由を表示します
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.uri.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.validate.validator_chains.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第26章 Zend_Uri </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 27.2. バリデータチェイン</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

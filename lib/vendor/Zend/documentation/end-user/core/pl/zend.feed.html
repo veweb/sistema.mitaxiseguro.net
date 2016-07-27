@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Rozdział 10. Zend_Feed</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="index.html" title="Przewodnik Programisty">
+<link rel="prev" href="zend.db.tablerowset.html" title="9.6. Zend_Db_Table_Rowset">
+<link rel="next" href="zend.feed.importing.html" title="10.2. Importowanie kanałów informacyjnych za pomocą Zend_Feed">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="section" href="zend.feed.html#zend.feed.introduction" title="10.1. Wprowadzenie">
+<link rel="section" href="zend.feed.importing.html" title="10.2. Importowanie kanałów informacyjnych za pomocą Zend_Feed">
+<link rel="section" href="zend.feed.findFeeds.html" title="10.3. Odbieranie kanałów informacyjnych ze stron internetowych">
+<link rel="section" href="zend.feed.consuming-rss.html" title="10.4. Odbieranie danych z kanału informacyjnego RSS">
+<link rel="section" href="zend.feed.consuming-atom.html" title="10.5. Odbieranie danych z kanału informacyjnego Atom">
+<link rel="section" href="zend.feed.consuming-atom-single-entry.html" title="10.6. Pobieranie pojedynczego wpisu kanału Atom">
+<link rel="section" href="zend.feed.modifying-feed.html" title="10.7. Modyfikacja kanału oraz struktury wpisów">
+<link rel="section" href="zend.feed.custom-feed.html" title="10.8. Własne klasy kanału i wpisu">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Rozdział 10. Zend_Feed</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.tablerowset.html">Poprzedni</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.importing.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="pl">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.feed"></a>Rozdział 10. Zend_Feed</h2></div></div></div>
+<div class="toc">
+<p><b>Spis treści</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.feed.html#zend.feed.introduction">10.1. Wprowadzenie</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.importing.html">10.2. Importowanie kanałów informacyjnych za pomocą Zend_Feed</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.findFeeds.html">10.3. Odbieranie kanałów informacyjnych ze stron internetowych</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-rss.html">10.4. Odbieranie danych z kanału informacyjnego RSS</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-atom.html">10.5. Odbieranie danych z kanału informacyjnego Atom</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-atom-single-entry.html">10.6. Pobieranie pojedynczego wpisu kanału Atom</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.modifying-feed.html">10.7. Modyfikacja kanału oraz struktury wpisów</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.custom-feed.html">10.8. Własne klasy kanału i wpisu</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.introduction"></a>10.1. Wprowadzenie</h2></div></div></div>
+<p>
+        <code class="code">Zend_Feed</code> zapewnia funkcjonalność umożliwiającą przetwarzanie
+        kanałów informacyjnych RSS oraz Atom. Zapewnia ona naturalną składnię umożliwiającą
+        dostęp do elementów kanałów informacyjnych, ich atrybutów oraz atrybutów samych wpisów.
+        <code class="code">Zend_Feed</code> daje także obszerne wsparcie w modyfikowaniu kanałów
+        i struktury wpisów w ten sam naturalny sposób i umożliwia zapisanie rezultatów
+        jako XML. W przyszłości klasa ma zapewnić obsługę protokołu publikowania Atom
+        (Atom Publishing Protocol).
+    </p>
+<p>
+        Programowo <code class="code">Zend_Feed</code> składa się z bazowej klasy <code class="code">Zend_Feed</code>,
+        abstrakcyjnych klas <code class="code">Zend_Feed_Abstract</code> oraz <code class="code">Zend_Feed_EntryAbstract</code> 
+        reprezentujących kanały informacyjne i ich wpisy, specyficznych implementacji
+        kanałów i wpisów dla RSS i Atom, oraz z pomocników odpowiedzialnych za 
+        naturalną składnię.
+    </p>
+<p>
+        W przykładzie poniżej pokazujemy prosty przykład odbierania danych RSS
+        i zapisywania potrzebnych części danych kanału do prostej tablicy PHP,
+        która może być potem użyta do wyświetlenia danych, zapisania ich do bazy
+        danych itp.
+    </p>
+<div class="note"><table border="0" summary="Note: Bądż ostrożny">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Bądż ostrożny</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Wiele kanałów RSS ma dostępne różne właściwości samego kanału i jego elementów.
+            Specyfikacja RSS umożliwia użycie wielu opcjonalnych parametrów, więc
+            bądź ostrożny gdy będziesz pisał kod pracujący z RSS.
+        </p></td></tr>
+</table></div>
+<div class="example">
+<a name="id4826324"></a><p class="title"><b>Przykład 10.1. Użycie Zend_Feed do pobierania danych RSS</b></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'Zend/Feed.php';
+
+// Ściągamy najnowsze nagłówki ze Slashdot
+try {
+    $slashdotRss = Zend_Feed::import('http://rss.slashdot.org/Slashdot/slashdot');
+} catch (Zend_Feed_Exception $e) {
+    // importowanie danych nie udało się
+    echo "Exception caught importing feed: {$e-&gt;getMessage()}\n";
+    exit;
+}
+
+// inicjalizacja tablicy z danymi kanału
+$channel = array(
+    'title'       =&gt; $slashdotRss-&gt;title(),
+    'link'        =&gt; $slashdotRss-&gt;link(),
+    'description' =&gt; $slashdotRss-&gt;description(),
+    'items'       =&gt; array()
+    );
+
+// Pętla po każdym elemencie kanału i zapisanie potrzebnych danych
+foreach ($slashdotRss as $item) {
+    $channel['items'][] = array(
+        'title'       =&gt; $item-&gt;title(),
+        'link'        =&gt; $item-&gt;link(),
+        'description' =&gt; $item-&gt;description()
+        );
+}
+
+?&gt;   </pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.tablerowset.html">Poprzedni</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.importing.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.6. Zend_Db_Table_Rowset </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 10.2. Importowanie kanałów informacyjnych za pomocą Zend_Feed</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

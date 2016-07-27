@@ -1,0 +1,146 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>付録 A. Zend Framework PHP 標準コーディング規約</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.xmlrpc.server.html" title="29.3. Zend_XmlRpc_Server">
+<link rel="next" href="coding-standard.php-file-formatting.html" title="A.2. PHP ファイルの書式">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="coding-standard.html#coding-standard.overview" title="A.1. 概要">
+<link rel="section" href="coding-standard.php-file-formatting.html" title="A.2. PHP ファイルの書式">
+<link rel="section" href="coding-standard.naming-conventions.html" title="A.3. 命名規約">
+<link rel="section" href="coding-standard.coding-style.html" title="A.4. コーディングスタイル">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">付録 A. Zend Framework PHP 標準コーディング規約</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.xmlrpc.server.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="coding-standard.php-file-formatting.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="appendix" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="coding-standard"></a>付録 A. Zend Framework PHP 標準コーディング規約</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="coding-standard.html#coding-standard.overview">A.1. 概要</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.html#coding-standard.overview.scope">A.1.1. 対象範囲</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.html#coding-standard.overview.goals">A.1.2. 目標</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.php-file-formatting.html">A.2. PHP ファイルの書式</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.general">A.2.1. 全般</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation">A.2.2. 字下げ</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.max-line-length">A.2.3. 1 行の長さ</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.line-termination">A.2.4. 行末</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.naming-conventions.html">A.3. 命名規約</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes">A.3.1. クラス</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces">A.3.2. インターフェイス</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames">A.3.3. ファイル名</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.functions-and-methods">A.3.4. 関数およびメソッド</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.variables">A.3.5. 変数</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.constants">A.3.6. 定数</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.coding-style.html">A.4. コーディングスタイル</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.php-code-demarcation">A.4.1. PHP コードの境界</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.strings">A.4.2. 文字列</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.arrays">A.4.3. 配列</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.classes">A.4.4. クラス</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.functions-and-methods">A.4.5. 関数およびメソッド</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.control-statements">A.4.6. 制御構造</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standards.inline-documentation">A.4.7. インラインドキュメント</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="coding-standard.overview"></a>A.1. 概要</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.overview.scope"></a>A.1.1. 対象範囲</h3></div></div></div>
+<p>
+                このドキュメントは、Zend Framework 上で開発を行う開発者 (開発チーム)
+                のための指針となるものです。扱う範囲は以下のとおりです。
+
+                </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>PHP ファイルの書式</p></li>
+<li><p>命名規約</p></li>
+<li><p>コーディングスタイル</p></li>
+<li><p>インラインドキュメント</p></li>
+</ul></div>
+<p>
+            </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.overview.goals"></a>A.1.2. 目標</h3></div></div></div>
+<p>
+                どのような開発プロジェクトであっても、コーディング規約は重要です。
+                複数の開発者が参加するプロジェクトならなおさらです。コーディング規約に従うことで、
+                コードの品質保持・バグの減少・保守の容易性の確保
+                などの助けになります。
+            </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.xmlrpc.server.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="coding-standard.php-file-formatting.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">29.3. Zend_XmlRpc_Server </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> A.2. PHP ファイルの書式</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

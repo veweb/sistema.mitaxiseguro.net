@@ -1,0 +1,132 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>20.4. Document pages.</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="prev" href="zend.pdf.save.html" title="20.3. Save changes to the PDF document.">
+<link rel="next" href="zend.pdf.drawing.html" title="20.5. Drawing.">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">20.4. Document pages.</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.pdf.save.html">Prev</a> </td>
+<th width="60%" align="center">Chapter 20. Zend_Pdf</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.pdf.drawing.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.pdf.pages"></a>20.4. Document pages.</h2></div></div></div>
+<p>
+    PDF document page abstraction is represented by <code class="code">Zend_Pdf_Page</code> class.
+    </p>
+<p>
+    PDF pages either are loaded from existing PDF, or created.
+    </p>
+<p>
+    New page can be obtained by creating new <code class="code">Zend_Pdf_Page</code> object or calling
+    <code class="code">Zend_Pdf::newPage()</code> method, which returns <code class="code">Zend_Pdf_Page</code> object.
+    The difference is that <code class="code">Zend_Pdf::newPage()</code> method creates a page, already attached to
+    the document. In difference from unattached pages it can't be used with several PDF documents,
+    but has a little bit better performance.
+    <sup>[<a name="id4860105" href="#ftn.id4860105">6</a>]</sup>. It's your choice, which approach should be used.
+    </p>
+<p>
+    <code class="code">Zend_Pdf::newPage()</code> method and <code class="code">Zend_Pdf_Page</code> constructor take the same
+    set of parameters. It either the size of page ($x, $y) in a points (1/72 inch), or predefined constant,
+    which is treated as a page type:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Zend_Pdf_Page::SIZE_A4</p></li>
+<li><p>Zend_Pdf_Page::SIZE_A4_LANDSCAPE</p></li>
+<li><p>Zend_Pdf_Page::SIZE_LETTER</p></li>
+<li><p>Zend_Pdf_Page::SIZE_LETTER_LANDSCAPE</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+    Document pages are stored in <code class="code">$pages</code> public member of <code class="code">Zend_Pdf</code> class.
+    It's an array of <code class="code">Zend_Pdf_Page</code> objects. It completely defines set and order of document pages
+    and can be manipulated as a common array:
+    </p>
+<div class="example">
+<a name="id4860179"></a><p class="title"><b>Example 20.4. PDF document pages management.</b></p>
+<pre class="programlisting">&lt;?php
+...
+// Reverse page order
+$pdf-&gt;pages = array_reverse($pdf-&gt;pages);
+...
+// Add new page
+$pdf-&gt;pages[] = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
+// Add new page
+$pdf-&gt;pages[] = $pdf-&gt;newPage(Zend_Pdf_Page::SIZE_A4);
+
+// Remove specified page.
+unset($pdf-&gt;pages[$id]);
+
+...
+?&gt;</pre>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4860105" href="#id4860105">6</a>] </sup>
+        It's a limitation of V1.0 version of Zend_Pdf module. It will be eliminated in future versions.
+        But unattached pages will always give better (more optimal) result for sharing pages between documents.
+        </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.pdf.save.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.pdf.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.pdf.drawing.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">20.3. Save changes to the PDF document. </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 20.5. Drawing.</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

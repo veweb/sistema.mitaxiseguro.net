@@ -1,0 +1,170 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.6. Zend_Db_Table_Rowset</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="prev" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="next" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="zend.db.tablerowset.html#zend.db.table.rowset.introduction" title="9.6.1. Introdução">
+<link rel="subsection" href="zend.db.tablerowset.html#zend.db.table.rowset.fetch" title="9.6.2. Buscando um Rowset">
+<link rel="subsection" href="zend.db.tablerowset.html#zend.db.table.rowset.iterate" title="9.6.3. Percorrendo o Rowset">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.6. Zend_Db_Table_Rowset</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.tablerow.html">Anterior</a> </td>
+<th width="60%" align="center">Capítulo 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.tablerowset"></a>9.6. Zend_Db_Table_Rowset</h2></div></div></div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.rowset.introduction"></a>9.6.1. Introdução</h3></div></div></div>
+<p>
+            Zend_Db_Table_Rowset é um iterator para coleções de objetos Zend_Db_Table_Row.
+            De modo geral, você não instancia Zend_Db_Table_Rowset; em vez disso,
+			você recupera um objeto Zend_Db_Table_Rowset como o resultado de retorno de
+            Zend_Db_Table::find() ou fetchAll().  Você pode então percorrer os objetos
+			Zend_Db_Table_Row da coleção e modificá-los como desejar.
+        </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.rowset.fetch"></a>9.6.2. Buscando um Rowset</h3></div></div></div>
+<p>
+            A primeira coisa a fazer é instanciar a classe Zend_Db_Table.
+        </p>
+<pre class="programlisting">&lt;?php
+// inicializa um adaptador
+require_once 'Zend/Db.php';
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// define o adaptador como padrão para todos os objetos Zend_Db_Table
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+
+// conecta com uma tabela no banco de dados
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+<p>
+            Em seguida, recupere vários registros do banco de dados usando
+            Zend_Db_Table::find() com múltiplas chaves, ou usando
+            Zend_Db_Table::fetchAll();  o resultado retornado será um objeto
+            Zend_Db_Table_Rowset que permitirá a você percorra os objetos
+			Zend_Db_Table_Row individuais na coleção de registros.
+        </p>
+<pre class="programlisting">&lt;?php
+// busca vários registros da tabela
+$rowset = $table-&gt;fetchAll();
+
+//
+// $rowset é agora um objeto Zend_Db_Table_Rowset composto por 
+// um objeto Zend_Db_Table_Row por registro nos resultados
+//
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.rowset.iterate"></a>9.6.3. Percorrendo o Rowset</h3></div></div></div>
+<p>
+            Zend_Db_Table_Rowset implementa a interface do SPL Iterator, o que
+            significa que você podepercorrer os objetos Zend_Db_Table_Rowset como se fossem matrizes
+            usando foreach().  Cada valor que você recebe deste modo será um Zend_Db_Table_Row
+            que corresponde a um registro da tabela; você pode então ver, modificar e salvar
+			as propriedades daquele registro.
+        </p>
+<pre class="programlisting">&lt;?php
+// conecta com uma tabela no banco de dados
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+
+// busca vários registros da tabela
+$rowset = $table-&gt;fetchAll();
+
+// mostra todos
+foreach ($rowset as $row) {
+    // $row é um objeto Zend_Db_Table_Row
+    echo "&lt;p&gt;" . htmlspecialchars($row-&gt;nobleTitle) . " "
+       . htmlspecialchars($row-&gt;firstName) . "'s "
+       . "favorite color is " . htmlspecialchars($row-&gt;favoriteColor)
+       . ".&lt;/p&gt;\n";
+
+    // atualiza o número de vezes que mostramos este registro,
+    // (a propriedade corresponde à coluna "times_displayed" na tabela)
+    $row-&gt;timesDisplayed ++;
+
+    // salva o registro com a nova informação
+    $row-&gt;save();
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.tablerow.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.5. Zend_Db_Table_Row </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> Capítulo 10. Zend_Feed</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

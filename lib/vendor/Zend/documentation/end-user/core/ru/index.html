@@ -1,0 +1,1560 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Руководство разработчика</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="next" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Руководство разработчика</th></tr>
+<tr>
+<td width="20%" align="left"> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="book" lang="ru">
+<div class="titlepage">
+<div>
+<div><h1 class="title">
+<a name="manual"></a>Руководство разработчика</h1></div>
+<div><h2 class="subtitle">Zend Framework</h2></div>
+<div><p class="copyright">Copyright © 2005-2007 
+                Zend Technologies Inc.
+                (<a href="http://www.zend.com" target="_top">http://www.zend.com</a>)
+            </p></div>
+<div><p class="pubdate">2007-02-21</p></div>
+</div>
+<hr>
+</div>
+<div class="toc">
+<p><b>Содержание</b></p>
+<dl>
+<dt><span class="chapter"><a href="zend.html">1. Zend</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.html#zend.introduction">1.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.loadfile.html">1.2. Zend::loadFile()</a></span></dt>
+<dt><span class="sect1"><a href="zend.loadclass.html">1.3. Zend::loadClass()</a></span></dt>
+<dt><span class="sect1"><a href="zend.isreadable.html">1.4. Zend::isReadable()</a></span></dt>
+<dt><span class="sect1"><a href="zend.exception.html">1.5. Zend::exception()</a></span></dt>
+<dt><span class="sect1"><a href="zend.dump.html">1.6. Zend::dump()</a></span></dt>
+<dt><span class="sect1"><a href="zend.register.html">1.7. Zend::register($index, $newval)</a></span></dt>
+<dt><span class="sect1"><a href="zend.registry.html">1.8. Zend::registry($index = null)</a></span></dt>
+<dt><span class="sect1"><a href="zend.initregistry.html">1.9. Zend::initRegistry($registry = 'Zend_Registry')</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.acl.html">2. Zend_Acl</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.acl.html#zend.acl.introduction">2.1. Введение</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.resources">2.1.1. О Ресурсах
+	
+	</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.roles">2.1.2. 
+	О Ролях
+
+	</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.creating">2.1.3. 
+	Создание списка контроля доступа (ACL)
+
+	</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.role_registry">2.1.4. 
+	Регистрация Ролей
+	
+ 	</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.defining">2.1.5. Defining Access Controls</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.querying">2.1.6. Querying the ACL</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.acl.refining.html">2.2. Refining Access Controls</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.refining.html#zend.acl.refining.precise">2.2.1. Precise Access Controls</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.refining.html#zend.acl.refining.removing">2.2.2. Removing Access Controls</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.acl.advanced.html">2.3. Advanced Use</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.advanced.html#zend.acl.advanced.storing">2.3.1. Storing ACL Data for Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.advanced.html#zend.acl.advanced.assertions">2.3.2. Writing Conditional ACL Rules with Assertions</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.auth.html">3. Zend_Auth</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.auth.html#zend.auth.introduction">3.1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.adapters">3.1.1. Adapters</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.results">3.1.2. Results</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.persistence">3.1.3. Identity Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.using">3.1.4. Using Zend_Auth</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.auth.adapter.digest.html">3.2. Digest Authentication</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.introduction">3.2.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.specifics">3.2.2. Specifics</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.identity">3.2.3. Identity</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.cache.html">4. Zend_Cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.cache.html#zend.cache.introduction">4.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.cache.theory.html">4.2. Теория кэширования</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.factory">4.2.1. Фабричный метод <code class="code">Zend_Cache</code></a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.tags">4.2.2. Добавление тегов к записям</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.clean">4.2.3. Очистка кэша</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.frontends.html">4.3. Фронтэнды Zend_Cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.core">4.3.1. Zend_Cache_Core</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.output">4.3.2. Zend_Cache_Frontend_Output</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.function">4.3.3. Zend_Cache_Frontend_Function</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.class">4.3.4. Zend_Cache_Frontend_Class</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.file">4.3.5. Zend_Cache_Frontend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.page">4.3.6. Zend_Cache_Frontend_Page</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.backends.html">4.4. Бэкэнды Zend_Cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.file">4.4.1. Zend_Cache_Backend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.sqlite">4.4.2. Zend_Cache_Backend_Sqlite</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.memcached">4.4.3. Zend_Cache_Backend_Memcached</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.apc">4.4.4. Zend_Cache_Backend_APC</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.platform">4.4.5. Zend_Cache_Backend_ZendPlatform</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.config.html">5. Zend_Config</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.config.html#zend.config.introduction">5.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.theory_of_operation.html">5.2. Основы работы</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.adapters.ini.html">5.3. Zend_Config_Ini</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.adapters.xml.html">5.4. Zend_Config_Xml</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.console.getopt.html">6. Zend_Console_Getopt</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.console.getopt.html#zend.console.getopt.introduction">6.1. Introduction to Getopt</a></span></dt>
+<dt><span class="sect1"><a href="zend.console.getopt.rules.html">6.2. Declaring Getopt Rules</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.rules.html#zend.console.getopt.rules.short">6.2.1. Declaring Options with the Short Syntax</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.rules.html#zend.console.getopt.rules.long">6.2.2. Declaring Options with the Long Syntax</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.console.getopt.fetching.html">6.3. Fetching Options and Arguments</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.exceptions">6.3.1. Handling Getopt Exceptions</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.byname">6.3.2. Fetching Options by Name</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.reporting">6.3.3. Reporting Options</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.remainingargs">6.3.4. Fetching Non-option Arguments</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.console.getopt.configuration.html">6.4. Configuring Zend_Console_Getopt</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addrules">6.4.1. Adding Option Rules</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addhelp">6.4.2. Adding Help Messages</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addaliases">6.4.3. Adding Option Aliases</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addargs">6.4.4. Adding Argument Lists</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.config">6.4.5. Adding Configuration</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.controller.html">7. Zend_Controller</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.controller.html#zend.controller.overview">7.1. Обзор</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.introduction">7.1.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.request">7.1.2. Объект запроса</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.routing-process">7.1.3. Процесс маршрутизации</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.dispatching">7.1.4. Процесс диспетчеризации</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.response">7.1.5. Объект ответа</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.getting-started.html">7.2. Начало работы</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.introduction">7.2.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration">7.2.2. Конфигурация сервера</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap">7.2.3. Файл загрузки</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure">7.2.4. Структура каталогов</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.overview.indexcontroller">7.2.5. Контроллер по умолчанию</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.subclassing.html">7.3. Создание подклассов</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.introduction">7.3.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.conventions">7.3.2. Соглашения</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.front">7.3.3. Фронт-контроллер</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.request.abstract">7.3.4. Абстрактный класс запроса</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.router.interface">7.3.5. Интерфейс маршрутизатора</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.dispatcher.interface">7.3.6. Интерфейс диспетчера</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.action">7.3.7. Контроллер действий</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.response.abstract">7.3.8. Объект ответа</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.providedsubclasses.html">7.4. Готовые подклассы</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.introduction">7.4.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.request.http">7.4.2. Zend_Controller_Request_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter">7.4.3. Zend_Controller_Router_Rewrite</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.http">7.4.4. Zend_Controller_Response_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.cli">7.4.5. Zend_Controller_Response_Cli</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.action.html">7.5. Контроллеры действий</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.introduction">7.5.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.initialization">7.5.2. Инициализация объекта</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.prepostdispatch">7.5.3. Перехватчики Pre- и Post-Dispatch</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.accessors">7.5.4. Методы доступа</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.utilmethods">7.5.5. Вспомогательные методы</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.plugins.html">7.6. Плагины</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.introduction">7.6.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.writing">7.6.2. Написание плагинов</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.using">7.6.3. Использование плагинов</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.modular.html">7.7. Модульная структуры директорий</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.introduction">7.7.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.directories">7.7.2. Определение директорий контроллеров для модулей</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.router">7.7.3. Маршрутизация применительно к модулям</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.defaultcontroller">7.7.4. Контроллер, используемый по умолчанию - для модуля или общий</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.exceptions.html">7.8. Исключения</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.introduction">7.8.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.handling">7.8.2. Как я могу обрабатывать исключения?</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.internal">7.8.3. Исключения MVC</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.migration.html">7.9. Переход с предыдущих версий</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerosix">7.9.1. Переход с 0.6.0 на 0.8.0</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerotwo">7.9.2. Переход с 0.2.0 или более ранних версий на 0.6.0</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.date.html">8. Zend_Date</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.date.html#zend.date.introduction">8.1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.html#zend.date.setdefaulttimezone">8.1.1. Always Set a Default Timezone</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.html#zend.date.why">8.1.2. Why Use Zend_Date?</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.date.basic.html">8.2. Basic Methods</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.basic.html#zend.date.basic.creation">8.2.1. The current date</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.basic.html#zend.date.basic.functions">8.2.2. Zend_Date by Example</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.date.definition.theory.html">8.3. Theory of Operation</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.date.definition.theory.html#zend.date.theory.internals">8.3.1. Internals</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.date.overview.html">8.4. Zend_Date API Overview</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.values">8.4.1. Working with Date Values</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#id.date.basic">8.4.2. Basic <code class="code">Zend_Date</code> Operations Common to Many Date Parts</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.others.comparison">8.4.3. Comparing Dates</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.others.gettingparts">8.4.4. Getting Dates and Date Parts</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.others.fractions">8.4.5. Working with Fractions of Seconds</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.other.sun">8.4.6. Sunrise / Sunset</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.date.constants.html">8.5. Constants for General Date Functions</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.constants.html#zend.date.constants.using">8.5.1. Using Constants</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.constants.html#zend.date.constants.list">8.5.2. List of All Constants</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.constants.html#zend.date.constants.selfdefinedformats">8.5.3. Self-Defined OUTPUT Formats</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.db.html">9. Zend_Db</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.db.html#zend.db.adapter">9.1. Zend_Db_Adapter</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.introduction">9.1.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.quoting">9.1.2. Добавление кавычек для предотвращения SQL-инъекций</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.queries">9.1.3. Прямые запросы</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.transactions">9.1.4. Транзакции</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.insert">9.1.5. Вставка строк</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.update">9.1.6. Обновление строк</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.delete">9.1.7. Удаление строк</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.fetch">9.1.8. Извлечение строк</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.profiler.html">9.2. Zend_Db_Profiler</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.introduction">9.2.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.using">9.2.2. Использование профайлера</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.advanced">9.2.3. Расширенное использование профайлера</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.select.html">9.3. Zend_Db_Select</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.introduction">9.3.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.fromcols">9.3.2. Извлечение столбцов</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.joincols">9.3.3. Объединение таблиц</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.where">9.3.4. Условия WHERE</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.group">9.3.5. Группировка</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.having">9.3.6. Условия HAVING</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.order">9.3.7. Сортировка</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.limit">9.3.8. Ограничение по количеству строк и смещению</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.paging">9.3.9. Ограничение по странице и количеству строк</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#id4835341">9.3.10. Другие методы</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.table.html">9.4. Zend_Db_Table</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.introduction">9.4.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.getting-started">9.4.2. Начало работы</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.name-and-key">9.4.3. Имя таблицы и первичные ключи</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.insert">9.4.4. Вставка строк</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.udpate">9.4.5. Обновление строк</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.delete">9.4.6. Удаление строк</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.findbykey">9.4.7. Поиск строк по первичному ключу</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.fetchonerow">9.4.8. Извлечение одной строки</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.fetchmultiple">9.4.9. Извлечение множества строк</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.domain-logic">9.4.10. 
+            Добавление логики предметной области
+            
+        </a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.tablerow.html">9.5. Zend_Db_Table_Row</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.introduction">9.5.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.fetch">9.5.2. Извлечение строки</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.modify">9.5.3. Изменение значений</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.tablerowset.html">9.6. Zend_Db_Table_Rowset</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.introduction">9.6.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.fetch">9.6.2. Извлечение набора строк</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.iterate">9.6.3. Итерация набора строк</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.feed.html">10. Zend_Feed</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.feed.html#zend.feed.introduction">10.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.importing.html">10.2. 
+        Импортирование лент с помощью Zend_Feed
+        
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.findFeeds.html">10.3. 
+        Получение лент из веб-страниц
+        
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-rss.html">10.4. 
+        Работа с лентой RSS
+        
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-atom.html">10.5. 
+    Работа с лентой Atom
+    
+</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-atom-single-entry.html">10.6. 
+        Работа с отдельной публикацией Atom
+        
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.modifying-feed.html">10.7. 
+        Изменение структуры лент и публикаций
+        
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.custom-feed.html">10.8. 
+        Специальные классы лент и записей
+        
+    </a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.filter.html">11. Zend_Filter</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.filter.html#zend.filter.introduction">11.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.filter_chains.html">11.2. Цепочки фильтров</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.writing_filters.html">11.3. Написание фильтров</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.input.html">11.4. Zend_Filter_Input</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction">11.4.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.theory_of_operation">11.4.2. Теория</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.gdata.html">12. Zend_Gdata</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.gdata.html#zend.gdata.introduction">12.1. Introduction to Gdata</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.authentication">12.1.1. Google Data Client Authentication</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.dependencies">12.1.2. Dependencies</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.creation">12.1.3. Creating a new Gdata client</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.parameters">12.1.4. Common query parameters</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.getfeed">12.1.5. Fetching a feed</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.post">12.1.6. Posting entries to Google servers</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.delete">12.1.7. Deleting entries on Google servers</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.authsub.html">12.2. Authenticating with AuthSub</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.authsub.html#zend.gdata.authsub.login">12.2.1. Creating an AuthSub authenticated Http Client</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.authsub.html#zend.gdata.authsub.logout">12.2.2. Revoking AuthSub authentication</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.clientlogin.html">12.3. Authenticating with ClientLogin</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.login">12.3.1. Creating a ClientLogin authenticated Http Client</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.terminating">12.3.2. Terminating a ClientLogin authenticated Http Client</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.base.html">12.4. Using Google Base</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.query">12.4.1. Querying Base data</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.post">12.4.2. Updating Base data</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.metadata">12.4.3. Querying Base metadata</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.blogger.html">12.5. Using Google Blogger</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.compatibility">12.5.1. Understanding Blogger version compatibility</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.query">12.5.2. Querying a blog</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.post">12.5.3. Posting to your blog</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.calendar.html">12.6. Using Google Calendar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.calendar.html#zend.gdata.calendar.query">12.6.1. Querying Google Calendar</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.calendar.html#zend.gdata.calendar.post">12.6.2. Posting to Google Calendar</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.codesearch.html">12.7. Using Google CodeSearch</a></span></dt>
+<dt><span class="sect1"><a href="zend.gdata.data.html">12.8. Using the Gdata Data Helper</a></span></dt>
+<dt><span class="sect1"><a href="zend.gdata.exception.html">12.9. Catching Gdata Exceptions</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.http.html">13. Zend_Http</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.http.html#zend.http.client">13.1. Zend_Http_Client - Введение</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.introduction">13.1.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.configuration">13.1.2. Параметры конфигурации</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.basic-requests">13.1.3. Выполнение базовых HTTP-запросов</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.parameters">13.1.4. Добавление параметров GET и POST</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.advanced.html">13.2. Zend_Http_Client - Advanced Usage</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.redirections">13.2.1. HTTP Redirections</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.cookies">13.2.2. Adding Cookies and Using Cookie Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.custom_headers">13.2.3. Setting Custom Request Headers</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.file_uploads">13.2.4. File Uploads</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.raw_post_data">13.2.5. Sending Raw POST Data</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.http_authentication">13.2.6. HTTP Authentication</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.multiple_requests">13.2.7. Sending Multiple Requests With the Same Client</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.adapters.html">13.3. Zend_Http_Client - Connection Adapters</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapters.overview">13.3.1. Overview</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#id4852646">13.3.2. The Socket Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.proxy">13.3.3. The Proxy Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.test">13.3.4. The Test Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.extending">13.3.5. Creating your own connection adapters</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.cookies.html">13.4. Zend_Http_Cookie and Zend_Http_CookieJar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.introduction">13.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.instantiating">13.4.2. Instantiating Zend_Http_Cookie Objects</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.accessors">13.4.3. Zend_Http_Cookie getter methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.matching">13.4.4. Zend_Http_Cookie: Matching against a scenario</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar">13.4.5. The Zend_Http_CookieJar Class: Instantiation</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.adding_cookies">13.4.6. Adding Cookies to a Zend_Http_CookieJar object</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.getting_cookies">13.4.7. Retrieving Cookies From a Zend_Http_CookieJar object</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.response.html">13.5. Zend_Http_Response</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.introduction">13.5.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.testers">13.5.2. Boolean Tester Methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.acessors">13.5.3. Accessor Methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.static_parsers">13.5.4. Static HTTP Response Parsers</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.json.html">14. Zend_Json</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.json.html#zend.json.introduction">14.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.json.basics.html">14.2. Основы применения</a></span></dt>
+<dt><span class="sect1"><a href="zend.json.objects.html">14.3. Объекты JSON</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.locale.html">15. Zend_Locale</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.locale.html#zend.locale.introduction">15.1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.whatislocalization">15.1.1. What is Localization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.whatis">15.1.2. 
+            What is a Locale?
+        </a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.representation">15.1.3. How are Locales Represented?</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.selection">15.1.4. Selecting the Right Locale</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.interoperate">15.1.5. ZF Locale-Aware Classes</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.functions.html">15.2. Using Zend_Locale</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.copying">15.2.1. Copying, Cloning, and Serializing Locale Objects</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.equals">15.2.2. isEqual() - Equality</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getdefault">15.2.3. Default locales</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.setlocale">15.2.4. Set a new locale</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getlocale">15.2.5. Getting the language and region</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getlanguage">15.2.6. Obtaining localized name for languages, regions, and calendars</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getscriptdisplay">15.2.7. Get an translated string of an script</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getscriptlist">15.2.8. Get a list of scripts</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getquestion">15.2.9. Obtaining translations for "yes" and "no"</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.parsing.html">15.3. Normalization and Localization</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.normalize">15.3.1. Number normalization: getNumber($input, $precision = false, $locale = false)</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.localize">15.3.2. Number localization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.test">15.3.3. Number testing</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.normalize">15.3.4. Float value normalization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.localize">15.3.5. Floating point value localization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.test">15.3.6. Floating point value testing</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.normalize">15.3.7. Integer value normalization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.localize">15.3.8. Integer point value localization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.test">15.3.9. Integer value testing</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.numbersystems">15.3.10. Numeral System Conversion</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.date.datesandtimes.html">15.4. Working with Dates and Times</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.date.normalize">15.4.1. Normalizing Dates and Times</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.date.test">15.4.2. Testing Dates</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.time.normalizing">15.4.3. Normalizing a Time</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.time.test">15.4.4. Testing Times</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.languages.html">15.5. Supported Languages for Locales</a></span></dt>
+<dt><span class="sect1"><a href="zend.locale.regions.html">15.6. Supported Regions for Locales</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.log.html">16. Zend_Log</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.log.html#zend.log.introduction">16.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.log.simple-logging.html">16.2. Ведение одного журнала</a></span></dt>
+<dt><span class="sect1"><a href="zend.log.log-levels.html">16.3. 
+       Уровни сообщений
+
+   </a></span></dt>
+<dt><span class="sect1"><a href="zend.log.advanced-logging.html">16.4. 
+       Ведение нескольких журналов
+
+   </a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.mail.html">17. Zend_Mail</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.mail.html#zend.mail.introduction">17.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.sending.html">17.2. 
+        Отправка через SMTP
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.multiple-emails.html">17.3. 
+        Отправка нескольких сообщений за одно соединение SMTP  
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.different-transports.html">17.4. 
+        Использование разных соединений
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.html-mails.html">17.5. 
+        Сообщение в формате HTML 
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.attachments.html">17.6. 
+        Вложения
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.adding-recipients.html">17.7. 
+        Добавление получателей
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.boundary.html">17.8. 
+        Контроль за разделителями MIME
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.additional-headers.html">17.9. 
+        Дополнительные заголовки
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.character-sets.html">17.10. 
+        Наборы символов
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.encoding.html">17.11. 
+        Кодировка
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.smtp-authentication.html">17.12. 
+        SMTP-аутентификация
+
+    </a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.smtp-secure.html">17.13. Securing SMTP Transport</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.read.html">17.14. Reading Mail Messages</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-example">17.14.1. Simple example using Pop3</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-open-local">17.14.2. Opening a local storage</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-open-remote">17.14.3. Opening a remote storage</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-fetching">17.14.4. Fetching messages and simple methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-message">17.14.5. Working with messages</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-folders">17.14.6. Using folders</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-advanced">17.14.7. Advanced Use</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.measure.html">18. Zend_Measure</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.measure.html#zend.measure.introduction">18.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.measure.creation.html">18.2. Creation of Measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.number">18.2.1. Creating measurements from integers and floats</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.string">18.2.2. Creating measurements from strings</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.localized">18.2.3. Measurements from localized strings</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.output.html">18.3. Outputting measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.auto">18.3.1. Automatic output</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.value">18.3.2. Outputting values</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.unit">18.3.3. Output with unit of measurement</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.localized">18.3.4. Output as localized string</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.edit.html">18.4. Manipulating Measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.convert">18.4.1. Convert</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.add">18.4.2. Add and subtract</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.equal">18.4.3. Compare</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.compare">18.4.4. Compare</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.changevalue">18.4.5. Manually change values</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.changetype">18.4.6. Manually change types</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.special.html">18.5. Special functions</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.typelist">18.5.1. Listing all known types</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.unitlist">18.5.2. Listing all known units</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.types.html">18.6. Types of measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.binary">18.6.1. Hints for Zend_Measure_Binary</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.decimal">18.6.2. Hints for Zend_Measure_Number</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.roman">18.6.3. Roman numbers</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.mime.html">19. Zend_Mime</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.mime.html#zend.mime.introduction">19.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.mime.message.html">19.2. Zend_Mime_Message</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.introduction">19.2.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.instantiation">19.2.2. Инстанцирование</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.addparts">19.2.3. Добавление частей MIME</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.bondary">19.2.4. Управление разделителями</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.parse">19.2.5. 
+		  Разбор строки для создания объекта Zend_Mime_Message (экспериментальная возможность)
+      
+    </a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.mime.part.html">19.3. Zend_Mime_Part</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.introduction">19.3.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.instantiation">19.3.2. Инстанцирование</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.methods">19.3.3. 
+      Методы для перевода части сообщения в строку
+      
+    </a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.pdf.html">20. Zend_Pdf</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.pdf.html#zend.pdf.introduction">20.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.create.html">20.2. Создание и загрузка документов PDF</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.save.html">20.3. Сохранение изменений в документе PDF</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.pages.html">20.4. Страницы документа</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.drawing.html">20.5. Рисование</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.geometry">20.5.1. Геометрия</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.color">20.5.2. Цвета</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.shape-drawing">20.5.3. Рисование фигур</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.text-drawing">20.5.4. Написание текста</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.using-fonts">20.5.5. Применение шрифтов</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.image-drawing">20.5.6. Рисование изображений</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.line-drawing-style">20.5.7. Стили рисования линий</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.fill-style">20.5.8. Стиль заполнения</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.rotations">20.5.9. Поворот</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.save-restore">20.5.10. Сохранение/восстановление графического состояния</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.clipping">20.5.11. Ограничение области рисования</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.styles">20.5.12. Стили</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.pdf.usage.html">20.6. Пример использования модуля Zend_Pdf </a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.rest.html">21. Zend_Rest</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.rest.html#zend.rest.introduction">21.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.rest.client.html">21.2. Zend_Rest_Client</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.introduction">21.2.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.return">21.2.2. Responses</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.args">21.2.3. Request Arguments</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.rest.server.html">21.3. Zend_Rest_Server</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.introduction">21.3.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.usage">21.3.2. REST Server Usage</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.args">21.3.3. Calling a Zend_Rest_Server Service</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.customstatus">21.3.4. Sending A Custom Status</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.customxml">21.3.5. Returning Custom XML Responses</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.search.html">22. Zend_Search</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.search.html#zend.search.overview">22.1. Обзор</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.introduction">22.1.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.documents-and-fields">22.1.2. Объекты документа и поля</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.understanding-field-types">22.1.3. Значение типов полей</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.index-creation.html">22.2. Индексация</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.creating">22.2.1. Создание нового индекса</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.updating">22.2.2. Обновление индекса</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.document-updating">22.2.3. Обновление документов</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.counting">22.2.4. Получение размера индекса</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.optimization">22.2.5. Оптимизация индекса</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.limitations">22.2.6. Ограничения</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.searching.html">22.3. Поиск по индексу</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.query_building">22.3.1. Построение запросов</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results">22.3.2. Результаты поиска</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results-scoring">22.3.3. Ранжирование результата</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.sorting">22.3.4. Сортировка результатов поиска</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.query-language.html">22.4. Язык запросов</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.terms">22.4.1. Элементы</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.fields">22.4.2. Поля</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.modifiers">22.4.3. Модификаторы элементов</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.proximity-search">22.4.4. Поиск по критерию близости</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boosting">22.4.5. Усиление элемента</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boolean">22.4.6. Булевы операторы</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.grouping">22.4.7. Групирование</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.field-grouping">22.4.8. Группирование полей</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.escaping">22.4.9. Экранирование специальных символов</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.queries.html">22.5. Типы запросов </a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.term-query">22.5.1. Простой запрос (запрос по одному ключевому слову)</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.multiterm-query">22.5.2. Составной запрос (запрос по нескольким ключевым словам)</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.phrase-query">22.5.3. Фразовый запрос</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.charset.html">22.6. Кодировки</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.description">22.6.1. Поддержка UTF-8 и однобайтных наборов символов</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.default_analyzer">22.6.2. Используемый по умолчанию анализатор текста</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.utf_analyzer">22.6.3. Совместимый с UTF-8 анализатор текста</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.extending.html">22.7. Расширяемость</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.analysis">22.7.1. Анализ текста</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.filters">22.7.2. Фильтрация лексем</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.scoring">22.7.3. Алгоритмы ранжирования</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.storage">22.7.4. Контейнеры хранения</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.java-lucene.html">22.8. Взаимодействие с Java Lucene</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.file-formats">22.8.1. Форматы файлов</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.index-directory">22.8.2. Директория для индекса</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.source-code">22.8.3. Исходный код Java</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.jar">22.8.4. Использование LuceneIndexCreation.jar</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.server.html">23. Zend_Server</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.server.html#zend.server.introduction">23.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.server.reflection.html">23.2. Zend_Server_Reflection</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.server.reflection.html#zend.server.reflection.introduction">23.2.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.server.reflection.html#zend.server.reflection.usage">23.2.2. Использование</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.service.html">24. Zend_Service</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.service.html#zend.service.introduction">24.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.service.akismet.html">24.2. Zend_Service_Akismet</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.introduction">24.2.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.verifykey">24.2.2. Verify an API key</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.isspam">24.2.3. Check for spam</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.submitspam">24.2.4. Submitting known spam</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.submitham">24.2.5. Submitting false positives (ham)</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.accessors">24.2.6. Zend-specific Accessor Methods</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.amazon.html">24.3. Zend_Service_Amazon</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.introduction">24.3.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.countrycodes">24.3.2. Коды стран</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.itemlookup">24.3.3. Поиск товара по его коду ASIN</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.itemsearch">24.3.4. Поиск товара Amazon</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.query">24.3.5. Использование альтернативного API запросов</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.classes">24.3.6. Классы Zend_Service_Amazon</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.flickr.html">24.4. Zend_Service_Flickr</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.introduction">24.4.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.finding-users">24.4.2. Поиск пользователя Flickr</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.getimagedetails">24.4.3. Получение данных по изображению в Flickr</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.classes">24.4.4. Классы Zend_Service_Flickr</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.yahoo.html">24.5. Zend_Service_Yahoo</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.introduction">24.5.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.websearch">24.5.2. Поиск веб-страниц с помощью Yahoo!</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.imagesearch">24.5.3. Поиск изображений через Yahoo!</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.localsearch">24.5.4. Поиск торговых и сервисных предприятий по местонахождению через Yahoo!</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.newssearch">24.5.5. Поиск через Yahoo! News</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.classes">24.5.6. Классы Zend_Service_Yahoo</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.session.html">25. Zend_Session</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.session.html#zend.session.introduction">25.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.session.basicusage.html">25.2. Базовое использование</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.basicexamples">25.2.1. Учебные примеры</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.iteration">25.2.2. Итерация по пространствам имен</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.accessors">25.2.3. Методы доступа для пространств имен</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.advancedusage.html">25.3. Продвинутое использование</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.startingasession">25.3.1. Старт сессии</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.locking">25.3.2. Блокировка пространств имен</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.controllers">25.3.3. Инкапсуляция сессий и контроллеры</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.limitinginstances">25.3.4. Ограничение количества экземпляров Zend_Session_Namespace до одного на каждое пространство имен</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.modifyingarray">25.3.5. Работа с массивами в пространствах имен</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.auth">25.3.6. Использование сессий вместе с аутентификацией</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.testing">25.3.7. Использование сессий с юнит-тестами</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.globalsessionmanagement.html">25.4. Общее управление сессиями</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.setoptions">25.4.1. Zend_Session::setOptions()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.options">25.4.2. Опции</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.regenerateid">25.4.3. regenerateId()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.rememberme">25.4.4. rememberMe(integer $seconds)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.forgetme">25.4.5. forgetMe()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.sessionexists">25.4.6. sessionExists()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.destroy">25.4.7. destroy(bool $remove_cookie = true, bool $readonly = true)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.stop">25.4.8. stop()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.writeClose">25.4.9. writeClose($readonly = true)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.expiresessioncookie">25.4.10. expireSessionCookie()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.savehandler">25.4.11. setSaveHandler(Zend_Session_SaveHandler_Interface $interface)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceisset">25.4.12. namespaceIsset($namespace)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceunset">25.4.13. namespaceUnset($namespace)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceget">25.4.14. namespaceGet($namespace)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.getiterator">25.4.15. getIterator()</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.theory.html">25.5. Теория</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.uri.html">26. Zend_Uri</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.uri.html#zend.uri.chapter">26.1. Zend_Uri</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.overview">26.1.1. Обзор</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.creation">26.1.2. Создание нового URI</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.manipulation">26.1.3. Работа с существующим URI</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.validation">26.1.4. Проверка URI</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.instance-methods">26.1.5. Общие методы</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.validate.html">27. Zend_Validate</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.validate.html#zend.validate.introduction">27.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validator_chains.html">27.2. Цепочки валидаторов</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.writing_validators.html">27.3. написание валидаторов</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_email_addresses.html">27.4. Validating Email Addresses</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_hostnames.html">27.5. Validating Hostnames</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.view.html">28. Zend_View</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.view.html#zend.view.introduction">28.1. Введение</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.controller">28.1.1. Скрипт контроллера</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.view">28.1.2. Скрипт вида</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.controllers.html">28.2. Скрипты контроллера</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.assign">28.2.1. Объявление переменных</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.render">28.2.2. Выполнение скрипта вида</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.script-paths">28.2.3. Пути к скриптам вида</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.scripts.html">28.3. Скрипты вида</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.escaping">28.3.1. Экранирование вывода</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.templates">28.3.2. Использование других шаблонизаторов</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.helpers.html">28.4. Вспомогательные классы вида</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.initial">28.4.1. Начальные вспомогательные классы</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.paths">28.4.2. Пути к вспомогательным классам</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.custom">28.4.3. Написание собственных вспомогательных классов</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.xmlrpc.html">29. Zend_XmlRpc</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.xmlrpc.html#zend.xmlrpc.introduction">29.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.xmlrpc.client.html">29.2. Zend_XmlRpc_Client</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.introduction">29.2.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.method-calls">29.2.2. Вызов методов</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.value.parameters">29.2.3. Типы и их преобразование</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.requests-and-responses">29.2.4. Прокси-объект сервера</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.error-handling">29.2.5. Обработка ошибок</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.introspection">29.2.6. Интроспекция сервера</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.request-to-response">29.2.7. От запроса к ответу</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.http-client">29.2.8. HTTP-клиент и тестирование</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.xmlrpc.server.html">29.3. Zend_XmlRpc_Server</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.introduction">29.3.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.usage">29.3.2. Основы использования</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.structure">29.3.3. Структура сервера</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.conventions">29.3.4. Соглашения</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.namespaces">29.3.5. Использование пространства имен</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.request">29.3.6. Специальные объекты запросов</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.response">29.3.7. Специальные объекты ответов</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.fault">29.3.8. Обработка исключений через сообщения об ошибке</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.caching">29.3.9. Кэширование определений сервера между запросами</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.use">29.3.10. Примеры использования</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="appendix"><a href="coding-standard.html">A. Стандарт кодирования на PHP в Zend Framework'е</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="coding-standard.html#coding-standard.overview">A.1. Обзор</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.html#coding-standard.overview.scope">A.1.1. Область применения</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.html#coding-standard.overview.goals">A.1.2. Цели</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.php-file-formatting.html">A.2. Форматирование PHP-файлов</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.general">A.2.1. Общее</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation">A.2.2. Отступы</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.max-line-length">A.2.3. Максимальная длина строки</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.line-termination">A.2.4. Переводы строк</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.naming-conventions.html">A.3. Соглашения по именованию</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes">A.3.1. Классы</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces">A.3.2. Интерфейсы</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames">A.3.3. Имена файлов</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.functions-and-methods">A.3.4. Функции и методы</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.variables">A.3.5. Переменные</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.constants">A.3.6. Константы</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.coding-style.html">A.4. Стиль кодирования</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.php-code-demarcation">A.4.1. Обрамление PHP-кода</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.strings">A.4.2. Строки</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.arrays">A.4.3. Массивы</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.classes">A.4.4. Классы</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.functions-and-methods">A.4.5. Функции и методы</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.control-statements">A.4.6. Управляющие структуры</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standards.inline-documentation">A.4.7. Встроенная документация</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="appendix"><a href="copyrights.html">B. Copyright Information</a></span></dt>
+<dt><span class="index"><a href="the.index.html">Предметный указатель</a></span></dt>
+</dl>
+</div>
+<div class="list-of-tables">
+<p><b>Список таблиц</b></p>
+<dl>
+<dt>2.1. <a href="zend.acl.html#id4785491">
+	  Контроль доступа для демонстрационной CMS
+	  
+	  </a>
+</dt>
+<dt>4.1. <a href="zend.cache.frontends.html#id4789698">Доступные опции</a>
+</dt>
+<dt>4.2. <a href="zend.cache.frontends.html#id4791234">Доступные опции</a>
+</dt>
+<dt>4.3. <a href="zend.cache.frontends.html#id4791527">Доступные опции</a>
+</dt>
+<dt>4.4. <a href="zend.cache.frontends.html#id4790598">Доступные опции</a>
+</dt>
+<dt>4.5. <a href="zend.cache.frontends.html#id4792251">Доступные опции</a>
+</dt>
+<dt>4.6. <a href="zend.cache.backends.html#id4794241">Доступные опции</a>
+</dt>
+<dt>4.7. <a href="zend.cache.backends.html#id4795187">Доступные опции</a>
+</dt>
+<dt>4.8. <a href="zend.cache.backends.html#id4795348">Доступные опции</a>
+</dt>
+<dt>8.1. <a href="zend.date.overview.html#id4820005">Date Parts</a>
+</dt>
+<dt>8.2. <a href="zend.date.overview.html#id4820417">Basic Operations</a>
+</dt>
+<dt>8.3. <a href="zend.date.overview.html#id4820706">Date Comparison Methods</a>
+</dt>
+<dt>8.4. <a href="zend.date.overview.html#id4820986">Date Output Methods</a>
+</dt>
+<dt>8.5. <a href="zend.date.overview.html#id4821238">Date Output Methods</a>
+</dt>
+<dt>8.6. <a href="zend.date.overview.html#id4821323">Miscellaneous Methods</a>
+</dt>
+<dt>8.7. <a href="zend.date.constants.html#id4822868">Operations involving Zend_Date::HOUR</a>
+</dt>
+<dt>8.8. <a href="zend.date.constants.html#id4823724">Day Constants</a>
+</dt>
+<dt>8.9. <a href="zend.date.constants.html#id4823989">Week Constants</a>
+</dt>
+<dt>8.10. <a href="zend.date.constants.html#id4824046">Month Constants</a>
+</dt>
+<dt>8.11. <a href="zend.date.constants.html#id4824221">Year Constants</a>
+</dt>
+<dt>8.12. <a href="zend.date.constants.html#id4824370">Time Constants</a>
+</dt>
+<dt>8.13. <a href="zend.date.constants.html#id4824657">Timezone Constants</a>
+</dt>
+<dt>8.14. <a href="zend.date.constants.html#id4824828">Date Format Constants (formats include timezone)</a>
+</dt>
+<dt>8.15. <a href="zend.date.constants.html#id4825149">Date and Time Formats (format varies by locale)</a>
+</dt>
+<dt>8.16. <a href="zend.date.constants.html#id4825496">Constants for <span class="strong">ISO 8601 date output</span>
+            </a>
+</dt>
+<dt>12.1. <a href="zend.gdata.blogger.html#id4846575">Differences between current Blogger service and Blogger beta service</a>
+</dt>
+<dt>13.1. <a href="zend.http.html#id4849802">Параметры конфигурации Zend_Http_Client</a>
+</dt>
+<dt>13.2. <a href="zend.http.client.adapters.html#id4852764">Zend_Http_Client configuration parameters</a>
+</dt>
+<dt>15.1. <a href="zend.locale.parsing.html#id4860376">List of supported numeral systems</a>
+</dt>
+<dt>15.2. <a href="zend.locale.date.datesandtimes.html#id4861734">'fixed' key values</a>
+</dt>
+<dt>15.3. <a href="zend.locale.date.datesandtimes.html#id4861818">Return values</a>
+</dt>
+<dt>15.4. <a href="zend.locale.date.datesandtimes.html#id4862102">Format definition</a>
+</dt>
+<dt>15.5. <a href="zend.locale.date.datesandtimes.html#id4862206">Example formats</a>
+</dt>
+<dt>15.6. <a href="zend.locale.languages.html#id4862770">List of all supported languages</a>
+</dt>
+<dt>15.7. <a href="zend.locale.regions.html#id4865047">List of all supported regions</a>
+</dt>
+<dt>17.1. <a href="zend.mail.read.html#id4871481">Mail Read Feature Overview</a>
+</dt>
+<dt>17.2. <a href="zend.mail.read.html#id4872607">Mail Folder Names</a>
+</dt>
+<dt>18.1. <a href="zend.measure.types.html#id4875884">List of measurement types</a>
+</dt>
+<dt>22.1. <a href="zend.search.html#id4891558">Типы Zend_Search_Lucene_Field</a>
+</dt>
+<dt>24.1. <a href="zend.service.amazon.html#id4906762">Свойства класса Zend_Service_Amazon_Item</a>
+</dt>
+<dt>24.2. <a href="zend.service.amazon.html#id4907235">Свойства класса Zend_Service_Amazon_Image</a>
+</dt>
+<dt>24.3. <a href="zend.service.amazon.html#id4907521">Свойства класса Zend_Service_Amazon_OfferSet</a>
+</dt>
+<dt>24.4. <a href="zend.service.amazon.html#id4907824">Свойства класса Zend_Service_Amazon_Offer</a>
+</dt>
+<dt>24.5. <a href="zend.service.amazon.html#id4908096">Свойства класса Zend_Service_Amazon_SimilarProduct</a>
+</dt>
+<dt>24.6. <a href="zend.service.amazon.html#id4908225">Свойства класса Zend_Service_Amazon_Accessories</a>
+</dt>
+<dt>24.7. <a href="zend.service.amazon.html#id4908351">Свойства класса Zend_Service_Amazon_CustomerReview</a>
+</dt>
+<dt>24.8. <a href="zend.service.amazon.html#id4908574">Свойства класса Zend_Service_Amazon_EditorialReview</a>
+</dt>
+<dt>24.9. <a href="zend.service.amazon.html#id4908699">Свойства класса Zend_Service_Amazon_Listmania</a>
+</dt>
+<dt>24.10. <a href="zend.service.flickr.html#id4912310">Свойства класса Zend_Service_Flickr_ResultSet</a>
+</dt>
+<dt>24.11. <a href="zend.service.flickr.html#id4912477">Свойства класса Zend_Service_Flickr_Result</a>
+</dt>
+<dt>24.12. <a href="zend.service.flickr.html#id4912902">Свойства класса Zend_Service_Flickr_Image</a>
+</dt>
+<dt>24.13. <a href="zend.service.yahoo.html#id4914946">Свойства класса Zend_Service_Yahoo_ResultSet</a>
+</dt>
+<dt>24.14. <a href="zend.service.yahoo.html#id4915229">Свойства класса Zend_Service_Yahoo_LocalResultSet</a>
+</dt>
+<dt>24.15. <a href="zend.service.yahoo.html#id4915435">Свойства класса Zend_Service_Yahoo_Result</a>
+</dt>
+<dt>24.16. <a href="zend.service.yahoo.html#id4915570">Свойства класса Zend_Service_Yahoo_WebResult</a>
+</dt>
+<dt>24.17. <a href="zend.service.yahoo.html#id4915736">Свойства класса Zend_Service_Yahoo_ImageResult</a>
+</dt>
+<dt>24.18. <a href="zend.service.yahoo.html#id4915943">Свойства класса Zend_Service_Yahoo_LocalResult</a>
+</dt>
+<dt>24.19. <a href="zend.service.yahoo.html#id4916175">Свойства класса Zend_Service_Yahoo_NewsResult</a>
+</dt>
+<dt>24.20. <a href="zend.service.yahoo.html#id4916385">Свойства класса Zend_Service_Yahoo_Image</a>
+</dt>
+<dt>29.1. <a href="zend.xmlrpc.client.html#id4935324">Преобразование типов PHP и XML-RPC</a>
+</dt>
+<dt>29.2. <a href="zend.xmlrpc.client.html#id4935603">Объекты <code class="code">Zend_XmlRpc_Value</code> для типов XML-RPC</a>
+</dt>
+</dl>
+</div>
+<div class="list-of-examples">
+<p><b>Список примеров</b></p>
+<dl>
+<dt>1.1. <a href="zend.register.html#id4732864">Пример register() / offsetSet()</a>
+</dt>
+<dt>1.2. <a href="zend.registry.html#id4733048">Пример registry() / offsetGet()</a>
+</dt>
+<dt>1.3. <a href="zend.registry.html#id4733118">Пример isRegistered() / offsetExists()</a>
+</dt>
+<dt>1.4. <a href="zend.registry.html#id4733147">Итерация по реестру</a>
+</dt>
+<dt>1.5. <a href="zend.initregistry.html#id4733643">register() / offsetSet() Example</a>
+</dt>
+<dt>1.6. <a href="zend.initregistry.html#id4733132">Доступ к значениям с использованием объектно-ориентированной нотации вместо нотации доступа к массиву</a>
+</dt>
+<dt>4.1. <a href="zend.cache.html#id4788941">
+            Получение фронтэнда с помощью <code class="code">Zend_Cache::factory()</code>
+            </a>
+</dt>
+<dt>4.2. <a href="zend.cache.html#id4789049">
+            Кэширование выходных данных с помощью фронтэнда <code class="code">Zend_Cache</code>
+            
+        </a>
+</dt>
+<dt>5.1. <a href="zend.config.html#id4795734">Использование Zend_Config без адаптеров</a>
+</dt>
+<dt>5.2. <a href="zend.config.adapters.ini.html#id4797349">Использование Zend_Config_Ini</a>
+</dt>
+<dt>5.3. <a href="zend.config.adapters.xml.html#id4797794">Использование Zend_Config_Xml</a>
+</dt>
+<dt>6.1. <a href="zend.console.getopt.rules.html#id4798727">Using the Short Syntax</a>
+</dt>
+<dt>6.2. <a href="zend.console.getopt.rules.html#id4798855">Using the Long Syntax</a>
+</dt>
+<dt>6.3. <a href="zend.console.getopt.fetching.html#id4799262">Catching Getopt Exceptions</a>
+</dt>
+<dt>6.4. <a href="zend.console.getopt.fetching.html#id4799339">Using getOption()</a>
+</dt>
+<dt>6.5. <a href="zend.console.getopt.fetching.html#id4799368">Using __get() and __isset() magic methods</a>
+</dt>
+<dt>6.6. <a href="zend.console.getopt.fetching.html#id4799504">Using getRemainingArgs()</a>
+</dt>
+<dt>6.7. <a href="zend.console.getopt.configuration.html#id4799955">Using addRules()</a>
+</dt>
+<dt>6.8. <a href="zend.console.getopt.configuration.html#id4800014">Using setHelp()</a>
+</dt>
+<dt>6.9. <a href="zend.console.getopt.configuration.html#id4800078">Using setAliases()</a>
+</dt>
+<dt>6.10. <a href="zend.console.getopt.configuration.html#id4800161">Using addArguments() and setArguments()</a>
+</dt>
+<dt>6.11. <a href="zend.console.getopt.configuration.html#id4800326">Using setOption()</a>
+</dt>
+<dt>6.12. <a href="zend.console.getopt.configuration.html#id4800355">Using setOptions()</a>
+</dt>
+<dt>8.1. <a href="zend.date.html#id4818361">Setting a default timezone</a>
+</dt>
+<dt>8.2. <a href="zend.date.basic.html#id4818854">Creating the current date</a>
+</dt>
+<dt>8.3. <a href="zend.date.basic.html#id4818910">get() - output a date</a>
+</dt>
+<dt>8.4. <a href="zend.date.basic.html#id4818946">set() - set a date</a>
+</dt>
+<dt>8.5. <a href="zend.date.basic.html#id4818995">add() - adding dates</a>
+</dt>
+<dt>8.6. <a href="zend.date.basic.html#id4819040">compare() - compare dates</a>
+</dt>
+<dt>8.7. <a href="zend.date.basic.html#id4819067">equals() - identify a date or date part</a>
+</dt>
+<dt>8.8. <a href="zend.date.overview.html#id4819770">User-specified input date format</a>
+</dt>
+<dt>8.9. <a href="zend.date.overview.html#id4819932">Operating on Parts of Dates</a>
+</dt>
+<dt>8.10. <a href="zend.date.constants.html#id4825482">Example usage for self-defined formats</a>
+</dt>
+<dt>10.1. <a href="zend.feed.html#id4839770">
+            Включение Zend_Feed в работу с данными ленты RSS
+            
+        </a>
+</dt>
+<dt>10.2. <a href="zend.feed.consuming-atom.html#id4841704">
+            Основы использования ленты Atom
+            
+        </a>
+</dt>
+<dt>10.3. <a href="zend.feed.consuming-atom-single-entry.html#id4841643">
+            Чтение отдельной публикации ленты Atom
+            
+        </a>
+</dt>
+<dt>10.4. <a href="zend.feed.consuming-atom-single-entry.html#id4841521">
+            Непосредственное использование объекта публикации Atom
+            
+        </a>
+</dt>
+<dt>10.5. <a href="zend.feed.modifying-feed.html#id4842208">
+            Изменение существующей публикации в ленте
+            
+        </a>
+</dt>
+<dt>10.6. <a href="zend.feed.modifying-feed.html#id4842974">
+            Создание публикации Atom с элементами в специальном пространстве имен
+            
+        </a>
+</dt>
+<dt>10.7. <a href="zend.feed.custom-feed.html#id4842318">
+            Расширение класса публикации Atom с добавлением специальных пространств имен
+            
+        </a>
+</dt>
+<dt>13.1. <a href="zend.http.html#id4849397">Инстанцирование объекта Zend_Http_Client</a>
+</dt>
+<dt>13.2. <a href="zend.http.html#id4850430">Выполнение простого запроса GET</a>
+</dt>
+<dt>13.3. <a href="zend.http.html#id4850524">Использование методов запроса, отличных от GET</a>
+</dt>
+<dt>13.4. <a href="zend.http.html#id4850606">Установка параметров GET</a>
+</dt>
+<dt>13.5. <a href="zend.http.html#id4850643">Установка параметров POST</a>
+</dt>
+<dt>13.6. <a href="zend.http.client.advanced.html#id4850836">Forcing RFC 2616 Strict Redirections on 301 and 302 Responses</a>
+</dt>
+<dt>13.7. <a href="zend.http.client.advanced.html#id4851504">Setting Cookies Using setCookie()</a>
+</dt>
+<dt>13.8. <a href="zend.http.client.advanced.html#id4851552">Enabling Cookie Stickiness</a>
+</dt>
+<dt>13.9. <a href="zend.http.client.advanced.html#id4851615">Setting A Single Custom Request Header</a>
+</dt>
+<dt>13.10. <a href="zend.http.client.advanced.html#id4851636">Setting Multiple Custom Request Headers</a>
+</dt>
+<dt>13.11. <a href="zend.http.client.advanced.html#id4851720">Using setFileUpload to Upload Files</a>
+</dt>
+<dt>13.12. <a href="zend.http.client.advanced.html#id4851358">Sending Raw POST Data</a>
+</dt>
+<dt>13.13. <a href="zend.http.client.advanced.html#id4851434">Setting HTTP Authentication User and Password</a>
+</dt>
+<dt>13.14. <a href="zend.http.client.advanced.html#id4852099">Performing consecutive requests with one client</a>
+</dt>
+<dt>13.15. <a href="zend.http.client.adapters.html#id4852696">Changing the HTTPS transport layer</a>
+</dt>
+<dt>13.16. <a href="zend.http.client.adapters.html#id4852916">Using Zend_Http_Client behind a proxy server</a>
+</dt>
+<dt>13.17. <a href="zend.http.client.adapters.html#id4852994">Testing Against a Single HTTP Response Stub</a>
+</dt>
+<dt>13.18. <a href="zend.http.client.adapters.html#id4853028">Testing Against Multiple HTTP Response Stubs</a>
+</dt>
+<dt>13.19. <a href="zend.http.client.adapters.html#id4852479">Creating your own connection adapter</a>
+</dt>
+<dt>13.20. <a href="zend.http.cookies.html#id4854072">Instantiating a Zend_Http_Cookie object</a>
+</dt>
+<dt>13.21. <a href="zend.http.cookies.html#id4854119">Stringifying a Zend_Http_Cookie object</a>
+</dt>
+<dt>13.22. <a href="zend.http.cookies.html#id4854269">Using getter methods with Zend_Http_Cookie</a>
+</dt>
+<dt>13.23. <a href="zend.http.cookies.html#id4854366">Matching cookies</a>
+</dt>
+<dt>13.24. <a href="zend.http.response.html#id4855018">Instantiating a Zend_Http_Response object using the factory method</a>
+</dt>
+<dt>13.25. <a href="zend.http.response.html#id4855794">Using the isError() method to validate a response</a>
+</dt>
+<dt>13.26. <a href="zend.http.response.html#id4855939">Using Zend_Http_Response Accessor Methods</a>
+</dt>
+<dt>13.27. <a href="zend.http.response.html#id4855975">Accessing Response Headers</a>
+</dt>
+<dt>15.1. <a href="zend.locale.html#id4857630">Choosing a specific locale</a>
+</dt>
+<dt>15.2. <a href="zend.locale.html#id4857730">Automatically selecting a locale</a>
+</dt>
+<dt>15.3. <a href="zend.locale.html#id4857866">Dates default to correct locale of web users</a>
+</dt>
+<dt>15.4. <a href="zend.locale.html#id4857891">Overriding default locale selection</a>
+</dt>
+<dt>15.5. <a href="zend.locale.html#id4857907">Performance optimization when using a default locale</a>
+</dt>
+<dt>15.6. <a href="zend.locale.functions.html#id4857987">clone</a>
+</dt>
+<dt>15.7. <a href="zend.locale.functions.html#id4858653">Check for equal locales</a>
+</dt>
+<dt>15.8. <a href="zend.locale.functions.html#id4858720">Get default locales</a>
+</dt>
+<dt>15.9. <a href="zend.locale.functions.html#id4858826">setLocale</a>
+</dt>
+<dt>15.10. <a href="zend.locale.functions.html#id4858900">getLanguageDisplay</a>
+</dt>
+<dt>15.11. <a href="zend.locale.functions.html#id4858949">All Languages written in thier native language</a>
+</dt>
+<dt>15.12. <a href="zend.locale.functions.html#id4858465">getScriptDisplay</a>
+</dt>
+<dt>15.13. <a href="zend.locale.functions.html#id4858510">getScriptList</a>
+</dt>
+<dt>15.14. <a href="zend.locale.functions.html#id4858558">getQuestion()</a>
+</dt>
+<dt>15.15. <a href="zend.locale.parsing.html#id4859758">Number normalization</a>
+</dt>
+<dt>15.16. <a href="zend.locale.parsing.html#id4859827">Number normalization with precision</a>
+</dt>
+<dt>15.17. <a href="zend.locale.parsing.html#id4859876">Number localization</a>
+</dt>
+<dt>15.18. <a href="zend.locale.parsing.html#id4859926">Number localization with precision</a>
+</dt>
+<dt>15.19. <a href="zend.locale.parsing.html#id4859982">Number testing</a>
+</dt>
+<dt>15.20. <a href="zend.locale.parsing.html#id4860020">Floating point value normalization</a>
+</dt>
+<dt>15.21. <a href="zend.locale.parsing.html#id4860058">Floating point value localization</a>
+</dt>
+<dt>15.22. <a href="zend.locale.parsing.html#id4860115">Floating point value testing</a>
+</dt>
+<dt>15.23. <a href="zend.locale.parsing.html#id4860153">Integer value normalization</a>
+</dt>
+<dt>15.24. <a href="zend.locale.parsing.html#id4860191">Integer value localization</a>
+</dt>
+<dt>15.25. <a href="zend.locale.parsing.html#id4860228">Integer value testing</a>
+</dt>
+<dt>15.26. <a href="zend.locale.parsing.html#id4860319">Converting numerals from Arabic to European/Latin</a>
+</dt>
+<dt>15.27. <a href="zend.locale.parsing.html#id4860344">Converting numerals from European/Latin to Arabic</a>
+</dt>
+<dt>15.28. <a href="zend.locale.date.datesandtimes.html#id4861978">Normalizing a date</a>
+</dt>
+<dt>15.29. <a href="zend.locale.date.datesandtimes.html#id4862022">Normalizing a date by locale</a>
+</dt>
+<dt>15.30. <a href="zend.locale.date.datesandtimes.html#id4862046">Normalizing a date with time</a>
+</dt>
+<dt>15.31. <a href="zend.locale.date.datesandtimes.html#id4862080">Normalizing a userdefined date</a>
+</dt>
+<dt>15.32. <a href="zend.locale.date.datesandtimes.html#id4862310">Automatic correction of input dates</a>
+</dt>
+<dt>15.33. <a href="zend.locale.date.datesandtimes.html#id4862361">Date testing</a>
+</dt>
+<dt>15.34. <a href="zend.locale.date.datesandtimes.html#id4862402">Normalize an unknown time</a>
+</dt>
+<dt>15.35. <a href="zend.locale.date.datesandtimes.html#id4862439">Testing a time</a>
+</dt>
+<dt>17.1. <a href="zend.mail.html#id4869484">
+            Простое сообщение электронной почты
+
+        </a>
+</dt>
+<dt>17.2. <a href="zend.mail.sending.html#id4868609">
+            Отправка сообщений через SMTP
+
+        </a>
+</dt>
+<dt>17.3. <a href="zend.mail.multiple-emails.html#id4870119">
+            Отправка нескольких сообщений за одно соединение SMTP
+
+        </a>
+</dt>
+<dt>17.4. <a href="zend.mail.different-transports.html#id4870062">
+            Использование разных соединений
+
+        </a>
+</dt>
+<dt>17.5. <a href="zend.mail.html-mails.html#id4870515">
+            Отправка сообщения в формате HTML  
+
+        </a>
+</dt>
+<dt>17.6. <a href="zend.mail.attachments.html#id4870454">
+            Почтовые сообщения со вложениями
+
+        </a>
+</dt>
+<dt>17.7. <a href="zend.mail.boundary.html#id4869688">
+            Изменение разделителей MIME 
+
+        </a>
+</dt>
+<dt>17.8. <a href="zend.mail.additional-headers.html#id4869862">
+            Добавление заголовков почтового сообщения
+
+        </a>
+</dt>
+<dt>17.9. <a href="zend.mail.smtp-secure.html#id4871339">Enabling a secure connection within
+    Zend_Mail_Transport_Smtp</a>
+</dt>
+<dt>18.1. <a href="zend.measure.html#id4873450">Converting measurements</a>
+</dt>
+<dt>18.2. <a href="zend.measure.html#id4874132">The <code class="code">meter</code> measurement</a>
+</dt>
+<dt>18.3. <a href="zend.measure.creation.html#id4874051">Creation using integer and floating values</a>
+</dt>
+<dt>18.4. <a href="zend.measure.creation.html#id4873626">Creation using strings</a>
+</dt>
+<dt>18.5. <a href="zend.measure.creation.html#id4874498">Arbitrary text input containing measurements</a>
+</dt>
+<dt>18.6. <a href="zend.measure.creation.html#id4874549">Localized string</a>
+</dt>
+<dt>18.7. <a href="zend.measure.output.html#id4874921">Automatic output</a>
+</dt>
+<dt>18.8. <a href="zend.measure.output.html#id4874987">Output a value</a>
+</dt>
+<dt>18.9. <a href="zend.measure.output.html#id4875025">Outputting units</a>
+</dt>
+<dt>18.10. <a href="zend.measure.edit.html#id4875457">Convert</a>
+</dt>
+<dt>18.11. <a href="zend.measure.edit.html#id4875508">Adding units</a>
+</dt>
+<dt>18.12. <a href="zend.measure.edit.html#id4875555">Subtract</a>
+</dt>
+<dt>18.13. <a href="zend.measure.edit.html#id4875606">Different measurements</a>
+</dt>
+<dt>18.14. <a href="zend.measure.edit.html#id4875619">Identical measurements</a>
+</dt>
+<dt>18.15. <a href="zend.measure.edit.html#id4875673">Difference</a>
+</dt>
+<dt>18.16. <a href="zend.measure.edit.html#id4875718">Changing a value</a>
+</dt>
+<dt>18.17. <a href="zend.measure.edit.html#id4875760">Changing the type</a>
+</dt>
+<dt>18.18. <a href="zend.measure.special.html#id4876373">Listing all units for a given type</a>
+</dt>
+<dt>20.1. <a href="zend.pdf.create.html#id4879590">
+        Создание нового или загрузка существующего документа PDF 
+        
+        </a>
+</dt>
+<dt>20.2. <a href="zend.pdf.create.html#id4880678">Извлечение определенной версии документа PDF</a>
+</dt>
+<dt>20.3. <a href="zend.pdf.save.html#id4880011">Сохранение документа PDF</a>
+</dt>
+<dt>20.4. <a href="zend.pdf.pages.html#id4881327">Управление страницами документа PDF</a>
+</dt>
+<dt>20.5. <a href="zend.pdf.drawing.html#id4882061">Создание стандартного шрифта</a>
+</dt>
+<dt>20.6. <a href="zend.pdf.drawing.html#id4886549">Рисование изображений</a>
+</dt>
+<dt>20.7. <a href="zend.pdf.usage.html#id4889122">Демонстрация использования модуля Zend_Pdf</a>
+</dt>
+<dt>21.1. <a href="zend.rest.client.html#id4888892">A basic REST request</a>
+</dt>
+<dt>21.2. <a href="zend.rest.client.html#id4889606">Response Status</a>
+</dt>
+<dt>21.3. <a href="zend.rest.client.html#id4889670">Using Technorati's Rest Service</a>
+</dt>
+<dt>21.4. <a href="zend.rest.client.html#id4889683">Example Technorati Response</a>
+</dt>
+<dt>21.5. <a href="zend.rest.client.html#id4889787">Setting Request Arguments</a>
+</dt>
+<dt>21.6. <a href="zend.rest.server.html#id4889483">Basic Zend_Rest_Server Usage - Classes</a>
+</dt>
+<dt>21.7. <a href="zend.rest.server.html#id4889503">Basic Zend_Rest_Server Usage - Functions</a>
+</dt>
+<dt>21.8. <a href="zend.rest.server.html#id4890445">Returning Custom Status</a>
+</dt>
+<dt>21.9. <a href="zend.rest.server.html#id4890496">Return Custom XML</a>
+</dt>
+<dt>22.1. <a href="zend.search.extending.html#id4900777">Собственный анализатор текста</a>
+</dt>
+<dt>24.1. <a href="zend.service.akismet.html#id4904577">isSpam() Usage</a>
+</dt>
+<dt>24.2. <a href="zend.service.akismet.html#id4904644">submitSpam() Usage</a>
+</dt>
+<dt>24.3. <a href="zend.service.akismet.html#id4904720">submitHam() Usage</a>
+</dt>
+<dt>24.4. <a href="zend.service.amazon.html#id4905719">Поиск с использованием традиционного API</a>
+</dt>
+<dt>24.5. <a href="zend.service.amazon.html#id4905746">Поиск с использованием API запросов</a>
+</dt>
+<dt>24.6. <a href="zend.service.amazon.html#id4905837">Выбор страны для веб-сервиса Amazon</a>
+</dt>
+<dt>24.7. <a href="zend.service.amazon.html#id4905935">Поиск товара по его коду ASIN</a>
+</dt>
+<dt>24.8. <a href="zend.service.amazon.html#id4906058">Поиск товара Amazon</a>
+</dt>
+<dt>24.9. <a href="zend.service.amazon.html#id4905430">Поиск через Amazon с использованием альтернативного API запросов</a>
+</dt>
+<dt>24.10. <a href="zend.service.flickr.html#id4911901">Простой поиск фотографий в Flickr</a>
+</dt>
+<dt>24.11. <a href="zend.service.flickr.html#id4912047">Поиск пользователя по адресу e-mail</a>
+</dt>
+<dt>24.12. <a href="zend.service.flickr.html#id4912121">Получение данных по изображению в Flickr</a>
+</dt>
+<dt>24.13. <a href="zend.service.yahoo.html#id4914410">Поиск веб-страниц через Yahoo!</a>
+</dt>
+<dt>24.14. <a href="zend.service.yahoo.html#id4914491">Поиск изображений через Yahoo!</a>
+</dt>
+<dt>24.15. <a href="zend.service.yahoo.html#id4914563">Поиск торговых и сервисных предприятий по местонахождению через Yahoo!</a>
+</dt>
+<dt>24.16. <a href="zend.service.yahoo.html#id4914632">Поиск через Yahoo! News</a>
+</dt>
+<dt>25.1. <a href="zend.session.basicusage.html#id4919432">Подсчет количества просмотров страниц</a>
+</dt>
+<dt>25.2. <a href="zend.session.basicusage.html#id4919465">Новый подход: избежание конфликтов с помощью пространств имен</a>
+</dt>
+<dt>25.3. <a href="zend.session.basicusage.html#id4919550">Старый подход: обращение к сессиям PHP</a>
+</dt>
+<dt>25.4. <a href="zend.session.basicusage.html#id4919641">Итерация по сессии</a>
+</dt>
+<dt>25.5. <a href="zend.session.basicusage.html#id4919702">Доступ к сессионным данным</a>
+</dt>
+<dt>25.6. <a href="zend.session.advancedusage.html#id4920204">Старт общей сессии</a>
+</dt>
+<dt>25.7. <a href="zend.session.advancedusage.html#id4920905">Блокировка пространств имен</a>
+</dt>
+<dt>25.8. <a href="zend.session.advancedusage.html#id4920944">Блокировка сессий в видах</a>
+</dt>
+<dt>25.9. <a href="zend.session.advancedusage.html#id4921056">Сессии с пространствами имен для контроллеров с автоматическим истечением времени</a>
+</dt>
+<dt>25.10. <a href="zend.session.advancedusage.html#id4921185">Ограничение до единичных экземпляров</a>
+</dt>
+<dt>25.11. <a href="zend.session.advancedusage.html#id4921337">Известные проблемы с массивами</a>
+</dt>
+<dt>25.12. <a href="zend.session.advancedusage.html#id4921386">Обходной путь: извлечение, изменение и сохранение</a>
+</dt>
+<dt>25.13. <a href="zend.session.advancedusage.html#id4921426">Обходной путь: сохранение массива, содержащего ссылку</a>
+</dt>
+<dt>25.14. <a href="zend.session.advancedusage.html#id4921527">Пример: Простой доступ к ID авторизации</a>
+</dt>
+<dt>25.15. <a href="zend.session.advancedusage.html#id4921785">Использование PHPUnit для тестирования кода, написанного с использованием Zend_Session*</a>
+</dt>
+<dt>25.16. <a href="zend.session.globalsessionmanagement.html#id4923266">Использование Zend_Config для конфирурирования Zend_Session</a>
+</dt>
+<dt>25.17. <a href="zend.session.globalsessionmanagement.html#id4923311">myapp.ini</a>
+</dt>
+<dt>25.18. <a href="zend.session.globalsessionmanagement.html#id4924662">Анонимная сессия и фиксация сессии</a>
+</dt>
+<dt>25.19. <a href="zend.session.globalsessionmanagement.html#id4925478">Уничтожение всех пространств имен</a>
+</dt>
+<dt>26.1. <a href="zend.uri.html#id4926813">Создание нового URI с <code class="code">Zend_Uri::factory()</code></a>
+</dt>
+<dt>26.2. <a href="zend.uri.html#id4927829">Работа с существующим URI с <code class="code">Zend_Uri::factory()</code></a>
+</dt>
+<dt>26.3. <a href="zend.uri.html#id4927913">Проверка URI с помощью <code class="code">Zend_Uri::check()</code></a>
+</dt>
+<dt>26.4. <a href="zend.uri.html#id4928030">Получение схемы из объекта <code class="code">Zend_Uri_*</code></a>
+</dt>
+<dt>26.5. <a href="zend.uri.html#id4928079">Получение всего URI из объекта <code class="code">Zend_Uri_*</code></a>
+</dt>
+<dt>26.6. <a href="zend.uri.html#id4928165">Проверка объекта <code class="code">Zend_Uri_*</code></a>
+</dt>
+<dt>29.1. <a href="zend.xmlrpc.client.html#id4935031">Вызов метода XML-RPC</a>
+</dt>
+<dt>29.2. <a href="zend.xmlrpc.client.html#id4935114">Вызов метода XML-RPC с параметрами</a>
+</dt>
+<dt>29.3. <a href="zend.xmlrpc.client.html#id4935905">Прокси-объект к пространству имен по умолчанию</a>
+</dt>
+<dt>29.4. <a href="zend.xmlrpc.client.html#id4934875">Прокси-объект к любому пространству имен</a>
+</dt>
+<dt>29.5. <a href="zend.xmlrpc.client.html#id4936234">Обработка ошибок HTTP</a>
+</dt>
+<dt>29.6. <a href="zend.xmlrpc.client.html#id4936349">Обработка ошибок XML-RPC</a>
+</dt>
+<dt>29.7. <a href="zend.xmlrpc.client.html#id4936609">Выполнение запроса</a>
+</dt>
+</dl>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left"> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top"> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right" valign="top"> Глава 1. Zend</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

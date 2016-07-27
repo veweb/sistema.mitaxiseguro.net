@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 3. Zend_TimeSync</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="index.html" title="Programmer's Reference Guide">
+<link rel="prev" href="zend.service.simpy.html" title="2.2. Zend_Service_Simpy">
+<link rel="next" href="zend.timesync.queries.html" title="3.2. Querying timeservers">
+<link rel="chapter" href="zend.http.server.html" title="Chapter 1. Zend_Http_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 2. Zend_Service">
+<link rel="chapter" href="zend.timesync.html" title="Chapter 3. Zend_TimeSync">
+<link rel="chapter" href="zend.translate.html" title="Chapter 4. Zend_Translate">
+<link rel="appendix" href="appendix.codingstandard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="appendix.copyright.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="section" href="zend.timesync.html#zend.timesync.introduction" title="3.1. Introduction">
+<link rel="section" href="zend.timesync.queries.html" title="3.2. Querying timeservers">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 3. Zend_TimeSync</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.service.simpy.html">Prev</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.timesync.queries.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.timesync"></a>Chapter 3. Zend_TimeSync</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.timesync.html#zend.timesync.introduction">3.1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.timesync.html#zend.timesync.introduction.ntp">3.1.1. What is NTP?</a></span></dt>
+<dt><span class="sect2"><a href="zend.timesync.html#zend.timesync.introduction.sntp">3.1.2. What is SNTP?</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.timesync.queries.html">3.2. Querying timeservers</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.timesync.queries.html#zend.timesync.queries.ntp">3.2.1. Basic NTP query</a></span></dt>
+<dt><span class="sect2"><a href="zend.timesync.queries.html#zend.timesync.queries.sntp">3.2.2. Basic SNTP query</a></span></dt>
+<dt><span class="sect2"><a href="zend.timesync.queries.html#zend.timesync.queries.fallback">3.2.3. Using the fallback mechanism</a></span></dt>
+<dt><span class="sect2"><a href="zend.timesync.queries.html#zend.timesync.queries.exceptions">3.2.4. Taking care of exceptions</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.timesync.introduction"></a>3.1. Introduction</h2></div></div></div>
+<p>
+        Zend_TimeSync is able to receive internet or network time from a timeserver using 
+        the NTP or SNTP protocol. With Zend_TimeSync a page/script is able to act 
+        indepentendly from the timesettings of the server the script is running.
+    </p>
+<div class="note"><table border="0" summary="Note: Server's time">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Server's time</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Zend_TimeSync is not able to change the server's time, but it will return a date object 
+            from which the difference to the servers time can be worked with.
+        </p></td></tr>
+</table></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.timesync.introduction.ntp"></a>3.1.1. What is NTP?</h3></div></div></div>
+<p>
+            The Network Time Protocol (NTP) is a protocol for synchronizing the clocks of computer 
+            systems over packet-switched, variable-latency data networks. NTP uses UDP port 123 as 
+            its transport layer.
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.timesync.introduction.sntp"></a>3.1.2. What is SNTP?</h3></div></div></div>
+<p>
+            Todo
+        </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.service.simpy.html">Prev</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.timesync.queries.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2.2. Zend_Service_Simpy </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 3.2. Querying timeservers</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

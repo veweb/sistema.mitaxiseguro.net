@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.2. Formattage des fichiers PHP</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="prev" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="next" href="coding-standard.naming-conventions.html" title="A.3. Conventions de nommage">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.general" title="A.2.1. Général">
+<link rel="subsection" href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation" title="A.2.2. Indentation">
+<link rel="subsection" href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.max-line-length" title="A.2.3. Longueur maximum d'une ligne">
+<link rel="subsection" href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.line-termination" title="A.2.4. Terminaison de lignes">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.2. Formattage des fichiers PHP</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="coding-standard.html">Précédent</a> </td>
+<th width="60%" align="center">Annexe A. Convention de codage PHP du Framework Zend</th>
+<td width="20%" align="right"> <a accesskey="n" href="coding-standard.naming-conventions.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="coding-standard.php-file-formatting"></a>A.2. Formattage des fichiers PHP</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.php-file-formatting.general"></a>A.2.1. Général</h3></div></div></div>
+<p>
+                Pour les fichiers contenant uniquement du code PHP, le tag de fermeture ("?&gt;") n'est
+                jamais permis. Il n'est pas requis pas PHP. Ne pas l'inclure permet de prévenir les problèmes liés
+                à l'injection accidentelle d'espaces blancs dans la sortie.
+            </p>
+<p>
+                <span class="emphasis"><em>IMPORTANT:</em></span> L'inclusion de données binaires arbitraires comme il est permis
+                par <code class="code">__HALT_COMPILER()</code> est prohibé dans tout fichier PHP du Framework Zend, ainsi que dans
+                tout fichier dérivé. L'utilisation de cette possibilité est uniquement permise pour des scripts
+                spéciaux d'installation.
+            </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.php-file-formatting.indentation"></a>A.2.2. Indentation</h3></div></div></div>
+<p>Utilisez une indentation de 4 espaces, sans tabulations.</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.php-file-formatting.max-line-length"></a>A.2.3. Longueur maximum d'une ligne</h3></div></div></div>
+<p>
+                La longueur souhaitée d'une ligne est de 80 caractères, i.e les développeurs devraient avoir
+                pour but de ne pas dépasser les 80 caractères pour des raisons pratiques. Cependant, des lignes
+                plus longues sont acceptables. La longueur maximum de toute ligne de code PHP est de 120 caractères.
+            </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.php-file-formatting.line-termination"></a>A.2.4. Terminaison de lignes</h3></div></div></div>
+<p>
+                La terminaison de ligne est la terminaison standard pour les fichier textes UNIX.
+                Les lignes doit finir seulement avec un "linefeed" (LF). Les linefeeds sont représentés
+                comme 10 en ordinal, ou 0x0A en hexadecimal.
+            </p>
+<p>N'utilisez pas de retoure chariots (CR) comme les font les Macintosh (0x0D)</p>
+<p>
+                N'utilisez pas de combinaison retour chariot/linefeed (CRLF) comme le font les ordinateurs sous Windows
+                (0x0D, 0x0A).
+            </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="coding-standard.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="coding-standard.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="coding-standard.naming-conventions.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Annexe A. Convention de codage PHP du Framework Zend </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> A.3. Conventions de nommage</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

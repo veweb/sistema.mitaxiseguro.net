@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>17.4. Używanie innych transportów</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="prev" href="zend.mail.multiple-emails.html" title="17.3. Wysyłanie wielu maili podczas jednego połączenia SMTP">
+<link rel="next" href="zend.mail.html-mails.html" title="17.5. E-mail w postaci HTML">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">17.4. Używanie innych transportów</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mail.multiple-emails.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 17. Zend_Mail</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.mail.html-mails.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mail.different-transports"></a>17.4. Używanie innych transportów</h2></div></div></div>
+<p>
+        W przypadku gdy chcesz wysłać różne e-maile poprzez różne połączenia, możesz 
+        także przekazać obiekt transportu bezpośrednio do metody <code class="code">send()</code> 
+        bez wcześniejszego wywołania <code class="code">setDefaultTransport()</code>. Przekazany
+        obiekt nadpisze domyślny transport dla aktualnego wywołania <code class="code">send()</code>:
+    </p>
+<div class="example">
+<a name="id4853467"></a><p class="title"><b>Przykład 17.4. Używanie innych transportów</b></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'Zend/Mail.php';
+$mail = new Zend_Mail();
+// tworzymy wiadomość...
+require_once 'Zend/Mail/Transport/Smtp.php';
+$tr1 = new Zend_Mail_Transport_Smtp('server@example.com');
+$tr2 = new Zend_Mail_Transport_Smtp('other_server@example.com');
+$mail-&gt;send($tr1);
+$mail-&gt;send($tr2);
+$mail-&gt;send();  // znów używamy domyślnego transportu
+?&gt;   </pre>
+</div>
+<div class="note"><table border="0" summary="Note: Dodatkowe transporty">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Dodatkowe transporty</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Dodatkowe transporty mogą być napisane poprzez zaimplementowanie interfejsu
+            <code class="code">Zend_Mail_Transport_Interface</code>.
+        </p></td></tr>
+</table></div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mail.multiple-emails.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.mail.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.mail.html-mails.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">17.3. Wysyłanie wielu maili podczas jednego połączenia SMTP </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 17.5. E-mail w postaci HTML</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

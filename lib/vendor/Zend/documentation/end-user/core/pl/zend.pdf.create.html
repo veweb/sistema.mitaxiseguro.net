@@ -1,0 +1,139 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>20.2. Tworzenie oraz ładowanie dokumentów PDF.</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="prev" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="next" href="zend.pdf.save.html" title="20.3. Zapisywanie zmian w dokumencie PDF.">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">20.2. Tworzenie oraz ładowanie dokumentów PDF.</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.pdf.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 20. Zend_Pdf</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.pdf.save.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.pdf.create"></a>20.2. Tworzenie oraz ładowanie dokumentów PDF.</h2></div></div></div>
+<p>
+    Klasa <code class="code">Zend_Pdf</code> reprezentuje dokument PDF i zapewnia funkcjonalność
+    na poziomie dokumentu.
+    </p>
+<p>
+    W celu utworzenia nowego dokumentu trzeba utworzyć obiekt <code class="code">Zend_Pdf</code>.
+    </p>
+<p>
+    Klasa <code class="code">Zend_Pdf</code> zapewnia także dwie statyczne metody do ładowania 
+    istniejącego dokumentu PDF. Te metody to <code class="code">Zend_Pdf::load()</code> oraz 
+    <code class="code">Zend_Pdf::parse()</code>. Obie zwracają obiekt Zend_Pdf lub wyrzucają
+    wyjątek, jeśli wystąpi błąd.
+    </p>
+<div class="example">
+<a name="id4863217"></a><p class="title"><b>Przykład 20.1. Tworzenie nowego lub ładowanie istniejącego dokumentu PDF.</b></p>
+<pre class="programlisting">&lt;?php
+...
+// Utwórz nowy dokument PDF.
+$pdf1 = new Zend_Pdf();
+
+// Załaduj dokument PDF z pliku.
+$pdf2 = Zend_Pdf::load($fileName);
+
+// Załaduj dokument PDF z łańcucha znaków.
+$pdf3 = Zend_Pdf::parse($pdfString);
+...
+?&gt;</pre>
+</div>
+<p>
+    Format pliku PDF obsługuję inkrementalne uaktualnianie dokumentu. Wtedy za 
+    każdym razem gdy dokument jest uaktualniony, tworzona jest nowa wersja
+    dokumentu. Moduł Zend_Pdf umożliwia następnie ładowanie określonej wersji
+    dokumentu.
+    </p>
+<p>
+    Wersja może być określona jako drugi parametr w metodach <code class="code">Zend_Pdf::load()</code> 
+    oraz <code class="code">Zend_Pdf::parse()</code> lub za pomocą wywołania <code class="code">Zend_Pdf::rollback()</code>
+        <sup>[<a name="id4863256" href="#ftn.id4863256">5</a>]</sup>
+    </p>
+<div class="example">
+<a name="id4863268"></a><p class="title"><b>Przykład 20.2. Ładowanie określonej wersji dokumentu PDF.</b></p>
+<pre class="programlisting">&lt;?php
+...
+// Załaduj poprzednią wersję dokumentu PDF.
+$pdf1 = Zend_Pdf::load($fileName, 1);
+
+// Załaduj poprzednią wersję dokumentu PDF.
+$pdf2 = Zend_Pdf::parse($pdfString, 1);
+
+// Załaduj pierwszą wersję dokumentu PDF.
+$pdf3 = Zend_Pdf::load($fileName);
+$revisions = $pdf3-&gt;revisions();
+$pdf3-&gt;rollback($revisions - 1);
+...
+?&gt;</pre>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4863256" href="#id4863256">5</a>] </sup>
+            Metoda <code class="code">Zend_Pdf::rollback()</code> musi być wywołana przed 
+            jakimikolwiek zmianami. W przeciwnym wypadku zachowanie nie jest
+            zdefiniowane.
+            </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.pdf.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.pdf.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.pdf.save.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Rozdział 20. Zend_Pdf </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 20.3. Zapisywanie zmian w dokumencie PDF.</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

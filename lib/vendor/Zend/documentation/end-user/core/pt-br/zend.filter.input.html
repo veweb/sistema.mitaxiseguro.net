@@ -1,0 +1,326 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>11.4. Zend_Filter_Input</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="prev" href="zend.filter.writing_filters.html" title="11.3. Writing Filters">
+<link rel="next" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="zend.filter.input.html#zend.filter.input.introduction" title="11.4.1. Introduction">
+<link rel="subsection" href="zend.filter.input.html#zend.filter.input.theoryofoperation" title="11.4.2. Theory of Operation">
+<link rel="subsection" href="zend.filter.input.html#zend.filter.input.usecases" title="11.4.3. Use Cases">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">11.4. Zend_Filter_Input</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.filter.writing_filters.html">Anterior</a> </td>
+<th width="60%" align="center">Capítulo 11. Zend_Filter</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.filter.input"></a>11.4. Zend_Filter_Input</h2></div></div></div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.introduction"></a>11.4.1. Introduction</h3></div></div></div>
+<p><code class="literal">Zend_Filter_Input</code> provides simple facilities that
+        promote a structured and rigid approach to input filtering. Its purpose is
+        multifaceted, because it caters to the needs of three different groups of
+        people:</p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>Developers</p>
+<p>Although filtering input can never be as easy as doing
+                nothing, developers need to ensure the integrity of their data
+                without adding unnecessary complexity to their code.
+                <code class="literal">Zend_Filter_Input</code> offers simple methods for the
+                most common use cases, extensibility for edge cases, and a strict
+                naming convention that promotes code clarity.</p>
+</li>
+<li>
+<p>Managers</p>
+<p>Managers of all types who need to maintain control over a
+                large group of developers can enforce a structured approach to
+                input filtering by restricting or eliminating access to raw
+                input.</p>
+</li>
+<li>
+<p>Auditors</p>
+<p>Those who audit an application's code need to quickly and
+                reliably identify when and where raw input is used by a developer.
+                The characteristics that promote code clarity also aid auditors by
+                providing a clear distinction among the different approaches to
+                input filtering.</p>
+</li>
+</ul></div>
+<p>There are a variety of approaches to input filtering, and there are
+        also a variety of facilities that PHP developers can use. Whitelist
+        filtering, blacklist filtering, regular expressions, conditional
+        statements, and native PHP functions are just a few examples of the input
+        filtering potpourri. <code class="literal">Zend_Filter_Input</code> combines all of
+        these facilities into a single API with consistent behavior and strict
+        naming conventions. All of the methods abide by a simple rule - if the data
+        is valid, it is returned, otherwise <code class="literal">FALSE</code> is returned.
+        Extreme simplicity.</p>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.introduction.whitelist"></a>11.4.1.1. Whitelist Filtering</h3></div></div></div>
+<p>Whitelist filtering methods begin with the <code class="literal">is</code>
+            prefix, such as <code class="literal">isAlpha()</code> and
+            <code class="literal">isEmail()</code>. These methods inspect input according to
+            pre-defined criteria and return the data only if it adheres to the
+            criteria. If not, <code class="literal">FALSE</code> is returned. The following
+            provides a simple demonstration:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    $filterPost = new Zend_Filter_Input($_POST);
+    
+    if ($alphaName = $filterPost-&gt;isAlpha('name')) {
+        /* $alphaName contains only alphabetic characters. */
+    } else {
+        /* $alphaName evaluates to FALSE. */
+    }
+    
+    ?&gt;
+            </pre>
+<p>This approach errs on the side of caution by performing a boolean
+            evaluation of the return value. If you want to distinguish among values
+            that evaluate to <code class="literal">FALSE</code> in PHP (such as the integer
+            <code class="literal">0</code> and the empty string), you can perform a strict
+            comparison to <code class="literal">FALSE</code>:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    $filterPost = new Zend_Filter_Input($_POST);
+    $alphaName = $filterPost-&gt;isAlpha('name');
+    
+    if ($alphaName !== FALSE) {
+        /* $alphaName contains only alphabetic characters. */
+    } else {
+        /* $alphaName === FALSE */
+    }
+    
+    ?&gt;
+            </pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.introduction.blind"></a>11.4.1.2. Blind Filtering</h3></div></div></div>
+<p>Blind filtering methods begin with the <code class="literal">get</code>
+            prefix, such as <code class="literal">getAlpha()</code> and
+            <code class="literal">getDigits()</code>. These methods do not inspect input but
+            instead return the portion of it considered to be valid. For example,
+            <code class="literal">getAlpha()</code> returns only the alphabetic characters,
+            if there are any. (If not, the remaining string is the empty string.)
+            The following provides a simple demonstration:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    /* $_POST['username'] = 'John123Doe'; */
+    
+    $filterPost = new Zend_Filter_Input($_POST);
+    $alphaUsername = $filterPost-&gt;getAlpha('username');
+    
+    /* $alphaUsername = 'JohnDoe'; */
+    
+    ?&gt;
+            </pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.introduction.blacklist"></a>11.4.1.3. Blacklist Filtering</h3></div></div></div>
+<p>Blacklist filtering methods begin with the <code class="literal">no</code>
+            prefix, such as <code class="literal">noTags()</code> and
+            <code class="literal">noPath()</code>. These methods are identical to the blind
+            filtering methods, except the criteria they enforce is based upon what
+            is considered invalid instead of what is considered valid. Invalid data
+            is removed, and the remaining data (assumed valid) is returned. The
+            following provides a simple demonstration:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    /* $_POST['comment'] = '&lt;b&gt;I love PHP!&lt;/b&gt;'; */
+    
+    $filterPost = new Zend_Filter_Input($_POST);
+    $taglessComment = $filterPost-&gt;noTags('comment');
+    
+    /* $taglessComment = 'I love PHP!'; */
+    
+    ?&gt;
+            </pre>
+</div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.theoryofoperation"></a>11.4.2. Theory of Operation</h3></div></div></div>
+<p><code class="literal">Zend_Filter_Input</code> consolidates a few distinct
+        approaches to input filtering into a single API with consistent behavior
+        and strict naming conventions (see
+        <a href="zend.filter.input.html#zend.filter.input.introduction" title="11.4.1. Introduction">Seção 11.4.1, “Introduction”</a>). These characteristics
+        bring <code class="literal">Zend_Filter_Input</code> on par with existing solutions,
+        but they do nothing to further aid those who require a more structured or
+        rigid approach. Therefore, by default, <code class="literal">Zend_Filter_Input</code>
+        enforces controlled access to input.</p>
+<p>Two syntaxes are supported. In the default (strict) approach, a
+        single argument is passed to the constructor - the array to be
+        filtered:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    $filterPost = new Zend_Filter_Input($_POST);
+    $email = $filterPost-&gt;isEmail('email');
+    
+    ?&gt;
+        </pre>
+<p><code class="literal">Zend_Filter_Input</code> sets the array that is passed
+        (<code class="literal">$_POST</code>) to <code class="literal">NULL</code>, so direct access is
+        no longer possible. (The raw data is only available through the
+        <code class="literal">getRaw()</code> method, which is much easier to monitor and/or
+        avoid altogether.)</p>
+<p>In the optional (non-strict) approach, <code class="literal">FALSE</code> is
+        passed as the second argument to the constructor:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    $filterPost = new Zend_Filter_Input($_POST, FALSE);
+    $email = $filterPost-&gt;isEmail('email');
+    
+    ?&gt;
+        </pre>
+<p>The use of the filter is exactly the same, but
+        <code class="literal">Zend_Filter_Input</code> does not set the original array
+        (<code class="literal">$_POST</code>) to <code class="literal">NULL</code>, so developers can
+        still access it directly. This approach is discouraged in favor of the
+        strict approach.</p>
+<p><code class="literal">Zend_Filter_Input</code> is designed primarily with arrays
+        in mind. Many sources of input are already covered by PHP's superglobal
+        arrays (<code class="literal">$_GET</code>, <code class="literal">$_POST</code>,
+        <code class="literal">$_COOKIE</code>, etc.), and arrays are a common construct used
+        to store input from other sources. If you need to filter a scalar, see
+        <a href="zend.filter.html" title="Capítulo 11. Zend_Filter">Capítulo 11, <i>Zend_Filter</i></a>.</p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.usecases"></a>11.4.3. Use Cases</h3></div></div></div>
+<p>Strict Whitelist Filtering (Preferred):</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    $filterPost = new Zend_Filter_Input($_POST);
+    
+    if ($email = $filterPost-&gt;isEmail('email')) {
+        /* $email is a valid email format. */
+    } else {
+        /* $email is not a valid email format. */
+    }
+    
+    ?&gt;
+        </pre>
+<p>Strict Blind Filtering:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    $filterPost = new Zend_Filter_Input($_POST);
+    $alphaName = $filterPost-&gt;getAlpha('name');
+    
+    ?&gt;
+        </pre>
+<p>Strict Blacklist Filtering:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    $filterPost = new Zend_Filter_Input($_POST);
+    $taglessComment = $filterPost-&gt;noTags('comment');
+    
+    ?&gt;
+        </pre>
+<p>Non-Strict Whitelist Filtering:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    $filterPost = new Zend_Filter_Input($_POST, FALSE);
+    
+    if ($email = $filterPost-&gt;isEmail('email')) {
+        /* $email is a valid email format. */
+    } else {
+        /* $email is not a valid email format. */
+    }
+    
+    ?&gt;
+        </pre>
+<p>Non-Strict Blind Filtering:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    $filterPost = new Zend_Filter_Input($_POST, FALSE);
+    $name = $filterPost-&gt;getAlpha('name');
+    
+    ?&gt;
+        </pre>
+<p>Non-Strict Blacklist Filtering:</p>
+<pre class="programlisting">
+    &lt;?php
+    
+    $filterPost = new Zend_Filter_Input($_POST, FALSE);
+    $comment = $filterPost-&gt;noTags('comment');
+    
+    ?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.filter.writing_filters.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.filter.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">11.3. Writing Filters </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> Capítulo 12. Zend_Gdata</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

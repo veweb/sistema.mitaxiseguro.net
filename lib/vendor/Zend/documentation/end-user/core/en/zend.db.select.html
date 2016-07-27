@@ -1,0 +1,707 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.3. Zend_Db_Select</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="prev" href="zend.db.profiler.html" title="9.2. Zend_Db_Profiler">
+<link rel="next" href="zend.db.table.html" title="9.4. Zend_Db_Table">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.introduction" title="9.3.1. Introduction">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.fromcols" title="9.3.2. Columns FROM a Table">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.joincols" title="9.3.3. Columns from JOINed Tables">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.where" title="9.3.4. WHERE Conditions">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.group" title="9.3.5. GROUP BY Clause">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.having" title="9.3.6. HAVING Conditions">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.order" title="9.3.7. ORDER BY Clause">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.limit" title="9.3.8. LIMIT By Count and Offset">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.paging" title="9.3.9. LIMIT By Page And Count">
+<link rel="subsection" href="zend.db.select.html#id4821368" title="9.3.10. Other methods">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.3. Zend_Db_Select</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.profiler.html">Prev</a> </td>
+<th width="60%" align="center">Chapter 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.table.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.select"></a>9.3. Zend_Db_Select</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.introduction"></a>9.3.1. Introduction</h3></div></div></div>
+<p>
+            Zend_Db_Select is a tool to help you build SQL SELECT statements in
+            a database-independent way.  Obviously this can't be perfect,
+            but it does go a long way toward helping your queries be
+            portable between database backends.  In addition, it aids
+            you in making your queries resistant to SQL injection attacks.
+        </p>
+<p>
+            The easiest way to create an instance of Zend_Db_Select is to use the
+            Zend_Db_Adapter::select() method.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+require_once 'Zend/Db.php';
+
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+$select = $db-&gt;select();
+// $select is now a Zend_Db_Select object configured for use only with the PDO_MYSQL adapter.
+
+?&gt;</pre>
+<p>
+            You then construct a SELECT query using that object and its
+            methods, then generate a string for passing back to Zend_Db_Adapter
+            for queries or fetches.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// SELECT round_table.*
+// FROM `round_table` round_table
+// WHERE `noble_title` = 'Sir'
+// ORDER BY `first_name`
+// LIMIT 10 OFFSET 20
+//
+
+// you can use an iterative style...
+$select-&gt;from('round_table');
+$select-&gt;where('noble_title = ?', 'Sir');
+$select-&gt;order('first_name');
+$select-&gt;limit(10,20);
+
+// ...or a "fluent" style:
+$select-&gt;from('round_table')
+       -&gt;where('noble_title = ?', 'Sir')
+       -&gt;order('first_name')
+       -&gt;limit(10,20);
+
+// regardless, fetch the results:
+$sql = $select-&gt;__toString();
+$result = $db-&gt;fetchAll($sql);
+
+// a second alternative: pass the $select object itself:
+$result = $db-&gt;fetchAll($select);
+
+// a third alternative: produce a Zend_Db_Statement
+// or PDOStatement directly from the $select object:
+$stmt = $select-&gt;query();
+$result = $stmt-&gt;fetchAll();
+
+?&gt;</pre>
+<p>
+            You can also use bound parameters in your queries instead of
+            quoting-as-you-go.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// SELECT round_table.*
+// FROM `round_table` round_table
+// WHERE noble_title = 'Sir'
+// ORDER BY `first_name`
+// LIMIT 10 OFFSET 20
+//
+
+$select-&gt;from('round_table', '*')
+       -&gt;where('noble_title = :title')
+       -&gt;order('first_name')
+       -&gt;limit(10,20);
+
+// regardless, fetch the results using bound parameters
+$params = array('title' =&gt; 'Sir');
+$result = $db-&gt;fetchAll($select, $params);
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.fromcols"></a>9.3.2. Columns FROM a Table</h3></div></div></div>
+<p>
+            To select columns from a specific table, use the from() method,
+            specifying the table and the columns you want from it.  You can
+            use both table and column aliases, and you can use from() as
+            many times as you need.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, assuming Mysql as the adapter.
+$select = $db-&gt;select();
+
+// SELECT some_table.`a`, some_table.`b`, some_table.`c`
+// FROM `some_table` some_table
+
+$select-&gt;from('some_table', array('a', 'b', 'c'));
+
+// SELECT bar.`col`
+// FROM `foo` bar
+
+$select-&gt;from(array('foo' =&gt; 'bar'), 'col');
+
+?&gt;</pre>
+<p>
+            The second argument to the from() method is a scalar
+            to name a single column, or an array to name multiple
+            columns.  The scalar or element of the array can be
+            a string, which is interpreted as a plain column name,
+            and is quoted and prepended with the table alias.
+            If you omit the second argument, it defaults to <code class="code">'*'</code>,
+            which is not quoted but is prepended with the table alias.
+            If you want no columns from this table to be in the result
+            set, use an empty <code class="code">array()</code>.
+        </p>
+<p>
+            Do not specify multiple columns as a single string of
+            comma-separated column names.  This syntax used in
+            earlier preview releases of Zend_Db is no longer supported.
+            Use an array instead.
+        </p>
+<p>
+            The table alias is applied to every string element of the
+            second argument, but if the element is an object of type
+            Zend_Db_Expr, its string value is used without quoting
+            or prepending with the table alias.
+        </p>
+<pre class="programlisting">&lt;?php
+
+$select = $db-&gt;select();
+
+// SELECT foo.col AS col1, bar.col AS col2
+// FROM foo, bar
+$select-&gt;from('foo', array(
+    new Zend_Db_Expr('foo.col AS col1'),
+    new Zend_Db_Expr('CURDATE()')
+);
+$select-&gt;from('bar', new Zend_Db_Expr('bar.col AS col2'));
+
+?&gt;</pre>
+<p>
+            Use an associative array to declare table aliases.
+            The key is the table name and the value is the alias.
+            If you specify a table as a simple string instead of an associative
+            array to declare the alias, Zend_Db_Select generates a table alias.
+            By default, the generated table alias is spelled the same as each
+            table name, as if you had written a SQL query
+            "<code class="code">SELECT foo.* FROM `foo` foo</code>".
+            If you add the same table more than once, for example in a
+            self-join, Zend_Db_Select declares unique aliases for each table
+            instance, like "<code class="code">foo_1</code>", "<code class="code">foo_2</code>", etc.
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.joincols"></a>9.3.3. Columns from JOINed Tables</h3></div></div></div>
+<p>
+            To select columns using joined tables, use the join() method.
+            First give the joining table name, then the joining condition,
+            and finally the columns you want from the join.  You can use
+            join() as many times as you need.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, assuming Mysql as the adapter.
+$select = $db-&gt;select();
+
+// SELECT foo.*, bar.*
+// FROM `foo` foo
+// JOIN `bar` bar ON foo.id = bar.id
+
+$select-&gt;from('foo');
+$select-&gt;join('bar', 'foo.id = bar.id');
+
+?&gt;</pre>
+<p>
+            The first argument to the join() method is a table specifier.
+            This is the same as the first argument of the from() method,
+            in that it can be a string that names a table, or it can be an
+            associative array mapping the table name to an alias name.
+        </p>
+<p>
+            The second argument to the join() method is an expression that
+            forms the join condition.  You can use table aliases here, but 
+            remember that unless you specified the table alias, Zend_Db_Select
+            generates one.  If you omit the join condition, this is
+            equivalent to a CROSS JOIN or cartesian product.
+        </p>
+<p>
+            The third argument to the join() method is a list of columns from
+            the joined table to include in the select-list.  This is the same
+            as the second argument of the from() method, in that it can be
+            a scalar that names a column, or an array of scalars to name
+            multiple columns.  Each scalar can be either a string or an object
+            of type Zend_Db_Expr.  If you omit the columns argument, the default
+            is <code class="code">'*'</code>.  If you want no columns from this table to
+            be in the result set, use an empty <code class="code">array()</code>.
+        </p>
+<p>
+            Do not specify multiple columns as a single string of
+            comma-separated column names.  This syntax used in
+            earlier preview releases of Zend_Db is no longer supported.
+            Use an array instead.
+        </p>
+<p>
+            The following join types are supported:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <span><strong class="command">INNER JOIN</strong></span> with the
+                    <code class="code">join()</code> or <code class="code">joinInner()</code> methods.
+                    All RDBMS brands support this join type.
+                </p></li>
+<li><p>
+                    <span><strong class="command">LEFT JOIN</strong></span> with the
+                    <code class="code">joinLeft()</code> method.
+                    All RDBMS brands support this join type.
+                </p></li>
+<li><p>
+                    <span><strong class="command">RIGHT JOIN</strong></span> with the
+                    <code class="code">joinRight()</code> method.
+                    Some RDBMS brands do not support this join type.
+                </p></li>
+<li><p>
+                    <span><strong class="command">FULL JOIN</strong></span> with the
+                    <code class="code">joinFull()</code> method.
+                    Some RDBMS brands do not support this join type.
+                </p></li>
+<li><p>
+                    <span><strong class="command">CROSS JOIN</strong></span> with the
+                    <code class="code">joinCross()</code> method.
+                    There is no parameter for this method to specify 
+                    the join condition.
+                    Some RDBMS brands do not support this join type.
+                </p></li>
+<li><p>
+                    <span><strong class="command">NATURAL JOIN</strong></span> with the
+                    <code class="code">joinNatural()</code> method.
+                    There is no parameter for this method to specify 
+                    the join condition; a natural join assumes an
+                    equi-join on columns of the same name in the
+                    two tables.
+                    Only NATURAL INNER JOIN is supported.
+                </p></li>
+</ul></div>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.where"></a>9.3.4. WHERE Conditions</h3></div></div></div>
+<p>
+            To add WHERE conditions, use the where() method.  You can
+            pass either a regular string, or you can pass a string
+            with a question-mark placeholder and a value to quote into it
+            (the value will be quoted using Zend_Db_Adapter::quoteInto).
+        </p>
+<p>
+            Multiple calls to where() will AND the conditions together;
+            if you need to OR a condition, use orWhere().
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, then get a SELECT tool.
+$select = $db-&gt;select();
+
+// SELECT r.*
+// FROM `round_table` r
+// WHERE noble_title = 'Sir'
+//   AND favorite_color = 'yellow'
+
+$select-&gt;from(array('round_table' =&gt; 'r'));
+$select-&gt;where("noble_title = 'Sir'"); // embedded value
+$select-&gt;where('favorite_color = ?', 'yellow'); // quoted value
+
+// SELECT foo.*
+//     FROM `foo` foo
+//     WHERE bar = 'baz'
+//     OR id IN('1', '2', '3')
+
+$select-&gt;from('foo');
+$select-&gt;where('bar = ?', 'baz');
+$select-&gt;orWhere('id IN(?)', array(1, 2, 3));
+
+?&gt;</pre>
+<p>
+            Zend_Db_Select does not apply quoting or table aliases to
+            columns named in WHERE clauses.  If you combine PHP 
+            variables into the string for a WHERE expression, you
+            should use the Zend_Db_Adapter quoteIdentifier() method
+            to protect against illegal syntax.
+        </p>
+<pre class="programlisting">&lt;?php
+...
+$columnName = 'bar'; // or set by an untrusted source
+$whereExpr = $db-&gt;quoteIdentifier($columnName) . ' = ?';
+$select-&gt;where($whereExpr, 'baz');
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.group"></a>9.3.5. GROUP BY Clause</h3></div></div></div>
+<p>
+            To group rows, use the group() method as many times as you wish.
+            Each 
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, then get a SELECT tool.
+$select = $db-&gt;select();
+
+// SELECT COUNT(id)
+// FROM `foo` foo
+// GROUP BY `bar`, `baz`
+
+$select-&gt;from('foo', new Zend_Db_Expr('COUNT(id)'));
+$select-&gt;group('bar');
+$select-&gt;group('baz');
+
+// an equivalent group() call:
+$select-&gt;group(array('bar', 'baz'));
+
+?&gt;</pre>
+<p>
+            Do not specify multiple columns as a single string of
+            comma-separated column names.  This syntax used in
+            earlier preview releases of Zend_Db is no longer supported.
+            Use an array instead.
+        </p>
+<p>
+            Quoting is applied to every string element of the
+            group() argument, but if the element is an object of type
+            Zend_Db_Expr, its string value is used without quoting.
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.having"></a>9.3.6. HAVING Conditions</h3></div></div></div>
+<p>
+            To add HAVING conditions to the selected results, use the having()
+            method.  This method is identical in function to the where() method.
+        </p>
+<p>
+            If you call having() multiple times, the conditions are ANDed together;
+            if you want to OR a condition, use orHaving().
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, then get a SELECT tool.
+$select = $db-&gt;select();
+
+// SELECT COUNT(id) AS count_id
+//     FROM `foo` foo
+//     GROUP BY `bar`, `baz`
+//     HAVING count_id &gt; '1'
+
+$select-&gt;from('foo', new Zend_Db_Expr('COUNT(id) AS count_id'));
+$select-&gt;group(array('bar', 'baz'));
+$select-&gt;having('count_id &gt; ?', 1);
+
+?&gt;</pre>
+<p>
+            Zend_Db_Select does not apply quoting or table aliases to
+            columns named in HAVING clauses.  If you combine PHP 
+            variables into the string for a HAVING expression, you
+            should use the Zend_Db_Adapter quoteIdentifier() method
+            to protect against illegal syntax.
+        </p>
+<pre class="programlisting">&lt;?php
+...
+$columnName = 'count_id'; // or set by an untrusted source
+$havingExpr = $db-&gt;quoteIdentifier($columnName) . ' &gt; ?';
+$select-&gt;having($havingExpr, 1);
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.order"></a>9.3.7. ORDER BY Clause</h3></div></div></div>
+<p>
+            To ORDER columns, use the order() method as many times as you wish.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, then get a SELECT tool.
+$select = $db-&gt;select();
+
+// SELECT r.*
+// FROM `round_table` r
+// ORDER BY `noble_title` DESC, `first_name` ASC
+
+$select-&gt;from('round_table');
+$select-&gt;order('noble_title DESC');
+$select-&gt;order('first_name');
+
+// an equivalent order() call:
+$select-&gt;order(array('noble_title DESC', 'first_name'));
+
+?&gt;</pre>
+<p>
+            Do not specify multiple columns as a single string of
+            comma-separated column names.  This syntax used in
+            earlier preview releases of Zend_Db is no longer supported.
+            Use an array instead.
+        </p>
+<p>
+            Quoting is applied to every string element of the
+            order() argument, but if the element is an object of type
+            Zend_Db_Expr, its string value is used without quoting.
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.limit"></a>9.3.8. LIMIT By Count and Offset</h3></div></div></div>
+<p>
+            Zend_Db_Select offers database-abstracted LIMIT clause support.
+            For many databases, such as MySQL and PostgreSQL, this is
+            relatively easy, as they support the the "LIMIT :count
+            [OFFSET :offset]" syntax.
+        </p>
+<p>
+            For some other databases, this is not so easy, because they
+            don't support the LIMIT clause.  Microsoft SQL Server has a
+            TOP clause that can provide the same result.  Oracle and DB2
+            require a query to be written in a special fashion to emulate
+            a LIMIT.  Zend_Db_Select can rewrite the SELECT appropriately
+            for each database adapter to provide the LIMIT functionality.
+        </p>
+<p>
+            To LIMIT the returned results by count and offset, use the limit()
+            method with a count and optional offset.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// first, a simple "LIMIT :count"
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$select-&gt;order('id');
+$select-&gt;limit(10);
+
+// In MySQL/PostgreSQL/SQLite, this translates to:
+//
+// SELECT foo.*
+// FROM "foo" foo
+// ORDER BY "id" ASC
+// LIMIT 10
+//
+// But in Microsoft SQL Server, this translates to:
+//
+// SELECT TOP 10 foo.*
+// FROM [foo] foo
+// ORDER BY [id] ASC
+
+// now, a more complex "LIMIT :count OFFSET :offset"
+$select = $db-&gt;select();
+$select-&gt;from('foo', '*');
+$select-&gt;order('id');
+$select-&gt;limit(10, 20);
+
+// In MySQL/PostgreSQL/SQLite, this translates to:
+//
+// SELECT foo.*
+// FROM "foo" foo
+// ORDER BY "id" ASC
+// LIMIT 10 OFFSET 20
+//
+// Microsoft SQL Server has no offset support, so this translates to:
+//
+// SELECT * FROM (
+//     SELECT TOP 10 * FROM (
+//         SELECT TOP 30 *
+//         FROM [foo] foo
+//         ORDER BY [id] DESC
+//     ) ORDER BY id ASC
+// )
+//
+// Zend_Db_Adapter does the query translation for you automatically.
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.paging"></a>9.3.9. LIMIT By Page And Count</h3></div></div></div>
+<p>
+            Zend_Db_Select offers page-based limits as well.  If you wish to
+            retrieve a certain "page" of results, use the limitPage() method;
+            first pass the page number you want, and then the number of
+            rows that appear on each page.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// build the basic select...
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$select-&gt;order('id');
+
+// ... and limit to page 3 where each page has 10 rows
+$select-&gt;limitPage(3, 10);
+
+// In MySQL/PostgreSQL/SQLite, this translates to:
+//
+// SELECT foo.*
+// FROM `foo` foo
+// ORDER BY `id` ASC
+// LIMIT 10 OFFSET 20
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id4821368"></a>9.3.10. Other methods</h3></div></div></div>
+<p>
+            The distinct() method enables you to add the DISTINCT
+            keyword to your SQL query.
+        </p>
+<pre class="programlisting">&lt;?php
+
+// SELECT DISTINCT foo.`non_unique_column`
+// FROM `foo` foo
+
+$select = $db-&gt;select();
+$select-&gt;distinct();
+$select-&gt;from('foo', 'non_unique_column');
+
+?&gt;</pre>
+<p>
+            The forUpdate() method enables you to add the FOR UPDATE
+            keywords to your SQL query.
+        </p>
+<pre class="programlisting">&lt;?php
+
+// SELECT FOR UPDATE foo.*
+// FROM `foo` foo
+
+$select = $db-&gt;select();
+$select-&gt;forUpdate();
+$select-&gt;from('foo');
+
+?&gt;</pre>
+<p>
+            The query() method is like the query() method of
+            the Zend_Db_Adapter.  It returns an object of type
+            Zend_Db_Statement or PDOStatement, depending on the
+            adapter type.
+        </p>
+<pre class="programlisting">&lt;?php
+
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$stmt = $select-&gt;query();
+$result = $stmt-&gt;fetchAll();
+
+// This is equivalent to the following:
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$stmt = $db-&gt;query($select);
+$result = $stmt-&gt;fetchAll();
+
+?&gt;</pre>
+<p>
+            The getPart() method returns the data you provided
+            for part of the SQL query.  The Zend_Db_Select class
+            includes constant definitions that you can use for
+            parts of the SQL query.
+        </p>
+<pre class="programlisting">&lt;?php
+
+// SELECT foo.*
+// FROM `foo` foo
+// ORDER `keyColumn`
+
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$select-&gt;order('keyColumn');
+
+print_r( $select-&gt;getPart( Zend_Db_Select::ORDER ) );
+
+?&gt;</pre>
+<p>
+            The reset() method enables you to clear one specified
+            part of the SQL query, or else clear all parts of
+            the SQL query if you omit the argument.
+        </p>
+<pre class="programlisting">&lt;?php
+
+// SELECT foo.*
+// FROM `foo` foo
+// ORDER BY `column1`
+
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$select-&gt;order('column1');
+
+// Instead we want a different order criterion:
+//
+// SELECT foo.*
+// FROM `foo` foo
+// ORDER BY `column2`
+
+// Clear one part so we can redefine it
+$select-&gt;reset( Zend_Db_Select::ORDER );
+$select-&gt;order('column2');
+
+// Clear all parts of the query
+$select-&gt;reset();
+
+?&gt;</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.profiler.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.table.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.2. Zend_Db_Profiler </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 9.4. Zend_Db_Table</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

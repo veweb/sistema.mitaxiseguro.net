@@ -1,0 +1,337 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>18.4. 計測値の操作</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="prev" href="zend.measure.output.html" title="18.3. 計測値の出力">
+<link rel="next" href="zend.measure.special.html" title="18.5. 特別な関数">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.measure.edit.html#zend.measure.edit.convert" title="18.4.1. 変換">
+<link rel="subsection" href="zend.measure.edit.html#zend.measure.edit.add" title="18.4.2. 加減算">
+<link rel="subsection" href="zend.measure.edit.html#zend.measure.edit.equal" title="18.4.3. 比較">
+<link rel="subsection" href="zend.measure.edit.html#zend.measure.edit.compare" title="18.4.4. 比較">
+<link rel="subsection" href="zend.measure.edit.html#zend.measure.edit.changevalue" title="18.4.5. 値の変更">
+<link rel="subsection" href="zend.measure.edit.html#zend.measure.edit.changetype" title="18.4.6. 型の変更">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">18.4. 計測値の操作</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.measure.output.html">前のページ</a> </td>
+<th width="60%" align="center">第18章 Zend_Measure</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.measure.special.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.measure.edit"></a>18.4. 計測値の操作</h2></div></div></div>
+<p>
+        入力のパースと正規化、そしてローカライズされた表記での出力により、
+        さまざまなロケールのユーザがデータにアクセスできるようになります。
+        <code class="code">Zend_Measure_*</code> コンポーネントには
+        それ以外にもさまざまなメソッドがあり、
+        正規化されたデータを操作することができます。
+    </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                <a href="zend.measure.edit.html#zend.measure.edit.convert" title="18.4.1. 変換"><code class="code">変換</code>
+                </a>
+            </p></li>
+<li><p>
+                <a href="zend.measure.edit.html#zend.measure.edit.add" title="18.4.2. 加減算"><code class="code">加減算</code>
+                </a>
+            </p></li>
+<li><p>
+                <a href="zend.measure.edit.html#zend.measure.edit.equal" title="18.4.3. 比較"><code class="code">真偽の比較</code>
+                </a>
+            </p></li>
+<li><p>
+                <a href="zend.measure.edit.html#zend.measure.edit.compare" title="18.4.4. 比較"><code class="code">大小の比較</code>
+                </a>
+            </p></li>
+<li><p>
+                <a href="zend.measure.edit.html#zend.measure.edit.changevalue" title="18.4.5. 値の変更"><code class="code">値の変更</code>
+                </a>
+            </p></li>
+<li><p>
+                <a href="zend.measure.edit.html#zend.measure.edit.changetype" title="18.4.6. 型の変更"><code class="code">型の変更</code>
+                </a>
+            </p></li>
+</ul></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.edit.convert"></a>18.4.1. 変換</h3></div></div></div>
+<p>
+            おそらく最も重要な機能は、異なる単位の変換でしょう。
+            単位の変換は、<code class="code">convertTo()</code>
+            メソッドを使用していつでも何度でも行えます。
+            単位の変換は、同じ型の単位間に限られます。したがって、
+            たとえば長さの単位を重さの単位に変換することなどはできません。
+            もしそんなことができたらプログラムがめちゃくちゃになってしまい、
+            エラーだらけになってしまうでしょう。
+        </p>
+<div class="example">
+<a name="id4865524"></a><p class="title"><b>例 18.10. 変換</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Weight.php';
+
+$locale = new Zend_Locale('de');
+$mystring = "1.234.567,89";
+$unit = new Zend_Measure_Weight($mystring,'POND', $locale);
+
+print "Kilo:".$unit-&gt;convertTo('KILOGRAM');
+
+// 文字列を使うより定数で指定するほうが "よりよい方法" です
+print "Ton:".$unit-&gt;convertTo(Zend_Measure_Weight::TON);
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.edit.add"></a>18.4.2. 加減算</h3></div></div></div>
+<p>
+            複数の計測値の加算には <code class="code">add()</code>、そして減算には <code class="code">sub()</code>
+            を使用します。これらはそれぞれ、結果を格納した新しいオブジェクトを作成します。
+            このクラスがもとのオブジェクトを変更することはありません。
+            新しいオブジェクトは、もとのオブジェクトと同じ型になります。
+            Dynamic objects support a fluid style of
+            programming, where complex sequences of operations 
+            can be nested without risk of side-effects altering the
+            input objects.
+        </p>
+<p>
+            </p>
+<div class="example">
+<a name="id4865580"></a><p class="title"><b>例 18.11. 単位の加算</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+// オブジェクトを定義します
+$unit = new Zend_Measure_Length(200, Zend_Measure_Length::CENTIMETER);
+$unit2 = new Zend_Measure_Length(1, Zend_Measure_Length::METER);
+
+// $unit2 を $unit に足します
+$sum = $unit-&gt;add($unit2);
+
+echo $sum; // "300 cm" と出力します
+?&gt;</pre>
+</div>
+<p>
+        </p>
+<div class="note"><table border="0" summary="Note: 自動的な変換">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">自動的な変換</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                あるオブジェクトを別のオブジェクトに足す際には、
+                適切な単位に自動的に変換されます。異なる単位の値を足す前に
+                <a href="zend.measure.edit.html#zend.measure.edit.convert" title="18.4.1. 変換"><code class="code">convertTo()</code>
+                </a> をコールする必要はありません。
+            </p></td></tr>
+</table></div>
+<p>
+            </p>
+<div class="example">
+<a name="id4865632"></a><p class="title"><b>例 18.12. 減算</b></p>
+<p>
+                    減算も、加算と同じように動作します。
+                </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+// オブジェクトを定義します
+$unit = new Zend_Measure_Length(200, Zend_Measure_Length::CENTIMETER);
+$unit2 = new Zend_Measure_Length(1, Zend_Measure_Length::METER);
+
+// $unit2 を $unit から引きます
+$sum = $unit-&gt;sub($unit2);
+
+echo $sum;
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.edit.equal"></a>18.4.3. 比較</h3></div></div></div>
+<p>
+            計測値を比較することもできますが、自動的な単位変換は行われません。
+            したがって、<code class="code">equals()</code> が
+            <code class="code">TRUE</code> を返すのは、値と単位の両方が等しい場合のみです。
+        </p>
+<p>
+            </p>
+<div class="example">
+<a name="id4865690"></a><p class="title"><b>例 18.13. 異なる計測値</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+// 値を定義します
+$unit = new Zend_Measure_Length(100, Zend_Measure_Length::CENTIMETER);
+$unit2 = new Zend_Measure_Length(1, Zend_Measure_Length::METER);
+
+if ($unit-&gt;equals($unit2)) {
+    print "これらは同じです";
+} else {
+    print "これらは異なります";
+}
+?&gt;</pre>
+</div>
+<p>
+            </p>
+<div class="example">
+<a name="id4865704"></a><p class="title"><b>例 18.14. 同一の計測値</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+// 値を定義します
+$unit = new Zend_Measure_Length(100, Zend_Measure_Length::CENTIMETER);
+$unit2 = new Zend_Measure_Length(1, Zend_Measure_Length::METER);
+
+$unit2-&gt;setType(Zend_Measure_Length::CENTIMETER);
+
+if ($unit-&gt;equals($unit2)) {
+    print "これらは同じです";
+} else {
+    print "これらは異なります";
+}
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.edit.compare"></a>18.4.4. 比較</h3></div></div></div>
+<p>
+            ある計測値が別の計測値より小さいか大きいかを調べるには
+            <code class="code">compare()</code> を使用します。これは、
+            ふたつのオブジェクトの差によって 0、1 あるいは -1 を返します。
+            ふたつが同一の場合は 0、小さい場合は負の数、
+            そして大きい場合は正の数を返します。
+        </p>
+<p>
+            </p>
+<div class="example">
+<a name="id4865765"></a><p class="title"><b>例 18.15. 差</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+$unit = new Zend_Measure_Length(100, Zend_Measure_Length::CENTIMETER);
+$unit2 = new Zend_Measure_Length(1, Zend_Measure_Length::METER);
+$unit3 = new Zend_Measure_Length(1.2, Zend_Measure_Length::METER);
+
+print "Equal:".$unit2-&gt;compare($unit);
+print "Greater:".$unit2-&gt;compare($unit3);
+print "Lesser:".$unit3-&gt;compare($unit2);
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.edit.changevalue"></a>18.4.5. 値の変更</h3></div></div></div>
+<p>
+            値を明示的に変更するには <code class="code">setValue()</code> を使用します。
+            これは現在の値を上書きします。パラメータは、コンストラクタと同じです。
+        </p>
+<p>
+            </p>
+<div class="example">
+<a name="id4865814"></a><p class="title"><b>例 18.16. 値の変更</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+$locale = new Zend_Locale('de_AT');
+$unit = new Zend_Measure_Length(1,Zend_Measure_Length::METER);
+
+$unit-&gt;setValue(1.2);
+echo $unit;
+
+$unit-&gt;setValue(1.2, Zend_Measure_Length::KILOMETER);
+echo $unit;
+
+$unit-&gt;setValue("1.234,56", Zend_Measure_Length::MILLIMETER,$locale);
+echo $unit;
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.edit.changetype"></a>18.4.6. 型の変更</h3></div></div></div>
+<p>
+            値はそのままで型だけを変更するには <code class="code">setType()</code>
+            を使用します。
+        </p>
+<div class="example">
+<a name="id4865857"></a><p class="title"><b>例 18.17. 型の変更</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+$unit = new Zend_Measure_Length(1,Zend_Measure_Length::METER);
+echo $unit; // "1 m" と出力します
+
+$unit-&gt;setType(Zend_Measure_Length::KILOMETER);
+echo $unit; // "1000 km" と出力します
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.measure.output.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.measure.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.measure.special.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">18.3. 計測値の出力 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 18.5. 特別な関数</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

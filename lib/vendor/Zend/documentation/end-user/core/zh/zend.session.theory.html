@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>25.5. 原理</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="prev" href="zend.session.globalsessionmanagement.html" title="25.4. 全局会话管">
+<link rel="next" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">25.5. 原理</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.session.globalsessionmanagement.html">上一页</a> </td>
+<th width="60%" align="center">第 25 章 Zend_Session</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.uri.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.session.theory"></a>25.5. 原理</h2></div></div></div>
+<p>
+        Zend_Session_Core提供了一个内部接口，用静态方法封装了所有对<code class="code">$_SESSION</code>单体的访问。通常，开发者在使用Zend_Session和Zend_Session_Namespace的时候，不应该直接去访问<code class="code">$_SESSION</code>。然而，只要Zend_Session_Namespace使用的命名空间的名字不与遗留代码使用的<code class="code">$_SESSION</code>中的键名重叠，遗留代码也可与Zend_Session共存。当前，还没有尝试去发现遗留代码（或者其他的PHP应用程序）无意识的分享和重叠会话状态数据的情形。因此，为避免复杂化，开发者应遵守在其他章节讲到的最佳实践要点。
+    </p>
+<p>
+        所有使用Zend_Session中的静态方法来处理和操作全局会话管理，将影响到所有由Zend_Session_Namespace及相关组件管理的会话的行为。大多数开发者不需要直接使用Zend_Session。
+    </p>
+<p>
+        不像<code class="code">$_SESSION</code>，Zend_Session_Namespace从逻辑上隔离了所有的会话数据到各自独立的命名空间下，把数据储存在PHP的数组中，然后再把这些数组存储到以命名空间名为键名的<code class="code">$_SESSION</code>中去。构造一个Zend_Session_Namespace的实例，返回指定命名空间的一个不唯一的"窗口"。虽然一个命名空间的名字只能对应一个命名空间，但多个“窗口”可能共用一个命名空间。这些对象实例只能用于操作当创建Zend_Session_Namespace实例时指定的命名空间下的会话状态。因此，<code class="code">Zend_Session</code>引入了一个局部变量（Zend_Session_Namespace实例对象），有利于限制作用域，且有效地导入了一个特定的会话命名空间到本地作用域中。
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.session.globalsessionmanagement.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.session.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.uri.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">25.4. 全局会话管 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 第 26 章 Zend_Uri</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

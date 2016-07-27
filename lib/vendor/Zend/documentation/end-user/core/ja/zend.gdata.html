@@ -1,0 +1,481 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第12章 Zend_Gdata</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.filter.input.html" title="11.4. Zend_Filter_Input">
+<link rel="next" href="zend.gdata.authsub.html" title="12.2. AuthSub による認証">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.gdata.html#zend.gdata.introduction" title="12.1. Gdata について">
+<link rel="section" href="zend.gdata.authsub.html" title="12.2. AuthSub による認証">
+<link rel="section" href="zend.gdata.clientlogin.html" title="12.3. ClientLogin による認証">
+<link rel="section" href="zend.gdata.base.html" title="12.4. Google Base の使用法">
+<link rel="section" href="zend.gdata.blogger.html" title="12.5. Google Blogger の使用法">
+<link rel="section" href="zend.gdata.calendar.html" title="12.6. Google Calendar の使用法">
+<link rel="section" href="zend.gdata.codesearch.html" title="12.7. Google CodeSearch の使用法">
+<link rel="section" href="zend.gdata.data.html" title="12.8. Gdata Data Helper の使用法">
+<link rel="section" href="zend.gdata.exception.html" title="12.9. Gdata の例外の捕捉">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第12章 Zend_Gdata</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.filter.input.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.authsub.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.gdata"></a>第12章 Zend_Gdata</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.gdata.html#zend.gdata.introduction">12.1. Gdata について</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.authentication">12.1.1. Google Data クライアント認証</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.dependencies">12.1.2. 依存性</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.creation">12.1.3. 新しい Gdata クライアントの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.parameters">12.1.4. 共通のクエリパラメータ</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.getfeed">12.1.5. フィードの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.post">12.1.6. Google サーバへのエントリの送信</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.delete">12.1.7. Google サーバからのデータの削除</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.authsub.html">12.2. AuthSub による認証</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.authsub.html#zend.gdata.authsub.login">12.2.1. AuthSub 認証済みの Http クライアントの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.authsub.html#zend.gdata.authsub.logout">12.2.2. AuthSub 認証の解除</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.clientlogin.html">12.3. ClientLogin による認証</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.login">12.3.1. ClientLogin 認証済みの Http クライアントの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.terminating">12.3.2. Http クライアントの ClientLogin 認証の解除</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.base.html">12.4. Google Base の使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.query">12.4.1. データの問い合わせ</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.post">12.4.2. Base のデータの更新</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.metadata">12.4.3. Base のメタデータの問い合わせ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.blogger.html">12.5. Google Blogger の使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.compatibility">12.5.1. Blogger のバージョン間の互換性について理解する</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.query">12.5.2. blog の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.post">12.5.3. 自分の blog への投稿</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.calendar.html">12.6. Google Calendar の使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.calendar.html#zend.gdata.calendar.query">12.6.1. Google Calendar への問い合わせ</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.calendar.html#zend.gdata.calendar.post">12.6.2. Google Calendar への投稿</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.codesearch.html">12.7. Google CodeSearch の使用法</a></span></dt>
+<dt><span class="sect1"><a href="zend.gdata.data.html">12.8. Gdata Data Helper の使用法</a></span></dt>
+<dt><span class="sect1"><a href="zend.gdata.exception.html">12.9. Gdata の例外の捕捉</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.gdata.introduction"></a>12.1. Gdata について</h2></div></div></div>
+<p>
+        Google Data API は、Google のオンラインサービスに対するプログラマ向けのインターフェイスです。
+        クライアントアプリケーションは問い合わせ内容を HTTP
+        経由で送信し、その応答を取得します。
+        Zend_Gdata コンポーネントは PHP 5 用のインターフェイスで、Google Data
+        に PHP からアクセスするためのものです。
+    </p>
+<p>
+        Google Data API についての詳細な情報は
+        <a href="http://code.google.com/apis/gdata/" target="_top">http://code.google.com/apis/gdata/</a>
+        を参照ください。
+    </p>
+<p>
+        Zend_Gdata でアクセスできるサービスには次のようなものがあります。
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <a href="zend.gdata.base.html" title="12.4. Google Base の使用法">Google Base</a>
+                    は、仕事やイベント、個人広告などのエントリを検索するためのツールです。
+                    さまざまな人たちが項目を投稿し、それに対して一般的な属性を付加します。
+                </p></li>
+<li><p>
+                    <a href="zend.gdata.blogger.html" title="12.5. Google Blogger の使用法">Google Blogger</a>
+                    は人気のあるインターネットプロバイダで、
+                    "ボタンひとつで簡単に" 記事を配信することができます。
+                </p></li>
+<li><p>
+                    <a href="zend.gdata.calendar.html" title="12.6. Google Calendar の使用法">Google Calendar</a>
+                    は、オンラインでスケジュール管理をしたり共同作業をしたりするためのツールです。
+                </p></li>
+<li><p>
+                    <a href="zend.gdata.codesearch.html" title="12.7. Google CodeSearch の使用法">Google CodeSearch</a>
+                    を使用すると、さまざまなプロジェクトが公開しているソースコードを検索できます。
+                </p></li>
+</ul></div>
+<p>
+    </p>
+<div class="note"><table border="0" summary="Note: サポートしていないサービス">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">サポートしていないサービス</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>
+            Google Data API は Google Spreadsheets もサポートしています。
+            しかし Zend_Gdata の今回のリリースでは、Spreadsheets
+            用のヘルパークラスを提供していません。
+        </p>
+<p>
+            Zend_Gdata には、これら以外の Google のサービス
+            (例えば検索、Gmail、翻訳、マップなど)
+            に対するインターフェイスは含まれていません。
+            Google Data API をサポートしているサービスにのみ対応しています。
+        </p>
+</td></tr>
+</table></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.authentication"></a>12.1.1. Google Data クライアント認証</h3></div></div></div>
+<p>
+            ほとんどの Google Data サービスは、
+            個人データへのアクセスやデータの保存、削除の前に
+            Google サーバに対する認証を要求します。
+            Google Data の認証用に提供される実装は
+            <a href="zend.gdata.authsub.html" title="12.2. AuthSub による認証">AuthSub</a> および
+            <a href="zend.gdata.clientlogin.html" title="12.3. ClientLogin による認証">ClientLogin</a>
+            の二種類があります。
+            Zend_Gdata ではこれら両方の方式に対するインターフェイスを用意しています。
+        </p>
+<p>
+            Google Data サービスに対するその他大半の問い合わせは、
+            認証を必要としません。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.dependencies"></a>12.1.2. 依存性</h3></div></div></div>
+<p>
+            Zend_Gdata は
+            <a href="zend.feed.html#zend.feed.introduction" title="10.1. 導入">Zend_Feed</a> および
+            <a href="zend.http.html#zend.http.client" title="13.1. Zend_Http_Client - 導入">Zend_Http_Client</a>
+            を用いてリクエストを google.com に送信し、結果を取得します。
+            ほとんどの Google Data リクエストに対する応答は
+            Zend_Feed オブジェクトで返されます。その内容は
+            Atom あるいは RSS 形式のフィードです。
+        </p>
+<p>
+            Zend_Gdata は、PHP アプリケーションの稼動しているホストが
+            インターネットに直接つながっていることを想定しています。
+            Zend_Gdata クライアントは Google Data サーバへの接続を行います。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.creation"></a>12.1.3. 新しい Gdata クライアントの作成</h3></div></div></div>
+<p>
+            Zend_Gdata クラス、
+            あるいはそのサブクラスのひとつのオブジェクトを作成します。
+            各サブクラスではサービス固有のヘルパーメソッドを提供します。
+        </p>
+<p>
+            Zend_Gdata のコンストラクタに渡すオプションの引数は
+            <a href="zend.http.html#zend.http.client" title="13.1. Zend_Http_Client - 導入">Zend_Http_Client</a>
+            のインスタンスです。このパラメータを渡さなかった場合は、
+            Zend_Gdata はデフォルトの Zend_Http_Client オブジェクトを作成します。
+            Zend_Http_Client オブジェクトを自分で指定すると、
+            クライアントオブジェクトに対する設定オプションを指定することができます。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Gdata.php';
+require_once 'Zend/Http/Client.php';
+
+$client = new Zend_Http_Client();
+$client-&gt;setConfig( ...オプション... );
+
+$gdata = new Zend_Gdata($client);
+?&gt;</pre>
+<p>
+            認証済みの Zend_Http_Client オブジェクトを作成する方法については、
+            認証のセクションも参照ください。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.parameters"></a>12.1.4. 共通のクエリパラメータ</h3></div></div></div>
+<p>
+            パラメータを指定することで、Zend_Gdata
+            での問い合わせをカスタマイズすることができます。
+            中には特定の Google Data サービスにしか適用できないパラメータもありますが、
+            これらのパラメータについては後の各サービスの節で説明します。
+            複数の Google Data サービスで共通に使用できるパラメータについて、
+            以下で説明します。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    <code class="code">alt</code> パラメータはフィードの形式を指定します。
+                    このパラメータには
+                    <code class="code">atom</code>、
+                    <code class="code">rss</code>、
+                    <code class="code">json</code>、
+                    あるいは <code class="code">json-in-script</code> のいずれかを指定します。
+                    このパラメータを指定しなかった場合、デフォルトのフィードの形式は
+                    <code class="code">atom</code> となります。
+                </p>
+<p>
+                    このパラメータを設定するには <code class="code">setAlt()</code>
+                    を使用します。
+                </p>
+</li>
+<li>
+<p>
+                    <code class="code">maxResults</code> パラメータはフィード内のエントリ数を制限します。
+                    整数値を指定します。返されるフィード内のエントリの数は、
+                    この値を超えることはありません。
+                </p>
+<p>
+                    このパラメータを設定するには <code class="code">setMaxResults()</code>
+                    を使用します。
+                </p>
+</li>
+<li>
+<p>
+                    <code class="code">startIndex</code> パラメータは、
+                    フィードで返される最初のエントリの番号を指定します。
+                    それ以前の番号のエントリは読み飛ばされます。
+                </p>
+<p>
+                    このパラメータを設定するには <code class="code">setStartIndex()</code>
+                    を使用します。
+                </p>
+</li>
+<li>
+<p>
+                    <code class="code">updatedMin</code> パラメータおよび <code class="code">updatedMax</code>
+                    パラメータは、エントリの日付の範囲を指定します。
+                    <code class="code">updatedMin</code> を指定すると、
+                    それより前に更新されたエントリはフィードに含まれません。
+                    同様に、<code class="code">updatedMax</code>
+                    で指定した日付より後で更新されたエントリもフィードに含まれません。
+                </p>
+<p>
+                    これらのパラメータには、タイムスタンプを表す数値を指定します。
+                    あるいは 日付/時刻 を表す文字列を指定することもできます。
+                </p>
+<p>
+                    これらのパラメータを設定するには <code class="code">setUpdatedMin()</code>
+                    および <code class="code">setUpdatedMax()</code> を使用します。
+                </p>
+</li>
+</ul></div>
+<p>
+            これらの <code class="code">set</code> 関数に対応する
+            <code class="code">get</code> 関数もあります。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata();
+$gdata-&gt;setMaxResults(10);
+echo $gdata-&gt;getMaxResults();   // 10 を返します
+?&gt;</pre>
+<p>
+            Zend_Gdata クラスでは、
+            特別なゲッターメソッドおよびセッターメソッドも実装しています。
+            つまり、パラメータの名前をクラスの仮想的なメンバとして扱うことができます。
+            <code class="code">isset()</code> や <code class="code">unset()</code>
+            を使用して、これらの仮想メンバを扱うこともできます。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata();
+$gdata-&gt;maxResults = 10;
+echo $gdata-&gt;maxResults;        // 10 を返します
+echo isset($gdata-&gt;maxResults); // true を返します
+unset($gdata-&gt;maxResults);      // パラメータを消去します
+?&gt;</pre>
+<p>
+            すべてのパラメータを消去するには <code class="code">resetParameters()</code>
+            を使用します。複数のクエリで Zend_Gdata
+            を使いまわす場合などに便利です。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata();
+$gdata-&gt;maxResults = 10;
+// ...フィードを取得します...
+
+$gdata-&gt;resetParameters();      // すべてのパラメータを消去します
+// ...別のフィードを取得します...
+?&gt;</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.getfeed"></a>12.1.5. フィードの取得</h3></div></div></div>
+<p>
+            <code class="code">getFeed()</code> を使用して、指定した URI からフィードを取得します。
+            この関数は Zend_Feed クラスのオブジェクトを返します。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata();
+$gdata-&gt;setQuery('digital camera');
+$gdata-&gt;setMaxResults(10);
+$uri = 'http://www.google.com/base/feeds/snippets'
+    . $gdata-&gt;getQueryString();
+$feed = $gdata-&gt;getFeed($uri);
+?&gt;</pre>
+<p>
+            このオブジェクトの使用法についての詳細は、
+            <a href="zend.feed.html#zend.feed.introduction" title="10.1. 導入">Zend_Feed</a>
+            のドキュメントを参照ください。
+        </p>
+<p>
+            この後の節で、各 Google Data
+            サービス用のヘルパークラス固有の関数について説明します。これらの関数により、
+            対応するサービスにあわせた適切な URI からフィードを取得できるようになります。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.post"></a>12.1.6. Google サーバへのエントリの送信</h3></div></div></div>
+<p>
+            Zend_Gdata オブジェクトの関数 <code class="code">post()</code>
+            にアップロードしたいデータを指定し、
+            新しいエントリを Google Data サービスに保存します。
+        </p>
+<p>
+            使用する Google Data サービスのエントリに対応する、
+            正しい構造の XML を作成する必要があります。これには、
+            たとえば DOM XML や SimpleXML などの PHP のライブラリを使用します。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata($authenticatedHttpClient);
+
+$xmlString = &lt;&lt;&lt;XML
+&lt;entry xmlns='http://www.w3.org/2005/Atom'
+    xmlns:gd='http://schemas.google.com/g/2005'&gt;
+  &lt;category scheme='http://schemas.google.com/g/2005#kind'
+    term='http://schemas.google.com/g/2005#event'&gt;&lt;/category&gt;
+  &lt;title type='text'&gt;Tennis with Beth&lt;/title&gt;
+  &lt;content type='text'&gt;Meet for a quick lesson.&lt;/content&gt;
+  &lt;author&gt;
+    &lt;name&gt;Jo March&lt;/name&gt;
+    &lt;email&gt;jo@gmail.com&lt;/email&gt;
+  &lt;/author&gt;
+  &lt;gd:transparency
+    value='http://schemas.google.com/g/2005#event.opaque'&gt;
+  &lt;/gd:transparency&gt;
+  &lt;gd:eventStatus
+    value='http://schemas.google.com/g/2005#event.confirmed'&gt;
+  &lt;/gd:eventStatus&gt;
+  &lt;gd:where valueString='Rolling Lawn Courts'&gt;&lt;/gd:where&gt;
+  &lt;gd:when startTime='2006-04-17T15:00:00.000Z'
+    endTime='2006-04-17T17:00:00.000Z'&gt;&lt;/gd:when&gt;
+&lt;/entry&gt;
+XML;
+
+$xml = new SimpleXMLElement($xmlString);
+
+$myCalendar = 'http://www.google.com/calendar/feeds/default/private/full';
+$gdata-&gt;post($xml-&gt;asXML(), $myCalendar);
+?&gt;</pre>
+<p>
+            エントリを送信するには、認証済みの Zend_Http_Client
+            を使用する必要があります。これは、
+            Zend_Gdata_AuthSub クラスあるいは
+            Zend_Gdata_ClientLogin クラスを使用して作成します。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.delete"></a>12.1.7. Google サーバからのデータの削除</h3></div></div></div>
+<p>
+            Zend_Gdata オブジェクトの関数 <code class="code">delete()</code>
+            に削除したいエントリを指定して、Google Data
+            サービスからデータを削除します。
+            フィードエントリの <code class="code">&lt;id&gt;</code> の値を
+            <code class="code">delete()</code> メソッドに渡します。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata($authenticatedHttpClient);
+// Google Data のフィード
+$feedUri = ...;
+$feed = $gdata-&gt;getFeed($feedUri);
+foreach ($feed as $feedEntry) {
+    // &lt;id&gt; 要素を抽出します
+    $id = $feedEntry-&gt;id();
+    $gdata-&gt;delete($id);
+}
+?&gt;</pre>
+<p>
+            フィードオブジェクトを用いずに <code class="code">delete()</code>
+            メソッドを使用することもできます。その場合は、
+            エントリを識別する正しい URI を指定します。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata($authenticatedHttpClient);
+$uri = 'http://www.google.com/calendar/feeds/default/private/entryID';
+$gdata-&gt;delete($uri);
+?&gt;</pre>
+<p>
+            上の例において、"<code class="code">entryID</code>"
+            の部分を実際に削除したいエントリの ID に変更します。
+        </p>
+<p>
+            エントリを削除するには、認証済みの Zend_Http_Client
+            を使用する必要があります。これは、
+            Zend_Gdata_AuthSub クラスあるいは
+            Zend_Gdata_ClientLogin クラスを使用して作成します。
+        </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.filter.input.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.authsub.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">11.4. Zend_Filter_Input </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 12.2. AuthSub による認証</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

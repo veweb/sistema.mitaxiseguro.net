@@ -1,0 +1,231 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.2. Teoria buforowania</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="prev" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="next" href="zend.cache.frontends.html" title="4.3. Frontendy Zend_Cache">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.factory" title="4.2.1. Metoda fabryki Zend_Cache">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.tags" title="4.2.2. Nadawanie etykiet rekordom">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.clean" title="4.2.3. Czyszczenie bufora">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.2. Teoria buforowania</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.cache.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 4. Zend_Cache</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.cache.frontends.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.theory"></a>4.2. Teoria buforowania</h2></div></div></div>
+<p>
+        Są trzy kluczowe składniki w Zend_Cache. Pierwszym jest unikalny identyfikator
+        (łańcuch znakow) który jest używany do identyfikowania rekordów bufora. Drugim
+        jest dyrektywa <code class="code">'lifeTime'</code> jaką pokazano w przykładach; definiuje
+        ona jak długo buforowany zasób jest uznawany za 'świeży'. Trzecim kluczowym
+        składnikiem jest warunkowe wykonanie więc część twojego kodu może być ominięta,
+        co powoduje wzrost wydajności. Główna funkcja frontendu
+        (np. <code class="code">Zend_Cache_Core::get()</code>) jest zawsze zaprojektowana tak,
+        aby zwracała  wartość false gdy bufor jest nieaktualny, jeśli jest to 
+        sensowne dla danego frontendu. To pozwala użytkownikom na ominięcie bloków
+        kodu, które chcą buforować, zawierając je w wyrażenie <code class="code">if(){ ... }</code> 
+        gdzie warunkiem jest metoda Zend_Cache. Na końcu takich bloków musisz zapisać
+        to co wygenerowałeś (np. za pomocą metody <code class="code">Zend_Cache_Core::save()</code>).
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Notatka</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        Warunkowe uruchamianie twojego kodu nie jest konieczne w niektórych
+        frontendach (na przykład <code class="code">Function</code>), gdzie cała logika
+        jest zaimplementowana we frontendzie.
+    </p></td></tr>
+</table></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Notatka</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        'bufor istnieje' jest wyrażeniem określającym sytuację, w której 
+        rekord bufora został znaleziony, jest poprawny i jest 'świeży'
+        'fresh' (innymi słowy jeszcze nie wygasł). 'Bufor nie istnieje' jest
+        wszystkim innym. Kiedy zdarzy się, że bufor nie istnieje musisz
+        wygenerować swoje dane (tak jak robisz to normalnie) i zapisać je w 
+        buforze. Z drugiej strony, gdy bufor istnieje, backend automatycznie 
+        pobierze rekord z bufora.
+    </p></td></tr>
+</table></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.factory"></a>4.2.1. Metoda fabryki <code class="code">Zend_Cache</code></h3></div></div></div>
+<p>
+            Dobrym sposobem utworzenia użytecznej instancji frontendu 
+            <code class="code">Zend_Cache</code> jest ten pokazany w poniższym przykładzie:
+        </p>
+<pre class="programlisting">&lt;?php
+
+# Ładujemy fabrykę Zend_Cache
+require 'Zend/Cache.php'; 
+
+# Wybieramy backend (na przykład 'File' lub 'Sqlite'...)
+$backendName = '[...]';
+
+# Wybieramy frontend (na przykład 'Core', 'Output', 'Page'...)
+$frontendName = '[...]';
+
+# Ustawiamy tablicę opcji dla wybranego frontendu
+$frontendOptions = array([...]);
+
+# Ustawiamy tablicę opcji dla wybranego backendu
+$backendOptions = array([...]);
+
+# We make the good instance 
+# (oczywiście dwa ostatnie argumenty są opcjonalne)
+$cache = Zend_Cache::factory($frontendName, $backendName, $frontendOptions, $backendOptions);
+
+?&gt;</pre>
+<p>
+            W poniższych przykładach założymy że zmienna <code class="code">$cache</code> zawiera
+            poprawną instancję frontendu i to, że rozumiesz jak przekazać 
+            parametry do wybranego backendu.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Notatka</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Zawsze używaj metody <code class="code">Zend_Cache::factory()</code> aby pobrać
+            instancje frontendu. Tworzenie instancji frontendu czy backendu
+            nie będzie przynosiło oczekiwanych rezultatów.
+        </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.tags"></a>4.2.2. Nadawanie etykiet rekordom</h3></div></div></div>
+<p>
+            Etykeity są sposobem kategoryzowania rekordów bufora. Kiedy zapisujesz bufor 
+            za pomocą metody <code class="code">save()</code>, możesz ustawić tablicę etykiet, które
+            mają być przypisane danemu rekordowi. Wtedy będziesz miał możliwość
+            usuwania wszystkich rekordów bufora oznaczonych daną etykietą (lub etykietami):
+        </p>
+<pre class="programlisting">&lt;?php
+             
+$cache-&gt;save($huge_data, 'myUniqueID', array('tagA', 'tagB', 'tagC'));
+            
+?&gt;</pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Notatka</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            zauważ, że metoda <code class="code">save()</code> akceptuje opcjonalny czwarty
+            argument : <code class="code">$specificLifeTime</code> (jeśli jego wartość jest 
+            inna od false, ustawiany jest określony czas ważności dla 
+            konkretnego rekordu bufora.
+        </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.clean"></a>4.2.3. Czyszczenie bufora</h3></div></div></div>
+<p>
+            Aby usunąć/unieważnić rekord bufora o określonym id, możesz użyć 
+            metody <code class="code">remove()</code>:
+        </p>
+<pre class="programlisting">&lt;?php 
+             
+$cache-&gt;remove('idToRemove');
+            
+?&gt;</pre>
+<p>
+            Aby usunąć/unieważnić wiele rekordów bufora za jednym razem, możesz 
+            użyć metody <code class="code">clean()</code>. Na przykład aby usunąć wszystkie 
+            rekordy bufora:
+        </p>
+<pre class="programlisting">&lt;?php 
+
+// czyszczenie wszystkich rekordów
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_ALL);
+
+// czyszczenie jedynie nieaktualnych rekordów
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_OLD);
+            
+?&gt;   </pre>
+<p>
+            Jeśli chcesz usunąć rekordy bufora oznaczone etykietami 'tagA' oraz 'tagC':
+        </p>
+<pre class="programlisting">&lt;?php 
+             
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array('tagA', 'tagC'));
+            
+?&gt;   </pre>
+<p>
+            Dostępne tryby czyszczenia bufora to: <code class="code">CLEANING_MODE_ALL</code>, <code class="code">CLEANING_MODE_OLD</code>,
+            <code class="code">CLEANING_MODE_MATCHING_TAG</code> oraz <code class="code">CLEANING_MODE_NOT_MATCHING_TAG</code>. 
+            Dwa ostatnia, jak nazwa wskazuje, mogą w operacji czyszczenia być użyte wraz z tablicą etykiet.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.cache.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.cache.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.cache.frontends.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Rozdział 4. Zend_Cache </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 4.3. Frontendy Zend_Cache</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

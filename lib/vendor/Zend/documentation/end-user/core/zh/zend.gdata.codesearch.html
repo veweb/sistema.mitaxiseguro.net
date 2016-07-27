@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>12.7. Using Google CodeSearch</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="prev" href="zend.gdata.calendar.html" title="12.6. Using Google Calendar">
+<link rel="next" href="zend.gdata.data.html" title="12.8. Using the Gdata Data Helper">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">12.7. Using Google CodeSearch</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.gdata.calendar.html">上一页</a> </td>
+<th width="60%" align="center">第 12 章 Zend_Gdata</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.data.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.gdata.codesearch"></a>12.7. Using Google CodeSearch</h2></div></div></div>
+<p>
+        Google CodeSearch is a search engine that indexes many open-source
+        software projects on the internet.  You can use Zend_Gdata_CodeSearch
+        to query this index, to find code that matches certain text patterns.
+    </p>
+<p>
+        See
+        <a href="http://code.google.com/apis/codesearch/overview.html" target="_top">http://code.google.com/apis/codesearch/overview.html</a>
+        for more information about the Google CodeSearch API.
+    </p>
+<p>
+        Use the <code class="code">setQuery()</code> method to specify search expressions.
+        The expressions are regular expressions.  You can list multiple
+        expressions in the string you pass to <code class="code">setQuery()</code>,
+        separated by spaces.
+    </p>
+<pre class="programlisting">&lt;?php
+$gdataCode = new Zend_Gdata_CodeSearch();
+$gdataCode-&gt;setQuery('malloc');
+$gdataCode-&gt;setMaxResults(20);
+$feed = $gdataCode-&gt;getCodeSearchFeed();
+?&gt;</pre>
+<p>
+        See the documentation for <a href="zend.feed.html#zend.feed.introduction" title="10.1. Introduction">Zend_Feed</a>
+        for more information on how to use this object.
+    </p>
+<p>
+        The <code class="code">startIndex</code> and <code class="code">maxResults</code> parameters
+        are also supported.
+        No other request parameters are supported by Google CodeSearch.
+    </p>
+<p>
+        The feeds returned by Google CodeSearch are read-only.
+        There are no operations that require an authenticated Http client.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.gdata.calendar.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.gdata.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.data.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">12.6. Using Google Calendar </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 12.8. Using the Gdata Data Helper</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>8.2. Basic Methods</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="prev" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="next" href="zend.date.definition.theory.html" title="8.3. Theory of Operation">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.date.basic.html#zend.date.basic.creation" title="8.2.1. The current date">
+<link rel="subsection" href="zend.date.basic.html#zend.date.basic.functions" title="8.2.2. Zend_Date by Example">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">8.2. Basic Methods</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.date.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 8. Zend_Date</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.date.definition.theory.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.date.basic"></a>8.2. Basic Methods</h2></div></div></div>
+<p>
+        The following sections show basic usage of <code class="code">Zend_Date</code> primarily by example. For this manual, "dates"
+        always imply a calendar date with a time, even when not explicitly mentioned, and vice-versa. The part not
+        specified defaults to an internal representation of "zero". Thus, adding a date having no calendar date and a
+        time value of 12 hours to another date consisting only of a calendar date would result in a date having that
+        calendar date and a time of "noon".
+    </p>
+<p>
+        Setting only a specific date, with no time part, implies a time set to 00:00:00. Conversely, setting only a
+        specific time implies a date internally set to 01.01.1970 plus the number of seconds equal to the elapsed hours,
+        minutes, and seconds identified by the time. Normally, people measure things from a starting point, such as the
+        year 0 A.D. However, many software systems use the first second of the year 1970 as the starting point, and
+        denote times as a timestamp offset counting the number of seconds elapsed from this starting point.
+    </p>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.basic.creation"></a>8.2.1. The current date</h3></div></div></div>
+<p>
+            Without any arguments, constructing an instance returns an object in the default locale with the current,
+            local date using PHP's <code class="code">time()</code> function to obtain the
+            <a href="http://en.wikipedia.org/wiki/Unix_Time" target="_top">UNIX timestamp</a>
+            for the object. Make sure your PHP environment has the correct
+            <a href="zend.date.html#zend.date.setdefaulttimezone" title="8.1.1. Always Set a Default Timezone">default timezone</a>
+            .
+        </p>
+<div class="example">
+<a name="id4808794"></a><p class="title"><b>Przykład 8.2. Creating the current date</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// Output of the current timestamp
+print $date;
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.basic.functions"></a>8.2.2. Zend_Date by Example</h3></div></div></div>
+<p>
+            Reviewing basic methods of <code class="code">Zend_Date</code> is a good place to start for those unfamiliar with date
+            objects in other languages or frameworks. A small example will be provided for each method below.
+        </p>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.date.simple.functions.get"></a>8.2.2.1. Ouput a Date</h4></div></div></div>
+<p>
+                The date in a <code class="code">Zend_Date</code> object may be obtained as a localized integer or string using the
+                <code class="code">get()</code> method. There are many available options, which will be explained in later sections.
+            </p>
+<div class="example">
+<a name="id4808850"></a><p class="title"><b>Przykład 8.3. get() - output a date</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// Output of the desired date
+print $date-&gt;get();
+?&gt;</pre>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.date.simple.functions.set"></a>8.2.2.2. Setting a Date</h4></div></div></div>
+<p>
+                The <code class="code">set()</code> method alters the date stored in the object, and returns the final date value as
+                a timestamp (not an object). Again, there are many options which will be explored in later sections.
+            </p>
+<div class="example">
+<a name="id4808886"></a><p class="title"><b>Przykład 8.4. set() - set a date</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// Setting of a new time
+$date-&gt;set('13:00:00',Zend_Date::TIMES);
+print $date-&gt;get(Zend_Date::W3C);
+?&gt;</pre>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.date.simple.functions.add"></a>8.2.2.3. Adding and Subtracting Dates</h4></div></div></div>
+<p>
+                Adding two dates with <code class="code">add()</code> usually involves adding a real date in time with an artificial
+                timestramp representing a date part, such as 12 hours, as shown in the example below. Both
+                <code class="code">add()</code> and <code class="code">sub()</code> use the same set of options as <code class="code">set()</code>, which will
+                be explained later.
+            </p>
+<div class="example">
+<a name="id4808935"></a><p class="title"><b>Przykład 8.5. add() - adding dates</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// changes $date by adding 12 hours
+$date-&gt;add('12:00:00', Zend_Date::TIMES);
+
+print "Date via get() = ", $date-&gt;get(Zend_Date::W3C), "\n";
+
+// use magic __toString() method to call Zend_Date's toString()
+print "Date via toString() = ", $date, "\n";
+?&gt;</pre>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.date.simple.functions.compare"></a>8.2.2.4. Comparation of dates</h4></div></div></div>
+<p>
+                All basic <code class="code">Zend_Date</code> methods can operate on entire dates contained in the objects, or can
+                operate on date parts, such as comparing the minutes value in a date to an absolute value. For example,
+                the current minutes in the current time may be compared with a specific number of minutes using
+                <code class="code">compare()</code>, as in the example below.
+            </p>
+<div class="example">
+<a name="id4808980"></a><p class="title"><b>Przykład 8.6. compare() - compare dates</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// Comparation of both times
+if ($date-&gt;compare(10, Zend_Date::MINUTE) == -1) {
+    print "This hour is less than 10 minutes old";
+} else {
+    print "This hour is at least 10 minutes old";
+}
+?&gt;</pre>
+</div>
+<p>
+                For simple equality comparisons, use <code class="code">equals()</code>, which returns a boolean.
+            </p>
+<div class="example">
+<a name="id4809007"></a><p class="title"><b>Przykład 8.7. equals() - identify a date or date part</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// Comparation of the two dates
+if ($date-&gt;equals(10, Zend_Date::HOUR)) {
+    print "It's 10 o'clock. Time to get to work.";
+} else {
+    print "It is not 10 o'clock. You can keep sleeping.";
+}
+?&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.date.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.date.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.date.definition.theory.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Rozdział 8. Zend_Date </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 8.3. Theory of Operation</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

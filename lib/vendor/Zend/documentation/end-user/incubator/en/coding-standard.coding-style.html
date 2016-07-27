@@ -1,0 +1,578 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.4. Coding Style</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="appendix.codingstandard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="prev" href="coding-standard.naming-conventions.html" title="A.3. Naming Conventions">
+<link rel="next" href="appendix.copyright.html" title="Appendix B. Copyright Information">
+<link rel="chapter" href="zend.http.server.html" title="Chapter 1. Zend_Http_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 2. Zend_Service">
+<link rel="chapter" href="zend.timesync.html" title="Chapter 3. Zend_TimeSync">
+<link rel="chapter" href="zend.translate.html" title="Chapter 4. Zend_Translate">
+<link rel="appendix" href="appendix.codingstandard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="appendix.copyright.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.php-code-demarcation" title="A.4.1. PHP Code Demarcation">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.strings" title="A.4.2. Strings">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.arrays" title="A.4.3. Arrays">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.classes" title="A.4.4. Classes">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.functions-and-methods" title="A.4.5. Functions and Methods">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.control-statements" title="A.4.6. Control Statements">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standards.inline-documentation" title="A.4.7. Inline Documentation">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.4. Coding Style</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="coding-standard.naming-conventions.html">Prev</a> </td>
+<th width="60%" align="center">Appendix A. Zend Framework PHP Coding Standard</th>
+<td width="20%" align="right"> <a accesskey="n" href="appendix.copyright.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="coding-standard.coding-style"></a>A.4. Coding Style</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.php-code-demarcation"></a>A.4.1. PHP Code Demarcation</h3></div></div></div>
+<p>
+                PHP code must always be delimited by the full-form, standard PHP tags:
+
+                </p>
+<pre class="programlisting">
+&lt;?php
+
+?&gt;</pre>
+<p>
+            </p>
+<p>
+                Short tags are never allowed.
+            </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.strings"></a>A.4.2. Strings</h3></div></div></div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.literals"></a>A.4.2.1. String Literals</h4></div></div></div>
+<p>
+                    When a string is literal (contains no variable substitutions), the apostrophe or
+                    "single quote" must always used to demarcate the string:
+
+                    </p>
+<pre class="programlisting">
+$a = 'Example String';</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.literals-containing-apostrophes"></a>A.4.2.2. String Literals Containing Apostrophes</h4></div></div></div>
+<p>
+                    When a literal string itself contains apostrophes, it is permitted to demarcate
+                    the string with quotation marks or "double quotes". This is especially encouraged
+                    for SQL statements:
+
+                    </p>
+<pre class="programlisting">
+$sql = "SELECT `id`, `name` from `people` WHERE `name`='Fred' OR `name`='Susan'";</pre>
+<p>
+
+                    The above syntax is preferred over escaping apostrophes.
+                </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.variable-substitution"></a>A.4.2.3. Variable Substitution</h4></div></div></div>
+<p>
+                    Variable substitution is permitted using either of these two forms:
+
+                    </p>
+<pre class="programlisting">
+$greeting = "Hello $name, welcome back!";
+
+$greeting = "Hello {$name}, welcome back!";</pre>
+<p>
+                </p>
+<p>
+                    For consistency, this form is not permitted:
+
+                    </p>
+<pre class="programlisting">
+$greeting = "Hello ${name}, welcome back!";</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.string-concatenation"></a>A.4.2.4. String Concatenation</h4></div></div></div>
+<p>
+                    Strings may be concatenated using the "." operator. A space must always
+                    be added before and after the "." operator to improve readability:
+
+                    </p>
+<pre class="programlisting">
+$company = 'Zend' . 'Technologies';</pre>
+<p>
+                </p>
+<p>
+                    When concatenating strings with the "." operator, it is permitted to
+                    break the statement into multiple lines to improve readability. In these
+                    cases, each successive line should be padded with whitespace such that the
+                    "."; operator is aligned under the "=" operator:
+
+                    </p>
+<pre class="programlisting">
+$sql = "SELECT `id`, `name` FROM `people` "
+     . "WHERE `name` = 'Susan' "
+     . "ORDER BY `name` ASC ";</pre>
+<p>
+                </p>
+</div>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.arrays"></a>A.4.3. Arrays</h3></div></div></div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.arrays.numerically-indexed"></a>A.4.3.1. Numerically Indexed Arrays</h4></div></div></div>
+<p>Negative numbers are not permitted as indices.</p>
+<p>
+                    An indexed array may be started with any non-negative number, however
+                    this is discouraged and it is recommended that all arrays have a base index of 0.
+                </p>
+<p>
+                    When declaring indexed arrays with the <code class="code">array</code> construct, a trailing space must be
+                    added after each comma delimiter to improve readability:
+
+                    </p>
+<pre class="programlisting">
+$sampleArray = array(1, 2, 3, 'Zend', 'Studio');</pre>
+<p>
+                </p>
+<p>
+                    It is also permitted to declare multiline indexed arrays using the "array" construct.
+                    In this case, each successive line must be padded with spaces such that beginning of
+                    each line aligns as shown below:
+
+                    </p>
+<pre class="programlisting">
+$sampleArray = array(1, 2, 3, 'Zend', 'Studio',
+                     $a, $b, $c,
+                     56.44, $d, 500);</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.arrays.associative"></a>A.4.3.2. Associative Arrays</h4></div></div></div>
+<p>
+                    When declaring associative arrays with the <code class="code">array</code> construct, it is encouraged
+                    to break the statement into multiple lines. In this case, each successive line must be
+                    padded with whitespace such that both the keys and the values are aligned:
+
+                    </p>
+<pre class="programlisting">
+$sampleArray = array('firstKey'  =&gt; 'firstValue',
+                     'secondKey' =&gt; 'secondValue');</pre>
+<p>
+                 </p>
+</div>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.classes"></a>A.4.4. Classes</h3></div></div></div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.classes.declaration"></a>A.4.4.1. Class Declaration</h4></div></div></div>
+<p>
+                    Classes must be named by following the naming conventions.
+                </p>
+<p>
+                    The brace is always written on the line underneath the class name ("one true brace" form).
+                </p>
+<p>
+                    Every class must have a documentation block that conforms to the PHPDocumentor standard.
+                </p>
+<p>
+                    Any code within a class must be indented four spaces.
+                </p>
+<p>
+                    Only one class is permitted per PHP file.
+                </p>
+<p>
+                    Placing additional code in a class file is permitted but discouraged. In these files, two blank lines must separate the class any additional PHP code in the file.
+                </p>
+<p>
+                    This is an example of an acceptable class declaration:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Documentation Block Here
+ */
+class SampleClass
+{
+    // entire content of class
+    // must be indented four spaces
+}</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.classes.member-variables"></a>A.4.4.2. Class Member Variables</h4></div></div></div>
+<p>
+                    Member variables must be named by following the variable naming conventions.
+                </p>
+<p>
+                    Any variables declared in a class must be listed at the top of the class, prior
+                    to declaring any functions.
+                </p>
+<p>
+                    The <code class="code">var</code> construct is not permitted.  Member variables always declare
+                    their visibility by using one of the <code class="code">private</code>, <code class="code">protected</code>,
+                    or <code class="code">public</code> constructs. Accessing member variables directly by making
+                    them public is permitted but discouraged in favor of accessor
+                    variables (set/get).
+                </p>
+</div>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.functions-and-methods"></a>A.4.5. Functions and Methods</h3></div></div></div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.functions-and-methods.declaration"></a>A.4.5.1. Function and Method Declaration</h4></div></div></div>
+<p>
+                    Functions must be named by following the naming conventions.
+                </p>
+<p>
+                    Functions inside classes must always declare their visibility by using
+                    one of the <code class="code">private</code>, <code class="code">protected</code>,
+                    or <code class="code">public</code> constructs.
+                </p>
+<p>
+                    Like classes, the brace is always written on the line underneath the
+                    function name ("one true brace" form).
+
+                    There is no space between the
+                    function name and the opening parenthesis for the arguments.
+                </p>
+<p>
+                    Functions in the global scope are strongly discouraged.
+                </p>
+<p>
+                    This is an example of an acceptable function declaration in a class:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Documentation Block Here
+ */
+class Foo
+{
+    /**
+     * Documentation Block Here
+     */
+    public function bar()
+    {
+        // entire content of function
+        // must be indented four spaces
+    }
+}</pre>
+<p>
+                </p>
+<p>
+                    <span class="emphasis"><em>NOTE:</em></span> Passing by-reference is permitted in the function declaration only:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Documentation Block Here
+ */
+class Foo
+{
+    /**
+     * Documentation Block Here
+     */
+    public function bar(&amp;$baz)
+    {}
+}</pre>
+<p>
+                </p>
+<p>
+                    Call-time pass by-reference is prohibited.
+                </p>
+<p>
+                    The return value must not be enclosed in parentheses.  This can hinder readability
+                    and can also break code if a method is later changed to return by reference.
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Documentation Block Here
+ */
+class Foo
+{
+    /**
+     * WRONG
+     */
+    public function bar()
+    {
+        return($this-&gt;bar);
+    }
+
+    /**
+     * RIGHT
+     */
+    public function bar()
+    {
+        return $this-&gt;bar;
+    }
+}</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.functions-and-methods.usage"></a>A.4.5.2. Function and Method Usage</h4></div></div></div>
+<p>
+                    Function arguments are separated
+                    by a single trailing space after the comma delimiter. This is an example of an
+                    acceptable function call for a function that takes three arguments:
+
+                    </p>
+<pre class="programlisting">
+threeArguments(1, 2, 3);</pre>
+<p>
+                </p>
+<p>
+                    Call-time pass by-reference is prohibited. See the function declarations section
+                    for the proper way to pass function arguments by-reference.
+                </p>
+<p>
+                    For functions whose arguments permitted arrays, the function call may include the
+                    "array" construct and can be split into multiple lines to improve readability.  In
+                    these cases, the standards for writing arrays still apply:
+
+                    </p>
+<pre class="programlisting">
+threeArguments(array(1, 2, 3), 2, 3);
+
+threeArguments(array(1, 2, 3, 'Zend', 'Studio',
+                     $a, $b, $c,
+                     56.44, $d, 500), 2, 3);</pre>
+<p>
+                </p>
+</div>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.control-statements"></a>A.4.6. Control Statements</h3></div></div></div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.control-statements.if-else-elseif"></a>A.4.6.1. If / Else / Elseif</h4></div></div></div>
+<p>
+                    Control statements based on the <code class="code">if</code> and <code class="code">elseif</code>
+                    constructs must have a single space before the opening parenthesis of the conditional,
+                    and a single space after the closing parenthesis.
+                </p>
+<p>
+                    Within the conditional statements between the parentheses, operators must be separated
+                    by spaces for readability. Inner parentheses are encouraged to improve logical grouping
+                    of larger conditionals.
+                </p>
+<p>
+                    The opening brace is written on the same line as the conditional statement. The closing
+                    brace is always written on its own line. Any content within the braces must be
+                    indented four spaces.
+
+                    </p>
+<pre class="programlisting">
+if ($a != 2) {
+    $a = 2;
+}</pre>
+<p>
+                </p>
+<p>
+                    For "if" statements that include "elseif" or "else", the formatting must be
+                    as in these examples:
+
+                    </p>
+<pre class="programlisting">
+if ($a != 2) {
+    $a = 2;
+} else {
+   $a = 7;
+}
+
+
+if ($a != 2) {
+    $a = 2;
+} elseif ($a == 3) {
+   $a = 4;
+} else {
+   $a = 7;
+}</pre>
+<p>
+                    PHP allows for these statements to be written without braces in some circumstances.
+                    The coding standard makes no differentiation and all "if", "elseif" or "else" statements
+                    must use braces.
+                </p>
+<p>
+                    Use of the "elseif" construct is permitted but highly discouraged in favor of the
+                    "else if" combination.
+                </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.coding-style.control-statements.switch"></a>A.4.6.2. Switch</h4></div></div></div>
+<p>
+                    Control statements written with the "switch" construct must have a single space before
+                    the opening parenthesis of the conditional statement, and also a single space after
+                    the closing parenthesis.
+                </p>
+<p>
+                    All content within the "switch" statement must be indented four spaces. Content under
+                    each "case" statement must be indented an additional four spaces.
+                </p>
+<pre class="programlisting">
+switch ($numPeople) {
+    case 1:
+        break;
+
+    case 2:
+        break;
+
+    default:
+        break;
+}</pre>
+<p>
+                    The construct <code class="code">default</code> may never be omitted from a <code class="code">switch</code> statement.
+                </p>
+<p>
+                    <span class="emphasis"><em>NOTE:</em></span> It is sometimes useful to write a <code class="code">case</code> statement which falls through
+                    to the next case by not including a <code class="code">break</code> or <code class="code">return</code> in that case. To distinguish
+                    these cases from bugs, any <code class="code">case</code> statement where <code class="code">break</code> or <code class="code">return</code> are
+                    omitted must contain the comment "// break intentionally omitted".
+                </p>
+</div>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standards.inline-documentation"></a>A.4.7. Inline Documentation</h3></div></div></div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.documentation-format"></a>A.4.7.1. Documentation Format</h4></div></div></div>
+<p>
+                    All documentation blocks ("docblocks") must be compatible with the phpDocumentor format.
+                    Describing the phpDocumentor format is beyond the scope of this document.
+                    For more information, visit: <a href="http://phpdoc.org/" target="_top">http://phpdoc.org/</a>
+                </p>
+<p>
+                    All source code file written for the Zend Framework or that operates with the framework
+                    must contain a "file-level" docblock at the top of each file and a "class-level" docblock
+                    immediately above each class. Below are examples of such docblocks.
+                </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.files"></a>A.4.7.2. Files</h4></div></div></div>
+<p>
+                    Every file that contains PHP code must have a header block at the top of the file that
+                    contains these phpDocumentor tags at a minimum:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Short description for file
+ *
+ * Long description for file (if any)...
+ *
+ * LICENSE: Some license information
+ *
+ * @copyright  2005 Zend Technologies
+ * @license    http://www.zend.com/license/3_0.txt   PHP License 3.0
+ * @version    CVS: $Id:$
+ * @link       http://dev.zend.com/package/PackageName
+ * @since      File available since Release 1.2.0
+*/</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.classes"></a>A.4.7.3. Classes</h4></div></div></div>
+<p>
+                    Every class must have a docblock that contains these phpDocumentor tags at a minimum:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Short description for class
+ *
+ * Long description for class (if any)...
+ *
+ * @copyright  2005 Zend Technologies
+ * @license    http://www.zend.com/license/3_0.txt   PHP License 3.0
+ * @version    Release: @package_version@
+ * @link       http://dev.zend.com/package/PackageName
+ * @since      Class available since Release 1.2.0
+ * @deprecated Class deprecated in Release 2.0.0
+ */</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.functions"></a>A.4.7.4. Functions</h4></div></div></div>
+<p>
+                Every function, including object methods, must have a docblock that contains at a minimum:
+
+                    </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>A description of the function</p></li>
+<li><p>All of the arguments</p></li>
+<li><p>All of the possible return values</p></li>
+</ul></div>
+<p>
+                </p>
+<p>
+                    It is not necessary to use the "@access" tag because the access level is already known
+                    from the "public", "private", or "protected" construct used to declare the function.
+                </p>
+<p>
+                    If a function/method may throw an exception, use @throws:
+
+                    </p>
+<pre class="programlisting">
+@throws exceptionclass [description]
+</pre>
+<p>
+                </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="coding-standard.naming-conventions.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="appendix.codingstandard.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="appendix.copyright.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">A.3. Naming Conventions </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Appendix B. Copyright Information</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

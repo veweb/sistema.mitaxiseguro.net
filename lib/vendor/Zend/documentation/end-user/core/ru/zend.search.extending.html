@@ -1,0 +1,603 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.7. Расширяемость</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="prev" href="zend.search.charset.html" title="22.6. Кодировки">
+<link rel="next" href="zend.search.java-lucene.html" title="22.8. Взаимодействие с Java Lucene">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.search.extending.html#zend.search.extending.analysis" title="22.7.1. Анализ текста">
+<link rel="subsection" href="zend.search.extending.html#zend.search.extending.filters" title="22.7.2. Фильтрация лексем">
+<link rel="subsection" href="zend.search.extending.html#zend.search.extending.scoring" title="22.7.3. Алгоритмы ранжирования">
+<link rel="subsection" href="zend.search.extending.html#zend.search.extending.storage" title="22.7.4. Контейнеры хранения">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.7. Расширяемость</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.charset.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.java-lucene.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.extending"></a>22.7. Расширяемость</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.extending.analysis"></a>22.7.1. Анализ текста</h3></div></div></div>
+<p>
+            Класс <code class="code">Zend_Search_Lucene_Analysis_Analyzer</code> используется
+            индексатором для разбиения текстовых полей документа на лексемы.
+
+        </p>
+<p>
+            Методы
+            <code class="code">Zend_Search_Lucene_Analysis_Analyzer::getDefault()</code> и
+            <code class="code">Zend_Search_Lucene_Analysis_Analyzer::setDefault()</code>
+            используются для получения и установки анализатора по умолчанию. 
+
+        </p>
+<p>
+            Таким образом, вы можете устанавливать собственный анализатор текста
+            или выбирать его из ряда предопределенных анализаторов:
+            <code class="code">Zend_Search_Lucene_Analysis_Analyzer_Common_Text</code> и
+            <code class="code">Zend_Search_Lucene_Analysis_Analyzer_Common_Text_CaseInsensitive</code>
+            (по умолчанию). Оба интерпретируют лексему как последовательность
+            букв. <code class="code">Zend_Search_Lucene_Analysis_Analyzer_Common_Text_CaseInsensitive</code>
+            приводит лексемы к нижнему регистру. 
+
+        </p>
+<p>
+            Переключение между анализаторами:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new Zend_Search_Lucene_Analysis_Analyzer_Common_Text());
+...
+$index-&gt;addDocument($doc);
+
+?&gt;</pre>
+<p>
+            <code class="code">Zend_Search_Lucene_Analysis_Analyzer_Common</code>
+            спроектирован для того, чтобы быть родительским классом для всех
+            анализаторов, определяемых пользователем. В наследующем классе
+            достаточно определить методы <code class="code">reset()</code> и
+            <code class="code">nextToken()</code>, которые берут строку из свойства $_input
+            и возвращают лексемы шаг за шагом (<code class="code">null</code> означает конец
+            потока). 
+
+        </p>
+<p>
+            Метод <code class="code">nextToken()</code> должен использовать метод
+            <code class="code">normalize()</code> для каждой лексемы. Это позволит
+            использовать фильтры лексем с вашим анализатором.
+
+        </p>
+<p>
+            Ниже приведен пример пользовательского анализатора, котрорый
+            принимает слова с цифрами как элементы:
+
+
+            </p>
+<div class="example">
+<a name="id4900777"></a><p class="title"><b>Пример 22.1. Собственный анализатор текста</b></p>
+<pre class="programlisting">&lt;?php
+/** Это созданный пользователем текстовый анализатор, который интерпретирует слова с цифрами как один элемент. */
+
+/** Zend_Search_Lucene_Analysis_Analyzer_Common */
+require_once 'Zend/Search/Lucene/Analysis/Analyzer/Common.php';
+
+class My_Analyzer extends Zend_Search_Lucene_Analysis_Analyzer_Common
+{
+    private $_position;
+
+    /**
+     * Установка позиции в начальное состояние
+     */
+    public function reset()
+    {
+        $this-&gt;_position = 0;
+    }
+
+    /**
+     * API для разбиения на лексемы
+     * Получение следующей лексемы
+     * Возвращает null, если достигнут конец потока
+     *
+     * @return Zend_Search_Lucene_Analysis_Token|null
+     */
+    public function nextToken()
+    {
+        if ($this-&gt;_input === null) {
+            return null;
+        }
+
+        while ($this-&gt;_position &lt; strlen($this-&gt;_input)) {
+            // пропуск пробела
+            while ($this-&gt;_position &lt; strlen($this-&gt;_input) &amp;&amp;
+                   !ctype_alnum( $this-&gt;_input[$this-&gt;_position] )) {
+                $this-&gt;_position++;
+            }
+
+            $termStartPosition = $this-&gt;_position;
+
+            // чтение лексемы
+            while ($this-&gt;_position &lt; strlen($this-&gt;_input) &amp;&amp;
+                   ctype_alnum( $this-&gt;_input[$this-&gt;_position] )) {
+                $this-&gt;_position++;
+            }
+
+            // Пустая лексема, конец потока
+            if ($this-&gt;_position == $termStartPosition) {
+                return null;
+            }
+
+            $token = new Zend_Search_Lucene_Analysis_Token(
+                                      substr($this-&gt;_input,
+                                             $termStartPosition,
+                                             $this-&gt;_position - $termStartPosition),
+                                      $termStartPosition,
+                                      $this-&gt;_position);
+            $token = $this-&gt;normalize($token);
+            if ($token !== null) {
+                return $token;
+            }
+            // Продолжение, если лексема пропущена
+        }
+
+        return null;
+    }
+}
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new My_Analyzer());
+
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.extending.filters"></a>22.7.2. Фильтрация лексем</h3></div></div></div>
+<p>
+            Анализатор <code class="code">Zend_Search_Lucene_Analysis_Analyzer_Common</code>
+            также предоставляет механизм фильтрации лексем. 
+
+        </p>
+<p>
+            Класс <code class="code">Zend_Search_Lucene_Analysis_TokenFilter</code> является
+            уровнем абстракции для таких фильтров. Он должен использоваться как
+            предок для ваших собственных фильтров. 
+
+        </p>
+<p>
+            Пользовательские фильтры должны реализовать метод
+            <code class="code">normalize()</code>, который может преобразовывать лексему или
+            сигнализировать, что лексема должна быть пропущена.
+
+        </p>
+<p>
+            В предоставляемом анализаторе уже определены три фильтра:
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">Zend_Search_Lucene_Analysis_TokenFilter_LowerCase</code>
+
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Search_Lucene_Analysis_TokenFilter_ShortWords</code>
+
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Search_Lucene_Analysis_TokenFilter_StopWords</code>
+
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            Фильтр <code class="code">LowerCase</code> уже используется для анализатора
+            <code class="code">Zend_Search_Lucene_Analysis_Analyzer_Common_Text_CaseInsensitive</code>,
+            который применяется по умолчанию.
+
+        </p>
+<p>
+            <code class="code">ShortWords</code> и <code class="code">StopWords</code> могут
+            использоваться с уже включенными анализаторами или вашими
+            собственными:
+
+        </p>
+<pre class="programlisting">&lt;?php
+$stopWords = array('a', 'an', 'at', 'the', 'and', 'or', 'is', 'am');
+$stopWordsFilter = new Zend_Search_Lucene_Analysis_TokenFilter_StopWords($stopWords);
+
+$analyzer = new Zend_Search_Lucene_Analysis_Analyzer_Common_TextNum_CaseInsensitive();
+$analyzer-&gt;addFilter($stopWordsFilter);
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault($analyzer);
+?&gt;</pre>
+<pre class="programlisting">&lt;?php
+$shortWordsFilter = new Zend_Search_Lucene_Analysis_TokenFilter_ShortWords();
+
+$analyzer = new Zend_Search_Lucene_Analysis_Analyzer_Common_TextNum_CaseInsensitive();
+$analyzer-&gt;addFilter($shortWordsFilter);
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault($analyzer);
+?&gt;</pre>
+<p>
+            Конструктор
+            <code class="code">Zend_Search_Lucene_Analysis_TokenFilter_StopWords</code>
+            принимает массив стоп-слов в качестве аргумента. Но стоп-слова можно
+            также загружать и из файла: 
+
+        </p>
+<pre class="programlisting">&lt;?php
+$stopWordsFilter = new Zend_Search_Lucene_Analysis_TokenFilter_StopWords();
+$stopWordsFilter-&gt;loadFromFile($my_stopwords_file);
+
+$analyzer = new Zend_Search_Lucene_Analysis_Analyzer_Common_TextNum_CaseInsensitive();
+$analyzer-&gt;addFilter($stopWordsFilter);
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault($analyzer);
+?&gt;</pre>
+<p>
+            Файл должен быть текстовым с одним словом в каждой строке. Символом
+            '#' помечаются строки с комментариями.
+
+        </p>
+<p>
+            Конструктор
+            <code class="code">Zend_Search_Lucene_Analysis_TokenFilter_ShortWords</code> 
+            имеет один необязательный параметр, это ограничение длины слова.
+            Его значение по умолчанию равно 2.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.extending.scoring"></a>22.7.3. Алгоритмы ранжирования</h3></div></div></div>
+<p>
+            Ранг <code class="literal">q</code> документа
+            <code class="literal">d</code> определяется следующим образом:
+
+        </p>
+<p>
+            <code class="code">score(q,d) = sum( tf(t in d) * idf(t) * getBoost(t.field in d) * lengthNorm(t.field in d)  ) *
+            coord(q,d) * queryNorm(q)</code>
+        </p>
+<p>
+            tf(t in d) - <code class="code">Zend_Search_Lucene_Search_Similarity::tf($freq)</code>
+            - коэффициент ранга, основанный на том, насколько часто встречается
+            элемент или фраза в документе. 
+
+        </p>
+<p>
+            idf(t) - <code class="code">Zend_Search_Lucene_Search_SimilaritySimilarity::tf($term, $reader)</code>
+            - коэффициент ранга для простого элемента применительно к определенному
+            индексу. 
+
+        </p>
+<p>
+            getBoost(t.field in d) - коэффициент усиления для поля элемента.
+
+        </p>
+<p>
+            lengthNorm($term) - значение нормализации для поля, получаемое из
+            общего количества элементов, содержащихся в поле. Это значение
+            хранится внутри индекса. Эти значения вместе с коэффициентом усиления поля
+            хранятся в индексе, результатом их умножения является
+            ранг для каждого поля. 
+
+        </p>
+<p>
+            Совпадения в длинных полях менее точны, поэтому реализации этого метода
+            обычно возвращают тем меньшие значения, чем
+            больше число лексем, и тем большие значения, чем меньше число лексем.
+
+        </p>
+<p>
+            сoord(q,d) - <code class="code">Zend_Search_Lucene_Search_Similarity::coord($overlap, $maxOverlap)</code>
+            - коэффициент ранга, основанный на относительной доле всех элементов запроса,
+            найденных в документе.
+
+        </p>
+<p>
+            Присутствие большого количества элементов запроса означает лучшее
+            соответствие запросу, поэтому реализации этого метода обычно возвращают
+            бОльшие значения, когда соотношение между этими параметрами большое
+            и меньшие значения, когда соотношение между ними небольшое.
+
+        </p>
+<p>
+            queryNorm(q) - значение нормализации для запроса, получаемое из суммы
+            возведенных в квадрат весов каждого из элементов запроса. Это значение
+            затем умножается в вес каждого элемента запроса.
+
+        </p>
+<p>
+            Это не влияет на ранжирование, цель нормализации состоит в том, чтобы
+            сделать соизмеримыми ранги, полученные при различных запросах.
+
+        </p>
+<p>
+            Алгоритм ранжирования может быть изменен через определение своего
+            собственного класса. Для этого надо создать потомка класса
+            Zend_Search_Lucene_Search_Similarity, как показано ниже, затем
+            использовать метод
+            <code class="code">Zend_Search_Lucene_Search_Similarity::setDefault($similarity);</code>
+            для установки объекта как используемого по умолчанию.
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+class MySimilarity extends Zend_Search_Lucene_Search_Similarity {
+    public function lengthNorm($fieldName, $numTerms) {
+        return 1.0/sqrt($numTerms);
+    }
+
+    public function queryNorm($sumOfSquaredWeights) {
+        return 1.0/sqrt($sumOfSquaredWeights);
+    }
+
+    public function tf($freq) {
+        return sqrt($freq);
+    }
+
+    /**
+     * Сейчас не используется. Подсчитывает сумму соответствий неточной фразе,
+     * основанную на изменяемом расстоянии.
+     */
+    public function sloppyFreq($distance) {
+        return 1.0;
+    }
+
+    public function idfFreq($docFreq, $numDocs) {
+        return log($numDocs/(float)($docFreq+1)) + 1.0;
+    }
+
+    public function coord($overlap, $maxOverlap) {
+        return $overlap/(float)$maxOverlap;
+    }
+}
+
+$mySimilarity = new MySimilarity();
+Zend_Search_Lucene_Search_Similarity::setDefault($mySimilarity);
+
+?&gt;  </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.extending.storage"></a>22.7.4. Контейнеры хранения</h3></div></div></div>
+<p>
+        Абстрактный класс <code class="code">Zend_Search_Lucene_Storage_Directory</code>
+        определяет функционал директории.
+
+        </p>
+<p>
+        Конструктор <code class="code">Zend_Search_Lucene</code> использует строку или
+        объект <code class="code">Zend_Search_Lucene_Storage_Directory</code> как входные данные.
+
+        </p>
+<p>
+        <code class="code">Zend_Search_Lucene_Storage_Directory_Filesystem</code> реализует
+        функционал директории для файловой системы.
+
+        </p>
+<p>
+        Если для конструктора <code class="code">Zend_Search_Lucene</code> в качестве входных
+        данных испольуется строка, то считыватель индекса (объект
+        <code class="code">Zend_Search_Lucene</code>) рассматривает ее как путь в файловой
+        системе и сама инстанцирует объекты
+        <code class="code">Zend_Search_Lucene_Storage_Directory_Filesystem</code>. 
+
+        </p>
+<p>
+        Вы можете определить собственную реализацию директории,
+        создав потомка класса <code class="code">Zend_Search_Lucene_Storage_Directory</code>.
+
+        </p>
+<p>
+        Методы <code class="code">Zend_Search_Lucene_Storage_Directory</code>:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+abstract class Zend_Search_Lucene_Storage_Directory {
+/**
+ * Закрывает средство хранения.
+ *
+ * @return void
+ */
+abstract function close();
+
+
+/**
+ * Создает новый пустой файл с данным именем в директории.
+ *
+ * @param string $name
+ * @return void
+ */
+abstract function createFile($filename);
+
+
+/**
+ * Удаляет существующий файл в директории.
+ *
+ * @param string $filename
+ * @return void
+ */
+abstract function deleteFile($filename);
+
+
+/**
+ * Возвращает true, если файл с данным именем существует.
+ *
+ * @param string $filename
+ * @return boolean
+ */
+abstract function fileExists($filename);
+
+
+/**
+ * Возвращает длину файла в директории.
+ *
+ * @param string $filename
+ * @return integer
+ */
+abstract function fileLength($filename);
+
+
+/**
+ * Возвращает время последнего изменения файла в формате UNIX.
+ *
+ * @param string $filename
+ * @return integer
+ */
+abstract function fileModified($filename);
+
+
+/**
+ * Переименовывает существующий файл в директории.
+ *
+ * @param string $from
+ * @param string $to
+ * @return void
+ */
+abstract function renameFile($from, $to);
+
+
+/**
+ * Устанавливает время изменения файла в текущее.
+ *
+ * @param string $filename
+ * @return void
+ */
+abstract function touchFile($filename);
+
+
+/**
+ * Возвращает объект Zend_Search_Lucene_Storage_File для данного файла в директории.
+ *
+ * @param string $filename
+ * @return Zend_Search_Lucene_Storage_File
+ */
+abstract function getFileObject($filename);
+
+}
+
+?&gt;</pre>
+<p>
+        Метод <code class="code">getFileObject($filename)</code> класса
+        <code class="code">Zend_Search_Lucene_Storage_Directory</code> возвращает
+        объект <code class="code">Zend_Search_Lucene_Storage_File</code>.
+
+        </p>
+<p>
+        Абстрактный класс <code class="code">Zend_Search_Lucene_Storage_File</code> реализует
+        абстракцию файла и примитивы чтения файла индекса.
+
+        </p>
+<p>
+        Вы должны создать класс, наследующий от <code class="code">Zend_Search_Lucene_Storage_File</code>
+        для своей реализации директории.
+
+        </p>
+<p>
+        Только два метода класса <code class="code">Zend_Search_Lucene_Storage_File</code> должны быть
+        перегружены в вашей реализации: 
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+class MyFile extends Zend_Search_Lucene_Storage_File {
+    /**
+     * Устанавливает индикатор позиции и перемещает указатель файла.
+     * Новая позиция, измеряемая в байтах от начала файла,
+     * получается добавлением смещения к позиции, определяемой аргументом $whence,
+     * который может принимать следующие значения:
+     * SEEK_SET - Устанавливает позицию равной смещению в байтах.
+     * SEEK_CUR - Устанавливает позицию равной текущей позиции плюс смещение.
+     * SEEK_END - Устанавливает позицию равной концу файла плюс смещение.
+     * (Для перемещения позиции относительно конца файла вы должны передать отрицательное значение смещения)
+     * В случае успеха возвращает 0; иначе -1
+     *
+     * @param integer $offset
+     * @param integer $whence
+     * @return integer
+     */
+    public function seek($offset, $whence=SEEK_SET) {
+        ...
+    }
+
+    /**
+     * Считывает $length байт из файла и перемещает указатель файла.
+     *
+     * @param integer $length
+     * @return string
+     */
+    protected function _fread($length=1) {
+        ...
+    }
+}
+
+?&gt;</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.charset.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.java-lucene.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.6. Кодировки </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 22.8. Взаимодействие с Java Lucene</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

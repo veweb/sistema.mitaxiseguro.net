@@ -1,0 +1,349 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.9. 以前のバージョンからの移行</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="prev" href="zend.controller.exceptions.html" title="7.8. MVC での例外">
+<link rel="next" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.controller.migration.html#zend.controller.migration.fromzerosix" title="7.9.1. 0.6.0 から 0.8.0 への移行">
+<link rel="subsection" href="zend.controller.migration.html#zend.controller.migration.fromzerotwo" title="7.9.2. 0.2.0 以前のバージョンから 0.6.0 への移行">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.9. 以前のバージョンからの移行</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.exceptions.html">前のページ</a> </td>
+<th width="60%" align="center">第7章 Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.date.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.migration"></a>7.9. 以前のバージョンからの移行</h2></div></div></div>
+<p>
+        MVC コンポーネントの API は以前とは変更されました。
+        初期のバージョンから Zend Framework を使用しておられるかたは、
+        以下のガイドラインにしたがってスクリプトを変更し、
+        新しい仕組みに対応させてください。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.migration.fromzerosix"></a>7.9.1. 0.6.0 から 0.8.0 への移行</h3></div></div></div>
+<p>
+            前回変更された、もっとも基本的な MVC コンポーネントの使用法は、そのまま同じです。
+        </p>
+<pre class="programlisting">
+require_once 'Zend/Controller/Front.php';
+Zend_Controller_Front::run('/path/to/controllers');
+</pre>
+<p>
+            しかし、ディレクトリ構造を見直し、いくつかのコンポーネントが削除されました。
+            また、名前が変更されたり新たに追加されたものもあります。以下にそれらをまとめます。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">Zend_Controller_Router</code> は削除されました。
+                    かわりに rewrite ルータを使用してください。
+                </p></li>
+<li><p>
+                    <code class="code">Zend_Controller_RewriteRouter</code> は
+                    <code class="code">Zend_Controller_Router_Rewrite</code> という名前に変わり、
+                    このフレームワークの標準ルータに格上げされました。
+                    <code class="code">Zend_Controller_Front</code> は、
+                    特に別のルータを指定しない限りこのルータをデフォルトで使用します。
+                </p></li>
+<li><p>
+                    rewrite ルータで使用する、新しいルートクラスが追加されました。名前は
+                    <code class="code">Zend_Controller_Router_Route_Module</code> です。
+                    これは MVC で使用するデフォルトのルートのほかに、<a href="zend.controller.modular.html" title="7.7. モジュラーディレクトリ構造の規約の使用">項7.7. 「モジュラーディレクトリ構造の規約の使用」</a> をサポートしています。
+                </p></li>
+<li><p>
+                    <code class="code">Zend_Controller_Router_StaticRoute</code> は
+                    <code class="code">Zend_Controller_Router_Route_Static</code> という名前に変わりました。
+                </p></li>
+<li><p>
+                    <code class="code">Zend_Controller_Dispatcher</code> は
+                    <code class="code">Zend_Controller_Dispatcher_Standard</code> という名前に変わりました。
+                </p></li>
+<li>
+<p>
+                    <code class="code">Zend_Controller_Action::_forward()</code> の引数が変わりました。
+                    新しいシグネチャは次のとおりです。
+                </p>
+<pre class="programlisting">
+final protected function _forward($action, $controller = null, $module = null, array $params = null);
+</pre>
+<p>
+                    <code class="code">$action</code> は常に必須です。
+                    コントローラを指定しなかった場合は、
+                    現在のコントローラ内のアクションであるとみなされます。
+                    <code class="code">$controller</code> を指定しなかった場合は、
+                    <code class="code">$module</code> は常に無視されます。
+                    最後に、<code class="code">$params</code> で指定した任意の値が
+                    リクエストオブジェクトに追加されます。
+                    コントローラやモジュールは不要だがパラメータは渡したいという場合は、
+                    コントローラやモジュールに null を指定します。
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.migration.fromzerotwo"></a>7.9.2. 0.2.0 以前のバージョンから 0.6.0 への移行</h3></div></div></div>
+<p>
+            MVC コンポーネントの基本的な部分は変わっていません。
+            次のいずれの方法も使用可能です。
+        </p>
+<pre class="programlisting">
+require_once 'Zend/Controller/Front.php';
+Zend_Controller_Front::run('/path/to/controllers');
+</pre>
+<pre class="programlisting">
+/* -- ルータを作成します -- */
+$router = new Zend_Controller_RewriteRouter();
+$router-&gt;addRoute('user', 'user/:username', array('controller' =&gt; 'user',
+'action' =&gt; 'info'));
+
+/* -- ルータをコントローラに設定します -- */
+$ctrl = Zend_Controller_Front::getInstance();
+$ctrl-&gt;setRouter($router);
+
+/* -- コントローラのディレクトリを設定し、ディスパッチします -- */
+$ctrl-&gt;setControllerDirectory('/path/to/controllers');
+$ctrl-&gt;dispatch();
+</pre>
+<p>
+            レスポンスオブジェクトを使用して、コンテンツとヘッダを取得することを推奨します。
+            これにより、アプリケーション内で
+            より柔軟な出力書式の切り替え (たとえば XHTML ではなく
+            JSON や XML を使用するなど) ができるようになります。
+            デフォルトでは、<code class="code">dispatch()</code> はレスポンスのレンダリングを行い、
+            ヘッダとレンダリングされた内容の両方を送信します。
+            フロントコントローラから <code class="code">returnResponse()</code>
+            を使用してレスポンスを返し、レスポンスのレンダリングを独自に行うこともできます。
+            将来のバージョンのフロントコントローラでは、
+            レスポンスオブジェクトに出力バッファリングを使用する予定です。
+        </p>
+<p>
+            これまでの API に加え、多くの機能が追加されています。
+            追加された機能についてはドキュメントを参照ください。
+        </p>
+<p>
+            最大の変更点は、多くのコンポーネントで
+            サブクラス化による拡張が可能になったことです。以下にポイントを整理します。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    <code class="code">Zend_Controller_Front::dispatch()</code>
+                    は、デフォルトでレスポンスオブジェクトの例外をトラップします。
+                    例外の内容はレンダリングしません。これにより、
+                    システムについての機密情報がレンダリングされてしまうことを防ぎます。
+                    この挙動を変更するにはいくつかの方法があります。
+                </p>
+<div class="itemizedlist"><ul type="circle">
+<li>
+<p>
+                            フロントコントローラで <code class="code">throwExceptions()</code>
+                            を設定します。
+                        </p>
+<pre class="programlisting">
+$front-&gt;throwExceptions(true);
+</pre>
+</li>
+<li>
+<p>
+                            レスポンスオブジェクトで <code class="code">renderExceptions()</code>
+                            を設定します。
+                        </p>
+<pre class="programlisting">
+$response-&gt;renderExceptions(true);
+$front-&gt;setResponse($response);
+$front-&gt;dispatch();
+
+// あるいは
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+$response-&gt;renderExceptions(true);
+echo $response;
+</pre>
+</li>
+</ul></div>
+</li>
+<li><p>
+                <code class="code">Zend_Controller_Dispatcher_Interface::dispatch()</code>
+                は、ディスパッチャトークンではなく
+                <a href="zend.controller.html#zend.controller.overview.request" title="7.1.2. リクエストオブジェクト">項7.1.2. 「リクエストオブジェクト」</a>
+                オブジェクトを使用するようになりました。
+            </p></li>
+<li><p>
+                <code class="code">Zend_Controller_Router_Interface::route()</code>
+                は、ディスパッチャトークンではなく
+                <a href="zend.controller.html#zend.controller.overview.request" title="7.1.2. リクエストオブジェクト">項7.1.2. 「リクエストオブジェクト」</a>
+                オブジェクトを使用するようになりました。
+            </p></li>
+<li>
+<p><code class="code">Zend_Controller_Action</code> の変更点は以下のようになります。</p>
+<div class="itemizedlist"><ul type="circle">
+<li><p>
+                        コンストラクタが受け付ける引数は
+                        <code class="code">Zend_Controller_Request_Abstract $request</code>、
+                        <code class="code">Zend_Controller_Response_Abstract $response</code>
+                        および <code class="code">array $params (optional)</code> の三つになりました。
+                        <code class="code">Zend_Controller_Action::__construct()</code>
+                        は、これらを使用してリクエストやレスポンス、
+                        そしてオブジェクトの invokeArgs プロパティを指定します。
+                        コンストラクタをオーバーライドすることで、
+                        この挙動をお望みのように変更することができます。
+                        さらによいことに、<code class="code">init()</code>
+                        メソッドを使用してインスタンスの設定を自由に行うことができます。
+                        このメソッドは、コンストラクタでの処理の最後にコールされます。
+                    </p></li>
+<li><p>
+                        <code class="code">run()</code> は final メソッドではなくなりました。
+                        しかし、このメソッドはもはやフロントコントローラでは使用されません。
+                        これは、クラスをページコントローラとして使用する場合にのみ使用します。
+                        オプションの引数
+                        <code class="code">Zend_Controller_Request_Abstract $request</code> 
+                        および <code class="code">Zend_Controller_Response_Abstract $response</code>
+                        を受け取ります。
+                    </p></li>
+<li><p>
+                        <code class="code">indexAction()</code> を定義する必要はなくなりました。
+                        しかし、デフォルトのアクションとして定義しておくことを推奨します。
+                        これにより、RewriteRouter とアクションコントローラで
+                        デフォルトのアクションメソッドを別々に指定できるようになります。
+                    </p></li>
+<li><p>
+                        <code class="code">__call()</code> をオーバーライドして、
+                        未定義のアクションが自動的に処理されるようにする必要があります。
+                    </p></li>
+<li><p>
+                        <code class="code">_redirect()</code> にはオプションで二番目、三番目の引数が追加されました。
+                        二番目の引数はリダイレクト時に返す HTTP コードです。
+                        三番目の引数 <code class="code">$prependBase</code>
+                        を使用すると、リクエストオブジェクトに登録したベース URL
+                        を URL の前に連結することを指示できます。
+                    </p></li>
+<li>
+<p>
+                            プロパティ <code class="code">_action</code> は設定されなくなりました。
+                            このプロパティの内容は <code class="code">Zend_Controller_Dispatcher_Token</code>
+                            でしたが、これは現在のバージョンにはもう存在しません。
+                            トークンの唯一の目的は、要求されたコントローラやアクション、
+                            URL パラメータについての情報を提供することでした。
+                            これらは現在はリクエストオブジェクトから次のようにして取得できるようになっています。
+                        </p>
+<pre class="programlisting">
+// 要求されたコントローラ名を取得します。
+// その際には $this-&gt;_action-&gt;getControllerName() を使用します。
+// 以下の例では getRequest() を使用していますが、直接 $_request プロパティに
+// アクセスしてもかまいません。ただ getRequest() を使用することを推奨します。
+// とういのは、親クラスがこのメソッドをオーバーライドして挙動を変更しているかもしれないからです。
+$controller = $this-&gt;getRequest()-&gt;getControllerName();
+
+// 要求されたアクション名を取得します。
+// その際には $this-&gt;_action-&gt;getActionName() を使用します。
+$action = $this-&gt;getRequest()-&gt;getActionName();
+
+// リクエストパラメータを取得します。
+// これは変わっていません。_getParams() メソッドおよび _getParam() メソッドは
+// 現在は単なるリクエストオブジェクトへのプロキシです。
+$params = $this-&gt;_getParams();
+$foo = $this-&gt;_getParam('foo', 'default'); // パラメータ 'foo' を取得します。見つからなかった場合は
+                                           // デフォルト値 'default' を設定します。
+
+</pre>
+</li>
+<li>
+<p>
+                            <code class="code">noRouteAction()</code> は削除されました。
+                            存在しないアクションメソッドを扱うには、
+                            <code class="code">__call()</code> を使用してデフォルトのアクションに誘導します。
+                        </p>
+<pre class="programlisting">
+public function __call($method, $args)
+{
+    // 存在しない 'Action' メソッドが要求された場合に、
+    // それをデフォルトのアクションに渡します。
+    if ('Action' == substr($method, -6)) {
+        return $this-&gt;defaultAction();
+    }
+    
+    throw new Zend_Controller_Exception('無効なメソッド呼び出しです');
+}
+</pre>
+</li>
+</ul></div>
+</li>
+<li><p>
+                <code class="code">Zend_Controller_RewriteRouter::setRewriteBase()</code>
+                は削除されました。かわりに
+                <code class="code">Zend_Controller_Front::setBaseUrl()</code> を使用してください
+                (あるいは、リクエストクラスを使用している場合は
+                Zend_Controller_Request_Http::setBaseUrl() を使用します)。
+            </p></li>
+<li><p>
+                <code class="code">Zend_Controller_Plugin_Interface</code> は
+                <code class="code">Zend_Controller_Plugin_Abstract</code> に置き換えられました。
+                すべてのメソッドは、ディスパッチャトークンではなく
+                <a href="zend.controller.html#zend.controller.overview.request" title="7.1.2. リクエストオブジェクト">項7.1.2. 「リクエストオブジェクト」</a>
+                をやり取りするようになりました。
+            </p></li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.exceptions.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.date.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.8. MVC での例外 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 第8章 Zend_Date</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

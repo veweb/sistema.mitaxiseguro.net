@@ -1,0 +1,432 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.4. Zend_Db_Table</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="prev" href="zend.db.select.html" title="9.3. Zend_Db_Select">
+<link rel="next" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.introduction" title="9.4.1. Wprowadzenie">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.getting-started" title="9.4.2. Pierwsze kroki">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.name-and-key" title="9.4.3. Nazwa tabeli oraz klucz podstawowy">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.insert" title="9.4.4. Wstawianie wierszy">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.udpate" title="9.4.5. Uaktualnianie wierszy">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.delete" title="9.4.6. Usuwanie wierszy">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.findbykey" title="9.4.7. Wyszukiwanie wierszy na podstawie klucza podstawowego">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchonerow" title="9.4.8. Pobieranie jednego wiersza">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchmultiple" title="9.4.9. Pobieranie wielu wierszy">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.domain-logic" title="9.4.10. Dodawanie logiki biznesowej">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.4. Zend_Db_Table</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.select.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.table"></a>9.4. Zend_Db_Table</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.introduction"></a>9.4.1. Wprowadzenie</h3></div></div></div>
+<p>
+            Zend_Db_Table jest modułem obsługi tabel dla Zend Framework. Łączy
+            się on z bazą danych poprzez Zend_Db_Adapter, sprawdza strukturę
+            tabeli, a następnie pomaga w pobieraniu wierszy z tabeli i w 
+            manipulacji nimi.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.getting-started"></a>9.4.2. Pierwsze kroki</h3></div></div></div>
+<p>
+            Pierwszą rzeczą do zrobienia jest ustawienie domyślnego adaptera
+            bazy danych dla klasy Zend_Db_Table; jeśli później nie określisz
+            innego adaptera, to wszystkie instancje Zend_Db_Table będą używać
+            tego domyślnego adaptera.
+        </p>
+<pre class="programlisting">&lt;?php
+// przygotujmy adapter
+require_once 'Zend/Db.php';
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// ustawmy domyślny adapter dla wszystkich obiektów Zend_Db_Table
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+?&gt;
+        </pre>
+<p>
+            Następnie załóżmy, że masz w swojej bazie tabelę nazwaną 
+            "round_table". Aby użyć Zend_Db_Table z tą tabelą po prostu
+            rozszerz klasę Zend_Db_Table aby utworzyć nową klasę nazwaną
+            RoundTable (zauważ jak przekształcamy nazwę tabeli). Wtedy
+            możemy sprawdzać strukturę tabeli, manipulować wierszami i
+            pobierać wiersze z tabeli 'round_table' za pomocą tej klasy.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.name-and-key"></a>9.4.3. Nazwa tabeli oraz klucz podstawowy</h3></div></div></div>
+<p>
+            Domyślnie Zend_Db_Table oczekuje, że nazwa tabeli w bazie danych
+            będzie taka sama jak nazwa klasy (po konwersji z CamelCaps 
+            na underscore_words). Więc klasa Zend_Db_Table rozszerzona do
+            klasy nazwanej JakasNazwaTabeli mapuje tabelę SQL nazwaną 'jakas_nazwa_tabeli'.
+            Jeśli chcesz, by twoja klasa mapowała inną tabelę niż ta z nazwy 
+            klasy, nadpisz właściwość $_name gdy definiujesz swoją klasę.
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    // domyślna nazwa tabeli to 'nazwa_klasy'
+    // ale chcemy zmapować ją na inną
+    protected $_name = 'inna_nazwa_tabeli';
+}
+?&gt;
+        </pre>
+<p>
+            Domyślnie Zend_Db_Table oczekuje, że tabela ma klucz podstawowy 
+            nazwany 'id'. (Najlepiej gdy jest to kolumna automatycznie 
+            inkrementowana, ale nie jest to wymagane.)  Jeśli twój klucz
+            podstawowy nazwany jest inaczej, możesz nadpisać właściwość
+            $_primary gdy definiujesz swoją klasę.
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    // domyślny klucz podstawowy to 'id'
+    // ale chcemy użyć czegoś innego
+    protected $_primary = 'inna_nazwa_kolumny';
+}
+?&gt;
+        </pre>
+<p>
+            Alternatywnie możesz ustawić je w metodzie _setup() twojej
+            rozszerzonej klasy; pamiętaj tylko aby wywołać metodę parent::_setup()
+            klasy rozszerzanej.
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    protected function _setup()
+    {
+        $this-&gt;_name = 'inna_nazwa_tabeli';
+        $this-&gt;_primary = 'inna_nazwa_kolumny';
+        parent::_setup();
+    }
+}
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.insert"></a>9.4.4. Wstawianie wierszy</h3></div></div></div>
+<p>
+            Aby dodać nowy wiersz do tabeli, po prostu wywołaj metodę insert()
+            z asocjacyjną tablicą  w postaci kolumna:wartość w parametrze. Dane
+            będą automatycznie zacytowane, a zwrócony zostanie ID ostatnio 
+            wstawionego wiersza. (Zauważ, że różni się to od metody 
+            Zend_Db_Adapter::insert(), w której zwracana jets liczba wstawionych 
+            wierszy)
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// INSERT INTO round_table
+//     (noble_title, first_name, favorite_color)
+//     VALUES ("King", "Arthur", "blue")
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+
+$data = array(
+    'noble_title' =&gt; 'King',
+    'first_name'  =&gt; 'Arthur',
+    'favorite_color' =&gt; 'blue',
+)
+
+$id = $table-&gt;insert($data);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.udpate"></a>9.4.5. Uaktualnianie wierszy</h3></div></div></div>
+<p>
+            Aby zaktualizować wiersz w tabeli, wywołaj metodę update()
+            z asocjacyjną tablicą w postaci kolumna:wartość w pierwszym parametrze,
+            oraz z warunkiem WHERE określającym wiersze które mają być zaktualizowane
+            w drugim parametrze. Uaktualni to tabelę a następnie zwróci ilość
+            uaktualnionych wierszy.
+        </p>
+<p>
+            Dane do uaktualnienia będą automatycznie zacytowane, ale warunek 
+            WHERE nie będzie, więc musisz zacytować go sam za pomocą obiektu 
+            Zend_Db_Adapter.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// UPDATE round_table
+//     SET favorite_color = "yellow"
+//     WHERE first_name = "Robin"
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$set = array(
+    'favorite_color' =&gt; 'yellow',
+)
+
+$where = $db-&gt;quoteInto('first_name = ?', 'Robin');
+
+$rows_affected = $table-&gt;update($set, $where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.delete"></a>9.4.6. Usuwanie wierszy</h3></div></div></div>
+<p>
+            Aby usunąć dowolną ilość wierszy z tabeli, wywołaj metodę delete()
+            z warunkiem WHERE który określa wiersza które mają być usunięte.
+            Funkcja zwróci ilość usuniętych wierszy.
+        </p>
+<p>
+            Warunek WHERE nie będzie automatycznie zacytowany, więc powinieneś
+            zrobić to sam używając obiektu Zend_Db_Adapter dla tej tabeli.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// DELETE FROM round_table
+//     WHERE first_name = "Patsy"
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('first_name = ?', 'Patsy');
+
+$rows_affected = $table-&gt;delete($where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.findbykey"></a>9.4.7. Wyszukiwanie wierszy na podstawie klucza podstawowego</h3></div></div></div>
+<p>
+            Możesz wygodnie pobierać wiersze z tabeli na podstawie klucza 
+            podstawowego używając metody find(). Metoda zwraca obiekt 
+            Zend_Db_Table_Row jeśli przekażesz jako parametr jeden klucz, 
+            lub obiekt Zend_Db_Table_Rowset gdy przekażesz jako parametr większą
+            ilość kluczy.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+
+// SELECT * FROM round_table WHERE id = "1"
+$row = $table-&gt;find(1);
+
+// SELECT * FROM round_table WHERE id IN("1", "2", 3")
+$rowset = $table-&gt;find(array(1, 2, 3));
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchonerow"></a>9.4.8. Pobieranie jednego wiersza</h3></div></div></div>
+<p>
+            O ile możesz łatwo znaleźć wiersz na podstawie klucza podstawowego 
+            za pomocą metody find(), to często potrzebujesz dodać różnego rodzaju
+            warunki gdy pobierasz wiersz. Zend_Db_Table zapewnia do tych 
+            zastosowań metodę fetchRow(). Wywołaj fetchRow() z warunkiem WHERE
+            w parametrze (oraz z opcjonalnym warunkiem ORDER), a Zend_Db_Table 
+            zwróci obiekt Zend_Db_Table_Row zawierający pierwszy rekord spełniający
+            twoje kryteria.
+        </p>
+<p>
+            Zauważ, że warunek WHERE nie będzie automatycznie zacytowany, więc 
+            powinieneś zrobić to sam używając obiektu Zend_Db_Adapter dla tej tabeli.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// SELECT * FROM round_table
+//     WHERE noble_title = "Sir"
+//     AND first_name = "Robin"
+//     ORDER BY favorite_color
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('noble_title = ?', 'Sir')
+       . $db-&gt;quoteInto('AND first_name = ?', 'Robin');
+
+$order = 'favorite_color';
+
+$row = $table-&gt;fetchRow($where, $order);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchmultiple"></a>9.4.9. Pobieranie wielu wierszy</h3></div></div></div>
+<p>
+            Jeśli chcesz pobrać wiele wierszy na raz, użyj metody fetchAll().
+            Tak jak metoda fetchRow(), przyjmuje ona parametry określające 
+            warunki WHERE oraz ORDER, a także przyjmuje parametry oznaczające
+            ilość rekordów do pobrania oraz offset od ktorego ma zacząć pobieranie
+            Zwróci ona obiekt Zend_Db_Table_Rowset zawierający wskazane wiersze.
+        </p>
+<p>
+            Zauważ, że warunek WHERE nie będzie automatycznie zacytowany, więc 
+            powinieneś zrobić to sam używając obiektu Zend_Db_Adapter dla tej tabeli.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+// SELECT * FROM round_table
+//     WHERE noble_title = "Sir"
+//     ORDER BY first_name
+//     LIMIT 10 OFFSET 20
+
+$where = $db-&gt;quoteInto('noble_title = ?', 'Sir');
+$order = 'first_name';
+$count = 10;
+$offset = 20;
+
+$rowset = $table-&gt;fetchAll($where, $order, $count, $offset);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.domain-logic"></a>9.4.10. Dodawanie logiki biznesowej</h3></div></div></div>
+<p>
+            Jako moduł obsługi tabel, Zend_Db_Table pozwala na dodanie własnej
+            logiki biznesowej. Na przykład możesz nadpisać metody 
+            insert() oraz update() aby manipulować danymi lub sprawdzać 
+            ich poprawność przed przekazaniem ich do bazy danych.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table
+{
+    public function insert($data)
+    {
+        // dodajemy aktualny czas
+        if (empty($data['created_on'])) {
+            $data['created_on'] = time();
+        }
+        return parent::insert($data);
+    }
+
+    public function update($data)
+    {
+        // dodajemy aktualny czas
+        if (empty($data['updated_on'])) {
+            $data['updated_on'] = time();
+        }
+        return parent::update($data);
+    }
+}
+?&gt;
+        </pre>
+<p>
+            Analogicznie możesz dodać własne metody find() aby wyszukiwać
+            rekordów w inny sposób niż za pomocą klucza podstawowego.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table
+{
+    public function findAllWithName($name)
+    {
+        $db = $this-&gt;getAdapter();
+        $where = $db-&gt;quoteInto("name = ?", $name);
+        $order = "first_name";
+        return $this-&gt;fetchAll($where, $order);
+    }
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.select.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.3. Zend_Db_Select </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 9.5. Zend_Db_Table_Row</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

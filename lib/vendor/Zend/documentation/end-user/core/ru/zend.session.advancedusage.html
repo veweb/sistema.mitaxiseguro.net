@@ -1,0 +1,605 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>25.3. Продвинутое использование</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="prev" href="zend.session.basicusage.html" title="25.2. Базовое использование">
+<link rel="next" href="zend.session.globalsessionmanagement.html" title="25.4. Общее управление сессиями">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.startingasession" title="25.3.1. Старт сессии">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.locking" title="25.3.2. Блокировка пространств имен">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.controllers" title="25.3.3. Инкапсуляция сессий и контроллеры">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.limitinginstances" title="25.3.4. Ограничение количества экземпляров Zend_Session_Namespace до одного на каждое пространство имен">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.modifyingarray" title="25.3.5. Работа с массивами в пространствах имен">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.auth" title="25.3.6. Использование сессий вместе с аутентификацией">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.testing" title="25.3.7. Использование сессий с юнит-тестами">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">25.3. Продвинутое использование</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.session.basicusage.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 25. Zend_Session</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.session.globalsessionmanagement.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.session.advancedusage"></a>25.3. Продвинутое использование</h2></div></div></div>
+<p>
+        Хотя базовое использование является совершенно допустимым вариантом
+        использования сессий Zend Framework, стоит рассмотреть другие
+        возможности их использования. См.
+        <a href="zend.auth.html#zend.auth.introduction.using" title="3.1.4. Using Zend_Auth"> пример на
+        <code class="code">Zend_Auth</code></a>, который по умолчанию неявно
+        использует Zend_Session_Namespace для сохранения меток аутентификации.
+        Этот пример показывает один из способов быстрой и легкой интеграции
+        Zend_Session_Namespace и Zend_Auth.
+
+    </p>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.startingasession"></a>25.3.1. Старт сессии</h3></div></div></div>
+<p>
+            Если вы хотите, чтобы все запросы имели сессии и использовали
+            сессии Zend Framework, то стартуйте сессию в файле загрузки:
+
+        </p>
+<div class="example">
+<a name="id4920204"></a><p class="title"><b>Пример 25.6. Старт общей сессии</b></p>
+<pre class="programlisting">
+&lt;?php
+...
+require_once 'Zend/Session.php';
+Zend_Session::start();
+...
+?&gt;</pre>
+</div>
+<p>
+            Стартуя сессию в файле загрузки, вы исключаете вероятность того, что
+            старт сессии произойдет после того, как заголовки будут
+            отправлены броузеру, что вызвовет исключение и, возможно,
+            отображение испорченной страницы посетителю сайта. Некоторые
+            расширенные возможности Zend_Session требуют вызова
+            <code class="code">Zend_Session_Core::start()</code> в начале (больше о
+            расширенных возможностях будет написано позднее).    
+
+        </p>
+<p>
+            Есть четыре способа стартовать сессию, используя Zend_Session. Два
+            из них - неправильные.
+
+        </p>
+<div class="itemizedlist"><ul type="opencircle">
+<li style="list-style-type: circle"><p>
+                    1. Неправильно: Устанавливать опцию session.auto_start в
+                    php.ini или .htaccess (http://www.php.net/manual/en/ref.session.php#ini.session.auto-start).
+                    Если вы не имеете возможность отключить эту опцию в php.ini,
+                    то, если используется mod_php (или его эквивалент) и в
+                    php.ini уже установлена эта опция, добавьте строку
+                    <code class="code">php_value session.auto_start 0</code> в ваш файл
+                    .htaccess (обычно находится в корневой директории для
+                    HTML-документов).
+
+                </p></li>
+<li style="list-style-type: circle"><p>
+                    2. Неправильно: Непосредственно использовать функцию
+                    <a href="http://www.php.net/session_start" target="_top"><code class="code">session_start()</code></a>.
+                    Если вы вызываете <code class="code">session_start()</code> напрямую и
+                    начинаете использование Zend_Session_Namespace, то при
+                    вызове метода <code class="code">Zend_Session::start()</code> будет
+                    сгенерировано исключение ("session has already been
+                    started"). Если вы вызываете <code class="code">session_start()</code>
+                    после использования Zend_Session_Namespace или явного вызова
+                    <code class="code">Zend_Session::start()</code>, то будет сгенерирована
+                    ошибка уровня E_NOTICE и проигнорирован вызов функции.
+
+                </p></li>
+<li style="list-style-type: circle">
+<p>
+                    3. Правильно:
+                    Используйте <code class="code">Zend_Session::start()</code>. Если
+                    необходимо, чтобы все запросы имели и использовали сессии,
+                    то поместите вызов этой функции в коде загрузки близко к
+                    точке входа и без условной логики. При этом присутствуют
+                    некоторые издержки за счет сессий. Если для одних запросов
+                    нужны сессии, а для других - нет, то:
+
+                </p>
+<div class="itemizedlist"><ul type="opencircle">
+<li style="list-style-type: circle"><p>
+                            Установите опцию <code class="code">strict</code> в true (см.
+                            <a href="zend.session.advancedusage.html#zend.session.startingasession" title="25.3.1. Старт сессии"><code class="code">Zend_Session::setOptions()</code></a>) в коде загрузки.
+
+                        </p></li>
+<li style="list-style-type: circle"><p>
+                            Вызывайте <code class="code">Zend_Session::start()</code>
+                            только при тех запросах, для которых нужны сессии,
+                            и до того, как будет произведен первый вызов
+                            <code class="code">new Zend_Session_Namespace()</code>. 
+
+                        </p></li>
+<li style="list-style-type: circle"><p>
+                            Используйте
+                            <code class="code">new Zend_Session_Namespace()</code> как
+                            обычно и там, где это нужно, но при этом необходимо
+                            убедиться, что
+                            <code class="code">Zend_Session::start()</code> был вызван ранее.
+
+                        </p></li>
+</ul></div>
+<p>
+                    Опция <code class="code">strict</code> предотвращает автоматический
+                    старт сессии с использованием
+                    <code class="code">Zend_Session::start()</code> при вызове
+                    <code class="code">new Zend_Session_Namespace()</code>. Эта опция 
+                    помогает разработчикам пользовательских областей приложений
+                    ZF следовать принятому при проектировании решению не
+                    использовать сессии для определенных запросов, т.к. при
+                    установке этой опции и последующем инстанцировании
+                    Zend_Session_Namespace до явного вызова
+                    <code class="code">Zend_Session::start()</code> будет сгенерировано
+                    исключение. Не используйте эту опцию в коде библиотек ZF,
+                    поскольку проектные решения должны принимать только
+                    разработчики пользовательской области. Аналогичным образом,
+                    все разработчики "библиотек" должны осторожно подходить
+                    к использованию <code class="code">Zend_Session::setOptions()</code>
+                    в коде их библиотек, поскольку эти опции имеют глобальную
+                    область действия (как и лежащие в основе опции расширения
+                    ext/session).
+
+                </p>
+</li>
+<li style="list-style-type: circle"><p>
+                    4. Правильно: Просто используйте
+                    <code class="code">new Zend_Session_Namespace()</code> где необходимо, и
+                    сессия будет автоматически запущена в Zend_Session. Это
+                    наиболее простой вариант использования, подходящий для
+                    большинства случаев. Но необходимо будет следить за тем,
+                    чтобы первый вызов
+                    <code class="code">new Zend_Session_Namespace()()</code> всегда
+                    происходил <span class="strong"><strong>до того</strong></span>, как
+                    выходные данные будут отправлены клиенту (т.е. до того, как
+                    агенту пользователя будут отправлены HTTP-заголовки),
+                    если используются основанные на куках сессии
+                    (очень рекомендуется). Использование
+                    <a href="http://php.net/outcontrol" target="_top">буферизации
+                    вывода</a> может быть удачным решением, при этом может
+                    быть улучшена производительность. Например, в
+                    <code class="code">php.ini</code>
+                    "<code class="code">output_buffering = 65535</code>" включает буферизацию
+                    вывода с размером буфера 64K. 
+
+                </p></li>
+</ul></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.locking"></a>25.3.2. Блокировка пространств имен</h3></div></div></div>
+<p>
+            Можно применять блокировку к пространствам имен для предотвращения
+            изменения данных в этом пространстве имен. Используйте
+            метод <code class="code">Zend_Session_Namespace::lock()</code> для того, чтобы
+            сделать определенное пространство имен доступным только для чтения,
+            <code class="code">unLock()</code> - чтобы сделать пространство имен доступным
+            для чтения и изменений, а <code class="code">isLocked()</code> для проверки того,
+            не было ли пространство имен заблокировано ранее. Блокировка не
+            сохраняется от одного запроса к другому. Блокировка пространства
+            имен не действует на методы установки (setter methods) в объектах,
+            сохраненных в пространстве имен, но предотвращает использование
+            методов установки пространства имен сессии для удаления или замены
+            объектов, сохраненных непосредственно в пространстве имен.
+            Также блокирование пространств имен Zend_Session_Namespace не
+            препятствует использованию ссылок на те же данные
+            (см. <a href="http://www.php.net/references" target="_top">PHP references</a>). 
+
+        </p>
+<div class="example">
+<a name="id4920905"></a><p class="title"><b>Пример 25.7. Блокировка пространств имен</b></p>
+<pre class="programlisting">
+&lt;?php
+    // assuming:
+    $userProfileNamespace = new Zend_Session_Namespace('userProfileNamespace');
+
+    // marking session as read only locked
+    $userProfileNamespace-&gt;lock();
+
+    // unlocking read-only lock
+    if ($userProfileNamespace-&gt;isLocked()) {
+        $userProfileNamespace-&gt;unLock();
+    }
+?&gt;</pre>
+</div>
+<p>
+            Есть некоторые идеи по поводу того, как организовывать модели в
+            парадигме MVC для Веб, включая создание моделей представления для
+            использования видами (views). Иногда имеющиеся данные, являются ли
+            они частью вашей доменной модели или нет, являются подходящими для
+            этой задачи. Для того, чтобы предотвратить изменение таких данных,
+            используйте блокировку пространств имен сессий до того, как
+            предоставить видам доступ к этим подмножествам вашей модели
+            представления.   
+
+        </p>
+<div class="example">
+<a name="id4920944"></a><p class="title"><b>Пример 25.8. Блокировка сессий в видах</b></p>
+<pre class="programlisting">
+&lt;?php
+class FooModule_View extends Zend_View
+{
+    public function show($name)
+    {
+        if (!isset($this-&gt;mySessionNamespace)) {
+            $this-&gt;mySessionNamespace = Zend::registry('FooModule');
+        }
+
+        if ($this-&gt;mySessionNamespace-&gt;isLocked()) {
+            return parent::render($name);
+        }
+
+        $this-&gt;mySessionNamespace-&gt;lock();
+        $return = parent::render($name);
+        $this-&gt;mySessionNamespace-&gt;unLock();
+
+        return $return;
+    }
+}
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.controllers"></a>25.3.3. Инкапсуляция сессий и контроллеры</h3></div></div></div>
+<p>
+            Пространства имен могут также использоваться для разделения доступа
+            контроллеров к сессиям, чтобы защитить переменные от повреждения.
+            Например, контроллер 'Zend_Auth' может хранить свои постоянные
+            данные сессии отдельно от всех остальных контроллеров.     
+
+        </p>
+<div class="example">
+<a name="id4921056"></a><p class="title"><b>Пример 25.9. Сессии с пространствами имен для контроллеров с автоматическим истечением времени</b></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'Zend/Session.php';
+// контроллер для вывода вопроса
+$testSpace = new Zend_Session_Namespace('testSpace');
+// установка времени жизни только для этой переменной
+$testSpace-&gt;setExpirationSeconds(300, "accept_answer");
+$testSpace-&gt;accept_answer = true;
+
+-- 
+
+// контроллер для обработки ответа на вопрос
+$testSpace = new Zend_Session_Namespace('testSpace');
+
+if ($testSpace-&gt;accept_answer === true) {
+    // время не истекло
+}
+else {
+    // время истекло
+}
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.limitinginstances"></a>25.3.4. Ограничение количества экземпляров Zend_Session_Namespace до одного на каждое пространство имен</h3></div></div></div>
+<p>
+            Мы рекомендуем использовать блокировку сессии (см. выше) вместо этой
+            функциональной возможности, которая накладывает дополнительное бремя
+            на разработчика, состоящее в передаче экземпляров
+            Zend_Session_Namespace во все функции и объекты, нуждающихся в
+            использовании этих пространств имен. 
+
+        </p>
+<p>
+            Когда создается первый экземпляр Zend_Session_Namespace, связанный с
+            определенным пространством имен, вы можете дать команду
+            Zend_Session_Namespace больше не создавать объекты для этого
+            пространства имен. Таким образом, в дальнейшем попытка создать
+            экземпляр Zend_Session_Namespace для
+            того же пространства имен вызовет генерацию исключения. Это
+            поведение является опциональным и не принято по умолчанию, но
+            остается доступным для тех, кто предпочитает передавать по коду
+            единственный объект для каждого пространства имен. Это повышает
+            защиту пространства имен от изменений компонентами, которые не
+            должны делать этого, поскольку тогда они не будут иметь свободного
+            доступа к пространствам имен. Тем не менее, ограничение пространства
+            имен до одного экземпляра модет привести к большему объему кода или
+            к его усложнению, поскольку он отменяет возможность использования
+            директив вида
+            <code class="code">$aNamespace = new Zend_Session_Namespace('aNamespace');</code>
+            после того, как был создан первый экземпляр. Это продемонстрировано
+            в примере ниже:
+
+        </p>
+<div class="example">
+<a name="id4921185"></a><p class="title"><b>Пример 25.10. Ограничение до единичных экземпляров</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Session.php';
+    $authSpaceAccessor1 = new Zend_Session_Namespace('Zend_Auth');
+    $authSpaceAccessor2 = new Zend_Session_Namespace('Zend_Auth', Zend_Session_Namespace::SINGLE_INSTANCE);
+    $authSpaceAccessor1-&gt;foo = 'bar';
+    assert($authSpaceAccessor2-&gt;foo, 'bar');
+    doSomething($options, $authSpaceAccessor2);
+    .
+    .
+    .
+    $aNamespaceObject = new Zend_Session_Namespace('Zend_Auth'); // это вызовет ошибку
+?&gt;</pre>
+</div>
+<p>
+            Второй параметр в конструкторе выше говорит Zend_Session, что
+            в будущем создание любых других экземпляров Zend_Session_Namespace с
+            пространством имен 'Zend_Auth' не допустимо. Поскольку
+            директиву <code class="code">new Zend_Session_Namespace('Zend_Auth')</code>
+            нельзя использовать после того, как будет выполнен приведенный выше
+            код, то разработчику нужно будет где-либо сохранять объект
+            (<code class="code">$authSpaceAccessor2</code> в
+            примере выше), если в дальнейшем при обработке того же запроса
+            необходим доступ к этому пространству имен сессии.
+            Например, вы можете сохранять экземпляр в статической переменной или
+            передавать его другим методам, которым нужен доступ к данному
+            пространству имен. 
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.modifyingarray"></a>25.3.5. Работа с массивами в пространствах имен</h3></div></div></div>
+<p>
+            Изменение массива внутри пространства имен невозможно. Простейшим
+            решением является сохранение массивов после того, как все желаемые
+            значения были установлены. <a href="http://framework.zend.com/issues/browse/ZF-800" target="_top">ZF-800</a>
+            подтверждает известный баг, затрагивающий многие PHP-приложения,
+            использующие "магические" методы и массивы.
+             
+
+        </p>
+<div class="example">
+<a name="id4921337"></a><p class="title"><b>Пример 25.11. Известные проблемы с массивами</b></p>
+<pre class="programlisting">
+&lt;?php
+    $sessionNamespace = new Zend_Session_Namespace('Foo');
+    $sessionNamespace-&gt;array = array();
+    $sessionNamespace-&gt;array['testKey'] = 1; // Не работает в версиях ниже PHP 5.2.1
+?&gt;</pre>
+</div>
+<p>
+            Если вам нужно изменить массив после того, как добавили его в
+            пространство имен, извлеките массив, произведите необходимые
+            изменения и сохраните его под тем же ключом.
+
+        </p>
+<div class="example">
+<a name="id4921386"></a><p class="title"><b>Пример 25.12. Обходной путь: извлечение, изменение и сохранение</b></p>
+<pre class="programlisting">
+&lt;?php
+    $sessionNamespace = new Zend_Session_Namespace('Foo');
+    $sessionNamespace-&gt;array = array('tree' =&gt; 'apple');
+    $tmp = $sessionNamespace-&gt;array;
+    $tmp['fruit'] = 'peach';
+    $sessionNamespace-&gt;array = $tmp;
+?&gt;</pre>
+</div>
+<p>
+            Можно также сохранить массив, содержащий ссылку на желаемый массив
+            и косвенно работать с ним. 
+
+        </p>
+<div class="example">
+<a name="id4921426"></a><p class="title"><b>Пример 25.13. Обходной путь: сохранение массива, содержащего ссылку</b></p>
+<pre class="programlisting">
+&lt;?php
+    $myNamespace = new Zend_Session_Namespace('mySpace');
+
+    // работает даже с версиями PHP, содержащими баг
+    $a = array(1,2,3);
+    $myNamespace-&gt;someArray = array( &amp; $a ) ;
+    $a['foo'] = 'bar';
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.auth"></a>25.3.6. Использование сессий вместе с аутентификацией</h3></div></div></div>
+<p>
+            Если ваш адаптер аутентификации для <code class="code">Zend_Auth</code>
+            возвращает результат, в котором идетификатором авторизации является
+            объект (не рекомендуется) вместо массива, то выполняйте проверку
+            класса идентификатора авторизации до того, как стартовать сессию.
+            Вместо этого мы рекомендуем хранить идентификаторы авторизации,
+            вычисленные в адаптере авторизации, под хорошо известным ключом в
+            пространстве имен сессии. Например, по умолчанию
+            <code class="code">Zend_Auth</code> размещает идентификаторы под ключом 'storage'
+            пространства имен 'Zend_Auth'.
+
+        </p>
+<p>
+            Если вы приказали <code class="code">Zend_Auth</code> не сохранять метку сессии в
+            сессиях, то можете вручную сохранить ID авторизации под хорошо
+            известным ключом в любом пространстве имен сессии на ваш выбор.
+            Часто приложения имеют особые
+            требования к тому, где хранить "мандат" (учетная запись с
+            праметрами доступа пользователя) и идентификатор авторизации.
+            Приложения часто устанавливают соответствие идентификаторов
+            аутентификации (например, имена пользователей) и идентификаторов
+            авторизации (например, присвоенное уникальное целое число) во время
+            аутентификации, которая должна производится в методе
+            <code class="code">authenticate()</code> адаптера аутентификации Zend_Auth.
+
+        </p>
+<div class="example">
+<a name="id4921527"></a><p class="title"><b>Пример 25.14. Пример: Простой доступ к ID авторизации</b></p>
+<pre class="programlisting">
+&lt;?php
+    // pre-authentication request
+    require_once 'Zend/Auth/Result.php';
+    require_once 'Zend/Auth/Adapter/Digest.php';
+    $adapter = new Zend_Auth_Adapter_Digest($filename, $realm, $username, $password);
+    $result = $adapter-&gt;authenticate();
+    require_once 'Zend/Session/Namespace.php';
+    $namespace = Zend_Session_Namespace('Zend_Auth');
+    if ($result-&gt;isValid()) {
+        $namespace-&gt;authorizationId = $result-&gt;getIdentity();
+        $namespace-&gt;date = time();
+    } else {
+        $namespace-&gt;attempts++;
+    }
+
+    // subsequent requests
+    require_once 'Zend/Session.php';
+    Zend_Session::start();
+    $namespace = Zend_Session_Namespace('Zend_Auth');
+
+    echo "Valid: ", (empty($namespace-&gt;authorizationId) ? 'No' : 'Yes'), "\n"';
+    echo "Authorization / user Id: ", (empty($namespace-&gt;authorizationId)
+        ? 'none' : print_r($namespace-&gt;authorizationId, true)), "\n"';
+    echo "Authentication attempts: ", (empty($namespace-&gt;attempts)
+        ? '0' : $namespace-&gt;attempts), "\n"';
+    echo "Authenticated on: ",
+        (empty($namespace-&gt;date) ? 'No' : date(DATE_ATOM, $namespace-&gt;date), "\n"';
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.testing"></a>25.3.7. Использование сессий с юнит-тестами</h3></div></div></div>
+<p>
+            Zend Framework использует PHPUnit для своего тестирования. Многие
+            разработчики расширяют существующие наборы
+            юнит-тестов для покрытия кода в своих приложениях. 
+            Если при выполнении юнит-тестирований после завершения сессии были
+            использованы любые связанные с записью методы, то генерируется
+            исключение "<span class="strong"><strong>Zend_Session is currently marked
+            as read-only</strong></span>" ("Zend_Session помечен как доступный только
+            для чтения"). Тем не менее, юнит-тесты, использующие Zend_Session,
+            требуют особого внимания, поскольку закрытие
+            (<code class="code">Zend_Session::writeClose()</code>) или уничтожение сессии
+            (<code class="code">Zend_Session::destroy()</code>) не дает впоследствии
+            устанавливать или сбрасывать ключи в любом объекте
+            Zend_Session_Namespace. Это поведение является прямым следствием
+            использования лежащего в основе мехнанизма расширения ext/session
+            и функций <code class="code">session_destroy()</code> и
+            <code class="code">session_write_close()</code>, которые не имеют механизма
+            "отмены" для облегчения установки/демонтажа в юнит-тестировании.
+
+        </p>
+<p>
+            Чтобы обойти это, см. юнит-тест
+            <code class="code">testSetExpirationSeconds()</code> в
+            <code class="code">tests/Zend/Session/SessionTest.php</code> и
+            <code class="code">SessionTestHelper.php</code>, которые используют
+            <code class="code">exec()</code> для запуска отдельного процесса. Новый процесс
+            более точно имитирует второй, последующий, запрос из броузера.
+            Отдельный процесс начинается с "чистой" сессии, так же, как при
+            выполнении любого PHP-скрипта для веб-запроса. Кроме этого,
+            любые изменения в <code class="code">$_SESSION[]</code>, произведенные при вызове
+            процесса, становятся доступными и в дочернем процессе, что дает
+            родительскому процессу возможность закрыть сессию до использования
+            <code class="code">exec()</code>.
+
+        </p>
+<div class="example">
+<a name="id4921785"></a><p class="title"><b>Пример 25.15. Использование PHPUnit для тестирования кода, написанного с использованием Zend_Session*</b></p>
+<pre class="programlisting">
+&lt;?php
+        // testing setExpirationSeconds()
+        require 'tests/Zend/Session/SessionTestHelper.php'; // also see SessionTest.php in trunk/
+        $script = 'SessionTestHelper.php';
+        $s = new Zend_Session_Namespace('space');
+        $s-&gt;a = 'apple';
+        $s-&gt;o = 'orange';
+        $s-&gt;setExpirationSeconds(5);
+
+        Zend_Session::regenerateId();
+        $id = Zend_Session::getId();
+        session_write_close(); // release session so process below can use it
+        sleep(4); // not long enough for things to expire
+        exec($script . "expireAll $id expireAll", $result);
+        $result = $this-&gt;sortResult($result);
+        $expect = ';a === apple;o === orange;p === pear';
+        $this-&gt;assertTrue($result === $expect,
+            "iteration over default Zend_Session namespace failed; expecting result === '$expect', but got '$result'");
+
+        sleep(2); // long enough for things to expire (total of 6 seconds waiting, but expires in 5)
+        exec($script . "expireAll $id expireAll", $result);
+        $result = array_pop($result);
+        $this-&gt;assertTrue($result === '',
+            "iteration over default Zend_Session namespace failed; expecting result === '', but got '$result')");
+        session_start(); // resume artificially suspended session
+
+        // We could split this into a separate test, but actually, if anything leftover from above
+        // contaminates the tests below, that is also a bug that we want to know about.
+        $s = new Zend_Session_Namespace('expireGuava');
+        $s-&gt;setExpirationSeconds(5, 'g'); // now try to expire only 1 of the keys in the namespace
+        $s-&gt;g = 'guava';
+        $s-&gt;p = 'peach';
+        $s-&gt;p = 'plum';
+
+        session_write_close(); // release session so process below can use it
+        sleep(6); // not long enough for things to expire
+        exec($script . "expireAll $id expireGuava", $result);
+        $result = $this-&gt;sortResult($result);
+        session_start(); // resume artificially suspended session
+        $this-&gt;assertTrue($result === ';p === plum',
+            "iteration over named Zend_Session namespace failed (result=$result)");
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.session.basicusage.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.session.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.session.globalsessionmanagement.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">25.2. Базовое использование </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 25.4. Общее управление сессиями</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

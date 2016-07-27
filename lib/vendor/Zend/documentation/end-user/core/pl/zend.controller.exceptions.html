@@ -1,0 +1,358 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.8. Wyjątki MVC</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="prev" href="zend.controller.modular.html" title="7.7. Użycie konwencjonalnej modularnej struktury katalogów">
+<link rel="next" href="zend.controller.migration.html" title="7.9. Migracja z poprzednich wersji">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.controller.exceptions.html#zend.controller.exceptions.introduction" title="7.8.1. Wprowadzenie">
+<link rel="subsection" href="zend.controller.exceptions.html#zend.controller.exceptions.handling" title="7.8.2. W jaki sposób możesz obsługiwać wyjątki?">
+<link rel="subsection" href="zend.controller.exceptions.html#zend.controller.exceptions.internal" title="7.8.3. Wyjątki MVC które możesz napotkać">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.8. Wyjątki MVC</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.modular.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.migration.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.exceptions"></a>7.8. Wyjątki MVC</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.exceptions.introduction"></a>7.8.1. Wprowadzenie</h3></div></div></div>
+<p>
+            Komponenty MVC w Zend Framework używają kontrolera frontowego, co
+            oznacza, że wszystkie żądania do danej strony przechodzą przez
+            pojedynczy punkt. W rezultacie wszystkie wyjątki ostatecznie 
+            zbierane są w kontrolerze frontowym, pozwalając programiście na 
+            obsłużenie ich w jednym miejscu.
+        </p>
+<p>
+            Jakkolwiek, wiadomości o wyjątkach oraz informacje o backtrace 
+            często zawierają wrażliwe informacje o systemie, jak np. zapytania 
+            SQL, informacje o lokacjach plików i wiele innych. Aby pomóc ci 
+            chronić swój serwis, domyślnie Zend_Controller_Front łapie wszystkie 
+            wyjątki i rejestruje je w obiekcie odpowiedzi; z kolei, obiekt 
+            odpowiedzi domyślnie nie wyświetla wiadomości o wyjątkach.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.exceptions.handling"></a>7.8.2. W jaki sposób możesz obsługiwać wyjątki?</h3></div></div></div>
+<p>
+            Obecnie w komponentach MVC wbudowanych jest kilka mechanizmów
+            pozwalających na obsługę wyjątków
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>Zend_Controller_Front::throwExceptions()</p>
+<p>
+                    Przekazująć logiczną wartość true do tej metody, możesz 
+                    nakazać kontrolerowi frontowemu aby zamiast składować
+                    wyjątki w obiekcie odpowiedzi, wyrzucił je, żebyś mógł
+                    obsłużyć je samodzielnie. Na przykład:
+                </p>
+<pre class="programlisting">&lt;?php
+$front-&gt;throwExceptions(true);
+try {
+    $front-&gt;dispatch();
+} catch (Exception $e) {
+    // sam obsłuż wyjątki
+}
+</pre>
+<p>
+                    Ta metoda jest najprawdopodobniej najłatwiejszym sposobem
+                    dodania własnej obsługi wyjątków do twojej aplikacji 
+                    używającej kontrolera frontowego.
+                </p>
+</li>
+<li>
+<p>Zend_Controller_Response_Abstract::renderExceptions()</p>
+<p>
+                    Przekazując logiczną wartość true do tej metody, możesz
+                    nakazać obiektowi odpowiedzi aby renderował on wyjątki gdy
+                    sam będzie renderowany. W takim scenariuszu, każdy wyjątek
+                    wyrzucony w twojej aplikacji będzie wyświetlony. To jest 
+                    jedynie rekomendowane dla nieprodukcyjnych środowisk.
+                </p>
+</li>
+<li>
+<p>Zend_Controller_Front::returnResponse() oraz
+                    Zend_Controller_Response_Abstract::isException()</p>
+<p>
+                    Przekazanie wartości logicznej true do metody 
+                    Zend_Controller_Front::returnResponse(), spowoduje, że 
+                    obiekt Zend_Controller_Front::dispatch() nie będzie 
+                    renderował odpowiedzi, a zamiast tego ją zwróci. Gdy już
+                    masz odpowiedź, możesz sprawdzić czy są w niej wyjątki
+                    używając metody isException(), a następnie odebrać wyjątki
+                    używając metody getException(). Na przykład:
+                </p>
+<pre class="programlisting">&lt;?php
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+if ($response-&gt;isException()) {
+    $exceptions = $response-&gt;getException();
+    // obsługa wyjątków ...
+} else {
+    $response-&gt;sendHeaders();
+    $response-&gt;outputBody();
+}
+</pre>
+<p>
+                    Główną zaletą, dzięki której ta metoda umożliwia więcej niż
+                    Zend_Controller_Front::throwExceptions(), jest to, że możesz
+                    warunkowo wyświetlać odpowiedź po obsłudze wyjątków.
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.exceptions.internal"></a>7.8.3. Wyjątki MVC które możesz napotkać</h3></div></div></div>
+<p>
+            Różne komponenty MVC -- obiekt żądania, router, obiekt uruchamiający, 
+            kontrolery akcji, oraz obiekt odpowiedzi -- każdy może z różnych 
+            przyczyn wyrzucać wyjątki. Niektóre wyjątki mogą być warunkowo
+            nadpisane, a inne są używane aby wskazać programiście potrzebę
+            poprawienia aplikacji.
+        </p>
+<p>Kilka przykładów:</p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    Zend_Controller_Dispatcher::dispatch() domyślnie wyrzuci
+                    wyjątek jeśli zażądano nieprawidłowego kontrolera. Są dwa
+                    zalecane sposoby na obsłużenie tego:
+                </p>
+<div class="itemizedlist"><ul type="circle">
+<li>
+<p>Ustawienie parametru 'useDefaultControllerAlways'.</p>
+<p>
+                            W twoim kontrolerze frontowym, lub w obiekcie 
+                            uruchamiającym, dodaj poniższą dyrektywę:
+                        </p>
+<pre class="programlisting">&lt;?php
+$front-&gt;setParam('useDefaultControllerAlways', true);
+
+// lub
+$dispatcher-&gt;setParam('useDefaultControllerAlways', true);
+</pre>
+<p>
+                            Gdy ta flaga jest ustawiona, obiekt uruchamiający, 
+                            użyje domyślnego kontrolera oraz akcji zamiast
+                            wyrzucania wyjątku. Minusem użycia tej metody jest 
+                            to, że jakikolwiek błąd literowy w adresie 
+                            dostępowym do twojej strony spowoduje wyświetlenie
+                            strony głównej, co może źle wpłynąć na optymalizację
+                            serwisu dla wyszukiwarek internetowych.
+                        </p>
+</li>
+<li><p>
+                            Wyjątek wyrzucany przez metodę dispatch() jest
+                            wyjątkiem Zend_Controller_Dispatcher_Exception 
+                            zawierającym tekst 'Invalid controller specified'. 
+                            Użyj jednej z metod opisanych w <a href="zend.controller.exceptions.html#zend.controller.exceptions.handling" title="7.8.2. W jaki sposób możesz obsługiwać wyjątki?">Sekcja 7.8.2, „W jaki sposób możesz obsługiwać wyjątki?”</a> aby złapać wyjątek, a następnie 
+                            przekierować do strony błędu lub do strony głownej.
+                        </p></li>
+</ul></div>
+</li>
+<li>
+<p>
+                    Metoda Zend_Controller_Action::__call() wyrzuci wyjątek
+                    jeśli nie może uruchomić nieistniejącej metody akcji. 
+                    Najczęściej będziesz chciał użyć jakiejś domyślnej akcji
+                    w kontrolerze w tego typu sprawach. Przykładowe metody 
+                    za pomocą których możesz to osiśgnąć:
+                </p>
+<div class="itemizedlist"><ul type="circle">
+<li>
+<p>
+                            Rozszerzenie klasy Zend_Controller_Action i 
+                            nadpisanie metody __call(). Na przykład:
+                        </p>
+<pre class="programlisting">&lt;?php
+class My_Controller_Action extends Zend_Controller_Action
+{
+    public function __call($method, $args)
+    {
+        if ('Action' == substr($method, -6)) {
+            $controller = $this-&gt;getRequest()-&gt;getControllerName();
+            $url = '/' . $controller . '/index';
+            return $this-&gt;_redirect($url);
+        }
+
+        throw new Exception('Invalid method');
+    }
+}
+</pre>
+<p>
+                            Powyższa metoda przechwytuje wszystkie wywołane
+                            niezdefiniowane akcje i przekierowuje żądanie do 
+                            domyślnej akcji w kontrolerze.
+                        </p>
+</li>
+<li>
+<p>
+                            Rozszerzenie klasy Zend_Controller_Dispatcher o
+                            nadpisanie metody getAction(), ktora sprawdza czy
+                            akcja istnieje. Na przykład:
+                        </p>
+<pre class="programlisting">&lt;?php
+class My_Controller_Dispatcher extends Zend_Controller_Dispatcher
+{
+    public function getAction($request)
+    {
+        $action = $request-&gt;getActionName();
+        if (empty($action)) {
+            $action = $this-&gt;getDefaultAction();
+            $request-&gt;setActionName($action);
+            $action = $this-&gt;formatActionName($action);
+        } else {
+            $controller = $this-&gt;getController();
+            $action     = $this-&gt;formatActionName($action);
+            if (!method_exists($controller, $action)) {
+                $action = $this-&gt;getDefaultAction();
+                $request-&gt;setActionName($action);
+                $action = $this-&gt;formatActionName($action);
+            }
+        }
+
+        return $action;
+    }
+}
+</pre>
+<p>
+                            Powyższy kod sprawdza czy zażądana akcja istnieje w
+                            klasie kontrolera; jeśli nie, resetuje akcję do
+                            akcji domyślnej.
+                        </p>
+<p>
+                            Ta metoda jest wygodna ponieważ możesz w niewidoczny 
+                            sposób zmienić akcję przed ostatecznym uruchomieniem.
+                            Jednak to także oznacza, że jakikolwiek błąd literowy
+                            w adresie URL może wciąż uruchomić żądanie poprawnie,
+                            co nie jest zbyt dobre dla optymalizacji dla 
+                            wyszukiwarek internetowych.
+                        </p>
+</li>
+<li>
+<p>
+                            Użycie metody Zend_Controller_Action::preDispatch() 
+                            lub Zend_Controller_Plugin_Abstract::preDispatch() 
+                            do zidentyfikowania nieprawidłowych akcji.
+                        </p>
+<p>
+                            Rozszerzając klasę Zend_Controller_Action i
+                            modyfikując metodę preDispatch(), możesz 
+                            zmodyfikować wszystkie twoje kontrolery w taki 
+                            sposób, aby przenosiły one żądanie do innej akcji
+                            lub przekierowywały zamiast uruchamiać akcję.
+                            Kod wyglądałby podobnie kod nadpisujący metodę 
+                            __call(), który został przedstawiony wyżej.
+                        </p>
+<p>
+                            Alternatywnie, możesz sprawdzać te informacje we
+                            wtyczce globalnej. Zaletą tego rozwiązania jest to,
+                            że kontroler akcji staje się niezależny; jeśli twoja
+                            aplikacja składa się z różnorodnych kontrolerów 
+                            akcji i nie wszystkie dziedziczą z tej samej klasy, 
+                            ta metoda może dodać konsekwencji w obsłudze różnych
+                            klas.
+                        </p>
+<p>
+                            Przykład:
+                        </p>
+<pre class="programlisting">&lt;?php
+class My_Controller_PreDispatchPlugin extends Zend_Controller_Plugin_Abstract
+{
+    public function preDispatch(Zend_Controller_Request_Abstract $request)
+    {
+        $dispatcher = Zend_Controller_Front::getInstance()-&gt;getDispatcher();
+        $controller = $dispatcher-&gt;getController($request);
+        if (!$controller) {
+            $controller = $dispatcher-&gt;getDefaultControllerName($request);
+        }
+        $action     = $dispatcher-&gt;getAction($request);
+
+        if (!method_exists($controller, $action)) {
+            $defaultAction = $dispatcher-&gt;getDefaultAction();
+            $controllerName = $request-&gt;getControllerName();
+            $response = Zend_Controller_Front::getInstance()-&gt;getResponse();
+            $response-&gt;setRedirect('/' . $controllerName . '/' . $defaultAction);
+            $response-&gt;sendHeaders();
+            exit;
+        }
+    }
+}
+</pre>
+<p>
+                            W tym przykładzie sprawdzamy czy zażądana akcja 
+                            jest dostępna w kontrolerze. Jeśli nie, 
+                            przekierujemy żądanie do domyślnej akcji w 
+                            kontrolerze, i kończymy wykonywanie skryptu.
+                        </p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.modular.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.migration.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.7. Użycie konwencjonalnej modularnej struktury katalogów </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 7.9. Migracja z poprzednich wersji</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

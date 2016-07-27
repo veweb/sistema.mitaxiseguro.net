@@ -1,0 +1,393 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.8. Исключения</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="prev" href="zend.controller.modular.html" title="7.7. Модульная структуры директорий">
+<link rel="next" href="zend.controller.migration.html" title="7.9. Переход с предыдущих версий">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.controller.exceptions.html#zend.controller.exceptions.introduction" title="7.8.1. Введение">
+<link rel="subsection" href="zend.controller.exceptions.html#zend.controller.exceptions.handling" title="7.8.2. Как я могу обрабатывать исключения?">
+<link rel="subsection" href="zend.controller.exceptions.html#zend.controller.exceptions.internal" title="7.8.3. Исключения MVC">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.8. Исключения</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.modular.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.migration.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.exceptions"></a>7.8. Исключения</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.exceptions.introduction"></a>7.8.1. Введение</h3></div></div></div>
+<p>
+            Компоненты MVC в Zend Framework используют фронт-контроллер, это
+            означает, что все запросы к сайту будут проходить через единственную
+            точку входа. Как следствие, все исключения "всплывают" к
+            фронт-контроллеру, что позволяет разработчикам обрабатывать их в
+            одном месте.
+
+        </p>
+<p>
+            Сообщения исключений и данные обратной трассировки часто содержат
+            важную системную информацию, такую, как текст запросов SQL,
+            местонахождение файлов и т.п. Поэтому в целях защиты вашего сайта
+            Zend_Controller_Front по умолчанию отлавливает все исключения и
+            регистрирует их в объектах ответа; в свою очередь, объект ответа по
+            умолчанию не отображает сообщения исключений.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.exceptions.handling"></a>7.8.2. Как я могу обрабатывать исключения?</h3></div></div></div>
+<p>
+            В компоненты MVC уже встроено несколько механизмов, позволяющих
+            обрабатывать исключения.
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>Zend_Controller_Front::throwExceptions()</p>
+<p>
+                    Посредством передачи булевого значения <code class="code">true</code>
+                    этому методу, вы говорите фронт-контроллеру, что будете
+                    самостоятельно обрабатывать исключения вместо того, чтобы
+                    они скапливались в объекте ответа.
+
+                </p>
+<pre class="programlisting">&lt;?php
+$front-&gt;throwExceptions(true);
+try {
+    $front-&gt;dispatch();
+} catch (Exception $e) {
+    // сами обрабатываем исключения
+}
+</pre>
+<p>
+                    Этот метод может быть наиболее легким способом добавления
+                    своей обработки исключений в приложение.
+
+                </p>
+</li>
+<li>
+<p>Zend_Controller_Response_Abstract::renderExceptions()</p>
+<p>
+                    Посредством передачи булевого значения <code class="code">true</code>
+                    этому методу, вы говорите объекту ответа, что он должен
+                    вместе с заголовком и содержимым ответа выводить сообщения
+                    исключений и данные обратной трассировки. В этом случае
+                    любые исключения, сгенерированные вашим приложением, будут
+                    отображены пользователю. Это рекомендуется только для
+                    непроизводственной среды.                       
+
+                </p>
+</li>
+<li>
+<p>Zend_Controller_Front::returnResponse() и
+                    Zend_Controller_Response_Abstract::isException()</p>
+<p>
+                    После передачи булевого значения <code class="code">true</code> методу
+                    Zend_Controller_Front::returnResponse(), метод
+                    Zend_Controller_Front::dispatch() не будет выводить ответ, а
+                    возвращать его. Имея объект ответа, вы можете проверить,
+                    были ли отловлены исключения, используя его метод
+                    isException(), и извлекая их через метод getException().
+                    Например:
+
+                </p>
+<pre class="programlisting">&lt;?php
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+if ($response-&gt;isException()) {
+    $exceptions = $response-&gt;getException();
+    // обработка исключений ...
+} else {
+    $response-&gt;sendHeaders();
+    $response-&gt;outputBody();
+}
+</pre>
+<p>
+                    Основное преимущество этого метода по сравнению с
+                    Zend_Controller_Front::throwExceptions() состоит в том, что
+                    он позволяет управлять выводом ответа после обработки
+                    исключений.
+
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.exceptions.internal"></a>7.8.3. Исключения MVC</h3></div></div></div>
+<p>
+            Различные компоненты MVC - объекты запросов, маршрутизаторов,
+            диспетчеров, контроллеров действий, ответов могут генерировать свои
+            исключения. Одни исключения при определенных условиях могут быть
+            переопределены, другие используются для указания на то, что
+            структура приложения, возможно, нуждается в рассмотрении.
+
+        </p>
+<p>Например:</p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    Zend_Controller_Dispatcher::dispatch() по умолчанию будет
+                    генерировать исключение, если запрошен неправильный
+                    контроллер. Есть два способа решения этой проблемы:
+
+                </p>
+<div class="itemizedlist"><ul type="circle">
+<li>
+<p>
+                            Установить параметр 'useDefaultControllerAlways'.
+
+                        </p>
+<p>
+                            Добавьте в своем фронт-контроллере или диспетчере
+                            следующую директиву:
+
+                        </p>
+<pre class="programlisting">&lt;?php
+$front-&gt;setParam('useDefaultControllerAlways', true);
+
+// или
+$dispatcher-&gt;setParam('useDefaultControllerAlways', true);
+</pre>
+<p>
+                            Когда этот флаг установлен, то диспетчер будет
+                            использовать контроллер и действие приятые по
+                            умолчанию вместо генерации исключения. Недостаток
+                            этого метода состоит в том, что на любые опечатки
+                            посетителя вашего сайта будет выводиться ваша 
+                            главная страница, что может нанести вред в плане
+                            поисковой оптимизации сайта.
+
+                        </p>
+</li>
+<li><p>
+                            Исключение, генерируемое методом dispatch(),
+                            является экземпляром класса
+                            Zend_Controller_Dispatcher_Exception, содержащим
+                            текст 'Invalid controller specified'. Используйте
+                            один из методов, описанных в <a href="zend.controller.exceptions.html#zend.controller.exceptions.handling" title="7.8.2. Как я могу обрабатывать исключения?">Раздел 7.8.2, «Как я могу обрабатывать исключения?»</a>
+                            для отлова исключений и перенаправления на страницу
+                            с сообщением об ошибке или главную страницу.
+
+                        </p></li>
+</ul></div>
+</li>
+<li>
+<p>
+                    Zend_Controller_Action::__call() будет генерировать
+                    исключение, если в классе контроллера нет метода,
+                    соответствующего запрошенному действию. Весьма вероятно, что
+                    вы захотите, чтобы в этом случае в контроллере вызывалось
+                    действие по умолчанию. Вот способы достичь этого:
+
+                </p>
+<div class="itemizedlist"><ul type="circle">
+<li>
+<p>
+                            Создать подкласс Zend_Controller_Action и
+                            переопределить в нем метод Zend_Controller_Action.
+                            Например:
+
+                        </p>
+<pre class="programlisting">&lt;?php
+class My_Controller_Action extends Zend_Controller_Action
+{
+    public function __call($method, $args)
+    {
+        if ('Action' == substr($method, -6)) {
+            $controller = $this-&gt;getRequest()-&gt;getControllerName();
+            $url = '/' . $controller . '/index';
+            return $this-&gt;_redirect($url);
+        }
+
+        throw new Exception('Invalid method');
+    }
+}
+</pre>
+<p>
+                            Пример выше перехватывает любые вызовы
+                            несуществующих методов действий и перенаправляет их
+                            на действие по умолчанию в контроллере.
+
+                        </p>
+</li>
+<li>
+<p>
+                            Создать подкласс Zend_Controller_Dispatcher и
+                            переопределить в нем метод getAction() так, чтобы
+                            он производил проверку того, существует ли
+                            запрошенное действие. Например:
+
+                        </p>
+<pre class="programlisting">&lt;?php
+class My_Controller_Dispatcher extends Zend_Controller_Dispatcher
+{
+    public function getAction($request)
+    {
+        $action = $request-&gt;getActionName();
+        if (empty($action)) {
+            $action = $this-&gt;getDefaultAction();
+            $request-&gt;setActionName($action);
+            $action = $this-&gt;formatActionName($action);
+        } else {
+            $controller = $this-&gt;getController();
+            $action     = $this-&gt;formatActionName($action);
+            if (!method_exists($controller, $action)) {
+                $action = $this-&gt;getDefaultAction();
+                $request-&gt;setActionName($action);
+                $action = $this-&gt;formatActionName($action);
+            }
+        }
+
+        return $action;
+    }
+}
+</pre>
+<p>
+                            Код выше проверяет существование запрошенного
+                            действия в классе контроллере; если это действие не
+                            существует, то оно заменяетя на действие по
+                            умолчанию.
+
+                        </p>
+<p>
+                            Этот способ хорош тем, что можно прозрачно заменить
+                            действие до финальной диспетчеризации. Тем не менее,
+                            он также подразумевает, что опечатки в URL могут
+                            обрабатываться как корректные, что не хорошо с точки
+                            зрения поисковой оптимизации.
+
+                        </p>
+</li>
+<li>
+<p>
+                            Использовать Zend_Controller_Action::preDispatch()
+                            или Zend_Controller_Plugin_Abstract::preDispatch()
+                            для определения ошибочно запрошенных действий.
+
+                        </p>
+<p>
+                            Создав подкласс Zend_Controller_Action и
+                            модифицировав preDispatch(), вы можете изменить все
+                            свои контроллеры так, чтобы они перенаправляли
+                            (forward) к другому действию или производили
+                            HTTP-перенаправление прежде действительной
+                            обработки действия. Код для этого выглядит подобно
+                            тому, что был приведен выше, с переопределением
+                            __call().
+
+                        </p>
+<p>
+                            Альтернативно, вы можете производить эту проверку в
+                            общем плагине. Преимущество этого подхода состоит в
+                            независимости действий контроллеров. Если ваше
+                            приложение содержит различные контроллеры действий и
+                            не все из них наследуют от одного и того же класса,
+                            то этот метод может обеспечить единнобразие в                            
+                            обработке различных классов.
+
+                        </p>
+<p>
+                            Например:
+
+                        </p>
+<pre class="programlisting">&lt;?php
+class My_Controller_PreDispatchPlugin extends Zend_Controller_Plugin_Abstract
+{
+    public function preDispatch(Zend_Controller_Request_Abstract $request)
+    {
+        $dispatcher = Zend_Controller_Front::getInstance()-&gt;getDispatcher();
+        $controller = $dispatcher-&gt;getController($request);
+        if (!$controller) {
+            $controller = $dispatcher-&gt;getDefaultControllerName($request);
+        }
+        $action     = $dispatcher-&gt;getAction($request);
+
+        if (!method_exists($controller, $action)) {
+            $defaultAction = $dispatcher-&gt;getDefaultAction();
+            $controllerName = $request-&gt;getControllerName();
+            $response = Zend_Controller_Front::getInstance()-&gt;getResponse();
+            $response-&gt;setRedirect('/' . $controllerName . '/' . $defaultAction);
+            $response-&gt;sendHeaders();
+            exit;
+        }
+    }
+}
+</pre>
+<p>
+                            В этом примере мы проверяем, доступно ли в
+                            контроллере запрошенное действие. Если нет, то
+                            производится перенаправление к действию по умолчанию
+                            в этом контроллере и выполнение скрипта завершается
+                            сразу же.
+
+                        </p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.modular.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.migration.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.7. Модульная структуры директорий </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 7.9. Переход с предыдущих версий</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

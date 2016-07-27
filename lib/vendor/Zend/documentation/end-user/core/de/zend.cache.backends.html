@@ -1,0 +1,317 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.4. Zend_Cache Backends</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="prev" href="zend.cache.frontends.html" title="4.3. Zend_Cache Frontends">
+<link rel="next" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="subsection" href="zend.cache.backends.html#zend.cache.backends.file" title="4.4.1. Zend_Cache_Backend_File">
+<link rel="subsection" href="zend.cache.backends.html#zend.cache.backends.sqlite" title="4.4.2. Zend_Cache_Backend_Sqlite">
+<link rel="subsection" href="zend.cache.backends.html#zend.cache.backends.memcached" title="4.4.3. Zend_Cache_Backend_Memcached">
+<link rel="subsection" href="zend.cache.backends.html#zend.cache.backends.apc" title="4.4.4. Zend_Cache_Backend_APC">
+<link rel="subsection" href="zend.cache.backends.html#zend.cache.backends.platform" title="4.4.5. Zend_Cache_Backend_ZendPlatform">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.4. Zend_Cache Backends</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.cache.frontends.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 4. Zend_Cache</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.backends"></a>4.4. Zend_Cache Backends</h2></div></div></div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.backends.file"></a>4.4.1. Zend_Cache_Backend_File</h3></div></div></div>
+<p>
+            Dieses Backend speichert Cache Datensätze in Dateien (in einem gewählten Verzeichnis).
+        </p>
+<p>
+            Mögliche Optionen sind :
+        </p>
+<div class="table">
+<a name="id4791388"></a><p class="title"><b>Tabelle 4.6. Mögliche Optionen</b></p>
+<table summary="Mögliche Optionen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Option</th>
+<th>Daten Typ</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">cacheDir</code></td>
+<td><code class="code">string</code></td>
+<td><code class="code">'/tmp/'</code></td>
+<td>
+                              Verzeichnis, in dem die Cache Dateien gespeichert werden
+                          </td>
+</tr>
+<tr>
+<td><code class="code">fileLocking</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                            Ein- / Ausschalten von fileLocking: kann die Beschädigung des Caches
+                            unter schlechten Bedingungen verhindern, aber es hilft nicht bei
+                            Multithreaded Webservern oder bei NFS Filesystemen...
+                          </td>
+</tr>
+<tr>
+<td><code class="code">readControl</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                            Ein- / Ausschalten von readControl: eingeschaltet wird ein Kontrollschlüssel
+                            im Cache File inkludiert und dieser Schlüssel wird mit dem Schlüssel 
+                            verglichen, der nach dem Lesen berechnet wird.
+                          </td>
+</tr>
+<tr>
+<td><code class="code">readControlType</code></td>
+<td><code class="code">string</code></td>
+<td><code class="code">'crc32'</code></td>
+<td>
+                            Typ der Schreibkontrolle (nur wenn readControl eingeschaltet ist).
+                            Mögliche Werte sind :
+                            'md5' (bestes, aber am Langsamsten), 'crc32' (etwas weniger sicher, aber schneller, beste
+                            Wahl), 'strlen' um nur die Länge zu testen (schnellstes).
+                        </td>
+</tr>
+<tr>
+<td><code class="code">hashedDirectoryLevel</code></td>
+<td><code class="code">int</code></td>
+<td><code class="code">0</code></td>
+<td>
+                             Level der gehashten Verzeichnis Struktur: 0 heißt "keine gehashte 
+                             Verzeichnis Strutur, 1 heißt "ein Level von Verzeichnissen", 2 heißt
+                             "zwei Levels"...
+                             Diese Option kann den Cache nur dann schneller machen, wenn viele Tausende
+                             Cache Dateien verwendet werden. Nur spezielle Messungen können helfen, den perfekten
+                             Wert zu finden. Möglicherweise ist 1 oder 2 ein guter Anfang.
+                          </td>
+</tr>
+<tr>
+<td><code class="code">hashedDirectoryUmask</code></td>
+<td><code class="code">int</code></td>
+<td><code class="code">0700</code></td>
+<td>
+                              Umask für die gehashte Verzeichnis Struktur
+                        </td>
+</tr>
+<tr>
+<td><code class="code">fileNamePrefix</code></td>
+<td><code class="code">string</code></td>
+<td><code class="code">'zend_cache'</code></td>
+<td>
+                          	Präfix für Cache Dateien; man muss mit dieser Option sehr vorsichtig 
+                          	umgehen, weil ein zu generischer Wert in einem System Cache Verzeichnis
+                          	(wie /tmp) kann beim Löschen des Caches zu großen Problemen führen.
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.backends.sqlite"></a>4.4.2. Zend_Cache_Backend_Sqlite</h3></div></div></div>
+<p>
+            Dieses Backend speichert die Cache Datensätze in einer SQLite Datenbank.
+        </p>
+<p>
+            Mögliche Optionen sind :
+        </p>
+<div class="table">
+<a name="id4792259"></a><p class="title"><b>Tabelle 4.7. Mögliche Optionen</b></p>
+<table summary="Mögliche Optionen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Option</th>
+<th>Daten Typ</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">cacheDBCompletePath (mandatory)</code></td>
+<td><code class="code">string</code></td>
+<td><code class="code">null</code></td>
+<td>
+                              Der komplette Pfad (inklusive Dateiname) der SQLite Datenbank
+                          </td>
+</tr>
+<tr>
+<td><code class="code">automaticVacuumFactor</code></td>
+<td><code class="code">int</code></td>
+<td><code class="code">10</code></td>
+<td>
+                              Deaktiviere / stelle den automatischen Vakuumprozess ein.
+                              Der automatische Vakuumprozess defragmentiert die Datenbankdatei (und
+                              verkleinert sie) wenn clean() oder delete() aufgerufen wird:
+                              0 bedeutet kein automatisches Vakuum;
+                              1 bedeutet systematisches Vakuum (wenn die delete() or clean() Methoden aufgerufen werden;
+                              x (integer) &gt; 1 =&gt; automatisches Vakuum zufällig einmal pro x clean() oder delete() Aufrufe.
+                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.backends.memcached"></a>4.4.3. Zend_Cache_Backend_Memcached</h3></div></div></div>
+<p>
+            Dieses Backend speichert Cache Datensätze in einem Memcache Server. <a href="http://www.danga.com/memcached/" target="_top">memcached</a>
+            ist ein hoch-performantes, verteiltes Speicher Objekt Caching System. Um dieses Backend zu benutzen,
+            wird ein Memcached Dämon benötigt und <a href="http://pecl.php.net/package/memcache" target="_top">die memcache PECL Erweiterung</a>.
+        </p>
+<p>
+        	Vorsicht: mit diesem Backend werden zur Zeit "Marker" nicht unterstützt genauso wie das
+        	"doNotTestCacheValidity=true" Argument.
+        </p>
+<p>
+            Mögliche Optionen sind :
+        </p>
+<div class="table">
+<a name="id4792400"></a><p class="title"><b>Tabelle 4.8. Mögliche Optionen</b></p>
+<table summary="Mögliche Optionen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Option</th>
+<th>Daten Typ</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">servers</code></td>
+<td><code class="code">array</code></td>
+<td><code class="code">array(array('host' =&gt; 'localhost','port' =&gt; 11211, 'persistent' =&gt; true))</code></td>
+<td>
+                              Ein Array von Memcached Servern; jeder Memcached Server wird durch ein
+                              assoziatives Array beschrieben :
+                              'host' =&gt; (string) : Der Name des Memcached Servers, 
+                              'port' =&gt; (int) : Der Port des Memcached Servers, 
+                              'persistent' =&gt; (bool) : Persistente Verbindungen für diesen Memcached Server verwenden oder nicht
+                          </td>
+</tr>
+<tr>
+<td><code class="code">compression</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">flase</code></td>
+<td>
+                             true wenn on-the-fly Kompression verwendet werden soll
+                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.backends.apc"></a>4.4.4. Zend_Cache_Backend_APC</h3></div></div></div>
+<p>
+            Dieses Backend speichert Cache Datensätze im Shared Memory durch die 
+            <a href="http://pecl.php.net/package/APC" target="_top">APC</a> (Alternativer PHP Cache) Erweiterung
+            (welche natürlich für die Verwendung dieses Backends benötigt wird).
+        </p>
+<p>
+        	Vorsicht: mit diesem Backend werden "Marker" zur Zeit nicht unterstützt genauso wie das
+        	"doNotTestCacheValidity=true" Argument.
+        </p>
+<p>
+            Es gibt keine Optionen für dieses Backend.
+        </p>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.backends.platform"></a>4.4.5. Zend_Cache_Backend_ZendPlatform</h3></div></div></div>
+<p>
+            Dieses Backend verwendet die Content Caching API des 
+            <a href="http://www.zend.com/products/platform" target="_top">Zend Platform</a> Produktes. 
+            Natürlich muss man die Zend Platform installiert haben, um dieses Backend verwenden zu 
+			können.
+        </p>
+<p>
+			Dieses Backend unterstützt Tags, aber nicht den <code class="code">CLEANING_MODE_NOT_MATCHING_TAG</code> 
+			Löschmodus.
+        </p>
+<p>
+            Es gibt keine Optionen für dieses Backend.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.cache.frontends.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.cache.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.3. Zend_Cache Frontends </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> Kapitel 5. Zend_Config</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

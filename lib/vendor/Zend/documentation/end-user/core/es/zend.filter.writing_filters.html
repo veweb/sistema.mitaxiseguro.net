@@ -1,0 +1,114 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>11.3. Writing Filters</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guía de Referencia del Programador">
+<link rel="up" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="prev" href="zend.filter.filter_chains.html" title="11.2. Filter Chains">
+<link rel="next" href="zend.filter.input.html" title="11.4. Zend_Filter_Input">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">11.3. Writing Filters</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.filter.filter_chains.html">Prev</a> </td>
+<th width="60%" align="center">Chapter 11. Zend_Filter</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.filter.input.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.filter.writing_filters"></a>11.3. Writing Filters</h2></div></div></div>
+<p>
+        Zend_Filter supplies a set of commonly needed filters, but developers will often need to write custom
+        filters for their particular use cases. The task of writing a custom filter is facilitated by
+        implementing <code class="code">Zend_Filter_Interface</code>.
+    </p>
+<p>
+        <code class="code">Zend_Filter_Interface</code> defines a single method, <code class="code">filter()</code>, that may be
+        implemented by user classes. An object that implements this interface may be added to a filter chain
+        with <code class="code">Zend_Filter::addFilter()</code>.
+    </p>
+<p>
+        The following example demonstrates how to write a custom filter:
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Filter/Interface.php';
+
+class MyFilter implements Zend_Filter_Interface
+{
+    public function filter($value)
+    {
+        // perform some transformation upon $value to arrive on $valueFiltered
+
+        return $valueFiltered;
+    }
+}</pre>
+<p>
+
+    </p>
+<p>
+        To add an instance of the above filter to a filter chain:
+
+        </p>
+<pre class="programlisting">&lt;?php
+$filterChain = new Zend_Filter();
+$filterChain-&gt;addFilter(new MyFilter());</pre>
+<p>
+
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.filter.filter_chains.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.filter.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.filter.input.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">11.2. Filter Chains </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 11.4. Zend_Filter_Input</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

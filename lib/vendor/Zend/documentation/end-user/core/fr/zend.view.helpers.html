@@ -1,0 +1,288 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>28.4. Aides pour la vue</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="prev" href="zend.view.scripts.html" title="28.3. Scripts de vue">
+<link rel="next" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.view.helpers.html#zend.view.helpers.initial" title="28.4.1. Aides initiales">
+<link rel="subsection" href="zend.view.helpers.html#zend.view.helpers.paths" title="28.4.2. Chemin des aides">
+<link rel="subsection" href="zend.view.helpers.html#zend.view.helpers.custom" title="28.4.3. Ecrire des aides personnalisées">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">28.4. Aides pour la vue</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.view.scripts.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 28. Zend_View</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.xmlrpc.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.helpers"></a>28.4. Aides pour la vue</h2></div></div></div>
+<p>
+        Dans vos scripts de vue, il est souvent nécessaire d'effectuer certaines actions complexe encore et encore;
+        i.e formatter une date, générer des éléments de formulaire, afficher des liens d'action. Vous pouvez utiliser
+        des classes d'aide pour effectuer ce genre de tâches.
+    </p>
+<p>
+        Pour utiliser une aide dans votre script de vue, appelez le en utilisant <code class="code">$this-&gt;helperName()</code>.
+        Dans les coulisses, <code class="code">Zend_View</code> va charger la classe <code class="code">Zend_View</code>_Helper_HelperName, créer
+        une instance de cet objet, et appeler sa méthode <code class="code">helperName()</code>. L'instance de l'objet est persistance
+        dans l'instance de <code class="code">Zend_View</code>, et est réutilisée pour tout les appels futur à <code class="code">$this-&gt;helperName()</code>.
+    </p>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.helpers.initial"></a>28.4.1. Aides initiales</h3></div></div></div>
+<p>
+            <code class="code">Zend_View</code> fournit avec un jeu de claisses d'aides initial, tout sont liées à la
+            génération d'éléments de formulaire. Chacune affiche et échappe l'élement voulu :
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                formButton($name, $value, $attribs): Crée un élément &lt;input type="button" /&gt;
+            </p></li>
+<li><p>
+                formCheckbox($name, $value, $attribs, $options): Crée une élément &lt;input type="checkbox" /&gt; .
+                Le paramètre $options est un tableau dans lequel la première valeur est la valeur "checked",
+                et la seconde "unchecked" (les défauts sont '1' et '0'). Si $value correspond à la valeur
+                "checked", la boite sera cochée.
+            </p></li>
+<li><p>
+                formFile($name, $value, $attribs): Crée un élément &lt;input type="file" /&gt;
+            </p></li>
+<li><p>
+                formHidden($name, $value, $attribs): Crée un élément &lt;input type="hidden" /&gt; .
+            </p></li>
+<li><p>
+                formPassword($name, $value, $attribs): Crée un élément &lt;input type="password" /&gt; .
+            </p></li>
+<li><p>
+                formRadio($name, $value, $attribs, $options): Crée une série d'éléments &lt;input type="button" /&gt;,
+                une pour chaque element $options. Dans le tableau $options, la clé de l'élément est la valeur de la radio,
+                et la valeur de l'élément est l'étiquette de la radio.
+                La radio $value sera précoché pour vous.
+            </p></li>
+<li><p>
+                formReset($name, $value, $attribs): Crée un élément &lt;input type="reset" /&gt; .
+            </p></li>
+<li><p>
+                formSelect($name, $value, $attribs, $options): Crée un bloc &lt;select&gt;...&lt;/select&gt; ,
+                avec une &lt;option&gt; pour chaque élément $options. Dans le tableau $options, la clé de l'élément
+                est la valeur de l'option, et la valeur de l'élément est sont étiquette optionnelle. L'option (ou les options)
+                $value sera (ou seront) présélectionnées pour vous.
+            </p></li>
+<li><p>
+                formSubmit($name, $value, $attribs): Crée un élément &lt;input type="submit" /&gt; .
+            </p></li>
+<li><p>
+                formText($name, $value, $attribs): Crée un élément &lt;input type="text" /&gt; .
+            </p></li>
+<li><p>
+                formTextarea($name, $value, $attribs): Crée un bloc &lt;textarea&gt;...&lt;/textarea&gt;
+            </p></li>
+</ul></div>
+<p>
+            Les utiliser dans vos script de vue est très simple, voici un exemple.
+            Notez que tout ce dont vous avez besoin, c'est de les appeler; elles vont
+            se charger et s'instantier elle-même si besoin est.
+        </p>
+<pre class="programlisting">&lt;?php
+// dans votre script de vue, $this se réfèrre à l'instance de Zend_View.
+//
+// Partons du principe que vous avez déjà assigné une série d'options de sélect dans un
+// tableau $countries =  array('us' =&gt; 'United States', 'il' =&gt; 'Israel', 'de' =&gt; 'Germany').
+?&gt;
+&lt;form action="action.php" method="post"&gt;
+    &lt;p&gt;&lt;label&gt;Votre email :
+        &lt;?php echo $this-&gt;formText('email', 'you@example.com', array('size' =&gt; 32)) ?&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Votre pays :
+        &lt;?php echo $this-&gt;formSelect('country', 'us', null, $this-&gt;countries) ?&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;??? Would you like to opt in ???
+        &lt;?php echo $this-&gt;formCheckbox('opt_in', 'yes', null, array('yes', 'no')) ?&gt;
+    &lt;/label&gt;&lt;/p&gt;
+&lt;/form&gt;
+        </pre>
+<p>
+            La sortie résultante du script de vue ressemblera à ceci:
+        </p>
+<pre class="programlisting">&lt;form action="action.php" method="post"&gt;
+    &lt;p&gt;&lt;label&gt;Votre email :
+        &lt;input type="text" name="email" value="you@example.com" size="32" /&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Votre pays :
+        &lt;select name="country"&gt;
+            &lt;option value="us" selected="selected"&gt;United States&lt;/option&gt;
+            &lt;option value="il"&gt;Israel&lt;/option&gt;
+            &lt;option value="de"&gt;Germany&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Would you like to opt in?
+        &lt;input type="hidden" name="opt_in" value="no" /&gt;
+        &lt;input type="checkbox" name="opt_in" value="yes" checked="checked" /&gt;
+    &lt;/label&gt;&lt;/p&gt;
+&lt;/form&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.helpers.paths"></a>28.4.2. Chemin des aides</h3></div></div></div>
+<p>
+            Comme pour les scripts de vue, votre contrôleur peut spécifier une pile de chemins
+            dans lesquels <code class="code">Zend_View</code> cherchera les classes d'aides. Par défaut, <code class="code">Zend_View</code>
+            cherche dans "Zend/View/Helper/*" . Vous pouvez dire à <code class="code">Zend_View</code> de regarder dans
+            d'autres endroits en utilisant les méthodes <code class="code">setHelperPath()</code> et <code class="code">addHelperPath()</code>.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;setHelperPath('/chemin/vers/plus/de/classes/d-aides');
+?&gt;
+        </pre>
+<p>
+            En fait, vous pouvez "empiler" les chemins en utilisant la méthode <code class="code">addHelperPath()</code>
+            Comme vous ajouter des chemins dans la pile, <code class="code">Zend_View</code> va regarder dans le chemin le plus
+            récemment ajouté, pour inclure la classe d'aide. Cela vous permet d'ajouter (ou bien de re-définir) la
+            distribution initiale des aides, avec vos propes aides personnalisées.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;addHelperPath('/chemin/vers/des/aides');
+$view-&gt;addHelperPath('/autre/chemin/vers/des/aides');
+
+// maintenant, lorsque vous appelerez $this-&gt;helperName(), Zend_View
+// va rechercher en premier /chemin/vers/des/aides/HelperName.php, et ensuite dans
+// /autre/chemin/vers/des/aides/HelperName.php, et finalement dans
+// Zend/View/Helpers/HelperName.php
+
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.helpers.custom"></a>28.4.3. Ecrire des aides personnalisées</h3></div></div></div>
+<p>
+            Ecrire des aides personnalisées est facile, vous devez juste suivre ces règle :
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                Le nom de la classe doit être <code class="code">Zend_View</code>_Helper_*, où * est
+                le nom de l'aide. I.e, si vous voulez écrire une aide appelée "actionSpeciale",
+                le nom de la classe sera "<code class="code">Zend_View</code>_Helper_ActionSpecial"
+                (notez le changement de casse).
+            </p></li>
+<li><p>
+                La classe doit avoir une méthode publique dont le nom correspond au nom de l'aide;
+                c'est la méthode qui sera appelé quand votre template appellera "$this-&gt;actionSpeciale()".
+                Dans notre exemple "$this-&gt;actionSpeciale()", la déclaration de méthode requise serait
+                "public function actionSpeciale()".
+            </p></li>
+<li><p>
+                En général, la classe ne devrait pas afficher directement les données (via echo ou print).
+                Elle devrait retourner les valeurs pour être ensuite affichées. Les valeurs retournées devrait
+                être échappées de façon appropriées.
+            </p></li>
+<li><p>
+                La classe doit être dans un fichier ayant le même nom que la méthode d'aide.
+                Si on utilise la méthode "actionSpeciale()", le fichier devra être nommé
+                "ActionSpeciale.php"
+            </p></li>
+</ul></div>
+<p>
+            Placez les fichier de classe d'aide quelque part dans la pile des chemins d'aide, et
+            <code class="code">Zend_View</code> le chargera, l'instantiera, le rendre persistant, et l'exécutera automatiquement
+            pour vous.
+        </p>
+<p>
+            Voici un exemple du fichier "ActionSpeciale.php" :
+        </p>
+<pre class="programlisting">&lt;?php
+class Zend_View_Helper_ActionSpeciale {
+    protected $_count = 0;
+    public function actionSpeciale()
+    {
+        $this-&gt;_count++;
+        $output = "J'ai vu 'The Big Lebowsky' {$this-&gt;_count} foi(s).";
+        return htmlspecialchars($output);
+    }
+}
+?&gt;
+        </pre>
+<p>
+            Ensuite, dans un script de vue, vous pouvez appeler l'aide <code class="code">ActionSpeciale</code>
+            autant de fois que vous le souhaitez; elle sera instantiée une fois, et rendue persistante pendant
+            toute la vie de l'instance de <code class="code">Zend_View</code>.
+        </p>
+<pre class="programlisting">&lt;?php
+// rappelez vous, $this se réfèrre à l'instance de Zend_View
+echo $this-&gt;actionSpeciale();
+echo $this-&gt;actionSpeciale();
+echo $this-&gt;actionSpeciale();
+?&gt;
+        </pre>
+<p>
+            La sortie pourrait alors ressemble à ceci :
+        </p>
+<pre class="programlisting">
+J'ai vu 'The Big Lebowsky' 1 foi(s).
+J'ai vu 'The Big Lebowsky' 2 foi(s).
+J'ai vu 'The Big Lebowsky' 3 foi(s).
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.view.scripts.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.view.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.xmlrpc.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">28.3. Scripts de vue </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> Chapitre 29. Zend_XmlRpc</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.3. Zend_Db_Select</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="prev" href="zend.db.profiler.html" title="9.2. Zend_Db_Profiler">
+<link rel="next" href="zend.db.table.html" title="9.4. Zend_Db_Table">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.introduction" title="9.3.1. Introdução">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.fromcols" title="9.3.2. Colunas de uma Tabela (usando FROM)">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.joincols" title="9.3.3. Colunas de Tabelas (usando JOIN)">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.where" title="9.3.4. Condições WHERE">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.group" title="9.3.5. Cláusula GROUP BY">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.having" title="9.3.6. Condição HAVING">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.order" title="9.3.7. Cláusula ORDER BY">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.limit" title="9.3.8. LIMIT usando Count e Offset">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.paging" title="9.3.9. LIMIT usando Page e Count">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.3. Zend_Db_Select</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.profiler.html">Anterior</a> </td>
+<th width="60%" align="center">Capítulo 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.table.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.select"></a>9.3. Zend_Db_Select</h2></div></div></div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.introduction"></a>9.3.1. Introdução</h3></div></div></div>
+<p>
+            Zend_Db_Select é uma ferramenta para construir instruções SQL SELECT 
+            independentemente do banco de dados utilizado.  Obviamente isso não pode 
+			ser perfeito, mas é um avanço para ajudar a fazer consultas 
+            portáveis entre banco de dados diferentes.  Adicionalmente, ele ajuda
+            a proteger suas consultas contra ataques de SQL injection.
+        </p>
+<p>
+            A maneira mais fácil de criar uma instância de Zend_Db_Select é usar o método
+            Zend_Db_Adapter::select().
+        </p>
+<pre class="programlisting">&lt;?php
+	
+require_once 'Zend/Db.php';
+
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('pdoMysql', $params);
+
+$select = $db-&gt;select();
+// $select é agora um objeto Zend_Db_Select_PdoMysql
+
+?&gt;</pre>
+<p>
+            Então você constrói uma consulta SELECT usando o objeto e seus
+            métodos, e em seguida gera uma string para devolver ao Zend_Db_Adapter
+            para consultas ou buscas.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// SELECT *
+//     FROM round_table
+//     WHERE noble_title = "Sir"
+//     ORDER BY first_name
+//     LIMIT 10 OFFSET 20
+//
+
+// você pode usar um estilo iterativo...
+$select-&gt;from('round_table', '*');
+$select-&gt;where('noble_title = ?', 'Sir');
+$select-&gt;order('first_name');
+$select-&gt;limit(10,20);
+
+// ...ou um estilo "fluente":
+$select-&gt;from('round_table', '*')
+       -&gt;where('noble_title = ?', 'Sir')
+       -&gt;order('first_name')
+       -&gt;limit(10,20);
+
+// de um modo ou de outro, busque os resultados
+$sql = $select-&gt;__toString();
+$result = $db-&gt;fetchAll($sql);
+
+// alternativamente, você pode passar o objeto $select;
+// Zend_Db_Adapter é esperto o suficiente para chamar __toString() nos
+// objetos Zend_Db_Select para pegar a string de consulta.
+$result = $db-&gt;fetchAll($select);
+
+?&gt;</pre>
+<p>
+            Você também pode usar parâmetros vinculados nas suas consultas em vez de
+            adicionar aspas a cada método.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// SELECT *
+//     FROM round_table
+//     WHERE noble_title = "Sir"
+//     ORDER BY first_name
+//     LIMIT 10 OFFSET 20
+//
+
+$select-&gt;from('round_table', '*')
+       -&gt;where('noble_title = :title')
+       -&gt;order('first_name')
+       -&gt;limit(10,20);
+
+// de um modo ou de outro, busque os resultados usando os parãmetros vinculados
+$params = array('title' =&gt; 'Sir');
+$result = $db-&gt;fetchAll($select, $params);
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.fromcols"></a>9.3.2. Colunas de uma Tabela (usando FROM)</h3></div></div></div>
+<p>
+            Para selecionar colunas de uma tabela específica, use o método from(),
+            specificando a tabela e as colunas que você quer.  Você pode
+			usar apelidos para a tabela e para colunas, e você pode usar from() 
+			quantas vezes precisar.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// crie um objeto $db, usando Mysql como o adaptador.
+$select = $db-&gt;select();
+
+// SELECT a, b, c FROM some_table
+$select-&gt;from('some_table', 'a, b, c');
+// equivalente:
+$select-&gt;from('some_table', array('a', 'b', 'c');
+
+// SELECT bar.col FROM foo AS bar
+$select-&gt;from('foo AS bar', 'bar.col');
+
+// SELECT foo.col AS col1, bar.col AS col2 FROM foo, bar
+$select-&gt;from('foo', 'foo.col AS col1');
+$select-&gt;from('bar', 'bar.col AS col2');
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.joincols"></a>9.3.3. Colunas de Tabelas (usando JOIN)</h3></div></div></div>
+<p>
+            Para selecionar colunas usando tabelas unidas, use o método join().
+            Primeiro passe o nome da tabela que se unirá, então a condição da união,
+            e finalmente as colunas que você quer unir.  Você pode usar
+            join() quantas vezes precisar.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// crie um objeto $db, usando Mysql como adaptador.
+$select = $db-&gt;select();
+
+//
+// SELECT foo.*, bar.*
+//     FROM foo
+//     JOIN bar ON foo.id = bar.id
+//
+$select-&gt;from('foo', '*');
+$select-&gt;join('bar', 'foo.id = bar.id', '*');
+
+?&gt;</pre>
+<p>
+            No momento, apenas a sintaxe de JOIN é suportada; não LEFT JOINs,
+            RIGHT JOINs, etc.  Versões futuras vão suportar estas operações de
+            um modo independente de bancos de dados.
+        </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.where"></a>9.3.4. Condições WHERE</h3></div></div></div>
+<p>
+            Para adicionar condições WHERE, use o método where().  Você pode
+            passar uma string regular, ou uma string com um ponto de interrogação
+			marcando um espaço reservado e um valor para adicionar aspas nela
+            (o valor receberá aspas usando Zend_Db_Adapter::quoteInto).
+        </p>
+<p>
+            Chamadas múltiplas a where() adicionarão AND às condições;
+            se você precisar de OR, use orWhere().
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// crie um objeto $db, e pega a ferramenta SELECT.
+$select = $db-&gt;select();
+
+//
+// SELECT *
+//     FROM round_table
+//     WHERE noble_title = "Sir"
+//     AND favorite_color = "yellow"
+//
+$select-&gt;from('round_table', '*');
+$select-&gt;where('noble_title = "Sir"'); // embedded value
+$select-&gt;where('favorite_color = ?', 'yellow'); // quoted value
+
+//
+// SELECT *
+//     FROM foo
+//     WHERE bar = "baz"
+//     OR id IN("1", "2", "3")
+//
+$select-&gt;from('foo', '*');
+$select-&gt;where('bar = ?', 'baz');
+$select-&gt;orWhere('id IN(?)', array(1, 2, 3);
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.group"></a>9.3.5. Cláusula GROUP BY</h3></div></div></div>
+<p>
+            Para agrupar linhas, use o método group() quantas vezes você desejar.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// crie um objeto $db, e pega a ferramenta SELECT.
+$select = $db-&gt;select();
+
+//
+// SELECT COUNT(id)
+//     FROM foo
+//     GROUP BY bar, baz
+//
+$select-&gt;from('foo', 'COUNT(id)');
+$select-&gt;group('bar');
+$select-&gt;group('baz');
+
+// chamada equivalente de group():
+$select-&gt;group('bar, baz');
+
+// outra chamada equivalente de group():
+$select-&gt;group(array('bar', 'baz'));
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.having"></a>9.3.6. Condição HAVING</h3></div></div></div>
+<p>
+            Para adicionar condições HAVING aos resultados selecionados, use o método having().
+			este método é id~entico em função ao método where().
+        </p>
+<p>
+            Se você chamar having() múltiplas vezes, as condições são unidas usando AND;
+            se você quiser uma condição OR, use orHaving().
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// crie um objeto $db, e pega a ferramenta SELECT.
+$select = $db-&gt;select();
+
+//
+// SELECT COUNT(id) AS count_id
+//     FROM foo
+//     GROUP BY bar, baz
+//     HAVING count_id &gt; "1"
+//
+$select-&gt;from('foo', 'COUNT(id) AS count_id');
+$select-&gt;group('bar, baz');
+$select-&gt;having('count_id &gt; ?', 1);
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.order"></a>9.3.7. Cláusula ORDER BY</h3></div></div></div>
+<p>
+            Para ordenar colunas com ORDER, use o método order() quantas vezes desejar.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// crie um objeto $db, e pega a ferramenta SELECT.
+$select = $db-&gt;select();
+
+//
+// SELECT * FROM round_table
+//     ORDER BY noble_title DESC, first_name ASC
+//
+$select-&gt;from('round_table', '*');
+$select-&gt;order('noble_title DESC');
+$select-&gt;order('first_name');
+
+// chamada equivalente de order():
+$select-&gt;order('noble_title DESC, first_name');
+
+// outra chamada equivalente de order():
+$select-&gt;order(array('noble_title DESC', 'first_name'));
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.limit"></a>9.3.8. LIMIT usando Count e Offset</h3></div></div></div>
+<p>
+            Zend_Db_Select oferece abstrações pra suporte da cláusula LIMIT.
+            Para muitos bancos de dados, como MySQL e PostgreSQL, isso é 
+			relativamente fácil, pois eles suportam a sintaxe "LIMIT :count
+            [OFFSET :offset]".
+        </p>
+<p>
+            Para outros bancos de dados, como Microsoft SQL e Oracle, isso
+            não é tão fácil, pois eles não suportam cláusulas LIMIT.
+            MS-SQL tem apenas uma cláusula TOP, e Oracle requer que a consulta
+            seja escrita de uma maneira especial para emular um LIMIT.  Devido à
+			maneira como o Zend_Db_Select trabalhar internamente, nós podemos reescrever SELECT
+            para emular a funcionalidade LIMIT dos bancos de dados de código aberto mencionados
+            anteriormente.
+        </p>
+<p>
+            Para usar LIMIT nos resultados retornados usando count e offset, use o método limit()
+            com um valor count e um offset opcional.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// primeiro, um simples "LIMIT :count"
+$select = $db-&gt;select();
+$select-&gt;from('foo', '*');
+$select-&gt;order('id');
+$select-&gt;limit(10);
+
+//
+// Em MySQL/PostgreSQL/SQLite, isso se traduz para:
+//
+// SELECT * FROM foo
+//     ORDER BY id ASC
+//     LIMIT 10
+//
+// Mas em Microsoft SQL, isso se traduz para:
+//
+// SELECT TOP 10 * FROM FOO
+//     ORDER BY id ASC
+//
+//
+
+// agora, um mais complexo "LIMIT :count OFFSET :offset"
+$select = $db-&gt;select();
+$select-&gt;from('foo', '*');
+$select-&gt;order('id');
+$select-&gt;limit(10, 20);
+
+//
+// Em MySQL/PostgreSQL/SQLite, isso se traduz para:
+//
+// SELECT * FROM foo
+//     ORDER BY id ASC
+//     LIMIT 10 OFFSET 20
+//
+// Mas em Microsoft SQL, que não tem suporte a offset, isso se traduz para
+// algo como:
+//
+// SELECT * FROM (
+//     SELECT TOP 10 * FROM (
+//         SELECT TOP 30 * FROM foo ORDER BY id DESC
+//     ) ORDER BY id ASC
+// )
+//
+// Zend_Db_Adapter faz a tradução da consulta automaticamente.
+//
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.paging"></a>9.3.9. LIMIT usando Page e Count</h3></div></div></div>
+<p>
+            Zend_Db_Select também oferece limites baseados em páginas.  Se você quer
+            receber uma certa "página" de resultados, use o método limitPage();
+            primeiro passe o número da página que voc~e quer, e então o número de
+			linhas que aparecerão em cada página.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// construa o select básico...
+$select = $db-&gt;select();
+$select-&gt;from('foo', '*');
+$select-&gt;order('id');
+
+// ... e limite o resultado à página 3, cada página com 10 linhas
+$select-&gt;limitPage(3, 10);
+
+//
+// Em MySQL/PostgreSQL/SQLite, isso se traduz para:
+//
+// SELECT * FROM foo
+//     ORDER BY id ASC
+//     LIMIT 10 OFFSET 20
+//
+
+?&gt;</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.profiler.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.table.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.2. Zend_Db_Profiler </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> 9.4. Zend_Db_Table</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

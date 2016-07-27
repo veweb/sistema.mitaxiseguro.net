@@ -1,0 +1,28 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           tarifa
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          tarifa
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: Lista de tarifario
+        hide: [created_at,updated_at,crated_at,updated_at,created_by,update_by]
+      filter:
+        class: false
+      form:    ~
+      edit:
+        title: Modificacion de tarifa
+      new:
+        title: Agregar Nueva tarifa
+        fields:
+          title: Nuevo

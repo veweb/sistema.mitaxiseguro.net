@@ -1,0 +1,305 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Hoofdstuk 13. Zend_Http</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="prev" href="zend.gdata.exception.html" title="12.9. Catching Gdata Exceptions">
+<link rel="next" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - Advanced Usage">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="section" href="zend.http.html#zend.http.client" title="13.1. Zend_Http_Client">
+<link rel="section" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - Advanced Usage">
+<link rel="section" href="zend.http.client.adapters.html" title="13.3. Zend_Http_Client - Connection Adapters">
+<link rel="section" href="zend.http.cookies.html" title="13.4. Zend_Http_Cookie and Zend_Http_CookieJar">
+<link rel="section" href="zend.http.response.html" title="13.5. Zend_Http_Response">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Hoofdstuk 13. Zend_Http</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.gdata.exception.html">Terug</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.http.client.advanced.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="nl">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.http"></a>Hoofdstuk 13. Zend_Http</h2></div></div></div>
+<div class="toc">
+<p><b>Inhoudsopgave</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.http.html#zend.http.client">13.1. Zend_Http_Client</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.introduction">13.1.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.basic-get-requests">13.1.2. Basis GET verzoeken met gespecificeerde HTTP Headers</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.requesting-multiple-domains">13.1.3. Multidomein verzoeken</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.settimeout">13.1.4. De HTTP Timeout wijzigen</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.setheaders">13.1.5. Dynamisch HTTP Headers zetten</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.making-other-requests">13.1.6. POST, PUT en DELETE HTTP verzoeken maken</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.advanced.html">13.2. Zend_Http_Client - Advanced Usage</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.redirections">13.2.1. HTTP Redirections</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.cookies">13.2.2. Adding Cookies and Using Cookie Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.custom_headers">13.2.3. Setting Custom Request Headers</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.file_uploads">13.2.4. File Uploads</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.raw_post_data">13.2.5. Sending Raw POST Data</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.http_authentication">13.2.6. HTTP Authentication</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.multiple_requests">13.2.7. Sending Multiple Requests With the Same Client</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.adapters.html">13.3. Zend_Http_Client - Connection Adapters</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapters.overview">13.3.1. Overview</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#id4829163">13.3.2. The Socket Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.proxy">13.3.3. The Proxy Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.test">13.3.4. The Test Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.extending">13.3.5. Creating your own connection adapters</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.cookies.html">13.4. Zend_Http_Cookie and Zend_Http_CookieJar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.introduction">13.4.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.instantiating">13.4.2. Instantiating Zend_Http_Cookie Objects</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.accessors">13.4.3. Zend_Http_Cookie getter methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.matching">13.4.4. Zend_Http_Cookie: Matching against a scenario</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar">13.4.5. The Zend_Http_CookieJar Class: Instantiation</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.adding_cookies">13.4.6. Adding Cookies to a Zend_Http_CookieJar object</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.getting_cookies">13.4.7. Retrieving Cookies From a Zend_Http_CookieJar object</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.response.html">13.5. Zend_Http_Response</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.introduction">13.5.1. Inleiding</a></span></dt></dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.http.client"></a>13.1. Zend_Http_Client</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.introduction"></a>13.1.1. Inleiding</h3></div></div></div>
+<p>
+            <code class="code">Zend_Http_Client</code> verstrekt een eenvoudige interface om HTTP verzoeken te maken.
+            <code class="code">Zend_Http_Client</code> kan GET, POST, PUT en DELETE verzoeken maken.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            <code class="code">Zend_HttpClient</code> volgt standaard tot 5 HTTP verwijzingen. Om dit gedrag te veranderen
+            geef je het maximum toegestane verwijzingen aan de <code class="code">get()</code> methode op.
+          </p></td></tr>
+</table></div>
+<p>
+            </p>
+<div class="example">
+<a name="id4826528"></a><p class="title"><b>Voorbeeld 13.1. Een basis GET verzoek maken</b></p>
+<pre class="programlisting">&lt;?php
+    require_once 'Zend/Http/Client.php';
+    try {
+        $http = new Zend_Http_Client('http://example.org');
+        $response = $http-&gt;get();
+        if ($response-&gt;isSuccessful()) {
+            echo $response-&gt;getBody();
+        } else {
+            echo '&lt;p&gt;Er trad een fout op&lt;/p&gt;';
+        }
+    } catch (Zend_Http_Client_Exception $e) {
+        echo '&lt;p&gt;Er trad een fout op (' .$e-&gt;getMessage(). ')&lt;/p&gt;';
+    }
+    ?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.basic-get-requests"></a>13.1.2. Basis GET verzoeken met gespecificeerde HTTP Headers</h3></div></div></div>
+<p>
+            De <code class="code">Zend_Http_Client</code> constructor maakt een <code class="code">Zend_Http_Client</code> instantie om
+            HTTP verzoeken te zenden.
+        </p>
+<p>
+            Als je <code class="code">Zend_Http_Client</code> gebruikt op één enkele URL kan je in de meeste gevallen de URL
+            en relevante headers aan de <span class="emphasis"><em>constructor</em></span> geven, zoals in de volgende voorbeelden:
+        </p>
+<div class="example">
+<a name="id4826544"></a><p class="title"><b>Voorbeeld 13.2. Een Basis Zend_Http_Client maken</b></p>
+<pre class="programlisting">&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    // Specificeer de URL en een enkele header
+    $http = new Zend_Http_Client('http://example.org', 'Accept: text/html');
+    ?&gt;       </pre>
+</div>
+<p></p>
+<div class="example">
+<a name="id4826421"></a><p class="title"><b>Voorbeeld 13.3. Meerdere Headers sturen</b></p>
+<pre class="programlisting">&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    // Specificeer de URL en meerdere headers
+    $http = new Zend_Http_Client('http://example.org',
+                            array('Accept: text/html', 'Accept-Language: en-us,en;q=0.5'));
+    ?&gt;       </pre>
+</div>
+<p>
+            Als je <code class="code">Zend_Http_Client</code> wenst te gebruiken om verzoeken aan <span class="emphasis"><em>meerdere</em></span> URLs te
+            sturen, zie dan <a href="zend.http.html#zend.http.client.requesting-multiple-domains" title="13.1.3. Multidomein verzoeken">Paragraaf 13.1.3, “Multidomein verzoeken”</a>
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.requesting-multiple-domains"></a>13.1.3. Multidomein verzoeken</h3></div></div></div>
+<p>
+            <code class="code">Zend_Http_Client</code> ondersteunt het sturen van verzoeken aan meerdere domeinen
+            door het zetten van de URL via de methode <code class="code">Zend_Http_Client::setUri()</code>.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>Een geweldig gebruik hiervoor is als je meerdere RSS feeds uitleest.</p></td></tr>
+</table></div>
+<div class="example">
+<a name="id4827336"></a><p class="title"><b>Voorbeeld 13.4. Multidomein verzoek</b></p>
+<pre class="programlisting">&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    // Het client object instantiëren
+    $http = new Zend_Http_Client();
+
+    // De URI naar Slashdot's hoofd feed zetten
+    $http-&gt;setUri('http://rss.slashdot.org/Slashdot/slashdot');
+
+    // De feed opvragen
+    $slashdot = $http-&gt;get();
+
+    // Nu de BBC news feed instellen
+    $http-&gt;setUri('http://newsrss.bbc.co.uk/rss/newsonline_world_edition/technology/rss.xml');
+
+    // de feed opvragen
+    $bbc = $http-&gt;get();
+    ?&gt;   </pre>
+</div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.settimeout"></a>13.1.4. De HTTP Timeout wijzigen</h3></div></div></div>
+<p>
+            <code class="code">Zend_Http_Client::setTimeout()</code> laat je toe de timeout voor de HTTP verbinding
+            te zetten, in seconden.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>De standaard timeout is 10 seconden.</p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.setheaders"></a>13.1.5. Dynamisch HTTP Headers zetten</h3></div></div></div>
+<p>
+            Je kan een <span class="emphasis"><em>array</em></span> headers zetten met <code class="code">Zend_Http_Client::setHeaders()</code>.
+        </p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Belangrijk]" src="images/important.png"></td>
+<th align="left">Belangrijk</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Headers moeten het formaat volgen:
+                <code class="option"><code class="code">Header: waarde</code></code>
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.making-other-requests"></a>13.1.6. POST, PUT en DELETE HTTP verzoeken maken</h3></div></div></div>
+<p>
+            Het maken van POST, PUT en DELETE HTTP verzoeken wordt vereenvoudigd in <code class="code">Zend_Http_Client</code>
+            door middel van drie methodes: <code class="code">post()</code>, <code class="code">put()</code>, en <code class="code">delete()</code>, 
+            respectievelijk. De <code class="code">post()</code> en <code class="code">put()</code> methodes aanvaarden elk één string
+            parameter, <code class="code">$data</code>, waarin een string met de data correct ge-encodeerd zoals volgt:
+            <span class="emphasis"><em><code class="code">name=value&amp;foo=bar</code></em></span>. De <code class="code">delete()</code> methode heeft
+            geen parameters.
+        </p>
+<div class="example">
+<a name="id4827486"></a><p class="title"><b>Voorbeeld 13.5. POST data verzenden met Zend_Http_Client</b></p>
+<pre class="programlisting">&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    // Het client object instantiëren
+    $http = new Zend_Http_Client();
+
+    // De URI naar een POST dataverwerker zetten
+    $http-&gt;setUri('http://example.org/post/processor');
+
+    // De specifieke GET variabelen als HTTP POST data opslaan
+    $postData = 'foo=' . urlencode($_GET['foo']) . '&amp;bar=' . urlencode($_GET['bar']);
+
+    // Het HTTP POST verzoek maken en het HTTP antwoord opslaan
+    $httpResponse = $http-&gt;post($postData);
+    ?&gt;   </pre>
+<p>
+                Een PUT verzoek maken is hetzelfde als in het voorgaande voorbeeld om een POST verzoek te maken;
+                je hoeft slechts de <code class="code">put()</code> methode gebruiken in plaats van de <code class="code">post()</code> methode.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.gdata.exception.html">Terug</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.http.client.advanced.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">12.9. Catching Gdata Exceptions </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 13.2. Zend_Http_Client - Advanced Usage</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

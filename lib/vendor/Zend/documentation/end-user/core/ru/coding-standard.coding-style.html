@@ -1,0 +1,642 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.4. Стиль кодирования</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="prev" href="coding-standard.naming-conventions.html" title="A.3. Соглашения по именованию">
+<link rel="next" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.php-code-demarcation" title="A.4.1. Обрамление PHP-кода">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.strings" title="A.4.2. Строки">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.arrays" title="A.4.3. Массивы">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.classes" title="A.4.4. Классы">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.functions-and-methods" title="A.4.5. Функции и методы">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.control-statements" title="A.4.6. Управляющие структуры">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standards.inline-documentation" title="A.4.7. Встроенная документация">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.4. Стиль кодирования</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="coding-standard.naming-conventions.html">Пред.</a> </td>
+<th width="60%" align="center">Приложение A. Стандарт кодирования на PHP в Zend Framework'е</th>
+<td width="20%" align="right"> <a accesskey="n" href="copyrights.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="coding-standard.coding-style"></a>A.4. Стиль кодирования</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.php-code-demarcation"></a>A.4.1. Обрамление PHP-кода</h3></div></div></div>
+<p>
+                PHP-код должен всегда обрамлятся полными PHP-тегами:
+
+                </p>
+<pre class="programlisting">
+&lt;?php
+
+?&gt;</pre>
+<p>
+            </p>
+<p>
+                Короткие теги не допустимы.
+            </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.strings"></a>A.4.2. Строки</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.literals"></a>A.4.2.1. Строковые литералы</h4></div></div></div>
+<p>
+                    Когда строка является литеральной (не содержит подстановок 
+                    переменных), для ее обрамления должны использоваться 
+                    апострофы или "одинарные кавычки":
+
+                    </p>
+<pre class="programlisting">
+$a = 'Example String';</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.literals-containing-apostrophes"></a>A.4.2.2. Строковые литералы, содержащие апострофы</h4></div></div></div>
+<p>
+                    Когда строка литералов сама содержит апострофы, разрешается 
+                    для обрамления строки использовать "двойные кавычки". Это 
+                    особенно актуально для SQL-запросов:
+
+                    </p>
+<pre class="programlisting">
+$sql = "SELECT `id`, `name` from `people` WHERE `name`='Fred' OR `name`='Susan'";</pre>
+<p>
+
+                    Синтаксис выше является более предпочтительным, чем 
+                    экранирование апострофов.
+                </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.variable-substitution"></a>A.4.2.3. Подстановка переменных</h4></div></div></div>
+<p>
+                    Подстановка переменных разрешается с использованием двух 
+                    нижеприведенных форм:
+
+                    </p>
+<pre class="programlisting">
+$greeting = "Hello $name, welcome back!";
+
+$greeting = "Hello {$name}, welcome back!";</pre>
+<p>
+                </p>
+<p>
+                    Для надежности, эта форма не допустима:
+
+                    </p>
+<pre class="programlisting">
+$greeting = "Hello ${name}, welcome back!";</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.string-concatenation"></a>A.4.2.4. Конкатенация строк</h4></div></div></div>
+<p>
+                    Строки должны объединятся с помощью оператора ".". Пробел 
+                    должен всегда добавлятся до и после оператора "." для 
+                    улучшения читабельности:
+
+                    </p>
+<pre class="programlisting">
+$company = 'Zend' . 'Technologies';</pre>
+<p>
+                </p>
+<p>
+                    Когда производится конкатенация строк с помощью оператора 
+                    ".", разрешается разрывать выражение на несколько строк для 
+                    улучшения читабельности. В этом случае, каждая следующая 
+                    строка должна быть дополнена пробелами так, чтобы оператор 
+                    "." был выровнен под оператором "=":
+
+                    </p>
+<pre class="programlisting">
+$sql = "SELECT `id`, `name` FROM `people` "
+     . "WHERE `name` = 'Susan' "
+     . "ORDER BY `name` ASC ";</pre>
+<p>
+                </p>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.arrays"></a>A.4.3. Массивы</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.arrays.numerically-indexed"></a>A.4.3.1. Массивы с числовыми индексами</h4></div></div></div>
+<p>Отрицательные числа в качестве индексов запрещены.</p>
+<p>
+                    Хотя индекс массива может начинаться с отрицательного числа, 
+                    но это не приветствуется и рекомендуется, чтобы все 
+                    массивы начинали индексирование с 0.
+                </p>
+<p>
+                    Когда определяется индексированный массив с помощью 
+                    конструкции <code class="code">array</code>, завершающий пробел должен 
+                    быть добавлен после каждой запятой для улучшения 
+                    читабельности:
+
+                    </p>
+<pre class="programlisting">
+$sampleArray = array(1, 2, 3, 'Zend', 'Studio');</pre>
+<p>
+                </p>
+<p>
+                    Также разрешается определять многострочные индексированные 
+                    массивы, используя конструкцию "array". В этом случае, 
+                    каждая следующая строка должна быть дополнена пробелами 
+                    так, чтобы начало каждой строки было выравнено как показано 
+                    ниже:
+
+                    </p>
+<pre class="programlisting">
+$sampleArray = array(1, 2, 3, 'Zend', 'Studio',
+                     $a, $b, $c,
+                     56.44, $d, 500);</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.arrays.associative"></a>A.4.3.2. Ассоциативные массивы</h4></div></div></div>
+<p>
+                    Когда определяется ассоциативный массив с помощью 
+                    конструкции "array", приветствуется разделение выражения на 
+                    несколько строк. В этом случае, каждая следующая строка 
+                    должна быть дополнена с помощью пробелов так, чтобы и ключи 
+                    и значения были выровнены:
+
+                    </p>
+<pre class="programlisting">
+$sampleArray = array('firstKey'  =&gt; 'firstValue',
+                     'secondKey' =&gt; 'secondValue');</pre>
+<p>
+                 </p>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.classes"></a>A.4.4. Классы</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.classes.declaration"></a>A.4.4.1. Определение класса</h4></div></div></div>
+<p>
+                    Классы должны определяться по следующей схеме.
+                </p>
+<p>
+                    Фигурная скобка всегда пишется на следующей строке под 
+                    именем класса.
+                </p>
+<p>
+                    Каждый класс должен иметь блок документации (doc-блок) в 
+                    соответствии со стандартом PHPDocumentor.
+                </p>
+<p>
+                    Код внутри класса должен иметь отступ в четыре пробела.
+                </p>
+<p>
+                    Только один класс разрешен внутри одного PHP-файла.
+                </p>
+<p>
+                    Размещение дополнительно кода в файле с классом разрешено, 
+                    но не приветствуется. В таких файлах, две пустые строки 
+                    должны разделять класс и дополнительный PHP-код.
+                </p>
+<p>
+                    Это пример допустимого определения класса:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Doc-блок здесь
+ */
+class SampleClass
+{
+    // содержимое класса должно быть
+    // с отступом в четыре пробела
+}</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.classes.member-variables"></a>A.4.4.2. Переменные-члены классов</h4></div></div></div>
+<p>
+                    Переменные-члены классов должны определяться по следующей схеме.
+                </p>
+<p>
+                    Любые переменные, определенные в классе, должны быть 
+                    определены в начале класса, до определения любого метода.
+                </p>
+<p>
+                    Ключевое слово <code class="code">var</code> не разрешено. Члены класса 
+                    должны всегда определять их область видимости, используя 
+                    ключевое слово <code class="code">private</code>, <code class="code">protected</code>
+                    или <code class="code">public</code>. Доступ к переменным-членам 
+                    класса напрямую используя префикс <code class="code">public</code> 
+                    разрешено, но не приветствуется в пользу методов 
+                    доступа (set/get).
+                </p>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.functions-and-methods"></a>A.4.5. Функции и методы</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.functions-and-methods.declaration"></a>A.4.5.1. Определение функций и методов</h4></div></div></div>
+<p>
+                    Функции должны определяться по следующей схеме.
+                </p>
+<p>
+                    Функции внутри классов должны всегда определять свою область 
+                    видимости с помощью одного из префиксов <code class="code">private</code>, 
+                    <code class="code">protected</code> или <code class="code">public</code>.
+                </p>
+<p>
+                    Как и у классов, фигурная скобка всегда пишется на 
+                    следующей строке под именем функции. Пробелы между именем 
+                    функции и круглой скобкой для аргументов отсутствуют.
+                </p>
+<p>
+                    Функции в глобальной области видимости крайне не приветствуются.
+                </p>
+<p>
+                    Это пример допустимого определения функции:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Doc-блок здесь
+ */
+class Foo
+{
+    /**
+     * Doc-блок здесь
+     */
+    public function bar()
+    {
+        // содержимое класса должно быть
+        // с отступом в четыре пробела
+    }
+}</pre>
+<p>
+                </p>
+<p>
+                    <span class="emphasis"><em>ЗАМЕЧАНИЕ:</em></span> Передача по ссылке допустима только в определениях функций:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Doc-блок здесь
+ */
+class Foo
+{
+    /**
+     * Doc-блок здесь
+     */
+    public function bar(&amp;$baz)
+    {}
+}</pre>
+<p>
+                </p>
+<p>
+                    Передача по ссылке во время вызова запрещена.
+                </p>
+<p>
+                    Возвращаемое значение не должно обрамляться в круглые 
+                    скобки, иначе это ухудшает читабельность, а также может 
+                    поломать код, если метод позже станет возвращать 
+                    результат по ссылке.
+                    </p>
+<pre class="programlisting">
+/**
+ * Doc-блок здесь
+ */
+class Foo
+{
+    /**
+     * ПЛОХО
+     */
+    public function bar()
+    {
+        return($this-&gt;bar);
+    }
+
+    /**
+     * ХОРОШО
+     */
+    public function bar()
+    {
+        return $this-&gt;bar;
+    }
+}</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.functions-and-methods.usage"></a>A.4.5.2. Использование функций и методов</h4></div></div></div>
+<p>
+                   Аргументы функции разделяются одним завершающим пробелом 
+                   после каждой запятой. Это пример допустимого вызова функции 
+                   для функции, которая принимает три аргумента:
+
+                    </p>
+<pre class="programlisting">
+threeArguments(1, 2, 3);</pre>
+<p>
+                </p>
+<p>
+                    Передача по ссылке во время вызова запрещена. Смотрите 
+                    секцию определения функций для правильного способа передачи 
+                    аргументов функции по ссылке.
+                </p>
+<p>
+                    Для функций, чьи аргументы допускают массив, вызов функции 
+                    может включать конструкцию "array" и может быть разделено 
+                    на несколько строк для улучшения читабельности. В этом 
+                    случае, применим стандарт описания массивов:
+
+                    </p>
+<pre class="programlisting">
+threeArguments(array(1, 2, 3), 2, 3);
+
+threeArguments(array(1, 2, 3, 'Zend', 'Studio',
+                     $a, $b, $c,
+                     56.44, $d, 500), 2, 3);</pre>
+<p>
+                </p>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.control-statements"></a>A.4.6. Управляющие структуры</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.control-statements.if-else-elseif"></a>A.4.6.1. If / Else / Elseif</h4></div></div></div>
+<p>
+                    Управляющие структуры, основанные на конструкциях
+                    <code class="code">if</code> и <code class="code">elseif</code>, должны иметь один
+                    пробел до открывающей круглой скобки условия, и один
+                    пробел после закрывающей круглой скобки.
+                </p>
+<p>
+                    Внутри выражения условия между круглыми скобками 
+                    операторы должны разделяться пробелами для читабельности. 
+                    Внутренние скобки приветствуются для улучшения логической 
+                    группировки больших условий.
+                </p>
+<p>
+                    Открывающаяся фигурная скобка пишется на той же строке, 
+                    что и условие. Закрывающаяся фигурная скобка пишется на 
+                    отдельной строке. Все содержимое между скобками пишется с 
+                    отступом в четыре пробела.
+
+                    </p>
+<pre class="programlisting">
+if ($a != 2) {
+    $a = 2;
+}</pre>
+<p>
+                </p>
+<p>
+                    Для выражения "if", включая "elseif" или "else", 
+                    форматирование должно быть таким, как в следующем примере:
+
+                    </p>
+<pre class="programlisting">
+if ($a != 2) {
+    $a = 2;
+} else {
+   $a = 7;
+}
+
+
+if ($a != 2) {
+    $a = 2;
+} elseif ($a == 3) {
+   $a = 4;
+} else {
+   $a = 7;
+}</pre>
+<p>
+                    PHP допускает написание таких выражений без фигурных скобок 
+                    при некоторых условиях. Стандарт кодирования не делает 
+                    различий - для всех "if", "elseif" или "else" выражений 
+                    необходимо использовать фигурные скобки.
+                </p>
+<p>
+                   Использование "elseif" конструкции допускается, но крайне 
+                   не приветствуется в пользу "else if" комбинации.
+                </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.coding-style.control-statements.switch"></a>A.4.6.2. Switch</h4></div></div></div>
+<p>
+                    Управляющие структуры написанные с использованием "switch" 
+                    конструкции должны иметь один пробел до открывающей 
+                    круглой скобки условного выражения, и также один пробел 
+                    после закрывающей круглой скобки.
+                </p>
+<p>
+                    Все содержимое между фигурными скобками пишется с отступом 
+                    в четыре пробела. Содержимое каждого "case" выражения 
+                    должно писаться с отступом в дополнительные четыре пробела.
+                </p>
+<pre class="programlisting">
+switch ($numPeople) {
+    case 1:
+        break;
+
+    case 2:
+        break;
+
+    default:
+        break;
+}</pre>
+<p>
+                    Ключевое слово <code class="code">default</code> никогда не должно 
+                    опускаться в выражении <code class="code">switch</code>.
+                </p>
+<p>
+                    <span class="emphasis"><em>ЗАМЕЧАНИЕ:</em></span> Иногда полезно писать 
+                    <code class="code">case</code> выражения, которые передают управление 
+                    следующему <code class="code">case</code> выражению, опуская 
+                    <code class="code">break</code> или <code class="code">return</code>. Для того, чтобы
+                    отличать такие случаи от ошибок, каждое <code class="code">case</code>
+                    выражение, где опущен <code class="code">break</code> или
+                    <code class="code">return</code>,  должно содержать комментарий
+                    "// break intentionally omitted".
+                </p>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standards.inline-documentation"></a>A.4.7. Встроенная документация</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.documentation-format"></a>A.4.7.1. Формат документации</h4></div></div></div>
+<p>
+                    Все блоки документации ("doc-блоки") должны быть 
+                    совместимы с форматом phpDocumentor. Описание формата 
+                    phpDocumentor вне рамок данного докумета. Для дополнительно 
+                    информации смотрите: <a href="http://phpdoc.org/" target="_top">http://phpdoc.org/</a>
+                </p>
+<p>
+                    Все файлы с исходными кодами, написанные для Zend
+                    Framework'а, или которые оперируют с фреймворком, должны
+                    содержать  "файловые" doc-блоки в начале каждого файла и
+                    "классовый" doc-блок непосредственно перед каждым классом.
+                    Ниже даны примеры таких doc-блоков.
+                </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.files"></a>A.4.7.2. Файлы</h4></div></div></div>
+<p>
+                    Каждый файл, содержащий PHP-код должен иметь заголовочный 
+                    блок в начале файла, содержащий как минимум следующие 
+                    phpDocumentor-теги:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Краткое описание файла
+ *
+ * Длинное описание файла (если есть)...
+ *
+ * LICENSE: Some license information
+ *
+ * @copyright  2005 Zend Technologies
+ * @license    http://www.zend.com/license/3_0.txt   PHP License 3.0
+ * @version    CVS: $Id:$
+ * @link       http://dev.zend.com/package/PackageName
+ * @since      File available since Release 1.2.0
+*/</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.classes"></a>A.4.7.3. Классы</h4></div></div></div>
+<p>
+                    Каждый класс должен иметь doc-блок, содержащий как 
+                    минимум следующие phpDocumentor-теги:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Краткое описание класса
+ *
+ * Длинное описание класса (если есть)...
+ *
+ * @copyright  2005 Zend Technologies
+ * @license    http://www.zend.com/license/3_0.txt   PHP License 3.0
+ * @version    Release: @package_version@
+ * @link       http://dev.zend.com/package/PackageName
+ * @since      Class available since Release 1.2.0
+ * @deprecated Class deprecated in Release 2.0.0
+ */</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.functions"></a>A.4.7.4. Функции</h4></div></div></div>
+<p>
+                Каждая функция, включая методы объектов, должна иметь 
+                doc-блок, содержащий как минимум:
+
+                    </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Описание функции</p></li>
+<li><p>Все аргументы</p></li>
+<li><p>Все возможные возвращаемые значения</p></li>
+</ul></div>
+<p>
+                </p>
+<p>
+                    Нет надобности использовать тег "@access", потому что 
+                    область видимости уже известна из ключевых слов "public", 
+                    "private" или "protected". используемых при определении 
+                    функции.
+                </p>
+<p>
+                    Если функция/метод может выбрасывать исключение, 
+                    используйте тег @throws:
+
+                    </p>
+<pre class="programlisting">
+@throws exceptionclass [описание]
+</pre>
+<p>
+                </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="coding-standard.naming-conventions.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="coding-standard.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="copyrights.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">A.3. Соглашения по именованию </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> Приложение B. Copyright Information</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

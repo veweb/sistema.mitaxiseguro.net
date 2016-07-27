@@ -1,0 +1,939 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>24.3. Zend_Service_Amazon</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="prev" href="zend.service.akismet.html" title="24.2. Zend_Service_Akismet">
+<link rel="next" href="zend.service.flickr.html" title="24.4. Zend_Service_Flickr">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.introduction" title="24.3.1. Inleiding">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.countrycodes" title="24.3.2. Landcodes">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. Een specifiek item opzoeken met ASIN code">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Amazon Item zoekopdrachten uitvoeren">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.query" title="24.3.5. De Alternatieve Query API gebruiken">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">24.3. Zend_Service_Amazon</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.service.akismet.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 24. Zend_Service</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.service.flickr.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.service.amazon"></a>24.3. Zend_Service_Amazon</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.introduction"></a>24.3.1. Inleiding</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Amazon</code> is een eenvoudige API om Amazon webservices te gebruiken.
+            <code class="code">Zend_Service_Amazon</code> heeft twee APIs: een meer traditionele die Amazons eigen API volgt,
+			en een eenvoudigere "Query API" om nog meer complexe zoekqueries gemakkelijk op te bouwen.
+        </p>
+<p>
+            <code class="code">Zend_Service_Amazon</code> staat ontwikkelaars toe om informatie die door Amazon.com web sites worden verstrekt
+			direct op te vragen via de Amazon Web Services API. Voorbeelden:
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+					Item informatie opvragen, zoals beelden, beschrijvingen, prijzen, en meer
+                  </p></li>
+<li><p>
+					Klant- en uitgeversrecensies
+                  </p></li>
+<li><p>
+					Gelijksoortige producten en accessoires
+                  </p></li>
+<li><p>
+					Amazon.com aanbiedingen
+                  </p></li>
+<li><p>
+					ListMania lijsten
+                  </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+			Om <code class="code">Zend_Service_Amazon</code> te gebruiken dien je een Amazon developer API key moeten hebben. Om die
+			te verkrijgen, en voor meer informatie, kan je terecht op de
+            <a href="http://www.amazon.com/gp/aws/landing.html" target="_top">Amazon Web Services</a> website.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+			Je Amazon developer API key is aan je Amazon identiteit verbonden, neem dus de nodige maatregelen om je key
+			te beveiligen en privé te houden.
+	      </p></td></tr>
+</table></div>
+<div class="example">
+<a name="id4871926"></a><p class="title"><b>Voorbeeld 24.4. Amazon doorzoeken met de traditionele API</b></p>
+<p>
+				In dit voorbeeld zoeken we naar PHP boeken op Amazon en doorlopen we de resultaten door ze uit te printen.
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY&amp;');
+$response = $amazon-&gt;itemSearch(array('SearchIndex' =&gt; 'Books', 'Keywords' =&gt; 'php'));
+foreach ($response as $r) {
+    echo $r-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+<div class="example">
+<a name="id4871943"></a><p class="title"><b>Voorbeeld 24.5. Amazon doorzoeken met de Query API</b></p>
+<p>
+				Hier zoeken we ook naar PHP boeken op Amazon, maar we gebruiken de Query API, die lijkt
+				op het Fluent Interface ontwerp patroon.
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon/Query.php';
+$query = new Zend_Service_Amazon_Query('AMAZON_API_KEY');
+$query-&gt;category('Books')-&gt;Keywords('PHP');
+$results = $query-&gt;search();
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.countrycodes"></a>24.3.2. Landcodes</h3></div></div></div>
+<p>
+			Standaard maakt <code class="code">Zend_Service_Amazon</code> een verbinding met de Amazon web service in de Verenigde Staten ("<code class="code">US</code>"). 
+			Om verbinding te maken met een ander land geef je eenvoudigweg de landcode van dit land op als de tweede parameter van de
+			constructor:
+        </p>
+<div class="example">
+<a name="id4872006"></a><p class="title"><b>Voorbeeld 24.6. Een Amazon Web Service land kiezen</b></p>
+<pre class="programlisting">&lt;?php
+// Verbind met Amazon in Frankrijk
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY', 'FR');
+?&gt;       </pre>
+</div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Geldige landcodes zijn: <code class="code">CA</code>, <code class="code">DE</code>, <code class="code">FR</code>, <code class="code">JP</code>,
+            <code class="code">UK</code>, en <code class="code">US</code>.
+          </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.itemlookup"></a>24.3.3. Een specifiek item opzoeken met ASIN code</h3></div></div></div>
+<p>
+            De <code class="code">itemLookup()</code> methode biedt de mogelijkheid om een specifiek Amazon item op te halen als
+			de ASIN bekend is.
+        </p>
+<div class="example">
+<a name="id4872072"></a><p class="title"><b>Voorbeeld 24.7. Een specifiek Amazon item ophalen per ASIN</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY');
+$item = $amazon-&gt;itemLookup('B0000A432X');
+?&gt;       </pre>
+</div>
+<p>
+			De <code class="code">itemLookup()</code> methode aanvaardt ook een optionele tweede parameter om zoekopties af te handelen.
+			Voor alle details, inclusief een lijst van beschikbare opties, zie de
+            <a href="http://www.amazon.com/gp/aws/sdk/main.html/103-9285448-4703844?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemLookupOperation" target="_top">relevante Amazon documentatie</a>.
+		</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+    			Om informatie over de beelden te verkrijgen voor je zoekresultaten, moet je de optie <code class="code">ResponseGroup</code> tot <code class="code">Medium</code> of <code class="code">Large</code> zetten.
+			</p></td></tr>
+</table></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.itemsearch"></a>24.3.4. Amazon Item zoekopdrachten uitvoeren</h3></div></div></div>
+<p>
+			Het zoeken naar items gebaseerd op een van de verschillende voorhande criteria wordt eenvoudig
+			gemaakt door de <code class="code">itemSearch()</code> methode, zoals in het volgende voorbeeld:
+        </p>
+<div class="example">
+<a name="id4872149"></a><p class="title"><b>Voorbeeld 24.8. Uitvoeren van Amazon Item Zoekopdrachten</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY');
+$response = $amazon-&gt;itemSearch(array('SearchIndex' =&gt; 'Books', 'Keywords' =&gt; 'php'));
+foreach($response as $r) {
+    echo $r-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+<p>
+            De <code class="code">itemSearch()</code> methode aanvaardt een enkele array array parameter om zoekopties af te handelen.
+			Voor alle details, inclusief een lijst van beschikbare opties, zie de
+            <a href="http://www.amazon.com/gp/aws/sdk/main.html/103-9285448-4703844?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemSearchOperation" target="_top">relevante Amazon documentatie</a>
+        </p>
+<div class="tip"><table border="0" summary="Tip">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Tip]" src="images/tip.png"></td>
+<th align="left">Tip</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            De <a href="zend.service.amazon.html#zend.service.amazon.query" title="24.3.5. De Alternatieve Query API gebruiken"><code class="code">Zend_Service_Amazon_Query</code></a> klasse
+            is een gemakkelijk te gebruiken "wrapper" van deze methode.
+          </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.query"></a>24.3.5. De Alternatieve Query API gebruiken</h3></div></div></div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.query.introduction"></a>24.3.5.1. Inleiding</h4></div></div></div>
+<p>
+            <code class="code">Zend_Service_Amazon_Query</code> bied een alternatieve API om de Amazon Web Service te gebruiken.
+			De alternatieve API gebruikt het Fluent Interface ontwerppatroon. Dus, alle oproepen kunnen gemaakt worden
+			door aaneengeregen methode-oproepen te maken.
+			(bv: <code class="code">$obj-&gt;method()-&gt;method2($arg)</code>)
+        </p>
+<p>
+			De <code class="code">Zend_Service_Amazon_Query</code> API gebruikt overloading om gemakkelijk een item zoekopdracht op te zetten
+			en laat je dan toe te zoeken op de gespecifieerde criteria. Elk van de opties is als een methode-oproep
+			aangeboden, en elk argument van een methode komt overeen met de benoemde waarde van de optie:
+        </p>
+<div class="example">
+<a name="id4871704"></a><p class="title"><b>Voorbeeld 24.9. Doorzoek Amazon met gebruik van de Alternatieve Query API</b></p>
+<p>
+				In dit voorbeeld wordt de alternatieve query API gebruikt als een Fluent Interface om opties en hun
+				respectievelijke waarden te specificeren:
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon/Query.php';
+$query = new Zend_Service_Amazon_Query('MY_API_KEY');
+$query-&gt;Category('Books')-&gt;Keywords('PHP');
+$results = $query-&gt;search();
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+<p>
+				Dit zet de optie <code class="code">Category</code> tot "Books" en <code class="code">Keywords</code> tot "PHP".
+            </p>
+<p>
+				Voor meer informatie over de beschikbare opties verwijzen we je graag door naar de
+                <a href="http://www.amazon.com/gp/aws/sdk/main.html/102-9041115-9057709?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemSearchOperation" target="_top">relevante Amazon documentatie</a>.
+            </p>
+</div>
+</div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.classes"></a>24.3.6. Zend_Service_Amazon Klassen</h3></div></div></div>
+<p>
+        De volgende klassen worden allemaal teruggegeven door
+        <a href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. Een specifiek item opzoeken met ASIN code"><code class="code">Zend_Service_Amazon::itemLookup()</code></a>
+        en
+        <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Amazon Item zoekopdrachten uitvoeren"><code class="code">Zend_Service_Amazon::itemSearch()</code></a>:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.item" title="24.3.6.1. Zend_Service_Amazon_Item"><code class="code">Zend_Service_Amazon_Item</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.image" title="24.3.6.2. Zend_Service_Amazon_Image"><code class="code">Zend_Service_Amazon_Image</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.resultset" title="24.3.6.3. Zend_Service_Amazon_ResultSet"><code class="code">Zend_Service_Amazon_ResultSet</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.offerset" title="24.3.6.4. Zend_Service_Amazon_OfferSet"><code class="code">Zend_Service_Amazon_OfferSet</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.offer" title="24.3.6.5. Zend_Service_Amazon_Offer"><code class="code">Zend_Service_Amazon_Offer</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.similarproduct" title="24.3.6.6. Zend_Service_Amazon_SimilarProduct"><code class="code">Zend_Service_Amazon_SimilarProduct</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.accessories" title="24.3.6.7. Zend_Service_Amazon_Accessories"><code class="code">Zend_Service_Amazon_Accessories</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.customerreview" title="24.3.6.8. Zend_Service_Amazon_CustomerReview"><code class="code">Zend_Service_Amazon_CustomerReview</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.editorialreview" title="24.3.6.9. Zend_Service_Amazon_EditorialReview"><code class="code">Zend_Service_Amazon_EditorialReview</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.listmania" title="24.3.6.10. Zend_Service_Amazon_Listmania"><code class="code">Zend_Service_Amazon_ListMania</code></a></p></li>
+</ul></div>
+<p>
+    </p>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.item"></a>24.3.6.1. Zend_Service_Amazon_Item</h4></div></div></div>
+<p>
+            <code class="code">Zend_Service_Amazon_Item</code> is de typeklasse die gebruikt wordt om een Amazon item voor te stellen dat
+			werd teruggestuurd door de web service. Het omvat alle item eigenschappen, inclusief de titel, beschrijving, recensies enz...
+        </p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.item.asxml"></a>24.3.6.1.1. Zend_Service_Amazon_Item::asXML()</h5></div></div></div>
+<p>
+                <code class="methodsynopsis"><span class="type">string </span><span class="methodname">asXML</span>();</code>
+            </p>
+<p>Geeft de oorspronkelijke XML van het item terug</p>
+</div>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.item.properties"></a>24.3.6.1.2. Eigenschappen</h5></div></div></div>
+<p>
+                <code class="code">Zend_Service_Amazon_Item</code> heeft een aantal eigenschappen die onmiddellijk verwant zijn aan hun
+				Amazon API tegenhangers.
+            </p>
+<div class="table">
+<a name="id4872683"></a><p class="title"><b>Tabel 24.1. Zend_Service_Amazon_Item Eigenschappen</b></p>
+<table summary="Zend_Service_Amazon_Item Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>Amazon Item ID</td>
+</tr>
+<tr>
+<td>DetailPageURL</td>
+<td>string</td>
+<td>URL naar de pagina met de details voor het item</td>
+</tr>
+<tr>
+<td>SalesRank</td>
+<td>string</td>
+<td>Verkoopsrang van het item</td>
+</tr>
+<tr>
+<td>SmallImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>Klein beeld van het item</td>
+</tr>
+<tr>
+<td>MediumImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>Medium beeld van het item</td>
+</tr>
+<tr>
+<td>LargeImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>Groot beeld van het item</td>
+</tr>
+<tr>
+<td>Subjects</td>
+<td>array</td>
+<td>Item onderwerpen</td>
+</tr>
+<tr>
+<td>Offers</td>
+<td>
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.offerset" title="24.3.6.4. Zend_Service_Amazon_OfferSet">Zend_Service_Amazon_OfferSet</a>
+                                </code>
+                            </td>
+<td>Samenvatting van en aanbiedingen voor het item</td>
+</tr>
+<tr>
+<td>CustomerReviews</td>
+<td>array</td>
+<td>
+                                Klantrecensies voorgesteld als een array van
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.customerreview" title="24.3.6.8. Zend_Service_Amazon_CustomerReview">Zend_Service_Amazon_CustomerReview</a>
+                                </code>
+                                objecten
+                            </td>
+</tr>
+<tr>
+<td>EditorialReviews</td>
+<td>array</td>
+<td>
+								Uitgeversrecensies voorgesteld als een array van
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.editorialreview" title="24.3.6.9. Zend_Service_Amazon_EditorialReview">Zend_Service_Amazon_EditorialReview</a>
+                                </code>
+                                objecten
+                            </td>
+</tr>
+<tr>
+<td>SimilarProducts</td>
+<td>array</td>
+<td>
+								Gelijksoortige producten voorgesteld als een array van
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.similarproduct" title="24.3.6.6. Zend_Service_Amazon_SimilarProduct">Zend_Service_Amazon_SimilarProduct</a>
+                                </code>
+                                objecten
+                            </td>
+</tr>
+<tr>
+<td>Accessories</td>
+<td>array</td>
+<td>
+                                Accessoires voor het item voorgesteld als een array van
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.accessories" title="24.3.6.7. Zend_Service_Amazon_Accessories">Zend_Service_Amazon_Accessories</a>
+                                </code>
+                                objecten
+                            </td>
+</tr>
+<tr>
+<td>Tracks</td>
+<td>array</td>
+<td>Een array van liedjes, nummers en namen voor muziek CDs en DVDs</td>
+</tr>
+<tr>
+<td>ListmaniaLists</td>
+<td>array</td>
+<td>
+								ListMania lijsten verwant met het item als een array van
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.listmania" title="24.3.6.10. Zend_Service_Amazon_Listmania">Zend_Service_Amazon_ListmainList</a>
+                                </code>
+                                objecten
+                            </td>
+</tr>
+<tr>
+<td>PromotionalTag</td>
+<td>string</td>
+<td>Item promotievlag</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.image"></a>24.3.6.2. Zend_Service_Amazon_Image</h4></div></div></div>
+<p><code class="code">Zend_Service_Amazon_Image</code> vetegenwoordigt een (remote) beeld voor een product.</p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.image.properties"></a>24.3.6.2.1. Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4873053"></a><p class="title"><b>Tabel 24.2. Zend_Service_Amazon_Image Eigenschappen</b></p>
+<table summary="Zend_Service_Amazon_Image Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Url</td>
+<td>Zend_Uri</td>
+<td>Remote URL voor het beeld</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>int</td>
+<td>De hoogte van het beeld in pixels</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>int</td>
+<td>De breedte van het beeld in pixels</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.resultset"></a>24.3.6.3. Zend_Service_Amazon_ResultSet</h4></div></div></div>
+<p>
+            <code class="code">Zend_Service_Amazon_ResultSet</code> objecten worden teruggestuurd door
+            <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Amazon Item zoekopdrachten uitvoeren">Zend_Service_Amazon::itemSearch()</a>
+            en laten je toe gemakkelijk meervoudige resultaten verwerken.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+				Implementeert de <code class="code">SeekableIterator</code> voor gemakkelijke iteratie (bijvoorbeeld door <code class="code">foreach</code> te
+				gebruiken) evenals onmiddellijke toegang tot een specifiek resultaat door <code class="code">seek()</code> te gebruiken.
+            </p></td></tr>
+</table></div>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.resultset.totalresults"></a>24.3.6.3.1. Zend_Service_Amazon_ResultSet::totalResults()</h5></div></div></div>
+<code class="methodsynopsis"><span class="type">int </span><span class="methodname">totalResults</span>();</code><p>Geeft het totaal aantal resultaten verkregen door de zoekopdracht</p>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.offerset"></a>24.3.6.4. Zend_Service_Amazon_OfferSet</h4></div></div></div>
+<p>
+            Elk resultaat teruggegeven door
+            <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Amazon Item zoekopdrachten uitvoeren">Zend_Service_Amazon::itemSearch()</a>
+            en
+            <a href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. Een specifiek item opzoeken met ASIN code">Zend_Service_Amazon::itemLookup()</a>
+            bevat een
+            <code class="code">Zend_Service_Amazon_OfferSet</code>
+            object via welke prijsinformatie voor het item kan worden opgevraagd.
+        </p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.offerset.parameters"></a>24.3.6.4.1. Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4873277"></a><p class="title"><b>Tabel 24.3. Zend_Service_Amazon_OfferSet Eigenschappen</b></p>
+<table summary="Zend_Service_Amazon_OfferSet Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>LowestNewPrice</td>
+<td>int</td>
+<td>Laagste prijs voor het item in "Nieuw" conditie</td>
+</tr>
+<tr>
+<td>LowestNewPriceCurrency</td>
+<td>string</td>
+<td>
+                                De munteenheid voor <code class="code">LowestNewPrice</code>
+                            </td>
+</tr>
+<tr>
+<td>LowestOldPrice</td>
+<td>int</td>
+<td>Laagste prijs voor het item in "Gebruikt" conditie</td>
+</tr>
+<tr>
+<td>LowestOldPriceCurrency</td>
+<td>string</td>
+<td>
+                                De munteenheid voor <code class="code">LowestOldPrice</code>
+                            </td>
+</tr>
+<tr>
+<td>TotalNew</td>
+<td>int</td>
+<td>Totaal aantal beschikbare items in "nieuw" conditie</td>
+</tr>
+<tr>
+<td>TotalUsed</td>
+<td>int</td>
+<td>Totaal aantal beschikbare items in "gebruikt" conditie</td>
+</tr>
+<tr>
+<td>TotalCollectible</td>
+<td>int</td>
+<td>Totaal aantal beschikbare items in "verzamelaars" conditie</td>
+</tr>
+<tr>
+<td>TotalRefurbished</td>
+<td>int</td>
+<td>Totaal aantal beschikbare items in "gerenoveerd" conditie</td>
+</tr>
+<tr>
+<td>Offers</td>
+<td>array</td>
+<td>
+                                Een array van <code class="code">Zend_Service_Amazon_Offer</code> objecten.
+                            </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.offer"></a>24.3.6.5. Zend_Service_Amazon_Offer</h4></div></div></div>
+<p>
+            Elke aanbieding voor een item is een
+            <code class="code">Zend_Service_Amazon_Offer</code>
+            object.
+        </p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.offer.properties"></a>24.3.6.5.1. Zend_Service_Amazon_Offer Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4873494"></a><p class="title"><b>Tabel 24.4. Eigenschappen</b></p>
+<table summary="Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>MerchantId</td>
+<td>string</td>
+<td>Handelaars Amazon ID</td>
+</tr>
+<tr>
+<td>GlancePage</td>
+<td>string</td>
+<td>URL voor een pagina met een samenvatting van de handelaar</td>
+</tr>
+<tr>
+<td>Condition</td>
+<td>string</td>
+<td>conditie van het item</td>
+</tr>
+<tr>
+<td>OfferListingId</td>
+<td>string</td>
+<td>ID van de aanbiedingslijst</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>int</td>
+<td>Prijs van het item</td>
+</tr>
+<tr>
+<td>CurrencyCode</td>
+<td>string</td>
+<td>Munteenheid voor de prijs van het item</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>string</td>
+<td>Beschikbaarheid van het item</td>
+</tr>
+<tr>
+<td>IsEligibleForSuperSaverShipping</td>
+<td>boolean</td>
+<td>Of het item in aanmerking komt voor Super Saver Shipping of niet</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.similarproduct"></a>24.3.6.6. Zend_Service_Amazon_SimilarProduct</h4></div></div></div>
+<p>
+			Wanneer je naar items zoekt geeft Amazon ook een lijst van gelijksoortige producten terug die de
+			zoekende persoon zouden kunnen interesseren. Elk van deze items is een 
+			<code class="code">Zend_Service_Amazon_SimilarProduct</code> object.
+        </p>
+<p>
+			Elk object bevat de informatie die je toelaat opeenvolgende verzoeken te maken om de volledige informatie
+			van het item te verkrijgen.
+        </p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.similarproduct.properties"></a>24.3.6.6.1. Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4873691"></a><p class="title"><b>Tabel 24.5. Zend_Service_Amazon_SimilarProduct Eigenschappen</b></p>
+<table summary="Zend_Service_Amazon_SimilarProduct Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>Amazon Uniek ID voor het product (ASIN)</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>string</td>
+<td>Titel van het product</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.accessories"></a>24.3.6.7. Zend_Service_Amazon_Accessories</h4></div></div></div>
+<p>
+			Accessoires voor het teruggegeven item worden vertegenwoordigd door 
+			<code class="code">Zend_Service_Amazon_Accessories</code> objecten
+        </p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.accessories.properties"></a>24.3.6.7.1. Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4873796"></a><p class="title"><b>Tabel 24.6. Zend_Service_Amazon_Accessories Eigenschappen</b></p>
+<table summary="Zend_Service_Amazon_Accessories Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>Amazon Uniek ID voor het product (ASIN)</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>string</td>
+<td>Titel van het product</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.customerreview"></a>24.3.6.8. Zend_Service_Amazon_CustomerReview</h4></div></div></div>
+<p>
+			Elke klantrecensie wordt teruggegeven als een <code class="code">Zend_Service_Amazon_CustomerReview</code> object.
+        </p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.customerreview.properties"></a>24.3.6.8.1. Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4873899"></a><p class="title"><b>Tabel 24.7. Zend_Service_Amazon_CustomerReview Eigenschappen</b></p>
+<table summary="Zend_Service_Amazon_CustomerReview Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Rating</td>
+<td>string</td>
+<td>Item classificatie</td>
+</tr>
+<tr>
+<td>HelpfulVotes</td>
+<td>string</td>
+<td>Stemmen over hoe helpvol de recensie is</td>
+</tr>
+<tr>
+<td>CustomerId</td>
+<td>string</td>
+<td>Klant ID</td>
+</tr>
+<tr>
+<td>TotalVotes</td>
+<td>string</td>
+<td>Totaal aantal stemmen</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>string</td>
+<td>Datum van de recensie</td>
+</tr>
+<tr>
+<td>Summary</td>
+<td>string</td>
+<td>Recensie samenvatting</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>string</td>
+<td>Recensie inhoud</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.editorialreview"></a>24.3.6.9. Zend_Service_Amazon_EditorialReview</h4></div></div></div>
+<p>
+			Elke uitgeversrecensie van een item is een <code class="code">Zend_Service_Amazon_EditorialReview</code> object
+        </p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.editorialreview.properties"></a>24.3.6.9.1. Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4874072"></a><p class="title"><b>Tabel 24.8. Zend_Service_Amazon_EditorialReview Eigenschappen</b></p>
+<table summary="Zend_Service_Amazon_EditorialReview Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Source</td>
+<td>string</td>
+<td>Bron van de uitgeversrecensie</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>string</td>
+<td>Recensie inhoud</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.listmania"></a>24.3.6.10. Zend_Service_Amazon_Listmania</h4></div></div></div>
+<p>
+			Elke ListMania resultaatlijst is een <code class="code">Zend_Service_Amazon_Listmania</code> object.
+        </p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.listmania.properties"></a>24.3.6.10.1. Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4874176"></a><p class="title"><b>Tabel 24.9. Zend_Service_Amazon_Listmania Eigenschappen</b></p>
+<table summary="Zend_Service_Amazon_Listmania Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ListId</td>
+<td>string</td>
+<td>Lijst ID</td>
+</tr>
+<tr>
+<td>ListNaam</td>
+<td>string</td>
+<td>Lijstnaam</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.service.akismet.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.service.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.service.flickr.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">24.2. Zend_Service_Akismet </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 24.4. Zend_Service_Flickr</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

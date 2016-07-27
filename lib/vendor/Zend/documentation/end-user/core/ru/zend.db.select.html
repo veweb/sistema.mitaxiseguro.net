@@ -1,0 +1,769 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.3. Zend_Db_Select</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="prev" href="zend.db.profiler.html" title="9.2. Zend_Db_Profiler">
+<link rel="next" href="zend.db.table.html" title="9.4. Zend_Db_Table">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.introduction" title="9.3.1. Введение">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.fromcols" title="9.3.2. Извлечение столбцов">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.joincols" title="9.3.3. Объединение таблиц">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.where" title="9.3.4. Условия WHERE">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.group" title="9.3.5. Группировка">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.having" title="9.3.6. Условия HAVING">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.order" title="9.3.7. Сортировка">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.limit" title="9.3.8. Ограничение по количеству строк и смещению">
+<link rel="subsection" href="zend.db.select.html#zend.db.select.paging" title="9.3.9. Ограничение по странице и количеству строк">
+<link rel="subsection" href="zend.db.select.html#id4835341" title="9.3.10. Другие методы">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.3. Zend_Db_Select</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.profiler.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.table.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.select"></a>9.3. Zend_Db_Select</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.introduction"></a>9.3.1. Введение</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Select</code> является инструментом, помогающим
+            строить SQL-операторы SELECT, не зависящие от типа СУБД. Очевидно,
+            он не может быть идеальным, но он проделал значительный путь к тому,
+            чтобы помочь сделать ваши запросы переносимыми между серверными
+            СУБД. Кроме того, он помогает сделать ваши запросы устойчивыми
+            против SQL-инъекций.
+
+        </p>
+<p>
+            Наиболее легкий способ создания экземпляра
+            <code class="code">Zend_Db_Select</code> — использование метода
+            <code class="code">Zend_Db_Adapter::select()</code>.
+
+        </p>
+<pre class="programlisting">&lt;?php
+		
+require_once 'Zend/Db.php';
+
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+$select = $db-&gt;select();
+// $select теперь является объектом, сконфигурированным для использования
+// исключительно с адаптером PDO_MYSQL 
+
+?&gt;</pre>
+<p>
+            Далее вы строите запрос SELECT, используя этот объект и его методы,
+            затем генерируете строку, которая передается
+            <code class="code">Zend_Db_Adapter</code> для запросов (метод
+            <code class="code">query()</code>) или извлечения
+            (группа методов <code class="code">fetch*()</code>).
+
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// SELECT round_table.*
+// FROM `round_table` round_table
+// WHERE `noble_title` = 'Sir'
+// ORDER BY `first_name`
+// LIMIT 10 OFFSET 20
+//
+
+// вы можете делать это в итеративном стиле..
+$select-&gt;from('round_table');
+$select-&gt;where('noble_title = ?', 'Sir');
+$select-&gt;order('first_name');
+$select-&gt;limit(10,20);
+
+// ...or a "fluent" style:
+// ...или в стиле fluent
+$select-&gt;from('round_table')
+       -&gt;where('noble_title = ?', 'Sir')
+       -&gt;order('first_name')
+       -&gt;limit(10,20);
+
+// извлечение результата:
+$sql = $select-&gt;__toString();
+$result = $db-&gt;fetchAll($sql);
+
+// второй способ: передача объекта $select
+$result = $db-&gt;fetchAll($select);
+
+// третий способ: Получение Zend_Db_Statement
+// или PDOStatement непосредственно из объекта $select:
+$stmt = $select-&gt;query();
+$result = $stmt-&gt;fetchAll();
+
+?&gt;</pre>
+<p>
+            Еще вы можете применять связанные параметры в своих запросах вместо
+            подстановки по порядку следования.
+
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// SELECT round_table.*
+// FROM `round_table` round_table
+// WHERE noble_title = 'Sir'
+// ORDER BY `first_name`
+// LIMIT 10 OFFSET 20
+//
+
+$select-&gt;from('round_table', '*')
+       -&gt;where('noble_title = :title')
+       -&gt;order('first_name')
+       -&gt;limit(10,20);
+
+// извлечение результатов с использованием связанных параметров
+$params = array('title' =&gt; 'Sir');
+$result = $db-&gt;fetchAll($select, $params);
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.fromcols"></a>9.3.2. Извлечение столбцов</h3></div></div></div>
+<p>
+            Для  извлечения столбцов из определенной таблицы используйте метод
+            <code class="code">from()</code>, задавая таблицу и столбцы, которые хотите
+            получить из таблицы. Вы можете использовать псевдонимы таблиц и
+            столбцов, также можете вызывать <code class="code">from()</code> любое количество
+            раз.
+
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// создание объекта $db, затем получение инструмента SELECT
+$select = $db-&gt;select();
+
+// SELECT some_table.`a`, some_table.`b`, some_table.`c`
+// FROM `some_table` some_table
+
+$select-&gt;from('some_table', array('a', 'b', 'c'));
+
+// SELECT bar.`col`
+// FROM `foo` bar
+
+$select-&gt;from(array('foo' =&gt; 'bar'), 'col');
+
+?&gt;</pre>
+<p>
+            Второй аргумент метода <code class="code">from()</code> должен быть скалярным
+            значением для имени единственного столбца или массивом для имен
+            нескольких столбцов. Скалярное значение или элемент массива могут
+            быть строкой, которая интерпретируется как простое имя столбца,
+            которое окружается кавычками и к нему добавляется псевдоним
+            таблицы. Если вы опустите второй аргумент, то используется значение
+            по умолчанию <code class="code">'*'</code>, которое не окружается кавычками, но
+            к нему добавляется псевдоним таблицы. Если вам не нужны столбцы из
+            этой таблицы в наборе результатов, то используйте пустой массив
+            <code class="code">array()</code>.
+
+        </p>
+<p>
+            Не задавайте несколько столбцов в виде одной строки с разделенными
+            запятой именами столбцов. Этот синтаксис использовался в более
+            ранних версиях Zend_Db и сейчас больше не поддерживается. Вместо
+            этого используйте массив.
+
+        </p>
+<p>
+            Псевдоним таблицы добавляется к каждому строковому элементу
+            строкового типа второго аргумента, но если элемент является объектом
+            Zend_Db_Expr, то его строковое значение используется без
+            окружения кавычками и добавления псевдонима таблицы.
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+$select = $db-&gt;select();
+
+// SELECT foo.col AS col1, bar.col AS col2
+// FROM foo, bar
+$select-&gt;from('foo', array(
+    new Zend_Db_Expr('foo.col AS col1'),
+    new Zend_Db_Expr('CURDATE()')
+);
+$select-&gt;from('bar', new Zend_Db_Expr('bar.col AS col2'));
+
+?&gt;</pre>
+<p>
+            Используйте ассоциативный массив для объявления псевдонимов таблиц.
+            Ключ является именем таблицы а значение - псевдонимом. Если вы
+            определяете таблицу в виде простой строки вместо ассоциативного
+            массива, то Zend_Db_Select генерирует псевдоним таблицы. По
+            умолчанию псевдоним таблицы совпадает с именем
+            таблицы, так же, как если бы вы использовали SQL-запрос вида
+            "<code class="code">SELECT foo.* FROM `foo` foo</code>". Если вы добавляете одну
+            и ту же таблицу больше одного раза (например, для объединения
+            таблицы с самой собой), то Zend_Db_Select использует уникальные
+            псевдонимы для каждого экземпляра таблицы вида "<code class="code">foo_1</code>",
+            "<code class="code">foo_2</code>" и т.д.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.joincols"></a>9.3.3. Объединение таблиц</h3></div></div></div>
+<p>
+            Для извлечения столбцов с использованием объединения таблиц
+            используйте метод <code class="code">join()</code>. Сначала указывается имя
+            присоединяемой таблицы, затем условие соединения, и в заключение
+            столбцы, которые вы хотите получить из объединенных таблиц. Вы
+            можете вызывать <code class="code">join()</code> любое количество раз.
+
+</p>
+<pre class="programlisting">&lt;?php
+	
+// создание объекта $db, затем получение инструмента SELECT
+$select = $db-&gt;select();
+
+// SELECT foo.*, bar.*
+// FROM `foo` foo
+// JOIN `bar` bar ON foo.id = bar.id
+
+$select-&gt;from('foo');
+$select-&gt;join('bar', 'foo.id = bar.id');
+
+?&gt;</pre>
+<p>
+            Первый аргументом метода <code class="code">join()</code> является спецификатор
+            таблицы. Он аналогичен первыому аргументу метода
+            <code class="code">from()</code>. Это может быть как строка (имя таблицы), так и
+            ассоциативный массив соотношений 'имя таблицы' =&gt; 'псевдоним'.
+
+        </p>
+<p>
+            Второй аргумент метода <code class="code">join()</code> является выражением, по
+            которому формируется условие объединения. Вы можете использовать
+            псевдонимы таблиц в них, но помните, что если вы не задали
+            псевдоним таблицы, то Zend_Db_Select генерирует его. Если вы
+            опустили условие объединения, то это будет эквивалентом
+            использования CROSS JOIN или декартового произведения.
+
+        </p>
+<p>
+            Третий аргумент метода <code class="code">join()</code> является списком столбцов
+            из объединяемой таблицы для включения в список выборки. Он
+            аналогичен второму аргументу метода <code class="code">from()</code> в том, что
+            это может быть скалярное значение для имени столбца или массив
+            скаляров для нескольких столбцов. Каждая скалярная величина может
+            быть либо строкой, либо объектом Zend_Db_Expr. Если вы опустили этот
+            аргумент, то используется значение по умолчанию <code class="code">'*'</code>.
+            Если вам не нужны столбцы из этой таблицы в наборе результатов
+            выборки, то используйте пустой массив <code class="code">array()</code>.
+
+        </p>
+<p>
+            Не задавайте несколько столбцов в виде одной строки с разделенными
+            запятой именами столбцов. Этот синтаксис использовался в более
+            ранних версиях Zend_Db и сейчас больше не поддерживается. Вместо
+            этого используйте массив.
+
+        </p>
+<p>
+            Поддерживаются следующие типы объединения:
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <span><strong class="command">INNER JOIN</strong></span> с методами <code class="code">join()</code>
+                    или <code class="code">joinInner()</code>. Все реляционные СУБД
+                    поддерживают этот тип объединения.
+
+                </p></li>
+<li><p>
+                   <span><strong class="command">LEFT JOIN</strong></span> с методом
+                   <code class="code">joinLeft()</code> Все реляционные СУБД поддерживают 
+                   этот тип объединения.
+
+                </p></li>
+<li><p>
+                   <span><strong class="command">RIGHT JOIN</strong></span> с методом
+                   <code class="code">joinRight()</code>. Некоторые реляционные СУБД не 
+                   поддерживают этот тип объединения.
+
+                </p></li>
+<li><p>
+                    <span><strong class="command">FULL JOIN</strong></span> с методом
+                    <code class="code">joinFull()</code>.
+                    Некоторые реляционные СУБД не поддерживают этот тип
+                    объединения.
+
+                </p></li>
+<li><p>
+                    <span><strong class="command">CROSS JOIN</strong></span> с методом
+                    <code class="code">joinCross()</code>. Этот метод не имеет параметры для
+                    определения условия объединения.
+                    Некоторые реляционные СУБД не поддерживают этот тип
+                    объединения.
+
+                </p></li>
+<li><p>
+                    <span><strong class="command">NATURAL JOIN</strong></span> с методом
+                    <code class="code">joinNatural()</code>. Этот метод не имеет параметры
+                    для определения условия объединения. Естетственное
+                    объединение подразумевает объединение по эквивалентности
+                    значений в столбцах с одинаковыми именами в двух таблицах.
+                    Поддерживается только NATURAL INNER JOIN.
+
+                </p></li>
+</ul></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.where"></a>9.3.4. Условия WHERE</h3></div></div></div>
+<p>
+            Для добавления условий WHERE, используйте метод
+            <code class="code">where()</code>.
+            Вы можете передать либо обычную строку, либо строку с метками
+            заполнения и значения для подстановки с добавлением кавычек
+            (подстановка выполняется с помощью
+            <code class="code">Zend_Db_Adapter::quoteInto</code>).
+
+        </p>
+<p>
+            Повторные вызовы <code class="code">where()</code> будет добавлять условия через
+            AND. Если нужен OR, то используйте метод <code class="code">orWhere()</code>.
+        
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// создание объекта $db, затем получение  SELECT
+$select = $db-&gt;select();
+
+// SELECT r.*
+// FROM `round_table` r
+// WHERE noble_title = 'Sir'
+//   AND favorite_color = 'yellow'
+
+$select-&gt;from(array('round_table' =&gt; 'r'));
+$select-&gt;where("noble_title = 'Sir'"); // встроенное значение
+$select-&gt;where('favorite_color = ?', 'yellow'); // подставляемое значение
+
+// SELECT foo.*
+//     FROM `foo` foo
+//     WHERE bar = 'baz'
+//     OR id IN('1', '2', '3')
+
+$select-&gt;from('foo');
+$select-&gt;where('bar = ?', 'baz');
+$select-&gt;orWhere('id IN(?)', array(1, 2, 3));
+
+?&gt;</pre>
+<p>
+            Zend_Db_Select не добавляет кавычки и псевдонимы таблиц к именам
+            столбцов в условиях WHERE. Если вы подставляете переменные PHP в
+            строку для выражения WHERE, то вам нужно использовать метод
+            <code class="code">quoteIdentifier()</code> класса Zend_Db_Adapter для
+            предотвращения ошибок синтаксиса.
+
+        </p>
+<pre class="programlisting">&lt;?php
+...
+$columnName = 'bar'; // или устанавливется из внешнего источника
+$whereExpr = $db-&gt;quoteIdentifier($columnName) . ' = ?';
+$select-&gt;where($whereExpr, 'baz');
+?&gt;</pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.group"></a>9.3.5. Группировка</h3></div></div></div>
+<p>
+            Для группировки строк используйте метод <code class="code">group()</code> столько
+            раз, сколько нужно.
+
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// создание объекта $db, затем получение инструмента SELECT
+$select = $db-&gt;select();
+
+// SELECT COUNT(id)
+// FROM `foo` foo
+// GROUP BY `bar`, `baz`
+
+$select-&gt;from('foo', new Zend_Db_Expr('COUNT(id)'));
+$select-&gt;group('bar');
+$select-&gt;group('baz');
+
+// эквивалентный вызов group():
+$select-&gt;group(array('bar', 'baz'));
+
+?&gt;</pre>
+<p>
+            Не задавайте несколько столбцов в виде одной строки с разделенными
+            запятой именами столбцов. Этот синтаксис использовался в более
+            ранних версиях Zend_Db и сейчас больше не поддерживается. Вместо
+            этого используйте массив.        
+
+        </p>
+<p>
+            Добавление кавычек применяется к каждому элементу строкового типа
+            аргумента <code class="code">group()</code>, но если элемент является объектом
+            Zend_Db_Expr, то его строковое значение используется без добавления
+            кавычек.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.having"></a>9.3.6. Условия HAVING</h3></div></div></div>
+<p>
+            Для добавления условий HAVING используйте метод
+            <code class="code">having()</code>. Этот метод в действии идентичен методу
+            <code class="code">where()</code>.
+
+        </p>
+<p>
+            Если вы вызываете <code class="code">having()</code> несколько раз, условия будут
+            добавляться через AND. Если нужен OR, то
+            используйте метод <code class="code">orHaving()</code>.
+
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// создание объекта $db, затем получение инструмента SELECT
+$select = $db-&gt;select();
+
+// SELECT COUNT(id) AS count_id
+//     FROM `foo` foo
+//     GROUP BY `bar`, `baz`
+//     HAVING count_id &gt; '1'
+
+$select-&gt;from('foo', new Zend_Db_Expr('COUNT(id) AS count_id'));
+$select-&gt;group(array('bar', 'baz'));
+$select-&gt;having('count_id &gt; ?', 1);
+
+?&gt;</pre>
+<p>
+            Zend_Db_Select не добавляет кавычки и псевдонимы таблиц к именам
+            столбцов в условиях HAVING. Если вы подставляете переменные PHP в
+            строку для выражения HAVING, то вам нужно использовать метод
+            <code class="code">quoteIdentifier()</code> класса Zend_Db_Adapter для 
+            предотвращения ошибок синтаксиса.
+
+        </p>
+<pre class="programlisting">&lt;?php
+...
+$columnName = 'count_id'; // или устанавливается из внешнего ресурса
+$havingExpr = $db-&gt;quoteIdentifier($columnName) . ' &gt; ?';
+$select-&gt;having($havingExpr, 1);
+?&gt;</pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.order"></a>9.3.7. Сортировка</h3></div></div></div>
+<p>
+            Для сортировки столбцов используйте метод <code class="code">order()</code>
+            столько раз, сколько необходимо.
+
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// создание объекта $db, затем получение инструмента SELECT
+$select = $db-&gt;select();
+
+// SELECT r.*
+// FROM `round_table` r
+// ORDER BY `noble_title` DESC, `first_name` ASC
+
+$select-&gt;from('round_table');
+$select-&gt;order('noble_title DESC');
+$select-&gt;order('first_name');
+
+// эквивалентный вызов order():
+$select-&gt;order(array('noble_title DESC', 'first_name'));
+
+?&gt;</pre>
+<p>
+            Не задавайте несколько столбцов в виде одной строки с разделенными
+            запятой именами столбцов. Этот синтаксис использовался в более
+            ранних версиях Zend_Db и сейчас больше не поддерживается. Вместо
+            этого используйте массив.
+
+        </p>
+<p>
+            Добавление кавычек применяется к каждому элементу строкового типа
+            аргумента <code class="code">group()</code>, но если элемент является объектом
+            Zend_Db_Expr, то его строковое значение используется без добавления
+            кавычек.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.limit"></a>9.3.8. Ограничение по количеству строк и смещению</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Select</code> предлагает независимую от типа СУБД
+            поддержку LIMIT. Для многих баз данных — таких, как MySQL и
+            PostgreSQL — это относительно легко, так как они поддерживают
+            синтаксис "LIMIT :количество_строк [OFFSET :смещение]".
+
+        </p>
+<p>
+            Для некоторых других баз данных это не так просто, поскольку
+            они не поддерживают оператор LIMIT. Microsoft SQL Server имеет
+            оператор TOP, который можно использовать вместо LIMIT. Oracle и DB2
+            требуют, чтобы запрос был сформирован специальным образом для
+            эмуляции LIMIT. Zend_Db_Select может переписывать SELECT в
+            соответствии с каждым адамтером базы данных для обеспечения
+            функционала LIMIT.
+
+        </p>
+<p>
+            Для ограничения возвращаемых результатов по количеству строк и
+            смещению используйте метод <code class="code">limit()</code> c количеством строк
+            и смещением (необязательный параметр).
+
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// простой "LIMIT :количество_строк"
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$select-&gt;order('id');
+$select-&gt;limit(10);
+
+// Для MySQL/PostgreSQL/SQLite, это будет преобразовано в:
+//
+// SELECT foo.*
+// FROM "foo" foo
+// ORDER BY "id" ASC
+// LIMIT 10
+//
+// Для Microsoft SQL Server, это будет преобразовано в:
+//
+// SELECT TOP 10 foo.*
+// FROM [foo] foo
+// ORDER BY [id] ASC
+
+// Теперь более сложный "LIMIT :количество_строк OFFSET :смещение"
+$select = $db-&gt;select();
+$select-&gt;from('foo', '*');
+$select-&gt;order('id');
+$select-&gt;limit(10, 20);
+
+// Для MySQL/PostgreSQL/SQLite, это будет преобразовано в:
+//
+// SELECT foo.*
+// FROM "foo" foo
+// ORDER BY "id" ASC
+// LIMIT 10 OFFSET 20
+//
+// Microsoft SQL Server не поддерживает смещение, поэтому это будет
+// преобразовано в:
+//
+// SELECT * FROM (
+//     SELECT TOP 10 * FROM (
+//         SELECT TOP 30 *
+//         FROM [foo] foo
+//         ORDER BY [id] DESC
+//     ) ORDER BY id ASC
+// )
+//
+// Zend_Db_Adapter Выполняет эти преобразования автоматически
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.select.paging"></a>9.3.9. Ограничение по странице и количеству строк</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Select</code> также предлагает ограничение, основанное
+            на страницах. Если вы хотите получить определенную "страницу"
+            результатов, то используйте метод <code class="code">limitPage()</code>; сначала
+            передается номер требуемой страницы, затем количество строк,
+            которое показывается на каждой странице.
+
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// построение основы запроса SELECT...
+$select = $db-&gt;select();
+$select-&gt;from('foo', '*');
+$select-&gt;order('id');
+
+// ... и ограничение до страницы 3, где каждая страница имеет 10 строк
+$select-&gt;limitPage(3, 10);
+
+// в MySQL/PostgreSQL/SQLite это будет преобразовано в:
+//
+// SELECT foo.*
+// FROM `foo` foo
+// ORDER BY `id` ASC
+// LIMIT 10 OFFSET 20
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id4835341"></a>9.3.10. Другие методы</h3></div></div></div>
+<p>
+            Метод <code class="code">distinct()</code> дает возможность добавлять ключевое
+            слово DISTINCT в SQL-запрос.  
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+// SELECT DISTINCT foo.`non_unique_column`
+// FROM `foo` foo
+
+$select = $db-&gt;select();
+$select-&gt;distinct();
+$select-&gt;from('foo', 'non_unique_column');
+
+?&gt;</pre>
+<p>
+            Метод <code class="code">forUpdate()</code> дает возможность добавлять ключевые
+            слова FOR UPDATE в SQL-запрос.
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+// SELECT FOR UPDATE foo.*
+// FROM `foo` foo
+
+$select = $db-&gt;select();
+$select-&gt;forUpdate();
+$select-&gt;from('foo');
+
+?&gt;</pre>
+<p>
+            Метод <code class="code">query()</code> подобен методу <code class="code">query()</code>
+            в классе Zend_Db_Adapter. Он возвращает объект класса
+            Zend_Db_Statement или PDOStatement, в зависимости от типа адаптера.
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$stmt = $select-&gt;query();
+$result = $stmt-&gt;fetchAll();
+
+// Это эквивалентно следующему:
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$stmt = $db-&gt;query($select);
+$result = $stmt-&gt;fetchAll();
+
+?&gt;</pre>
+<p>
+            Метод <code class="code">getPart()</code> возвращает даннные, переданные для
+            частей SQL-запроса. Класс Zend_Db_Select включает в себя определения
+            констант, которые можно использовать для частей SQL-запроса. 
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+// SELECT foo.*
+// FROM `foo` foo
+// ORDER `keyColumn`
+
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$select-&gt;order('keyColumn');
+
+print_r( $select-&gt;getPart( Zend_Db_Select::ORDER ) );
+
+?&gt;</pre>
+<p>
+            Метод <code class="code">reset()</code> дает возможность очистить определенную
+            часть SQL-запроса или все его части, если аргумент не указан. 
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+// SELECT foo.*
+// FROM `foo` foo
+// ORDER BY `column1`
+
+$select = $db-&gt;select();
+$select-&gt;from('foo');
+$select-&gt;order('column1');
+
+// Теперь мы хотим установить другой критерий сортировки
+//
+// SELECT foo.*
+// FROM `foo` foo
+// ORDER BY `column2`
+
+// Очищение одной части запроса, теперь мы можем переопределеить ее
+$select-&gt;reset( Zend_Db_Select::ORDER );
+$select-&gt;order('column2');
+
+// Очищение всех частей запроса
+$select-&gt;reset();
+
+?&gt;</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.profiler.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.table.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.2. Zend_Db_Profiler </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 9.4. Zend_Db_Table</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

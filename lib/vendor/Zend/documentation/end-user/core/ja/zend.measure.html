@@ -1,0 +1,183 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第18章 Zend_Measure</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.mail.read.html" title="17.14. メールメッセージの読み込み">
+<link rel="next" href="zend.measure.creation.html" title="18.2. 計測値の作成">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.measure.html#zend.measure.introduction" title="18.1. 導入">
+<link rel="section" href="zend.measure.creation.html" title="18.2. 計測値の作成">
+<link rel="section" href="zend.measure.output.html" title="18.3. 計測値の出力">
+<link rel="section" href="zend.measure.edit.html" title="18.4. 計測値の操作">
+<link rel="section" href="zend.measure.special.html" title="18.5. 特別な関数">
+<link rel="section" href="zend.measure.types.html" title="18.6. 計測値の型">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第18章 Zend_Measure</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mail.read.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.measure.creation.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.measure"></a>第18章 Zend_Measure</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.measure.html#zend.measure.introduction">18.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.measure.creation.html">18.2. 計測値の作成</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.number">18.2.1. 整数および浮動小数点数からの計測値の作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.string">18.2.2. 文字列からの計測値の作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.localized">18.2.3. ローカライズされた文字列をもとにした計測値</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.output.html">18.3. 計測値の出力</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.auto">18.3.1. 自動的な出力</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.value">18.3.2. 値の出力</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.unit">18.3.3. 単位つきの出力</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.localized">18.3.4. ローカライズされた文字列での出力</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.edit.html">18.4. 計測値の操作</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.convert">18.4.1. 変換</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.add">18.4.2. 加減算</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.equal">18.4.3. 比較</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.compare">18.4.4. 比較</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.changevalue">18.4.5. 値の変更</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.changetype">18.4.6. 型の変更</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.special.html">18.5. 特別な関数</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.typelist">18.5.1. すべての型の一覧</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.unitlist">18.5.2. すべての単位の一覧</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.types.html">18.6. 計測値の型</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.binary">18.6.1. Zend_Measure_Binary のヒント</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.decimal">18.6.2. Zend_Measure_Number のヒント</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.roman">18.6.3. ローマ数字</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.measure.introduction"></a>18.1. 導入</h2></div></div></div>
+<p>
+        <code class="code">Zend_Measure_*</code> クラスは、
+        さまざまな計測を行うためのパッケージです。
+        汎用的で非常に簡単な方法を提供しています。
+        <code class="code">Zend_Measure_*</code> クラスを使用すると、
+        計測値の単位変換ができるようになります。
+        異なる単位どうしでの足し算や引き算、そして比較も可能です。
+        ユーザが自国語で入力した内容から、単位を自動的に抽出します。
+        多くの計測単位をサポートしています。
+    </p>
+<div class="example">
+<a name="id4863389"></a><p class="title"><b>例 18.1. 計測値の変換</b></p>
+<p>
+            以下の簡単な例で、計測値の型の自動変換の様子を説明します。
+            計測値を変換するには、その値と型を知っている必要があります。
+            値としては、整数や浮動小数点数だけでなく数値文字列も使用できます。
+            変換は、同じ型 (重さ、面積、温度、速度など) の単位間でのみ行うことができます。
+            型が違う場合は変換できません。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+$locale = new Zend_Locale('en');
+$unit = new Zend_Measure_Length(100, Zend_Measure_Length::METER, $locale);
+
+// メートルをヤードに変換します
+echo $unit-&gt;convertTo(Zend_Measure_Length::YARD);
+?&gt;</pre>
+</div>
+<p>
+        <code class="code">Zend_Measure_*</code> は、さまざまな計測単位をサポートしています。
+        これらの単位は、すべて統一された記法で表され、
+        <code class="code">Zend_Measure_&lt;TYPE&gt;::NAME_OF_UNIT</code>
+        のようになります。ここで &lt;TYPE&gt; はその単位の物理的あるいは数値的な特性を表します。
+        すべての計測単位は、変換用の係数と表示単位を含んでいます。
+        詳細は
+        <a href="zend.measure.types.html" title="18.6. 計測値の型"><code class="code">計測値の型</code>
+        </a>
+        を参照ください。
+    </p>
+<div class="example">
+<a name="id4864081"></a><p class="title"><b>例 18.2. <code class="code">メートル</code> の計測</b></p>
+<p>
+            <code class="code">メートル</code> は長さの単位です。したがって、対応する定数は
+            <code class="code">Length</code> クラス内にあります。この単位を使用するには、
+            <code class="code">Length::METER</code> という記法を使用する必要があります。
+            表示単位は <code class="code">m</code> です。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+echo Zend_Measure_Length::STANDARD;  // 出力は 'Length::METER' となります
+echo Zend_Measure_Length::KILOMETER; // 出力は 'Length::KILOMETER' となります
+
+$unit = new Zend_Measure_Length(100,'METER');
+echo $unit;
+// 出力は '100 m' となります
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mail.read.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.measure.creation.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">17.14. メールメッセージの読み込み </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 18.2. 計測値の作成</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

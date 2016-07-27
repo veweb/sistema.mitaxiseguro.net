@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Rozdział 14. Zend_Json</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="index.html" title="Przewodnik Programisty">
+<link rel="prev" href="zend.http.response.html" title="13.5. Zend_Http_Response">
+<link rel="next" href="zend.json.basics.html" title="14.2. Podstawowe użycie">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="section" href="zend.json.html#zend.json.introduction" title="14.1. Wprowadzenie">
+<link rel="section" href="zend.json.basics.html" title="14.2. Podstawowe użycie">
+<link rel="section" href="zend.json.objects.html" title="14.3. Obiekty JSON">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Rozdział 14. Zend_Json</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.http.response.html">Poprzedni</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.json.basics.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="pl">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.json"></a>Rozdział 14. Zend_Json</h2></div></div></div>
+<div class="toc">
+<p><b>Spis treści</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.json.html#zend.json.introduction">14.1. Wprowadzenie</a></span></dt>
+<dt><span class="sect1"><a href="zend.json.basics.html">14.2. Podstawowe użycie</a></span></dt>
+<dt><span class="sect1"><a href="zend.json.objects.html">14.3. Obiekty JSON</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.json.introduction"></a>14.1. Wprowadzenie</h2></div></div></div>
+<p>
+        <code class="code">Zend_Json</code> dostarcza wygodne metody serializowania danych 
+        PHP do formatu JSON i dekodowania z formatu JSON do PHP. Aby dowiedzieć
+        się więcej o JSON <a href="http://www.json.org/" target="_top">odwiedź stronę 
+        projektu JSON</a>.
+    </p>
+<p>
+        Format JSON, JavaScript Object Notation, może być użyty do wymiany danych
+        między JavaScript a innymi językami. Dzięki temu, że JSON może być 
+        bezpośrednio odebrany przez JavaScript jest on dużo bardziej efektywnym
+        i lżejszym formatem wymiany danych z JavaScript niż XML.
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.http.response.html">Poprzedni</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.json.basics.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">13.5. Zend_Http_Response </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 14.2. Podstawowe użycie</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

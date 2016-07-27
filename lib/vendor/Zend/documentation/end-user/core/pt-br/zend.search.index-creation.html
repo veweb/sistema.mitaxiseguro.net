@@ -1,0 +1,150 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.2. Construindo Índices</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="prev" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="next" href="zend.search.searching.html" title="22.3. Pesquisando em um Índice">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.creating" title="22.2.1. Criando um Novo Índice">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.updating" title="22.2.2. Atualizando um Índice">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.2. Construindo Índices</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.html">Anterior</a> </td>
+<th width="60%" align="center">Capítulo 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.searching.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.index-creation"></a>22.2. Construindo Índices</h2></div></div></div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.creating"></a>22.2.1. Criando um Novo Índice</h3></div></div></div>
+<p>As funcionalidades de criação e atualização de índices são
+    implementadas tanto pelo módulo Zend_Search_Lucene quanto pelo Java
+    Lucene. Você pode usar ambas as funcionalidades.</p>
+<p>O código PHP abaixo mostra um exemplo de como indexar um arquivo
+    usando a API de indexação do Zend_Search_Lucene:</p>
+<pre class="programlisting">&lt;?php
+
+// Setting the second argument to TRUE creates a new index
+$index = new Zend_Search_Lucene('/data/my-index', true);
+
+$doc = new Zend_Search_Lucene_Document();
+
+// Store document URL to identify it in search result.
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('url', $docUrl));
+
+// Index document content
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', $docContent));
+
+// Add document to the index.
+$index-&gt;addDocument($doc);
+
+// Write changes to the index.
+$index-&gt;commit();
+?&gt;</pre>
+<p>Documentos adicionados recentemente devem ser pesquisados no índice
+    somente após um "commit" ter sido executado.</p>
+<p>O método <code class="code">Zend_Search_Lucene::commit()</code> é chamado
+    automaticamente ao final da execução do script e antes de qualquer
+    operação de busca.</p>
+<p>Cada chamada a método commit() gera um novo segmento de índice. Ele
+    deve ser usado raramente, se possível. Observe também que executar
+    "commit" em uma grande quantidade de documentos, em um único passo,
+    consome mais memória.</p>
+<p>O gerenciamento e a otimização de segmentos de forma automatica é um
+    assunto para ser tratado em futuros aprimoramentos do módulo
+    Zend_Search_Lucene.</p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.updating"></a>22.2.2. Atualizando um Índice</h3></div></div></div>
+<p>O mesmo procedimento é empregado para atualizar um índice existente.
+    A única diferença é que o índice deverá ser aberto sem o segundo
+    parâmetro:</p>
+<pre class="programlisting">&lt;?php
+
+// Open existing index
+$index = new Zend_Search_Lucene('/data/my-index');
+
+$doc = new Zend_Search_Lucene_Document();
+// Store document URL to identify it in search result.
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('url', $docUrl));
+// Index document content
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', $docContent));
+
+// Add document to the index.
+$index-&gt;addDocument($doc);
+
+// Write changes to the index.
+$index-&gt;commit();
+?&gt;</pre>
+<p>Cada chamada a commit() (explícita ou implícita) gera um novo
+    segmento de índice.</p>
+<p>Zend_Search_Lucene não gerencia segmentos automaticamente. Então é
+    tarefa do programador observar o tamanho dos segmentos. De um lado,
+    segmentos grandes são mais otimizados, mas por outro, eles consomem mais
+    memória durante sua criação.</p>
+<p>Lucene Java e Luke (Lucene Index Toolbox - <a href="http://www.getopt.org/luke/" target="_top">http://www.getopt.org/luke/</a>)
+    podem ser usados para otimizar índices juntamente com esta versão do
+    Zend_Search_Lucene.</p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.searching.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Capítulo 22. Zend_Search </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> 22.3. Pesquisando em um Índice</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

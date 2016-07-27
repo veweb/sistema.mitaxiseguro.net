@@ -1,0 +1,411 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.4. Zend_Db_Table</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="prev" href="zend.db.select.html" title="9.3. Zend_Db_Select">
+<link rel="next" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.introduction" title="9.4.1. Introduction">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.getting-started" title="9.4.2. Mise en Route">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.name-and-key" title="9.4.3. Nom de la table et clé primaire">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.insert" title="9.4.4. Insertion de lignes">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.udpate" title="9.4.5. Mise à jour de lignes">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.delete" title="9.4.6. Suppression de lignes">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.findbykey" title="9.4.7. Trouver des lignes par clé primaire">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchonerow" title="9.4.8. Aller chercher une ligne">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchmultiple" title="9.4.9. Aller chercher plusieurs lignes">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.domain-logic" title="9.4.10. Ajouter votre propre logique">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.4. Zend_Db_Table</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.select.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.table"></a>9.4. Zend_Db_Table</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.introduction"></a>9.4.1. Introduction</h3></div></div></div>
+<p>
+            Le composant <code class="code">Zend_Db_Table</code> constitue le module de gestion des tables du Framework Zend.
+            Il se connecte à votre base de données via <code class="code">Zend_Db_Adapter</code>, examine le schéma d'une table puis vous aide à manipuler
+            et aller chercher les lignes de cette table.
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.getting-started"></a>9.4.2. Mise en Route</h3></div></div></div>
+<p>
+            La première chose à faire consiste à fournir à la classe abstraite <code class="code">Zend_Db_Table</code> un adaptateur de base de données par défaut;
+            sauf mention contraire de votre part, toutes les instances de <code class="code">Zend_Db_Table</code> utiliseront cet adaptateur par défaut.
+        </p>
+<pre class="programlisting">&lt;?php
+
+// on définit un adaptateur
+require_once 'Zend/Db.php';
+$parametres = array (
+    'adapter'  =&gt; 'PDO_MYSQL',
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'arthur',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory($parametres);
+
+// on définit l'adaptateur par défaut de tous les objets Zend_Db_Table
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+
+?&gt;
+        </pre>
+<p>
+            Ensuite, supposons que vous disposez d'une table appelée "table_ronde" dans votre base de données.
+            Pour utiliser <code class="code">Zend_Db_Table</code> sur cette table de base de données, étendez simplement <code class="code">Zend_Db_Table</code> pour créer
+            une nouvelle classe appelée TableRonde (notez que nous avons transformé le nom table_ronde en utilisant la notation Camel).
+            Vous pourrez ensuite examiner via cette classe la table 'table_ronde', manipuler ses lignes et aller chercher des lignes particulières.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.name-and-key"></a>9.4.3. Nom de la table et clé primaire</h3></div></div></div>
+<p>
+            Par défaut, <code class="code">Zend_Db_Table</code> s'attend à ce que le nom de la table de votre base de données soit le même que son propre
+            nom de classe (en le convertissant d'abord de la NotationCamel vers la notation mots_separes_par_tirets_bas). Ainsi,
+            une classe <code class="code">Zend_Db_Table</code> appelée UnNomDeTable est associée à une table SQL appelée 'un_nom_de_table'. Si vous voulez que
+            votre classe soit associée à un nom autre que la forme avec tirets bas du nom de la classe, surchargez la propriété <code class="code">$_name</code>
+            lorsque vous définissez votre classe.
+        </p>
+<pre class="programlisting">&lt;?php
+class NomDeLaClasse extends Zend_Db_Table
+{
+    // le nom par défaut pour la table est 'nom_de_la_classe'
+    // mais nous voulons utiliser un autre nom
+    protected $_name = 'un_autre_nom_de_table';
+}
+?&gt;
+        </pre>
+<p>
+            Par défaut, <code class="code">Zend_Db_Table</code> s'attend à ce que votre table possède une clé primaire
+            nommée 'id'. (C'est mieux si cette colonne est auto-incrémentée, mais ce n'est pas une nécessité.)
+            Si votre clé primaire se nomme autrement que 'id', vous pouvez surcharger la propriété <code class="code">$_primary</code> lorsque vous définissez votre classe.
+        </p>
+<pre class="programlisting">&lt;?php
+class NomDeLaClasse extends Zend_Db_Table
+{
+    // la clé primaire par défaut est 'id'
+    // mais nous voulons utiliser un autre nom
+    protected $_primary = 'un_autre_nom_de_colonne';
+}
+?&gt;
+        </pre>
+<p>
+             Vous pouvez aussi définir ces propriétés dans la méthode <code class="code">_setup()</code> de votre classe; assurez-vous simplement
+             d'appeler la méthode <code class="code">_setup()</code> de la classe-parente une fois que c'est fait.
+        </p>
+<pre class="programlisting">&lt;?php
+class NomDeLaClasse extends Zend_Db_Table
+{
+    protected function _setup()
+    {
+        $this-&gt;_name = 'un_autre_nom_de_table';
+        $this-&gt;_primary = 'un_autre_nom_de_colonne';
+        parent::_setup();
+    }
+}
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.insert"></a>9.4.4. Insertion de lignes</h3></div></div></div>
+<p>
+             Pour insérer une nouvelle ligne dans votre table, appelez simplement <code class="code">insert()</code> en lui passant un tableau associatif
+             de données sous la forme colonne:valeur. Les données seront échappées automatiquement pour vous et l'ID de la dernière
+             insertion sera renvoyé.
+             (Notez qu'en cela cette méthode diffère de <code class="code">Zend_Db_Adapter::insert()</code>, qui renvoie le nombre de lignes affectées.)
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// INSERT INTO table_ronde
+//     (titre, prenom, couleur_preferee)
+//     VALUES ("Roi", "Arthur", "bleu")
+//
+
+class TableRonde extends Zend_Db_Table {}
+
+$table = new TableRonde();
+
+$donnees = array(
+    'titre'  =&gt; 'Roi',
+    'prenom' =&gt; 'Arthur',
+    'couleur_preferee' =&gt; 'bleu',
+)
+
+$id = $table-&gt;insert($donnees);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.udpate"></a>9.4.5. Mise à jour de lignes</h3></div></div></div>
+<p>
+             Pour mettre à jour des lignes de votre table, appelez <code class="code">update()</code> en lui passant un tableau associatif des données à
+             modifier sous la forme <code class="code">colonne:valeur</code> ainsi qu'une clause WHERE permettant de déterminer quelles lignes doivent
+             être mises à jour. Cette méthode mettra à jour la table et renverra le nombre de lignes affectées.
+        </p>
+<p>
+             Les données à modifier seront automatiquement échappées pour vous mais pas la clause WHERE, que vous devez échapper vous-même
+             à l'aide de l'objet <code class="code">Zend_Db_Adapter</code> de la table.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// UPDATE table_ronde
+//     SET couleur_preferee = "jaune"
+//     WHERE prenom = "Robin"
+//
+
+class TableRonde extends Zend_Db_Table {}
+
+$table = new TableRonde();
+$db = $table-&gt;getAdapter();
+
+$set = array(
+    'couleur_preferee' =&gt; 'jaune',
+)
+
+$where = $db-&gt;quoteInto('prenom = ?', 'Robin');
+
+$lignes_affectees = $table-&gt;update($set, $where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.delete"></a>9.4.6. Suppression de lignes</h3></div></div></div>
+<p>
+             Pour supprimer des lignes de votre table, appelez <code class="code">delete()</code> en lui passant une clause WHERE permettant
+             de déterminer quelles lignes doivent être supprimées. Cette méthode renverra ensuite le nombre de lignes supprimées.
+        </p>
+<p>
+             La clause WHERE ne sera pas échappée pour vous et vous devez donc l'échapper vous-même à l'aide de l'objet <code class="code">Zend_Db_Adapter</code> de la table.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// DELETE FROM table_ronde
+//     WHERE prenom = "Patrick"
+//
+
+class TableRonde extends Zend_Db_Table {}
+
+$table = new TableRonde();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('prenom = ?', 'Patrick');
+
+$lignes_affectees = $table-&gt;delete($where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.findbykey"></a>9.4.7. Trouver des lignes par clé primaire</h3></div></div></div>
+<p>
+             Si vous le souhaitez, vous pouvez facilement obtenir des lignes de la table en fonction des valeurs de leurs clés primaires, grâce
+             à la méthode <code class="code">find()</code>. Cette méthode renvoie un objet <code class="code">Zend_Db_Table_Row</code> si vous tentez de retrouver une seule clé ou un objet
+             <code class="code">Zend_Db_Table_Rowset</code> si vous tentez de retrouver plusieurs clés.
+        </p>
+<pre class="programlisting">&lt;?php
+class TableRonde extends Zend_Db_Table {}
+
+$table = new TableRonde();
+
+// SELECT * FROM table_ronde WHERE id = "1"
+$ligne = $table-&gt;find(1);
+
+// SELECT * FROM table_ronde WHERE id IN("1", "2", 3")
+$lignes = $table-&gt;find(array(1, 2, 3));
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchonerow"></a>9.4.8. Aller chercher une ligne</h3></div></div></div>
+<p>
+             Même si vous pouvez facilement retrouver une ligne par sa clé primaire, vous aurez souvent besoin d'ajouter
+             différentes conditions à la requête lorsque vous cherchez à obtenir une ligne particulière. <code class="code">Zend_Db_Table</code>
+             offre précisément dans ce but la méthode <code class="code">fetchRow()</code>. Appelez <code class="code">fetchRow()</code> en lui passant une clause WHERE
+             (et une clause ORDER optionnelle) et <code class="code">Zend_Db_Table</code> renverra un objet <code class="code">Zend_Db_Table_Row</code> associé au premier
+             enregistrement qui correspond aux conditions spécifiées.
+        </p>
+<p>
+             Notez que la clause WHERE ne sera pas échappée pour vous et vous devez donc l'échapper vous-même à l'aide de l'objet <code class="code">Zend_Db_Adapter</code> de la table.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// SELECT * FROM table_ronde
+//     WHERE titre = "Sire"
+//     AND prenom = "Robin"
+//     ORDER BY couleur_preferee
+//
+
+class TableRonde extends Zend_Db_Table {}
+
+$table = new TableRonde();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('titre = ?', 'Sire')
+       . $db-&gt;quoteInto('AND prenom = ?', 'Robin');
+
+$order = 'couleur_preferee';
+
+$ligne = $table-&gt;fetchRow($where, $order);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchmultiple"></a>9.4.9. Aller chercher plusieurs lignes</h3></div></div></div>
+<p>
+             Si vous avez besoin d'obtenir plusieurs lignes en même temps, utilisez la méthode <code class="code">fetchAll()</code>.
+             Comme pour <code class="code">fetchRow()</code>, elle prend en argument une clause WHERE et une clause ORDER mais aussi un décompte
+             limite et une valeur offset limite afin de restreindre le nombre de lignes renvoyées. La méthode renverra un objet
+             <code class="code">Zend_Db_Table_Rowset</code> contenant les enregistrements sélectionnés.
+        </p>
+<p>
+             Notez que la clause WHERE ne sera pas échappée pour vous et vous devez donc l'échapper
+             vous-même à l'aide de l'objet <code class="code">Zend_Db_Adapter</code> de la table.
+        </p>
+<pre class="programlisting">&lt;?php
+class TableRonde extends Zend_Db_Table {}
+
+$table = new TableRonde();
+$db = $table-&gt;getAdapter();
+
+// SELECT * FROM table_ronde
+//     WHERE titre = "Sire"
+//     ORDER BY prenom
+//     LIMIT 10 OFFSET 20
+
+$where = $db-&gt;quoteInto('titre = ?', 'Sire');
+$order = 'prenom';
+$decompte = 10;
+$offset = 20;
+
+$lignes = $table-&gt;fetchAll($where, $order, $decompte, $offset);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.domain-logic"></a>9.4.10. Ajouter votre propre logique</h3></div></div></div>
+<p>
+             En bon module de table, <code class="code">Zend_Db_Table</code> se prête bien à l'encapsulation de votre propre logique.
+             Vous pouvez par exemple surcharger les méthodes <code class="code">insert()</code> et <code class="code">update()</code> pour qu'elles manipulent ou valident les
+             données avant que celles-ci n'aillent dans la base de données.
+        </p>
+<pre class="programlisting">&lt;?php
+class TableRonde extends Zend_Db_Table
+{
+    public function insert($donnees)
+    {
+        // on ajoute un timestamp
+        if (empty($donnees['cree_le'])) {
+            $donnees['cree_le'] = time();
+        }
+        return parent::insert($data);
+    }
+
+    public function update($donnees)
+    {
+        // on ajoute un timestamp
+        if (empty($donnees['cree_le'])) {
+            $donnees['cree_le'] = time();
+        }
+        return parent::update($donnees);
+    }
+}
+?&gt;
+        </pre>
+<p>
+             De même, vous pouvez ajouter vos propres méthodes <code class="code">find()</code> pour rechercher des enregistrements selon un critère autre que la clé primaire.
+        </p>
+<pre class="programlisting">&lt;?php
+class TableRonde extends Zend_Db_Table
+{
+    public function findAllParNom($nom)
+    {
+        $db = $this-&gt;getAdapter();
+        $where = $db-&gt;quoteInto("nom = ?", $nom);
+        $order = "prenom";
+        return $this-&gt;fetchAll($where, $order);
+    }
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.select.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.3. Zend_Db_Select </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 9.5. Zend_Db_Table_Row</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

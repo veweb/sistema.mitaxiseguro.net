@@ -1,0 +1,571 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第7章 Zend_Controller</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.console.getopt.configuration.html" title="6.4. Zend_Console_Getopt の設定">
+<link rel="next" href="zend.controller.getting-started.html" title="7.2. さあ、はじめましょう">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.controller.html#zend.controller.overview" title="7.1. 概要">
+<link rel="section" href="zend.controller.getting-started.html" title="7.2. さあ、はじめましょう">
+<link rel="section" href="zend.controller.subclassing.html" title="7.3. サブクラス化">
+<link rel="section" href="zend.controller.providedsubclasses.html" title="7.4. 提供されるサブクラス群">
+<link rel="section" href="zend.controller.action.html" title="7.5. アクションコントローラ">
+<link rel="section" href="zend.controller.plugins.html" title="7.6. プラグイン">
+<link rel="section" href="zend.controller.modular.html" title="7.7. モジュラーディレクトリ構造の規約の使用">
+<link rel="section" href="zend.controller.exceptions.html" title="7.8. MVC での例外">
+<link rel="section" href="zend.controller.migration.html" title="7.9. 以前のバージョンからの移行">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第7章 Zend_Controller</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.console.getopt.configuration.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.getting-started.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.controller"></a>第7章 Zend_Controller</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.controller.html#zend.controller.overview">7.1. 概要</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.introduction">7.1.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.request">7.1.2. リクエストオブジェクト</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.routing-process">7.1.3. ルーティング処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.dispatching">7.1.4. ディスパッチ処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.response">7.1.5. レスポンスオブジェクト</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.getting-started.html">7.2. さあ、はじめましょう</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.introduction">7.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration">7.2.2. サーバの設定</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap">7.2.3. 起動用ファイル</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure">7.2.4. ディレクトリ構造</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.overview.defaultcontroller">7.2.5. デフォルトのコントローラ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.subclassing.html">7.3. サブクラス化</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.introduction">7.3.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.conventions">7.3.2. 規約</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.front">7.3.3. フロントコントローラ</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.request.abstract">7.3.4. リクエストの抽象化</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.router.interface">7.3.5. ルータのインターフェイス</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.dispatcher.interface">7.3.6. ディスパッチャのインターフェイス</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.action">7.3.7. アクションコントローラ</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.response.abstract">7.3.8. レスポンスオブジェクト</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.providedsubclasses.html">7.4. 提供されるサブクラス群</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.introduction">7.4.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.request.http">7.4.2. Zend_Controller_Request_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter">7.4.3. Zend_Controller_Router_Rewrite</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.http">7.4.4. Zend_Controller_Response_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.cli">7.4.5. Zend_Controller_Response_Cli</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.action.html">7.5. アクションコントローラ</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.introduction">7.5.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.initialization">7.5.2. オブジェクトの初期化</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.prepostdispatch">7.5.3. ディスパッチ前後のフック</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.accessors">7.5.4. アクセス用メソッド</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.utilmethods">7.5.5. ユーティリティメソッド</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.plugins.html">7.6. プラグイン</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.introduction">7.6.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.writing">7.6.2. プラグインの書き方</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.using">7.6.3. プラグインの使用法</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.modular.html">7.7. モジュラーディレクトリ構造の規約の使用</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.introduction">7.7.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.directories">7.7.2. モジュールコントローラディレクトリの指定</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.router">7.7.3. モジュールへのルーティング</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.defaultcontroller">7.7.4. モジュールあるいはグローバルのデフォルトコントローラ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.exceptions.html">7.8. MVC での例外</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.introduction">7.8.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.handling">7.8.2. 例外を処理する方法は?</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.internal">7.8.3. MVC で遭遇するであろう例外</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.migration.html">7.9. 以前のバージョンからの移行</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerosix">7.9.1. 0.6.0 から 0.8.0 への移行</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerotwo">7.9.2. 0.2.0 以前のバージョンから 0.6.0 への移行</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.overview"></a>7.1. 概要</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.introduction"></a>7.1.1. 導入</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller</code> は、モデル - ビュー - コントローラ
+            (MVC) パターンに基づいたウェブサイトを構築するための基本機能を提供します。
+        </p>
+<p>
+            <code class="code">Zend_Controller</code> は軽量で部品化されており、拡張しやすいように設計されています。
+            この設計は、柔軟性および利用者に対する自由度を確保するための最低限のものであり、
+            <code class="code">Zend_Controller</code> を使用して構築したシステムは、
+            ほぼ同じようなコード配置・規約を共有することができます。
+        </p>
+<p>
+            <code class="code">Zend_Controller</code> の処理の流れは、
+            いくつかの部品にわかれて実装されています。
+            これらの部品のすべてを完璧に理解する必要はありませんが、
+            処理の概要を知っておくことは有用です。
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">Zend_Controller_Front</code> は、
+                        <code class="code">Zend_Controller</code> の処理全体を取りまとめます。
+                        FrontController パターンであるといえます。
+                        サーバから受け取ったすべてのリクエストを <code class="code">Zend_Controller_Front</code>
+                        が処理し、最終的にリクエストを ActionController
+                        (<code class="code">Zend_Controller_Action</code>) に委譲します。
+                    </p></li>
+<li>
+<p>
+                        <code class="code">Zend_Controller_Request_Abstract</code>
+                        はリクエスト環境を表し、コントローラ名やアクション名
+                        そしてリクエストパラメータを設定したり取得したりする機能を提供します。
+                        さらに、アクションが <code class="code">Zend_Controller_Dispatcher</code>
+                        でディスパッチされたかどうかを追跡する機能もあります。
+                        この抽象リクエストオブジェクトを拡張し、
+                        リクエスト情報をカプセル化します。それによって、
+                        ルータはリクエストの情報を取得して
+                        コントローラとアクションを決定できるようになります。
+                    </p>
+<p>
+                        デフォルトでは <code class="code">Zend_Controller_Request_Http</code>
+                        が用いられます。これは、HTTP リクエスト環境全体へのアクセス機能を提供します。
+                    </p>
+</li>
+<li>
+<p>
+                        <code class="code">Zend_Controller_Router_Interface</code> を使用してルータを定義します。
+                        ルーティングとは、リクエストの内容を調べて、
+                        そのリクエストを処理するコントローラとアクションを決定する処理のことです。
+                        このコントローラとアクション、そしてリクエストパラメータがリクエストオブジェクトに設定され、
+                        <code class="code">Zend_Controller_Dispatcher_Standard</code> で処理されます。
+                        ルーティングが発生するのは一度だけ、
+                        つまり最初にリクエストを受け取ってから
+                        最初のコントローラにディスパッチされるまでの間だけです。
+                    </p>
+<p>
+                        デフォルトのルータは
+                        <code class="code">Zend_Controller_Router_Rewrite</code> です。
+                    </p>
+<p>
+                        デフォルトのルータである <code class="code">Zend_Controller_Router_Rewrite</code> は、
+                        <code class="code">Zend_Controller_Request_Http</code> で指定された URI
+                        を受け取ってそれを分解し、コントローラや
+                        アクション、そして URL に含まれたパスのパラメータを取得します。
+                        たとえば、<code class="code">http://localhost/foo/bar/key/value</code>
+                        のような URL の場合は <code class="code">foo</code> がコントローラ、
+                        <code class="code">bar</code> がアクション、そしてパラメータ
+                        <code class="code">key</code> の値として <code class="code">value</code> を取得します。
+                    </p>
+<p>
+                        <code class="code">Zend_Controller_Router_Rewrite</code>
+                        は、任意のパスにマッチさせることもできます。
+                        詳細は <a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter" title="7.4.3. Zend_Controller_Router_Rewrite">項7.4.3. 「Zend_Controller_Router_Rewrite」</a>
+                        を参照ください。
+                    </p>
+</li>
+<li>
+<p>
+                        <code class="code">Zend_Controller_Dispatcher_Interface</code>
+                        を使用してディスパッチャを定義します。ディスパッチとは、
+                        コントローラとアクションをリクエストオブジェクトから受け取り、
+                        それを実際のコントローラファイル/クラスとメソッドに対応させる処理のことです。
+                        コントローラやアクションが存在しない場合は、
+                        デフォルトのコントローラやアクションにディスパッチします。
+                    </p>
+<p>
+                        実際のディスパッチ処理では、
+                        コントローラクラスのインスタンスの作成と
+                        そのクラスのアクションメソッドのコールを行います。
+                        ルーティングは一度しか発生しませんが、
+                        それとは異なりディスパッチは繰り返し発生します。
+                        リクエストオブジェクトのディスパッチ状態がリセットされるとループが再開され、
+                        現在リクエストオブジェクトに設定されているアクションがコールされます。
+                        リクエストオブジェクトのディスパッチ状態が (true に)
+                        設定された状態でループが終了すると、処理が終了します。
+                    </p>
+<p>
+                        デフォルトのディスパッチャは
+                        <code class="code">Zend_Controller_Dispatcher_Standard</code> です。
+                        これは、CamelCasedClasses 形式の名前の最後に
+                        Controller がついたクラスをコントローラとして使用し、
+                        アクションメソッドの名前は camelCasedMethods
+                        形式 (最後に Action をつける) となります。たとえば
+                        <code class="code">SomeFooController::barAction</code>
+                        のような場合、コントローラは
+                        <code class="code">somefoo</code>、アクションは <code class="code">bar</code>
+                        となります。
+                    </p>
+</li>
+<li><p>
+                        <code class="code">Zend_Controller_Action</code> はコントローラの基底コンポーネントです。
+                        各コントローラはこの <code class="code">Zend_Controller_Action</code>
+                        クラスを継承して作成します。このクラスではアクションメソッドを定義します。
+                    </p></li>
+<li>
+<p>
+                        <code class="code">Zend_Controller_Response_Abstract</code>
+                        は基底レスポンスクラスで、アクションコントローラからの応答内容を収集し、
+                        それをレスポンスとして返します。これはヘッダと本文の両方を収集します。
+                        また、<code class="code">__toString()</code> を実装しているので、
+                        それを直接出力してヘッダと本文を一度に送信することができます。
+                    </p>
+<p>
+                        デフォルトのレスポンスクラスは
+                        <code class="code">Zend_Controller_Response_Http</code> で、
+                        これは HTTP 環境での使用に適しています。
+                    </p>
+</li>
+</ul></div>
+<p>
+
+            <code class="code">Zend_Controller</code> の処理の流れは比較的シンプルです。
+            <code class="code">Zend_Controller_Front</code> がリクエストを受け取り、
+            <code class="code">Zend_Controller_Router_Rewrite</code> をコールして、
+            配送先となるコントローラ (そしてコントローラ内のアクション)
+            を決定します。<code class="code">Zend_Controller_Router_Rewrite</code> は URI
+            を分解し、リクエストからコントローラ名とアクション名を取得します。
+            その後、<code class="code">Zend_Controller_Front</code> はディスパッチループに突入します。
+            まず <code class="code">Zend_Controller_Dispatcher_Standard</code> をコールしてそこにリクエストを渡し、
+            リクエストで指定されたコントローラとアクションを取得します
+            (あるいはデフォルトを使用します)。
+            コントローラが終了すると、処理は <code class="code">Zend_Controller_Front</code>
+            に戻ります。リクエストのディスパッチ状態がリセットされ、
+            別のコントローラをディスパッチするように指示された場合は、
+            ループが続けられて次の配送処理が行われます。
+            それ以外の場合は、処理がそこで終了します。それ以外の場合は、
+            処理が終了します。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.request"></a>7.1.2. リクエストオブジェクト</h3></div></div></div>
+<p>
+            リクエストオブジェクトとは <code class="code">Zend_Controller_Front</code> とルータ、
+            ディスパッチャそしてコントローラクラスの間でやり取りされる単純なバリューオブジェクトです。
+            これはコントローラ、アクションそして環境 (HTTP、CLI、PHP-GTK など)
+            に応じたその他のパラメータの内容をまとめたものです。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                コントローラ名へのアクセスは <code class="code">getControllerName()</code>
+                および <code class="code">setControllerName()</code> によって行います。
+            </p></li>
+<li><p>
+                コントローラ内からコールされるアクションの名前へのアクセスは
+                <code class="code">getActionName()</code> および <code class="code">setActionName()</code>
+                によって行います。
+            </p></li>
+<li><p>
+                アクションに渡されるパラメータは キー/値 の組み合わせからなる連想配列で、
+                <code class="code">getParams()</code> および <code class="code">setParams()</code> によってアクセスします。
+                あるいは、その個々のデータには
+                <code class="code">getParam()</code> および <code class="code">setParam()</code> でアクセスします。
+            </p></li>
+</ul></div>
+<p>
+            リクエストの形式によっては、それ以外のメソッドも使用可能です。
+            たとえば、デフォルトのリクエストで使用される <code class="code">Zend_Controller_Request_Http</code>
+            では、リクエスト URI やパス情報、$_GET や $_POST
+            パラメータを取得するメソッドなどがあります。
+        </p>
+<p>
+            リクエストオブジェクトはフロントコントローラに渡されます。
+            もしリクエストオブジェクトがなかった場合は、
+            ディスパッチ処理の最初 (ルーティングが発生する前)
+            にインスタンスが作成されます。これは、
+            ディスパッチチェインのすべてのオブジェクトに渡されていきます。
+        </p>
+<p>
+            さらに、リクエストオブジェクトはテストの際にも有用です。
+            開発者がリクエストを作成し、コントローラやアクション、
+            パラメータや URI などを指定してそれをフロントコントローラに渡すことで、
+            アプリケーションの流れをテストすることができます。
+            レスポンスオブジェクトと組み合わせて使用すると、
+            MVC アプリケーションの精密で正確な単体テストが可能となります。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.routing-process"></a>7.1.3. ルーティング処理</h3></div></div></div>
+<p>
+            はじめてのコントローラを作り始める前に、ルーティング処理が
+            <code class="code">Zend_Controller_Router_Rewrite</code> でどのように実装されているのかを知る必要があるでしょう。
+            処理手順として、一度だけ発生するルーティングと繰り返し発生するディスパッチがあることを覚えておきましょう。
+        </p>
+<p>
+            <code class="code">Zend_Controller_Front</code> は <code class="code">Zend_Controller_Router_Rewrite</code>
+            (あるいは別に登録されたルータ) をコールし、
+            URI をコントローラとアクションに対応させます。
+            <code class="code">Zend_Controller_Router</code> は URI を受け取り、
+            チェイン内のルータオブジェクトに渡します。
+            デフォルトでは、<code class="code">Zend_Controller_Router_Route_Module</code>
+            を使用して入力 URL のマッチを行います。ルータオブジェクトは
+            URL を分解し、コントローラとアクション、そしてパスに含まれた URL
+            パラメータを取得します。そしてルータがそれらをリクエストオブジェクトに格納します。
+        </p>
+<p>
+            <code class="code">Zend_Controller_Router_Route_Module</code> は、
+            非常にシンプルな対応ルールでコントローラ名とアクション名を取得します。
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/controller/action/
+        </pre>
+<p>
+            上の例で、最初の部分が常にコントローラの名前となり、
+            二番目の部分が常にアクションの名前となります。
+        </p>
+<p>
+            オプションで、コントローラに渡すパラメータを URI に含めることができます。
+            これは キー/値 の組み合わせの形式になります。
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/controller/action/key1/value1/
+        </pre>
+<p>
+            コントローラやアクションが URI パスに含まれない場合は、
+            <code class="code">Zend_Controller_Dispatcher_Standard</code>
+            はリクエストオブジェクトのパラメータから値を取得しようとします。
+            それも見つからなかった場合はデフォルト値を使用します。
+            デフォルト値は、コントローラもアクションも "<code class="code">index</code>"
+            となります。以下に例を示します。
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/roadmap/future/
+コントローラ: roadmap
+アクション  : future
+
+http://framework.zend.com/roadmap/
+コントローラ: roadmap
+アクション  : index
+
+http://framework.zend.com/
+コントローラ: index
+アクション  : index
+        </pre>
+<div class="note"><table border="0" summary="Note: 柔軟性">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">柔軟性</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                より柔軟な機能を使用したい場合は、
+                <a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter" title="7.4.3. Zend_Controller_Router_Rewrite">項7.4.3. 「Zend_Controller_Router_Rewrite」</a>
+                を調べてみましょう。
+            </p></td></tr>
+</table></div>
+<p>
+            コントローラの名前、コントローラ内のアクションの名前、
+            そしてオプションのパラメータの内容が、
+            リクエストオブジェクトにまとめられます。
+            <code class="code">Zend_Controller_Front</code> がディスパッチループに入ると、
+            リクエストオブジェクトが
+            <code class="code">Zend_Controller_Dispatcher_Standard</code>
+            に渡されます。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.dispatching"></a>7.1.4. ディスパッチ処理</h3></div></div></div>
+<p>
+            ディスパッチ処理は、リクエストオブジェクトを受け取り、
+            そこに含まれる情報 (コントローラ名、アクション名およびオプションのパラメータ)
+            を展開し、コントローラのインスタンスを作成してそのコントローラのアクションをコールします。
+            コントローラやアクションが見つからない場合は、
+            デフォルト値を使用します。<code class="code">Zend_Controller_Dispatcher_Standard</code>
+            では、コントローラとアクションのデフォルトはどちらも
+            <code class="code">index</code> です。しかし、
+            <code class="code">setDefaultController()</code> メソッドや
+            <code class="code">setDefaultAction()</code> メソッドでこれらを変更することもできます。
+        </p>
+<p>
+            ディスパッチ処理が発生するのは、フロントコントローラでのループの内部です。
+            ディスパッチ処理を行う前に、フロントコントローラはルーティングを行い、
+            ユーザが指定したコントローラとアクション、そして追加のパラメータを取得します。
+            それからディスパッチループに入り、リクエストを配送します。
+        </p>
+<p>
+            ループ内では、まず最初にリクエストオブジェクトのフラグを設定します。
+            このフラグは、アクションがディスパッチされたことを示すものです。
+            アクション内や pre/postDispatch プラグインでこのフラグをリセットすると、
+            ディスパッチループがそのまま継続され、もう一度リクエストを処理しようとします。
+            リクエスト内のコントローラやアクションを変更してフラグをリセットすることで、
+            さまざまなリクエストを続けて実行させることができます。
+        </p>
+<p>
+            このようなディスパッチ処理を制御する
+            アクションコントローラのメソッドが <code class="code">_forward()</code> です。
+            このメソッドを pre/postDispatch() やアクションメソッドでコールし、
+            コントローラやアクション、
+            そして新しいアクションに送りたい追加のパラメータを指定します。
+        </p>
+<pre class="programlisting">
+public function myAction()
+{
+    // 何かの処理をして...
+    // 現在のモジュール内の別のアクション FooController::barAction() に転送します
+    $this-&gt;_forward('bar', 'foo', null, array('baz' =&gt; 'bogus'));
+}
+</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.response"></a>7.1.5. レスポンスオブジェクト</h3></div></div></div>
+<p>
+            レスポンスオブジェクトは、リクエストオブジェクトと対になるものです。
+            その目的は、コンテンツやヘッダを収集し、それを返すことです。
+            さらに、フロントコントローラで捕捉した例外はすべてレスポンスオブジェクトに渡されます。
+            これにより、例外の処理がやりやすくなります。
+            この挙動を変更するには
+            <code class="code">Zend_Controller_Front::throwExceptions(true)</code> を設定します。
+        </p>
+<pre class="programlisting">
+$front-&gt;throwExceptions(true);
+</pre>
+<p>
+            ヘッダを含むレスポンス出力を送信するには、
+            <code class="code">sendOutput()</code> を使用します。
+        </p>
+<pre class="programlisting">
+$response-&gt;sendOutput();
+</pre>
+<p>
+            開発者は、アクションコントローラの中でレスポンスオブジェクトを使用しなければなりません。
+            出力を直接レンダリングしたり直接ヘッダを送信したりするのではなく、
+            それらをレスポンスオブジェクトに格納するようにします。
+        </p>
+<pre class="programlisting">
+// アクションコントローラのアクション内で、
+// ヘッダを設定します
+$this-&gt;getResponse()
+    -&gt;setHeader('Content-Type', 'text/html')
+    -&gt;appendBody($content);
+</pre>
+<p>
+            こうすることで、すべてのヘッダを一度に送信し、
+            その後でコンテンツを表示することができます。
+        </p>
+<p>
+            アプリケーションで例外が発生したかどうかを調べるには、
+            レスポンスオブジェクトの <code class="code">isException()</code>
+            フラグを調べます。例外を取得するには <code class="code">getException()</code>
+            を使用します。さらに、独自のレスポンスオブジェクトを作成して、
+            エラーページへのリダイレクトや例外メッセージのログ出力、
+            例外をわかりやすく表示する (開発用) などを行うことができます。
+        </p>
+<p>
+            レスポンスオブジェクトは、フロントコントローラの
+            dispatch() から受け取ることになります。あるいは、
+            出力のレンダリングを行わない状態のレスポンスオブジェクトを
+            フロントコントローラから受け取ることもできます。
+        </p>
+<pre class="programlisting">
+// dispatch の後に取得します
+$front-&gt;dispatch();
+$response = $front-&gt;getResponse();
+if ($response-&gt;isException()) {
+    // ログへの記録、メール送信など...
+}
+
+// あるいは、フロントコントローラの dispatch() の返り値を使用します
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+
+// 何かの処理...
+
+// 最後に結果を表示します
+$response-&gt;sendResponse();
+</pre>
+<p>
+            デフォルトでは、例外メッセージは表示されません。
+            この挙動をオーバーライドするには <code class="code">renderExceptions()</code>
+            メソッドを使用するか、あるいは上で示したようにフロントコントローラで
+            throwExceptions() を有効にします。
+        </p>
+<pre class="programlisting">
+$response-&gt;renderExceptions(true);
+$front-&gt;dispatch($request, $response);
+
+// あるいは
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+$response-&gt;renderExceptions();
+$response-&gt;sendOutput();
+
+// あるいは
+$front-&gt;throwExceptions(true);
+$front-&gt;dispatch();
+</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.console.getopt.configuration.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.getting-started.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.4. Zend_Console_Getopt の設定 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 7.2. さあ、はじめましょう</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

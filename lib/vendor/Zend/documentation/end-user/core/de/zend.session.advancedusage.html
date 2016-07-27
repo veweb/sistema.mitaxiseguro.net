@@ -1,0 +1,423 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>25.3. Advanced Usage</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="prev" href="zend.session.basicusage.html" title="25.2. Grundlegende Verwendung">
+<link rel="next" href="zend.session.globalsessionmanagement.html" title="25.4. Global Session Management">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.startingasession" title="25.3.1. Starting a Session">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.locking" title="25.3.2. Locking Session Namespaces">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.controllers" title="25.3.3. Session Encapsulation and Controllers">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.limitinginstances" title="25.3.4. Limiting Instances of Zend_Session_Namespace to One Per Namespace">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.modifyingarray" title="25.3.5. Working with Arrays in Namespaces">
+<link rel="subsection" href="zend.session.advancedusage.html#zend.session.auth" title="25.3.6. Using Sessions with Authentication">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">25.3. Advanced Usage</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.session.basicusage.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 25. Zend_Session</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.session.globalsessionmanagement.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.session.advancedusage"></a>25.3. Advanced Usage</h2></div></div></div>
+<p>
+        While the basic usage examples are a perfectly acceptable way to utilize Zend Framework sessions, there are some
+        best practices to consider. Consider the
+        <a href="zend.auth.html#zend.auth.introduction.using" title="3.1.4. Using Zend_Auth"><code class="code">Zend_Auth</code> example</a>
+        that transparently uses Zend_Session_Namespace by default to persist authentication tokens. This example shows
+        one approach to quickly and easily integrate Zend_Session_Namespace and Zend_Auth.
+    </p>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.startingasession"></a>25.3.1. Starting a Session</h3></div></div></div>
+<p>
+            If you want all requests to have a session and use Zend Framework sessions, then start the session in the
+            bootstrap file:
+        </p>
+<div class="example">
+<a name="id4893831"></a><p class="title"><b>Beispiel 25.6. Starting the Global Session</b></p>
+<pre class="programlisting">
+&lt;?php
+...
+require_once 'Zend/Session.php';
+Zend_Session::start();
+...
+?&gt;</pre>
+</div>
+<p>
+            By starting the session in the bootstrap file, you avoid the possibility that your session might be started
+            after headers have been sent to the browser, which results in an exception, and possibly a broken page for
+            website viewers. Various advanced features require <code class="code">Zend_Session::start()</code> first. (More on
+            advanced features later.)
+        </p>
+<p>
+            There are four ways to start a session, when using Zend_Session. Two are wrong.
+        </p>
+<div class="itemizedlist"><ul type="opencircle">
+<li style="list-style-type: circle"><p>
+                    1. Wrong: Do not set PHP's session.auto_start ini setting in either php.ini or .htaccess
+                    (http://www.php.net/manual/en/ref.session.php#ini.session.auto-start). If you do not have the
+                    ability to disable this setting in php.ini, you are using mod_php (or equivalent), and the setting
+                    is already enabled in php.ini, then add <code class="code">php_value session.auto_start 0</code> to your
+                    .htaccess file (usually in your HTML document root directory).
+                </p></li>
+<li style="list-style-type: circle"><p>
+                    2. Wrong: Do not use PHP's <code class="code">
+                    <a href="http://www.php.net/session_start" target="_top">session_start()</a>
+                    </code> function directly If you use <code class="code">session_start()</code> directly, and then start using
+                    Zend_Session_Namespace, an exception will be thrown by <code class="code">Zend_Session::start()</code> ("session
+                    has already been started"). If you call <code class="code">session_start()</code>, after using
+                    Zend_Session_Namespace or starting <code class="code">Zend_Session::start()</code> explicitly, an error of level
+                    E_NOTICE will be generated, and the call will be ignored.
+                </p></li>
+<li style="list-style-type: circle">
+<p>
+                    3. Correct: Use <code class="code">Zend_Session::start()</code>. If you want all requests to have and use
+                    sessions, then place this function call early and unconditionally in your ZF bootstrap code.
+                    Sessions have some overhead. If some requests need sessions, but other requests will not need to use
+                    sessions, then:
+                </p>
+<div class="itemizedlist"><ul type="opencircle">
+<li style="list-style-type: circle"><p>
+                            Unconditionally, set the <code class="code">strict</code> option to true (see
+                            <a href="zend.session.advancedusage.html#zend.session.startingasession" title="25.3.1. Starting a Session"><code class="code">Zend_Session::setOptions()</code>
+                            </a>
+                            ) in your userland bootstrap.
+                        </p></li>
+<li style="list-style-type: circle"><p>
+                            Call <code class="code">Zend_Session::start()</code>, only for requests that need to use sessions, before
+                            the first call to <code class="code">new Zend_Session_Namespace()</code>.
+                        </p></li>
+<li style="list-style-type: circle"><p>
+                            Use <code class="code">new Zend_Session_Namespace()</code> normally, where needed, but make sure
+                            <code class="code">Zend_Session::start()</code> has been called previously.
+                        </p></li>
+</ul></div>
+<p>
+                    The <code class="code">strict</code> option prevents <code class="code">new Zend_Session_Namespace()</code> from automatically
+                    starting the session using <code class="code">Zend_Session::start()</code>. Thus, this option helps developers of
+                    userland ZF applications enforce a design decision to avoid using sessions for certain requests,
+                    since an error will be thrown when using this option and instantiating Zend_Session_Namespace,
+                    before an explicit call to <code class="code">Zend_Session::start()</code>. Do not use this option in ZF core
+                    library code, because only userland developers should make this design choice. Similarly, all
+                    "library" developers should carefully consider the impact of using
+                    <code class="code">Zend_Session::setOptions()</code> on users of their library code, since these options have
+                    global side-effects (as do the underlying options for ext/session).
+                </p>
+</li>
+<li style="list-style-type: circle"><p>
+                    4. Correct: Just use <code class="code">new Zend_Session_Namespace()</code> whenever needed, and the session will
+                    be automatically started within Zend_Session. This offers extremely simple usage that works well in
+                    most situations. However, you then become responsible for ensuring that the first <code class="code">new
+                    Zend_Session_Namespace()</code> happens <span class="strong"><strong>before</strong></span> any output (i.e.
+                    <a href="http://www.php.net/headers_sent" target="_top">HTTP headers</a>
+                    ) has been sent by PHP to the client, if you are using the default, cookie-based sessions (strongly
+                    recommended). Using
+                    <a href="http://php.net/outcontrol" target="_top">output buffering</a>
+                    often is sufficient to prevent this issue and may help improve performance. For example, in
+                    <code class="code">php.ini</code>, "<code class="code">output_buffering = 65535</code>" enables output buffering with a 64K
+                    buffer.
+                </p></li>
+</ul></div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.locking"></a>25.3.2. Locking Session Namespaces</h3></div></div></div>
+<p>
+            Session namespaces can be locked, to prevent further alterations to the data in that namespace. Use
+            <code class="code">Zend_Session_Namespace's lock()</code> to make a specific namespace read-only, <code class="code">unLock()</code>
+            to make a read-only namespace read-write, and <code class="code">isLocked()</code> to test if a namespace has been
+            previously locked. Locks are transient and do not persist from one request to the next. Locking the
+            namespace has no effect on setter methods of objects stored in the namespace, but does prevent the use of
+            the namespace's setter method to remove or replace objects stored directly in the namespace. Similarly,
+            locking Zend_Session_Namespace namespaces does not prevent the use of symbol table aliases to the same data
+            (see
+            <a href="http://www.php.net/references" target="_top">PHP references</a>
+            ).
+        </p>
+<div class="example">
+<a name="id4894671"></a><p class="title"><b>Beispiel 25.7. Locking Session Namespaces</b></p>
+<pre class="programlisting">
+&lt;?php
+    // assuming:
+    $userProfileNamespace = new Zend_Session_Namespace('userProfileNamespace');
+
+    // marking session as read only locked
+    $userProfileNamespace-&gt;lock();
+
+    // unlocking read-only lock
+    if ($userProfileNamespace-&gt;isLocked()) {
+        $userProfileNamespace-&gt;unLock();
+    }
+?&gt;</pre>
+</div>
+<p>
+            There are numerous ideas for how to manage models in MVC paradigms for the Web, including creating
+            presentation models for use by views. Sometimes existing data, whether part of your domain model or not, is
+            adequate for the task. To discourage views from applying any processing logic to alter such data, consider
+            locking session namespaces before permitting views to access this subset of your "presentation" model.
+        </p>
+<div class="example">
+<a name="id4894689"></a><p class="title"><b>Beispiel 25.8. Locking Sessions in Views</b></p>
+<pre class="programlisting">
+&lt;?php
+class FooModule_View extends Zend_View
+{
+    public function show($name)
+    {
+        if (!isset($this-&gt;mySessionNamespace)) {
+            $this-&gt;mySessionNamespace = Zend::registry('FooModule');
+        }
+
+        if ($this-&gt;mySessionNamespace-&gt;isLocked()) {
+            return parent::render($name);
+        }
+
+        $this-&gt;mySessionNamespace-&gt;lock();
+        $return = parent::render($name);
+        $this-&gt;mySessionNamespace-&gt;unLock();
+
+        return $return;
+    }
+}
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.controllers"></a>25.3.3. Session Encapsulation and Controllers</h3></div></div></div>
+<p>
+            Namespaces can also be used to separate session access by controllers to protect variables from
+            contamination. For example, the 'Zend_Auth' controller might keep its session state data separate from all
+            other controllers.
+        </p>
+<div class="example">
+<a name="id4894774"></a><p class="title"><b>Beispiel 25.9. Namespaced Sessions for Controllers with Automatic Expiration</b></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'Zend/Session.php';
+// question view controller
+$testSpace = new Zend_Session_Namespace('testSpace');
+$testSpace-&gt;setExpirationSeconds(300, "accept_answer"); // expire only this variable
+$testSpace-&gt;accept_answer = true;
+
+-- 
+
+// answer processing controller
+$testSpace = new Zend_Session('testSpace');
+
+if ($testSpace-&gt;accept_answer === true) {
+    // within time
+}
+else {
+    // not within time
+}
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.limitinginstances"></a>25.3.4. Limiting Instances of Zend_Session_Namespace to One Per Namespace</h3></div></div></div>
+<p>
+            We recommend using session locking (see above) instead of the feature below, which places extra management
+            burden on the developer to pass any Zend_Session_Namespace instances into whatever functions and objects
+            need access to each namespace.
+        </p>
+<p>
+            When constructing the first instance of Zend_Session_Namespace attached to a specific namespace, you can
+            also instruct Zend_Session_Namespace to not make any more instances for that namespace. Thus, any future
+            attempts to construct a Zend_Session_Namespace instance having the same namespace will throw an error. Such
+            behavior is optional, and not the default behavior, but remains available to those who prefer to pass around
+            a single instance object for each namespace. This increases protection from changes by components that
+            should not modify a particular session namespace, because they won't have easy access. However, limiting a
+            namespace to a single instance may lead to more code or more complex code, as it removes access to the
+            convient <code class="code">$aNamespace = new Zend_Session_Namespace('aNamespace');</code>, after the first intance has
+            been created, as follows in the example below:
+        </p>
+<div class="example">
+<a name="id4894859"></a><p class="title"><b>Beispiel 25.10. Limiting to Single Instances</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Session.php';
+    $authSpaceAccessor1 = new Zend_Session_Namespace('Zend_Auth');
+    $authSpaceAccessor2 = new Zend_Session_Namespace('Zend_Auth', Zend_Session_Namespace::SINGLE_INSTANCE);
+    $authSpaceAccessor1-&gt;foo = 'bar';
+    assert($authSpaceAccessor2-&gt;foo, 'bar'); // passes
+    doSomething($options, $authSpaceAccessor2); // pass the accessor to wherever it is needed
+    .
+    .
+    .
+    $aNamespaceObject = new Zend_Session_Namespace('Zend_Auth'); // this will throw an error
+?&gt;</pre>
+</div>
+<p>
+            The second parameter in the constructor above will tell Zend_Session_Namespace that any future
+            Zend_Session's that are instantiated with the 'Zend_Auth' namespace are not allowed, and will thus cause an
+            exception. Since <code class="code">new Zend_Session_Namespace('Zend_Auth')</code> will not be allowed after the code
+            above has been executed, the developer becomes responsible for storing the instance object
+            (<code class="code">$authSpaceAccessor2</code> in the example above) somewhere, if access to this session namespace is
+            needed at a later time during the same request. For example, a developer may store the instance in a static
+            variable, or pass it to other methods that might need access to this session namespace. Session locking (see
+            above) provides a more convenient, and less burdensome approach to limiting access to namespaces.
+        </p>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.modifyingarray"></a>25.3.5. Working with Arrays in Namespaces</h3></div></div></div>
+<p>
+            Modifying an array inside a namespace does not work. The simplest solution is to store arrays after all
+            desired values have been set.
+            <a href="http://framework.zend.com/issues/browse/ZF-800" target="_top">ZF-800</a>
+            documents a known issue affecting many PHP applications using magic methods and arrays.
+        </p>
+<div class="example">
+<a name="id4894963"></a><p class="title"><b>Beispiel 25.11. Known problem with arrays</b></p>
+<pre class="programlisting">
+&lt;?php
+    $sessionNamespace = new Zend_Session_Namespace('Foo');
+    $sessionNamespace-&gt;array = array();
+    $sessionNamespace-&gt;array['testKey'] = 1; // does not work before PHP 5.2.1
+?&gt;</pre>
+</div>
+<p>
+            If you need to modify the array after assigning it to a session namespace key, fetch the array, then
+        </p>
+<div class="example">
+<a name="id4894992"></a><p class="title"><b>Beispiel 25.12. Workaround: fetch, modify, save</b></p>
+<pre class="programlisting">
+&lt;?php
+    $sessionNamespace = new Zend_Session_Namespace('Foo');
+    $sessionNamespace-&gt;array = array('tree' =&gt; 'apple');
+    $tmp = $sessionNamespace-&gt;array;
+    $tmp['fruit'] = 'peach';
+    $sessionNamespace-&gt;array = $tmp;
+?&gt;</pre>
+</div>
+<p>
+            Alternatively, store an array containing a reference to the desired array, and then access it indirectly.
+        </p>
+<div class="example">
+<a name="id4895010"></a><p class="title"><b>Beispiel 25.13. Workaround: store array containing reference</b></p>
+<pre class="programlisting">
+&lt;?php
+    $myNamespace = new Zend_Session_Namespace('mySpace');
+
+    // works, even for broken versions of PHP
+    $a = array(1,2,3);
+    $myNamespace-&gt;someArray = array( &amp; $a ) ;
+    $a['foo'] = 'bar';
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.auth"></a>25.3.6. Using Sessions with Authentication</h3></div></div></div>
+<p>
+            If you allow <code class="code">Zend_Auth</code> to persist authentication tokens using Zend Framework sessions. In order
+            to access the authentication token on subsequent requests, you would need to:
+        </p>
+<div class="example">
+<a name="id4895070"></a><p class="title"><b>Beispiel 25.14. Workaround: accessing authentication tokens in sessions</b></p>
+<pre class="programlisting">
+&lt;?php
+    // chicken-and-egg... you must know which token class before looking :(
+    require_once 'Zend/Auth/Digest/Token.php';
+    require_once 'Zend/Session.php';
+    Zend_Session::start();
+    require_once 'Zend/Auth/Digest/Adapter.php';
+    require_once 'Zend/Auth.php';
+    $auth = new Zend_Auth(new Zend_Auth_Digest_Adapter('someDigestFilename'));
+    $token = $auth-&gt;getToken();
+    echo "Valid: ",
+    (empty($token-&gt;isValid()) ? 'No' : 'Yes'), "\n"';
+    echo "Identity: ",
+        (empty($token-&gt;getIdentity()) ? 'unknown' : $token-&gt;getIdentity()), "\n"';
+    echo "Messages: ",
+        (empty($token-&gt;getMessages()) ? 'none' : $token-&gt;getMessages()), "\n"';
+?&gt;</pre>
+</div>
+<p>
+            If you tell <code class="code">Zend_Auth</code> to not persist authentication tokens in sessions, and then manually store
+            the authorization id to the session, then just use well-known locations in a session namespace. Also, this
+            avoids persisting authentication error messages in the session. (Note: Some community members are working on
+            a "flash message" system for Zend sessions.) Often, applications have specific needs about where to store
+            credentials used (if any) and "authorization" identity. Applications often map authentication identities
+            (e.g. usernames) to authorization identities (e.g. a uniquely assigned integer) during authentication.
+        </p>
+<div class="example">
+<a name="id4895092"></a><p class="title"><b>Beispiel 25.15. Workaround: simpler access for authorization ids</b></p>
+<pre class="programlisting">
+&lt;?php
+    require 'Zend/Session.php';
+    Zend_Session::start();
+    $namespace = Zend_Session_Namespace('Zend_Auth');
+
+    echo "Valid: ", (empty($namespace-&gt;authorizationId) ? 'No' : 'Yes'), "\n"';
+    echo "Authorization / user Id: ",
+        (empty($namespace-&gt;authorizationId) ? 'none' : $namespace-&gt;authorizationId), "\n"';
+    echo "Authentication attempts: ",
+        (empty($namespace-&gt;attempts) ? '0' : $namespace-&gt;attempts), "\n"';
+    echo "Authenticated on: ",
+        (empty($namespace-&gt;date) ? 'No' : date(DATE_ATOM, $namespace-&gt;date), "\n"';
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.session.basicusage.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.session.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.session.globalsessionmanagement.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">25.2. Grundlegende Verwendung </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 25.4. Global Session Management</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

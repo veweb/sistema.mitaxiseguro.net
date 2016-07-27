@@ -1,0 +1,867 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.3. Фронтэнды Zend_Cache</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="prev" href="zend.cache.theory.html" title="4.2. Теория кэширования">
+<link rel="next" href="zend.cache.backends.html" title="4.4. Бэкэнды Zend_Cache">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.core" title="4.3.1. Zend_Cache_Core">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.frontend.output" title="4.3.2. Zend_Cache_Frontend_Output">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.frontend.function" title="4.3.3. Zend_Cache_Frontend_Function">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.frontend.class" title="4.3.4. Zend_Cache_Frontend_Class">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.frontends.file" title="4.3.5. Zend_Cache_Frontend_File">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.frontends.page" title="4.3.6. Zend_Cache_Frontend_Page">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.3. Фронтэнды Zend_Cache</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.cache.theory.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 4. Zend_Cache</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.cache.backends.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.frontends"></a>4.3. Фронтэнды Zend_Cache</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.core"></a>4.3.1. Zend_Cache_Core</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.core.introduction"></a>4.3.1.1. Введение</h4></div></div></div>
+<p>
+                Фронтэнд <code class="code">Zend_Cache_Core</code> является особым,
+                так как это ядро всего модуля. Это фронтэнд общего назначения и
+                он расширяется другими классами.
+
+            </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Замечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    Все фронтэнды наследуют от класса <code class="code">Zend_Cache_Core</code>,
+                    поэтому его методы и опции, описанные ниже, должны быть доступны
+                    в других фронтэндах и не будут описываться далее.
+
+                </p></td></tr>
+</table></div>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.core.options"></a>4.3.1.2. Доступные опции</h4></div></div></div>
+<p>
+                Эти опции передаются фабричному методу, как было показано в предыдущих примерах.
+
+            </p>
+<div class="table">
+<a name="id4789698"></a><p class="title"><b>Таблица 4.1. Доступные опции</b></p>
+<table summary="Доступные опции" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Опция</th>
+<th>Тип данных</th>
+<th>Значение по умолчанию</th>
+<th>Описание</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">caching</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                                  Включает / отключает кэширование (может быть очень полезным при
+                                  отладке кэшируемых скриптов).
+                                                  
+                              </td>
+</tr>
+<tr>
+<td><code class="code">lifeTime</code></td>
+<td><code class="code">int</code></td>
+<td><code class="code">3600</code></td>
+<td>
+                                Время жизни кэша (в секундах), если установлен в
+                                <code class="code">null</code>, то кэш имеет бесконечное время жизни.
+                                       
+                              </td>
+</tr>
+<tr>
+<td><code class="code">logging</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">false</code></td>
+<td>
+                    					  Если установлен в <code class="code">true</code>, то включается логирование через
+                                <code class="code">Zend_Log</code> (но система будет работать медленнее).  
+                                         
+                              </td>
+</tr>
+<tr>
+<td><code class="code">writeControl</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                                Включает / отключает контроль записи (кэш читается сразу после
+                                записи для выявления поврежденных записей), включение writeControl
+                                немного замедлит запись кэша, но не чтение. Этот контроль может выявить
+                                некоторые поврежденные файлы кэша, но не является совершенным.
+                                        
+                              </td>
+</tr>
+<tr>
+<td><code class="code">automaticSerialization</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">false</code></td>
+<td>
+                                Включает / отключает автоматическую сериализацию, она может
+                                использоваться для сохранения напрямую данных, которые не являются
+                                строками (но это будет меденнее).
+                                            
+                              </td>
+</tr>
+<tr>
+<td><code class="code">automaticCleaningFactor</code></td>
+<td><code class="code">int</code></td>
+<td><code class="code">10</code></td>
+<td>
+                    					  Отключает / настраивает автоматический процесс очистки (сборщик мусора) :
+                    					  <code class="code">0</code> означает, что автоматическая чистка кэша не производится,
+                                <code class="code">1</code> означает систематическую очистку кэша,
+                                <code class="code">x (integer) &gt; 1</code> означает, что автоматическая
+                                чистка производится случайным образом 1 раз на x записей кэша.  
+                                
+                              </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.core.examples"></a>4.3.1.3. Примеры</h4></div></div></div>
+<p>
+                Пример был дан в самом начале данного раздела руководства.
+
+            </p>
+<p>
+            	  Если вы храните в кэше только строки (с опцией <code class="code">automaticSerialization</code>
+                возможно хранить некоторые булевы значения), вы можете использовать
+                более компактную конструкцию, похожую на:
+
+            </p>
+<pre class="programlisting">&lt;?php  
+             
+// предполагается, что переменная $cache уже установлена
+
+$id = 'myBigLoop'; // идентификатор того, что мы хотим закэшировать
+
+if (!($data = $cache-&gt;load($id))) {
+    // промах кэша
+    
+    $data = '';
+    for ($i = 0; $i &lt; 10000; $i++) {
+        $data = $data . $i;
+    }
+    
+    $cache-&gt;save($data);
+    
+} 
+
+// [...] делаем что-либо с данными (отображение, передача и т.д.)
+             
+?&gt;       </pre>
+<p>
+                Если вы хотите закэшировать несколько блоков или экземпляров данных,
+                то принцип будет тот же:
+
+            </p>
+<pre class="programlisting">&lt;?php  
+             
+// убедитесь, что используете уникальные идентификаторы:
+$id1 = 'foo';
+$id2 = 'bar';
+
+// блок 1
+if (!($data = $cache-&gt;load($id1))) {
+    // промах кэша
+    
+    $data = '';
+    for ($i=0;$i&lt;10000;$i++) {
+        $data = $data . $i;
+    }
+    
+    $cache-&gt;save($data);
+    
+} 
+echo($data);
+
+// эта часть не кэшируется
+echo('НЕ КЭШИРУЕТСЯ! ');
+
+// блок 2
+if (!($data = $cache-&gt;load($id2))) {
+    // промах кэша
+    
+    $data = '';
+    for ($i=0;$i&lt;10000;$i++) {
+        $data = $data . '!';
+    }
+    
+    $cache-&gt;save($data);
+    
+} 
+echo($data);
+
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.frontend.output"></a>4.3.2. Zend_Cache_Frontend_Output</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.output.introduction"></a>4.3.2.1. Введение</h4></div></div></div>
+<p>
+                <code class="code">Zend_Cache_Frontend_Output</code> является фронтэндом,
+                собирающим выходные данные. Он использует буферизацию вывода
+                (output buffering) в PHP для сохранения всего, что выводится между
+                его методами <code class="code">start()</code> и <code class="code">end()</code>.
+
+            </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.output.options"></a>4.3.2.2. Доступные опции</h4></div></div></div>
+<p>
+                Этот фронтэнд не имеет специальных опций, отличных
+                от опций <code class="code">Zend_Cache_Core</code>.
+
+            </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.output.examples"></a>4.3.2.3. Примеры</h4></div></div></div>
+<p>
+                Пример был дан в самом начале данного раздела руководства. Здесь он с
+                небольшими изменениями:
+
+            </p>
+<pre class="programlisting">&lt;?php
+
+// если имеет место промах кэша,
+// то начинается буферизация вывода
+if(!$cache-&gt;start('mypage')):
+
+// все выводится, как обычно
+echo 'Hello world! ';
+echo 'This is cached ('.time().') ';
+
+$cache-&gt;end(); // завершение буферизации вывода
+endif;
+
+echo 'This is never cached ('.time().').';
+
+?&gt;       </pre>
+<p>
+                Используя эту форму, довольно легко установить кэширование вывода в
+                уже работающем проекте с незначительным рефакторингом кода или
+                совсем без него. 
+
+            </p>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.frontend.function"></a>4.3.3. Zend_Cache_Frontend_Function</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.function.introduction"></a>4.3.3.1. Введение</h4></div></div></div>
+<p>
+                <code class="code">Zend_Cache_Frontend_Function</code> сохраняет в кэш
+                результаты вызова функции. Он имеет единственный основной метод
+                <code class="code">call()</code> который принимает имя функции и параметры вызова
+                в массиве.
+
+            </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.function.options"></a>4.3.3.2. Доступные опции</h4></div></div></div>
+<div class="table">
+<a name="id4791234"></a><p class="title"><b>Таблица 4.2. Доступные опции</b></p>
+<table summary="Доступные опции" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Опция</th>
+<th>Тип данных</th>
+<th>Значение по умолчанию</th>
+<th>Описание</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">cacheByDefault</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                                  Если равен true, то вызовы функции по умолчанию кэшируются. 
+                                                  
+                              </td>
+</tr>
+<tr>
+<td><code class="code">cachedFunctions</code></td>
+<td><code class="code">array</code></td>
+<td> </td>
+<td>
+                                  Имена функций, которые всегда кэшируются.
+                                                 
+                              </td>
+</tr>
+<tr>
+<td><code class="code">nonCachedFunctions</code></td>
+<td><code class="code">array</code></td>
+<td> </td>
+<td>
+                                  Имена функций, которые никогда не должны кэшироваться.
+                                                 
+                              </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.function.examples"></a>4.3.3.3. Примеры</h4></div></div></div>
+<p>
+                Функция <code class="code">call()</code> используется так же, как и
+                <code class="code">call_user_func_array()</code> в PHP: 
+
+            </p>
+<pre class="programlisting">&lt;?php
+
+$cache-&gt;call('veryExpensiveFunc', $params);
+
+# $params является массивом
+# например, если нужно вызвать (с кэшированием) veryExpensiveFunc(1, 'foo', 'bar'),
+# то вы должны использовать $cache-&gt;call('veryExpensiveFunc', array(1, 'foo', 'bar'))
+
+?&gt;       </pre>
+<p>
+                <code class="code">Zend_Cache_Frontend_Function</code> достаточно интеллектуален,
+                чтобы кэшировать как возвращаемое функцией значение, так и данные, 
+                выводимые внутри нее.
+
+            </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Замечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    Вы можете передавать любые встроенные, так и определенные пользователем
+                    функции, за исключением <code class="code">array()</code>, <code class="code">echo()</code>, <code class="code">empty()</code>, <code class="code">eval()</code>,
+                    <code class="code">exit()</code>, <code class="code">isset()</code>, <code class="code">list()</code>, <code class="code">print()</code>
+                    и <code class="code">unset()</code>.
+ 
+                </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.frontend.class"></a>4.3.4. Zend_Cache_Frontend_Class</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.class.introduction"></a>4.3.4.1. Введение</h4></div></div></div>
+<p>
+                <code class="code">Zend_Cache_Frontend_Class</code> отличается от
+                <code class="code">Zend_Cache_Frontend_Function</code> тем, что позволяет
+                кэшировать объекты и статические вызовы методов.
+
+            </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.class.options"></a>4.3.4.2. Доступные опции</h4></div></div></div>
+<div class="table">
+<a name="id4791527"></a><p class="title"><b>Таблица 4.3. Доступные опции</b></p>
+<table summary="Доступные опции" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Опция</th>
+<th>Тип данных</th>
+<th>Значение по умолчанию</th>
+<th>Описание</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+<code class="code">cachedEntity</code> (required)</td>
+<td><code class="code">mixed</code></td>
+<td> </td>
+<td>
+                                  Если установлен как имя класса, то будет
+                                  кэшироваться абстрактный класс и будут использоваться
+                                  только статические вызовы; если установлен как объект,
+                                  то будут кэшироваться методы объекта.
+                                               
+                              </td>
+</tr>
+<tr>
+<td><code class="code">cacheByDefault</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                                  Если установлен в <code class="code">true</code>, то вызовы
+                                  будут кэшироваться по умолчанию.
+                                                  
+                              </td>
+</tr>
+<tr>
+<td><code class="code">cachedMethods</code></td>
+<td><code class="code">array</code></td>
+<td> </td>
+<td>
+                                  Имена методов, которые должны всегда кэшироваться.
+                                                 
+                              </td>
+</tr>
+<tr>
+<td><code class="code">nonCachedMethods</code></td>
+<td><code class="code">array</code></td>
+<td> </td>
+<td>
+                                  Имена методов, которые никогда не должны кэшироваться.
+                                                 
+                              </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.class.examples"></a>4.3.4.3. Примеры</h4></div></div></div>
+<p>
+                Кэширование статических вызовов:
+
+            </p>
+<pre class="programlisting">&lt;?php
+
+class test {
+   
+    # статический метод
+    public static function foobar($param1, $param2) {
+        echo "foobar_output($param1, $param2)";
+        return "foobar_return($param1, $param2)";   
+    }
+
+}
+
+// [...]
+$frontendOptions = array(
+    'cachedEntity' =&gt; 'test' // имя класса
+);
+// [...]
+
+# кэшируемый вызов
+$res = $cache-&gt;foobar('1', '2');
+
+?&gt;       </pre>
+<p>
+                Кэширование обычных вызовов методов:
+
+            </p>
+<pre class="programlisting">&lt;?php
+
+class test {
+   
+    private $_string = 'hello !';
+      
+    public function foobar2($param1, $param2) {
+        echo($this-&gt;_string);
+        echo "foobar2_output($param1, $param2)";
+        return "foobar2_return($param1, $param2)";   
+    }
+
+}
+
+// [...]
+$frontendOptions = array(
+    'cachedEntity' =&gt; new test() // экземпляр класса
+);
+// [...]
+
+# кэшируемый вызов
+$res = $cache-&gt;foobar2('1', '2');
+
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.frontends.file"></a>4.3.5. Zend_Cache_Frontend_File</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.file.introduction"></a>4.3.5.1. Введение</h4></div></div></div>
+<p>
+                <code class="code">Zend_Cache_Frontend_File</code> является фронтэндом,
+                который управляется временем изменения "главного файла".
+                Он очень полезен для конфигурации или шаблонов.
+
+            </p>
+<p>
+                Например, у вас есть конфигурационный файл XML, он парсится
+                функцией, которая возвращает объект конфигурации
+                (наподобие <code class="code">Zend_Config</code>). С помощью
+                <code class="code">Zend_Cache_Frontend_File</code> вы можете сохранять объект
+                конфигурации в кэш (чтобы избежать повторного парсинга
+                конфигурационного файла XML), но с сильной зависимостью
+                от "главного файла". Если конфигурационный файл XML изменяется,
+                то кэш сразу становится недействительным.
+
+            </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.file.options"></a>4.3.5.2. Доступные опции</h4></div></div></div>
+<div class="table">
+<a name="id4790598"></a><p class="title"><b>Таблица 4.4. Доступные опции</b></p>
+<table summary="Доступные опции" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Опция</th>
+<th>Тип данных</th>
+<th>Значение по умолчанию</th>
+<th>Описание</th>
+</tr></thead>
+<tbody><tr>
+<td><code class="code">masterFile (обязательный)</code></td>
+<td><code class="code">string</code></td>
+<td><code class="code"></code></td>
+<td>
+                                  Полные путь и имя главного файла
+                                                   
+                              </td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.file.examples"></a>4.3.5.3. Примеры</h4></div></div></div>
+<p>
+                Этот фронтэнд используется так же, как и
+                <code class="code">Zend_Cache_Core</code>. Специальные примеры не нужны,
+                единственное, что надо сделать — это определить
+                <code class="code">masterFile</code> при использовании фабричного метода.  
+
+            </p>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.frontends.page"></a>4.3.6. Zend_Cache_Frontend_Page</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.page.introduction"></a>4.3.6.1. Введение</h4></div></div></div>
+<p>
+        	    <code class="code">Zend_Cache_Frontend_Page</code> похожа на <code class="code">Zend_Cache_Frontend_Output</code>,
+        	    но предназначена для кэширования целых страниц. <code class="code">Zend_Cache_Frontend_Page</code>
+              нельзя использовать для кэширования отдельных блоков. 
+
+	        </p>
+<p>
+	          Идентификатор кэша вычисляется автоматически
+            с использованием <code class="code">$_SERVER['REQUEST_URI']</code> и
+            (в зависимости от опций) <code class="code">$_GET</code>, <code class="code">$_POST</code>,
+            <code class="code">$_SESSION</code>, <code class="code">$_COOKIE</code>, <code class="code">$_FILES</code>.
+            Кроме этого, вы используете только один метод для вызова
+            (<code class="code">start()</code>), потому что <code class="code">end()</code> вызывается
+            автоматически, когда страница заканчивается. 
+
+	        </p>
+<p>
+	          На данный момент мы планируем добавить условную систему HTTP для
+	          сохранения пропускной способности (система будет отправлять
+            HTTP 304 Not Modified, если есть попадание в кэш и броузер уже имеет
+            правильную версию страницы). 
+
+	        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Замечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+	              Zend_Cache_Frontend_Page сейчас находится на стадии
+                "альфа", это означает, что она и в дальнейшем будет
+                совершенствоваться.
+
+	        </p></td></tr>
+</table></div>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.page.options"></a>4.3.6.2. Доступные опции (для этого фронтэнда части в фабрике Zend_Cache)</h4></div></div></div>
+<div class="table">
+<a name="id4792251"></a><p class="title"><b>Таблица 4.5. Доступные опции</b></p>
+<table summary="Доступные опции" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Опция</th>
+<th>Тип данных</th>
+<th>Значение по умолчанию</th>
+<th>Описание</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">httpConditional</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">false</code></td>
+<td>
+	                              Использовать условную систему HTTP (не реализовано на данный момент) 
+	                                               
+	                          </td>
+</tr>
+<tr>
+<td><code class="code">debugHeader</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">false</code></td>
+<td>
+	                              Если установлен в <code class="code">true</code>, то отладочный
+                                текст включается перед каждой кэшируемой страницей. 
+	                                               
+	                          </td>
+</tr>
+<tr>
+<td><code class="code">defaultOptions</code></td>
+<td><code class="code">array</code></td>
+<td><code class="code">array(...смотрите далее...)</code></td>
+<td>
+	                              Ассоциативный массив опций, включаемых по умолчанию
+	                               
+	                              <div class="itemizedlist"><ul type="disc">
+<li><p>
+                                            (<code class="code">boolean, true</code> по умолчанию) <code class="code">cache</code> :
+                                             если <code class="code">true</code>, то кэширование включено
+                                             
+                                        </p></li>
+<li><p>
+                                            (<code class="code">boolean, false</code> по умолчанию) <code class="code">cacheWithGetVariables</code> :
+                                            если <code class="code">true</code>, кэширование включено, даже если в массиве <code class="code">$_GET</code> есть переменные
+                                            
+                                        </p></li>
+<li><p>
+                                            (<code class="code">boolean, false</code> по умолчанию) <code class="code">cacheWithPostVariables</code> :
+                                            если <code class="code">true</code>, кэширование включено, даже если в массиве <code class="code">$_POST</code> есть переменные
+                                            
+                                        </p></li>
+<li><p>
+                                            (<code class="code">boolean, false</code> по умолчанию) <code class="code">cacheWithSessionVariables</code> :
+                                            если <code class="code">true</code>, кэширование включено, даже если в массиве <code class="code">$_SESSION</code> есть переменные
+                                            
+                                        </p></li>
+<li><p>
+                                            (<code class="code">boolean, false</code> по умолчанию) <code class="code">cacheWithFilesVariables</code> :
+                                            если <code class="code">true</code>, кэширование включено, даже если в массиве <code class="code">$_FILES</code> есть переменные
+                                            
+                                        </p></li>
+<li><p>
+                                            (<code class="code">boolean, false</code> по умолчанию) <code class="code">cacheWithCookieVariables</code> :
+                                            если <code class="code">true</code>, кэширование включено, даже если в массиве <code class="code">$_COOKIE</code> есть переменные
+                                            
+                                        </p></li>
+<li><p>
+                                            (<code class="code">boolean, true</code> по умолчанию) <code class="code">makeIdWithGetVariables</code> :
+                                            если <code class="code">true</code>, то идентификатор кэша будет зависеть от содержимого массива <code class="code">$_GET</code>  
+                                            
+                                        </p></li>
+<li><p>
+                                            (<code class="code">boolean, true</code> по умолчанию) <code class="code">makeIdWithPostVariables</code> :
+                                            если <code class="code">true</code>, то идентификатор кэша будет зависеть от содержимого массива <code class="code">$_POST</code>  
+                                            
+                                        </p></li>
+<li><p>
+                                            (<code class="code">boolean, true</code> по умолчанию) <code class="code">makeIdWithSessionVariables</code> :
+                                            если <code class="code">true</code>, то идентификатор кэша будет зависеть от содержимого массива <code class="code">$_SESSION</code>  
+                                            
+                                        </p></li>
+<li><p>
+                                            (<code class="code">boolean, true</code> по умолчанию) <code class="code">makeIdWithFilesVariables</code> :
+                                            если <code class="code">true</code>, то идентификатор кэша будет зависеть от содержимого массива <code class="code">$_FILES</code>  
+                                            
+                                        </p></li>
+<li><p>
+                                            (<code class="code">boolean, true</code> по умолчанию) <code class="code">makeIdWithCookieVariables</code> :
+                                            если <code class="code">true</code>, то идентификатор кэша будет зависеть от содержимого массива <code class="code">$_COOKIE</code>  
+                                            
+                                        </p></li>
+</ul></div>              
+	                          </td>
+</tr>
+<tr>
+<td><code class="code">regexps</code></td>
+<td><code class="code">array</code></td>
+<td><code class="code">array()</code></td>
+<td>
+	                              Ассоциативный массив для установки опций только
+                                для некоторых REQUEST_URI. Ключами этого массива
+                                являются регулярные выражения (PCRE), значениями —
+                                ассоциативные массивы со специальными опциями,
+                                которые устанавливаются, если $_SERVER['REQUEST_URI']
+                                соответствует регулярному выражению
+                                (см. defaultOptions в этом списке доступных опций).
+                                Если $_SERVER['REQUEST_URI'] соответствует нескольким
+                                регулярным выражениям, то используется только
+                                последнее из них.
+       
+	                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.page.examples"></a>4.3.6.3. Пример</h4></div></div></div>
+<p>
+	            Использование <code class="code">Zend_Cache_Frontend_Page</code> довольно простое: 
+
+          </p>
+<pre class="programlisting">&lt;?php
+	           
+// [...]
+	
+$cache-&gt;start();
+// если есть попадание в кэш, то результат отправляется броузеру
+// и выполнение скрипта на этом прекращается
+	
+// rest of the page ...
+	
+?&gt;     </pre>
+<p>
+	            Более сложный пример, который показывает способ создания
+              централизованного управления кэшированием в загрузочном файле
+              (для использования с <code class="code">Zend_Controller</code>, например).
+
+	        </p>
+<pre class="programlisting">&lt;?php
+
+// [...] вы должны избегать слишком большого количества строк кода перед участком кэша 
+// [...] например, для наибольшей производительности "require_once" или "Zend::loadClass"
+// [...] должны находиться после участка кэша
+
+require_once 'Zend/Cache.php';
+
+$frontendOptions = array(
+   'lifeTime' =&gt; 7200,
+   'debugHeader' =&gt; true, // for debuging 
+   'regexps' =&gt; array(
+       '^/$' =&gt; array('cache' =&gt; true),         // кэширование всего IndexController;         
+       '^/index/' =&gt; array('cache' =&gt; true),    // кэширование всего IndexController;
+       '^/article/' =&gt; array('cache' =&gt; false), // не кэшируем ArticleController...
+       '^/article/view/' =&gt; array(              // ...но кэшируем действие "view" 
+           'cache' =&gt; true,                     // контроллера ArticleController;
+           'cacheWithPostVariables' =&gt; true,    // кэшируем, даже если есть переменные $_POST
+           'makeIdWithPostVariables' =&gt; true,   // (но кэш будет зависеть от массива $_POST)
+       )
+   )	  
+);
+$backendOptions = array(
+    'cacheDir' =&gt; '/tmp/' 
+);
+
+// получение объекта Zend_Cache_Frontend_Page
+$cache = Zend_Cache::factory('Page', 'File', $frontendOptions, $backendOptions);
+
+$cache-&gt;start();
+// если есть попадание в кэш, результат отправляется броузеру,
+// и выполнение скрипта на этом завершается
+
+// [...] конец загрузочного файла (этот код не исполняется, если есть попадание в кэш)
+	        	
+?&gt;     </pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.cache.theory.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.cache.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.cache.backends.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.2. Теория кэширования </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 4.4. Бэкэнды Zend_Cache</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

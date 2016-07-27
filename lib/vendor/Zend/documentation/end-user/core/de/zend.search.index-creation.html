@@ -1,0 +1,296 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.2. Indexerstellung</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="prev" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="next" href="zend.search.searching.html" title="22.3. Einen Index durchsuchen">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.creating" title="22.2.1. Einen neuen Index erstellen">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.updating" title="22.2.2. Indexaktualisierung">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.document-updating" title="22.2.3. Dokumente aktualisieren">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.counting" title="22.2.4. Retrieving Index size">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.optimization" title="22.2.5. Indexoptimierung">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.limitations" title="22.2.6. Einschränkungen">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.2. Indexerstellung</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.searching.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.index-creation"></a>22.2. Indexerstellung</h2></div></div></div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.creating"></a>22.2.1. Einen neuen Index erstellen</h3></div></div></div>
+<p>
+            Die Funktionen für das Erstellen und Aktualisieren eines Index wurden innerhalb der 
+            Zend_Search_Lucene Komponente und von Java Lucene implementiert. Du kannst diese beiden
+            Funktionalitäten verwenden.
+        </p>
+<p>
+            Der PHP Quellcode unten zeigt ein Beispiel, wie eine Datei durch Verwendung der
+            Zend_Search_Lucene Programmierschnittstelle (API) indiziert werden kann:
+        </p>
+<pre class="programlisting">&lt;?php
+
+// Index erstellen
+$index = Zend_Search_Lucene::create('/data/my-index');
+
+$doc = new Zend_Search_Lucene_Document();
+
+// Speichere die URL des Dokuments, um es für Suchergebnisse ermitteln zu können
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('url', $docUrl));
+
+// Indiziere den Dokumenteninhalt
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', $docContent));
+
+// Füge das Dokument dem Index hinzu 
+$index-&gt;addDocument($doc);
+?&gt;</pre>
+<p>
+            Neu hinzugefügte Dokumente können sofort aus einem Index zurückgeholt werden.
+        </p>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.updating"></a>22.2.2. Indexaktualisierung</h3></div></div></div>
+<p>
+            Der selbe Prozess wird verwendet, um einen vorhandenen Index zu aktualisieren. Der 
+            einzige Unterschied ist, dass der Index ohne den zweiten Parameter geöffnet werden
+            sollte:
+        </p>
+<pre class="programlisting">&lt;?php
+
+// Öffnen einen vorhandenen Index
+$index = Zend_Search_Lucene::open('/data/my-index');
+
+$doc = new Zend_Search_Lucene_Document();
+
+// Speichere die URL des Dokuments, um es für Suchergebnisse ermitteln zu können
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('url', $docUrl));
+
+// Indiziere den Dokumenteninhalt
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', $docContent));
+
+// Füge das Dokument dem Index hinzu 
+$index-&gt;addDocument($doc);
+?&gt;</pre>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.document-updating"></a>22.2.3. Dokumente aktualisieren</h3></div></div></div>
+<p>
+            Das Lucene Indexdateiformat unterstützt keine Aktualisierung von Dokumenten. Ein 
+            Dokument sollte entfernt und wieder hinzugefügt werden, um eine Aktualisierung zu 
+            erreichen.
+        </p>
+<p>
+            Die <code class="code">Zend_Search_Lucene::delete()</code> Methode arbeitet mit einer internen
+            Index Dokumentennummer. Sie kann aus dem Ergebnistreffer über die 'id' Eigenschaft
+            erhalten werden:
+        </p>
+<pre class="programlisting">&lt;?php
+$removePath = ...;
+$hits = $index-&gt;find('path:' . $removePath);
+foreach ($hits as $hit) {
+    $index-&gt;delete($hit-&gt;id);
+}
+?&gt;</pre>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.counting"></a>22.2.4. Retrieving Index size</h3></div></div></div>
+<p>
+            There are two methods to retrieve index size in Zend_Search_Lucene.
+        </p>
+<p>
+             <code class="code">Zend_Search_Lucene::maxDoc()</code> returns one greater than the largest possible document number.
+             It's actually overall number of the documents in the index including deleted documents.
+             So it has a synonym: <code class="code">Zend_Search_Lucene::count()</code>.
+        </p>
+<p>
+             <code class="code">Zend_Search_Lucene::numDocs()</code> returns the total number of non-deleted documents.
+        </p>
+<pre class="programlisting">&lt;?php
+$indexSize = $index-&gt;count();
+$documents = $index-&gt;numDocs();
+?&gt;</pre>
+<p>
+            <code class="code">Zend_Search_Lucene::isDeleted($id)</code> method may be used to check if document is deleted.
+        </p>
+<pre class="programlisting">&lt;?php
+for ($count = 0; $count &lt; $index-&gt;maxDoc(); $count++) {
+    if ($index-&gt;isDeleted($count)) {
+        echo "Document #$id is deleted.\n";
+    }
+}
+?&gt;</pre>
+<p>
+            Index optimization removes deleted documents and squeezes documents' IDs. So internal document id may be changed.
+        </p>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.optimization"></a>22.2.5. Indexoptimierung</h3></div></div></div>
+<p>
+            Ein Lucene Index bestehtis aus Segmenten. Jedes Segment ist ein komplett unabhängiger Datensatz.
+        </p>
+<p>
+            Lucene Indexsegmentdateien können aufgrund ihrer Natur nicht aktualisiert werden. Eine Segmentaktualisierung
+            benötigt eine komplette Reorganisation der Segmente. Siehe auch die Lucene Indexdateiformate für weitere
+            Details
+            (<a href="http://lucene.apache.org/java/docs/fileformats.html" target="_top">http://lucene.apache.org/java/docs/fileformats.html</a>).
+            Deshalb werden neue Dokumente durch Erstellen neuer Segmente zum Index hinzugefügt.
+        </p>
+<p>
+            Eine steigende Anzahl an Segmente verringert die Qualität des Index, aber die Indexoptimierung stellt
+            diese wieder her. Die Optimierung beschränkt sich darauf, mehrere Segmente zu einem zusammen zu fassen.
+            Dieser Prozess aktualisiert die Segmente ebenfalls nicht. Er erstellt neue große Segmente, welche ein
+            neues optimiertes Segment anstatt einen Satz alte Segmente enthalten, und aktualisiert die Segmentenliste
+            ('segments' Datei).
+        </p>
+<p>
+            Eine komplette Indexoptimierung kann durch einen Aufruf von <code class="code">Zend_Search_Lucene::optimize()</code>
+            gestartet werden. Sie fügt alle Segmente in ein größeres zusammen.
+        </p>
+<pre class="programlisting">&lt;?php
+// Öffne bestehenden Index
+$index = new Zend_Search_Lucene('/data/my-index');
+
+// Optimiere Index
+$index-&gt;optimize();
+?&gt;</pre>
+<p>
+            Die automatische Indexoptimierung wird durchgeführt, um einen Index konsistens zu halten.
+        </p>
+<p>
+            Die automatische Indexoptimierung ist ein schrittweise Prozess, der durch verschiedene Indexoptionen gesteuert 
+            wird. Sie fasst sehr kleine Segmente in größere zusammen und fasst die größeren Segmente dann in noch größere
+            zusammen und so weiter.
+        </p>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.index-creation.optimization.maxbuffereddocs"></a>22.2.5.1. <span class="emphasis"><em>MaxBufferedDocs</em></span> Option für automatische Optimierung</h4></div></div></div>
+<p>
+                <span class="emphasis"><em>MaxBufferedDocs</em></span> ist die minimale Anzahl an Dokumenten, die erforderlich ist, damit
+                die im Hauptspeicher zwischen gespeicherten Dokumente in ein neues Segment geschrieben werden.
+            </p>
+<p>
+                <span class="emphasis"><em>MaxBufferedDocs</em></span> kann abgefragt bzw. gesetzt werden durch Aufrufe von 
+                <code class="code">$index-&gt;getMaxBufferedDocs()</code> oder <code class="code">$index-&gt;setMaxBufferedDocs($maxBufferedDocs)</code>.
+            </p>
+<p>
+                Standardwert is 10.
+            </p>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.index-creation.optimization.maxmergedocs"></a>22.2.5.2. <span class="emphasis"><em>MaxMergeDocs</em></span> Option für automatische Optimierung</h4></div></div></div>
+<p>
+                <span class="emphasis"><em>MaxMergeDocs</em></span> ist die höchste Anzahl an Dokumenten, die jemals mit addDocument()
+                zusammengefasst werden kann. Kleine Werte (z.B. unter 10.000) sind für die interaktive Indizierung am 
+                besten, da dies die Pausen für das Indizieren auf wenige Sekunden begrenzen. Größere Werte sind am besten
+                für Stapelverarbeitung oder schnellere Suchabfragen.
+            </p>
+<p>
+                <span class="emphasis"><em>MaxMergeDocs</em></span> kann abgefragt bzw. gesetzt werden durch Aufrufe von
+                 <code class="code">$index-&gt;getMaxMergeDocs()</code> oder <code class="code">$index-&gt;setMaxMergeDocs($maxMergeDocs)</code>.
+            </p>
+<p>
+                Standardwert ist PHP_INT_MAX.
+            </p>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.index-creation.optimization.mergefactor"></a>22.2.5.3. <span class="emphasis"><em>MergeFactor</em></span> Option für automatische Optimierung</h4></div></div></div>
+<p>
+                <span class="emphasis"><em>MergeFactor</em></span> legt fest, wie oft Segmentenindixes durch addDocument() zusammengefasst
+                werden sollen. Bei kleineren Werten wird beim Indizieren weniger RAM verbraucht und Suchabfragen auf 
+                nicht optimierte Indizes sind schneller, aber die Indizierungsgeschwindigkeit ist langsamer. Bei größeren
+                Werten, wird mehr beim Indizieren RAM verbraucht und während Suchabfragen auf nicht optimierte Indizes langsamer
+                sind, ist das Indizieren schneller. Deshalb sind größere Werte (&gt; 10)  am besten für Stapelverarbeitung
+                und kleinere Werte (&lt; 10)  sind besser für Indizes, die interaktiv gepflegt werden.
+            </p>
+<p>
+                <span class="emphasis"><em>MergeFactor</em></span> kann abgefragt bzw. gesetzt werden durch Aufrufe von 
+                <code class="code">$index-&gt;getMergeFactor()</code> oder <code class="code">$index-&gt;setMergeFactor($mergeFactor)</code>.
+            </p>
+<p>
+                Standardwert ist 10.
+            </p>
+<p>
+                Lucene Java und Luke (Lucene Index Toolbox - <a href="http://www.getopt.org/luke/" target="_top">http://www.getopt.org/luke/</a>)
+                können auch für die Optimierung eines Index verwendet werden.
+            </p>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.limitations"></a>22.2.6. Einschränkungen</h3></div></div></div>
+<p>
+            Einschränkungen sind Plattform abhängig.
+        </p>
+<p>
+            Die maximale Indexgröße auf 32-bit Plattformen beträgt 2GB.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.searching.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitel 22. Zend_Search </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 22.3. Einen Index durchsuchen</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>12.4. Using Google Base</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="prev" href="zend.gdata.clientlogin.html" title="12.3. Authenticating with ClientLogin">
+<link rel="next" href="zend.gdata.blogger.html" title="12.5. Using Google Blogger">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="zend.gdata.base.html#zend.gdata.base.query" title="12.4.1. Querying Base data">
+<link rel="subsection" href="zend.gdata.base.html#zend.gdata.base.post" title="12.4.2. Updating Base data">
+<link rel="subsection" href="zend.gdata.base.html#zend.gdata.base.metadata" title="12.4.3. Querying Base metadata">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">12.4. Using Google Base</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.gdata.clientlogin.html">Anterior</a> </td>
+<th width="60%" align="center">Capítulo 12. Zend_Gdata</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.blogger.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.gdata.base"></a>12.4. Using Google Base</h2></div></div></div>
+<p>
+        The Google Data API interface to Google Base allows developers to
+        write applications to perform search queries against the
+        Google Base database of products, services, and events.
+        You can also input and manage Google Base entries programmatically.
+    </p>
+<p>
+        See
+        <a href="http://code.google.com/apis/base/" target="_top">http://code.google.com/apis/base/</a>
+        for more information on the Google Base API.
+    </p>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.base.query"></a>12.4.1. Querying Base data</h3></div></div></div>
+<p>
+            You can use the <code class="code">setQuery()</code> method to specify
+            full-text search terms for a Google Base query.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base();
+$gdataBase-&gt;setQuery('digital camera');
+$feed = $gdataBase-&gt;getBaseFeed();
+?&gt;</pre>
+<p>
+            See the documentation for <a href="zend.feed.html#zend.feed.introduction" title="10.1. Introduction">Zend_Feed</a>
+            for more information on how to use this object.
+        </p>
+<p>
+            Google Base also supports attribute-based query terms.
+            You can specify additional terms using the
+            <code class="code">addAttribute()</code> method.
+            The parameters of this method are attribute name,
+            attribute value, and an optional operator.
+            The default operator is ':' which is interpreted as string
+            equality.
+        </p>
+<p>
+            Attribute queries can be combined with full-text queries.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base();
+$gdataBase-&gt;setQuery('digital camera');
+$gdataBase-&gt;addAttributeQuery('price', '50 USD', '&lt;');
+$feed = $gdataBase-&gt;getBaseFeed();
+?&gt;</pre>
+<p>
+            You can add multiple attributes using the <code class="code">addAttributeQuery()</code>
+            method, even multiple attribute terms for the same attribute name.
+        </p>
+<p>
+            You can clear attribute query terms using the
+            <code class="code">unsetAttributeQuery()</code> method.  The parameter is the
+            attribute name.  If you have added multiple terms for the same 
+            attribute name, all of them are cleared.  If you specify no
+            attribute name in the parameter to this method, all attribute
+            query terms are cleared.
+        </p>
+<p>
+            The <code class="code">addAttribute()</code> method does not
+            support advanced expression syntax including parentheses, 
+            negation, and boolean operators.  You can enter such
+            expressions as a string, using the <code class="code">setQuery()</code> method.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base();
+$gdataBase-&gt;setQuery('digital camera ( [price &lt; 50 USD] | [location: @"Mountain View, CA 94043"] )');
+$feed = $gdataBase-&gt;getBaseFeed();
+?&gt;</pre>
+<p>
+            You can sort the results of feeds by different criteria.
+            You can specify other sorting criteria using the
+            <code class="code">setOrderby()</code> method.
+            Typical values are <code class="code">modification-time</code>,
+            <code class="code">name</code>, or <code class="code">relevancy</code>.
+            You can also specify advanced ranking logic, using the
+            <a href="http://code.google.com/apis/base/ranking-lang-spec.html" target="_top">Ranking Language</a>.
+            By default, the order entries are returned is by
+            <code class="code">relevancy</code>.
+        </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.base.post"></a>12.4.2. Updating Base data</h3></div></div></div>
+<p>
+            Updating data requires you to establish two things in your
+            Zend_Gdata_Base object:  an authenticated Http Client,
+            and a developer key.
+        </p>
+<p>
+            A developer key is typically a 54-character alphanumeric string.
+            See <a href="http://code.google.com/apis/base/starting-out.html#authDev" target="_top">http://code.google.com/apis/base/starting-out.html#authDev</a>
+            for instructions on acquiring a developer key.
+        </p>
+<p>
+            You can set the developer key using the optional second parameter
+            in the constructor for Zend_Gdata_Base.  You can also set the
+            developer key of an existing object, using the
+            <code class="code">setDeveloperKey()</code> method.
+            Once you set the developer key for the Zend_Gdata_Base object,
+            the key is sent automatically in subsequent requests.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base($authenticatedHttpClient);
+$gdataBase-&gt;setDeveloperKey($myDeveloperKey);
+?&gt;</pre>
+<p>
+            Posting enties to Google Base is done using the <code class="code">post()</code>
+            method that is common to Zend_Gdata classes.  See the documentation
+            for the Google Base Data API for details on the correct elements
+            of the XML entries.
+        </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.base.metadata"></a>12.4.3. Querying Base metadata</h3></div></div></div>
+<p>
+            You can query feeds of Google Base itemtypes using the
+            <code class="code">getItemTypesFeed()</code> method.  The first parameter
+            to this method is a locale, for instance "en_US".
+            The second parameter is optional; it names an item type.
+            If you specify an item type, the method returns a feed of
+            attributes for that item type.  If you do not specify an
+            item type, the method returns a feed of all item types.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base();
+
+// Get list of all item types
+$itemTypes = $gdataBase-&gt;getItemTypesFeed('en_US');
+
+// Get list of attributes for the 'jobs' item type.
+$jobsAttributes = $gdataBase-&gt;getItemTypesFeed('en_US', 'jobs');
+?&gt;</pre>
+<p>
+            You can query statistics about a given item type, such as
+            the number of Google Base entries that use individual values
+            for each attribute.  Use the <code class="code">getItemTypeAttributesFeed()</code>
+            method for this type of query.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base();
+$jobsAttributesStatistics = $gdataBase-&gt;getItemTypeAttributesFeed('jobs');
+?&gt;</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.gdata.clientlogin.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.gdata.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.blogger.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">12.3. Authenticating with ClientLogin </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> 12.5. Using Google Blogger</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

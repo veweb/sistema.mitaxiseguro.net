@@ -1,0 +1,210 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第28章 Zend_View</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.validate.validating_hostnames.html" title="27.5. ホスト名の検証">
+<link rel="next" href="zend.view.controllers.html" title="28.2. コントローラスクリプト">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.view.html#zend.view.introduction" title="28.1. 導入">
+<link rel="section" href="zend.view.controllers.html" title="28.2. コントローラスクリプト">
+<link rel="section" href="zend.view.scripts.html" title="28.3. ビュースクリプト">
+<link rel="section" href="zend.view.helpers.html" title="28.4. ビューヘルパー">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第28章 Zend_View</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.validate.validating_hostnames.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.view.controllers.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.view"></a>第28章 Zend_View</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.view.html#zend.view.introduction">28.1. 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.controller">28.1.1. コントローラスクリプト</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.view">28.1.2. ビュースクリプト</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.controllers.html">28.2. コントローラスクリプト</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.assign">28.2.1. 変数の代入</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.render">28.2.2. ビュースクリプトのレンダリング</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.script-paths">28.2.3. ビュースクリプトのパス</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.scripts.html">28.3. ビュースクリプト</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.escaping">28.3.1. 出力のエスケープ</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.templates">28.3.2. 別のテンプレートシステムの使用</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.helpers.html">28.4. ビューヘルパー</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.initial">28.4.1. 付属のヘルパー</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.paths">28.4.2. ヘルパーのパス</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.custom">28.4.3. 独自のヘルパーを書く</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.introduction"></a>28.1. 導入</h2></div></div></div>
+<p>
+        Zend_View は、モデル - ビュー - コントローラ パターンにおける
+        「ビュー」として働くクラスです。
+        ビューのスクリプトを、モデルおよびコントローラから分離するために存在します。
+        このクラスでは、
+        ヘルパーシステム、出力のフィルタリングおよび変数のエスケープ機能を提供します。
+    </p>
+<p>
+        Zend_View は、テンプレートシステムに対しては特にこだわりはありません。
+        テンプレート言語として PHP を使用するか、
+        あるいは他のテンプレートエンジンのインスタンスを作成して、
+        それをビュースクリプトの中で操作することができます。
+    </p>
+<p>
+        基本的に、Zend_View を使用する際には 2 つの段階をとることになります。
+        
+        1.  コントローラスクリプトが Zend_View のインスタンスを作成し、
+        そのインスタンスに変数を代入します。
+        
+        2. コントローラが Zend_View に対して適切なビューをレンダリングするように指示し、
+        それによってコントローラがビュースクリプトを制御します。
+        そこでビューの出力が作成されます。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.introduction.controller"></a>28.1.1. コントローラスクリプト</h3></div></div></div>
+<p>
+            単純な例として、本の一覧を扱うコントローラがあることにしましょう。
+            そのデータをビューに表示することを考えます。
+            コントローラスクリプトは、おそらくこのようになるでしょう。
+        </p>
+<pre class="programlisting">&lt;?php
+// 本の著者およびタイトルを取得するためにモデルを使用します
+$data = array(
+    array(
+        'author' =&gt; 'Hernando de Soto',
+        'title' =&gt; 'The Mystery of Capitalism'
+    ),
+    array(
+        'author' =&gt; 'Henry Hazlitt',
+        'title' =&gt; 'Economics in One Lesson'
+    ),
+    array(
+        'author' =&gt; 'Milton Friedman',
+        'title' =&gt; 'Free to Choose'
+    )
+);
+
+// 本のデータを Zend_View インスタンスに代入します
+Zend::loadClass('Zend_View');
+$view = new Zend_View();
+$view-&gt;books = $data;
+
+// "booklist.php" というビュースクリプトをレンダリングします
+echo $view-&gt;render('booklist.php');
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.introduction.view"></a>28.1.2. ビュースクリプト</h3></div></div></div>
+<p>
+            次に必要なのは、関連付けるビュースクリプト "booklist.php" です。
+            これは一般的な PHP スクリプトと同じですが、ひとつだけ違いがあります。
+            Zend_View インスタンスのスコープで実行されるということです。
+            つまり $this への参照は、Zend_View
+            のインスタンスのプロパティやメソッドを指すことになるのです
+            (コントローラによってインスタンスに代入された変数は、
+            Zend_View インスタンスの public プロパティとなります)。
+            したがって、基本的なビュースクリプトはこのようになります。
+        </p>
+<pre class="programlisting">&lt;?php if ($this-&gt;books): ?&gt;
+    
+    &lt;!-- 本の一覧 --&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;著者&lt;/th&gt;
+            &lt;th&gt;タイトル&lt;/th&gt;
+        &lt;/tr&gt;
+        
+        &lt;?php foreach ($this-&gt;books as $key =&gt; $val): ?&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;?php echo $this-&gt;escape($val['author']) ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?php echo $this-&gt;escape($val['title']) ?&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;?php endforeach; ?&gt;
+        
+    &lt;/table&gt;
+    
+&lt;?php else: ?&gt;
+    
+    &lt;p&gt;表示する本がありません。&lt;/p&gt;
+    
+&lt;?php endif; ?&gt;
+        </pre>
+<p>
+            変数の出力時に、"escape()"
+            メソッドでエスケープ処理をしていることに注意しましょう。
+        </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.validate.validating_hostnames.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.view.controllers.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">27.5. ホスト名の検証 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 28.2. コントローラスクリプト</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

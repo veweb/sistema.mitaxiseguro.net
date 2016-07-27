@@ -1,0 +1,231 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.6. Кодировки</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="prev" href="zend.search.queries.html" title="22.5. Типы запросов ">
+<link rel="next" href="zend.search.extending.html" title="22.7. Расширяемость">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.description" title="22.6.1. Поддержка UTF-8 и однобайтных наборов символов">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.default_analyzer" title="22.6.2. Используемый по умолчанию анализатор текста">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.utf_analyzer" title="22.6.3. Совместимый с UTF-8 анализатор текста">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.6. Кодировки</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.queries.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.extending.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.charset"></a>22.6. Кодировки</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.description"></a>22.6.1. Поддержка UTF-8 и однобайтных наборов символов</h3></div></div></div>
+<p>
+            Zend_Search_Lucene в своей работе использует кодировку UTF-8.
+            Файлы индекса хранят данные unicode в кодировке Modified UTF-8 от
+            Java. Ядро Zend_Search_Lucene полностью поддерживает его за одним
+            исключением.
+
+            <sup>[<a name="id4899304" href="#ftn.id4899304">9</a>]</sup>
+
+        </p>
+<p>
+            Действующая кодировка для входных данных может быть указана через
+            API Zend_Search_Lucene. Данные будут автоматически преобразованы в
+            кодировку UTF-8.  
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.default_analyzer"></a>22.6.2. Используемый по умолчанию анализатор текста</h3></div></div></div>
+<p>
+            Несмотря на это, используемый по умолчанию анализатор текста
+            (который также применяется в парсере запросов) использует
+            <code class="code">ctype_alpha()</code> для разбиения текста и поисковых
+            запросов на лексемы.
+
+        </p>
+<p>
+            <code class="code">ctype_alpha()</code> не является совместимым с UTF-8, поэтому
+            анализатор конвертирует текст в кодировку 'ASCII//TRANSLIT' до
+            индексации. То же самое выполняется при парсинге запросов.  
+
+            <sup>[<a name="id4900048" href="#ftn.id4900048">10</a>]</sup>
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.utf_analyzer"></a>22.6.3. Совместимый с UTF-8 анализатор текста</h3></div></div></div>
+<p>
+            Zend_Search_Lucene также содержит совместимый с UTF-8 анализатор
+            текста с ограниченным функционалом.
+
+
+            </p>
+<pre class="programlisting">&lt;?php
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8());
+?&gt;</pre>
+<p>
+        </p>
+<p>
+            Он разбивает на лексемы данные для индексации в режиме UTF-8, не
+            испытывая проблем с любыми входящими в UTF-8 символами.   
+
+        </p>
+<p>
+            Данный анализатор имеет два ограничения:
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        обрабатывает все не входящие в кодировку ASCII как буквы;
+
+                    </p></li>
+<li><p>
+                        является чувствительным к регистру;
+
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            Из-за этих ограничений он не используется по умолчанию, но может
+            быть полезен некоторым.
+
+        </p>
+<p>
+            Нечувствительность к регистру может быть сэмулирована с помощью
+            <code class="code">strtolower()</code>.
+
+            </p>
+<pre class="programlisting">&lt;?php
+setlocale(LC_CTYPE, 'de_DE.iso-8859-1');
+
+...
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8());
+
+...
+
+$doc = new Zend_Search_Lucene_Document();
+
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', strtolower($contents)));
+
+// Поле заголовка для поиска
+// (индексируется, но не сохраняется в индексе)
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('title', strtolower($title)));
+
+// Поле заголовка для возвращения в результатах поиска
+// (не индексируется, но сохраняется)
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnIndexed('_title', $title));
+
+?&gt;</pre>
+<p>
+        </p>
+<p>
+            То же самое преобразование должно выполняться и для запросов: 
+
+            </p>
+<pre class="programlisting">&lt;?php
+setlocale(LC_CTYPE, 'de_DE.iso-8859-1');
+
+...
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8());
+
+...
+
+$hits = $index-&gt;find(strtolower($query));
+?&gt;</pre>
+<p>
+        </p>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote">
+<p><sup>[<a name="ftn.id4899304" href="#id4899304">9</a>] </sup>
+                   Zend_Search_Lucene поддерживает только символы
+                   Basic Multilingual Plane (от 0x0000 до 0xFFFF) и не
+                   поддерживает дополнительные символы (символы, чьи коды больше
+                   0xFFFF).
+
+               </p>
+<p>
+                   Java 2 представляет эти символыв виде пары значений
+                   символьного типа (16 бит), перое из диапазона 0xD800-0xDBFF,
+                   второе из диапазона 0xDC00-0xDFFF. Тогда они кодируются как
+                   обычные символы UTF-8 в шести байтах. Стандартное
+                   представление UTF-8 использует четыре байта для
+                   дополнительных символов.
+
+               </p>
+</div>
+<div class="footnote"><p><sup>[<a name="ftn.id4900048" href="#id4900048">10</a>] </sup>
+                   Преобразование в 'ASCII//TRANSLIT' может зависеть от текущей
+                   локали и операционной системы.
+
+               </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.queries.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.extending.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.5. Типы запросов  </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 22.7. Расширяемость</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

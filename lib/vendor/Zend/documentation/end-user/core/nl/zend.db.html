@@ -1,0 +1,504 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Hoofdstuk 9. Zend_Db</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="prev" href="zend.date.constants.html" title="8.5. Constants for General Date Functions">
+<link rel="next" href="zend.db.profiler.html" title="9.2. Zend_Db_Profiler">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="section" href="zend.db.html#zend.db.adapter" title="9.1. Zend_Db_Adapter">
+<link rel="section" href="zend.db.profiler.html" title="9.2. Zend_Db_Profiler">
+<link rel="section" href="zend.db.select.html" title="9.3. Zend_Db_Select">
+<link rel="section" href="zend.db.table.html" title="9.4. Zend_Db_Table">
+<link rel="section" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="section" href="zend.db.tablerowset.html" title="9.6. Zend_Db_Table_Rowset">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Hoofdstuk 9. Zend_Db</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.date.constants.html">Terug</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.profiler.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="nl">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.db"></a>Hoofdstuk 9. Zend_Db</h2></div></div></div>
+<div class="toc">
+<p><b>Inhoudsopgave</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.db.html#zend.db.adapter">9.1. Zend_Db_Adapter</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.introduction">9.1.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.quoting">9.1.2. Quoting tegen SQL Injectie</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.queries">9.1.3. Directe Queries</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.transactions">9.1.4. Transacties</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.insert">9.1.5. Rijen Invoegen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.update">9.1.6. Rijen updaten</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.delete">9.1.7. Rijen Verwijderen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.fetch">9.1.8. Rijen Halen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.profiler.html">9.2. Zend_Db_Profiler</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.introduction">9.2.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.using">9.2.2. De Profiler Gebruiken</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.advanced">9.2.3. Geavanceerd Profiler Gebruik</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.select.html">9.3. Zend_Db_Select</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.introduction">9.3.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.fromcols">9.3.2. Kolommen FROM een tabel</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.joincols">9.3.3. Kolommen van geJOINde tabellen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.where">9.3.4. WHERE voorwaarden</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.group">9.3.5. GROUP BY clausule</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.having">9.3.6. HAVING voorwaarden</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.order">9.3.7. ORDER BY clausule</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.limit">9.3.8. LIMIT per Count en Offset</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.paging">9.3.9. LIMIT per Pagina en Count</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.table.html">9.4. Zend_Db_Table</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.introduction">9.4.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.getting-started">9.4.2. Om te beginnen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.name-and-key">9.4.3. Tabelnaam en Primaire Key</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.insert">9.4.4. Rijen invoegen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.udpate">9.4.5. Rijen updaten</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.delete">9.4.6. Rijen verwijderen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.findbykey">9.4.7. Rijen vinden per primaire key</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.fetchonerow">9.4.8. Eén enkele rij ophalen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.fetchmultiple">9.4.9. Meerdere rijen ophalen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.domain-logic">9.4.10. Domein Logica Invoegen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.tablerow.html">9.5. Zend_Db_Table_Row</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.introduction">9.5.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.fetch">9.5.2. Een rij ophalen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.modify">9.5.3. Waarden wijzigen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.tablerowset.html">9.6. Zend_Db_Table_Rowset</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.introduction">9.6.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.fetch">9.6.2. Een Rowset verkrijgen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.iterate">9.6.3. Door de Rowset lopen</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.adapter"></a>9.1. Zend_Db_Adapter</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.introduction"></a>9.1.1. Inleiding</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Adapter</code> is de database API abstractielaag voor het Zend
+			Framework, gebaseerd op PDO. Je kan <code class="code">Zend_Db_Adapter</code> gebruiken om
+			je te verbinden en te werken met alle ondersteunde SQL database systemen die 
+			dezelfde API gebruiken. Deze houden onder andere in: Microsoft SQL Server, 
+			MySQL, PostgreSQL, SQLite, en anderen.
+        </p>
+<p>Om een instantie van <code class="code">Zend_Db_Adapter</code> voor jouw specifieke database
+		op te roepen, moet je <code class="code">Zend_Db::factory()</code> oproepen met de naam van de 
+		van toepassing zijnde adapter en een array van parameters die de verbinding beschrijven. Bijvoorbeeld,
+		om een verbinding tot stand te brengen op een MySQL database die "camelot" heet op localhost
+		met een user genaamd "arthur":</p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/Db.php';
+
+$params = array ('host'     =&gt; '127.0.0.1',
+                 'username' =&gt; 'arthur',
+                 'password' =&gt; '******',
+                 'dbname'   =&gt; 'camelot');
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+?&gt;</pre>
+<p>
+			Om een verbinding te maken met een SQLite database genaamd "camelot":
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/Db.php';
+
+$params = array ('dbname' =&gt; 'camelot');
+
+$db = Zend_Db::factory('PDO_SQLITE', $params);
+
+?&gt;</pre>
+<p>
+			In elk geval zal je exact dezelfde API kunnen gebruiken om de database te ondervragen.
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.quoting"></a>9.1.2. Quoting tegen SQL Injectie</h3></div></div></div>
+<p>
+			Je moet altijd waarden quoten die gebruikt moeten worden in een
+			SQL verklaring; dit om SQL injectie aanvallen te helpen voorkomen.
+            <code class="code">Zend_Db_Adapter</code> verstrekt twee methodes (via het onderliggende
+			PDO object) om je te helpen handmatig waarden te quoten.
+        </p>
+<p>
+			De eerste van deze methodes is de <code class="code">quote()</code> methode. Het zal
+			een scalaire waarde correct quoten voor jouw database adapter; als je een
+			array probeert te quoten zal het een komma-gescheiden string van arraywaarden
+			terugsturen, elk van deze waarden met correcte quotes (dit is handig voor
+			functies die een lijstparameter verwachten).
+        </p>
+<pre class="programlisting">&lt;?php
+
+// maak een $db object, we nemen aan dat de adapter Mysql is.
+
+// quote een scalaire waarde
+$value = $db-&gt;quote('St John"s Wort');
+// $value is nu '"St John\"s Wort"' (merk de omringende quotes op)
+
+// quote een array
+$value = $db-&gt;quote(array('a', 'b', 'c');
+// $value is nu '"a", "b", "c"' (een komma-gescheiden string)
+
+?&gt;</pre>
+<p>
+			De tweede methode is de <code class="code">quoteInto()</code> methode. Je geeft een
+			basis string op met een vraagteken plaatshouder, en één scalaire waarde
+			of een array om erin te quoten. Dit is handig om queries en clausules
+			te maken "as-you-go". Scalaire waarden en arrays werken hetzelfde als in
+			de <code class="code">quote()</code> methode.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// maak een $db object, we nemen aan dat de adapter Mysql is.
+
+// quote een scalaire waarde in de WHERE clausule
+$where = $db-&gt;quoteInto('id = ?', 1);
+// $where is nu 'id = "1"' (merk de omringende quotes op)
+
+// quote een array into een WHERE clausule
+$where = $db-&gt;quoteInto('id IN(?)', array(1, 2, 3));
+// $where is nu 'id IN("1", "2", "3")' (een komma-gescheiden string)
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.queries"></a>9.1.3. Directe Queries</h3></div></div></div>
+<p>
+			Eenmaal je een <code class="code">Zend_Db_Adapter</code> instantie hebt, kan je queries
+			direct in SQL uitvoeren. <code class="code">Zend_Db_Adapter</code> geeft die queries door
+			aan het onderliggende PDO object, die de query klaarmaakt en uitvoert en dan een
+			PDOStatement object teruggeeft met de resultaten (als die er zijn) voor jou om
+			te behandelen.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// maak een $db object, en ondervraag de database
+// met een SQL verklaring met correcte quotes.
+$sql = $db-&gt;quoteInto(
+    'SELECT * FROM example WHERE date &gt; ?',
+    '2006-01-01'
+);
+$result = $db-&gt;query($sql);
+
+// gebruik het PDOStatement $result om alle regels als een array te halen
+$rows = $result-&gt;fetchAll();
+
+?&gt;</pre>
+<p>
+			Je mag data automatisch in je query binden. Dat betekent dat
+			je meerdere benoemde plaatshouders in de query kan zetten, en
+			dan een array kan doorgeven die de data bevat om de plaatshouders
+			te vervullen. De vervulde waarden zullen automatisch de juiste
+			quotes krijgen, en zodanig een grotere veiligheid verstrekken
+			tegen SQL injectie aanvallen.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// maak een $db object, en ondervraag de database
+// gebruik deze keer benoemde plaatshouders bindingen.
+$result = $db-&gt;query(
+    'SELECT * FROM example WHERE date &gt; :placeholder',
+    array('placeholder' =&gt; '2006-01-01')
+);
+
+// gebruik het PDOStatement $result om alle regels als een array te halen
+$rows = $result-&gt;fetchAll();
+
+?&gt;</pre>
+<p>
+			Naar keuze zou je handmatig data willen voorbereiden en binden aan SQL verklaringen.
+			Om dit te doen kan je de <code class="code">prepare()</code> methode gebruiken om een
+			voorbereid <code class="code">PDOStatement</code> te verkrijgen dat je kan aanpassen.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// maak een $db object, en ondervraag de database
+// bereid deze keer een PDOStatement voor dat aangepast kan worden
+$stmt = $db-&gt;prepare('SELECT * FROM example WHERE date &gt; :placeholder');
+$stmt-&gt;bindValue('placeholder', '2006-01-01');
+$stmt-&gt;execute();
+
+// gebruik het PDOStatement $result om alle regels als een array te halen
+$rows = $stmt-&gt;fetchAll();
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.transactions"></a>9.1.4. Transacties</h3></div></div></div>
+<p>
+			Standaard is PDO (en dus ook <code class="code">Zend_Db_Adapter</code>) in "auto-commit" mode.
+			Dit betekent dat alle queries worden gecommit wanneer ze worden uitgevoerd.
+			Indien je wenst dat ze in een transactie worden uitgevoerd kan je eenvoudigweg
+			de <code class="code">beginTransaction()</code> methode oproepen en, naargelang, je veranderingen
+			<code class="code">commit()</code> of <code class="code">rollBack()</code>. <code class="code">Zend_Db_Adapter</code> keert
+			terug naar "auto-commit" mode tot je opnieuw de <code class="code">beginTransaction</code> methode
+			aanroept.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// maak $db object, en begin een transactie
+$db-&gt;beginTransaction();
+
+// probeer een query.
+// indien ze succesvol is, commit de veranderingen
+// indien ze faalt, roll back.
+try {
+    $db-&gt;query(...);
+    $db-&gt;commit();
+} catch (Exception $e) {
+    $db-&gt;rollBack();
+    echo $e-&gt;getMessage();
+}
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.insert"></a>9.1.5. Rijen Invoegen</h3></div></div></div>
+<p>
+			Voor jouw gemak kan je de <code class="code">insert()</code> methode gebruiken om
+			een INSERT verklaring voor je te bouwen en er data aan te binden die moet
+			ingevoegd worden. De aldus gebonden data heeft automatisch correcte quotes
+			om te helpen SQL injectie aanvallen te voorkomen.
+        </p>
+<p>
+			De terugkeerwaarde is <span class="emphasis"><em>niet</em></span> de laatst ingevoegde ID omdat het
+			kan zijn dat de tabel geen auto-increment kolom heeft; in de plaats daarvan is
+			de terugkeerwaarde het aantal rijen dat werd beïnvloedt (gewoonlijk 1). Als je
+			de ID van de laatst ingevoegde rij wil, kan je de <code class="code">lastInsertId()</code> methode
+			oproepen na de invoeging.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// INSERT INTO round_table
+//     (noble_title, first_name, favorite_color)
+//     VALUES ("King", "Arthur", "blue");
+//
+
+// maak een $db object, en dan...
+// de rijdata die moet worden ingevoegd in kolom =&gt; waarde formaat
+$row = array (
+    'noble_title'    =&gt; 'King',
+    'first_name'     =&gt; 'Arthur',
+    'favorite_color' =&gt; 'blue',
+);
+
+// de tabel waarin de rij zou moeten worden ingevoegd
+$table = 'round_table';
+
+// voeg de rij in en verkrijg de rij ID
+$rows_affected = $db-&gt;insert($table, $data);
+$last_insert_id = $db-&gt;lastInsertId();
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.update"></a>9.1.6. Rijen updaten</h3></div></div></div>
+<p>
+			Voor jouw gemak kan je de <code class="code">update()</code> methode gebruiken om een
+			UPDATE verklaring voor je te maken waaraan je dan de data die moet
+			worden geupdate kan binden. De aldus gebonden data heeft automatisch correcte quotes
+			om te helpen SQL injectie aanvallen te voorkomen.
+        </p>
+<p>
+			Je kan een optionele WHERE clausule verstrekken om te determineren
+			welke rijen moeten worden geupdate. (Merk op dat de WHERE clausule
+			geen gebonden parameter is, de waarden ervan moet je dus zelf correct quoten.)
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// UPDATE round_table
+//     SET favorite_color = "yellow"
+//     WHERE first_name = "Robin";
+//
+
+// maak a $db object, en dan...
+// de nieuwe waarden om te zetten in de update, in kolom =&gt; waarde formaat.
+$set = array (
+    'favorite_color' =&gt; 'yellow',
+);
+
+// de tabel die moet worden geupdate
+$table = 'round_table';
+
+// de WHERE clausule
+$where = $db-&gt;quoteInto('first_name = ?', 'Robin');
+
+// update de tabel en verkrijg het aantal beïnvloede rijen
+$rows_affected = $db-&gt;update($table, $set, $where);
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.delete"></a>9.1.7. Rijen Verwijderen</h3></div></div></div>
+<p>
+			Voor jouw gemak kan je de <code class="code">delete()</code> methode gebruiken om
+			een DELETE verklaring voor je te maken; je kan een optionele WHERE
+			clausule verstrekken om te definiëren welke rijen je wil verwijderen.
+			(Merk op dat de WHERE clausule geen gebonden parameter is, de waarden 
+			ervan moet je dus zelf correct quoten.)
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// DELETE FROM round_table
+//     WHERE first_name = "Patsy";
+//
+
+// maak een $db object, en dan...
+// de tabel waarvan rijen moeten worden verwijderd
+$table = 'round_table';
+
+// de WHERE clausule
+$where = $db-&gt;quoteInto('first_name = ?', 'Patsy');
+
+// update de tabel en verkrijg het aantal beïnvloede rijen
+$rows_affected = $db-&gt;delete($table, $where);
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.fetch"></a>9.1.8. Rijen Halen</h3></div></div></div>
+<p>
+			Alhoewel je de database direct kan ondervragen met de <code class="code">query</code>
+			methode is het meestal zo dat het enige wat je nodig hebt is enkele rijen
+			te selecteren en de resultaten terug te krijgen. De <code class="code">fetch*()</code>
+			methodeserie doet dat voor jou. Voor elk van de <code class="code">fetch*()</code> methodes
+			geef je een SQL SELECT verklaring op; indien je benoemde plaatshouders
+			gebruikt in de verklaring moet je ook een array van bindwaarden doorgeven die
+			dan met correcte quotes worden omringd en in de verklaring worden opgenomen.
+			De <code class="code">fetch*()</code> methodes zijn:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">fetchAll()</code></p></li>
+<li><p><code class="code">fetchAssoc()</code></p></li>
+<li><p><code class="code">fetchCol()</code></p></li>
+<li><p><code class="code">fetchOne()</code></p></li>
+<li><p><code class="code">fetchPairs()</code></p></li>
+<li><p><code class="code">fetchRow()</code></p></li>
+</ul></div>
+<pre class="programlisting">&lt;?php
+	
+// maak een $db object, en dan...
+
+// verkrijg alle kolommen van alle rijen als een opeenvolgende array
+$result = $db-&gt;fetchAll(
+    "SELECT * FROM round_table WHERE noble_title = :title",
+    array('title' =&gt; 'Sir')
+);
+
+// verkrijg all kolommen van alle rijen als een associatieve array
+// de eerste kolom wordt gebruikt als array key.
+$result = $db-&gt;fetchAssoc(
+    "SELECT * FROM round_table WHERE noble_title = :title",
+    array('title' =&gt; 'Sir')
+);
+
+// verkrijg de eerste kolom van elke teruggestuurde rij
+$result = $db-&gt;fetchCol(
+    "SELECT first_name FROM round_table WHERE noble_title = :title",
+    array('title' =&gt; 'Sir')
+);
+
+// verkrijg alleen de eerste waarde
+$result = $db-&gt;fetchOne(
+    "SELECT COUNT(*) FROM round_table WHERE noble_title = :title",
+    array('title' =&gt; 'Sir')
+);
+
+// verkrijg een serie van key/waarde-paren; de eerste kolom is
+// de key van de array, de tweede kolom is de waarde van de array
+$result = $db-&gt;fetchPairs(
+    "SELECT first_name, favorite_color FROM round_table WHERE noble_title = :title",
+    array('title' =&gt; 'Sir')
+);
+
+// verkrijg enkel de eerste rij die werd teruggestuurd
+$result = $db-&gt;fetchRow(
+    "SELECT * FROM round_table WHERE first_name = :name",
+    array('name' =&gt; 'Lancelot')
+);
+
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.date.constants.html">Terug</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.profiler.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">8.5. Constants for General Date Functions </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 9.2. Zend_Db_Profiler</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

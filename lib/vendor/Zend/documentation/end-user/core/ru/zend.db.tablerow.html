@@ -1,0 +1,201 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.5. Zend_Db_Table_Row</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="prev" href="zend.db.table.html" title="9.4. Zend_Db_Table">
+<link rel="next" href="zend.db.tablerowset.html" title="9.6. Zend_Db_Table_Rowset">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.introduction" title="9.5.1. Введение">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.fetch" title="9.5.2. Извлечение строки">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.modify" title="9.5.3. Изменение значений">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.5. Zend_Db_Table_Row</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.table.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.tablerowset.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.tablerow"></a>9.5. Zend_Db_Table_Row</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.introduction"></a>9.5.1. Введение</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Table_Row</code>  является интерфейсом Zend Framework
+            для строк данных. Обычно вы не создаете экземпляр
+            <code class="code">Zend_Db_Table_Row</code> непосредственно, вместо этого получаете
+            <code class="code">Zend_Db_Table_Row</code> как возращаемое значение методов
+            <code class="code">Zend_Db_Table::find()</code> или <code class="code">Zend_Db_Table::fetchRow()</code>.
+            Имея <code class="code">Zend_Db_Table_Row</code>, вы можете редактировать значения
+            записи (представленные как свойства класса) и затем сохранять изменения
+            в исходной таблице методом <code class="code">save()</code>.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.fetch"></a>9.5.2. Извлечение строки</h3></div></div></div>
+<p>
+            Первое, что нужно сделать — создать экземпляр класса <code class="code">Zend_Db_Table</code>.
+
+        </p>
+<pre class="programlisting">&lt;?php
+// создание адаптера
+require_once 'Zend/Db.php';
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// установка адаптера по умолчанию для всех объектов Zend_Db_Table
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+
+// соединение с таблицей в БД
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+<p>
+            Далее, получите одну запись из БД, используя <code class="code">Zend_Db_Table::find()</code>
+            с единственным ключом или <code class="code">Zend_Db_Table::fetchRow()</code>.
+            Возвращенный результат будет объектом <code class="code">Zend_Db_Table_Row</code>, где
+            каждое свойство имеет имя с буквамиОбоихРегистров, соответствующее
+            имени столбца с знаками_подчеркивания. Т.е., "first_name" в таблице становится
+            "firstName" в свойствах объекта.
+
+        </p>
+<pre class="programlisting">&lt;?php
+// извлечение записи из таблицы как объект Zend_Db_Table_Row
+$row = $table-&gt;fetchRow('first_name = "Robin"');
+
+//
+// $row теперь является объектом Zend_Db_Table_Row
+// с открытыми свойствами, которые соответствуют столбцам таблицы:
+//
+// $row-&gt;id = '3'
+// $row-&gt;nobleTitle = 'Sir'
+// $row-&gt;firstName = 'Robin'
+// $row-&gt;favoriteColor = 'yellow'
+//
+
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.modify"></a>9.5.3. Изменение значений</h3></div></div></div>
+<p>
+            Изменение значений строки производится очень легко — просто работайте со
+            свойствами объекта. Когда все сделано, вы можете сохранить строку обратно в таблицу
+            методом <code class="code">save()</code>.
+
+        </p>
+<pre class="programlisting">&lt;?php
+// соединение с таблицей в БД
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+
+// извлечение записи из таблицы как объект Zend_Db_Table_Row
+$row = $table-&gt;fetchRow('first_name = "Robin"');
+
+//
+// $row теперь является объектом Zend_Db_Table_Row
+// с открытыми свойствами, которые соответствуют столбцам таблицы:
+//
+// $row-&gt;id = '3'
+// $row-&gt;nobleTitle = 'Sir'
+// $row-&gt;firstName = 'Robin'
+// $row-&gt;favoriteColor = 'yellow'
+//
+// изменение любимого цвета и сохранение обратно в таблицу
+$row-&gt;favoriteColor = 'blue';'
+$row-&gt;save();
+?&gt;
+        </pre>
+<p>
+            Однако вам не дозволено менять значения первичного ключа. Если вы сделаете это,
+            <code class="code">Zend_Db_Table_Row</code> сгенерирует исключение.
+
+        </p>
+<pre class="programlisting">&lt;?php
+// соединение с таблицей в БД
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+
+// извлечение записи из таблицы как объект Zend_Db_Table_Row
+$row = $table-&gt;fetchRow('first_name = "Robin"');
+
+// можем ли мы изменить первичный ключ "id"?
+try {
+    $row-&gt;id = 5;
+    echo "Мы не должны видеть это сообщение, поскольку было сгенерировано исключение.";
+} catch (Zend_Db_Table_RowException $e) {
+    echo $e-&gt;getMessage();
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.table.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.tablerowset.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.4. Zend_Db_Table </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 9.6. Zend_Db_Table_Rowset</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

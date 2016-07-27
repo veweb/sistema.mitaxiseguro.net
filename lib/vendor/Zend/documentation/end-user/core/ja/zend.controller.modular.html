@@ -1,0 +1,198 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.7. モジュラーディレクトリ構造の規約の使用</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="prev" href="zend.controller.plugins.html" title="7.6. プラグイン">
+<link rel="next" href="zend.controller.exceptions.html" title="7.8. MVC での例外">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.introduction" title="7.7.1. 導入">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.directories" title="7.7.2. モジュールコントローラディレクトリの指定">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.router" title="7.7.3. モジュールへのルーティング">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.defaultcontroller" title="7.7.4. モジュールあるいはグローバルのデフォルトコントローラ">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.7. モジュラーディレクトリ構造の規約の使用</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.plugins.html">前のページ</a> </td>
+<th width="60%" align="center">第7章 Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.exceptions.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.modular"></a>7.7. モジュラーディレクトリ構造の規約の使用</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.introduction"></a>7.7.1. 導入</h3></div></div></div>
+<p>
+            モジュラーディレクトリ構造の規約 (The Conventional Modular directory structure)
+            により、さまざまな MVC アプリケーションを自己完結した単位にまとめることができます。
+            また、それをさまざまなフロントコントローラで再利用できるようになります。
+            このディレクトリ構造は、次のようになります。
+        </p>
+<pre class="programlisting">
+docroot/
+    index.php
+application/
+    controllers/
+        IndexController.php
+        FooController.php
+    blog/
+        controllers/
+            IndexController.php
+        models/
+        views/
+    news/
+        controllers/
+            IndexController.php
+            ListController.php
+        models/
+        views/
+</pre>
+<p>
+            この考え方では、モジュール名が、
+            その中に含まれるコントローラのプレフィックスとなります。
+            上の例には、三つのモジュールコントローラ
+            'Blog_IndexController'、'News_IndexController' および
+            'News_ListController' が含まれます。また、グローバルコントローラも
+            'IndexController' と 'FooController' の二つが定義されています。
+            これらは名前空間に属しません。この章のサンプルでは、
+            ここで示したディレクトリ構造を使用します。
+        </p>
+<p>
+            それでは、Zend Framework の MVC コンポーネントを使用して
+            これらのディレクトリ配置を実装するにはどうすればいいのでしょうか?
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.directories"></a>7.7.2. モジュールコントローラディレクトリの指定</h3></div></div></div>
+<p>
+            モジュールを使用するための第一歩となるのが、
+            フロントコントローラでのコントローラディレクトリの設定方法を変更することです。
+            基本的な MVC 版では、配列あるいは文字列を
+            setControllerDirectory() に渡すか、あるいはパスを addControllerDirectory()
+            に渡していました。モジュールを使用する場合は、
+            これらのメソッドコールを少々変更する必要があります。
+        </p>
+<p>
+            setControllerDirectory() では、連想配列を渡す必要があります。
+            連想配列のキーにはモジュール名、そしてその値としてディレクトリのパスを指定します。
+            特別な名前 'default' をキーにすると、グローバルコントローラ
+            (モジュール名前空間を必要としないもの) を指定できます。
+            すべてのエントリは、ひとつのパスをさす文字列のキーを含まなければなりません。
+            次の例のようになります。
+        </p>
+<pre class="programlisting">
+$front-&gt;setControllerDirectory(array(
+      'default' =&gt; '/path/to/application/controllers',
+      'blog'    =&gt; '/path/to/application/blog/controllers'
+));
+</pre>
+<p>
+            addControllerDirectory() では、オプションの二番目の引数を受け付けます。
+            モジュールを使用する際には、モジュール名を二番目の引数で渡します。
+            指定しない場合は、そのパスはデフォルトの名前空間に追加されます。
+            次の例のようになります。
+        </p>
+<pre class="programlisting">
+$front-&gt;addControllerDirectory('/path/to/application/news/controllers', 'news');
+</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.router"></a>7.7.3. モジュールへのルーティング</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller_Router_Rewrite</code> のデフォルトのルートは
+            <code class="code">Zend_Controller_Router_Route_Module</code> 型のオブジェクトです。
+            このルートは、以下のいずれかの形式のルーティングを行います。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">:module/:controller/:action/*</code></p></li>
+<li><p><code class="code">:controller/:action/*</code></p></li>
+</ul></div>
+<p>
+            言い換えると、これは、指定したコントローラとアクション
+            あるいはその先頭にモジュールをつけたものにマッチします。
+            このマッチング規則からわかることは、
+            フロントコントローラとディスパッチャに渡された配列で指定した
+            コントローラディレクトリの配列に同名のキーがある場合にのみ
+            モジュールにマッチするということです。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.defaultcontroller"></a>7.7.4. モジュールあるいはグローバルのデフォルトコントローラ</h3></div></div></div>
+<p>
+            デフォルトのルータでは、コントローラが URL で指定されなかった場合には
+            デフォルトのコントローラ (特に指定しなければ <code class="code">IndexController</code>)
+            を使用します。モジュール対応のコントローラにおいて、
+            モジュールのみを指定してコントローラを指定しなかった場合は、
+            ディスパッチャはまず最初にモジュールパス内のデフォルトコントローラを探します。
+            次に、グローバル名前空間 'default' にあるデフォルトコントローラを探します。
+        </p>
+<p>
+            デフォルトは常にグローバル名前空間のほうにしたい場合は、
+            フロントコントローラでパラメータ
+            <code class="code">useGlobalDefault</code> を指定します。
+        </p>
+<pre class="programlisting">
+$front-&gt;setParam('useGlobalDefault', true);
+</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.plugins.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.exceptions.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.6. プラグイン </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 7.8. MVC での例外</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>21.2. Zend_Rest_Client</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="prev" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="next" href="zend.rest.server.html" title="21.3. Zend_Rest_Server">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.rest.client.html#zend.rest.client.introduction" title="21.2.1. 導入">
+<link rel="subsection" href="zend.rest.client.html#zend.rest.client.return" title="21.2.2. レスポンス">
+<link rel="subsection" href="zend.rest.client.html#zend.rest.client.args" title="21.2.3. リクエストの引数">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">21.2. Zend_Rest_Client</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.rest.html">前のページ</a> </td>
+<th width="60%" align="center">第21章 Zend_Rest</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.rest.server.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.rest.client"></a>21.2. Zend_Rest_Client</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.rest.client.introduction"></a>21.2.1. 導入</h3></div></div></div>
+<p>
+            <code class="code">Zend_Rest_Client</code> の使用法は、
+            <code class="code">SoapClient</code> オブジェクト (<a href="http://www.php.net/soap" target="_top">SOAP ウェブサービス拡張モジュール</a>)
+            の使用法と非常によく似ています。REST サービスのプロシージャは、簡単に
+            <code class="code">Zend_Rest_Client</code> のメソッドとしてコールすることができます。
+            まず、そのサービスのアドレスを <code class="code">Zend_Rest_Client</code> のコンストラクタに指定します。
+        </p>
+<div class="example">
+<a name="id4873905"></a><p class="title"><b>例 21.1. 基本的な REST リクエスト</b></p>
+<pre class="programlisting">&lt;?php
+/**
+ * framework.zend.com サーバに接続し、挨拶を受け取ります
+ */
+require_once 'Zend/Rest/Client.php';
+
+$client = new Zend_Rest_Client('http://framework.zend.com/rest');
+
+echo $client-&gt;sayHello('Davey', 'Day')-&gt;get(); // "Hello Davey, Good Day"
+?&gt;</pre>
+</div>
+<div class="note"><table border="0" summary="Note: コール方法の違い">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">コール方法の違い</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>
+                <code class="code">Zend_Rest_Client</code> は、
+                リモートメソッドのコールをできるだけネイティブなメソッドと同様に行おうとします。
+                唯一の違いは、続けて <code class="code">get()</code> か <code class="code">post()</code>、
+                <code class="code">put()</code> あるいは <code class="code">delete()</code>
+                のいずれかのメソッドをコールしなければならないということです。
+                これは、メソッドの連結で行ってもかまいませんし、
+                独立したメソッドコールにしてもかまいません。
+            </p>
+<pre class="programlisting">&lt;?php
+$client-&gt;sayHello('Davey', 'Day');
+echo $client-&gt;get();
+?&gt;</pre>
+</td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.rest.client.return"></a>21.2.2. レスポンス</h3></div></div></div>
+<p>
+            <code class="code">Zend_Rest_Client</code> を使用して行ったリクエストは、すべて
+            <code class="code">Zend_Rest_Client_Response</code> オブジェクトを返します。
+            このオブジェクトには多くのプロパティがあり、結果に簡単にアクセスすることができます。
+        </p>
+<p>
+            <code class="code">Zend_Rest_Server</code> に基づくサービスにアクセスした場合には、
+            <code class="code">Zend_Rest_Client</code> は結果についていくつかの前提条件を想定しています。
+            たとえばレスポンスステータス (成功あるいは失敗) や返り値の型などです。
+        </p>
+<div class="example">
+<a name="id4874878"></a><p class="title"><b>例 21.2. レスポンスステータス</b></p>
+<pre class="programlisting">&lt;?php
+$result = $client-&gt;sayHello('Davey', 'Day')-&gt;get();
+
+if ($result-&gt;isSuccess()) {
+    echo $result; // "Hello Davey, Good Day"
+}
+?&gt;</pre>
+</div>
+<p>
+            上の例で、リクエストの結果をオブジェクトとして扱い、
+            <code class="code">isSuccess()</code> をコールしていることがごらんいただけるでしょう。
+            また、<code class="code">__toString()</code> をサポートしているため、
+            単に <code class="code">echo</code> とするだけでオブジェクトの結果を取得できます。
+            <code class="code">Zend_Rest_Client_Response</code> は、任意のスカラー値を
+            echo することが可能です。複雑な形式の場合は、
+            配列記法あるいはオブジェクト記法が使用できます。
+        </p>
+<p>
+            しかし、<code class="code">Zend_Rest_Server</code>
+            を使用していないサービスに問い合わせたいこともあるでしょう。このような場合、
+            <code class="code">Zend_Rest_Client_Response</code> オブジェクトは
+            <code class="code">SimpleXMLElement</code> と同様の振る舞いをします。
+            しかし、より簡単に処理するため、プロパティがルート要素の直下にない場合には
+            自動的に XPath で XML を探すようにしています。さらに、
+            プロパティに対してメソッドとしてアクセスすると、
+            PHP の値あるいは値の配列としてそのオブジェクトを取得できます。
+        </p>
+<div class="example">
+<a name="id4874963"></a><p class="title"><b>例 21.3. Technorati の Rest サービスの使用</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Rest/Client.php';
+
+$technorati = new Zend_Rest_Client('http://api.technorati.com/bloginfo');
+$technorati-&gt;key($key);
+$technorati-&gt;url('http://pixelated-dreams.com');
+$result = $technorati-&gt;get();
+echo $result-&gt;firstname() .' '. $result-&gt;lastname();
+
+?&gt;
+            </pre>
+</div>
+<div class="example">
+<a name="id4874977"></a><p class="title"><b>例 21.4. Technorati からのレスポンスの例</b></p>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!-- generator="Technorati API version 1.0 /bloginfo" --&gt;
+&lt;!DOCTYPE tapi PUBLIC "-//Technorati, Inc.//DTD TAPI 0.02//EN" "http://api.technorati.com/dtd/tapi-002.xml"&gt;
+&lt;tapi version="1.0"&gt;
+    &lt;document&gt;
+        &lt;result&gt;
+            &lt;url&gt;http://pixelated-dreams.com&lt;/url&gt;
+            &lt;weblog&gt;
+                &lt;name&gt;Pixelated Dreams&lt;/name&gt;
+                &lt;url&gt;http://pixelated-dreams.com&lt;/url&gt;
+                &lt;author&gt;
+                    &lt;username&gt;DShafik&lt;/username&gt;
+                    &lt;firstname&gt;Davey&lt;/firstname&gt;
+                    &lt;lastname&gt;Shafik&lt;/lastname&gt;
+                &lt;/author&gt;
+                &lt;rssurl&gt;http://pixelated-dreams.com/feeds/index.rss2&lt;/rssurl&gt;
+                &lt;atomurl&gt;http://pixelated-dreams.com/feeds/atom.xml&lt;/atomurl&gt;
+                &lt;inboundblogs&gt;44&lt;/inboundblogs&gt;
+                &lt;inboundlinks&gt;218&lt;/inboundlinks&gt;
+                &lt;lastupdate&gt;2006-04-26 04:36:36 GMT&lt;/lastupdate&gt;
+                &lt;rank&gt;60635&lt;/rank&gt;
+            &lt;/weblog&gt;
+            &lt;inboundblogs&gt;44&lt;/inboundblogs&gt;
+            &lt;inboundlinks&gt;218&lt;/inboundlinks&gt;
+        &lt;/result&gt;
+    &lt;/document&gt;
+&lt;/tapi&gt;</pre>
+</div>
+<p>
+            ここで、<code class="code">firstname</code> や
+            <code class="code">lastname</code> といったプロパティにアクセスすることができます。
+            これらはトップレベル要素ではありませんが、
+            名前を指定するだけで自動的に取得することができます。
+        </p>
+<div class="note"><table border="0" summary="Note: 複数の要素">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">複数の要素</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                名前でアクセスしているときにもし複数の項目が見つかったら、
+                SimpleXMLElements の配列を返します。メソッド記法でアクセスすると、
+                PHP の値の配列を返します。
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.rest.client.args"></a>21.2.3. リクエストの引数</h3></div></div></div>
+<p>
+            <code class="code">Zend_Rest_Server</code> ベースのサービスにリクエストを送るのではない場合は、
+            リクエストの際に複数の引数を指定する必要があります。
+            これを行うには、引数名と同じ名前のメソッドをコールし、
+            その最初の (そして唯一の) 引数として値を指定します。
+            これらのメソッドコールはそのオブジェクト自身を返すので、
+            メソッドを連結する "流暢な" 形式で使用できます。
+            最初のコール (あるいは複数の引数を指定した場合の最初の引数)
+            は常に、<code class="code">Zend_Rest_Server</code>
+            サービスをコールする際のメソッドとみなされます。
+		</p>
+<div class="example">
+<a name="id4875088"></a><p class="title"><b>例 21.5. リクエストの引数の設定</b></p>
+<pre class="programlisting">&lt;?php
+$client = new Zend_Rest_Client('http://example.org/rest');
+
+$client-&gt;arg('value1');
+$client-&gt;arg2('value2');
+$client-&gt;get();
+
+// あるいは
+
+$client-&gt;arg('value1')-&gt;arg2('value2')-&gt;get();
+?&gt;</pre>
+</div>
+<p>
+            上の例の二通りの方法はいずれも、次のような get 引数となります。
+            <code class="code">?method=arg&amp;arg1=value1&amp;arg=value1&amp;arg2=value2</code>
+		</p>
+<p>
+            最初の <code class="code">$client-&gt;arg('value1');</code> のコールが
+            <code class="code">method=arg&amp;arg1=value1</code> および <code class="code">arg=value1</code>
+            の二通りの結果となることにお気づきでしょう。これによって、
+            <code class="code">Zend_Rest_Server</code> がリクエストを適切に理解できるようになるのです。
+            そのサービスを使用するにあたっての前提知識を必要としなくなります。
+		</p>
+<div class="warning"><table border="0" summary="Warning: Zend_Rest_Client の厳格性">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[警告]" src="images/warning.png"></td>
+<th align="left">Zend_Rest_Client の厳格性</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+				受け取る引数について厳格な REST サービスでは、
+				<code class="code">Zend_Rest_Client</code> の使用に失敗することがあります。
+				これは上で説明した挙動のせいです。
+				これはそう頻繁に起こることではないので、特に問題とはならないでしょう。
+		    </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.rest.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.rest.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.rest.server.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第21章 Zend_Rest </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 21.3. Zend_Rest_Server</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

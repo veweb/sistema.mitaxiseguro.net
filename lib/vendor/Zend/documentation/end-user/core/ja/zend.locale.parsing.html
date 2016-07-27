@@ -1,0 +1,562 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>15.3. 正規化および地域化</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="prev" href="zend.locale.functions.html" title="15.2. Zend_Locale の使用法">
+<link rel="next" href="zend.locale.date.datesandtimes.html" title="15.4. 日付および時刻の扱い">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.locale.parsing.html#zend.locale.number.normalize" title="15.3.1. 数値の正規化: getNumber($input, $precision = false, $locale = false)">
+<link rel="subsection" href="zend.locale.parsing.html#zend.locale.number.localize" title="15.3.2. 数値の地域化">
+<link rel="subsection" href="zend.locale.parsing.html#zend.locale.number.test" title="15.3.3. 数値かどうかの確認">
+<link rel="subsection" href="zend.locale.parsing.html#zend.locale.float.normalize" title="15.3.4. 浮動小数点値の正規化">
+<link rel="subsection" href="zend.locale.parsing.html#zend.locale.float.localize" title="15.3.5. 浮動小数点値の地域化">
+<link rel="subsection" href="zend.locale.parsing.html#zend.locale.float.test" title="15.3.6. 浮動小数点値かどうかの確認">
+<link rel="subsection" href="zend.locale.parsing.html#zend.locale.integer.normalize" title="15.3.7. 整数値の正規化">
+<link rel="subsection" href="zend.locale.parsing.html#zend.locale.integer.localize" title="15.3.8. 整数値の地域化">
+<link rel="subsection" href="zend.locale.parsing.html#zend.locale.integer.test" title="15.3.9. 整数値かどうかの確認">
+<link rel="subsection" href="zend.locale.parsing.html#zend.locale.numbersystems" title="15.3.10. 数値系の変換">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">15.3. 正規化および地域化</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.locale.functions.html">前のページ</a> </td>
+<th width="60%" align="center">第15章 Zend_Locale</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.locale.date.datesandtimes.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.locale.parsing"></a>15.3. 正規化および地域化</h2></div></div></div>
+<p>
+        <code class="code">Zend_Locale_Format</code> は、Zend_Locale が内部で使用しているコンポーネントです。
+        ロケール対応のクラスは、<code class="code">Zend_Locale_Format</code>
+        を用いて数値や日付の正規化および地域化を行います。
+        正規化とは、さまざまな形式で表されるデータ (日付など) を取り込んで解析し、
+        標準化された構造化表現 (year、month、day の各要素からなる配列など) に変換することです。
+    </p>
+<p>
+        まったく同じ文字列からなる数値や日付でも、
+        異なる習慣や規約を使用している人が見ると異なる意味にとられることがあります。
+        数値や日付を、あいまいさをなくして正確に解釈するには、
+        これらの文字列を正規化し、標準化されたデータ構造に変換する必要があります。
+        したがって、<code class="code">Zend_Locale_Format</code> のすべてのメソッドは、
+        入力データを処理するためにロケール情報を必要とします。
+        </p>
+<div class="note"><table border="0" summary='Note: デフォルトの "root" ロケール'>
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">デフォルトの "root" ロケール</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                ロケールを省略した場合は、正規化や地域化の際に
+                標準の "root" ロケールを使用します。
+                これは予期せぬ動作を引き起こす可能性があります。
+                さまざまなロケールの入力を扱ったり、特定のロケールで出力したい場合などに注意が必要です。
+            </p></td></tr>
+</table></div>
+<p>
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.number.normalize"></a>15.3.1. 数値の正規化: getNumber($input, $precision = false, $locale = false)</h3></div></div></div>
+<p>
+            標準の
+            <a href="http://en.wikipedia.org/wiki/Decimal" target="_top">十進形式</a>
+            (例: "3.14") とは異なる
+            <a href="http://en.wikipedia.org/wiki/Numeral" target="_top">数値形式</a>
+            には、さまざまなものがあります。
+            数値を正規化するには <code class="code">getNumber()</code>
+            関数を使用します。これは、標準の十進形式を返します。
+            このマニュアルにおける数値関連の説明はすべて、特にことわりがない限り
+            <a href="http://en.wikipedia.org/wiki/Arabic_numerals" target="_top">アラビア数字 (0,1,2,3,4,5,6,7,8,9)</a>
+            を想定したものです。
+        </p>
+<div class="example">
+<a name="id4849744"></a><p class="title"><b>例 15.15. 数値の正規化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+$number = Zend_Locale_Format::getNumber('13.524,678', false, $locale);
+
+print $number; // 13524.678 を返します
+?&gt;</pre>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.locale.number.normalize.precision"></a>15.3.1.1. 計算の精度</h4></div></div></div>
+<p>
+                <code class="code">getNumber()</code> では、非常に大きな数値も正規化できるので、
+                PHP の通常の数値計算のように精度が限られている計算をする前には注意しましょう。
+                たとえば <code class="code">if
+                ((string)int_val($number) != $number) { 
+                <a href="http://www.php.net/bc" target="_top">BCMath</a>
+                あるいは
+                <a href="http://www.php.net/gmp" target="_top">GMP</a>
+                を使用するなど。
+                </code>
+                実際にインストールされている PHP のほとんどは、
+                BCMath 拡張モジュールをサポートしています。
+            </p>
+<p>
+                また、結果の十進表現の精度も、
+                <code class="code">getNumber()</code> で指定した長さに切り詰められます。
+                精度を指定しなかった場合は、切り詰められることはありません。
+                精度を指定するには、PHP の整数のみを使用します。
+                結果の丸めは行われません。つまり、もし精度がゼロなら、
+                "1.6" は "1" であり、"2" とはなりません。
+            </p>
+<div class="example">
+<a name="id4849832"></a><p class="title"><b>例 15.16. 精度を指定した数値の正規化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+$number = Zend_Locale_Format::getNumber('13.524,678', 1, $locale);
+
+print $number; // 13524.6 を返します
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.number.localize"></a>15.3.2. 数値の地域化</h3></div></div></div>
+<p>
+            <code class="code">toNumber()</code> は、
+            <a href="zend.locale.regions.html" title="15.6. ロケールがサポートする地域">サポートするロケール</a>
+            にあわせて数値を正規化します。
+            この関数は、指定した数値を、特定のロケールにあわせて書式化した文字列を返します。
+        </p>
+<div class="example">
+<a name="id4849886"></a><p class="title"><b>例 15.17. 数値の地域化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+$number = Zend_Locale_Format::toNumber(13547.36, $locale);
+
+// 13.547,36 を返します
+print $number;
+?&gt;</pre>
+</div>
+<p>
+            </p>
+<div class="note"><table border="0" summary="Note: 長さは無制限">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">長さは無制限</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    <code class="code">toNumber()</code> が地域化できる数値の長さには制限がありません。
+                    整数や浮動小数点数の範囲の制限を受けることはありません。
+                </p></td></tr>
+</table></div>
+<p>
+        </p>
+<p>
+            <code class="code">getNumber()</code> と同様の方法で、
+            <code class="code">toNumber()</code> も精度を扱います。
+            精度を指定しなかった場合は、地域化した数値を完全な状態で返します。
+        </p>
+<div class="example">
+<a name="id4849943"></a><p class="title"><b>例 15.18. 精度を指定した数値の地域化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+$number = Zend_Locale_Format::toNumber(13547.3678, 2, $locale);
+
+// 13.547,36 を返します
+print $number;
+?&gt;</pre>
+</div>
+<p>
+            </p>
+<div class="note"><table border="0" summary="Note: 注意">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    <code class="code">toNumber()</code> は結果を切り詰めます。
+                    結果の丸めは行われません。つまり、1.6 は
+                    2 ではなく 1 となります。
+                </p></td></tr>
+</table></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.number.test"></a>15.3.3. 数値かどうかの確認</h3></div></div></div>
+<p>
+            <code class="code">isNumber()</code> は、指定した文字列が数値であるかどうかを
+            true あるいは false で返します。
+        </p>
+<div class="example">
+<a name="id4850005"></a><p class="title"><b>例 15.19. 数値かどうかの確認</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+if (Zend_Locale_Format::isNumber('13.445,36', 'de_AT') {
+    print "数値です";
+} else {
+    print "数値ではありません";
+} 
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.float.normalize"></a>15.3.4. 浮動小数点値の正規化</h3></div></div></div>
+<p>
+            浮動小数点値のパースには <code class="code">getFloat()</code>
+            関数を使用します。これは、浮動小数点値を返します。
+        </p>
+<div class="example">
+<a name="id4850047"></a><p class="title"><b>例 15.20. 浮動小数点値の正規化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+$number = Zend_Locale_Format::getFloat('13.524,678', 2, $locale);
+
+// 13524.67 を返します
+print $number;
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.float.localize"></a>15.3.5. 浮動小数点値の地域化</h3></div></div></div>
+<p>
+            <code class="code">toFloat()</code> は、浮動小数点値の地域化を行います。
+            この関数は、指定した数値を地域化した文字列を返します。
+        </p>
+<div class="example">
+<a name="id4850089"></a><p class="title"><b>例 15.21. 浮動小数点値の地域化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+$number = Zend_Locale_Format::toFloat(13547.3655, 1, $locale);
+
+// 13.547,3 を返します
+print $number;
+?&gt;</pre>
+</div>
+<p>
+            </p>
+<div class="note"><table border="0" summary="Note: 注意">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    <code class="code">toFloat()</code> は結果を切り詰めます。
+                    結果の丸めは行われません。つまり、1.6 は
+                    2 ではなく 1 となります。
+                </p></td></tr>
+</table></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.float.test"></a>15.3.6. 浮動小数点値かどうかの確認</h3></div></div></div>
+<p>
+            <code class="code">isFloat()</code> は、指定した文字列が浮動小数点値であるかどうかを
+            true あるいは false で返します。
+        </p>
+<div class="example">
+<a name="id4850153"></a><p class="title"><b>例 15.22. 浮動小数点値かどうかの確認</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+if (Zend_Locale_Format::isFloat('13.445,36', $locale) {
+    print "float です";
+} else {
+    print "float ではありません";
+} 
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.integer.normalize"></a>15.3.7. 整数値の正規化</h3></div></div></div>
+<p>
+            整数値のパースには <code class="code">getInteger()</code>
+            関数を使用します。これは、整数値を返します。
+        </p>
+<div class="example">
+<a name="id4850194"></a><p class="title"><b>例 15.23. 整数値の正規化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+$number = Zend_Locale_Format::getInteger('13.524,678', $locale);
+
+// 13524 を返します
+print $number;
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.integer.localize"></a>15.3.8. 整数値の地域化</h3></div></div></div>
+<p>
+            <code class="code">toInteger()</code> は、整数値の地域化を行います。
+            この関数は、指定した数値を地域化した文字列を返します。
+        </p>
+<div class="example">
+<a name="id4850235"></a><p class="title"><b>例 15.24. 整数値の地域化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+$number = Zend_Locale_Format::toInteger(13547.3655, $locale);
+
+// 13.547 を返します
+print $number;
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.integer.test"></a>15.3.9. 整数値かどうかの確認</h3></div></div></div>
+<p>
+            <code class="code">isInteger()</code> は、指定した文字列が整数値であるかどうかを
+            true あるいは false で返します。
+        </p>
+<div class="example">
+<a name="id4850276"></a><p class="title"><b>例 15.25. 整数値かどうかの確認</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+if (Zend_Locale_Format::isInteger('13.445', $locale) {
+    print "integer です";
+} else {
+    print "integer ではありません";
+} 
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.numbersystems"></a>15.3.10. 数値系の変換</h3></div></div></div>
+<p>
+            <code class="code">Zend_Locale_Format::convertNumerals()</code> は、
+            さまざまな
+            <a href="http://en.wikipedia.org/wiki/Arabic_numerals" target="_top">数値系</a>
+            の間での数値の変換を行います。その中には、標準のアラビア数字
+            (0,1,2,3,4,5,6,7,8,9) も含まれます。これは、
+            <a href="http://en.wikipedia.org/wiki/Eastern_Arabic_numerals" target="_top">東アラビア数字</a>
+            とは異なることに注意しましょう。
+            東アラビア数字は、アラビア語で数字を表す際に用いられることがあります。
+            サポートしていない数値系を使用すると、例外が発生します。
+            これは、不正確な変換によってエラーが発生するのを防ぐためです。
+            指定された数値系で数値として扱われない文字は、
+            そのまま出力に渡されます。つまり、単位の区切り文字などは変換されないということです。
+        </p>
+<p>
+            あるウェブフォームから、アラビア文字 "١‎٠٠"
+            が入力されたとしましょう。
+            大半のソフトウェアや PHP の関数は、アラビア数字にしか対応していません。
+            幸いなことに、この入力をそれと同等のアラビア数字 "100"
+            に変換するのは簡単で、<code class="code">convertNumerals($inputNumeralString,
+            $sourceNumeralSystem, $destNumeralSystem)</code> を使用するだけです。
+            これは、数値 <code class="code">$input</code> を
+            <code class="code">$sourceNumeralSystem</code> から <code class="code">$destNumeralSystem</code>
+            に変換したものを返します。
+        </p>
+<div class="example">
+<a name="id4850378"></a><p class="title"><b>例 15.26. アラビア文字から European/Latin への変換</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$string = "١‎٠٠";   // アラビア文字で 100 を表します
+$normal = Zend_Locale_Format::convertNumerals($string, 'Arab', 'Default');
+
+print "\n元の内容: ".$string;
+print "\n正規化したもの:".$normal;
+?&gt;</pre>
+</div>
+<p>
+            同様にして、任意の数値系をその他サポートしている数値系に変換できます。
+        </p>
+<div class="example">
+<a name="id4850396"></a><p class="title"><b>例 15.27. European/Latin からアラビア文字への変換</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$string = '123';
+$local = Zend_Locale_Format::convertNumerals($string, 'Default', 'Arab');
+
+print "\n元の内容: ".$string;
+print "\n地域化したもの:".$local;
+?&gt;</pre>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.locale.appendix.numberscripts.supported"></a>15.3.10.1. サポートしている数値系の一覧</h4></div></div></div>
+<p>
+                </p>
+<div class="table">
+<a name="id4850439"></a><p class="title"><b>表 15.1. サポートしている数値系の一覧</b></p>
+<table summary="サポートしている数値系の一覧" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>記法名</th>
+<th>文字</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>アラビア文字</td>
+<td>Arab</td>
+</tr>
+<tr>
+<td>バリ文字</td>
+<td>Bali</td>
+</tr>
+<tr>
+<td>ベンガル文字</td>
+<td>Beng</td>
+</tr>
+<tr>
+<td>デーバナーガリー文字</td>
+<td>Deva</td>
+</tr>
+<tr>
+<td>グジャラート文字</td>
+<td>Gujr</td>
+</tr>
+<tr>
+<td>グルムキー文字</td>
+<td>Guru</td>
+</tr>
+<tr>
+<td>カンナダ文字</td>
+<td>Knda</td>
+</tr>
+<tr>
+<td>カンボジア文字</td>
+<td>Khmr</td>
+</tr>
+<tr>
+<td>ラオ文字</td>
+<td>Laoo</td>
+</tr>
+<tr>
+<td>リンブ文字</td>
+<td>Limb</td>
+</tr>
+<tr>
+<td>マラヤーラム文字</td>
+<td>Mlym</td>
+</tr>
+<tr>
+<td>モンゴル文字</td>
+<td>Mong</td>
+</tr>
+<tr>
+<td>ミャンマー文字</td>
+<td>Mymr</td>
+</tr>
+<tr>
+<td>タイレ文字</td>
+<td>Talu</td>
+</tr>
+<tr>
+<td>N'Ko</td>
+<td>Nkoo</td>
+</tr>
+<tr>
+<td>オリヤー文字</td>
+<td>Orya</td>
+</tr>
+<tr>
+<td>タミール文字</td>
+<td>Taml</td>
+</tr>
+<tr>
+<td>テルグ文字</td>
+<td>Telu</td>
+</tr>
+<tr>
+<td>タイ文字</td>
+<td>Tale</td>
+</tr>
+<tr>
+<td>チベット文字</td>
+<td>Tibt</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+            </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.locale.functions.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.locale.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.locale.date.datesandtimes.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">15.2. Zend_Locale の使用法 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 15.4. 日付および時刻の扱い</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

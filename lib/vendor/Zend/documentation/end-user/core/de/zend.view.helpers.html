@@ -1,0 +1,312 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>28.4. View Helfer</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="prev" href="zend.view.scripts.html" title="28.3. View Scripte">
+<link rel="next" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="subsection" href="zend.view.helpers.html#zend.view.helpers.initial" title="28.4.1. Vorhandene Helfer">
+<link rel="subsection" href="zend.view.helpers.html#zend.view.helpers.paths" title="28.4.2. Helfer Pfade">
+<link rel="subsection" href="zend.view.helpers.html#zend.view.helpers.custom" title="28.4.3. Eigene Helfer schreiben">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">28.4. View Helfer</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.view.scripts.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 28. Zend_View</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.xmlrpc.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.helpers"></a>28.4. View Helfer</h2></div></div></div>
+<p>
+        In deinen View Skripten ist es oft notwendig, bestimmte komplexe Funktionen immer wieder 
+        auszuführen, z.B. Datum formatieren, Formularelemente erstellen oder Links für Aktionen
+        anzuzeigen. Du kannst Helferklassen verwenden, um diese Aufgaben für dich durchführen zu
+        lassen. 
+    </p>
+<p>
+        Um einen Helfer in deinem View Skript zu verwenden, rufe ihn mittels $this-&gt;helperName() 
+        auf. Im Hintergrund wird Zend_View die Klasse Zend_View_Helper_HelperName laden, eine 
+        Objektinstanz der Klasse erstellen und deren Methode helperName() aufrufen. Die 
+        Objektinstanz bleibt innerhalb der Zend_View Instanz bestehen und wird bei allen weiteren 
+        Aufrufen von $this-&gt;helperName() wiederverwendet.
+    </p>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.helpers.initial"></a>28.4.1. Vorhandene Helfer</h3></div></div></div>
+<p>
+            Zend_View enthält bereits einige vorhandene Helferklassen, die sich alle auf die 
+            Erstellung von Formularelementen beziehen. Alle führen die entsprechende 
+            Ausgabemaskierung automatisch durch. Diese sind: 
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                formButton($name, $value, $attribs): Erstellt ein &lt;input type="button" /&gt; 
+                Element.
+            </p></li>
+<li><p>
+                formCheckbox($name, $value, $attribs, $options): Erstellt ein 
+                &lt;input type="checkbox" /&gt; Element. Der $options Parameter ist ein Array, bei
+                dem der erste Wert der ausgewählte Wert ("checked") und der zweite Wert der 
+                nicht ausgewählte Wert ("unchecked") angibt (die Standardwerte sind '1' und '0').
+                Wenn $value mit dem ausgewählten Wert ("checked") übereinstimmt, wird die Checkbox
+                für dich ausgewählt sein.
+            </p></li>
+<li><p>
+                formFile($name, $value, $attribs): Erstellt ein &lt;input type="file" /&gt; 
+                Element.
+            </p></li>
+<li><p>
+                formHidden($name, $value, $attribs): Erstellt ein &lt;input type="hidden" /&gt; 
+                Element.
+            </p></li>
+<li><p>
+                formPassword($name, $value, $attribs): Erstellt ein an &lt;input type="password" /&gt; 
+                Element.
+            </p></li>
+<li><p>
+                formRadio($name, $value, $attribs, $options): Erstellt eine Reihe von 
+                &lt;input type="radio" /&gt; Elementen, eine für jeden der $options Elemente. 
+                Im $options Array ist der Elementschlüssel der Wert und der Elementwert die 
+                Bezeichnung des Radio-Buttons. Der $value Radiobutton wird für dich vorgewählt.
+            </p></li>
+<li><p>
+                formReset($name, $value, $attribs): Erstellt eine &lt;input type="reset" /&gt; 
+                Element.
+            </p></li>
+<li><p>
+                formSelect($name, $value, $attribs, $options): Erstellt einen 
+                &lt;select&gt;...&lt;/select&gt; block mit einer &lt;option&gt;one für jedes
+                $options Element. Im $options Array ist der Elementschlüssel der Optionswert und 
+                der Elementwert die Optionsbezeichnung. Die $value Optionen werden für dich 
+                vorgewählt.
+            </p></li>
+<li><p>
+                formSubmit($name, $value, $attribs): Erstellt ein &lt;input type="submit" /&gt; 
+                Element.
+            </p></li>
+<li><p>
+                formText($name, $value, $attribs): Erstellt ein &lt;input type="text" /&gt; Element.
+            </p></li>
+<li><p>
+                formTextarea($name, $value, $attribs): Erstellt einen
+                &lt;textarea&gt;...&lt;/textarea&gt; Block.
+            </p></li>
+</ul></div>
+<p>
+            Die Verwendung dieser Helfer in deinem View Skript ist sehr einfach, hier ist ein
+            Beispiel. Beachte, dass du diese Helfer nur aufzurufen brauchst; sie werden automatisch
+            geladen und instanziiert, sobald sie benötigt werden.
+        </p>
+<pre class="programlisting">&lt;?php
+// Innerhalb deines View Skriptes, verweist $this auf die Zend_View 
+// Instanz.
+// 
+// Sagen wir, dass du bereits eine Serie von Auswahlwerten der Variable
+// $countries in Form eines Arrays zugewiesen hast 
+// ('us' =&gt; 'United States', 'il' =&gt; 'Israel', 'de' =&gt; 'Germany')
+?&gt;
+&lt;form action="action.php" method="post"&gt;
+    &lt;p&gt;&lt;label&gt;Deine Email:
+        &lt;?php echo $this-&gt;formText('email', 'you@example.com', array('size' =&gt; 32)) ?&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Dein Land:
+        &lt;?php echo $this-&gt;formSelect('country', 'us', null, $this-&gt;countries) ?&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Möchtest Du hinzugefügt werden?
+        &lt;?php echo $this-&gt;formCheckbox('opt_in', 'yes', null, array('yes', 'no')) ?&gt;
+    &lt;/label&gt;&lt;/p&gt;
+&lt;/form&gt;
+        </pre>
+<p>
+            Die Ausgabe des View Skriptes wird in etwa so aussehen:
+        </p>
+<pre class="programlisting">&lt;form action="action.php" method="post"&gt;
+    &lt;p&gt;&lt;label&gt;Deine Email:
+        &lt;input type="text" name="email" value="you@example.com" size="32" /&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Dein Land:
+        &lt;select name="country"&gt;
+            &lt;option value="us" selected="selected"&gt;United States&lt;/option&gt;
+            &lt;option value="il"&gt;Israel&lt;/option&gt;
+            &lt;option value="de"&gt;Germany&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Möchtest Du hinzugefügt werden?
+        &lt;input type="hidden" name="opt_in" value="no" /&gt;
+        &lt;input type="checkbox" name="opt_in" value="yes" checked="checked" /&gt;
+    &lt;/label&gt;&lt;/p&gt;
+&lt;/form&gt;
+        </pre>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.helpers.paths"></a>28.4.2. Helfer Pfade</h3></div></div></div>
+<p>
+            Wie bei den View Skripten kann der Controller für Zend_View auch einen Stapel an Pfaden 
+            festlegen, in dem nach Hilfsklassen gesucht werden soll. Standardmäßig sucht Zend_View
+            in "Zend/View/Helper/*" nach Hilfsklassen. Du kannst Zend_View mit Hilfe der Methoden
+            setHelperPath() und addHelperPath() mitteilen, auch in anderen Verzeichnissen zu suchen.
+            Zusätzlich kann man einen Klassenpräfix angeben, um Helfer in dem bereit gestellten Pfad
+            verwenden zu können, um eigene Namensräume für die Helferklassen zu verwenden. 
+            Standardmäßig wird 'Zend_View_Helper_' angenommen, wenn kein Präfix angegeben wird.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+
+// Setze den Pfad auf /path/to/more/helpers, mit dem Präfix 'My_View_Helper'
+$view-&gt;setHelperPath('/path/to/more/helpers', 'My_View_Helper');
+?&gt;
+        </pre>
+<p>
+            Durch Verwendung der addHelperPath() Methode können die Pfade "gestapelt" werden. Wenn 
+            du Pfade zu diesem Stapelspeicher hinzufügst, wird Zend_View im zuletzt hinzugefügten 
+            Pfad nach der angeforderten Hilfsklasse schauen. Dies erlaubt dir, zu den vorhandenen 
+            Helfern weitere hinzufügen oder diese durch eigene zu ersetzen. 
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+// Füge /path/to/some/helpers mit Klassenpräfix 'My_View_Helper' hinzu
+$view-&gt;addHelperPath('/path/to/some/helpers', 'My_View_Helper);
+// Füge /other/path/to/helpers mit Klassenpräfix 'Your_View_Helper' hinzu
+$view-&gt;addHelperPath('/other/path/to/helpers', 'Your_View_Helper');
+
+// wenn du nun $this-&gt;helperName() aufrufst, wird Zend_View zuerst nach
+// "/other/path/to/helpers/HelperName.php" mit dem Klassennamen "My_View_Helper_HelperName", 
+// dann nach "/path/to/some/helpers/HelperName.php" mit dem Klassennamen "Your_View_Helper_HelperName", 
+// und zuletzt nach "Zend/View/Helpers/HelperName.php" mit dem Klassennamen "Zend_View_Helper_HelperName"
+// schauen.
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.helpers.custom"></a>28.4.3. Eigene Helfer schreiben</h3></div></div></div>
+<p>
+            Eigene Helfer zu schreiben ist einfach; du mußt nur diese Regeln befolgen:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                Der Klassenname muss mindestens auf den Helfernamen unter Verwendung der CamelCaps 
+                selber enden. Wenn du z.B. einen Helfer mit Namen "specialPurpose" schreibst, muss
+                der Klassenname mindestens "SpecialPurpose" lauten. Man kann, und sollte, dem 
+                Klassennamen einen Präfix geben und es wird empfohlen, 'View_Helper' als Teil des
+                Präfix zu verwenden: "My_View_Helper_SpecialPurpose" (man muss den Präfix mit oder
+                oder abschließenden Unterstrich an <code class="code">addHelperPath()</code> oder 
+                <code class="code">setHelperPath()</code> übergeben).
+            </p></li>
+<li><p>
+                Die Klasse muss eine öffentliche Methode mit dem Namen des Helfers haben. Dies ist 
+                die Methode, welche vom View Skript durch "$this-&gt;specialPurpose()" aufgerufen wird.
+                In unserem "specialPurpose" Beispiel, würde die notwendige Deklaration dieser 
+                Methode "public function specialPurpose()" lauten. 
+            </p></li>
+<li><p>
+                Im Allgemeinen sollte die Klasse keine Ausgaben durch echo(), print() oder auf
+                andere Weise erstellen. Stattdessen sollte es die auszugebenen Werte zurückgeben.
+                Die zurückgegebenen Werte sollten entsprechend maskiert werden.
+            </p></li>
+<li><p>
+                Diese Klasse muss sich in einer Datei befinden, die nach der Helfermethode benannt
+                ist. Bezogen auf unser "specialPurpose" Beispiel, muss der Dateiname 
+                "SpecialPurpose.php" lauten.
+            </p></li>
+</ul></div>
+<p>
+            Platziere die Hilfsklasse irgendwo in deinem Stapelspeicher für Hilfspfade und Zend_View 
+            wird den Helfer automatisch für dich laden, instanziieren, speichern und ausführen. 
+        </p>
+<p>
+            Hier ist ein Beispiel für unseren SpecialPurpose Helfer:
+        </p>
+<pre class="programlisting">&lt;?php
+class My_View_Helper_SpecialPurpose {
+    protected $_count = 0;
+    public function specialPurpose()
+    {
+        $this-&gt;_count++;
+        $output = "Ich habe 'The Jerk' {$this-&gt;_count} Mal(e) gesehen.";
+        return htmlspecialchars($output);
+    }
+}
+?&gt;
+        </pre>
+<p>
+            Dann rufst du in einem View Skript den SpecialPurpose Helfer so oft auf, wie du 
+            möchtest; er wird einmal instanziiert und bleibt für die Lebensdauer der Zend_View
+            Instanz bestehen.
+        </p>
+<pre class="programlisting">&lt;?php
+// denke daran, dass $this in deinem View Skript auf die 
+// Zend_View Instanz verweist.
+echo $this-&gt;specialPurpose();
+echo $this-&gt;specialPurpose();
+echo $this-&gt;specialPurpose();
+?&gt;
+        </pre>
+<p>
+            Die Ausgabe wird in etwa so aussehen:
+        </p>
+<pre class="programlisting">Ich habe 'The Jerk' 1 Mal(e) gesehen.
+Ich habe 'The Jerk' 2 Mal(e) gesehen.
+Ich habe 'The Jerk' 3 Mal(e) gesehen.
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.view.scripts.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.view.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.xmlrpc.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">28.3. View Scripte </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> Kapitel 29. Zend_XmlRpc</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

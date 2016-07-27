@@ -1,0 +1,260 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.2. Mise en Route</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="prev" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="next" href="zend.controller.subclassing.html" title="7.3. Sous-classement">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.introduction" title="7.2.1. Introduction">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration" title="7.2.2. Configuration Serveur">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap" title="7.2.3. Fichier d'Amorçage">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure" title="7.2.4. Arborescence des Répertoires">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.overview.indexcontroller" title="7.2.5. IndexController">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.2. Mise en Route</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.subclassing.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.getting-started"></a>7.2. Mise en Route</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.introduction"></a>7.2.1. Introduction</h3></div></div></div>
+<p>
+		    Le <code class="code">Zend_Controller</code> a été construit dans un soucis permanent d'extensibilité, soit en créant 
+		    des sous-classes de classes existantes, soit en écrivant de nouvelles classes qui implémentent les 
+		    interfaces <code class="code">Zend_Controller_Router_Interface</code> et <code class="code">Zend_Controller_Dispatcher_Interface</code>.
+		</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.server-configuration"></a>7.2.2. Configuration Serveur</h3></div></div></div>
+<p>
+		    Le Zend_Controller est construit pour supporter les sites web modernes, avec des URI propres (peu voire pas de paramètres de requêtes). 
+		    En tant que telle, la configuration du serveur web doit permettre la reformulation des URI afin de rediriger toutes les requêtes sur un même 
+		    un même fichier, appelé ici "<code class="code">index.php</code>", qui va simplement amorcer <code class="code">Zend_Controller_Front</code>. 
+		    Sur les serveurs Web Apache, cela est pris en charge par le module <code class="code">mod_rewrite</code>.
+		</p>
+<p>
+		    La première étape dans la configuration du serveur est d'installer et d'activer le module <code class="code">mod_rewrite</code>. 
+		    L'étape suivante est de mettre deux fichiers dans le document root: <code class="code">.htaccess</code> et <code class="code">index.php</code>. 
+		    Le fichier <code class="code">.htaccess</code> est utilisé par Apache et doit contenir des règles pour rediriger toutes les requêtes sur <code class="code">index.php</code>. 
+		    Pour les phases de développement, il est souvent plus simple d'écrire une règle <code class="code">mod_rewrite</code> qui va rediriger toutes les requêtes sur <code class="code">index.php</code>, 
+		    sauf pour certaines extensions de fichier. 
+		    Voici un exemple de ce fichier :
+
+			</p>
+<pre class="programlisting">
+RewriteEngine on
+RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php
+</pre>
+<p>
+            Dans l'exemple ci-dessus, toutes les requêtes ne contenant pas les extensions mentionnées seront redirigées vers index.php
+            C'est utile pendant les phases de développement, cependant une fois en production, les règles de ré-écriture devront être écrite pour exclure 
+            aussi les dossiers.
+		</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.bootstrap"></a>7.2.3. Fichier d'Amorçage</h3></div></div></div>
+<p>
+		    Après avoir mis en place le fichier <code class="code">.htaccess</code>, créez un nouveau fichier appelé <code class="code">index.php</code>. 
+		    C'est un fichier d'amorçage. Le but du fichier <code class="code">index.php</code> est seulement d'amorcer <code class="code">Zend_Controller_Front</code>, 
+		    qui dans l'idéal, devrait être placé à l'extérieur du répertoire racine.
+		</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>	
+                Le fichier d'amorçage doit être le seul fichier PHP du répertoire racine.	
+            </p></td></tr>
+</table></div>
+<p>
+			Pour des raisons de sécurité, Zend préconise de ne stocker aucun fichier PHP dans le répertoire accessible par le serveur Web 
+			(ceux-ci sont sous le répertoire racine). Bien que ça ne soit pas toujours possible, comme par exemple dans le cas d'hébergement 
+			mutualisés, ceci devrait être considéré comme une bonne pratique et mis en place autant que possible.
+		</p>
+<p>
+		     Créez le fichier d'amorçage <code class="code">index.php</code>, dans le répertoire racine pour amorcer <code class="code">Zend_Controller_Front</code>:
+
+			</p>
+<pre class="programlisting">&lt;?php
+				
+require_once 'Zend/Controller/Front.php';
+
+Zend_Controller_Front::run('/chemin/de/vos/controlleurs');
+
+?&gt;</pre>
+<p>
+            
+            Reportez vous à la prochaine partie pour ce qui concerne <code class="code">/chemin/de/vos/controlleurs</code>. 
+            Comme définit dans le fichier <code class="code">README.txt</code>, le répertoire du Framework Zend doit être dans l'<code class="code">include_path</code>. 
+            Si ce n'est pas défini dans le <code class="code">php.ini</code>, <code class="code">set_include_path()</code>  peut-être appelée dans ce fichier avant <code class="code">require_once()</code>.
+		</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+    			A ce stade, nous sommes en train de rechercher des solutions qui ne nécessite par l'installation de mod_rewrite. 
+	    		Nous envisageons de proposer une configuration pour les systèmes avec ou sans installation de mod_rewrite. 
+		    	Veuillez notez également que ce système n'est pas lié spécifiquement à Apache, tout autre serveur Web ayant des 
+			    possibilités similaires de redirection devrait suffire.
+			</p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.directory-structure"></a>7.2.4. Arborescence des Répertoires</h3></div></div></div>
+<p>
+		    Il est recommandé que les sites Web utilisant le Framework Zend partagent une même arborescence. 
+		    Bien que cela ne soit pas possible dans tous les cas, il l'est pour beaucoup. 
+		    Choisir de se conformer à cette structure va rendre votre code plus facilement compréhensible pour quelqu'un 
+		    de familier avec les conventions du Framework Zend.
+		</p>
+<p>	
+            L'arborescence proposée consiste en un répertoire contenant les bibliothèques (de Zend ou autre) et un répertoire contenant l'application.
+
+			</p>
+<pre class="programlisting">
+/application
+  /models
+  /views
+  /controllers
+/document_root
+  /images
+  /styles
+  .htaccess
+  index.php
+/library
+  /Zend
+</pre>
+<p>
+		</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+			    Cette section n'est pas encore complète. Elle est encore en construction, et est sujette à changements.
+			</p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.indexcontroller"></a>7.2.5. IndexController</h3></div></div></div>
+<p>
+		    Chaque site doit définir un contrôleur nommé <code class="code">IndexController</code>. 
+		    C'est le contrôleur qui est utilisé quand aucun contrôleur n'est définit dans l'URI, comme dans cette URI :
+
+			</p>
+<pre class="programlisting">
+http://framework.zend.com/
+</pre>
+<p>
+		</p>
+<p>
+		    La classe <code class="code">IndexController</code> doit être enregistrée dans un fichier appelé <code class="code">IndexController.php</code>, 
+		    et elle doit être stockée dans le répertoire des contrôleurs. 
+		    L'<code class="code">IndexController</code> doit être une sous-classe de <code class="code">Zend_Controller_Action</code>. 
+		    Voici un exemple du contenu d'<code class="code">IndexController</code> :
+
+			</p>
+<pre class="programlisting">&lt;?php
+				
+require_once 'Zend/Controller/Action.php';
+
+class IndexController extends Zend_Controller_Action 
+{
+	public function indexAction()
+	{
+		echo 'Hello from IndexController';
+	}
+
+	public function noRouteAction()
+	{
+		$this-&gt;_redirect('/');
+	}
+}
+
+?&gt;</pre>
+<p>
+			
+			</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+				    Cette section n'est pas encore terminée. Elle est encore en construction et est sujette aux changements.
+				</p></td></tr>
+</table></div>
+<p>			
+		</p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.subclassing.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapitre 7. Zend_Controller </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 7.3. Sous-classement</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

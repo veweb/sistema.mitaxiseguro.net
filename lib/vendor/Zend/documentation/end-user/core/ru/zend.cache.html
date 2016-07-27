@@ -1,0 +1,264 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Глава 4. Zend_Cache</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="index.html" title="Руководство разработчика">
+<link rel="prev" href="zend.auth.adapter.digest.html" title="3.2. Digest Authentication">
+<link rel="next" href="zend.cache.theory.html" title="4.2. Теория кэширования">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="section" href="zend.cache.html#zend.cache.introduction" title="4.1. Введение">
+<link rel="section" href="zend.cache.theory.html" title="4.2. Теория кэширования">
+<link rel="section" href="zend.cache.frontends.html" title="4.3. Фронтэнды Zend_Cache">
+<link rel="section" href="zend.cache.backends.html" title="4.4. Бэкэнды Zend_Cache">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Глава 4. Zend_Cache</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.auth.adapter.digest.html">Пред.</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.cache.theory.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ru">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.cache"></a>Глава 4. Zend_Cache</h2></div></div></div>
+<div class="toc">
+<p><b>Содержание</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.cache.html#zend.cache.introduction">4.1. Введение</a></span></dt>
+<dt><span class="sect1"><a href="zend.cache.theory.html">4.2. Теория кэширования</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.factory">4.2.1. Фабричный метод <code class="code">Zend_Cache</code></a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.tags">4.2.2. Добавление тегов к записям</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.clean">4.2.3. Очистка кэша</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.frontends.html">4.3. Фронтэнды Zend_Cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.core">4.3.1. Zend_Cache_Core</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.output">4.3.2. Zend_Cache_Frontend_Output</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.function">4.3.3. Zend_Cache_Frontend_Function</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.class">4.3.4. Zend_Cache_Frontend_Class</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.file">4.3.5. Zend_Cache_Frontend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.page">4.3.6. Zend_Cache_Frontend_Page</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.backends.html">4.4. Бэкэнды Zend_Cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.file">4.4.1. Zend_Cache_Backend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.sqlite">4.4.2. Zend_Cache_Backend_Sqlite</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.memcached">4.4.3. Zend_Cache_Backend_Memcached</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.apc">4.4.4. Zend_Cache_Backend_APC</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.platform">4.4.5. Zend_Cache_Backend_ZendPlatform</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.introduction"></a>4.1. Введение</h2></div></div></div>
+<p>
+        <code class="code">Zend_Cache</code> предназначен для кэширования любых данных.
+        
+    </p>
+<p>
+        Управление кэшированием в Zend Framework производится через фронтэнды
+        (интерфейсные части), записи кэша сохраняются через бэкэнды
+        (адаптеры <code class="code">File</code>, <code class="code">Sqlite</code>, <code class="code">Memcache</code> и др.),
+        с использованием гибкой системы идентификаторов и тегов, благодаря которым
+        можно потом легко удалять определенные типы записей (например:
+        "удалить все записи кэша, помеченные данным тегом").
+
+    </p>
+<p>
+        Ядро модуля (<code class="code">Zend_Cache_Core</code>) является гибким, универсальным
+        и конфигурируемым. Кроме этого, для особых нужд есть фронтэнды, расширяющие
+        <code class="code">Zend_Cache_Core</code>: <code class="code">Output</code>, <code class="code">File</code>,
+        <code class="code">Function</code> и <code class="code">Class</code>.
+
+    </p>
+<div class="example">
+<a name="id4788941"></a><p class="title"><b>Пример 4.1. 
+            Получение фронтэнда с помощью <code class="code">Zend_Cache::factory()</code>
+            </b></p>
+<p>
+            <code class="code">Zend_Cache::factory()</code> инстанцирует нужные объекты и
+            связывает их. В этом первом примере мы будем использовать
+            фронтэнд <code class="code">Core</code> с бэкэндом <code class="code">File</code>.
+
+       </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Cache.php';
+
+$frontendOptions = array(
+   'lifeTime' =&gt; 7200, // время жизни кэша - 2 часа 
+   'automaticSerialization' =&gt; true
+);
+
+$backendOptions = array(
+    'cacheDir' =&gt; './tmp/' // директория, в которой размещаются файлы кэша
+);
+
+// получение объекта Zend_Cache_Core
+$cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+
+?&gt;  </pre>
+<p>
+           Теперь, имея фронтэнд, мы можем кэшировать любые типы данных,
+           используя сериализацию. Например, мы можем кэшировать результат 
+           очень ресурсоемкого запроса к БД. После его добавления
+           в кэш не нужно будет даже подключаться к базе данных: записи
+           извлекаются из кэша и выполняется процедура, обратная сериализации.              
+
+       </p>
+<pre class="programlisting">&lt;?php
+
+// $cache определен в предыдущем примере
+
+// проверка, есть ли уже запись в кэше:
+if(!$result = $cache-&gt;load('myresult')) {
+
+    // промах кэша
+    // установка соединения с базой данных
+    
+    $db = Zend_Db::factory( [...] );
+    
+    $result = $db-&gt;fetchAll('SELECT * FROM huge_table');
+    
+    $cache-&gt;save($result, 'myresult');
+    
+} else {
+
+    // попадание в кэш
+    echo "This one is from cache!\n\n";
+    
+}
+
+print_r($result);
+
+?&gt;  </pre>
+</div>
+<div class="example">
+<a name="id4789049"></a><p class="title"><b>Пример 4.2. 
+            Кэширование выходных данных с помощью фронтэнда <code class="code">Zend_Cache</code>
+            
+        </b></p>
+<p>
+            Мы размечаем участки, внутри которых хотим поместить в кэш выходные данные,
+            добавлением условной логики, окружая участок методами <code class="code">start()</code>
+            и <code class="code">end()</code>. Этот пример похож на первый и является
+            основной стратегией кэширования.
+
+        </p>
+<p>
+            Внутри выводим данные как обычно — весь вывод будет добавлен в кэш,
+            когда будет достигнут метод <code class="code">end()</code>. При следующем запуске
+            весь участок кода будет пропущен, вместо этого извлекаются данные из кэша
+            (до тех пор, пока записи действительны).
+
+       </p>
+<pre class="programlisting">&lt;?php
+
+$frontendOptions = array(
+   'lifeTime' =&gt; 30,                  // время жизни кэша - половина минуты
+   'automaticSerialization' =&gt; false  // уже установлено по умолчанию
+);
+
+$backendOptions = array('cacheDir' =&gt; './tmp/');
+
+$cache = Zend_Cache::factory('Output', 'File', $frontendOptions, $backendOptions);
+
+// передаем уникальный идентификатор методу start()
+if(!$cache-&gt;start('mypage')) {
+    // производим вывод, как обычно:
+    
+    echo 'Hello world! ';
+    echo 'This is cached ('.time().') ';
+    
+    $cache-&gt;end(); // выходные данные сохранены и отправлены броузеру
+}
+
+echo 'This is never cached ('.time().').';
+
+?&gt;  </pre>
+<p>
+           Обратите внимание, что мы выводим результат <code class="code">time()</code>
+           дважды: это демонстрация на примере динамических данных. Попробуйте
+           запустить это и обновить страницу несколько раз. Вы заметите,
+           что первое число не изменяется, в то время как второе меняется в
+           зависимости от текущего времени. Это потому, что первое число
+           было выведено в кэшируемой части и сохранено среди других выходных данных.
+           После того, как пройдет полминуты (мы установили время жизни кэша
+           равным 30 секундам) числа снова должны стать одинаковыми, потому что
+           срок действия кэша истек, сразу после этого производится новое
+           сохранение в кэш.
+
+       </p>
+</div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Замечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        Когда используете <code class="code">Zend_Cache</code>, уделяйте внимание идентификатору
+        кэша (передается методам <code class="code">save()</code> и <code class="code">start()</code>).
+        Он должен быть уникальным для каждого ресурса, который вы кэшируете,
+        иначе не связанные записи кэша могут затирать друг друга, или, что еще
+        хуже, отображаться вместо других.
+
+    </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.auth.adapter.digest.html">Пред.</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.cache.theory.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.2. Digest Authentication </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 4.2. Теория кэширования</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

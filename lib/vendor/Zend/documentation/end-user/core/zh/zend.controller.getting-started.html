@@ -1,0 +1,238 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.2. 入门</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="prev" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="next" href="zend.controller.subclassing.html" title="7.3. 子类化（继承）">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.introduction" title="7.2.1. 简介">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration" title="7.2.2. 服务器设置">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap" title="7.2.3. Bootstrap文件">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure" title="7.2.4. 目录结构">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.overview.defaultcontroller" title="7.2.5. 默认的控制器">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.2. 入门</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.html">上一页</a> </td>
+<th width="60%" align="center">第 7 章 Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.subclassing.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.getting-started"></a>7.2. 入门</h2></div></div></div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.introduction"></a>7.2.1. 简介</h3></div></div></div>
+<p>			Zend_Controller体系具有可扩展性，可以通过继承已有的类或者自己写个新的类来实现各种接口和抽象类。
+		</p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.server-configuration"></a>7.2.2. 服务器设置</h3></div></div></div>
+<p>       
+			Zend_Controller 支持比较漂亮干净的URI(没有乱七八糟的查询参数)。建议你配置服务器，使所有用户请求集中到一个文件，即index.php，index.php将会启动<code class="code">Zend_Controller_Front</code>。如果你使用Apache服务器，可以通过设置mod_rewrite模块来实现。
+        </p>
+<p>
+			第一步，首先安装Apache并启用mod_rewrite模块。然后把两个文件放到根目录下：.htaccess和index.php。 .htaccess文件用来让服务器读取，其中必须包含一个mod_rewrite的重写规则，使所有请求都被重定向到index.php。下面是个例子：
+
+			</p>
+<pre class="programlisting">
+RewriteEngine on
+RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php
+</pre>
+<p>
+
+			在上例中，所有请求(除了对那几个扩展名的文件的请求)都被转向到index.php。在开发中这是很有用的，当然在程序正式运行时重写规则应该写成把某些目录排除而不是文件。
+		</p>
+<div class="note"><table border="0" summary="Note: bootstrap文件的位置">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">bootstrap文件的位置</th>
+</tr>
+<tr><td align="left" valign="top"><p>    				
+				bootstrap文件（即index.php）应当是站点根目录下唯一一个PHP文件。
+			</p></td></tr>
+</table></div>
+<p>            
+		Zend_Controller也支持使用查询字符串的URL，例如： <code class="code">index.php?controller=foo&amp;action=bar</code>。另外，Zend_Controller所带的一个router--<code class="code">Zend_Controller_RewriteRouter</code>，可以让程序不使用服务器所带的mod_rewrite功能，就可进行URL重写。这样即使你在你的主机上无法使用mod_rewrite，你仍然可以使用Zend_Controller。
+        </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.bootstrap"></a>7.2.3. Bootstrap文件</h3></div></div></div>
+<p>(所谓Bootstrap，就相当于一小段引导程序或者入口程序，在ZF中，通常即指index.php，因为我们所有的请求都是从index.php进入的。--Haohappy注)
+		</p>
+<p>
+			在设置好 .htaccess文件之后，建立一个新的文件index.php，这是一个入口文件，目的仅在于启动Zend_Controller_Front。Zend_Controller_Front最好要放在你的站点根目录以外。
+		</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top">	
+			bootstrap文件必须是根目录下唯一的PHP文件。			
+		</td></tr>
+</table></div>
+<p>
+			出于安全方面的考虑，我们强烈建议在所有可能通过服务器访问的目录下（例如站点根目录的子目录下）不放置任何PHP文件。有时候这可能做不到，例如虚拟主机。
+		</p>
+<p>
+			建立bootstrap文件:index.php 在根目录中来启动Zend_Controller_Front：
+
+			</p>
+<pre class="programlisting">&lt;?php
+				
+require_once 'Zend/Controller/Front.php';
+
+Zend_Controller_Front::run('/path/to/your/controllers')
+
+?&gt;</pre>
+<p>
+
+			看下面的章节来理解  <code class="code">/path/to/your/controllers</code>。就像在README.txt中所介绍的，Zend Framework的library 目录必须在include_path中。如果没有在php.ini中设置，你可以通过set_include_path()函数来设置（放在require_once()之前）。
+		</p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.directory-structure"></a>7.2.4. 目录结构</h3></div></div></div>
+<p>
+			建议使用 Zend Framework的站点采用相同的目录结构，尽管可能不是每个站点都能一模一样。这样可以让其它熟悉Zend Framework的人更好地理解你的程序。
+		</p>
+<p>	
+			建议的目录结构包括library目录(Zend自带的或你自己的)和application目录。
+
+			</p>
+<pre class="programlisting">
+/application
+  /models
+  /views
+  /controllers
+/document_root
+  /images
+  /styles
+  .htaccess
+  index.php
+/library
+  /Zend
+</pre>
+<p>
+		</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top">
+			这一章节尚未完成，可能会有大量内容补充或修改。
+		</td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.defaultcontroller"></a>7.2.5. 默认的控制器</h3></div></div></div>
+<p>         
+			每个站点都必须定义一个默认的控制器，当用户访问的URI中没有指定控制器时，就会调用该控制器，例如：
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/
+</pre>
+<p>
+         在自带的配置中，默认控制器是<code class="code">IndexController</code>，它是在文件<code class="code">IndexController.php</code>中定义的。在内部访问中，该控制器的名称是'index'。
+        </p>
+<p>
+         你可以通过调用front controller的<code class="code">setDefaultController()</code>方法来改变默认的控制器。在使用时，请使用内部命名原则，也就是说类<code class="code">HomeController</code>（位于文件<code class="code">HomeController.php</code>中）应该以'<code class="code">home</code>'的名称来访问。
+        </p>
+<p>
+        控制器应该继承自<code class="code">Zend_Controller_Action</code>类，并放置于controllers目录下。
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/Controller/Action.php';
+
+class IndexController extends Zend_Controller_Action
+{
+    public function indexAction()
+    {
+        echo 'Hello from IndexController';
+    }
+
+    public function noRouteAction()
+    {
+        $this-&gt;_redirect('/');
+    }
+}
+
+?&gt;</pre>
+<p>         
+		关于默认控制器和action的更多细节，例如如何编写controller类等，会在后面的章节介绍。
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>             
+			本章节还未完成，可能会有很多内容被更新。
+            </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.subclassing.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第 7 章 Zend_Controller </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 7.3. 子类化（继承）</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

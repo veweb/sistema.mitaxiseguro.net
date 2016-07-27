@@ -1,0 +1,241 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.6. Плагины</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="prev" href="zend.controller.action.html" title="7.5. Контроллеры действий">
+<link rel="next" href="zend.controller.modular.html" title="7.7. Модульная структуры директорий">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.controller.plugins.html#zend.controller.plugins.introduction" title="7.6.1. Введение">
+<link rel="subsection" href="zend.controller.plugins.html#zend.controller.plugins.writing" title="7.6.2. Написание плагинов">
+<link rel="subsection" href="zend.controller.plugins.html#zend.controller.plugins.using" title="7.6.3. Использование плагинов">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.6. Плагины</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.action.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.modular.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.plugins"></a>7.6. Плагины</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.plugins.introduction"></a>7.6.1. Введение</h3></div></div></div>
+<p>
+            Архитектура контроллеров включает в себя систему плагинов, которая
+            позволяет добавлять свой код, который будет вызываться при
+            определенных событиях в процессе жизни контроллера. Фронт-контроллер
+            использует брокер плагинов (plugin broker, можно также перевести
+            как "посредник" - прим. перев.) для регистрации пользовательских
+            плагинов, он обеспечивает вызов методов событий в каждом плагине,
+            зарегистрированном через фронт-контроллер.
+
+        </p>
+<p>
+            Методы событий определены в абстрактном классе
+            <code class="code">Zend_Controller_Plugin_Abstract</code>, от которого должны
+            наследовать все пользовательские плагины:  
+
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">routeStartup()</code> вызывается до того, как
+                        <code class="code">Zend_Controller_Front</code> начнет сопоставление
+                        запроса с маршрутами.
+
+                    </p></li>
+<li><p>
+                        <code class="code">routeShutdown()</code> вызывается после того, как
+                        <code class="code">Zend_Controller_Router</code> завершит свою
+                        работу во фронт-контроллере.
+
+                    </p></li>
+<li><p>
+                        <code class="code">dispatchLoopStartup()</code> вызывается до того,
+                        как <code class="code">Zend_Controller_Front</code> войдет в цикл
+                        диспетчеризации. 
+
+                    </p></li>
+<li><p>
+                        <code class="code">preDispatch()</code> вызывается до того, как
+                        диспетчером будет запущено действие. Этот обратный
+                        вызов позволяет реализовать поведение посредника или
+                        фильтра. Через изменение запроса и сброс его
+                        флага диспетчеризации (методом
+                        <code class="code">Zend_Controller_Request_Abstract::setDispatched(false)</code>)
+                        текущее действие может быть пропущено.
+
+                    </p></li>
+<li><p>
+                        <code class="code">postDispatch()</code> вызывается после того, как
+                        действие было вызвано диспетчером. Этот обратный вызов
+                        позволяет реализовать поведение фильтра или посредника.
+                        Через изменение запроса и сброс его
+                        флага диспетчеризации (методом
+                        <code class="code">Zend_Controller_Request_Abstract::setDispatched(false)</code>)
+                        может быть определено новое действие для
+                        диспетчеризации.
+
+                    </p></li>
+<li><p>
+                        <code class="code">dispatchLoopShutdown()</code> вызывается до того,
+                        как <code class="code">Zend_Controller_Front</code> выйдет из цикла
+                        диспетчеризации.
+
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.plugins.writing"></a>7.6.2. Написание плагинов</h3></div></div></div>
+<p>
+            Для того, чтобы написать класс плагина, просто включите абстрактный
+            класс <code class="code">Zend_Controller_Plugin_Abstract</code> и создайте его
+            подкласс:
+            
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Controller/Plugin/Abstract.php';
+
+class MyPlugin extends Zend_Controller_Plugin_Abstract
+{
+    // ...
+}</pre>
+<p>
+        </p>
+<p>
+            Ни один из методов класса
+            <code class="code">Zend_Controller_Plugin_Abstract</code> не является
+            абстрактным, поэтому классы плагинов не обязательно должны
+            реализовать все из перечисленных выше методов. Разработчики плагинов
+            могут реализовать только те методы, которые соответствуют их нуждам. 
+
+        </p>
+<p>
+            <code class="code">Zend_Controller_Plugin_Abstract</code> также делает объекты
+            запроса и ответа доступными плагинам контроллеров через методы
+            <code class="code">getRequest()</code> и <code class="code">getResponse()</code>
+            соответственно.     
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.plugins.using"></a>7.6.3. Использование плагинов</h3></div></div></div>
+<p>
+            Классы плагинов регистрируются через
+            <code class="code">Zend_Controller_Front::registerPlugin()</code> до начала
+            диспетчеризации. Следующий пример демонстрирует использование
+            плагина:  
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Controller/Front.php';
+require_once 'Zend/Controller/Router.php';
+require_once 'Zend/Controller/Plugin/Abstract.php';
+
+class MyPlugin extends Zend_Controller_Plugin_Abstract
+{
+    public function routeStartup()
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;routeStartup() called&lt;/p&gt;');
+    }
+
+    public function routeShutdown($request)
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;routeShutdown() called&lt;/p&gt;');
+    }
+
+    public function dispatchLoopStartup($request)
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;dispatchLoopStartup() called&lt;/p&gt;');
+    }
+
+    public function preDispatch($request)
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;preDispatch() called&lt;/p&gt;');
+    }
+
+    public function postDispatch($request)
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;postDispatch() called&lt;/p&gt;');
+    }
+
+    public function dispatchLoopShutdown()
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;dispatchLoopShutdown() called&lt;/p&gt;');
+    }
+}
+
+$controller = Zend_Controller_Front::getInstance();
+$controller-&gt;setControllerDirectory('/path/to/controllers')
+           -&gt;setRouter(new Zend_Controller_Router())
+           -&gt;registerPlugin(new MyPlugin());
+$response = $controller-&gt;dispatch();
+
+echo $response;</pre>
+<p>
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.action.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.modular.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.5. Контроллеры действий </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 7.7. Модульная структуры директорий</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

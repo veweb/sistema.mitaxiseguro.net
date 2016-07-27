@@ -1,0 +1,382 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第15章 Zend_Locale</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.json.objects.html" title="14.3. JSON オブジェクト">
+<link rel="next" href="zend.locale.functions.html" title="15.2. Zend_Locale の使用法">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.locale.html#zend.locale.introduction" title="15.1. 導入">
+<link rel="section" href="zend.locale.functions.html" title="15.2. Zend_Locale の使用法">
+<link rel="section" href="zend.locale.parsing.html" title="15.3. 正規化および地域化">
+<link rel="section" href="zend.locale.date.datesandtimes.html" title="15.4. 日付および時刻の扱い">
+<link rel="section" href="zend.locale.languages.html" title="15.5. ロケールがサポートする言語">
+<link rel="section" href="zend.locale.regions.html" title="15.6. ロケールがサポートする地域">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第15章 Zend_Locale</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.json.objects.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.locale.functions.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.locale"></a>第15章 Zend_Locale</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.locale.html#zend.locale.introduction">15.1. 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.whatislocalization">15.1.1. 地域化とは</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.whatis">15.1.2. 
+            ロケールとは?
+        </a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.representation">15.1.3. ロケールの表現方法は?</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.selection">15.1.4. 正しいロケールの選択</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.interoperate">15.1.5. ZF のロケール対応のクラス</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.functions.html">15.2. Zend_Locale の使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.copying">15.2.1. ロケールオブジェクトのコピー、クローン作成およびシリアライズ</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.equals">15.2.2. isEqual() - 同等</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getdefault">15.2.3. デフォルトのロケール</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.setlocale">15.2.4. 新しいロケールの設定</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getlocale">15.2.5. 言語および地域の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getlanguage">15.2.6. 各地域での言語、地域、カレンダーの名前の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getscriptdisplay">15.2.7. 翻訳された文字名の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getscriptlist">15.2.8. 文字一覧の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getquestion">15.2.9. "yes" および "no" に対応する翻訳の取得</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.parsing.html">15.3. 正規化および地域化</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.normalize">15.3.1. 数値の正規化: getNumber($input, $precision = false, $locale = false)</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.localize">15.3.2. 数値の地域化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.test">15.3.3. 数値かどうかの確認</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.normalize">15.3.4. 浮動小数点値の正規化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.localize">15.3.5. 浮動小数点値の地域化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.test">15.3.6. 浮動小数点値かどうかの確認</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.normalize">15.3.7. 整数値の正規化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.localize">15.3.8. 整数値の地域化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.test">15.3.9. 整数値かどうかの確認</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.numbersystems">15.3.10. 数値系の変換</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.date.datesandtimes.html">15.4. 日付および時刻の扱い</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.date.normalize">15.4.1. 日付および時刻の正規化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.date.test">15.4.2. 日付かどうかの確認</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.time.normalizing">15.4.3. 時刻の正規化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.time.test">15.4.4. 時刻かどうかの確認</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.languages.html">15.5. ロケールがサポートする言語</a></span></dt>
+<dt><span class="sect1"><a href="zend.locale.regions.html">15.6. ロケールがサポートする地域</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.locale.introduction"></a>15.1. 導入</h2></div></div></div>
+<p>
+        <code class="code">Zend_Locale</code> は、
+        "ひとつのアプリケーションを世界中で使用するにはどうしたらいいでしょう?"
+        という質問に対するフレームワーク側からの回答です。たいていの人は
+        "かんたんじゃん。出力内容をいくつかの言語に翻訳すればいいんだよ。"
+        と言うでしょう。しかし、ただ単にフレーズを他の言語に置き換えるだけといった
+        単純な翻訳テーブルでは不十分です。
+        たとえば姓と名の順番や敬称、そして数値や日付、時刻、通貨などの書式は、
+        地域によって異なります。
+    </p>
+<p>
+        <a href="http://en.wikipedia.org/wiki/L10n" target="_top">地域化 (Localization)</a>
+        だけでなく、
+        <a href="http://en.wikipedia.org/wiki/L10n" target="_top">国際化 (Internationalization)</a>
+        も必要となります。これらは、それぞれ <code class="code">L10N</code> および <code class="code">I18N</code>
+        と略されることもあります。国際化とは、そのシステムを特定のユーザ集団の
+        (言語、地域、数値書式、財務規約、日付時刻書式などの)
+        ニーズにかかわらず使用できるようにすることを言います。
+        地域化とは、特定の集団のニーズに対応するために、
+        システムに明示的なサポートを追加することを言います。
+        たとえば言語の翻訳や、各地域の規約 (複数形の扱い、日付、時刻、通貨、名前、
+        記号、並び順など) が該当します。
+        <code class="code">L10N</code> と <code class="code">I18N</code> は、お互い補完しあうものです。
+        Zend Framework では、いくつかのコンポーネントを組み合わせることで
+        これらのサポートを提供しています。たとえば Zend_Locale、Zend_Date、
+        Zend_Measure、Zend_Translate、Zend_Currency そして Zend_TimeSync
+        といったコンポーネントがあります。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.whatislocalization"></a>15.1.1. 地域化とは</h3></div></div></div>
+<p>
+            地域化とは、あるアプリケーション (あるいはホームページ)
+            が、さまざまな言語を話すユーザによって使用することができるということです。
+            しかし、ご存知のとおり、地域化とは単に文字列を翻訳するだけのことではありません。
+            以下のような内容が含まれます。
+        </p>
+<div class="itemizedlist"><ul type="opencircle">
+<li style="list-style-type: circle"><p>
+                    <code class="code">Zend_Locale</code> -
+                    他の ZF コンポーネントにおける地域化サポートで対応しているロケールのバックエンドとなります。
+                </p></li>
+<li style="list-style-type: circle"><p>
+                    <code class="code">Zend_Translate</code> - 文字列を翻訳します。
+                </p></li>
+<li style="list-style-type: circle"><p>
+                    <code class="code">Zend_Date</code> - 日付や時刻を地域化します。
+                </p></li>
+<li style="list-style-type: circle"><p>
+                    <code class="code">Zend_Calendar</code> -
+                    カレンダーを地域化します (グレゴリオ暦以外の暦もサポートしています)。
+                </p></li>
+<li style="list-style-type: circle"><p>
+                    <code class="code">Zend_Currency</code> - 通貨を地域化します。
+                </p></li>
+<li style="list-style-type: circle"><p>
+                    <code class="code">Zend_Locale_Format</code> - 地域化された数値のパースおよび生成を行います。
+                </p></li>
+<li style="list-style-type: circle"><p>
+                    <code class="code">Zend_Locale_Data</code> -
+                    国名や言語名、そして
+                    <a href="http://unicode.org/cldr/" target="_top">CLDR にあるさまざまな内容</a>
+                    について、各地域の標準文字列を取得します。
+                </p></li>
+<li style="list-style-type: circle"><p>
+                    <code class="code">TODO</code> - Localization of collations
+                </p></li>
+</ul></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.whatis"></a>15.1.2. 
+            <a href="http://unicode.org/reports/tr35/#Locale" target="_top">ロケールとは?</a>
+        </h3></div></div></div>
+<p>
+            コンピュータのユーザは皆、(気づいていないかもしれませんが) ロケールを使用しています。
+            地域化をサポートしていないアプリケーションの場合は、
+            通常は暗黙的に特定のロケール (そのアプリケーションの作者のロケール)
+            を使用しています。
+            クラスや関数が地域化されていることを、ここでは
+            <code class="code">ロケールに対応している</code>ということにします。
+            そのユーザがどの地域にいるのかを、どうやってコードで知るのでしょうか?
+        </p>
+<p>
+            ロケール文字列あるいはロケールを表すオブジェクトを使用して、
+            <code class="code">Zend_Locale</code> およびそのサブクラスはユーザが希望する言語および地域を知ります。
+            この情報にもとづいて、正しい書式化や正規化、規約を適用します。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.representation"></a>15.1.3. ロケールの表現方法は?</h3></div></div></div>
+<p>
+            ロケール識別子に含まれる情報は、ユーザの言語と
+            地理上の地域 (たとえば自宅あるいは勤務先の属する州など) です。
+            Zend Framework が使用するロケール識別文字列は、
+            国際的に定義されている言語と地域の略称で、
+            <code class="code">language_REGION</code> という形式です。
+            言語および地域は、どちらも二文字の ASCII 文字列となります。
+        </p>
+<p>
+            アメリカのユーザの言語は <code class="code">英語</code>、そして地域は <code class="code">アメリカ</code>
+            です。そこで、ロケール識別子は "en_US" となります。
+            ドイツのユーザの言語は <code class="code">ドイツ</code>、そして地域は <code class="code">ドイツ</code>
+            です。そこで、ロケール識別子は "de_DE" となります。
+            <a href="http://unicode.org/cldr/data/diff/supplemental/languages_and_territories.html" target="_top">
+            ロケールおよび地域の組み合わせの定義済みの一覧</a>
+            を参考に、Zend Framework で使用するロケールを選択しましょう。
+        </p>
+<div class="example">
+<a name="id4847325"></a><p class="title"><b>例 15.1. 特定のロケールの選択</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend_Locale');
+$locale = new Zend_Locale('de_DE'); // ドイツ語 _ ドイツ
+?&gt;</pre>
+</div>
+<p>
+            アメリカに住むドイツ人は、言語は <code class="code">ドイツ語</code> で地域は <code class="code">アメリカ</code>
+            としたいかも知れません。しかし、このような非標準の組み合わせは、
+            "ロケール" としては直接サポートしていません。
+            そのかわりに、もし無効な組み合わせが使用されると、
+            自動的に地域コードが切り捨てられます。
+            たとえば "de_IS" は "de" に切り捨てられ、"xh_RU" は "xh"
+            に切り捨てられます。これらの組み合わせは無効だからです。
+            さらに、言語コードがサポートされていない場合 (例 "zz_US")
+            や存在しない場合は、デフォルトの "root" ロケールを使用します。
+            "root" ロケールではデフォルトとして、
+            国際的に認知されている日付、時刻、数値、通過等を定義しています。
+            この切捨て処理は、要求された情報の内容に依存します。
+            言語と地域の組み合わせの中には、
+            特定の型のデータ (たとえば日付) では有効だけれども
+            別の型 (たとえば通貨) では無効だというものがあるからです。
+        </p>
+<p>
+            過去の歴史には注意しましょう。ZF コンポーネントは、
+            これまでさまざまな場所で変更されてきた過去のタイムゾーンについては対応しません。
+            たとえば
+            <a href="http://www.statoids.com/tus.html" target="_top">この一覧表</a>
+            をご覧ください。特定の地域が夏時間を採用するかどうかや、
+            どのタイムゾーンに属するかなどは、時の政府によって何度も変更されています。
+            したがって、日付の計算をおこなう際には、
+            ZF コンポーネントはこれらの変更には対応しません。
+            その代わりに、現時点の夏時間対応、現時点のタイムゾーンに対応した正しい時刻を使用します。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.selection"></a>15.1.4. 正しいロケールの選択</h3></div></div></div>
+<p>
+            たいていの場合は、<code class="code">new Zend_Locale()</code>
+            とすると自動的に正しいロケールを選択します。
+            これはユーザのウェブブラウザから送られてきた情報をもとに判断します。
+            しかし、<code class="code">new Zend_Locale(Zend_Locale::ENVIRONMENT)</code>
+            を使用すると、以下に示すようにホストサーバの環境設定から情報を取得するようになります。
+        </p>
+<div class="example">
+<a name="id4847452"></a><p class="title"><b>例 15.2. ロケールの自動選択</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+$locale  = new Zend_Locale();
+$locale1 = new Zend_Locale(Zend_Locale::BROWSER);     // デフォルトの挙動で、上と同じです
+$locale2 = new Zend_Locale(Zend_Locale::ENVIRONMENT); // ホストサーバ上の設定を使用します
+$locale3 = new Zend_Locale(Zend_Locale::FRAMEWORK);   // フレームワークアプリケーションのデフォルト設定を使用します
+?&gt;</pre>
+</div>
+<p>
+            <code class="code">Zend_Locale</code> がロケールの自動選択に使用する検索アルゴリズムは、
+            三種類の情報をもとにしています。
+            </p>
+<div class="orderedlist"><ol type="1">
+<li><p>
+                        const <code class="code">Zend_Locale::BROWSER</code> -
+                        ユーザのウェブブラウザは、リクエストの際に情報を送信します。これは、
+                        PHP のグローバル変数 <code class="code">HTTP_ACCEPT_LANGUAGE</code> で取得できます。
+                        対応するロケールが見つからない場合は <code class="code">ENVIRONMENT</code>
+                        による検索を行い、それでもだめなら最後は
+                        <code class="code">FRAMEWORK</code> を使用します。
+                    </p></li>
+<li><p>
+                        const <code class="code">Zend_Locale::ENVIRONMENT</code> -
+                        PHP は、ホストサーバのロケールを
+                        <code class="code">setlocale()</code> 関数で取得します。
+                        対応するロケールが見つからない場合は FRAMEWORK による検索を行い、
+                        それでもだめなら最後は BROWSER を使用します。
+                    </p></li>
+<li><p>
+                        const <code class="code">Zend_Locale::FRAMEWORK</code> -
+                        Zend Framework がコンポーネントのデフォルトを指定できる仕組みが定まったら
+                        (予定されていますが、現在はまだありません)、
+                        この定数を使用することでデフォルト設定を選択できるようになります。
+                        対応するロケールが見つからない場合は <code class="code">ENVIRONMENT</code>
+                        による検索を行い、それでもだめなら最後は
+                        <code class="code">FRAMEWORK</code> を使用します。
+                    </p></li>
+</ol></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.interoperate"></a>15.1.5. ZF のロケール対応のクラス</h3></div></div></div>
+<p>
+            ZF では、ロケール対応のクラスは <code class="code">Zend_Locale</code>
+            を使用しています。そして、上で説明したように自動的にロケールを選択します。
+            たとえば、ZF のウェブアプリケーションで <code class="code">Zend_Date</code>
+            を使用して日付を作成すると、何もロケールを指定しなくても
+            ユーザのウェブブラウザの設定からロケール情報を取得してそれを使用します。
+        </p>
+<div class="example">
+<a name="id4847630"></a><p class="title"><b>例 15.3. 日付のデフォルトが、ウェブのユーザのロケールになる例</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+$date = new Zend_Date('2006',Zend_Date::YEAR);
+?&gt;</pre>
+</div>
+<p>
+            このデフォルトを上書きし、ロケール対応の ZF
+            コンポーネントでウェブサイトの訪問者の設定にかかわらず特定のロケールを指定するには、
+            コンストラクタの三番目の引数でロケールを明示的に指定します。
+        </p>
+<div class="example">
+<a name="id4847661"></a><p class="title"><b>例 15.4. デフォルトのロケール選択のオーバーライド</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+require_once 'Zend/Measure.php';
+
+$usLocale = new Zend_Locale('en_US');
+$date = new Zend_Date('2006',Zend_Date::YEAR, $usLocale);
+$temp = new Zend_Measure('100,10',Zend_Measure::TEMPERATURE, $usLocale);
+?&gt;</pre>
+</div>
+<p>
+            多くのオブジェクトですべて同一のデフォルトロケールを使用することがわかっている場合は、
+            それを明示的に指定すると、毎回デフォルトロケールを検索することによる
+            オーバーヘッドを回避することができます。
+        </p>
+<div class="example">
+<a name="id4847678"></a><p class="title"><b>例 15.5. デフォルトのロケールを使用する際のパフォーマンスの最適化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+require_once 'Zend/Measure.php';
+
+$locale = new Zend_Locale();
+$date = new Zend_Date('2006',Zend_Date::YEAR, $locale);
+$temp = new Zend_Measure('100,10',Zend_Measure::TEMPERATURE, $locale);
+?&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.json.objects.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.locale.functions.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">14.3. JSON オブジェクト </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 15.2. Zend_Locale の使用法</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,1075 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.3. Создание подклассов</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="prev" href="zend.controller.getting-started.html" title="7.2. Начало работы">
+<link rel="next" href="zend.controller.providedsubclasses.html" title="7.4. Готовые подклассы">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.subclassing.introduction" title="7.3.1. Введение">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.subclassing.conventions" title="7.3.2. Соглашения">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.front" title="7.3.3. Фронт-контроллер">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.request.abstract" title="7.3.4. Абстрактный класс запроса">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.router.interface" title="7.3.5. Интерфейс маршрутизатора">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.dispatcher.interface" title="7.3.6. Интерфейс диспетчера">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.action" title="7.3.7. Контроллер действий">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.response.abstract" title="7.3.8. Объект ответа">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.3. Создание подклассов</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.getting-started.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.providedsubclasses.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.subclassing"></a>7.3. Создание подклассов</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.subclassing.introduction"></a>7.3.1. Введение</h3></div></div></div>
+<p>
+            Система <code class="code">Zend_Controller</code> построена с расчетом на
+            расширение посредством написания новых классов, которые реализуют 
+            интерфейсы <code class="code">Zend_Controller_Router_Interface</code> и
+            <code class="code">Zend_Controller_Dispatcher_Interface</code>, либо расширения
+            классов <code class="code">Zend_Controller_Request_Abstract</code>,
+            <code class="code">Zend_Controller_Response_Abstract</code> и
+            <code class="code">Zend_Controller_Action</code>.
+
+
+        </p>
+<p>
+            Возможные причины для создания своих классов:
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        Существующая система маршрутизации URI не подходит в
+                        некоторых ситуациях, таких, как интеграция в
+                        существующий веб-сайт, который использует свои
+                        собственные соглашения по маршрутизации, которые не
+                        совместимы с механизмом маршрутизации, предоставляемым
+                        Zend Framework.
+
+
+                    </p></li>
+<li><p>
+                        Вам нужно реализовать маршрутизацию для чего-либо 
+                        совершенно иного. Класс
+                        <code class="code">Zend_Controller_Router</code>
+                        работает только с URI. Возможно, вы захотите
+                        использовать паттерн MVC для разработки других типов
+                        программ — таких, как консольное или CGI приложение. В
+                        случае консольного приложения специализированный
+                        объект запроса может обрабатывать аргументы в командной
+                        строке.
+
+                    </p></li>
+<li><p>
+                        Механизм, предлагаемый
+                        <code class="code">Zend_Controller_Dispatcher</code>
+                        является неподходящим. Конфигурация по умолчанию
+                        предполагает, что контроллеры являются классами, а
+                        действия — методами в этих классах. Однако есть много
+                        других стратегий для реализации этого. Примером такой
+                        стратегии может быть та, где контроллеры являются
+                        каталогами, а действия — файлами внутри этих каталогов.
+
+                    </p></li>
+<li><p>
+                        Вы хотите обеспечить дополнительные возможности, которые
+                        будут унаследованы всеми вашими контроллерами. Например,
+                        <code class="code">Zend_Controller_Action</code> по умолчанию не
+                        интегрирован с <code class="code">Zend_View</code>. Однако вы можете
+                        расширить свой собственный контроллер для реализации 
+                        этого, и его использование не потребует изменения
+                        находящегося в поставке <code class="code">Zend_Controller_Router
+                        </code> или <code class="code">Zend_Controller_Dispatcher</code>
+
+
+                    </p></li>
+<li><p>
+                        Вы хотите журналировать исключения в приложении, которые
+                        пойманы и перенаправлены к общей странице ошибок.
+                        Расширяя <code class="code">Zend_Controller_Response_Http</code>,
+                        вы можете переопределить метод <code class="code">__toString()</code>
+                        для проверки зарегистрированных исключений, добавления
+                        их в журнал и затем перенаправления на страницу ошибки.
+
+
+                    </p></li>
+</ul></div>
+<p>
+
+            Пожалуйста, будьте осторожны при переписывании важных частей
+            системы, особенно диспетчера. Одним из преимуществ
+            <code class="code">Zend_Controller</code> является то, что он устанавливает
+            общие соглашения для разрабатываемых приложений. Если изменено
+            слишком многое из поведения по умолчанию, некототорые из этих
+            преимуществ будут потеряны. Тем не менее, есть много разных
+            потребностей, и одно решение не может соответствовать им всем,
+            поэтому некоторая свобода допустима, если нужно.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.subclassing.conventions"></a>7.3.2. Соглашения</h3></div></div></div>
+<p>
+            Сильно рекомендуется следование этим соглашениям по именованию
+            и хранению файлов при создании подклассов любых классов
+            <code class="code">Zend_Controller</code>. Следование этим соглашениям будет
+            гарантировать легкое понимание вашего проекта другим программистом,
+            знакомым с Zend Framework.
+
+        </p>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.subclassing.prefix"></a>7.3.2.1. Префикс</h4></div></div></div>
+<p>
+                Классы, входящие в Zend Framework, следуют соглашению, по 
+                которому имя каждого класса начинается с "Zend_". Это префикс.
+                Мы рекомендуем называть все свои классы аналогичным образом,
+                т.е. если ваша компания называется Widget Inc., префиксом должен
+                быть"Widget_".
+
+            </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.directory.layout"></a>7.3.2.2. Структура категорий</h4></div></div></div>
+<p>
+                Классы <code class="code">Zend_Controller</code> хранятся в каталоге
+                библиотек, как показано ниже:
+
+            </p>
+<pre class="programlisting">
+/library
+  /Zend
+    /Controller
+      Action.php
+      Dispatcher.php
+      Router.php
+</pre>
+<p>
+                Когда создаете наследников от классов
+                <code class="code">Zend_Controller</code>, то рекомендуется сохранять их в
+                такой же структуре, под вашим префиксом. Это облегчит их поиск
+                для тех, кто просматривает код вашего приложения.
+
+            </p>
+<p>
+                Например, проект компании Widget Inc., который реализует только
+                свой маршрутизатор, может выглядеть следующим образом:
+
+            </p>
+<pre class="programlisting">
+/library
+  /Zend
+  /Widget
+    /Controller
+      Router.php
+      README.txt
+         </pre>
+<p>
+                Обратите внимание, что в этом примере каталог
+                <code class="code">Widget/Controller/</code> копирует каталог
+                <code class="code">Zend/Controller/</code> везде, где это возможно. В данном
+                случае это класс <code class="code">Widget_Controller_Router</code>, который
+                может быть либо подклассом <code class="code">Zend_Controller_Router</code>,
+                либо замещать его, реализуя интерфейс
+                <code class="code">Zend_Controller_Router_Interface</code>.
+
+
+            </p>
+<p>
+                Еще обратите внимание на то, что в этом примере в
+                каталоге <code class="code">Widget/Controller/</code> размещен файл
+                <code class="code">README.txt</code>. Zend сильно приветствует
+                документирование проектов посредством отдельных тестов и
+                документации для клиентов. Несмотря на это, рекомендуется еще
+                размещать простой файл <code class="code">README.txt</code>, в котором кратко
+                описываются изменения и то, как они работают.
+
+            </p>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.front"></a>7.3.3. Фронт-контроллер</h3></div></div></div>
+<p>
+            Zend_Controller_Front - класс фронт-контроллера. Он является
+            классом-синглетоном, это означает, что в любой точке выполнения кода
+            может быть доступен только один его экземпляр.
+
+        </p>
+<p>
+            При создании его подкласса, нужно, как минимум, переопределить его 
+            метод <code class="code">getInstance()</code>.
+
+        </p>
+<pre class="programlisting">
+class My_Controller_Front extends Zend_Controller_Front
+{
+    public static function getInstance()
+    {
+        if (null === self::$_instance) {
+            self::$_instance = new self();
+        }
+
+        return self::$_instance;
+    }
+}
+</pre>
+<p>
+            Переопределение метода getInstance() необходимо для того, чтобы
+            последующие вызовы <code class="code">Zend_Controller_Front::getInstance()</code>
+
+            возвращали экземпляры вашего нового подкласса вместо экземпляра
+            Zend_Controller_Front - это особенно полезно для некоторых
+            альтернативных маршрутизаторов и помощников представления
+            (view helpers).
+
+        </p>
+<p>
+            Кроме getInstance(), есть много методов, которые можно 
+            переопределить:
+
+        </p>
+<pre class="programlisting">
+    /**
+     * Удаляет все свойства экземпляра синглетона
+     *
+     * Используется в основном для тестирования; может использоваться для
+     * цепочки фронт-контроллеров
+     * 
+     * @return void
+     */
+    public function resetInstance();
+
+    /**
+     * Функция для удобства, вызывает setControllerDirectory()-&gt;setRouter()-&gt;dispatch()      
+     *
+     * В PHP 5.1.x, вызов статического метода никогда не заполняет $this,
+     * поэтому run() может вызываться после настройки своего фронт-контроллера
+     *      
+     * @param string|array $controllerDirectory Путь ко классам контроллеров
+     * или массив таких путей
+     * @return void
+     * @throws Zend_Controller_Exception если вызывается из объекта
+     */
+    static public function run($controllerDirectory);
+
+    /**
+     * Добавляет директорию контроллеров в стек директорий контроллеров
+     *
+     * Если передан агрумент $args и он является строкой, то он исползуется
+     * как ключ массива для данной директории
+     * 
+     * @param string $directory 
+     * @param mixed $args Необязательный аргумент; Если является строкой,
+     * то используется как ключ массива
+     * @return Zend_Controller_Front
+     */
+    public function addControllerDirectory($directory, $args = null);
+
+    /**
+     * Устанавливает директорию контроллеров
+     *
+     * Сохраняет директорию контроллеров для передачи диспетчеру. Параметром
+     * могут быть массив или строка, содержащая единственную директорию
+     *
+     * @param string|array $directory Путь ко классам контроллеров или массив
+     * таких путей
+     * @return Zend_Controller_Front
+     */
+    public function setControllerDirectory($directory);
+
+    /**
+     * Возвращает директории контроллеров
+     *
+     * Возвращает сохраненные директории контроллеров
+     *
+     * @return string|array
+     */
+    public function getControllerDirectory();
+
+    /**
+     * Устанавливает контроллер, используемый по умолчанию (неформатированная строка)
+     *
+     * @param string $controller
+     * @return Zend_Controller_Front
+     */
+    public function setDefaultController($controller);
+
+    /**
+     * Возвращает контроллер, используемый по умолчанию (неформатированная строка)
+     *
+     * @return string
+     */
+    public function getDefaultController();
+
+    /**
+     * Устанавливает действие, используемое по умолчанию (неформатированная строка)
+     *
+     * @param string $action
+     * @return Zend_Controller_Front
+     */
+    public function setDefaultAction($action);
+
+    /**
+     * Возвращает действие, используемое по умолчанию (неформатированная строка)
+     *
+     * @return string
+     */
+    public function getDefaultAction();
+
+    /**
+     * Устанавливает класс/объект запроса
+     *
+     * Устанавливает объект запроса. Объект запроса содержит переменные запроса.
+     *
+     * If a class name is provided, it will instantiate it
+     *
+     * @param string|Zend_Controller_Request_Abstract $request
+     * @throws Zend_Controller_Exception Генерируется в случае неверного класса запроса
+     * @return Zend_Controller_Front
+     */
+    public function setRequest($request);
+
+    /**
+     * Возвращает объект запроса
+     *
+     * @return null|Zend_Controller_Request_Abstract
+     */
+    public function getRequest();
+
+    /**
+     * Устанавливает объект/класс маршрутизатора
+     *
+     * Устанавливает объект маршрутизатора. Маршрутизатор должен обрабатывать
+     * запросы на нахождение соответствующих контроллера и действия
+     *
+     * Если передано имя класса, то инстанцируется маршрутизатор с любыми
+     * параметрами, зарегистрированными через {@link setParam()} или
+     * {@link setParams()}.
+     *
+     * @param string|Zend_Controller_Router_Interface $router
+     * @throws Zend_Controller_Exception Генерируется в случае неверного класса маршрутизатора
+     * @return Zend_Controller_Front
+     */
+    public function setRouter($router);
+
+    /**
+     * Возвращает объект маршрутизатора.
+     *
+     * Инстанцирует Zend_Controller_Router, если маршрутизатор не был установлен.
+     *
+     * @return null|Zend_Controller_Router_Interface
+     */
+    public function getRouter();
+
+    /**
+     * Устанавливает базовый URL, используемый для запросов
+     *
+     * Используется для установки базовой части URL в REQUEST_URI, которая
+     * используется позднее при определении PATH_INFO и т.д., Примеры:
+     * - /admin
+     * - /myapp
+     * - /subdir/index.php
+     *
+     * URL не должне включать полный URI. Не используйте:
+     * - http://example.com/admin
+     * - http://example.com/myapp
+     * - http://example.com/subdir/index.php
+     *
+     * Если передано значение null, то используется автоопределение (по умолчанию).
+     * 
+     * @param string $base
+     * @return Zend_Controller_Front
+     * @throws Zend_Controller_Exception для $base, не являющегося строкой
+     */
+    public function setBaseUrl($base = null);
+
+    /**
+     * Возвращает установленный на данный момент базовый URL
+     * 
+     * @return string
+     */
+    public function getBaseUrl();
+
+    /**
+     * Устанавливает объект диспетчера. Диспетчер должен принимать объект
+     * запроса, инстанцировать контроллер, и вызывать метод действия в этом
+     * контроллере
+     *
+     * @param Zend_Controller_Dispatcher_Interface $dispatcher
+     * @return Zend_Controller_Front
+     */
+    public function setDispatcher(Zend_Controller_Dispatcher_Interface $dispatcher);
+
+    /**
+     * Возвращает объект диспетчера.
+     *
+     * @return Zend_Controller_DispatcherInteface
+     */
+    public function getDispatcher();
+
+    /**
+     * Устанавливает объект/класс ответа
+     *
+     * Устанавливает объект ответа. Объект ответа является контейнером для
+     * ответа действия и заголовков.
+     *
+     * Если передано имя класса, то инстанцируется объект ответа.
+     *
+     * @param string|Zend_Controller_Response_Abstract $response
+     * @throws Zend_Controller_Exception если передан неверный класс ответа
+     * @return Zend_Controller_Front
+     */
+    public function setResponse($response);
+
+    /**
+     * Возвращает объект ответа.
+     *
+     * @return null|Zend_Controller_Response_Abstract
+     */
+    public function getResponse();
+
+    /**
+     * Добавляет или изменяет параметр, используемый при инстанцировании
+     * контроллера действий
+     *
+     * @param string $name
+     * @param mixed $value
+     * @return Zend_Controller_Front
+     */
+    public function setParam($name, $value);
+
+    /**
+     * Устанавливает параметры для передачи конструктору контроллера действий
+     *
+     * @param array $params
+     * @return Zend_Controller_Front
+     */
+    public function setParams(array $params);
+
+    /**
+     * Возвращает один параметр из стека параметров контроллера
+     * 
+     * @param string $name 
+     * @return mixed
+     */
+    public function getParam($name);
+
+    /**
+     * Возвращает параметры инстанцирования контроллера действий.
+     *
+     * @return array
+     */
+    public function getParams();
+
+    /**
+     * Очищает стек параметров контроллера действий.
+     *
+     * По умолчанию удаляет все параметры. Если передано имя параметра, то
+     * удаляется только этот параметр; если передан массив имен параметров, то
+     * удаляются все эти параметры.
+     * 
+     * @param null|string|array один ключ или массив ключей параметров
+     * для удаления
+     * @return Zend_Controller_Front
+     */
+    public function clearParams($name = null);
+
+    /**
+     * Регистрирует плагин.
+     *
+     * @param Zend_Controller_Plugin_Abstract $plugin
+     * @return Zend_Controller_Front
+     */
+    public function registerPlugin(Zend_Controller_Plugin_Abstract $plugin);
+
+    /**
+     * Отменяет регистрацию плагина.
+     *
+     * @param Zend_Controller_Plugin_Abstract $plugin
+     * @return Zend_Controller_Front
+     */
+    public function unregisterPlugin(Zend_Controller_Plugin_Abstract $plugin);
+
+    /**
+     * Устанавливает, должны ли исключения, происходящие в цикле
+     * диспетчеризации, генерироваться как обычно или отлавливаться и включаться
+     * в объект ответа.
+     *
+     * Поведение по умолчанию - отлов исключений и включение в объект ответа;
+     * вызывайте этот метод, чтобы они генерировались как обычно.
+     *
+     * @param boolean $flag По умолчанию равно true
+     * @return boolean Возвращает текущую установку
+     */
+    public function throwExceptions($flag = null);
+
+    /**
+     * Устанавливает, должен ли {@link dispatch()} возвращать объект ответа без
+     * вывода. По умолчанию вывод производится автоматически и метод dispatch()
+     * ничего не возвращает.
+     * 
+     * @param boolean $flag 
+     * @return boolean Возвращает текущую установку
+     */
+    public function returnResponse($flag = null);
+
+    /**
+     * Производит обработку HTTP запроса 
+     *
+     * @param Zend_Controller_Request_Abstract|null $request
+     * @param Zend_Controller_Response_Abstract|null $response
+     * @return void|Zend_Controller_Response_Abstract Возвращает объект ответа,
+     * если returnResponse() == true
+     */
+    public function dispatch(Zend_Controller_Request_Abstract $request = null, Zend_Controller_Response_Abstract $response = null);
+</pre>
+<p>
+            Назначение фронт-контроллера состоит в том, чтобы установить
+            переменные запроса, произвести маршрутизацию поступившего запроса и
+            запустить действия, соответствующие этому запросу. В конце
+            фронт-контроллер собирает все ответы и возвращает их.
+
+        </p>
+<p>
+            Основной целью расширения класса фронт-контроллера может быть
+            изменение логики одного из методов доступа (например, загрузка
+            другого маршрутизатори и диспетчера по умолчанию или определение
+            другой логики обработки директории контроллеров) или переопределение
+            того, как должны происходить маршрутизация и диспетчеризация.  
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.request.abstract"></a>7.3.4. Абстрактный класс запроса</h3></div></div></div>
+<p>
+            Абстрактный класс <code class="code">Zend_Controller_Request_Abstract</code>
+            определяет некоторые методы:
+            
+
+        </p>
+<pre class="programlisting">
+    /**
+     * @return string
+     */
+    public function getControllerName();
+
+    /**
+     * @param string $value 
+     * @return self
+     */
+    public function setControllerName($value);
+
+    /**
+     * @return string
+     */
+    public function getActionName();
+
+    /**
+     * @param string $value 
+     * @return self
+     */
+    public function setActionName($value);
+
+    /**
+     * @return string
+     */
+    public function getControllerKey();
+
+    /**
+     * @param string $key 
+     * @return self
+     */
+    public function setControllerKey($key);
+
+    /**
+     * @return string
+     */
+    public function getActionKey();
+
+    /**
+     * @param string $key 
+     * @return self
+     */
+    public function setActionKey($key);
+
+    /**
+     * @param string $key 
+     * @return mixed
+     */
+    public function getParam($key);
+
+    /**
+     * @param string $key 
+     * @param mixed $value 
+     * @return self
+     */
+    public function setParam($key, $value);
+
+    /**
+     * @return array
+     */
+     public function getParams();
+
+    /**
+     * @param array $array 
+     * @return self
+     */
+    public function setParams(array $array);
+
+    /**
+     * @param boolean $flag 
+     * @return self
+     */
+    public function setDispatched($flag = true);
+
+    /**
+     * @return boolean
+     */
+    public function isDispatched();
+}
+</pre>
+<p>
+            Объект запроса является контейнером для переменных запроса. Цепочке
+            контроллеров нужно знать только то, как устанавливать и извлекать
+            контроллер, действие, необязательные параметры и флаг
+            диспетчеризации. По умолчанию запрос будет искать в своих
+            параметрах определение контроллера и действия, используя ключи
+            контроллера или действия.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.router.interface"></a>7.3.5. Интерфейс маршрутизатора</h3></div></div></div>
+<p>
+            Интерфейс <code class="code">Zend_Controller_Router_Interface</code> определяет
+            только один метод:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+  /**
+   * @param  Zend_Controller_Request_Abstract $request
+   * @throws Zend_Controller_Router_Exception
+   * @return Zend_Controller_Request_Abstract
+   */
+  public function route(Zend_Controller_Request_Abstract $request);
+
+?&gt;   </pre>
+<p>
+
+            Маршрутизация производится только один раз - в то время,
+            когда запрос получен системой. Назначением маршрутизатора является
+            определение контроллера, действия и необязательных параметров,
+            основываясь на переменных запроса, и установка их в запросе. Объект
+            запроса затем передается диспетчеру. Если не найден маршрут,
+            соответствующий запросу, то маршрутизатор ничего не должен делать с
+            объектом запроса.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.dispatcher.interface"></a>7.3.6. Интерфейс диспетчера</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller_Front</code> сначала вызывает
+            маршрутизатор для получения первого доступного диспетчеризации
+            действия в запросе. Затем он входит в цикл диспетчеризации
+
+        </p>
+<p>
+            В этом цикле он сначала устанавливает флаг диспетчеризации в объекте
+            запроса и затем обрабатывает запрос (инстанцирует контроллер,
+            вызывает его метод действия) Если метод действия (или методы
+            pre/postDispatch в установленном плагине) сбрасывают флаг
+            диспетчеризации, то фронт-контроллер будет выполнять другую итерацию
+            в цикле диспетчеризации с тем действием, которое установлено на
+            данный момент в объекте запроса. Это позволяет последовательно
+            обрабатывать действия до тех пор, пока вся работа не будет
+            выполнена. 
+
+        </p>
+<p>
+            Интерфейс <code class="code">Zend_Controller_Dispatcher_Interface</code>
+            определяет два метода:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+/**
+ * @param  Zend_Controller_Request_Abstract $request
+ * @return boolean
+ */
+public function isDispatchable(Zend_Controller_Request_Abstract $request);
+
+?&gt;   </pre>
+<p>
+            <code class="code">isDispatchable()</code> проверяет, является ли запрос
+            пригодным к обработке. Если является, то возвращается
+            <code class="code">TRUE</code>, иначе <code class="code">FALSE</code>. Определение того, что
+            пригодно для обработки диспетчером, зависит от класса, реализующего
+            интерфейс. В случае реализации по умолчанию
+            (<code class="code">Zend_Controller_Dispatcher</code>)
+            это означает, что файл контроллера существует, класс существует
+            в этом файле и метод, реализующий действие, существует в этом
+            классе.
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+/**
+ * @param  Zend_Controller_Request_Abstract $route
+ * @return Zend_Controller_Request_Abstract
+ */
+public function dispatch(Zend_Controller_Request_Abstract $request);
+
+?&gt;   </pre>
+<p>
+            <code class="code">dispatch()</code> является основным рабочим методом. Этот
+            метод должен выполнять действие контроллера. Он должен возвращать
+            объект диспетчеризации.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action"></a>7.3.7. Контроллер действий</h3></div></div></div>
+<p>
+            Zend_Controller_Action осуществляет контроль за различными
+            действиями в приложении. Абстрактный класс предоставляет следующие
+            методы:
+
+        </p>
+<pre class="programlisting">
+    /**
+     * @param Zend_Controller_Request_Abstract $request Объект запроса
+     * @param Zend_Controller_Response_Abstract $response Объект ответа
+     * @param array $args Необязательный ассоциативный массив
+     * конфигурационных переменных и переменных среды
+     */
+    public function __construct(Zend_Controller_Request_Abstract $request, Zend_Controller_Response_Abstract $response, array $args = array());
+
+    /**
+     * @return void
+     */
+    public function init();
+
+    /**
+     * @return Zend_Controller_Request_Abstract
+     */
+    public function getRequest();
+
+    /**
+     * @param Zend_Controller_Request_Abstract $request 
+     * @return self
+     */
+    public function setRequest(Zend_Controller_Request_Abstract $request);
+
+    /**
+     * @return Zend_Controller_Response_Abstract
+     */
+    public function getResponse();
+
+    /**
+     * @param Zend_Controller_Response_Abstract $response 
+     * @return self
+     */
+    public function setResponse(Zend_Controller_Response_Abstract $response);
+
+    /**
+     * @return array
+     */
+    public function getInvokeArgs();
+
+    /**
+     * @return mixed
+     */
+    public function getInvokeArg($name);
+
+    public function preDispatch();
+
+    public function postDispatch();
+
+    /**
+     * @param string $methodName
+     * @param array $args
+     */
+    public function __call($methodName, $args);
+
+    /**
+     * @param null|Zend_Controller_Request_Abstract $request Объект запроса для
+     * использования (необязательный)
+     * @param null|Zend_Controller_Response_Abstract $response Объект запроса 
+     * для использования (необязательный)
+     * @return Zend_Controller_Response_Abstract
+     */
+    public function run(Zend_Controller_Request_Abstract $request = null, Zend_Controller_Response_Abstract $response = null);
+</pre>
+<p>
+            Конструктор требует передачи объектов запроса и ответа, также он
+            принимает массив любых дополнительных конфигурационных аргументов в
+            качестве третьего аргумента. Этот массив содержит параметры,
+            зарегистрированные через методы <code class="code">setParam()</code> или
+            <code class="code">setParams()</code> фронт-контроллера. В конце своего
+            выполнения конструктор передает управление методу
+            <code class="code">init()</code>.   
+
+        </p>
+<p>
+            Несмотря на то, что вы можете переопределять конструктор, мы
+            советуем выполнять любые действия по инициализации в методе
+            <code class="code">init()</code> для того, чтобы обеспечить должную регистрацию
+            объектов запроса и ответа.   
+
+        </p>
+<p>
+            Получить доступ к любым конфигурационным аргументам,
+            переданным конструктору, можно через методы
+            <code class="code">getInvokeArg()</code> и <code class="code">getInvokeArgs()</code>.
+            Рекомендуется использовать эти аргументы для передачи в такие
+            объекты, как объект вида, аутентификации/авторизации или реестра
+            объектов. Например:  
+
+
+        </p>
+<pre class="programlisting">
+$front = Zend_Controller_Front::getInstance();
+$front-&gt;setParam('view', new Zend_View())
+      -&gt;setControllerDirectory($config-&gt;controller-&gt;directory);
+$response = $front-&gt;dispatch();
+
+// Пример контроллера действия:
+class FooController extends Zend_Controller_Action
+{
+    protected $_view = null;
+
+    public function init()
+    {
+        $this-&gt;_view = $this-&gt;getInvokeArg('view');
+    }
+}
+</pre>
+<p>
+            Когда действие запущено диспетчером, можно выполнять обработку до и
+            после действия с помощью методов <code class="code">preDispatch()</code> и
+            <code class="code">postDispatch()</code>. По умолчанию они не выполняют никакой
+            работы.
+
+
+        </p>
+<p>
+            Метод <code class="code">__call()</code> принимает вызовы незарегистрированных в
+            классе действий. По умолчанию он вызывает исключение, если действие
+            не определено. Это должно происходить только тогда, когда не
+            определен метод действия по умолчанию.
+
+        </p>
+<p>
+            По умолчанию соглашение по именованию методов действий подразумевает
+            имя метода следующего вида: lowercaseAction, где 'lowercase'
+            обозначает имя действия, а 'Action' обозначает, что этот метод
+            является методом действия. Таким образом, URL
+            <code class="code">http://framework.zend.com/foo/bar</code> будет вызывать
+            действие <code class="code">FooController::barAction()</code>.
+
+
+        </p>
+<p>
+            Контроллеры действия могут также использоваться как контроллеры
+            страниц. Наиболее типичное использование может быть таким, как
+            в коде ниже:
+
+        </p>
+<pre class="programlisting">
+$controller = new FooController(
+    new Zend_Controller_Request_Abstract(),
+    new Zend_Controller_Response_Abstract()
+);
+$controller-&gt;run();
+</pre>
+<div class="note"><table border="0" summary="Note: Использование фронт-контроллера и контроллеров действии">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Использование фронт-контроллера и контроллеров действии</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Мы рекомендуем использовать комбинацию фронт-контроллера и
+                контроллеров действии вместо контроллера страниц для содействия
+                написанию приложений, которые будут взаимодействовать друг с
+                другом.
+
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.response.abstract"></a>7.3.8. Объект ответа</h3></div></div></div>
+<p>
+            Объект ответа служит для сбора содержимого и заголовков из 
+            вызываемых действий и возвращает их клиенту. Он имеет следующие
+            методы:
+
+        </p>
+<pre class="programlisting">
+    /**
+     * @param string $name Имя заголовка
+     * @param string $value Значение заголовка
+     * @param boolean $replace Должен ли или нет заменять собой уже
+     * зарегистрированный в объекте заголовок с тем же именем
+     * @return self
+     */
+    public function setHeader($name, $value, $replace = false);
+
+    /**
+     * @return array
+     */
+    public function getHeaders();
+
+    /**
+     * @return void
+     */
+    public function clearHeaders();
+
+    /**
+     * Отправляет все заголовки
+     * @return void
+     */
+    public function sendHeaders();
+
+    /**
+     * @param string $content
+     * @return self
+     */
+    public function setBody($content);
+
+    /**
+     * @param string $content
+     * @return self
+     */
+    public function appendBody($content);
+
+    /**
+     * @return string
+     */
+    public function getBody();
+
+    /**
+     * Выводит контент
+     * @return void
+     */
+    public function outputBody();
+
+    /**
+     * @param Exception $e 
+     * @return self
+     */
+    public function setException(Exception $e);
+
+    /**
+     * @return null|Exception
+     */
+    public function getException();
+
+    /**
+     * @return boolean
+     */
+    public function isException();
+
+    /**
+     * @param boolean $flag
+     * @return boolean
+     */
+    public function renderExceptions($flag = null);
+
+    /**
+     * @return string
+     */
+    public function __toString();
+</pre>
+<p>
+            Метод <code class="code">setBody()</code> заменяет весь контент; мы советуем
+            использовать вместо него метод <code class="code">appendBody()</code>.
+            <code class="code">__toString()</code> должен выводить весь контент и отправлять
+            все заголовки. 
+
+
+        </p>
+<p>
+            В объекте ответа также отлавливаются и регистрируются исключения
+            из контроллера действий (до тех пор, пока не будет включено
+            <code class="code">Zend_Controller_Front::throwExceptions()</code>). Метод
+            <code class="code">isException()</code> должен возвращать булево значение,
+            показывающее, было ли сгенерировано исключение или нет.
+            <code class="code">renderExceptions()</code> используется для определения того,
+            должен ли метод <code class="code">__toString()</code> выводить исключение, если
+            оно было поймано.
+
+
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.getting-started.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.providedsubclasses.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.2. Начало работы </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 7.4. Готовые подклассы</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

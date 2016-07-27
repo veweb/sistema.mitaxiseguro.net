@@ -1,0 +1,291 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 26. Zend_Uri</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="index.html" title="Programmer's Reference Guide">
+<link rel="prev" href="zend.session.theory.html" title="25.5. Theory">
+<link rel="next" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="section" href="zend.uri.html#zend.uri.chapter" title="26.1. Zend_Uri">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 26. Zend_Uri</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.session.theory.html">Prev</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.validate.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.uri"></a>Chapter 26. Zend_Uri</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.uri.html#zend.uri.chapter">26.1. Zend_Uri</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.overview">26.1.1. Overview</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.creation">26.1.2. Creating a New URI</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.manipulation">26.1.3. Manipulating an Existing URI</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.validation">26.1.4. URI Validation</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.instance-methods">26.1.5. Common Instance Methods</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.uri.chapter"></a>26.1. Zend_Uri</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.overview"></a>26.1.1. Overview</h3></div></div></div>
+<p>
+      <code class="code">Zend_Uri</code> is a component that aids in manipulating and
+      validating <a href="http://www.w3.org/Addressing/" target="_top">Uniform Resource
+      Identifiers</a> (URIs). <code class="code">Zend_Uri</code> exists primarily to
+      service other components such as <code class="code">Zend_Http_Client</code> but is
+      also useful as a standalone utility.
+    </p>
+<p>
+      URIs always begin with a scheme, followed by a colon. The construction
+      of the many different schemes varies significantly.  The
+      <code class="code">Zend_Uri</code> class provides a factory that returns a subclass of
+      itself which specializes in each scheme.  The subclass
+      will be named <code class="code">Zend_Uri_&lt;scheme&gt;</code>, where
+      <code class="code">&lt;scheme&gt;</code> is the scheme lowercased with the first
+      letter capitalized. An exception to this rule is HTTPS, which is also
+      handled by <code class="code">Zend_Uri_Http</code>.
+    </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.creation"></a>26.1.2. Creating a New URI</h3></div></div></div>
+<p>
+      <code class="code">Zend_Uri</code> will build a new URI from scratch if only a scheme
+      is passed to <code class="code">Zend_Uri::factory()</code>.
+    </p>
+<div class="example">
+<a name="id4895307"></a><p class="title"><b>Example 26.1. Creating a New URI with <code class="code">Zend_Uri::factory()</code></b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+// To create a new URI from scratch, pass only the scheme.
+$uri = Zend_Uri::factory('http');
+
+// $uri instanceof Zend_Uri_Http
+ 
+?&gt;</pre>
+</div>
+<p>
+      To create a new URI from scratch, pass only the scheme to
+      <code class="code">Zend_Uri::factory()</code><sup>[<a name="id4895334" href="#ftn.id4895334">11</a>]</sup> .
+      If an unsupported scheme is passed, a <code class="code">Zend_Uri_Exception</code>
+      will be thrown.
+    </p>
+<p>
+      If the scheme or URI passed is supported,
+      <code class="code">Zend_Uri::factory()</code> will return a subclass of itself that
+      specializes in the scheme to be created.
+    </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.manipulation"></a>26.1.3. Manipulating an Existing URI</h3></div></div></div>
+<p>
+      To manipulate an existing URI, pass the entire URI to
+      <code class="code">Zend_Uri::factory()</code>. 
+    </p>
+<div class="example">
+<a name="id4895375"></a><p class="title"><b>Example 26.2. Manipulating an Existing URI with <code class="code">Zend_Uri::factory()</code></b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+// To manipulate an existing URI, pass it in.
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+// $uri instanceof Zend_Uri_Http
+ 
+?&gt;</pre>
+</div>
+<p>
+      The URI will be parsed and validated. If it is found to be invalid, a
+      <code class="code">Zend_Uri_Exception</code> will be thrown immediately. Otherwise,
+      <code class="code">Zend_Uri::factory()</code> will return a subclass of itself that
+      specializes in the scheme to be manipulated.
+    </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.validation"></a>26.1.4. URI Validation</h3></div></div></div>
+<p>
+      The <code class="code">Zend_Uri::check()</code> function can be used if only
+      validation of an existing URI is needed.
+    </p>
+<div class="example">
+<a name="id4895430"></a><p class="title"><b>Example 26.3. URI Validation with <code class="code">Zend_Uri::check()</code></b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+// Validate whether a given URI is well formed
+$valid = Zend_Uri::check('http://uri.in.question');
+
+// $valid is TRUE for a valid URI, or FALSE otherwise.
+ 
+?&gt;</pre>
+</div>
+<p>
+      <code class="code">Zend_Uri::check()</code> returns a boolean,
+      which is more convenient than using <code class="code">Zend_Uri::factory()</code>
+      and catching the exception.
+    </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.instance-methods"></a>26.1.5. Common Instance Methods</h3></div></div></div>
+<p>
+      Every instance of a <code class="code">Zend_Uri</code> subclass (e.g.
+      <code class="code">Zend_Uri_Http</code>) has several instance methods that are useful
+      for working with any kind of URI.
+    </p>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.uri.instance-methods.getscheme"></a>26.1.5.1. Getting the Scheme of the URI</h4></div></div></div>
+<p>
+        The scheme of the URI is the part of the URI that precedes the colon.  For example,
+        the scheme of <code class="code">http://www.zend.com</code> is <code class="code">http</code>.
+      </p>
+<div class="example">
+<a name="id4895511"></a><p class="title"><b>Example 26.4. Getting the Scheme from a <code class="code">Zend_Uri_*</code> Object</b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+$scheme = $uri-&gt;getScheme();  // "http"
+ 
+?&gt;</pre>
+</div>
+<p>
+        The <code class="code">getScheme()</code> instance method returns only the scheme part of
+        the URI object.
+      </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.uri.instance-methods.geturi"></a>26.1.5.2. Getting the Entire URI</h4></div></div></div>
+<div class="example">
+<a name="id4895552"></a><p class="title"><b>Example 26.5. Getting the Entire URI from a <code class="code">Zend_Uri_*</code> Object</b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+echo $uri-&gt;getUri();  // "http://www.zend.com"
+ 
+?&gt;</pre>
+</div>
+<p>
+        The <code class="code">getUri()</code> method returns the string representation
+        of the entire URI.
+      </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.uri.instance-methods.valid"></a>26.1.5.3. Validating the URI</h4></div></div></div>
+<p>
+        <code class="code">Zend_Uri::factory()</code> will always validate any URI passed
+        to it and will not instantiate a new <code class="code">Zend_Uri</code> subclass
+        if the given URI is found to be invalid. However, after the
+        <code class="code">Zend_Uri</code> subclass is instantiated for a new URI or a
+        valid existing one, it is possible that the URI can then later become
+        invalid after it is manipulated.
+      </p>
+<div class="example">
+<a name="id4895613"></a><p class="title"><b>Example 26.6. Validating a <code class="code">Zend_Uri_*</code> Object</b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+$isValid = $uri-&gt;valid();  // TRUE
+ 
+?&gt;</pre>
+</div>
+<p>
+        The <code class="code">valid()</code> instance method provides a means to check that the
+        URI object is still valid.
+      </p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4895334" href="#id4895334">11</a>] </sup>At the time of writing,
+      Zend_Uri only supports the HTTP and HTTPS schemes.</p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.session.theory.html">Prev</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.validate.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">25.5. Theory </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 27. Zend_Validate</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

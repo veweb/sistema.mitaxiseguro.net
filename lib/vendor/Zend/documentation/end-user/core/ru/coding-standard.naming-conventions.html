@@ -1,0 +1,260 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.3. Соглашения по именованию</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="prev" href="coding-standard.php-file-formatting.html" title="A.2. Форматирование PHP-файлов">
+<link rel="next" href="coding-standard.coding-style.html" title="A.4. Стиль кодирования">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes" title="A.3.1. Классы">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces" title="A.3.2. Интерфейсы">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames" title="A.3.3. Имена файлов">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.functions-and-methods" title="A.3.4. Функции и методы">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.variables" title="A.3.5. Переменные">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.constants" title="A.3.6. Константы">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.3. Соглашения по именованию</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="coding-standard.php-file-formatting.html">Пред.</a> </td>
+<th width="60%" align="center">Приложение A. Стандарт кодирования на PHP в Zend Framework'е</th>
+<td width="20%" align="right"> <a accesskey="n" href="coding-standard.coding-style.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="coding-standard.naming-conventions"></a>A.3. Соглашения по именованию</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.classes"></a>A.3.1. Классы</h3></div></div></div>
+<p>
+                Zend Framework использует схему именования классов, в 
+                соответсвтвии с которой имена классов напрямую указывают на 
+                директории, где они находятся. Корневой директорией Zend 
+                Framework'а является директория "Zend/", в которой иерархически 
+                расположены все классы.
+            </p>
+<p>
+                Имена классов могут содержать только буквенно-числовые символы. 
+                Числа допустимы в именах классов, но не приветствуются. 
+                Символы нижнего подчеркивания допустимы в местах разделителей 
+                пути - имя файла "Zend/Db/Table.php" должно указывать на класс 
+                с именем "Zend_Db_Table".
+            </p>
+<p>
+                Если имя класса состоит из более чем одного слова, то первая 
+                буква каждого слова должна быть заглавной. Последующие 
+                заглавные буквы недопустимы, например, имя класса "Zend_PDF" - 
+                недопустимо, в то время как имя "Zend_Pdf" допустимо.
+            </p>
+<p>
+                Классы Zend Framework'а написанных Zend'ом или одной из 
+                участвующих компаний-партнеров и распространяемых с фреймворком 
+                должны всегда начинаться с префикса "Zend_" и должны 
+                располагаться в директории "Zend/" в соответствии с иерархией.
+            </p>
+<p>
+                Ниже примеры допустимых имен классов:
+
+                </p>
+<pre class="programlisting">
+Zend_Db
+
+Zend_View
+
+Zend_View_Helper
+</pre>
+<p>
+
+                <span class="emphasis"><em>ВАЖНО:</em></span> Код, который оперирует с фреймворком, 
+                но не является его частью, например, код написанный пользователем 
+                фреймворка и это не компания Zend или один из партнеров по 
+                фреймворку, не должен начинаться с префикса "Zend_".
+            </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.interfaces"></a>A.3.2. Интерфейсы</h3></div></div></div>
+<p>
+                Интерфейсы должны следовать той же схеме именования, как и 
+                классы (смотрите выше), однако должны заканчиваться 
+                словом "Interface", как в следующих примерах:
+
+                </p>
+<pre class="programlisting">
+Zend_Log_Adapter_Interface
+Zend_Controller_Dispatcher_Interface</pre>
+<p>
+            </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.filenames"></a>A.3.3. Имена файлов</h3></div></div></div>
+<p>
+                Для файлов допустимы буквенно-числовые символы, символы нижнего 
+                подчеркивания и тире ("-"). Пробелы запрещены.
+            </p>
+<p>
+                Любой файл содержащий PHP-код должен иметь расширение ".php". 
+                Это примеры показывают допустимые имена файлов для классов из 
+                примеров в секции выше:
+
+                </p>
+<pre class="programlisting">
+Zend/Db.php
+
+Zend/Controller/Front.php
+
+Zend/View/Helper/FormRadio.php</pre>
+<p>
+
+                Имена файлов отражаются на имена классов, как описано выше.
+            </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.functions-and-methods"></a>A.3.4. Функции и методы</h3></div></div></div>
+<p>
+                Имена функций могут содержать буквенно-числовые символы. 
+                Символы нижнего подчеркивания не разрешены. Числа разрешены в 
+                именах функций, но не приветствуются.
+            </p>
+<p>
+                Имена функций должны всегда начинатся с буквы в нижнем регистре. 
+                Когда имя функции состоит из более чем одного слова, первая 
+                буква каждого нового слова должна быть заглавной. Это обычно 
+                называется "верблюжьей" нотацией.
+            </p>
+<p>
+                Многословность приветствуется. Имена функций должны быть 
+                настолько говорящими, насколько это практично для повышения 
+                понимаемости кода.
+            </p>
+<p>
+                Это примеры допустимых имен функций:
+
+                </p>
+<pre class="programlisting">
+filterInput()
+
+getElementById()
+
+widgetFactory()</pre>
+<p>
+            </p>
+<p>
+                Для объектно-ориентированного программирования принято, чтобы 
+                методы доступа имели префикс "get" или "set". 
+                Когда используются шаблоны проектирования, такие, как "синглтон" 
+                или "фабрика", имена методов должны содержать имя шаблона, чтобы
+                можно было быстро узнать шаблон.
+            </p>
+<p>
+                Функции в глобальной области видимости ("плавающие функции") 
+                допустимы, но не приветствуются. Рекомендуется обрамлять такие 
+                функции в статические классы.
+            </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.variables"></a>A.3.5. Переменные</h3></div></div></div>
+<p>
+                Имена переменных могут содержать буквенно-числовые символы. 
+                Символы нижнего подчеркивания не разрешены. Числа разрешены в 
+                именах переменных, но не приветствуются.
+            </p>
+<p>
+                Для переменных - членов классов, определенных с помощью 
+                префиксов области видимости "private" или "protected", первый 
+                символ имени должен быть один символ нижнего подчеркивания. Это 
+                единственное допустимое использование символа нижнего 
+                подчеркивания в имени. Переменные - члены классов определенные 
+                с помощью префикса области видимости "public" никогда не должны 
+                начинаться с символа нижнего подчеркивания.
+            </p>
+<p>
+                Как и имена функций (смотрите секцию 3.3 выше) имена переменных 
+                должны начинаться с буквы в нижнем регистре и следовать 
+                "верблюжьей" нотации.
+            </p>
+<p>
+                Многословность приветствуется. Имена переменных должны быть 
+                настолько говорящими, насколько это практично. Краткие имена 
+                переменных, такие как "$i" и "$n" не приветствуются нигде, 
+                кроме как в контексте маленьких циклов. Если цикл содержит 
+                более 20 строк кода, то переменные для индексов должны иметь
+                более говорящие имена.
+            </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.constants"></a>A.3.6. Константы</h3></div></div></div>
+<p>
+                Константы могут содержать буквенно-числовые символы и символы 
+                нижнего подчеркивания. Числа разрешены в именах констант.
+            </p>
+<p>
+                Имена констант должны быть в верхнем регистре.
+            </p>
+<p>
+                Константы должны быть определены как члены классов с 
+                использованием ключевого слова "const". Определение констант в 
+                глобальной области видимости с помощью "define" допустимо, но 
+                не рекомендуется.
+            </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="coding-standard.php-file-formatting.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="coding-standard.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="coding-standard.coding-style.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">A.2. Форматирование PHP-файлов </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> A.4. Стиль кодирования</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

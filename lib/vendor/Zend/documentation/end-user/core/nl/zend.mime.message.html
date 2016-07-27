@@ -1,0 +1,151 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>19.2. Zend_Mime_Message</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="prev" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="next" href="zend.mime.part.html" title="19.3. Zend_Mime_Part">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.mime.message.html#zend.mime.message.introduction" title="19.2.1. Inleiding">
+<link rel="subsection" href="zend.mime.message.html#zend.mime.message.instantiation" title="19.2.2. Instantiëring">
+<link rel="subsection" href="zend.mime.message.html#zend.mime.message.addparts" title="19.2.3. MIME Delen Toevoegen">
+<link rel="subsection" href="zend.mime.message.html#zend.mime.message.bondary" title="19.2.4. Boundary afhandeling">
+<link rel="subsection" href="zend.mime.message.html#zend.mime.message.parse" title="19.2.5. Een string parsen om een Zend_Mime_Message object te maken 
+        (experimenteel)">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">19.2. Zend_Mime_Message</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mime.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 19. Zend_Mime</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.mime.part.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mime.message"></a>19.2. Zend_Mime_Message</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.message.introduction"></a>19.2.1. Inleiding</h3></div></div></div>
+<p><code class="code">Zend_Mime_Message</code> stelt een MIME compatibel bericht voor 
+		  dat één of meer gescheiden delen (voorgesteld als 
+		  <a href="zend.mime.part.html" title="19.3. Zend_Mime_Part"><code class="code">Zend_Mime_Part</code></a> objecten) 
+		  kan bevatten. Je kan MIME compatibele multipart berichten genereren van 
+		  MimeParts met <code class="code">Zend_Mime_Message</code>. Encodering en boundary worden 
+		  transparant door de klasse afgehandeld. <code class="code">Zend_Mime_Message</code> objecten 
+		  kunnen ook van opgegeven strings worden opgebouwd (experimenteel). Gebruikt door 
+		  <a href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail"><code class="code">Zend_Mail</code></a>.
+		  </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.message.instantiation"></a>19.2.2. Instantiëring</h3></div></div></div>
+<p>
+            Er is geen expliciete constructor voor <code class="code">Zend_Mime_Message</code>.
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.message.addparts"></a>19.2.3. MIME Delen Toevoegen</h3></div></div></div>
+<p><a href="zend.mime.part.html" title="19.3. Zend_Mime_Part"><code class="code">Zend_Mime_Part</code></a>
+        objecten kunnen aan een gegeven <code class="code">Zend_Mime_Message</code> object worden toegevoegd 
+        door <code class="code">-&gt;addPart($part)</code> op te roepen</p>
+<p>De methode <code class="code">-&gt;getParts()</code> geeft een array met alle delen 
+        in <code class="code">Zend_Mime_Message</code> terug. De <a href="zend.mime.part.html" title="19.3. Zend_Mime_Part">
+		<code class="code">Zend_Mime_Part</code></a> objecten kunnen dan worden gewijzigd vermits ze 
+		als referenties in de array zijn opgeslaan. Indien delen aan de array worden 
+		toegevoegd, of de volgorde ervan word gewijzigd, moet de array terug aan 
+		<a href="zend.mime.part.html" title="19.3. Zend_Mime_Part"><code class="code">Zend_Mime_Part</code></a> worden gegeven 
+		door <code class="code">-&gt;setParts($partsArray)</code> op te roepen.</p>
+<p>De functie <code class="code">-&gt;isMultiPart()</code> zal true teruggeven als
+        meer dan 1 deel in het Zend_Mime_Message object is geregistreerd en dat
+        object dus een Multipart-Mime-Message zou genereren bij weergave.</p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.message.bondary"></a>19.2.4. Boundary afhandeling</h3></div></div></div>
+<p><code class="code">Zend_Mime_Message</code> maakt en gebruikt meestal zijn eigen
+        <code class="code">Zend_Mime</code> object om een boundary te genereren. Indien je een
+        boundary moet definiëren of je wil het standaard gedrag van het Zend_Mime
+        object dat <code class="code">Zend_Mime_Message</code> gebruikt wil wijzigen, kan je
+        het Zend_Mime object zelf instantiëren en het dan in 
+        <code class="code">Zend_Mime_Message</code> registreren. Normaal gesproken zal je dit
+        niet hoeven te doen. <code class="code">-&gt;setMime(Zend_Mime $mime)&lt;-</code> zet een
+        speciale instantie van <code class="code">Zend_Mime</code> dat door deze 
+        <code class="code">Zend_Mime_Message</code> moet worden gebruikt.</p>
+<p><code class="code">-&gt;getMime()</code> geeft de instantie van <code class="code">Zend_Mime</code>
+        terug die zal worden gebruikt om het bericht weer te geven wanneer 
+        <code class="code">generateMessage()</code> word opgeroepen.</p>
+<p><code class="code">-&gt;generateMessage()</code> geeft de inhoud van
+        <code class="code">Zend_Mime_Message</code> als een string weer.</p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.message.parse"></a>19.2.5. Een string parsen om een Zend_Mime_Message object te maken 
+        (experimenteel)</h3></div></div></div>
+<p>Een gegeven MIME compatibel bericht in de vorm van een string
+        kan worden gebruikt om er een <code class="code">Zend_Mime_Message</code> object van
+        te (her)opbouwen.
+        <code class="code">Zend_Mime_Message</code> heeft een statische "factory" methode om
+        deze string te parsen en een <code class="code">Zend_Mime_Message</code> object terug
+        te geven.</p>
+<p><code class="code">Zend_Mime_Message::createFromMessage($str, $boundary)</code>
+        decodeert een gegeven string en geeft een <code class="code">Zend_Mime_Message</code>
+        object terug dat dan kan worden onderzocht door <code class="code">-&gt;getParts()</code>
+        te gebruiken.</p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mime.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.mime.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.mime.part.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Hoofdstuk 19. Zend_Mime </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 19.3. Zend_Mime_Part</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1.9. Zend::initRegistry($registry = 'Zend_Registry')</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.html" title="Kapitel 1. Zend">
+<link rel="prev" href="zend.registry.html" title="1.8. Zend::registry($index = null)">
+<link rel="next" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">1.9. Zend::initRegistry($registry = 'Zend_Registry')</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.registry.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 1. Zend</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.acl.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.initregistry"></a>1.9. Zend::initRegistry($registry = 'Zend_Registry')</h2></div></div></div>
+<p>
+	    Entwickler, welche die vorhandene Registry Funktionalität erweitern möchten, können diese
+	    Funktion verwenden. Diese Methode ermöglicht es dem Entwickler, für Zend_Registry eine 
+	    Unterklasse zu erstellen, inklusive der Pseudonymmethode für offsetGet() und offsetExists()
+	    wie z.B. has(), getval(), setval(), etc., indem eine Instanz der Zend_Registry Unterklasse
+	    im Bootstrap Code erstellt und diese Instanz dann an initRegistry() übergeben wird, bevor
+	    irgend eine andere, der Registry zugehörige Methode verwendet wird. Man beachte, dass
+	    initRegistry() nur einmalig verwendet werden kann, um das versehentliche Überschreiben der
+	    Registry nach der Initialisierung zu verhindern. Auch die Verwendung von Zend::registry() 
+	    oder Zend::register() ruft automatisch initRegistry() auf, wenn es vorher noch nicht 
+	    aufgerufen worden ist.
+    </p>
+<div class="example">
+<a name="id4732880"></a><p class="title"><b>Beispiel 1.5. register() / offsetSet() Beispiel</b></p>
+<pre class="programlisting">&lt;?php
+class Zend_RegistryMine extends Zend_Registry
+{
+    public function getval($index)
+    {
+        return $this-&gt;offsetGet($index);
+    }
+}
+
+# Im Bootstrap Code:
+
+$ini_array = parse_ini_file('your_stuff.ini'); // völlig optional
+$registry = new Zend_RegistryMine($ini_array);
+Zend::initRegistry($registry);
+
+# nun arbeiten die normalen Zend::registry(), Zend::register() und Zend::isRegistered() wie erwartet
+?&gt;</pre>
+</div>
+<p>
+        Um zusätzlich zu <code class="code">$registry[$indexName]</code> auf Werte auch über 
+        <code class="code">$registry-&gt;$indexName</code> zugreifen zu können, verwendet man die Konstante 
+        <code class="code">ArrayObject::ARRAY_AS_PROPS</code> im Konstruktor. Allerdings sollte man sich vor
+        Namenskollisionen in Acht nehmen, wenn man Zend_Registry erweitert und private Variablen
+        hinzufügt.
+    </p>
+<div class="example">
+<a name="id4732909"></a><p class="title"><b>Beispiel 1.6. Auf Werte zugreifen über die OO Notation anstatt der ArrayAccess Notation</b></p>
+<pre class="programlisting">&lt;?php
+$registry = new Zend_Registry(array(), ArrayObject::ARRAY_AS_PROPS); 
+Zend::initRegistry($registry);
+?&gt;</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.registry.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.acl.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">1.8. Zend::registry($index = null) </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> Kapitel 2. Zend_Acl</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

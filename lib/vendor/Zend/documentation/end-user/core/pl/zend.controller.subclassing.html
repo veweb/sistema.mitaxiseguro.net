@@ -1,0 +1,1005 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.3. Rozszerzanie</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="prev" href="zend.controller.getting-started.html" title="7.2. Pierwsze kroki">
+<link rel="next" href="zend.controller.providedsubclasses.html" title="7.4. Dostępne podklasy">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.subclassing.introduction" title="7.3.1. Wprowadzenie">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.subclassing.conventions" title="7.3.2. Konwencje">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.front" title="7.3.3. Kontroler frontowy">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.request.abstract" title="7.3.4. Klasa abstrakcyjna Request">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.router.interface" title="7.3.5. Interfejs Routera">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.dispatcher.interface" title="7.3.6. Interfejs dispatchera">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.action" title="7.3.7. Kontroler akcji">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.response.abstract" title="7.3.8. Obiekt odpowiedzi">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.3. Rozszerzanie</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.getting-started.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.providedsubclasses.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.subclassing"></a>7.3. Rozszerzanie</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.subclassing.introduction"></a>7.3.1. Wprowadzenie</h3></div></div></div>
+<p>
+			Klasa <code class="code">Zend_Controller</code> została zbudowana w sposób 
+			bardzo elastyczny. Można ją rozwijać rozszerzając klasy istniejące 
+			lub pisząc nowe klasy implementujące interfejsy 
+			<code class="code">Zend_Controller_Router_Interface</code> oraz 
+			<code class="code">Zend_Controller_Dispatcher_Interface</code> lub rozszerzając
+            klasy <code class="code">Zend_Controller_Request_Abstract</code>,
+            <code class="code">Zend_Controller_Response_Abstract</code>, oraz
+            <code class="code">Zend_Controller_Action</code>.
+		</p>
+<p>
+			Powodami dla których warto implementować nowy router lub dispatcher mogą być:
+			
+			</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+					    Istniejący w Zend Framework system routingu URI nie jest 
+					    kompatybilny. Np. gdy chcemy go zintegrować z istniejącą 
+					    witryną która używa swoich własnych konwencji routingu, 
+					    które nie są kompatybilne z mechanizmem routingu 
+					    dostarczanym przez Zend Framework.
+					</p></li>
+<li><p>
+					    Potrzebujesz zaimplementować routing dla czegoś zupełnie 
+					    innego. Klasa <code class="code">Zend_Controller_Router</code> działa 
+					    jedynie z adresami URI. Jest prawdopodobne że chciałbyś 
+					    użyć wzorca MVC do opracowania innego typu aplikacji, np. 
+					    aplikacji konsolowej lub aplikacji z GUI. W przypadku 
+					    aplikacji konsolowej własny obiekt żądania 
+					    mógłby obrabiać argumenty linii poleceń.
+
+					</p></li>
+<li><p>
+						Mechanizm dostarczany przez 
+						<code class="code">Zend_Controller_Dispatcher</code> nie jest 
+						kompatybilny. Domyślna konfiguracja przyjmuje taką 
+						konwencję, że kontrolery są klasami, a akcje metodami
+						tych klas. Bądź co bądź, jest wiele innych sposobów 
+						wykonania tego. Przykładem może być takie rozwiązanie, 
+						w którym kontrolery są katalogami a akcje plikami w 
+						tych katalogach.
+					</p></li>
+<li><p>
+					    Chciałbyś dostarczyć dodatkowe możliwości które będą 
+					    odziedziczone przez wszystkie kontrolery. Na przykład 
+					    <code class="code">Zend_Controller_Action</code> nie jest domyślnie 
+					    zintegrowany z <code class="code">Zend_View</code>. Jednak mógłbyś
+					    rozszerzyć swój własny kontroler aby to robił i 
+					    zapewnienie takiej funkcjonalności nie wymagałoby 
+					    modyfikowania dostarczonych klas <code class="code">Zend_Controller_Router</code> oraz 
+						<code class="code">Zend_Controller_Dispatcher</code>.
+					</p></li>
+<li><p>
+                        Chciałbyś zalogować wyjątki aplikacji gdy zostają złapane
+                        i przekierować do ogólnej strony błędu. Rozszerzając
+                        <code class="code">Zend_Controller_Response_Http</code>, możesz
+                        zmodyfikować metodę <code class="code">__toString()</code> aby 
+                        sprawdzić zarejestrowane wyjątki, zalogować je, a potem
+                        przekierować do strony błędu.
+                    </p></li>
+</ul></div>
+<p>
+				
+			Proszę być ostrożnym podczas nadpisywania znaczących części systemu, sczególnie
+			wtedy gdy jest to dispatcher. Jedną z zalet klasy <code class="code">Zend_Controller</code> 
+			jest to że wprowadza ona ogólne konwencje budowy aplikacji. Jeżeli odejdziemy
+			zbyt daleko od tych konwencji, możemy stracić część tych zalet. Jednak
+			jest wiele różnych zapotrzebowań i jedno rozwiązanie nie jest w stanie spełnić
+			ich wszystkich więc dowolność jest zapewniona gdy jest potrzebna.
+		</p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.subclassing.conventions"></a>7.3.2. Konwencje</h3></div></div></div>
+<p>
+		    Kiedy rozszerzasz którekolwiek klasy Zend_Controller powinieneś użyć 
+		    takich samych konwencji w nazywaniu i przechowywaniu plików. Takie 
+		    postępowanie spowoduje to, że inny programista który jest 
+		    zaznajomiony z Zend Framework będzie w stanie łatwo zrozumieć Twój 
+		    projekt.
+		</p>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.subclassing.prefix"></a>7.3.2.1. Przedrostki</h4></div></div></div>
+<p>
+			    Klasy ładowane przez Zend Framework są nazywane wg tej samej 
+			    konwencji, każda z nich jest poprzedzona przedrostkiem "Zend_". 
+			    Zalecamy abyś nazywał wszystkie swoje klasy w analogiczny sposób, 
+			    np. jeśli Twoja firma nazywa się Widget Inc., to prefiksem mogłoby 
+			    być "Widget_".
+			</p>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.directory.layout"></a>7.3.2.2. Struktura katalogów</h4></div></div></div>
+<p>
+				Klasy <code class="code">Zend_Controller</code> są przechowywane w taki 
+				sposób:
+            </p>
+<pre class="programlisting">
+/library
+  /Zend
+    /Controller
+      Action.php
+      Dispatcher.php
+      Router.php
+</pre>
+<p>
+				Kiedy rozszerzasz klasy <code class="code">Zend_Controller</code>, zalecane 
+				jest aby nowa klasa była przechowywana w identyczny sposób z 
+				uwzględnieniem własnego prefiksu. To spowoduje że będą one łatwe 
+				do znalezienia i zrozumienia dla kogoś kto przegląda kod Twojego 
+				projektu.
+			</p>
+<p>
+			    Na przykład struktura projektu firmy Widget Inc., który 
+			    implementuje jedynie własny router mogłaby wyglądać w ten sposób:
+		    </p>
+<pre class="programlisting">
+/library
+  /Zend
+  /Widget
+    /Controller
+      Router.php
+      README.txt
+</pre>
+<p>
+                Pamiętaj, że w tym przykładzie <code class="code">Widget/Controller/</code> 
+                ma taką samą strukturę jak <code class="code">Zend/Controller/</code> kiedy 
+                tylko jest to możliwe. W tym przypadku definiuje on klasę 
+                <code class="code">Widget_Controller_Router</code>, która może być klasa 
+                rozszerzającą lub zastępującą klasę <code class="code">Zend_Controller_Router</code> 
+                implementującą <code class="code">Zend_Controller_Router_Interface</code>.
+			</p>
+<p>
+			    Zwróć także uwagę na to, że w powyższym przykładzie plik 
+			    <code class="code">README.txt</code> został umieszczony w katalogu 
+			    <code class="code">Widget/Controller/</code>. Zend zaleca abyś dokumentował
+			    swoje projekty dostarczając klientom osobne testy oraz dokumentację. 
+			    Jakkolwiek, zalecamy Ci abyś także tworzył prosty plik 
+			    <code class="code">README.txt</code> w katalogu swojej klasy
+			    aby wyjaśnić zmiany oraz zasady jej działania.
+			</p>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.front"></a>7.3.3. Kontroler frontowy</h3></div></div></div>
+<p>
+            Zend_Controller_Front implementuje kontroler frontowy. Dodatkowo
+            ta klasa jest singletonem, co oznacza, że podczas wywołania będzie
+            dostępna tylko jedna instancja tej klasy.
+        </p>
+<p>
+            Aby rozszerzyć tę klasę, musisz przynajmniej nadpisać metodę
+            <code class="code">getInstance()</code>:
+        </p>
+<pre class="programlisting">
+class My_Controller_Front extends Zend_Controller_Front
+{
+    public static function getInstance()
+    {
+        if (null === self::$_instance) {
+            self::$_instance = new self();
+        }
+
+        return self::$_instance;
+    }
+}
+</pre>
+<p>
+            Nadpisanie metody getInstance() gwarantuje to, że wywołania metody
+            <code class="code">Zend_Controller_Front::getInstance()</code> będą zwracać
+            instancję twojej nowej podklasy zamiast instancji 
+            Zend_Controller_Front -- jest to szczególnie przydatne dla 
+            niektórych alternatywnych routerów oraz klas pomocników widoków.
+        </p>
+<p>
+            Oprócz metody getInstance() jest jeszcze wiele metod, ktore możesz 
+            nadpisać:
+        </p>
+<pre class="programlisting">
+    /**
+     * Resetuje wszystkie właściwości instancji obiektu
+     *
+     * Głownie używane do teestowania; może być użyta do łańcuchowego 
+     * wywoływania kontrolerów frontowych.
+     * 
+     * @return void
+     */
+    public function resetInstance();
+
+    /**
+     * Wygodna funkcjonalność, wywołuje setControllerDirectory()-&gt;setRouter()-&gt;dispatch()
+     *
+     * W PHP 5.1.x, wywołanie metody statycznej nigdy nie tworzy $this -- więc 
+     * metoda run() może być aktualnie wywołana po ustawieniu kontrolera frontowego
+     *
+     * @param string|array $controllerDirectory Ścieżka do klas kontrolerów 
+     * Zend_Controller_Action lub tablica tych ścieżek
+     * @return void
+     * @throws Zend_Controller_Exception jeśli wywołana z instancji obiektu
+     */
+    static public function run($controllerDirectory);
+
+    /**
+     * Dodaje ścieżkę kontrolerów na stos ścieżek kontrolerów
+     *
+     * Jeśli $args jest łańcuchem znaków, używany jest on jako klucz odpowiadający
+     * danej ścieżce
+     * 
+     * @param string $directory 
+     * @param mixed $args Argument opcjonalny; jeśli wartość jest łańcuchem znaków
+     * używany jest on jako klucz tablicy
+     * @return Zend_Controller_Front
+     */
+    public function addControllerDirectory($directory, $args = null);
+
+    /**
+     * Ustawia ścieżkę kontrolerów
+     *
+     * Ustawia ścieżkę kontrolerów w celu przekazania jej do obiektu 
+     * uruchamiającego. Może być tablicą ścieżek lub łańcuchem znaków
+     * zawierającym pojedynczą ścieżkę.
+     *
+     * @param string|array $directory Ścieżka do klas kontrolerów 
+     * Zend_Controller_Action lub tablica tych ścieżek
+     * @return Zend_Controller_Front
+     */
+    public function setControllerDirectory($directory);
+
+    /**
+     * Pobiera ścieżkę kontrolerów
+     *
+     * Pobiera ustawioną ścieżkę kontrolerów
+     *
+     * @return string|array
+     */
+    public function getControllerDirectory();
+
+    /**
+     * Ustawia nazwę domyślnego kontrolera (niesformatowany łańcuch znaków)
+     *
+     * @param string $controller
+     * @return Zend_Controller_Front
+     */
+    public function setDefaultController($controller);
+
+    /**
+     * Pobiera nazwę domyślnego kontrolera (niesformatowany łańcuch znaków)
+     *
+     * @return string
+     */
+    public function getDefaultController();
+
+    /**
+     * Ustawia nazwę domyślnej akcji (niesformatowany łańcuch znaków)
+     *
+     * @param string $action
+     * @return Zend_Controller_Front
+     */
+    public function setDefaultAction($action);
+
+    /**
+     * Pobiera nazwę domyślnej akcji (niesformatowany łańcuch znaków)
+     *
+     * @return string
+     */
+    public function getDefaultAction();
+
+    /**
+     * Ustawia klasę/obiekt żądania
+     *
+     * Ustawia obiekt żądania. Obiekt żądania przechowuje środowisko żądania
+     *
+     * Jeśli podano nazwę klasy, zostanie utworzona jej instancja
+     *
+     * @param string|Zend_Controller_Request_Abstract $request
+     * @throws Zend_Controller_Exception jeśli podano nieprawidłową klasę żądania
+     * @return Zend_Controller_Front
+     */
+    public function setRequest($request);
+
+    /**
+     * Zwraca obiekt żądania.
+     *
+     * @return null|Zend_Controller_Request_Abstract
+     */
+    public function getRequest();
+
+    /**
+     * Ustawia klasę/obiekt routera
+     *
+     * Ustawia obiekt routera. Router jest odpowiedzialny za mapowanie żądania
+     * do nazwy kontrolera oraz akcji
+     *
+     * Jeśli podana jest nazwa klasy, tworzona jest instancja routera z
+     * wszystkimi parametrami zarejestrowanymi za pomocą {@link setParam()} 
+     * lub {@link setParams()}.
+     *
+     * @param string|Zend_Controller_Router_Interface $router
+     * @throws Zend_Controller_Exception jeśli podano nieprawidłową klasę kontrolera
+     * @return Zend_Controller_Front
+     */
+    public function setRouter($router);
+
+    /**
+     * Zwraca obiekt routera.
+     *
+     * Tworzy instancję obiektu Zend_Controller_Router jeśli żaden nie jest ustawiony.
+     *
+     * @return null|Zend_Controller_Router_Interface
+     */
+    public function getRouter();
+
+    /**
+     * Ustawia bazowy adres URL dla żądań
+     *
+     * Używana do ustawienia bazowej części adresu URL dla REQUEST_URI w celu
+     * określenia ścieżki PATH_INFO, itp. Przykłady:
+     * - /admin
+     * - /myapp
+     * - /subdir/index.php
+     *
+     * Zauważ, że ten adres URL nie powinien zawierać całego adresu URI. Nie używaj:
+     * - http://example.com/admin
+     * - http://example.com/myapp
+     * - http://example.com/subdir/index.php
+     *
+     * Jeśli przekazana jest wartość null, może być ona wykryta (domyślnie).
+     * 
+     * @param string $base
+     * @return Zend_Controller_Front
+     * @throws Zend_Controller_Exception dla zmiennej $base która nie jest łańcuchem znaków
+     */
+    public function setBaseUrl($base = null);
+
+    /**
+     * Pobiera obecnie ustawiony bazowy URL
+     * 
+     * @return string
+     */
+    public function getBaseUrl();
+
+    /**
+     * Ustawia obiekt uruchamiający. Jest on odpowiedzialny za 
+     * pobranie obiektu Zend_Controller_Request_Abstract, tworzenie instancji
+     * kontrolera, oraz wywoływanie metody akcji tego kontrolera.
+     *
+     * @param Zend_Controller_Dispatcher_Interface $dispatcher
+     * @return Zend_Controller_Front
+     */
+    public function setDispatcher(Zend_Controller_Dispatcher_Interface $dispatcher);
+
+    /**
+     * Zwraca obiekt uruchamiający.
+     *
+     * @return Zend_Controller_DispatcherInteface
+     */
+    public function getDispatcher();
+
+    /**
+     * Ustawia klasę/obiekt odpowiedzi
+     *
+     * Ustawia obiekt odpowiedzi. Obiekt odpowiedzi jest pojemnikiemn na
+     * odpowiedź akcji oraz nagłówki. Użycie jest opcjonalne.
+     *
+     * Jeśli podano nazwę klasy, zostanie utworzona jej instancja
+     *
+     * @param string|Zend_Controller_Response_Abstract $response
+     * @throws Zend_Controller_Exception jeśli klasa odpowiedzi jest nieprawidłowa
+     * @return Zend_Controller_Front
+     */
+    public function setResponse($response);
+
+    /**
+     * Zwraca obiekt odpowiedzi.
+     *
+     * @return null|Zend_Controller_Response_Abstract
+     */
+    public function getResponse();
+
+    /**
+     * Dodaje lub modyfikuje parametr do użycia przez kontrolery akcji
+     *
+     * @param string $name
+     * @param mixed $value
+     * @return Zend_Controller_Front
+     */
+    public function setParam($name, $value);
+
+    /**
+     * Ustawia parametry do przekazania do konstruktorów kontrolerów akcji
+     *
+     * @param array $params
+     * @return Zend_Controller_Front
+     */
+    public function setParams(array $params);
+
+    /**
+     * Odbiera pojedynczy parametr ze stosu parametrów kontrolera
+     * 
+     * @param string $name 
+     * @return mixed
+     */
+    public function getParam($name);
+
+    /**
+     * Odbiera parametry wywołania kontrolera
+     *
+     * @return array
+     */
+    public function getParams();
+
+    /**
+     * Czyści stos parametrów kontrolera
+     *
+     * Domyślnie czyści wszystkie parametry. Jeśli podana została nazwa parametru,
+     * czyści tylko ten parametr; jeśli podana została tablica nazw, czyści
+     * wszystkie podane parametry.
+     * 
+     * @param null|string|array pojedynczy klucz lub tablica kluczy dla parametrów do wyczyszczenia
+     * @return Zend_Controller_Front
+     */
+    public function clearParams($name = null);
+
+    /**
+     * Rejestruje wtyczkę.
+     *
+     * @param Zend_Controller_Plugin_Abstract $plugin
+     * @return Zend_Controller_Front
+     */
+    public function registerPlugin(Zend_Controller_Plugin_Abstract $plugin);
+
+    /**
+     * Wyrejestrowuje wtyczkę.
+     *
+     * @param Zend_Controller_Plugin_Abstract $plugin
+     * @return Zend_Controller_Front
+     */
+    public function unregisterPlugin(Zend_Controller_Plugin_Abstract $plugin);
+
+    /**
+     * Ustawia czy wyjątki napotkane w pętli uruchomieniowej mają być wyrzucane
+     * czy mają być łapane w obiekcie odpowiedzi
+     *
+     * Domyślnym zachowaniem jest złapanie ich w obiekcie odpowiedzi; wywołaj 
+     * tę metodę aby spowodować wyrzucenie ich
+     * 
+     * @param boolean $flag Domyślnie ma wartość true
+     * @return boolean Zwraca obecne ustawienie
+     */
+    public function throwExceptions($flag = null);
+
+    /**
+     * Ustawia czy {@link dispatch()} ma zwracać odpowiedź bez wcześniejszego
+     * renderowania danych wyjściowych. Domyślnie dane wyjsciowe są renderowane
+     * a metoda dispatch() nie zwraca nic.
+     * 
+     * @param boolean $flag 
+     * @return boolean Zwraca obecne ustawienie
+     */
+    public function returnResponse($flag = null);
+
+    /**
+     * Uruchamia żądanie HTTP do kontrolera/akcji.
+     *
+     * @param Zend_Controller_Request_Abstract|null $request
+     * @param Zend_Controller_Response_Abstract|null $response
+     * @return void|Zend_Controller_Response_Abstract Zwraca obiekt odpowiedzi jeśli returnResponse() zwraca true
+     */
+    public function dispatch(Zend_Controller_Request_Abstract $request = null, Zend_Controller_Response_Abstract $response = null);
+</pre>
+<p>
+            Zastosowaniem kontrolera frontowego jest ustawienie środowiska
+            żądania, dopasowanie tras dla żądania, oraz uruchomienie wszystkich
+            akcji. Ostatecznie przechowuje on odpowiedzi i następnie je zwraca.
+        </p>
+<p>
+            Głównym powodem rozszerzenia kontrolera frontowego może być potrzeba
+            zmiany logiki dla jednej z metod dostępowych (na przykład, aby
+            załadować inny domyślny router lub obiekt uruchamiający, lub aby
+            określić inną logikę obsługi ścieżek kontrolerów), lub potrzeba
+            zmiany działania routingu lub procesu uruchomienia.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.request.abstract"></a>7.3.4. Klasa abstrakcyjna Request</h3></div></div></div>
+<p>
+            Klasa abstrakcyjna <code class="code">Zend_Controller_Request_Abstract</code> 
+            definiuje garść przydatnych metod:
+        </p>
+<pre class="programlisting">
+    /**
+     * @return string
+     */
+    public function getControllerName();
+
+    /**
+     * @param string $value 
+     * @return self
+     */
+    public function setControllerName($value);
+
+    /**
+     * @return string
+     */
+    public function getActionName();
+
+    /**
+     * @param string $value 
+     * @return self
+     */
+    public function setActionName($value);
+
+    /**
+     * @return string
+     */
+    public function getControllerKey();
+
+    /**
+     * @param string $key 
+     * @return self
+     */
+    public function setControllerKey($key);
+
+    /**
+     * @return string
+     */
+    public function getActionKey();
+
+    /**
+     * @param string $key 
+     * @return self
+     */
+    public function setActionKey($key);
+
+    /**
+     * @param string $key 
+     * @return mixed
+     */
+    public function getParam($key);
+
+    /**
+     * @param string $key 
+     * @param mixed $value 
+     * @return self
+     */
+    public function setParam($key, $value);
+
+    /**
+     * @return array
+     */
+     public function getParams();
+
+    /**
+     * @param array $array 
+     * @return self
+     */
+    public function setParams(array $array);
+
+    /**
+     * @param boolean $flag 
+     * @return self
+     */
+    public function setDispatched($flag = true);
+
+    /**
+     * @return boolean
+     */
+    public function isDispatched();
+}
+</pre>
+<p>
+            Obiekt żądania jest pojemnikiem dla środowiska żądania. Łańcuch 
+            kontrolerów jedynie potrzebuje wiedzieć jak określić i odebrać
+            nazwę kontrolera, akcji, opcjonalne parametry oraz status 
+            uruchomienia. Domyślnie, obiekt żądania będzie szukał swoich 
+            parametrów używając kluczy kontrolera i akcji w celu określenia 
+            kontrolera i akcji.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.router.interface"></a>7.3.5. Interfejs Routera</h3></div></div></div>
+<p>
+			Interfejs <code class="code">Zend_Controller_Router_Interface</code> definiuje 
+			jedynie jedną metodę:
+        </p>
+<pre class="programlisting">&lt;?php
+				
+  /**
+   * @param  Zend_Controller_Request_Abstract $request
+   * @throws Zend_Controller_Router_Exception
+   * @return Zend_Controller_Request_Abstract
+   */
+  public function route(Zend_Controller_Request_Abstract $request);
+
+?&gt;</pre>
+<p>		
+			Proces routingu ma miejsce tylko raz: wtedy gdy system po raz pierwszy 
+			otrzymuje żądanie. Celem routera jest określenie kontrolera, akcji,
+			opcjonalnych parametrów na podstawie żądania i przekazanie ich do
+			obiektu żądania. Obiekt żądania jest wtedy przekazywany do dispatchera.
+			Jeśli nie jest możliwe określenie mapowanie trasy do tokena to 
+			router nie powinien nic zrobić z obiektem żądania.
+
+		</p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.dispatcher.interface"></a>7.3.6. Interfejs dispatchera</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller_Front</code> wpierw wywoła router aby określić
+            pierwszą uruchamialną akcję w żądaniu. Wtedy wchodzi on pętlę
+            uruchomieniową.
+        </p>
+<p>
+            W pętli, wpierw ustawia flagę uruchomienia obiektu żądania, a 
+            następnie uruchamia żądanie (tworzy instancję kontrolera, wywołuje
+            jego akcję). Jeśli metoda akcji (lub metody pre/postDispatch 
+            plugina) resetuje flagę uruchomienia obiektu żądania, kontroler 
+            frontowy wykona następna iterację pętli uruchomieniowej z akcją, 
+            która jest ustawiona w obiekcie żądania. To pozwala na uruchamianie 
+            akcji sekwencyjnie, aż do momentu gdy wszystkie potrzebne zostaną
+            uruchomione.
+        </p>
+<p>
+			Interfejs <code class="code">Zend_Controller_Dispatcher_Interface</code> 
+			dostarcza definicje dwóch metod:
+	    </p>
+<pre class="programlisting">&lt;?php
+				
+/**
+ * @param  Zend_Controller_Request_Abstract $request
+ * @return boolean
+ */
+public function isDispatchable(Zend_Controller_Request_Abstract $request);
+
+?&gt;</pre>
+<p>
+	        Metoda <code class="code">isDispatchable()</code> sprawdza czy jest możliwe 
+	        uruchomienie akcji z żądania. Jeśli jest to możliwe, zwraca ona 
+	        wartość <code class="code">TRUE</code>. W przeciwnym wypadku zwraca wartość 
+	        <code class="code">FALSE</code>. Decyzja o tym czy jest możliwe uruchomienie 
+	        akcji została pozostawiona klasie implementującej interfejs. W 
+	        domyślnej implementacji klasy <code class="code">Zend_Controller_Dispatcher</code> 
+	        oznacza to sprawdzenie, czy plik kontrolera istnieje, czy klasa 
+	        istnieje w tym pliku oraz czy wewnątrz klasy istnieje żądana akcja.
+	    </p>
+<pre class="programlisting">&lt;?php
+			
+/**
+ * @param  Zend_Controller_Request_Abstract $route
+ * @return Zend_Controller_Request_Abstract
+ */
+public function dispatch(Zend_Controller_Request_Abstract $request);
+
+?&gt;</pre>
+<p>	
+		    <code class="code">dispatch()</code> jest metodą, która wykonuje całą pracę. Ta 
+		    metoda musi uruchomić akcję kontrolera. Musi obiekt żądania.
+
+		</p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action"></a>7.3.7. Kontroler akcji</h3></div></div></div>
+<p>
+            Kontroler akcji obsługuje różne akcje aplikacji. Ta klasa 
+            abstrakcyjna zapewnia poniższe metody:
+        </p>
+<pre class="programlisting">
+    /**
+     * @param Zend_Controller_Request_Abstract $request Obiekt żądania
+     * @param Zend_Controller_Response_Abstract $response Obiekt odpowiedzi
+     * @param array $args Opcjonalna tablica asocjacyjna ustawień
+     * konfiguracyjnych
+     */
+    public function __construct(Zend_Controller_Request_Abstract $request, Zend_Controller_Response_Abstract $response, array $args = array());
+
+    /**
+     * @return void
+     */
+    public function init();
+
+    /**
+     * @return Zend_Controller_Request_Abstract
+     */
+    public function getRequest();
+
+    /**
+     * @param Zend_Controller_Request_Abstract $request 
+     * @return self
+     */
+    public function setRequest(Zend_Controller_Request_Abstract $request);
+
+    /**
+     * @return Zend_Controller_Response_Abstract
+     */
+    public function getResponse();
+
+    /**
+     * @param Zend_Controller_Response_Abstract $response 
+     * @return self
+     */
+    public function setResponse(Zend_Controller_Response_Abstract $response);
+
+    /**
+     * @return array
+     */
+    public function getInvokeArgs();
+
+    /**
+     * @return mixed
+     */
+    public function getInvokeArg($name);
+
+    public function preDispatch();
+
+    public function postDispatch();
+
+    /**
+     * @param string $methodName
+     * @param array $args
+     */
+    public function __call($methodName, $args);
+
+    /**
+     * @param null|Zend_Controller_Request_Abstract $request Opcjonalny obiekt
+     * żądania do użycia
+     * @param null|Zend_Controller_Response_Abstract $response Opcjonalny obiekt
+     * odpowiedzi do użycia
+     * @return Zend_Controller_Response_Abstract
+     */
+    public function run(Zend_Controller_Request_Abstract $request = null, Zend_Controller_Response_Abstract $response = null);
+</pre>
+<p>
+            Konstruktor rejestruje obiekty żądania i odpowiedzi w obiekcie, tak
+            samo rejestruje tablicę dodatkowych argumentów konfiguracyjnych. Ta 
+            ostatnia tablica składa się z parametrów zarejestrowanych w 
+            kontrolerze frontowym za pomocą metod <code class="code">setParam()</code> lub 
+            <code class="code">setParams()</code>. Kiedy zostanie to zrobione, konstruktor 
+            przekazuje obsługę do metody <code class="code">init()</code>.
+        </p>
+<p>
+            Chociaż możesz nadpisać konstruktor, polecamy umieszczenie całej
+            obsługi inicjalizacyjnej do metody <code class="code">init()</code> aby upewnić się
+            że obiekty żądania i odpowiedzi zostaną prawidłowo zarejestrowane.
+        </p>
+<p>
+            Argumenty konfiguracyjne przekazane do konstruktora są potem
+            dostępne za pomocą metod <code class="code">getInvokeArg()</code> oraz
+            <code class="code">getInvokeArgs()</code>. Zalecane jest użycie argumentów
+            konfiguracyjnych do przekzania takich obiektów jak widok,
+            autentykacja/autoryzacja, lub obiekt rejestru. Na przykład:
+        </p>
+<pre class="programlisting">
+$front = Zend_Controller_Front::getInstance();
+$front-&gt;setParam('view', new Zend_View())
+      -&gt;setControllerDirectory($config-&gt;controller-&gt;directory);
+$response = $front-&gt;dispatch();
+
+// W przykładowej akcji kontrolera:
+class FooController extends Zend_Controller_Action
+{
+    protected $_view = null;
+
+    public function init()
+    {
+        $this-&gt;_view = $this-&gt;getInvokeArg('view');
+    }
+}
+</pre>
+<p>
+            Kiedy akcja jest uruchamiana, możliwe jest wykonanie określonego
+            kodu przed i po akcji za pomocą metod <code class="code">preDispatch()</code> 
+            oraz <code class="code">postDispatch()</code>, odpowiednio. Domyślnie są one 
+            puste i nic nie robią.
+        </p>
+<p>
+            Metoda <code class="code">__call()</code> obsługuje każdą niezarejestrowaną akcję
+            w klasie. Domyślnie wyrzuca ona wyjątek jeśli akcja nie jest 
+            zdefiniowana. To powinno wystąpić jedynie gdy metoda akcji domyślnej
+            nie jest zdefiniowana.
+        </p>
+<p>
+            Domyślną konwencją nazewnictwa dla metod akcji jest lowercaseAction,
+            gdzie 'lowercase' określa nazwę akcji, a 'Action' określa, że ta
+            metoda jest metodą akcji. Dlatego wywołanie adresu
+            <code class="code">http://framework.zend.com/foo/bar</code> uruchomi akcję
+            <code class="code">FooController::barAction()</code>.
+        </p>
+<p>
+            Kontrolery akcji mogą być także użyte jako kontrolery stron. 
+            Najbardziej typowym przykładem użycia może być:
+        </p>
+<pre class="programlisting">
+$controller = new FooController(
+    new Zend_Controller_Request_Abstract(),
+    new Zend_Controller_Response_Abstract()
+);
+$controller-&gt;run();
+</pre>
+<div class="note"><table border="0" summary="Note: Użycie kontrolera frontowego i akcji">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Użycie kontrolera frontowego i akcji</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Rekomendujemy użycie kombinacji kontrolera frontowego i kontrolera
+                akcji zamiast kontrolera strony aby zachęcić do pisania aplikacji,
+                które mają współdziałać.
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.response.abstract"></a>7.3.8. Obiekt odpowiedzi</h3></div></div></div>
+<p>
+            Obiekt odpowiedzi zbiera zawartość i nagłówki z różnych wywołanych
+            akcji i zwraca je klientowi. Posiada on takie metody:
+
+        </p>
+<pre class="programlisting">
+    /**
+     * @param string $name Nazwa nagłówka
+     * @param string $value Wartość nagłówka
+     * @param boolean $replace Określa czy nagłówki o nazwie takiej samej jak 
+     * zarejestrowane mają być zastępowane
+     * @return self
+     */
+    public function setHeader($name, $value, $replace = false);
+
+    /**
+     * @return array
+     */
+    public function getHeaders();
+
+    /**
+     * @return void
+     */
+    public function clearHeaders();
+
+    /**
+     * Sends all headers
+     * @return void
+     */
+    public function sendHeaders();
+
+    /**
+     * @param string $content
+     * @return self
+     */
+    public function setBody($content);
+
+    /**
+     * @param string $content
+     * @return self
+     */
+    public function appendBody($content);
+
+    /**
+     * @return string
+     */
+    public function getBody();
+
+    /**
+     * echoes body content
+     * @return void
+     */
+    public function outputBody();
+
+    /**
+     * @param Exception $e 
+     * @return self
+     */
+    public function setException(Exception $e);
+
+    /**
+     * @return null|Exception
+     */
+    public function getException();
+
+    /**
+     * @return boolean
+     */
+    public function isException();
+
+    /**
+     * @param boolean $flag
+     * @return boolean
+     */
+    public function renderExceptions($flag = null);
+
+    /**
+     * @return string
+     */
+    public function __toString();
+</pre>
+<p>
+            Metoda <code class="code">setBody()</code> zastąpi całość zawartości strony; 
+            zalecamy używanie zamiast niej metody <code class="code">appendBody()</code>. 
+            Metoda <code class="code">__toString()</code> powinna renderować całą zawartość
+            i wysyłać wszystkie nagłówki.
+        </p>
+<p>
+            Obiekt odpowiedzi jest także miejscem w którym wyjątki kontrolera 
+            akcji są ostatecznie wyłapywane i rejestrowane (o ile zostało
+            to włączone za pomocą 
+            <code class="code">Zend_Controller_Front::throwExceptions()</code>). Metoda 
+            <code class="code">isException()</code> powinna zwrócić wartość logiczną
+            oznaczającą czy to się zdarzyło czy nie. Metoda
+            <code class="code">renderExceptions()</code> powinna być użyta aby sprawdzić
+            czy metoda <code class="code">__toString()</code> zrenderuje dane o wyjątku jeśli
+            jakikolwiek wyjątek został złapany.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.getting-started.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.providedsubclasses.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.2. Pierwsze kroki </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 7.4. Dostępne podklasy</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第4章 Zend_Cache</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.auth.adapter.digest.html" title="3.2. ダイジェスト認証">
+<link rel="next" href="zend.cache.theory.html" title="4.2. キャッシュの仕組み">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.cache.html#zend.cache.introduction" title="4.1. 導入">
+<link rel="section" href="zend.cache.theory.html" title="4.2. キャッシュの仕組み">
+<link rel="section" href="zend.cache.frontends.html" title="4.3. Zend_Cache のフロントエンド">
+<link rel="section" href="zend.cache.backends.html" title="4.4. Zend_Cache のバックエンド">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第4章 Zend_Cache</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.auth.adapter.digest.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.cache.theory.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.cache"></a>第4章 Zend_Cache</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.cache.html#zend.cache.introduction">4.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.cache.theory.html">4.2. キャッシュの仕組み</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.factory">4.2.1. <code class="code">Zend_Cache</code> ファクトリメソッド</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.tags">4.2.2. レコードのタグ付け</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.clean">4.2.3. キャッシュの削除</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.frontends.html">4.3. Zend_Cache のフロントエンド</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.core">4.3.1. Zend_Cache_Core</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.output">4.3.2. Zend_Cache_Frontend_Output</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.function">4.3.3. Zend_Cache_Frontend_Function</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.class">4.3.4. Zend_Cache_Frontend_Class</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.file">4.3.5. Zend_Cache_Frontend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.page">4.3.6. Zend_Cache_Frontend_Page</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.backends.html">4.4. Zend_Cache のバックエンド</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.file">4.4.1. Zend_Cache_Backend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.sqlite">4.4.2. Zend_Cache_Backend_Sqlite</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.memcached">4.4.3. Zend_Cache_Backend_Memcached</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.apc">4.4.4. Zend_Cache_Backend_APC</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.platform">4.4.5. Zend_Cache_Backend_ZendPlatform</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.introduction"></a>4.1. 導入</h2></div></div></div>
+<p>
+        <code class="code">Zend_Cache</code> は、任意のデータをキャッシュするための一般的な手法を提供します。
+    </p>
+<p>
+      Zend Framework におけるキャッシュ処理はフロントエンドで行われ、キャッシュレコードの保存には
+      バックエンドのアダプタ (<code class="code">File</code>、<code class="code">Sqlite</code>、<code class="code">Memcache</code>...)
+      を使用します。ID およびタグを使用した柔軟な仕組みが用いられています。これらを使用することで、
+      キャッシュデータの一部だけを削除する (「指定したタグがつけられているキャッシュレコードをすべて削除する」
+      など) といったことも簡単にできるようになります。
+    </p>
+<p>
+        このモジュールの中心となる部分 (<code class="code">Zend_Cache_Core</code>) は、標準的で柔軟なものとなっています。
+        設定変更も可能です。とは言え、
+        特定の目的のためには、より適切な実行結果を得るためのフロントエンド
+        <code class="code">Zend_Cache_Core</code> を拡張する
+        (たとえば <code class="code">Output</code>、<code class="code">File</code>、<code class="code">Function</code>、<code class="code">Class</code> など)
+        こともできます。
+    </p>
+<div class="example">
+<a name="id4788339"></a><p class="title"><b>例 4.1. <code class="code">Zend_Cache::factory()</code> によるフロントエンドの取得</b></p>
+<p>
+            <code class="code">Zend_Cache::factory()</code> は、適切なオブジェクトを作成してそれらを互いに結び付けます。
+            この最初の例では、フロントエンドに <code class="code">Core</code>、バックエンドに <code class="code">File</code>
+            を使用します。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Cache.php';
+
+$frontendOptions = array(
+   'lifeTime' =&gt; 7200, // キャッシュの有効期限を 2 時間とします
+   'automaticSerialization' =&gt; true
+);
+
+$backendOptions = array(
+    'cacheDir' =&gt; './tmp/' // キャッシュファイルを書き込むディレクトリ
+);
+
+// Zend_Cache_Core オブジェクトを取得します
+$cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+
+?&gt;</pre>
+<p>
+            これでフロントエンドが得られました。あらゆる種類のデータを保存することができます
+            (そのために、シリアライズを有効にしました)。例えば、非常に時間がかかるデータベースクエリの結果を
+            キャッシュすることが可能です。いったんキャッシュしてしまえば、
+            あとはデータベースに接続する必要さえありません。キャッシュから取得したレコードを
+            アンシリアライズしてデータを取得すればよいのです。
+       </p>
+<pre class="programlisting">&lt;?php
+
+// $cache は先ほどの例で作成したものです
+
+// キャッシュがすでに存在するかどうかを調べます
+if(!$result = $cache-&gt;load('myresult')) {
+
+    // キャッシュが見つかりませんでした。データベースに接続します
+    
+    $db = Zend_Db::factory( [...] );
+    
+    $result = $db-&gt;fetchAll('SELECT * FROM huge_table');
+    
+    $cache-&gt;save($result, 'myresult');
+    
+} else {
+
+    // キャッシュが見つかりました! 大声で叫びましょう
+    echo "これはキャッシュからのデータです!\n\n";
+    
+}
+
+print_r($result);
+
+?&gt;</pre>
+</div>
+<div class="example">
+<a name="id4788406"></a><p class="title"><b>例 4.2. <code class="code">Zend_Cache</code> 出力フロントエンドによる出力のキャッシュ</b></p>
+<p>
+            まず、出力をキャッシュしたい部分を何らかの条件式で「マークアップ」し、
+            その前後を <code class="code">start()</code> メソッドおよび <code class="code">end()</code>
+            メソッドで囲みます (これは最初の例に似ており、キャッシュ処理の基本となる考え方です)。
+        </p>
+<p>
+            内部では、通常通りに出力を行います。出力内容は、 <code class="code">end()</code>
+            メソッドに到達するまでずっとキャッシュされます。次回の実行時には、
+            このセクションが読み飛ばされ、その代わりにキャッシュから取得したデータが使用されます
+            (キャッシュレコードが有効なものである限ります)。
+       </p>
+<pre class="programlisting">&lt;?php
+
+$frontendOptions = array(
+   'lifeTime' =&gt; 30,                  // キャッシュの有効期間は 30 秒です
+   'automaticSerialization' =&gt; false  // これはデフォルト値です
+);n
+
+$backendOptions = array('cacheDir' =&gt; './tmp/');
+
+$cache = Zend_Cache::factory('Output', 'File', $frontendOptions, $backendOptions);
+
+// start() メソッドに一意な ID を渡します
+if(!$cache-&gt;start('mypage')) {
+    // 通常通りに出力します
+    
+    echo 'Hello world! ';
+    echo 'これはキャッシュされます ('.time().') ';
+    
+    $cache-&gt;end(); // 出力が保存され、ブラウザに送信されます
+}
+
+echo 'これはキャッシュされません ('.time().').';
+
+?&gt;       </pre>
+<p>
+           <code class="code">time()</code> の結果を二度出力していることに注目しましょう。
+           動作説明のため、何らかの動的な出力がほしかったのです。これを実行し、
+           さらに何度か「最新の情報に更新」してみましょう。
+           ふたつめの値が時とともに変化していくのに対して、
+           最初の方の値は変化しないことに気づかれるでしょう。
+           なぜなら、最初の値はキャッシュされたセクションの出力であり、
+           その他の内容とともにキャッシュに保存されているからです。
+           30 秒経過すると (有効期限を 30 秒に設定したので)、
+           ふたつの値は再び一致するようになります。これはキャッシュレコードが
+           有効期限切れになり、もう一度キャッシュしなおされたからです。
+           この例は、ブラウザあるいはコンソールで試してみてください。
+       </p>
+</div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        Zend_Cache を使用する際には、キャッシュ ID (<code class="code">save()</code> および
+        <code class="code">start()</code> で使用します) に十分な注意を払うようにしましょう。
+        これは、キャッシュしようとしているリソース内で一意である必要があります。
+        さもないと、無関係なレコードによってキャッシュを削除されてしまったり、
+        さらに悪いことにはまったく無関係な場所に表示されてしまったりなどという問題が起こります。
+    </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.auth.adapter.digest.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.cache.theory.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.2. ダイジェスト認証 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 4.2. キャッシュの仕組み</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

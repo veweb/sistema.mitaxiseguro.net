@@ -1,0 +1,188 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.2. De theorie van het cachencaching</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="prev" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="next" href="zend.cache.frontends.html" title="4.3. Zend_Cache frontends">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.factory" title="4.2.1. De Zend_Cache factory methode">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.tags" title="4.2.2. Records taggen">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.clean" title="4.2.3. Opschonen van de cache">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.2. De theorie van het cachencaching</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.cache.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 4. Zend_Cache</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.cache.frontends.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.theory"></a>4.2. De theorie van het cachencaching</h2></div></div></div>
+<p>
+        Er zijn drie belangrijke concepten in Zend_Cache. Een is de unieke identifier (een string) die wordt gebruikt om cache records te identificeren. De tweede is de <code class="code">'lifeTime'</code> parameter zoals gezien in de voorbeelden; het definieert hoe lang de cache als 'vers' wordt beschouwd. Het derde belangrijke concept is voorwaardelijke uitvoering zodat delen van de code compleet overgeslagen kunnen worden, waardoor de performance wordt verbeterd. De belangrijkste frontend functie (bijv. <code class="code">Zend_Cache_Core::get()</code> is altijd ontworpen om false terug te geven wanneer er geen waarde in de cache aanwezig is wanneer dat logisch is voor de aard van de frontend. Dat staat eindgebruikers toe om delen van de code te 'wrappen' die ze willen cachen (en dus overslaan) in <code class="code">if(){...}</code> statements waarbij de voorwaarde een Zend_Cache methode is. Aan het einde van deze blokken moet je wel opslaan wat je hebt gegenereerd (bijvoorbeeld <code class="code">Zend_Cache_Core::save()</code>).
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        Het ontwerp van de voorwaardelijke uitvoer van de gemaakte code is niet noodzakelijk in sommige frontends (bijvoorbeeld <code class="code">Function</code>) wanneer de logica aan de frontend is geimplementeerd.
+    </p></td></tr>
+</table></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        'Cache hit' is een term voor een voorwaarde waarbij een cache record wordt gevonden, valide is en 'vers' (in andere woorden, niet verlopen) is. 'Cache miss' is al het andere. Wanneer een cache miss voorkomt moet je je data genereren zoals normaal and cachen. Wanneer je een cache hit hebt, daarentegen, haalt de backend automatisch de record uit de cache.
+    </p></td></tr>
+</table></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.factory"></a>4.2.1. De <code class="code">Zend_Cache</code> factory methode</h3></div></div></div>
+<p>
+            Een goede manier om een bruikbare instantie van een <code class="code">Zend_Cache</code> frontend te bouwen wordt gegeven in het volgende voorbeeld:
+        </p>
+<pre class="programlisting">&lt;?php
+        
+# We "laden" de Zend_Cache factory.
+require 'Zend/Cache.php'; 
+
+# we kiezen een backend (bijvoorbeeld 'File' of 'Sqlite'...)
+$backendName = '[...]';
+
+# We kiezen een frontend (bijvoorbeeld 'Core', 'Output', 'Page'...)
+$frontendName = '[...]';
+
+# We zetten een array met opties voor de gekozen frontend
+$frontendOptions = array([...]);
+
+# We zetten een array met opties voor de gekozen backend
+$backendOptions = array([...]);
+
+# We maken de goede instantie.
+# (natuurlijk zijn de laatste twee argumenten optioneel)
+$cache = Zend_Cache::factory($frontendName, $backendName, $frontendOptions, $backendOptions);
+
+?&gt;</pre>
+<p>
+            In het volgende voorbeeld zullen we uitgaan dat de <code class="code">$cache</code> variabele een valide, geinstantieerde frontend bevat zoals getoond en dat je begrijpt hoe je parameters naar je backends kan doorgeven.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Gebruikt altijd <code class="code">Zend_Cache::factory()</code> om frontend instanties te krijgen. Zelf frontends en backends instantieren zal niet zoals verwacht werken.
+        </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.tags"></a>4.2.2. Records taggen</h3></div></div></div>
+<p>
+            Tags zijn een manier om je cache records te categoriseren. Wanneer je een cache opslaat met de <code class="code">save()</code> methode, kan je een array zetten met tags voor deze record. Vervolgens heb je de mogelijkheid om alle cache records met een bepaalde tag of met bepaalde tags op te schonen:
+        </p>
+<pre class="programlisting">&lt;?php
+             
+$cache-&gt;save($veel_data, 'mijnUniekeID', array('tagA', 'tagB', 'tagC'));
+            
+?&gt;</pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.clean"></a>4.2.3. Opschonen van de cache</h3></div></div></div>
+<p>
+            Om een specifieke cache id te verwijderen/invalideren kan je de <code class="code">remove()</code> methode gebruiken:
+        </p>
+<pre class="programlisting">&lt;?php 
+             
+$cache-&gt;remove('idOmTeVerwijderen');
+            
+?&gt;</pre>
+<p>
+            Om verschillende cache ids in een operatie te verwijderen/invalideren kan je de <code class="code">clean()</code> methode gebruiken. Bijvoorbeeld om alle cache records te verwijderen:
+        </p>
+<pre class="programlisting">&lt;?php 
+
+// Schoon alle cache records op
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_ALL);
+
+// Schoon alleen verlopen records op
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_OLD);
+            
+?&gt;   </pre>
+<p>   
+            Als je cache records wil verwijderen die aan tags 'tagA' en 'tagC' voldoen:
+        </p>
+<pre class="programlisting">&lt;?php 
+             
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array('tagA', 'tagC'));
+            
+?&gt;       </pre>
+<p>
+            Beschikbare opschoon modes zijn: <code class="code">CLEANING_MODE_ALL</code>, <code class="code">CLEANING_MODE_OLD</code>,
+            <code class="code">CLEANING_MODE_MATCHING_TAG</code> en <code class="code">CLEANING_MODE_NOT_MATCHING_TAG</code>. De laatsten zijn, zoals hun namen doen vermoeden, gecombineerd met een array van tags voor de opschoonoperatie.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.cache.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.cache.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.cache.frontends.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Hoofdstuk 4. Zend_Cache </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 4.3. Zend_Cache frontends</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

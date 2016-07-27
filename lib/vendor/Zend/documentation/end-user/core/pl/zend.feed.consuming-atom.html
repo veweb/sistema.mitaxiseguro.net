@@ -1,0 +1,157 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10.5. Odbieranie danych z kanału informacyjnego Atom</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="prev" href="zend.feed.consuming-rss.html" title="10.4. Odbieranie danych z kanału informacyjnego RSS">
+<link rel="next" href="zend.feed.consuming-atom-single-entry.html" title="10.6. Pobieranie pojedynczego wpisu kanału Atom">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.5. Odbieranie danych z kanału informacyjnego Atom</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.consuming-rss.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 10. Zend_Feed</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom-single-entry.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.consuming-atom"></a>10.5. Odbieranie danych z kanału informacyjnego Atom</h2></div></div></div>
+<p>
+        <code class="code">Zend_Feed_Atom</code> jest używany w prawie taki sam sposób jak
+        <code class="code">Zend_Feed_Rss</code>. Zapewnia taki sam dostęp do właściwości samego
+        kanału i taką samą iterację po wpisach w kanale. Główną różnicą jest sama
+        struktura protokołu Atom. Atom jest następcą RSS; jest bardziej uogólnionym
+        protokołem i jest zaprojektowany aby łatwiej radzić sobie z kanałami, które
+        ukazują cała swoją zawartość wewnątrz pliku RSS dzieląc standardowy tag
+        RSS <code class="code">description</code> na dwa elementy, <code class="code">summary</code> oraz 
+        <code class="code">content</code>.
+    </p>
+<div class="example">
+<a name="id4827633"></a><p class="title"><b>Przykład 10.2. Podstawowe użycie kanału Atom</b></p>
+<p>
+            Odczytywanie kanału Atom i wyświetlenie pól <code class="code">title</code> i 
+            <code class="code">summary</code> dla każdego z wpisów:
+        </p>
+<pre class="programlisting">
+&lt;?php
+
+$feed = new Zend_Feed_Atom('http://atom.example.com/feed/');
+echo 'Kanał zawiera ' . $feed-&gt;count() . ' wpisów.' . "\n\n";
+foreach ($feed as $entry) {
+    echo 'Tytuł: ' . $entry-&gt;title() . "\n";
+    echo 'Opis: ' . $entry-&gt;summary() . "\n\n";
+}
+
+?&gt;   </pre>
+</div>
+<p>
+        W kanałach Atom możesz się spodziewać następujących właściwości:
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">title</code> - Tytuł kanału, taki sam jak tytuł kanału RSS.</p></li>
+<li><p><code class="code">id</code> - Każdy arkusz i wpis mają unikalny identyfikator.</p></li>
+<li>
+<p><code class="code">link</code> - Arkusze mogą mieć wiele odnośników, które
+                są rozróżnianie za pomocą atrybutu <code class="code">type</code>.</p>
+<p>
+                    Odpowiednikiem odnośnika kanału RSS byłby odnośnik o typie 
+                    <code class="code">type="text/html"</code>. Jeśli odnośnik kieruje do
+                    alternatywnej wersji zawartości arkusza, może on otrzymać
+                    atrybut <code class="code">rel="alternate"</code>.
+                </p>
+</li>
+<li>
+<p><code class="code">subtitle</code> - Opis arkusza odpowiadający opisowi
+                kanału RSS.
+                </p>
+<p><code class="code">author-&gt;name()</code> - Nazwa autora arkusza.</p>
+<p><code class="code">author-&gt;email()</code> - Adres email autora arkusza.</p>
+</li>
+</ul></div>
+<p>
+    </p>
+<p>
+        Składniki wpisu kanału Atom:
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">id</code> - Unikalny identyfikator wpisu.</p></li>
+<li><p><code class="code">title</code> - Tytuł wpisu, taki sam jak tytuł w RSS</p></li>
+<li><p><code class="code">link</code> - Odnośnik do innego formatu lub do 
+                alternatywnej wersji wpisu.</p></li>
+<li><p><code class="code">summary</code> - Podsumowanie zawartości wpisu.</p></li>
+<li><p><code class="code">content</code> - Cała zawartość wpisu; może być pominięta
+                jeśli arkusz zawiera tylko skróty informacji.</p></li>
+<li><p><code class="code">author</code> - z pod-tagami <code class="code">name</code> oraz 
+                <code class="code">email</code> jak w arkuszach RSS</p></li>
+<li><p><code class="code">published</code> - data publikacji wpisu w formacie 
+                RFC 3339.</p></li>
+<li><p><code class="code">updated</code> - data ostatniej aktualizacji wpisu w 
+                formacie RFC 3339.</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        Więcej informacji o Atom znajdziesz na stronie
+        <a href="http://www.atomenabled.org/" target="_top">http://www.atomenabled.org/</a>.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.consuming-rss.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.feed.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom-single-entry.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.4. Odbieranie danych z kanału informacyjnego RSS </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 10.6. Pobieranie pojedynczego wpisu kanału Atom</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.2. Indexes Bouwen</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="prev" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="next" href="zend.search.searching.html" title="22.3. Het doorzoeken van een index">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.creating" title="22.2.1. Een Nieuwe Index Maken">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.updating" title="22.2.2. Index Updaten">
+<link rel="subsection" href="zend.search.index-creation.html#zend.search.index-creation.document-updating" title="22.2.3. Documenten updaten">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.2. Indexes Bouwen</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.searching.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.index-creation"></a>22.2. Indexes Bouwen</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.creating"></a>22.2.1. Een Nieuwe Index Maken</h3></div></div></div>
+<p>
+		    De mogelijkheid om nieuwe Indexes te maken en ze up te daten is geïmplementeerd in de Zend_Search_Lucene 
+			module en Java Lucene.
+            Je kan beide mogelijkheden gebruiken.
+        </p>
+<p>
+			Het volgende PHP code voorbeeld geeft een voorbeeld van hoe een bestand
+			kan worden geïndexeerd door de Zend_Search_Lucene indexing API te gebruiken:
+        </p>
+<pre class="programlisting">&lt;?php
+
+// Het tweede argument naar TRUE zetten maakt een nieuwe index
+$index = new Zend_Search_Lucene('/data/mijn-index', true);
+
+$doc = new Zend_Search_Lucene_Document();
+
+// De document URL opslaan om het in het zoekresultaat te identificeren.
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('url', $docUrl));
+
+// Documentinhoud indexeren
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('inhoud', $docContent));
+
+// Een document aan de index toevoegen.
+$index-&gt;addDocument($doc);
+
+// De veranderingen naar de index schrijven.
+$index-&gt;commit();
+?&gt;</pre>
+<p>
+		    Nieuw toegevoegde documenten kunnen na de commit operatie van de index worden
+			verkregen.
+        </p>
+<p>
+            <code class="code">Zend_Search_Lucene::commit()</code> wordt automatisch opgeroepen aan het einde
+			van de script uitvoering en vòòr elke zoekopdracht.
+        </p>
+<p>
+			Elke oproep van commit() genereert een nieuw index segment.
+            <sup>[<a name="id4863772" href="#ftn.id4863772">7</a>]</sup>
+            Het moet dus zo weinig mogelijk worden gebruikt.
+            Aan de andere hand, het comitten van een groot aantal documenten in één keer verbruikt meer geheugen.
+        </p>
+<p>
+		    Automatisch segment management optimalisatie is onderdeel van de toekomstige Zend_Search_Lucene 
+			verbeteringen.
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.updating"></a>22.2.2. Index Updaten</h3></div></div></div>
+<p>
+			Dezelfde procedure wordt gebruikt om een bestaande index up te daten. Het enige verschil is dat de index
+			zou moeten worden geopend zonder tweede parameter:
+        </p>
+<pre class="programlisting">&lt;?php
+
+// Een bestaande index openen
+$index = new Zend_Search_Lucene('/data/mijn-index');
+
+$doc = new Zend_Search_Lucene_Document();
+
+// Het document URL opslaan om het in het zoekresultaat te identificeren.
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('url', $docUrl));
+
+// Documentinhoud indexeren
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('inhoud', $docContent));
+
+// Een document aan de index toevoegen.
+$index-&gt;addDocument($doc);
+
+// De veranderingen naar de index schrijven.
+$index-&gt;commit();
+?&gt;</pre>
+<p>
+			Elke oproep (impliciet of expliciet) aan commit() genereert een nieuw index segment.
+        </p>
+<p>
+			Zend_Search_Lucene beheert segmenten niet automatisch. Je moet dus rekening houden met segmentgroottes.
+			Een groot segment is meer optimaal, maar heeft meer geheugen nodig tijdens zijn creatie.
+        </p>
+<p>
+			Lucene Java en Luke (Lucene Index Toolbox - <a href="http://www.getopt.org/luke/" target="_top">http://www.getopt.org/luke/</a>)
+			kunnen worden geraadpleegd om indexes te optimaliseren met deze versie van Zend_Search_Lucene.
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.document-updating"></a>22.2.3. Documenten updaten</h3></div></div></div>
+<p>
+            Het Lucene index bestandformaat ondersteund het updaten van documenten niet. Documenten zouden moeten worden
+            verwijderd en opnieuw toegevoegd worden om de index up te daten.
+        </p>
+<p>
+            De <code class="code">Zend_Search_Lucene::delete()</code> methode werkt met een intern document id index. Deze kan worden 
+            bekomen via een query hit per 'id' eigenschap:
+        </p>
+<pre class="programlisting">&lt;?php
+$removePath = ...;
+$hits = $index-&gt;find('path:' . $removePath);
+foreach ($hits as $hit) {
+    $index-&gt;delete($hit-&gt;id);
+}
+$index-&gt;commit();
+?&gt;</pre>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote">
+<p><sup>[<a name="ftn.id4863772" href="#id4863772">7</a>] </sup>
+            Lucene index segment bestanden zijn niet updatebaar. Segment update noodzaakt een volledige
+            segment reorganisatie. Zie de Lucene index bestandsformaten voor details
+            (<a href="http://lucene.apache.org/java/docs/fileformats.html" target="_top">http://lucene.apache.org/java/docs/fileformats.html</a>).
+            Het aantal segmenten opvoeren verlaagt de kwaliteit van de index, maar index optimalisatie herstelt dit.
+            Optimalisatie beperkt zich tot het bijeen voegen van verscheidene segmenten in één enkel segment. Dit
+            proces doet geen update van de segmenten. Het genereert een nieuw groot segment, een nieuwe segmentenlijst
+            ('segments.new' bestand) dat het nieuwe segment bevat in plaats van de lijst van oude segmenten, en hernoemt
+            dan het bestand 'segments.new' naar 'segments'.
+            </p>
+<p>
+            Optimalisatie is een iteratief proces. Vele kleine segmenten (die bijvoorbeeld werden gegenereerd door het
+            toevoegen van een document) worden in een groter samengevoegd en zo verder. Optimalisatie kan met een segment
+            stream werken en verbruikt niet veel geheugen. Samengevat: optimalisatie verbruikt weinig middelen, doet geen
+            lock op de index voor het zoeken, updaten of samenvoegen van andere segmenten.
+            </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.searching.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Hoofdstuk 22. Zend_Search </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 22.3. Het doorzoeken van een index</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

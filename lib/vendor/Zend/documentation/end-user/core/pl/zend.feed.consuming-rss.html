@@ -1,0 +1,205 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10.4. Odbieranie danych z kanału informacyjnego RSS</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="prev" href="zend.feed.findFeeds.html" title="10.3. Odbieranie kanałów informacyjnych ze stron internetowych">
+<link rel="next" href="zend.feed.consuming-atom.html" title="10.5. Odbieranie danych z kanału informacyjnego Atom">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.4. Odbieranie danych z kanału informacyjnego RSS</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.findFeeds.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 10. Zend_Feed</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.consuming-rss"></a>10.4. Odbieranie danych z kanału informacyjnego RSS</h2></div></div></div>
+<p>
+        Odczytywanie kanału RSS jest tak proste jak utworzenie obiektu <code class="code">Zend_Feed_Rss</code> z adresem
+        URL kanału przekazanym do konstruktora:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+$channel = new Zend_Feed_Rss('http://rss.example.com/channelName');
+
+?&gt;</pre>
+<p>
+        Jeśli wystąpi jakiś błąd podczas obróbki danych pochodzących z kanału, 
+        zostanie wyrzucony wyjątek <code class="code">Zend_Feed_Exception</code>.
+    </p>
+<p>
+        Kiedy już masz obiekt kanału informacyjnego, możesz łatwo uzyskać dostęp
+        do standardowych właściwości kanału RSS bezpośrednio na obiekcie:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+echo $channel-&gt;title();
+
+?&gt;</pre>
+<p>
+        Zwróć uwagę na składnie funkcji. <code class="code">Zend_Feed</code> używa konwencji 
+        traktującej właściwości jak obiekt XML gdy próbujemy uzyskać do nich dostęp
+        za pomocą składni "getter" (<code class="code">$obj-&gt;property</code>) i jako łańcuch
+        znaków gdy próbujemy uzyskać dostęp jak do metody (<code class="code">$obj-&gt;property()</code>). 
+        To pozwala na pełny dostęp do danych tekstowych przy jednoczesnym dostępie
+        do wszystkich niższych składników.
+    </p>
+<p>
+        Jeśli właściwości kanału mają atrybuty, są one dostępne przy użyciu składni
+        tablic PHP:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+echo $channel-&gt;category['domain'];
+
+?&gt;</pre>
+<p>
+        Since XML attributes cannot have children, method syntax is not necessary for accessing attribute
+        values.
+    </p>
+<p>
+        Najczęściej będziesz chciał przejść pętlą po danych kanału i zrobić coś
+        z jego wpisami. Klasa <code class="code">Zend_Feed_Abstract</code> implementuje wbudowany
+        w PHP interfejs <code class="code">Iterator</code>, więc wyświetlenie wszystkich tytułów
+        artykułów z kanału jest bardzo proste:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+foreach ($channel as $item) {
+    echo $item-&gt;title() . "\n";
+}
+
+?&gt;</pre>
+<p>
+        Jeśli nie jesteś obeznany z RSS, poniżej znajdziesz opis podstawowych
+        składników, które możesz znaleść w kanale RSS i w jego indywidualnych
+        elementach (wpisach).
+    </p>
+<p>
+        Wymagane składniki kanału:
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">title</code> - Nazwa kanału</p></li>
+<li><p><code class="code">link</code> - Adres URL strony internetowej odpowiadającej kanałowi</p></li>
+<li><p><code class="code">description</code> - Opis kanału</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        Opcjonalne składniki kanału:
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">pubDate</code> - Data publikacji zawartości, format RFC 822 format</p></li>
+<li><p><code class="code">language</code> - Język kanału</p></li>
+<li><p><code class="code">category</code> - Jedna lub więcej kategorii do których należy kanał</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        Elementy RSS <code class="code">&lt;item&gt;</code> nie mają wymaganych składników,
+        jednak albo składnik <code class="code">title</code> albo <code class="code">description</code> musi
+        istnieć w elemencie.
+    </p>
+<p>
+        Składniki elementu kanału:
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">title</code> - Tytuł elementu</p></li>
+<li><p><code class="code">link</code> - Adres URL elementu</p></li>
+<li><p><code class="code">description</code> - Opis elementu</p></li>
+<li><p><code class="code">author</code> - Adres email autora elementu</p></li>
+<li><p><code class="code">category</code> - Jedna lub więcej kategorii do których należy element</p></li>
+<li><p><code class="code">comments</code> - Adres URL komentarzy do tego elementu</p></li>
+<li><p><code class="code">pubDate</code> - Data publikacji elementu, w formacie RFC 822</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        W twoim kodzie zawsze możesz sprawdzić czy element nie jest pusty za pomocą:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+if ($item-&gt;propname()) {
+    // ... kontynuuj.
+}
+
+?&gt;</pre>
+<p>
+        Jeśli zamiast tego użyjesz <code class="code">$item-&gt;propname</code>, zawsze dostaniesz
+        pusty obiekt który zostanie skonwertowany do wartości <code class="code">TRUE</code>, 
+        więc test zawiedzie.
+    </p>
+<p>
+        Więcej informacji dostępnych jest w oficjalnej specyfikacji RSS 2.0:
+        <a href="http://blogs.law.harvard.edu/tech/rss" target="_top">http://blogs.law.harvard.edu/tech/rss</a>
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.findFeeds.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.feed.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.3. Odbieranie kanałów informacyjnych ze stron internetowych </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 10.5. Odbieranie danych z kanału informacyjnego Atom</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

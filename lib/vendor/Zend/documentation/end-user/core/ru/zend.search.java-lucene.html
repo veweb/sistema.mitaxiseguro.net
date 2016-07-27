@@ -1,0 +1,216 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.8. Взаимодействие с Java Lucene</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="prev" href="zend.search.extending.html" title="22.7. Расширяемость">
+<link rel="next" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.search.java-lucene.html#zend.search.index-creation.file-formats" title="22.8.1. Форматы файлов">
+<link rel="subsection" href="zend.search.java-lucene.html#zend.search.index-creation.index-directory" title="22.8.2. Директория для индекса">
+<link rel="subsection" href="zend.search.java-lucene.html#zend.search.java-lucene.source-code" title="22.8.3. Исходный код Java">
+<link rel="subsection" href="zend.search.java-lucene.html#zend.search.java-lucene.jar" title="22.8.4. Использование LuceneIndexCreation.jar">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.8. Взаимодействие с Java Lucene</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.extending.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.server.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.java-lucene"></a>22.8. Взаимодействие с Java Lucene</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.file-formats"></a>22.8.1. Форматы файлов</h3></div></div></div>
+<p>
+        Форматы файлов индекса Zend_Search_Lucene являются совместимыми с Lucene
+        версии 1.4 и выше.
+
+        </p>
+<p>
+        Подробное описание этого формата можно прочитать здесь:
+
+          <a href="http://lucene.apache.org/java/docs/fileformats.html" target="_top">http://lucene.apache.org/java/docs/fileformats.html</a>.
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.index-directory"></a>22.8.2. Директория для индекса</h3></div></div></div>
+<p>
+        После создания индекса директория для индекса будет содержать несколько файлов:
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                файл <code class="filename">segments</code> является списком сегментов индекса.
+
+                </p></li>
+<li><p>
+                файлы <code class="filename">*.cfs</code> содержат сегменты индекса.
+                Внимание! Оптимизированный индекс всегда имеет только один сегмент.
+
+                </p></li>
+<li><p>
+                файл <code class="filename">deletable</code> является списком файлов,
+                которые больше не используются индексом, но которые нельзя было удалить. 
+
+                </p></li>
+</ul></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.java-lucene.source-code"></a>22.8.3. Исходный код Java</h3></div></div></div>
+<p>
+            Приведенный ниже листинг программы на Java представляет собой пример
+            того, как индексировать файл, используя Java Lucene: 
+
+        </p>
+<pre class="programlisting">
+/**
+* Создание индекса:
+*/
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.document.*;
+
+import java.io.*
+
+...
+
+IndexWriter indexWriter = new IndexWriter("/data/my_index", 
+                                          new SimpleAnalyzer(), true);
+
+...
+
+String filename = "/path/to/file-to-index.txt"
+File f = new File(filename);
+
+Document doc = new Document();
+doc.add(Field.Text("path", filename));
+doc.add(Field.Keyword("modified",DateField.timeToString(f.lastModified())));
+doc.add(Field.Text("author", "unknown"));
+FileInputStream is = new FileInputStream(f);
+Reader reader = new BufferedReader(new InputStreamReader(is));
+doc.add(Field.Text("contents", reader));
+
+indexWriter.addDocument(doc);
+        </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.java-lucene.jar"></a>22.8.4. Использование LuceneIndexCreation.jar</h3></div></div></div>
+<p>
+            Для того, чтобы можно было сразу начать работать с
+            Zend_Search_Lucene, файл JAR (JAVA) уже создан с тем, чтобы
+            можно было генерировать индекс из командной строки.
+            За более подробной информацией о файлах JAR, см.
+            <a href="http://java.sun.com/docs/books/tutorial/jar/basics/index.html" target="_top">http://java.sun.com/docs/books/tutorial/jar/basics/index.html</a>.
+
+        </p>
+<p>
+            LuceneIndexCreation.jar принимает текстовые файлы и создает из них индекс.
+            Использование:
+
+        </p>
+<pre class="programlisting">
+    java -jar LuceneIndexCreation.jar [-c] [-s] &lt;document_dir&gt; &lt;index_dir&gt;
+    -c   - force index to be case sensitive
+    -s   - store content in the index
+    </pre>
+<p>
+            Эта команда принимает директорию <code class="code">&lt;document_dir&gt;</code>,
+            включая все ее вложенные директории, и создает индекс Lucene.
+            Индекс является набором файлов, которые будут сохранены в отдельной
+            директории, которая задается через <code class="code">&lt;index_dir&gt;</code>.
+
+        </p>
+<p>
+            Для каждого индексируемого документа LuceneIndexCreation создает
+            объект документа с тремя полями: поле <span class="emphasis"><em>contents</em></span>,
+            содержащее тело документа, поле <span class="emphasis"><em>modified</em></span>,
+            содержащее время изменения файла, и полный путь с именем файла в
+            поле <span class="emphasis"><em>path</em></span>.  
+
+        </p>
+<p>
+            Если указана опция <code class="option">-c</code>, то индекс становится чувствительным
+            к регистру. Иначе перед добавлением в индекс все элементы
+            приводятся к нижнему регистру.
+
+        </p>
+<p>
+            Если указана опция <code class="option">-s</code>, то содержимое документа 
+            тоже сохраняется в индексе и сожет быть получено с помощью
+            полей <code class="code">path</code> и <code class="code">modified</code>.
+
+        </p>
+<p>
+            Иначе сохраняются только поля <code class="code">path</code> и <code class="code">modified</code>,
+            поле <code class="code">contents</code> только индексируется. В этом случае
+            содержимое документа должно быть получено из источника
+            через его путь.
+
+        </p>
+<p>
+            Будьте осторожны — применение опции <code class="option">-s</code>
+            увеличивает объем индекса примерно в пять раз.   
+
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.extending.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.server.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.7. Расширяемость </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> Глава 23. Zend_Server</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

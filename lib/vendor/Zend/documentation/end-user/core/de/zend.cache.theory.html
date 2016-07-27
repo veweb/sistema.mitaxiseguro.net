@@ -1,0 +1,224 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.2. Die Theorie des Cachens</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="prev" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="next" href="zend.cache.frontends.html" title="4.3. Zend_Cache Frontends">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.factory" title="4.2.1. Die Zend_Cache Factory Methode">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.tags" title="4.2.2. Markierte Datensätze">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.clean" title="4.2.3. Löschen des Caches">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.2. Die Theorie des Cachens</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.cache.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 4. Zend_Cache</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.cache.frontends.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.theory"></a>4.2. Die Theorie des Cachens</h2></div></div></div>
+<p>
+        Es gibt 3 Schlüsselkonzepte in Zend_Cache. Eines ist die eindeutige Identifizierung (ein String), 
+        die benutzt wird, um Cache Datensätze zu identifizieren. Das zweite ist die <code class="code">'lifeTime'</code>
+        Direktive, wie im Beispiel gezeigt; sie definiert, wie lange eine gecachte Ressource als 'frisch'
+        betrachtet wird. Das dritte Konzept ist die bedingte Ausführung, so das Teile des Codes komplett 
+        übersprungen werden können, was die Leistung steigert.
+        Die Haupt-Frontend Funktion (eg. <code class="code">Zend_Cache_Core::get()</code>) ist immer so gestaltet, das
+        false zurückgegeben wird, wenn ein Cache fehlt. Aber nur, wenn das für die Natur des Frontends Sinn macht.
+        Das erlaubt es Endbenutzern, die Teile des Codes, die gecached (oder übersprungen) werden sollen, in
+        <code class="code">if(){ ... }</code> Anweisungen zu umhüllen, wobei die Bedingung die Zend_Cache Methode selbst ist.
+        Am Ende der Blöcke muss das erstellte auf alle Fälle gespeichert werden
+        (z.B. <code class="code">Zend_Cache_Core::save()</code>).
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        Das Design der bedingten Ausführung des erzeugten Codes ist in einigen Frontends nicht notwendig
+        (<code class="code">Function</code>, zum Beispiel) wenn die komplette Logik im verwendeten Frontend integriert ist.
+    </p></td></tr>
+</table></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        'Cache hit' ist ein Ausdruck für eine Bedingung, wenn ein Cache Datensatz gefunden wurde, er gültig und
+        'frisch' ist (in anderen Worten, er ist noch nicht abgelaufen). 'Cache miss' ist alles andere.
+        Wenn ein 'Cache miss' passiert, müssen die Daten erzeugt werden (wie man es normalerweise tun würde) und
+        anschließend cachen. Wenn ein 'Cache hit' geschieht muß, auf der anderen Seite, das Backend automatisch den 
+        Datensatz vom Cache transparent holen.
+    </p></td></tr>
+</table></div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.factory"></a>4.2.1. Die <code class="code">Zend_Cache</code> Factory Methode</h3></div></div></div>
+<p>
+            Ein guter Weg, um eine verwendbare Instanz eines <code class="code">Zend_Cache</code> Frontends zu erstellen, wird im
+            folgenden Beispiel gegeben:
+        </p>
+<pre class="programlisting">&lt;?php
+        
+# Wir "laden" die Zend_Cache Factory 
+require 'Zend/Cache.php'; 
+
+# Wir wählen ein Backend (zum Beispiel 'File' oder 'Sqlite'...)
+$backendName = '[...]';
+
+# Wir wählen ein Frontend (zum Beispiel 'Core', 'Output', 'Page'...)
+$frontendName = '[...]';
+
+# Wir definieren ein Array von Optionen für das gewählte Frontend
+$frontendOptions = array([...]);
+
+# Wir definieren ein Array von Optionen für das gewählte Backend
+$backendOptions = array([...]);
+
+# Wir erstellen eine gute Instanz
+# (natürlich sind die letzten 2 Argumente optional)
+$cache = Zend_Cache::factory($frontendName, $backendName, $frontendOptions, $backendOptions);
+
+?&gt;</pre>
+<p>
+            In den folgenden Beispielen wird angenommen, dass die <code class="code">$cache</code> Variable ein
+            gültiges, initiiertes Frontend wie gezeigt enthält und dass verstanden wird, wie 
+            Parameter an das ausgewählte Backend übergeben werden.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Immer <code class="code">Zend_Cache::factory()</code> benutzen, um eine Frontend Instanz zu bekommen.
+            Das selbstständige Instantiieren von Frontends und Backends funktioniert nicht so wie
+            erwartet.
+        </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.tags"></a>4.2.2. Markierte Datensätze</h3></div></div></div>
+<p>
+            Markierungen sind ein Weg um Cache Datensätze zu kategorisieren. Wenn der Cache mit der <code class="code">save()</code>
+            Methode abgespeichert werden soll, kann ein Array mit Markierungen für diesen Datensatz angelegt werden.
+            Dann besteht die Möglichkeit, alle markierten Cache Datensätze mit einer bestimmten Markierung (oder
+            Markierungen), zu löschen:
+        </p>
+<pre class="programlisting">&lt;?php
+             
+$cache-&gt;save($huge_data, 'myUniqueID', array('tagA', 'tagB', 'tagC'));
+            
+?&gt;</pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Man beachte, dass die <code class="code">save()</code> Method einen optionales, viertes Argument akzeptiert: 
+            <code class="code">$specificLifeTime</code> (wenn != false, setzt es eine spezifische Laufzeit für diesen speziellen Cache Eintrag)
+        </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.clean"></a>4.2.3. Löschen des Caches</h3></div></div></div>
+<p>
+            Um eine bestimmte Cache ID zu entfernen/annullieren, kann die <code class="code">remove()</code> Methode benutzt werden:
+        </p>
+<pre class="programlisting">&lt;?php 
+             
+$cache-&gt;remove('idToRemove');
+            
+?&gt;</pre>
+<p>
+            Um mehrere Cache IDs mit einer Operation zu entfernen/annulieren, kann die <code class="code">clean()</code> Methode
+            benutzt werden. Zum Beispiel um alle Cache Datensätze zu entfernen :
+        </p>
+<pre class="programlisting">&lt;?php 
+
+// Löschen aller Datensätze
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_ALL);
+
+// Nur abgelaufene löschen
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_OLD);
+            
+?&gt;       </pre>
+<p>
+            Um Cache Einträge zu löschen, die zu den Tags 'tagA' und 'tagC' passen :
+        </p>
+<pre class="programlisting">&lt;?php 
+             
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array('tagA', 'tagC'));
+            
+?&gt;       </pre>
+<p>
+            Mögliche Löschmodi sind: <code class="code">CLEANING_MODE_ALL</code>, <code class="code">CLEANING_MODE_OLD</code>,
+            <code class="code">CLEANING_MODE_MATCHING_TAG</code> und <code class="code">CLEANING_MODE_NOT_MATCHING_TAG</code>. 
+            Die letzteren sind, wie deren Namen vermuten lassen, kombiniert mit einem Array von Markierungen
+            für die Löschoperation.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.cache.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.cache.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.cache.frontends.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitel 4. Zend_Cache </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 4.3. Zend_Cache Frontends</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

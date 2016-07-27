@@ -1,0 +1,382 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.3. Einen Index durchsuchen</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="prev" href="zend.search.index-creation.html" title="22.2. Indexerstellung">
+<link rel="next" href="zend.search.query-language.html" title="22.4. Query Language">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.query_building" title="22.3.1. Abfrage erstellen">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.results" title="22.3.2. Suchergebnisse">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.results-scoring" title="22.3.3. Ergebnisgewichtung">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.sorting" title="22.3.4. Sortierung der Suchergebnisse">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.3. Einen Index durchsuchen</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.index-creation.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.query-language.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.searching"></a>22.3. Einen Index durchsuchen</h2></div></div></div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.query_building"></a>22.3.1. Abfrage erstellen</h3></div></div></div>
+<p>
+            Es gibt zwei Arten, den Index zu durchsuchen. Die erste Methode verwendet den 
+            Query Parser, um eine Abfrage aus einem String zu erstellen. Die zweite ist die
+            Möglichkeit, eigene Abfragen mithilfe der Zend_Search_Lucene Programmierschnittstelle
+            (API) zu erstellen.
+        </p>
+<p>
+            Vor der Verwendung des bereitgestellten Query Parsers, beachte bitte folgendes:
+
+            </p>
+<div class="orderedlist"><ol type="1">
+<li><p>
+                        Wenn du deine Abfragestrings programmseitig erstellst und dann durch den Query 
+                        Parser verarbeiten lässt, solltest du ernsthaft darüber nachdenken, deine 
+                        Abfragen direct mit der Programmierschnittstelle (API) für Abfragen zu erstellen.
+                        In anderen Worten, der Query Parser wurde für von Menschen eingegebene Texte 
+                        und nicht für von Programmen erstellte Texte entwickelt.
+                    </p></li>
+<li><p>
+                        Nicht in einzelne Tokens aufgeteilte Felder werden am besten direkt zu der 
+                        Abfrage und nicht über den Query Parser hinzugefügt. Wenn die Feldwerte durch 
+                        die Anwendung programmseitig erstellt werden, dann sollte dies für 
+                        Abfrageklauseln dieses Felds ebenfalls geschehen. Ein Analysator, welche der 
+                        Query Parser verwendet, wurde entwickelt, um von Menschen eingegebenen Text in
+                        Begriffe zu konvertieren. Durch Programme erstellte Werte wie Datumsangaben,
+                        Schlüsselwörter, usw. sollten durchweg durch Programme erstellt werden.
+                    </p></li>
+<li><p>
+                        In einem Abfrageformular sollten generelle Textfelder den Query Parser 
+                        verwenden. Alle anderen, wie z.B. Datumsbereiche, Schlüsselwörter, usw. werden
+                        besser direkt durch die Programmierschnittstelle (API) der Abfrage hinzugefügt. Ein
+                        Feld mit einem begrenzten Wertebereich, das durch ein Pulldown-Menü spezifiziert
+                        wird, sollte nicht einem Abfragestring hinzugefügt werden, der anschließend 
+                        wieder geparst wird, sondern eher als eine TermQuery Klausel hinzugefügt werden.
+                    </p></li>
+<li><p>
+                        Boolesche Abfragen erlauben es, verschiedene Abfragen zu einer neuen 
+                        zusammenzufügen. Deshalb ist dies der beste Weg, um zusätzliche Kriterien
+                        zu einer Benutzersuche hinzuzufügen, die durch den Abfragestring definiert
+                        wird.
+                    </p></li>
+</ol></div>
+<p>
+
+        </p>
+<p>
+            Beide Arten verwenden die selbe Methode der Programmierschnittstelle (API), um den Index
+            zu durchsuchen:
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once('Zend/Search/Lucene.php');
+
+$index = Zend_Search_Lucene::open('/data/my_index');
+
+$index-&gt;find($query);
+
+?&gt;</pre>
+<p>
+            Die <code class="code">Zend_Search_Lucene::find()</code> Methode ermittelt den Eingabetyp automatisch
+            und verwendet den Query Parser, um ein entsprechendes Zend_Search_Lucene_Search_Query 
+            Objekt aus dem String zu erstellen.
+        </p>
+<p>
+            Es ist wichtig zu beachten, dass der Query Parser den Standard Analyzer verwendet, um 
+            verschiedene Teile des Abfragestrings in Token aufzuteilen. Dadurch werden alle 
+            Umwandlungen, die auf einen indizierten Text ausgeführt werden, auch für den 
+            Abfragestring durchgeführt.
+        </p>
+<p>
+            Dies können die Umwandlung in Kleinbuchstaben, um die Suche unabhängig von Groß- und 
+            Kleinschreibung zu machen, das Entfernen von Stopwörtern, das Stemming und viele andere
+            Dinge sein.
+        </p>
+<p>
+            Im Gegensatz dazu transformieren oder filtern die API Methoden die Eingabebegriffe 
+            nicht. Deshalb passen sie besser für computergenerierte und nicht in Token aufgeteilte 
+            Felder.
+        </p>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.searching.query_building.parsing"></a>22.3.1.1. Query parsing</h4></div></div></div>
+<p>
+                <code class="code">Zend_Search_Lucene_Search_QueryParser::parse()</code> method may be used to parse query string
+                into query object.
+            </p>
+<p>
+                This object may be used in query construction API methods to combine user entered queries with
+                machine generated queries.
+            </p>
+<p>
+                Actually, in some cases it's only way to search for values within untokenized fields:
+
+                </p>
+<pre class="programlisting">&lt;?php
+$userQuery = Zend_Search_Lucene_Search_QueryParser::parse($queryStr);
+
+$pathTerm  = new Zend_Search_Lucene_Index_Term('/data/doc_dir/' . $filename, 'path');
+$pathQuery = new Zend_Search_Query_Term($pathTerm);
+
+$query = new Zend_Search_Query_Boolean();
+$query-&gt;addSubquery($userQuery, true /* required */);
+$query-&gt;addSubquery($pathQuery, true /* required */);
+
+$hits = $index-&gt;find($query);
+
+?&gt;</pre>
+<p>
+            </p>
+<p>
+                <code class="code">Zend_Search_Lucene_Search_QueryParser::parse()</code> method also takes optional encoding parameter,
+                which can specify query string encoding:
+            </p>
+<pre class="programlisting">
+$userQuery = Zend_Search_Lucene_Search_QueryParser::parse($queryStr, 'iso-8859-5');
+</pre>
+<p>
+            </p>
+<p>
+                If encoding is omitted, then current locale is used.
+            </p>
+<p>
+                It's also possible to specify default query string encoding with
+                <code class="code">Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding()</code> method:
+            </p>
+<pre class="programlisting">
+Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('iso-8859-5');
+...
+$userQuery = Zend_Search_Lucene_Search_QueryParser::parse($queryStr);
+</pre>
+<p>
+            </p>
+<p>
+                <code class="code">Zend_Search_Lucene_Search_QueryParser::getDefaultEncoding()</code> returns current default query
+                string encoding (empty string means "current locale").
+            </p>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.results"></a>22.3.2. Suchergebnisse</h3></div></div></div>
+<p>
+            Das Suchergebnis ist ein Array mit Zend_Search_Lucene_Search_QueryHit Objekten. Jedes
+            davon hat zwei Eigenschaften: <code class="code">$hit-&gt;document</code> ist eine Dokumentnummer 
+            innerhalb des Index und <code class="code">$hit-&gt;score</code> ist ein Punktwert für den Treffer im
+            Suchergebnis. Das Ergebnis wird anhand der Punktwerte sortiert (beste Treffer kommen
+            zuerst)
+        </p>
+<p>
+            Das Zend_Search_Lucene_Search_QueryHit Objekt beinhaltet zudem jedes Feld des 
+            Zend_Search_Lucene_Document, das gefunden wurde, als Eigenschaft des Treffers. In 
+            diesem Beispiel, wird ein Treffer zurückgegeben und das entsprechende Dokument hat
+            zwei Felder: Titel und Autor.
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once('Zend/Search/Lucene.php');
+
+$index = Zend_Search_Lucene::open('/data/my_index');
+
+$hits = $index-&gt;find($query);
+
+foreach ($hits as $hit) {
+    echo $hit-&gt;score;
+    echo $hit-&gt;title;
+    echo $hit-&gt;author;
+}
+
+?&gt;</pre>
+<p>
+            Gespeicherte Felder werden immer in UTF-8 Kodierung zurückgegeben.
+        </p>
+<p>
+            Optional kann das originale Zend_Search_Lucene_Document Objekt vom 
+            Zend_Search_Lucene_Search_QueryHit Objekt zurückgegeben werden.
+            
+            Du kannst gespeicherte Teile des Dokuments durch Verwendung der <code class="code">getDocument()</code>
+            Methode des Indexobjektes zurückerhalten und diese dann durch die 
+            <code class="code">getFieldValue()</code> Methode abfragen:
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once('Zend/Search/Lucene.php');
+
+$index = Zend_Search_Lucene::open('/data/my_index');
+
+$hits = $index-&gt;find($query);
+foreach ($hits as $hit) {
+    // gebe das Zend_Search_Lucene_Document Objekt für diesen Treffer zurück
+    echo $document = $hit-&gt;getDocument();
+
+    // gebe ein Zend_Search_Lucene_Field Objekt vom Zend_Search_Lucene_Document zurück
+    echo $document-&gt;getField('title');
+
+    // gebe den Stringwert des Zend_Search_Lucene_Field Objekts zurück
+    echo $document-&gt;getFieldValue('title');
+
+    // das gleiche wie getFieldValue()
+    echo $document-&gt;title;
+}
+
+?&gt;</pre>
+<p>
+            Die Felder, die in einem Zend_Search_Lucene_Document Objekt verfügbar sind, werden beim
+            Indizieren festgelegt. Die Dokumentenfelder werden durch die Indizieranwendung 
+            (z.B. LuceneIndexCreation.jar) im Dokument entweder nur indiziert oder indiziert und 
+            gespeichert. 
+        </p>
+<p>
+            Beachte, dass die Dokumentidentität ('path' in unserem Beispiel) auch im Index 
+            gespeichert wird und von ihm zurückgewonnen werden muß.
+        </p>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.results-scoring"></a>22.3.3. Ergebnisgewichtung</h3></div></div></div>
+<p>
+            Zend_Search_Lucene verwendet die selben Gewichtungsalgorithmen wie Java Lucene. Die
+            Treffer in den Suchergebnisse werden standardmäßig nach einem Punktwert sortiert. 
+            Treffer mit höherem Punktwert kommen zuerst, und Dokumente mit höherem Punktwert passen 
+            auf die Abfrage besser als solche mit niedrigerem Punktwert.
+            
+        </p>
+<p>
+            Grob gesagt, haben die Suchergebnisse einen höheren Punktwert, welche den gesuchten 
+            Begriff oder die gesuchte Phrase häufiger enthalten.
+            
+        </p>
+<p>
+            Der Punktwert kann über die <code class="code">score</code> Eigenschaft des Treffers ermittelt werden:
+        </p>
+<pre class="programlisting">&lt;?php
+$hits = $index-&gt;find($query);
+
+foreach ($hits as $hit) {
+    echo $hit-&gt;id;
+    echo $hit-&gt;score;
+}
+
+?&gt;</pre>
+<p>
+            Die Zend_Search_Lucene_Search_Similarity Klasse wird verwendet, um den Punktwert zu 
+            berechnen. Beachte den <a href="zend.search.extending.html#zend.search.extending.scoring" title="22.7.3. Algorithmen für Punktwertermittlung">Erweiterbarkeit. 
+            Algorithmen für Punktwertermittlung</a> Abschnitt für weitere Details.
+        </p>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.sorting"></a>22.3.4. Sortierung der Suchergebnisse</h3></div></div></div>
+<p>
+            Die Suchergebnisse werden standardmäßig nach dem Punktwert sortiert. Man kann dies durch
+            Setzen von Parametern für das Sortierfeld (oder -felder), den Sortiertyp und der 
+            Sortierreihenfolge ändern.
+        </p>
+<p>
+            <code class="code">$index-&gt;find()</code> Aufruf kann verschiedene optionale Parameter entgegen nehmen:
+            </p>
+<pre class="programlisting">
+$index-&gt;find($query [, $sortField [, $sortType [, $sortOrder]]] [, $sortField2 [, $sortType [, $sortOrder]]] ...);
+</pre>
+<p>
+        </p>
+<p>
+            <code class="code">$sortField</code> ist ein Name eines gespeicherten Feldes für das Suchergebnis
+        </p>
+<p>
+            <code class="code">$sortType</code> kann ausgelassen werden oder folgende Werte annehmen
+            <code class="code">SORT_REGULAR</code> (vergleiche Items normal, Standardwert),
+            <code class="code">SORT_NUMERIC</code> (vergleiche Items numerisch),
+            <code class="code">SORT_STRING</code> (vergleiche items als Strings).
+        </p>
+<p>
+            <code class="code">$sortOrder</code> kann ausgelassen werden oder folgende Werte annehmen
+            <code class="code">SORT_ASC</code> (sortiere in aufsteigender Folge, Standardwert),
+            <code class="code">SORT_DESC</code> (sortiere in absteigender Folge).
+        </p>
+<p>
+            Beispiele:
+            </p>
+<pre class="programlisting">
+$index-&gt;find($query, 'quantity', SORT_NUMERIC, SORT_DESC);
+</pre>
+<p>
+            </p>
+<pre class="programlisting">
+$index-&gt;find($query, 'fname', SORT_STRING, 'lname', SORT_STRING);
+</pre>
+<p>
+            </p>
+<pre class="programlisting">
+$index-&gt;find($query, 'name', SORT_STRING, 'quantity', SORT_NUMERIC, SORT_DESC);
+</pre>
+<p>
+        </p>
+<p>
+            Bitte beim Verwenden von nicht standardmäßigen Sortierreihenfolgen. Es erfordert die
+            komplette Übernahme der Dokumente aus dem Index und kann die Suchperformance dramatisch
+            verlangsamen.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.index-creation.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.query-language.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.2. Indexerstellung </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 22.4. Query Language</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

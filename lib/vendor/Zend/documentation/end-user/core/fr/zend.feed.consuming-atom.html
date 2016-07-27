@@ -1,0 +1,153 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10.5. Consommer un flux Atom</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="prev" href="zend.feed.consuming-rss.html" title="10.4. Consommer un flux RSS">
+<link rel="next" href="zend.feed.consuming-atom-single-entry.html" title="10.6. Consommer une entrée Atom particulière">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.5. Consommer un flux Atom</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.consuming-rss.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 10. Zend_Feed</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom-single-entry.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.consuming-atom"></a>10.5. Consommer un flux Atom</h2></div></div></div>
+<p>
+    La classe <code class="code">Zend_Feed_Atom</code> est utilisée pratiquement de la 
+    même manière que <code class="code">Zend_Feed_Rss</code>. Tout comme 
+    <code class="code">Zend_Feed_Rss</code>, elle offre aussi un accès aux propriétés du 
+    flux et elle permet d'itérer sur les entrées du flux. La différence 
+    principale réside dans la structure du protocole Atom lui-même. Atom est 
+    le successeur de RSS; c'est un protocole plus général et il est conçu 
+    pour prendre en charge plus facilement les flux qui incluent directement 
+    leur contenu, et ce en divisant la balise RSS <code class="code">description</code> 
+    en deux éléments : <code class="code">summary</code> (résumé) et <code class="code">content</code> 
+    (contenu).
+    </p>
+<div class="example">
+<a name="id4821746"></a><p class="title"><b>Exemple 10.2. Emploi basique de Zend_Feed_Atom</b></p>
+<p>
+            Pour lire un flux Atom et afficher le titre (propriété 
+            <code class="code">title</code>) et le résumé (propriété <code class="code">summary</code>) de 
+            chaque entrée :
+        </p>
+<pre class="programlisting">
+&lt;?php
+
+$flux = new Zend_Feed_Atom('http://atom.exemple.com/flux/');
+echo 'Le flux contient ' . $flux-&gt;count() . ' entrée(s).' . "\n\n";
+foreach ($flux as $entree) {
+    echo 'Titre : ' . $entree-&gt;title() . "\n";
+    echo 'Résumé : ' . $entree-&gt;summary() . "\n\n";
+}
+
+?&gt;   </pre>
+</div>
+<p>
+        Voici les propriétés liées au flux que vous pourrez trouver dans un flux Atom :
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">title</code> (titre) - Le titre du flux, la même chose que le titre d'un canal RSS</p></li>
+<li><p><code class="code">id</code> (identifiant) - Avec Atom, chaque flux et entrée possède un identifiant unique</p></li>
+<li>
+<p><code class="code">link</code> (lien) - Les flux peuvent posséder plusieurs liens, qui se distinguent les uns 
+                des autres par un attribut <code class="code">type</code>
+                </p>
+<p>
+                    Le lien équivalent au lien d'un canal RSS aurait pour type <code class="code">"text/html"</code>. Si le lien désigne une version 
+                    alternative du contenu présent dans le flux, il possèdera un attribut <code class="code">rel="alternate"</code>
+                </p>
+</li>
+<li>
+<p><code class="code">subtitle</code> (sous-titre) - La description du flux, qui équivaut à la description d'un canal RSS</p>
+<p><code class="code">author-&gt;name()</code> - Le nom de l'auteur du flux</p>
+<p><code class="code">author-&gt;email()</code> - L'adresse e-mail de l'auteur du flux</p>
+</li>
+</ul></div>
+<p>
+    </p>
+<p>
+        Les entrées Atom possèdent généralement les propriétés suivantes :
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">id</code> (identifiant) - L'identifiant unique de 
+l'entrée</p></li>
+<li><p><code class="code">title</code> (titre) - Le titre de l'entrée, la même chose que le titre d'un élément RSS</p></li>
+<li><p><code class="code">link</code> (lien) - Un lien vers un autre format ou une vue alternative de l'entrée</p></li>
+<li><p><code class="code">summary</code> (résumé) - Un résumé du contenu de l'entrée</p></li>
+<li><p><code class="code">content</code> (contenu) - Le contenu de l'entrée dans son entier; vous pouvez l'ignorer si le flux ne contient que des résumés</p></li>
+<li><p><code class="code">author</code> (auteur) - Avec les sous-balises <code class="code">name</code> (nom) et <code class="code">email</code></p></li>
+<li><p><code class="code">published</code> (publié) - La date à laquelle l'entrée a été publiée, au format RFC 3339</p></li>
+<li><p><code class="code">updated</code> (publié) - La date à laquelle l'entrée a été mise à jour, au format RFC 3339</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+         Pour plus d'informations sur Atom ainsi qu'un grand nombre de ressources, voyez le site 
+        <a href="http://www.atomenabled.org/" target="_top">http://www.atomenabled.org/</a>.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.consuming-rss.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.feed.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom-single-entry.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.4. Consommer un flux RSS </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 10.6. Consommer une entrée Atom particulière</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

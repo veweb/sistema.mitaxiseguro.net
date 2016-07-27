@@ -1,0 +1,502 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 9. Zend_Db</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guía de Referencia del Programador">
+<link rel="up" href="index.html" title="Guía de Referencia del Programador">
+<link rel="prev" href="zend.date.constants.html" title="8.5. Constants for General Date Functions">
+<link rel="next" href="zend.db.profiler.html" title="9.2. Zend_Db_Profiler">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="section" href="zend.db.html#zend.db.adapter" title="9.1. Zend_Db_Adapter">
+<link rel="section" href="zend.db.profiler.html" title="9.2. Zend_Db_Profiler">
+<link rel="section" href="zend.db.select.html" title="9.3. Zend_Db_Select">
+<link rel="section" href="zend.db.table.html" title="9.4. Zend_Db_Table">
+<link rel="section" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="section" href="zend.db.tablerowset.html" title="9.6. Zend_Db_Table_Rowset">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 9. Zend_Db</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.date.constants.html">Prev</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.profiler.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.db"></a>Chapter 9. Zend_Db</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.db.html#zend.db.adapter">9.1. Zend_Db_Adapter</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.introduction">9.1.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.quoting">9.1.2. Quoting Against SQL Injection</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.queries">9.1.3. Direct Queries</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.transactions">9.1.4. Transactions</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.insert">9.1.5. Inserting Rows</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.update">9.1.6. Updating Rows</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.delete">9.1.7. Deleting Rows</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.fetch">9.1.8. Fetching Rows</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.profiler.html">9.2. Zend_Db_Profiler</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.introduction">9.2.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.using">9.2.2. Using the Profiler</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.advanced">9.2.3. Advanced Profiler Usage</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.select.html">9.3. Zend_Db_Select</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.introduction">9.3.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.fromcols">9.3.2. Columns FROM a Table</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.joincols">9.3.3. Columns from JOINed Tables</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.where">9.3.4. WHERE Conditions</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.group">9.3.5. GROUP BY Clause</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.having">9.3.6. HAVING Conditions</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.order">9.3.7. ORDER BY Clause</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.limit">9.3.8. LIMIT By Count and Offset</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.paging">9.3.9. LIMIT By Page And Count</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.table.html">9.4. Zend_Db_Table</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.introduction">9.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.getting-started">9.4.2. Getting Started</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.name-and-key">9.4.3. Table Name and Primary Key</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.insert">9.4.4. Inserting Rows</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.udpate">9.4.5. Updating Rows</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.delete">9.4.6. Deleting Rows</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.findbykey">9.4.7. Finding Rows by Primary Key</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.fetchonerow">9.4.8. Fetching One Row</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.fetchmultiple">9.4.9. Fetching Multiple Rows</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.domain-logic">9.4.10. Adding Domain Logic</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.tablerow.html">9.5. Zend_Db_Table_Row</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.introduction">9.5.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.fetch">9.5.2. Fetching a Row</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.modify">9.5.3. Modifying Values</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.tablerowset.html">9.6. Zend_Db_Table_Rowset</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.introduction">9.6.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.fetch">9.6.2. Fetching a Rowset</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.iterate">9.6.3. Iterating Through the Rowset</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.adapter"></a>9.1. Zend_Db_Adapter</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.introduction"></a>9.1.1. Introduction</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Adapter</code> is the database API abstraction layer for the Zend Framework.
+            Based on PDO, you can use <code class="code">Zend_Db_Adapter</code> to connect to and work with any
+            of the supported SQL database systems using the same API.  These
+            include Microsoft SQL Server, MySQL, PostgreSQL, SQLite, and others.
+        </p>
+<p>To create an instance of <code class="code">Zend_Db_Adapter</code> for your
+        particular database backend, you need to call
+        <code class="code">Zend_Db::factory()</code> with the name of the adapter and an
+        array of parameters describing the connection. For example, to connect
+        to a MySQL database called "camelot" on the local host as a user named
+        "malory":</p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/Db.php';
+
+$params = array ('host'     =&gt; '127.0.0.1',
+                 'username' =&gt; 'malory',
+                 'password' =&gt; '******',
+                 'dbname'   =&gt; 'camelot');
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+?&gt;</pre>
+<p>
+            Similarly, to connect to an SQLite database called "camelot":
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/Db.php';
+
+$params = array ('dbname' =&gt; 'camelot');
+
+$db = Zend_Db::factory('PDO_SQLITE', $params);
+
+?&gt;</pre>
+<p>
+            Either way, you will be able to use the exact same API to
+            query the database.
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.quoting"></a>9.1.2. Quoting Against SQL Injection</h3></div></div></div>
+<p>
+            You should always quote values that are to be used in an
+            SQL statement; this is to help prevent SQL injection attacks.
+            <code class="code">Zend_Db_Adapter</code> provides two methods (via the underlying PDO object)
+            to help you manually quote values.
+        </p>
+<p>
+            The first of these is the <code class="code">quote()</code> method.  It will quote a
+            scalar value appropriately for your database adapter; if you
+            attempt to quote an array, it will return a comma-separated
+            string of the array values, each properly quoted (this is
+            useful for functions that take a list parameter).
+        </p>
+<pre class="programlisting">&lt;?php
+
+// create a $db object, assuming Mysql as the adapter.
+
+// quote a scalar
+$value = $db-&gt;quote('St John"s Wort');
+// $value is now '"St John\"s Wort"' (note the surrounding quotes)
+
+// quote an array
+$value = $db-&gt;quote(array('a', 'b', 'c');
+// $value is now '"a", "b", "c"' (a comma-separated string)
+
+?&gt;</pre>
+<p>
+            The second is the <code class="code">quoteInto()</code> method.  You provide a base
+            string with a question-mark placeholder, and then one scalar
+            or array to quote into it.  This is useful for constructing
+            queries and clauses as-you-go.  Scalars and arrays work just
+            as in the <code class="code">quote()</code> method.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, assuming Mysql as the adapter.
+
+// quote a scalar into a WHERE clause
+$where = $db-&gt;quoteInto('id = ?', 1);
+// $where is now 'id = "1"' (note the surrounding quotes)
+
+// quote an array into a WHERE clause
+$where = $db-&gt;quoteInto('id IN(?)', array(1, 2, 3));
+// $where is now 'id IN("1", "2", "3")' (a comma-separated string)
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.queries"></a>9.1.3. Direct Queries</h3></div></div></div>
+<p>
+            Once you have a <code class="code">Zend_Db_Adapter</code> instance, you can execute queries
+            directly in SQL.  <code class="code">Zend_Db_Adapter</code> passes these queries to the
+            underlying PDO object, which prepares and executes them, and
+            then passes back a PDOStatement object for you to manipulate
+            the results (if any).
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, and then query the database
+// with a properly-quoted SQL statement.
+$sql = $db-&gt;quoteInto(
+    'SELECT * FROM example WHERE date &gt; ?',
+    '2006-01-01'
+);
+$result = $db-&gt;query($sql);
+
+// use the PDOStatement $result to fetch all rows as an array
+$rows = $result-&gt;fetchAll();
+
+?&gt;</pre>
+<p>
+            You may bind data into your query automatically.  This means
+            you can set multiple named placeholders in the query, and
+            then pass an array of data that is substituted for those
+            placeholders.  The substituted values are automatically
+            quoted for you, providing greater security against SQL
+            injection attacks.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, and then query the database.
+// this time, use placeholder binding.
+$result = $db-&gt;query(
+    'SELECT * FROM example WHERE date &gt; :placeholder',
+    array('placeholder' =&gt; '2006-01-01')
+);
+
+// use the PDOStatement $result to fetch all rows as an array
+$rows = $result-&gt;fetchAll();
+
+?&gt;</pre>
+<p>
+            Optionally, you may wish to prepare and bind data to SQL statements
+            manually.  To do so, use the <code class="code">prepare()</code> method to get a prepared
+            <code class="code">PDOStatement</code> that you can manipulate directly.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, and then query the database.
+// this time, prepare a PDOStatement for manual binding.
+$stmt = $db-&gt;prepare('SELECT * FROM example WHERE date &gt; :placeholder');
+$stmt-&gt;bindValue('placeholder', '2006-01-01');
+$stmt-&gt;execute();
+
+// use the PDOStatement to fetch all rows as an array
+$rows = $stmt-&gt;fetchAll();
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.transactions"></a>9.1.4. Transactions</h3></div></div></div>
+<p>
+            By default, PDO (and thus <code class="code">Zend_Db_Adapter</code>) are in "auto-commit" mode.
+            This means that all queries are committed as they are executed.
+            If you wish to execute within a transaction, simply call the
+            <code class="code">beginTransaction()</code> method, then either <code class="code">commit()</code> or <code class="code">rollBack()</code>
+            your changes.  <code class="code">Zend_Db_Adapter</code> returns to auto-commit mode until
+            you call <code class="code">beginTransaction()</code> again.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, and then start a transaction.
+$db-&gt;beginTransaction();
+
+// attempt a query.
+// if it succeeds, commit the changes;
+// if it fails, roll back.
+try {
+    $db-&gt;query(...);
+    $db-&gt;commit();
+} catch (Exception $e) {
+    $db-&gt;rollBack();
+    echo $e-&gt;getMessage();
+}
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.insert"></a>9.1.5. Inserting Rows</h3></div></div></div>
+<p>
+            As a convenience, you may use the <code class="code">insert()</code> method to create
+            an INSERT statement for you and bind data to be inserted into it.
+            (The bound data is quoted for you automatically to help prevent
+            SQL injection attacks.)
+        </p>
+<p>
+            The return value is <span class="emphasis"><em>not</em></span> the last inserted ID, as the table
+            may not have an auto-incremented column; instead, the return value
+            is the number of rows affected (usually 1).  If you want the
+            ID of the last inserted record, call the <code class="code">lastInsertId()</code> method after the
+            insert.
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// INSERT INTO round_table
+//     (noble_title, first_name, favorite_color)
+//     VALUES ("King", "Arthur", "blue");
+//
+
+// create a $db object, and then...
+// the row data to be inserted in column =&gt; value format
+$row = array (
+    'noble_title'    =&gt; 'King',
+    'first_name'     =&gt; 'Arthur',
+    'favorite_color' =&gt; 'blue',
+);
+
+// the table into which the row should be inserted
+$table = 'round_table';
+
+// insert the row and get the row ID
+$rows_affected = $db-&gt;insert($table, $row);
+$last_insert_id = $db-&gt;lastInsertId();
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.update"></a>9.1.6. Updating Rows</h3></div></div></div>
+<p>
+            As a convenience, you may use the <code class="code">update()</code> method to create
+            an UPDATE statement for you and bind data to be updated into it.
+            (The bound data is quoted for you automatically to help prevent
+            SQL injection attacks.)
+        </p>
+<p>
+            You may provide an optional WHERE clause
+            to tell which rows to update.  (Note that the WHERE clause is not
+            a bound parameter, so you need to quote values in it yourself.)
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// UPDATE round_table
+//     SET favorite_color = "yellow"
+//     WHERE first_name = "Robin";
+//
+
+// create a $db object, and then...
+// the new values to set in the update, in column =&gt; value format.
+$set = array (
+    'favorite_color' =&gt; 'yellow',
+);
+
+// the table to update
+$table = 'round_table';
+
+// the WHERE clause
+$where = $db-&gt;quoteInto('first_name = ?', 'Robin');
+
+// update the table and get the number of rows affected
+$rows_affected = $db-&gt;update($table, $set, $where);
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.delete"></a>9.1.7. Deleting Rows</h3></div></div></div>
+<p>
+            As a convenience, you may use the <code class="code">delete()</code> method to create
+            a DELETE statement for you; you may provide an optional WHERE clause
+            to tell which rows to delete.  (Note that the WHERE clause is not
+            a bound parameter, so you need to quote values in it yourself.)
+        </p>
+<pre class="programlisting">&lt;?php
+	
+//
+// DELETE FROM round_table
+//     WHERE first_name = "Patsy";
+//
+
+// create a $db object, and then...
+// the table to delete from
+$table = 'round_table';
+
+// the WHERE clause
+$where = $db-&gt;quoteInto('first_name = ?', 'Patsy');
+
+// update the table and get the number of rows affected
+$rows_affected = $db-&gt;delete($table, $where);
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.adapter.fetch"></a>9.1.8. Fetching Rows</h3></div></div></div>
+<p>
+            Although you may query the database directly with the <code class="code">query()</code>
+            method, frequently all you need to do is select rows and get
+            the results.  The <code class="code">fetch*()</code> series of methods does this for you.
+            For each of the <code class="code">fetch*()</code> methods, you pass an SQL SELECT
+            statement; if you use named placeholders in the statement, you
+            may also pass an array of bind values to be quoted and replaced
+            into the statement for you.  The <code class="code">fetch*()</code> methods are:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">fetchAll()</code></p></li>
+<li><p><code class="code">fetchAssoc()</code></p></li>
+<li><p><code class="code">fetchCol()</code></p></li>
+<li><p><code class="code">fetchOne()</code></p></li>
+<li><p><code class="code">fetchPairs()</code></p></li>
+<li><p><code class="code">fetchRow()</code></p></li>
+</ul></div>
+<pre class="programlisting">&lt;?php
+	
+// create a $db object, and then...
+
+// fetch all columns of all rows as a sequential array
+$result = $db-&gt;fetchAll(
+    "SELECT * FROM round_table WHERE noble_title = :title",
+    array('title' =&gt; 'Sir')
+);
+
+// fetch all columns of all rows as an associative array;
+// the first column is used as the array key.
+$result = $db-&gt;fetchAssoc(
+    "SELECT * FROM round_table WHERE noble_title = :title",
+    array('title' =&gt; 'Sir')
+);
+
+// fetch the first column of all rows returned
+$result = $db-&gt;fetchCol(
+    "SELECT first_name FROM round_table WHERE noble_title = :title",
+    array('title' =&gt; 'Sir')
+);
+
+// fetch only the first value
+$result = $db-&gt;fetchOne(
+    "SELECT COUNT(*) FROM round_table WHERE noble_title = :title",
+    array('title' =&gt; 'Sir')
+);
+
+// fetch a series of key-value pairs; the first column is
+// the array key, the second column is the array value
+$result = $db-&gt;fetchPairs(
+    "SELECT first_name, favorite_color FROM round_table WHERE noble_title = :title",
+    array('title' =&gt; 'Sir')
+);
+
+// fetch only the first row returned
+$result = $db-&gt;fetchRow(
+    "SELECT * FROM round_table WHERE first_name = :name",
+    array('name' =&gt; 'Lancelot')
+);
+
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.date.constants.html">Prev</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.profiler.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">8.5. Constants for General Date Functions </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 9.2. Zend_Db_Profiler</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

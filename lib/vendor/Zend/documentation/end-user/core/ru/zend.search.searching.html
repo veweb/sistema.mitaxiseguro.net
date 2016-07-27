@@ -1,0 +1,430 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.3. Поиск по индексу</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="prev" href="zend.search.index-creation.html" title="22.2. Индексация">
+<link rel="next" href="zend.search.query-language.html" title="22.4. Язык запросов">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.query_building" title="22.3.1. Построение запросов">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.results" title="22.3.2. Результаты поиска">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.results-scoring" title="22.3.3. Ранжирование результата">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.sorting" title="22.3.4. Сортировка результатов поиска">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.3. Поиск по индексу</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.index-creation.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.query-language.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.searching"></a>22.3. Поиск по индексу</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.query_building"></a>22.3.1. Построение запросов</h3></div></div></div>
+<p>
+            Производить поиск по индексу можно двумя способами. Первый способ
+            использует парсер запросов для построения запросов из строки.
+            Второй способ дает возможность создавать свои запросы
+            через программный интерфейс Zend_Search_Lucene.
+
+        </p>
+<p>
+        В случае выбора парсера запросов учтите следующее:
+
+
+            </p>
+<div class="orderedlist"><ol type="1">
+<li><p>
+                        Если вы программно генерируете  строку запроса и затем парсите
+                        ее с помощью парсера запросов, то вам следует серьезно подумать
+                        о построении запросов непосредственно через программный интерфейс.
+                        Другими словами, парсер запросов предназначен для текста, вводимого
+                        пользователем, а не генерируемого программным способом. 
+
+                    </p></li>
+<li><p>
+                        Не разбитые на лексемы поля лучше добавлять непосредственно
+                        в запросы, а не через парсер запросов. Если значения полей программно
+                        генерируются приложением, то должны быть отдельные элементы
+                        запроса для этого поля. Анализатор, используемый
+                        парсером запросов, предназначен для преобразования
+                        введенного пользователем текста в элементы запроса.
+                        Программно генерируемые значения, такие, как даты, ключевые слова
+                        и т.д., должны генерироваться единообразно.                    
+
+                    </p></li>
+<li><p>
+                        В форме запроса поля с основным текстом должны использовать
+                        парсер запросов. Все остальные, такие, как периоды времени,
+                        ключевые слова и т.д, лучше добавлять непосредственно
+                        через программный интерфейс для запросов. Поля с ограниченным
+                        набором значений, которые могут отображаться в виде выпадающего
+                        списка, лучше не добавлять в строку запроса, которая
+                        парсится, а как элемент запроса.
+
+                    </p></li>
+<li><p>
+                        Булевы запросы позволяют объединять несколько запросов в
+                        один. Таким образом, это является наилучшим путем
+                        добавления дополнительных критериев пользовательского
+                        поиска, определяемых строкой запроса. 
+
+                    </p></li>
+</ol></div>
+<p>
+
+        </p>
+<p>
+            Оба способа используют один и тот же метод программного интерфейса
+            для поиска в индексе:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once('Zend/Search/Lucene.php');
+
+$index = Zend_Search_Lucene::open('/data/my_index');
+
+$index-&gt;find($query);
+
+?&gt;   </pre>
+<p>
+            Метод <code class="code">Zend_Search_Lucene::find()</code> автоматически определяет
+            тип ввода и использует парсер запросов для построения соответствующего
+            объекта Zend_Search_Lucene_Search_Query.
+
+        </p>
+<p>
+            Важно отметить, что парсер запросов использует стандартный
+            анализатор для разбиения на лексемы отдельных частей строки запроса.
+            Таким образом, все преобразования, проделываемые с индексируемым
+            текстом, также проделываются и с частями строки запроса.
+            
+        </p>
+<p>
+            Это могут быть приведение к нижнему регистру для того, чтобы сделать
+            поиск нечувствительным к регистру, удаление запрещенных слов
+            и т.д.
+
+        </p>
+<p>
+            В противоположность парсеру запросов, методы API не преобразовывают
+            или фильтруют входные элементы. Таким образом, API является более
+            подходящим для сгенерированных компьютером или не разбитых на
+            лексемы полей.
+
+        </p>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.searching.query_building.parsing"></a>22.3.1.1. Парсинг запроса</h4></div></div></div>
+<p>
+                Метод <code class="code">Zend_Search_Lucene_Search_QueryParser::parse()</code>
+                может использоваться для парсинга строки запроса и
+                преобразования ее в объект запроса. 
+
+            </p>
+<p>
+                Этот объект может использоваться в методах программного
+                интерфейса для объединения программно сгенерированных
+                запросов с введенными пользователем. 
+
+            </p>
+<p>
+                Сейчас в некоторых случаях только таким способом можно будет
+                производить поиск значений в полях, которые не были
+                разбиты на лексемы.
+
+
+                </p>
+<pre class="programlisting">&lt;?php
+$userQuery = Zend_Search_Lucene_Search_QueryParser::parse($queryStr);
+
+$pathTerm  = new Zend_Search_Lucene_Index_Term('/data/doc_dir/' . $filename, 'path');
+$pathQuery = new Zend_Search_Query_Term($pathTerm);
+
+$query = new Zend_Search_Query_Boolean();
+$query-&gt;addSubquery($userQuery, true /* required */);
+$query-&gt;addSubquery($pathQuery, true /* required */);
+
+$hits = $index-&gt;find($query);
+
+?&gt;</pre>
+<p>
+            </p>
+<p>
+                Метод <code class="code">Zend_Search_Lucene_Search_QueryParser::parse()</code>
+                также принимает необязательный параметр, через который
+                указывается кодировка строки запроса. 
+
+            </p>
+<pre class="programlisting">
+$userQuery = Zend_Search_Lucene_Search_QueryParser::parse($queryStr, 'iso-8859-5');
+</pre>
+<p>
+            </p>
+<p>
+                Если этот параметр опущен, то используется текущая локаль.
+
+            </p>
+<p>
+                Можно также указать используемую по умолчанию кодировку для
+                строки запроса через метод <code class="code">Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding()</code>:
+
+            </p>
+<pre class="programlisting">
+Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('iso-8859-5');
+...
+$userQuery = Zend_Search_Lucene_Search_QueryParser::parse($queryStr);
+</pre>
+<p>
+            </p>
+<p>
+                <code class="code">Zend_Search_Lucene_Search_QueryParser::getDefaultEncoding()</code>
+                возвращает используемую по умолчанию кодировку для строки
+                запроса (пустая строка означает "текущая локаль"). 
+
+            </p>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.results"></a>22.3.2. Результаты поиска</h3></div></div></div>
+<p>
+            Результат поиска является массивом объектов
+            Zend_Search_Lucene_Search_QueryHit. Все эти объекты имеют два
+            свойства: <code class="code">$hit-&gt;document</code> - номер документа в индексе,
+            <code class="code">$hit-&gt;score</code> - ранг "хита" в результате поиска.
+            Результат упорядочен по рангу ("хиты" с наибольшим рангом идут
+            первыми).
+               
+
+        </p>
+<p>
+            Объект Zend_Search_Lucene_Search_QueryHit также предоставляют все
+            поля документа Zend_Search_Lucene_Document как свойства объекта. В
+            данном примере возвращается "хит" и соответствующий ему документ
+            имеет два поля: заголовок и автор.
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once('Zend/Search/Lucene.php');
+
+$index = Zend_Search_Lucene::open('/data/my_index');
+
+$hits = $index-&gt;find($query);
+
+foreach ($hits as $hit) {
+    echo $hit-&gt;score;
+    echo $hit-&gt;title;
+    echo $hit-&gt;author;
+}
+
+?&gt;</pre>
+<p>
+            Сохраненные в индексе поля всегда возвращаются в кодировке UTF-8. 
+
+        </p>
+<p>
+            Исходный объект документа Zend_Search_Lucene_Document может также
+            быть получен из Zend_Search_Lucene_Search_QueryHit. Вы можете
+            извлечь сохраненные в индексе части документа, используя метод
+            <code class="code">getDocument()</code> объекта индекса и затем получая из через
+            метод <code class="code">getFieldValue()</code>:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+require_once('Zend/Search/Lucene.php');
+
+$index = Zend_Search_Lucene::open('/data/my_index');
+
+$hits = $index-&gt;find($query);
+foreach ($hits as $hit) {
+    // возвращает объект для этого "хита"
+    echo $document = $hit-&gt;getDocument();
+
+    // возвращает объект Zend_Search_Lucene_Field
+    // из Zend_Search_Lucene_Document
+    echo $document-&gt;getField('title');
+
+    // возвращает строковое значение объекта Zend_Search_Lucene_Field
+    echo $document-&gt;getFieldValue('title');
+
+    // делает то же самое, что и getFieldValue()
+    echo $document-&gt;title;
+}
+
+?&gt;   </pre>
+<p>
+        Поля, доступные через объект Zend_Search_Lucene_Document, определяются
+        во время индексирования. Поля документа либо только индексируются, либо
+        индексируются и сохраняются в индексе индесирующим приложением
+        (например, LuceneIndexCreation.jar).
+
+        </p>
+<p>
+        Обратите внимание, что идентификатор документа (в нашем примере — 'path')
+        также сохраняется в индексе и должен извлекаться из него.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.results-scoring"></a>22.3.3. Ранжирование результата</h3></div></div></div>
+<p>
+            Zend_Search_Lucene использует тот же самый алгоритм ранжирования,
+            что и Java Lucene. Результаты поиска по умолчанию сортируются по
+            рангу (релевантности). "Хиты" с наибольшим рангом идут первыми, и
+            документы, имеющие больший ранг, болльше соответствуют запросу, чем
+            документы с меньшим рангом. 
+
+        </p>
+<p>
+            Приблизительно говоря, документы, в которых искомый элемент или фраза
+            встречаются чаще, будут иметь более высокий ранг.
+
+        </p>
+<p>
+            Число, соответствующее рангу, может быть получено через
+            свойство <code class="code">score</code>: 
+
+        </p>
+<pre class="programlisting">&lt;?php
+$hits = $index-&gt;find($query);
+
+foreach ($hits as $hit) {
+    echo $hit-&gt;id;
+    echo $hit-&gt;score;
+}
+
+?&gt;   </pre>
+<p>
+            Для вычисления ранга используется класс Zend_Search_Lucene_Search_Similarity.
+            За подробностями см. раздел
+            <a href="zend.search.extending.html#zend.search.extending.scoring" title="22.7.3. Алгоритмы ранжирования">Расширяемость. Алгоритмы ранжирования</a>. 
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.sorting"></a>22.3.4. Сортировка результатов поиска</h3></div></div></div>
+<p>
+            По умолчанию результаты поиска сортируются по рангу. Вы можете
+            изменить это поведение установкой поля (полей) для сортировки, типа
+            сортировки и порядка сортировки.
+
+        </p>
+<p>
+            <code class="code">$index-&gt;find()</code> может принимать несколько необязательных
+            параметров:
+
+            </p>
+<pre class="programlisting">
+$index-&gt;find($query [, $sortField [, $sortType [, $sortOrder]]] [, $sortField2 [, $sortType [, $sortOrder]]] ...);
+</pre>
+<p>
+        </p>
+<p>
+            <code class="code">$sortField</code> является именем сохраненного в индексе поля
+            для сортировки результата.
+
+        </p>
+<p>
+            <code class="code">$sortType</code> может быть опущен или принимать значения
+            <code class="code">SORT_REGULAR</code> (сравнивать элементы как обычно, значение по умолчанию),
+            <code class="code">SORT_NUMERIC</code> (сравнивать элементы как числа),
+            <code class="code">SORT_STRING</code> (сравнивать элементы как строки).
+
+        </p>
+<p>
+            <code class="code">$sortOrder</code> может быть опущен или принимать значения
+            <code class="code">SORT_ASC</code> (сортировать в порядке возрастания, значение по умолчанию),
+            <code class="code">SORT_DESC</code> (сортировать в порядке убывания).
+
+        </p>
+<p>
+
+            </p>
+<pre class="programlisting">
+$index-&gt;find($query, 'quantity', SORT_NUMERIC, SORT_DESC);
+</pre>
+<p>
+            </p>
+<pre class="programlisting">
+$index-&gt;find($query, 'fname', SORT_STRING, 'lname', SORT_STRING);
+</pre>
+<p>
+            </p>
+<pre class="programlisting">
+$index-&gt;find($query, 'name', SORT_STRING, 'quantity', SORT_NUMERIC, SORT_DESC);
+</pre>
+<p>
+        </p>
+<p>
+            Будьте осторожны, когда используете сортировку, отличную от
+            принятой по умолчанию. Для этого нужно полное извлечение документов
+            из индекса, что может привести к резкому снижению
+            производительности.
+
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.index-creation.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.query-language.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.2. Индексация </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 22.4. Язык запросов</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

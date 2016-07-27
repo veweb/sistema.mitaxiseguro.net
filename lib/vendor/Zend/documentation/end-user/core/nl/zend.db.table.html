@@ -1,0 +1,443 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.4. Zend_Db_Table</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="prev" href="zend.db.select.html" title="9.3. Zend_Db_Select">
+<link rel="next" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.introduction" title="9.4.1. Inleiding">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.getting-started" title="9.4.2. Om te beginnen">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.name-and-key" title="9.4.3. Tabelnaam en Primaire Key">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.insert" title="9.4.4. Rijen invoegen">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.udpate" title="9.4.5. Rijen updaten">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.delete" title="9.4.6. Rijen verwijderen">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.findbykey" title="9.4.7. Rijen vinden per primaire key">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchonerow" title="9.4.8. Eén enkele rij ophalen">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchmultiple" title="9.4.9. Meerdere rijen ophalen">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.domain-logic" title="9.4.10. Domein Logica Invoegen">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.4. Zend_Db_Table</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.select.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.table"></a>9.4. Zend_Db_Table</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.introduction"></a>9.4.1. Inleiding</h3></div></div></div>
+<p>
+			Zend_Db_Table is een tabellenmodule voor het Zend Framework. Het
+			verbindt je met een database via Zend_Db_Adapter, onderzoekt het
+			schema van de tabel en helpt je dan in het manipuleren en 
+			opvragen van rijen uit de tabel.
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.getting-started"></a>9.4.2. Om te beginnen</h3></div></div></div>
+<p>
+			Het eerste wat gedaan moet worden is een standaard database
+			adapter te geven aan de abstracte Zend_Db_Table klasse; tenzij
+			je het anders opgeeft zullen alle Zend_Db_Table instanties deze
+			standaard adapter gebruiken.
+        </p>
+<pre class="programlisting">&lt;?php
+// een adapter opzetten
+require_once 'Zend/Db.php';
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// zet de standaard adapter voor alle Zend_Db_Table objecten
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+?&gt;
+        </pre>
+<p>
+			Laten we ons nu voorstellen dat je een tabel genaamd
+			"round_table" hebt in je database. Om Zend_Db_Table te
+			gebruiken met deze database moet je eenvoudigweg 
+			Zend_Db_Table uitbreiden door een nieuwe klasse "RoundTable"
+			te maken (merk op hoe we de round_table naam "kameleren").
+			Nu kunnen we via deze klasse rijen onderzoeken , manipuleren 
+			en resultaten opvragen van de "round_table" tabel in de database.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.name-and-key"></a>9.4.3. Tabelnaam en Primaire Key</h3></div></div></div>
+<p>
+			Per definitie verwacht Zend_Db_Table dat de tabelnaam in de
+			database dezelfde is als zijn eigen klassenaam (eenmaal
+			omgezet van camelCaps naar underscore_woorden). Aldus, een
+			Zend_Db_Table klasse genaamd EenTabelNaam wordt naar een 
+			SQL tabel genaamd een_tabel_naam gemapt. Als je wil dat je
+			klasse naar iets anders dan de underscore vorm van je
+			klassenaam wordt gemapt, moet je de $_name eigenschap overschrijven
+			wanneer je je klasse definieert.
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    // standaard tabelnaam is 'class_name'
+	// maar we willen ergens anders naartoe mappen
+    protected $_name = 'another_table_name';
+}
+?&gt;
+        </pre>
+<p>
+			Per definitie verwacht Zend_Db_Table dat jouw tabel een primaire
+			key heeft die 'id' noemt. (Het is beter indien deze kolom automatisch
+			wordt geïncrementeerd, maar het is niet verplicht.) Indien jouw
+			primaire key anders heet kan je de $_primary eigenschap van de klasse
+			overschrijven wanneer je je klasse definieert.
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    // standaard primaire key is 'id'
+    // maar we willen iets anders gebruiken
+    protected $_primary = 'another_column_name';
+}
+?&gt;
+        </pre>
+<p>
+			Op een andere manier mag je hetzelfde doen in de _setup()
+			methode van je uitgebreide klasse; maar wees er zeker van
+			de parent::_setup() methode op te roepen wanneer je klaar
+			bent.
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    protected function _setup()
+    {
+        $this-&gt;_name = 'another_table_name';
+        $this-&gt;_primary = 'another_column_name';
+        parent::_setup();
+    }
+}
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.insert"></a>9.4.4. Rijen invoegen</h3></div></div></div>
+<p>
+			Om een nieuwe rij in jouw tabel in te voegen roep je gewoon
+			insert() op met een associatieve array van kolom:waarde data.
+			De data zal automatisch correct worden omwikkeld met quotes,
+			en de laatst ingevoegde ID wordt teruggestuurd. (Merk op dat
+			dit verschilt van Zend_Db_Adapter::insert(), waar het aantal
+			beïnvloede rijen wordt teruggestuurd.)
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// INSERT INTO round_table
+//     (noble_title, first_name, favorite_color)
+//     VALUES ("King", "Arthur", "blue")
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+
+$data = array(
+    'noble_title' =&gt; 'King',
+    'first_name'  =&gt; 'Arthur',
+    'favorite_color' =&gt; 'blue',
+)
+
+$id = $table-&gt;insert($data);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.udpate"></a>9.4.5. Rijen updaten</h3></div></div></div>
+<p>
+			Om eender welk aantal rijen in je tabel te updaten roep je
+			update() op met een associatieve array van kolom:waarde data
+			die moet worden gezet, samen met een WHERE clausule om de
+			rijen die moeten worden geupdate te definiëren. Het zal de tabel
+			updaten en het aantal beïnvloede rijen teruggeven.
+        </p>
+<p>
+			De data die gezet moet worden zal automatisch correct worden
+			omwikkeld met quotes, maar de WHERE clausule niet, die moet je
+			dus zelf quoten met het Zend_Db_Adapter object van de tabel.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// UPDATE round_table
+//     SET favorite_color = "yellow"
+//     WHERE first_name = "Robin"
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$set = array(
+    'favorite_color' =&gt; 'yellow',
+)
+
+$where = $db-&gt;quoteInto('first_name = ?', 'Robin');
+
+$rows_affected = $table-&gt;update($set, $where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.delete"></a>9.4.6. Rijen verwijderen</h3></div></div></div>
+<p>
+			Om eender welk aantal rijen te verwijderen uit een tabel
+			roep je delete() op met een WHERE clausule om de rijen
+			die verwijderd moeten worden te identificeren. Het zal het
+			aantal verwijderde rijen terugsturen.
+        </p>
+<p>
+			De WHERE clausule zal niet in quotes worden omwikkeld, dus
+			die moet je zelf quoten met het Zend_Db_Adapter object van 
+			de tabel.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// DELETE FROM round_table
+//     WHERE first_name = "Patsy"
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('first_name = ?', 'Patsy');
+
+$rows_affected = $table-&gt;delete($where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.findbykey"></a>9.4.7. Rijen vinden per primaire key</h3></div></div></div>
+<p>
+			Het is eenvoudig om rijen uit een tabel te verkrijgen door
+			gebruik te maken van de primaire key waarden in de find()
+			methode. Deze methode keert een Zend_Db_Table_Row object
+			terug indien je één enkele key probeert te vinden, of een
+			Zend_Db_Table_Rowset objekt indien je meerdere keys probeert
+			te vinden met find().
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+
+// SELECT * FROM round_table WHERE id = "1"
+$row = $table-&gt;find(1);
+
+// SELECT * FROM round_table WHERE id IN("1", "2", 3")
+$rowset = $table-&gt;find(array(1, 2, 3));
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchonerow"></a>9.4.8. Eén enkele rij ophalen</h3></div></div></div>
+<p>
+			Hoewel je gemakkellijk een rij kan vinden via zijn primaire key met 
+			find(), zal je vaak verschillende voorwaarden willen toevoegen om een
+			rij te verkrijgen. Juist hiervoor verstrekt Zend_Db_Table fetchRow().
+			Gebruik fetchRow() met een WHERE clausule (en een optionele ORDER 
+			clausule), en Zend_Db_Table zal een Zend_Db_Row object teruggeven met
+			de eerste rij die aan de voorwaarden voldoet.
+        </p>
+<p>
+			De WHERE clausule zal niet in quotes worden omwikkeld, dus
+			die moet je zelf quoten met het Zend_Db_Adapter object van 
+			de tabel.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// SELECT * FROM round_table
+//     WHERE noble_title = "Sir"
+//     AND first_name = "Robin"
+//     ORDER BY favorite_color
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('noble_title = ?', 'Sir')
+       . $db-&gt;quoteInto('AND first_name = ?', 'Robin');
+
+$order = 'favorite_color';
+
+$row = $table-&gt;fetchRow($where, $order);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchmultiple"></a>9.4.9. Meerdere rijen ophalen</h3></div></div></div>
+<p>
+			Indien je meerdere rijen in een enkele keer moet ophalen kan
+			je fetchAll() gebruiken. Zoals met fetchRow() behandelt deze
+			methode WHERE en ORDER clausules, maar kan bovendien
+			limit-count en limit-offset waarden aanvaarden om het aantal
+			teruggekeerde rijen te beperken. Het zal een Zend_Db_Table_Rowset
+			object teruggeven met de geselecteerde records.
+        </p>
+<p>
+			De WHERE clausule zal niet in quotes worden omwikkeld, dus
+			die moet je zelf quoten met het Zend_Db_Adapter object van 
+			de tabel.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+// SELECT * FROM round_table
+//     WHERE noble_title = "Sir"
+//     ORDER BY first_name
+//     LIMIT 10 OFFSET 20
+
+$where = $db-&gt;quoteInto('noble_title = ?', 'Sir');
+$order = 'first_name';
+$count = 10;
+$offset = 20;
+
+$rowset = $table-&gt;fetchRow($where, $order, $count, $offset);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.domain-logic"></a>9.4.10. Domein Logica Invoegen</h3></div></div></div>
+<p>
+			Als een tabelmodule leent Zend_Db_Table er zichzelf goed toe om
+			je eigen domeinlogica in te kapselen. Bijvoorbeeld, je kan de
+			insert() en update() methodes overschrijven om de gepostte data
+			te manipuleren of te valideren voordat die naar de database wordt
+			geschreven.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table
+{
+    public function insert($data)
+    {
+        // voeg een timestamp in
+        if (empty($data['created_on'])) {
+            $data['created_on'] = time();
+        }
+        return parent::insert($data);
+    }
+
+    public function update($data)
+    {
+        // voeg een timestamp in
+        if (empty($data['updated_on'])) {
+            $data['updated_on'] = time();
+        }
+        return parent::update($data);
+    }
+}
+?&gt;
+        </pre>
+<p>
+			Op een gelijkaardige wijze kan je je eigen find() methoden
+			toevoegen om records op te zoeken door iets anders dan hun
+			primaire key te gebruiken.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table
+{
+    public function findAllWithName($name)
+    {
+        $db = $this-&gt;getAdapter();
+        $where = $db-&gt;quoteInto("name = ?", $name);
+        $order = "first_name";
+        return $this-&gt;fetchAll($where, $order);
+    }
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.select.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.3. Zend_Db_Select </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 9.5. Zend_Db_Table_Row</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

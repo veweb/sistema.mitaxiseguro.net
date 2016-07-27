@@ -1,0 +1,269 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.3. Subclassing</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="prev" href="zend.controller.getting-started.html" title="7.2. البداية">
+<link rel="next" href="zend.controller.providedsubclasses.html" title="7.4. Provided Subclasses">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.subclassing.introduction" title="7.3.1. مقدمة">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.subclassing.conventions" title="7.3.2. التعريفات">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.router.interface" title="7.3.3. Router Interface">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.dispatcher.interface" title="7.3.4. Dispatcher Interface">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.3. Subclassing</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.getting-started.html">السابق</a> </td>
+<th width="60%" align="center">فصل 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.providedsubclasses.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.subclassing"></a>7.3. Subclassing</h2></div></div></div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.subclassing.introduction"></a>7.3.1. مقدمة</h3></div></div></div>
+<p>
+                تم بناء <code class="code">Zend_Controller</code> و فى اعتبارنا ان يكون قابل للتمدد بسهولة, سواء عن طريق إن شاء 
+                subclasses ترث من الـ class الموجودة او إنشاء classes جديدة تعتمد على الـ interfaces المسمى 
+                <code class="code">Zend_Controller_Router_Interface</code> و 
+                <code class="code">Zend_Controller_Dispatcher_Interface</code>.
+        </p>
+<p>
+        الأسباب الممكنة لإنشاء router 'موجه' أو dispatcher 'منفذ' جديد , من الممكن أن تكون :
+
+			
+			</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        احيانا يكن نظام التوجيه "routing" الحالى غير مناسب فى بعض الحالات, مثل أن يتم إستخدامه فى موقع ما يستخدم 
+                        أسلوب أخر لأعادة التوجيه "routing" لا يتوافق مع ميكانيكية عمل الموجه الذى يوفره إطار عمل Zend.
+					</p></li>
+<li><p>
+                        ربما تريد أن تطبق عملية التوجيه "routing" بشكل او بطريقة مختلفة تماماً , 
+                        كما قرأت , <code class="code">Zend_Controller_Router</code> يتعامل فقط مع الـ URIs, لكن من المحتمل أنك ستود إستخدام الـ 
+                        MVC pattern لتطوير نوع أخر من البرامج , مثل تطبيقات الـ console , ففى هذه الحالة ستحتاج الى router خاص 
+                        يقوم بمعالجة مدخلات الـ command line ليتعرف على الـ route المطلوب .
+					</p></li>
+<li><p>
+                        و ربما تكن الألية التى يوفرها <code class="code">Zend_Controller_Dispatcher</code> غير متناسبة مع احتياجك , 
+                        الإعدادات الأساسية تعتبر أن الـ controllers عبارة عن classes و أن الـ actions عبارة عن methods فى هذه الـ classes , 
+                        لكن هناك استراتيجيات اخرى يمكن اعتمادها لتنفذ نفس الأداء , على سبيل المثال يمكن اعتبار الـ controllers عبارة عن 
+                        مجلدات "directories" و الـ actions عبارة عن ملفات داخل هذه المجلدات.
+					</p></li>
+<li><p>
+                        و ربما تود أن توفر امكانيات و خصائص اضافية يمكن أن ترثها كل الـ controllers لديك , 
+                        على سبيل المثال , الأعدادات الأساسية لا توفر امكانية  أن يتكامل <code class="code">Zend_Controller_Action</code> فى
+                         عمله تلقائياً مع <code class="code">Zend_View</code> , لكن يمكنك أن تنشئ الـ controller الخاص بك الذى يوفر هذه الأمكانية,
+                        و ذلك عن طريق الوراثة من <code class="code">Zend_Controller_Action</code> ,  
+                        و إستخدامه لن يحتاج إلى أى تعديلات على <code class="code">Zend_Controller_Router</code> أو 
+                        <code class="code">Zend_Controller_Dispatcher</code>.
+					</p></li>
+</ul></div>
+<p>
+				
+            يرجى أن تكن حريص عند محاولة تغيير أجزاء من النظام , تحديداً المنفذ "dispatcher". 
+            إحدى ميزات <code class="code">Zend_Controller</code> هى أنه يوفر الأمكانيات الأساسية لبناء التطبيقات , لكن ربما إذا تم تغيير 
+            جزء كبير من سلوكه الأساسى , ستضيع بعض ميزاته المتوافرة فى حالته الطبيعية. لكن بالطبع هناك احتياجات و حالات مختلفة 
+            و لا يمكن أن يقوم حل واحد بتوفير كل هذه الأحتياجات , فلذلك تتوافر لديك الحرية التامة للتعديل إذا احتجتها.
+		</p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.subclassing.conventions"></a>7.3.2. التعريفات</h3></div></div></div>
+<p>
+            عند إنشائك لـ subclasses من اى من الـ classes المتوفرة فى Zend_Controller , يفضل أن تستخدم الأساليب التالية لتعريف 
+            الـ classes او اسماء الملفات , اتباعك لهذه الأساليب فى التعريف سيسهل لأى مبرمج أخر يستخدم ZF أن يفهم كيفية عمل مشروعك .
+		</p>
+<div class="sect3" lang="ar">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.subclassing.prefix"></a>7.3.2.1. Prefix</h4></div></div></div>
+<p>
+                كل الـ classes المتوفرة داخل ZF تتبع نفس الأسلوب فى التعريف حيث أن كل class يوجد فى بداية اسمه النص "_Zend" , 
+                هذا هو ما يسمى الـ prefix , لذلك ننصح أن تقوم بتسمية كل الـ classes التى تنشئها بنفس الأسلوب, على سبيل المثال أن كان 
+                إسم الشركة التى تعمل بها هو "Widget" , فيمكنك أن تضع الـ prefix الخاص بأسماء ال classes خاصتك ليكون "_Widget". 			</p>
+</div>
+<div class="sect3" lang="ar">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.directory.layout"></a>7.3.2.2. بنية المجلدات</h4></div></div></div>
+<p>
+                كل الـ classes الخاصة بـ <code class="code">Zend_Controller</code> يتم حفظها فى المجلد library كما يلى : 
+            </p>
+<pre class="programlisting">
+/library
+  /Zend
+    /Controller
+      Action.php
+      Dispatcher.php
+      Router.php
+</pre>
+<p>
+                عند القيام بإنشاء subclasses من الـ classes الخاصة بـ <code class="code">Zend_Controller</code> , ينصح 
+                أن يتم وضع الـ classes الجديدة فى مجلدات لها بنية معرفة تحت اسم الـ prefix الذى تستخدمه , 
+                هذا سيسهل ايجاد هذه الـ classes من قبل أى مبرمج يعمل على مشروعك . 
+			</p>
+<p>
+                على سبيل المثال, إن قامت شركة اسمها widget بإنشاء نسختها المعدلة من الموجه "router" ,
+                 أن تكن بنية المجلدات بهذا الشكل .
+			</p>
+<pre class="programlisting">
+/library
+  /Zend
+  /Widget
+    /Controller
+      Router.php
+      README.txt
+</pre>
+<p>
+                لاحظ أن فى هذا المثال المجلد <code class="code">/Widget/Controller</code> يأتى على نفس هيئة 
+                <code class="code">/Zend/Controller</code> و هذا الأسلوب يمكنك أن تتبعه إن امكن . فى هذا المثال 
+                يوجد <code class="code">Widget_Controller_Router</code> و الذى من الممكن أن يكن subclass او بديل 
+                لـ <code class="code">Zend_Controller_Router</code> و ذلك بتطبيقه للـ interface المسمى 
+                <code class="code">Zend_Controller_Router_Interface</code>.
+
+			</p>
+<p>
+                أيضاً, لاحظ فى المثال السابق أن الملف <code class="code">README.txt</code> تم وضعه فى المجلد 
+                <code class="code">/Widget/Controller</code> , تنصح ZF أن يتم توفير مستندات توثيقية "documentations" للمشاريع 
+                التى تقوم بها إلى جانب اختبارات "tests" للبرنامج عند تقديمه لعميلك, لكن ننصح ايضا ان تضع 
+                ملف <code class="code">README.txt</code> فى المجلد لتوضيح تغييراتك الجديدة على الـ classes و كيف سيتم التعامل معها .
+			</p>
+</div>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.router.interface"></a>7.3.3. Router Interface</h3></div></div></div>
+<p>
+            الـ interface المسمى <code class="code">Zend_Controller_Router_Interface</code> 
+            يوفر تعريف لـ method واحد فقط : 
+        </p>
+<pre class="programlisting">&lt;?php
+				
+  /**				
+   * @param  Zend_Controller_Dispatcher_Interface
+   * @throws Zend_Controller_Router_Exception
+   * @return Zend_Controller_Dispatcher_Token|boolean
+   */
+  public function route(Zend_Controller_Dispatcher_Interface $dispatcher);
+
+?&gt;</pre>
+<p>
+            عملية التوجيه "routing" تحدث مرة واحدة , و ذلك بمجرد استلام النظام للطلب , 
+            و يتواجد الـ router لينتج <code class="code">Zend_Controller_Dispatch_Token</code> و الذى 
+            يحدد الـ controller و الـ action التابع لهذا الـ controller , و هذا يتم تمريره لاحقا الى المنفذ "dispatcher", و فى حالة 
+            أنه إذا لم يتم التعرف على بيانات الـ route (ربما نتج عن عملية تحويل غير منطقية ) سيتم ارجاع القيمة FALSE .
+		</p>
+<p>
+            بعض الموجهات "routers" تقوم بمعاجلة الطلبات و تحب ان تتأكد من أن الـ token الذى قامت بإنشائه قابل للتنفيذ قبل 
+            أن تقوم بإرجاعه , و لهذا السبب يقوم الـ router بإستقبال الـ object handle الخاص بالـ dispatcher 
+            كالبراميتر الأساسى للـ method المسمى <code class="code">()route</code>, 
+            و يقوم الـ dispatcher بتوفير method يسمى <code class="code">()isDispatchable</code> للقيام بهذا الأختبار.
+		</p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.dispatcher.interface"></a>7.3.4. Dispatcher Interface</h3></div></div></div>
+<p>
+        سيقوم <code class="code">Zend_Controller_Front</code> بإستدعاء الـ router ليستقبل أول dispatch token , 
+        و الذى سيتم تمريره إلى الـ dispatcher . سيقوم الـ dispatcher بتنفيذ الـ action (عن طريق إنشاء instance من 
+        الـ controller ثم إستدعاء الـ action منه ) , ثم سيقوم بإرجاع اما القيمة FALSE أو dispatch token جديد. 
+		</p>
+<p>
+            يقوم <code class="code">Zend_Controller_Front</code> يإستدعاء الـ dispatcher بشكل متكرر و ذلك إلى أن 
+            لا يتم إرجاع dispatch token جديد من الـ dispatcher , و هذا ما يسمى بحلقة التنفيذ او dispatch loop , 
+            و هذا الأسلوب يسمح بتنفيذ الـ actions بتسلسل منطقى إلى ان ينتهى كل العمل .
+		</p>
+<p>
+        الـ interface المسمى <code class="code">Zend_Controller_Dispatcher_Interface</code> 
+        يوفر تعريف لإثنين من الـ methods :
+        </p>
+<pre class="programlisting">&lt;?php
+				
+/**
+ * @param  Zend_Controller_Dispatcher_Token $route
+ * @return boolean
+ */
+public function isDispatchable(Zend_Controller_Dispatcher_Token $route);
+
+?&gt;</pre>
+<p>
+            يقوم <code class="code">()isDispatchable</code> بالتأكد من ان الـ dispatch token الممرر إليه قابل للتنفيذ.
+            و يرجع TRUE إن كان قابل , أو يرجع FALSE إن كان غير قابل للتنفيذ, 
+            أما تعريف المعنى المقصود من أن هذا الـ dispatch token قابل للتنفيذ ام لا, متروكة للمبرمج الذى سيستخدم الـ interface , 
+            و فى تطبيقنا الأساسى الذى اعتمدناه فى <code class="code">Zend_Controller_Dispatcher</code> 
+             كانت القابلية للتنفيذ هى ان يكون الملف الذى يحتوى الـ controller موجود , و أن يكون 
+            الـ class الخاص بهذا الـ controller موجود فى الملف , و أن الـ method الذى يحمل نفس اسم الـ action 
+            موجود داخل هذا الـ class .
+        </p>
+<pre class="programlisting">&lt;?php
+			
+/**
+ * @param  Zend_Controller_Dispatcher_Token $route
+ * @return Zend_Controller_Dispatcher_Token|boolean
+ */
+public function dispatch(Zend_Controller_Dispatcher_Token $route);
+
+?&gt;</pre>
+<p>
+        <code class="code">()dispatch</code> هو من يقوم بالتفيذ , هذا الـ method يجب أن ينفذ الـ action الخاص بالـ controller , 
+        و يجب أن يرجع إما dispatch token جديد ليتم تنفيذه ايضا , أو القيمة FALSE 
+        ليعرف انه لا يوجد عمل أخر يجب تنفيذه.
+		</p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.getting-started.html">السابق</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">أعلى</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.providedsubclasses.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.2. البداية </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> 7.4. Provided Subclasses</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

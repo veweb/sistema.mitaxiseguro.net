@@ -1,0 +1,210 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>11.4. Zend_Filter_Input</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="prev" href="zend.filter.writing_filters.html" title="11.3. Написание фильтров">
+<link rel="next" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.filter.input.html#zend.filter.input.introduction" title="11.4.1. Введение">
+<link rel="subsection" href="zend.filter.input.html#zend.filter.input.theory_of_operation" title="11.4.2. Теория">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">11.4. Zend_Filter_Input</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.filter.writing_filters.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 11. Zend_Filter</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.filter.input"></a>11.4. Zend_Filter_Input</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.introduction"></a>11.4.1. Введение</h3></div></div></div>
+<p>
+            <code class="literal">Zend_Filter_Input</code> предоставляет средства,
+            способствующие сруктурированному подходу к фильтрации
+            входных данных. Он преслеует несколько целей, поскольку должен удовлетворять потребности трех различных групп людей:
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    Разработчики
+
+                </p>
+<p>
+                    Хотя фильтрация входных данных всегда требует некоторых
+                    усилий, разработчикам нужна уверенность в
+                    целостности их данных без добавления лишней сложности в их
+                    код.
+
+                </p>
+</li>
+<li>
+<p>
+                    Менеджеры
+
+                </p>
+<p>
+                    Менеджеры всех типов, которым необходим постоянный контроль
+                    за большой группой разрабочиков, могут принудить
+                    разработчиков к системному подходу к фильтрации входных
+                    данных посредством ограничения или исключения доступа к
+                    необработанным входным данным.
+
+                </p>
+</li>
+<li>
+<p>
+                    Аудиторы
+
+                </p>
+<p>
+                    Тем, кто проверяет код приложения, нужно быстрое и
+                    достоверное определение того, где и когда разрабочик
+                    использует необработанные входные данные. Свойства, которые
+                    способствуют ясности кода, также оказывают помощь аудиторам тем, что обеспечивают четкую различимость разных подходов к
+                    фильтрации входных данных.
+
+                </p>
+</li>
+</ul></div>
+<p>
+            Есть множество подходов к фильтрации входных данных и средств,
+            применяемых разработчиками PHP. Фильтрация по "белому списку",
+            по "черному списку", регулярные выражения, условные операторы, встроенные функции PHP - только несколько примеров из всего
+            разнообразия подходов к фильтрации входных данных.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.theory_of_operation"></a>11.4.2. Теория</h3></div></div></div>
+<p>
+            Для того, чтобы обеспечить структурный подход к фильтрации входных
+            данных, <code class="literal">Zend_Filter_Input</code> пытается усилить контроль за доступом к входным данным поредством установки ссылки на массив исходных данных в <code class="code">null</code>.
+
+        </p>
+<p>
+            В подходе, принятом по умолчанию, (строгом) конструктору передается
+            единственный аргумент - массив данных для фильтрации.
+            Нефильтрованные данные могут быть получены только через метод <code class="code">getRaw()</code>.
+
+        </p>
+<pre class="programlisting">&lt;?php
+// $_POST['email'] === 'webmaster@example.com'
+
+// Фильтрация массива данных $_POST
+require_once 'Zend/Filter/Input.php';
+$filterPost = new Zend_Filter_Input($_POST);
+
+// $_POST теперь равен null
+echo null === $_POST ? 'yes' : 'no'; // prints 'yes'
+
+// Получение необработанного значения e-mail
+echo $filterPost-&gt;getRaw('email'); // prints 'webmaster@example.com'</pre>
+<p>
+            <code class="literal">Zend_Filter_Input</code> устанавливает переданный массив
+            (<code class="literal">$_POST</code>) в <code class="literal">null</code>, поэтому
+            прямой доступ будет невозможным. (Необработанные данные будут
+            доступны только через метод <code class="literal">getRaw()</code>, через
+            который легче контролировать доступ к необработанным данным и/или
+            полностью исключить его).
+
+        </p>
+<p>
+            В опциональном (нестрогом) подходе конструктору в качестве второго
+            аргумента передается <code class="literal">false</code>.
+
+        </p>
+<pre class="programlisting">&lt;?php
+// $_POST['email'] === 'webmaster@example.com'
+
+// Фильтрация массива данных $_POST
+require_once 'Zend/Filter/Input.php';
+$filterPost = new Zend_Filter_Input($_POST, false);
+
+// $_POST не равен null
+echo null === $_POST ? 'yes' : 'no'; // выводит 'no'
+
+// Получение необработанного значение e-mail
+echo $filterPost-&gt;getRaw('email'); // prints 'webmaster@example.com'</pre>
+<p>
+            Использование фильтра будет в точности таким же, как в случае
+            строгого подхода, но <code class="literal">Zend_Filter_Input</code> не
+            устанавливает исходный массив (<code class="literal">$_POST</code>) в
+            <code class="literal">null</code>, и таким образом, разработчики смогут
+            по-прежнему обращаться к нему напрямую. Этот подход не
+            рекомендуется, вместо него рекомендуется использовать строгий
+            подход.
+
+        </p>
+<p>
+            <code class="literal">Zend_Filter_Input</code> спроектирован для использования
+            массивов данных. Многие источники входных данных уже охвачены
+            суперглобальными массивами PHP (<code class="literal">$_GET</code>,
+            <code class="literal">$_POST</code>, <code class="literal">$_COOKIE</code> и т.д.),
+            массивы являются конструкцией, наиболее часто используемой для
+            хранения входных данных из других источников. Если вам нужно
+            фильтровать скалярные значения, см. <a href="zend.filter.html" title="Глава 11. Zend_Filter">Глава 11, <i>Zend_Filter</i></a>.
+
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.filter.writing_filters.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.filter.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">11.3. Написание фильтров </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> Глава 12. Zend_Gdata</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

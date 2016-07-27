@@ -1,0 +1,411 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第2章 Zend_Acl</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.initregistry.html" title="1.9. Zend::initRegistry($registry = 'Zend_Registry')">
+<link rel="next" href="zend.acl.refining.html" title="2.2. アクセス制御の洗練">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.acl.html#zend.acl.introduction" title="2.1. 導入">
+<link rel="section" href="zend.acl.refining.html" title="2.2. アクセス制御の洗練">
+<link rel="section" href="zend.acl.advanced.html" title="2.3. 高度な使用法">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第2章 Zend_Acl</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.initregistry.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.acl.refining.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.acl"></a>第2章 Zend_Acl</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.acl.html#zend.acl.introduction">2.1. 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.resources">2.1.1. リソースについて</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.roles">2.1.2. ロールについて</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.creating">2.1.3. アクセス制御リスト (ACL) の作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.role_registry">2.1.4. ロールの登録</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.defining">2.1.5. アクセス制御の定義</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.querying">2.1.6. ACL への問い合わせ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.acl.refining.html">2.2. アクセス制御の洗練</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.refining.html#zend.acl.refining.precise">2.2.1. 的確なアクセス制御</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.refining.html#zend.acl.refining.removing">2.2.2. アクセス制御の削除</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.acl.advanced.html">2.3. 高度な使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.advanced.html#zend.acl.advanced.storing">2.3.1. ACL データの保存による永続性の確保</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.advanced.html#zend.acl.advanced.assertions">2.3.2. アサーションを使用した条件付き ACL 規則の作成</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.acl.introduction"></a>2.1. 導入</h2></div></div></div>
+<p>
+        Zend_Acl は、軽量で柔軟なアクセス制御リスト (ACL)
+        機能と権限管理機能を提供します。アプリケーションでは一般に、
+        保護されたオブジェクトへのアクセスを制御するためにこれらの機能を使用します。
+    </p>
+<p>
+        このドキュメントにおいて、
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <span class="strong"><strong>リソース (Resource)</strong></span>
+                    とは、アクセス制御の対象となるオブジェクトのことです。
+                </p></li>
+<li><p>
+                    <span class="strong"><strong>ロール (Role)</strong></span>
+                    とは、リソースに対してのアクセスを要求するオブジェクトのことです。
+                </p></li>
+</ul></div>
+<p>
+
+        簡単に言うと、<span class="strong"><strong>ロールがリソースに対してのアクセスを要求する</strong></span>
+        ということです。たとえば、ある人が自動車を利用したいと考えているとしましょう。
+        この場合、自動車を誰が利用できるのかが管理されているとすると
+        「ある人」がロールで「自動車」がリソースとなります。
+    </p>
+<p>
+        アクセス制御リスト (ACL) での設定によって、アプリケーションは
+        要求してきたオブジェクト (ロール) が制限されたオブジェクト (リソース)
+        へのアクセスを認められているかどうかを制御します。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.resources"></a>2.1.1. リソースについて</h3></div></div></div>
+<p>
+            Zend_Acl では、リソースを作成するのは簡単です。Zend_Acl の
+            <code class="code">Zend_Acl_Resource_Interface</code> に、
+            開発者がリソースを作成するの手助けする機能が含まれています。
+            リソースクラスは、単にこのインターフェイスを実装するだけで作成できます。
+            このインターフェイスに含まれるメソッドはひとつだけで、それは
+            <code class="code">getResourceId()</code> です。このメソッドにより、
+            Zend_Acl はそのオブジェクトがリソースであると判断します。さらに、
+            基本的なリソースの実装を含む <code class="code">Zend_Acl_Resource</code>
+            が Zend_Acl にインクルードされています。
+            開発者は、必要な部分だけを拡張することでリソースを作成できます。
+        </p>
+<p>
+            Zend_Acl は、ツリー構造を提供しています。これを用いて複数のリソース
+            ("アクセス制御されているエリア") を追加することができます。
+            リソースはこのようにツリー構造で管理されるので、全般的なもの
+            (ルートに近いほう) から特殊なもの (末端に近いほう) までを扱うことができます。
+            特定のリソースに対して問い合わせを行うと、
+            リソースの階層をたどって自動的に上位階層への問い合わせも行われます。
+            これにより、規則を階層化して管理すること実現できます。
+            たとえば、ある都市のすべての建物に適用されるデフォルトの規則がある場合に、
+            それを各建物に適用する代わりに都市に対して適用することができるようになります。
+            中にはこの規則の例外となる建物もあるかもしれません。
+            Zend_Acl では、このような状況も簡単に処理できます。
+            例外的な規則を適用する建物については、建物に対して直接規則を定義すればいいのです。
+            リソースは、単一のリソースしか継承することができません。
+            そしてその継承元のリソースがまた別の親リソースを継承し……
+            といった具合になります。
+        </p>
+<p>
+            Zend_Acl は、リソースに対する権限 ("create"、"read"、"update"、"delete" など)
+            もサポートしており、すべての権限あるいは一部の権限に影響を及ぼす規則を、
+            リソースに対して割り当てることができます。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.roles"></a>2.1.2. ロールについて</h3></div></div></div>
+<p>
+            リソースと同様、ロールを作成するのも簡単です。Zend_Acl の
+            <code class="code">Zend_Acl_Role_Interface</code> に、
+            開発者がロールを作成するの手助けする機能が含まれています。
+            ロールクラスは、単にこのインターフェイスを実装するだけで作成できます。
+            このインターフェイスに含まれるメソッドはひとつだけで、それは
+            <code class="code">getRoleId()</code> です。このメソッドにより、
+            Zend_Acl はそのオブジェクトがロールであると判断します。さらに、
+            基本的なロールの実装を含む <code class="code">Zend_Acl_Role</code>
+            が Zend_Acl にインクルードされています。
+            開発者は、必要な部分だけを拡張することでリソースを作成できます。
+        </p>
+<p>
+            Zend_Acl では、あるロールは他の複数のロールを継承することができます。
+            これは、それぞれのロールの規則を継承することをサポートするためのものです。
+            たとえば、"sally" のようなユーザロールは、"editor" かつ "administrator"
+            のように複数の親ロールに属することもありえるでしょう。
+            この場合、開発者は "editor" および "administrator" にそれぞれ別に規則を定義します。
+            そして "sally" がその両方を継承することにします。
+            "sally" に規則を直接定義する必要はありません。
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Zend_Acl は複数ロールからの規則の継承をサポートしていますが、
+                お互いの規則が衝突する可能性もあります。
+                当然、この衝突は解消しなければなりません。
+                Zend_Acl では、このような衝突の可能性を解決するために、
+                直近に継承されたロールの優先度が高くなるようにしています。
+                つまり、ある規則が "親の" ロール (直近の継承元) で見つかったら、
+                それを採用し、他の規則は使用しません。というのも、
+                これが最も優先度の高い規則となるからです。
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.creating"></a>2.1.3. アクセス制御リスト (ACL) の作成</h3></div></div></div>
+<p>
+            ACL を使用して、物理的あるいは仮想的なオブジェクトの組み合わせを
+            お望みどおりに表現することができます。しかしここでは、説明用として、
+            基本的なコンテンツ管理システム (CMS) の ACL を考えます。
+            これは、さまざまな領域で複数階層のグループを管理するものです。
+            新しい ACL オブジェクトを作成するには、何もパラメータを指定せずに
+            ACL のインスタンスを作成します。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl.php';
+
+$acl = new Zend_Acl();</pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Zend_Acl の実装は、デフォルトでは "ホワイトリスト" 形式となります。
+                つまり、開発者が明示的に指定しない限り、Zend_Acl
+                はあらゆるロールのすべてのリソース上の権限からのアクセスも拒否します。
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.role_registry"></a>2.1.4. ロールの登録</h3></div></div></div>
+<p>
+            コンテンツ管理システムでは、ほとんどすべての場面で権限階層の管理が必要となります。
+            これにより、ユーザの編集権限を決定します。たとえば 'Guest'
+            グループに対してはデモ用に限定したアクセス権限のみを許可し、
+            'Staff' グループは通常の操作をする大半の CMS ユーザ用に作成し、
+            'Editor' グループにはコンテンツの公開やレビュー、保存や削除の権限を与え、
+            最後に 'Administrator' は、その他のすべてのグループの権限に加えて
+            機密情報の管理やユーザ管理、データのバックアップ/エクスポート機能を与えるといったようになります。
+            これらの権限を、ロールレジストリで表すことができます。
+            各グループの権限を '親の' グループから継承させ、
+            そのグループに固有の権限を追加で定義します。
+            これらの権限を整理すると、次のようになります。
+        </p>
+<div class="table">
+<a name="id4733412"></a><p class="title"><b>表 2.1. サンプル CMS 用のアクセス制御</b></p>
+<table summary="サンプル CMS 用のアクセス制御" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>権限</th>
+<th>継承する権限の継承元</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Guest</td>
+<td>View</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Staff</td>
+<td>Edit, Submit, Revise</td>
+<td>Guest</td>
+</tr>
+<tr>
+<td>Editor</td>
+<td>Publish, Archive, Delete</td>
+<td>Staff</td>
+</tr>
+<tr>
+<td>Administrator</td>
+<td>(すべてのアクセスを許可)</td>
+<td>なし</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+            この例では <code class="code">Zend_Acl_Role</code> を用いていますが、
+            <code class="code">Zend_Acl_Role_Interface</code> を実装しているオブジェクトなら何でも使用可能です。
+            これらのグループを、次のようにしてロールレジストリに追加します。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl.php';
+
+$acl = new Zend_Acl();
+
+// Zend_Acl_Role を使用して、グループをロールレジストリに追加します
+require_once 'Zend/Acl/Role.php';
+
+// Guest はアクセス制御を受け継ぎません
+$roleGuest = new Zend_Acl_Role('guest');
+$acl-&gt;addRole($roleGuest);
+
+// Staff は guest の権限を継承します
+$acl-&gt;addRole(new Zend_Acl_Role('staff'), $roleGuest);
+
+/* あるいは、上の内容は次のように書くこともできます
+$roleGuest = $acl-&gt;addRole(new Zend_Acl_Role('staff'), 'guest');
+//*/
+
+// Editor は staff の権限を継承します
+$acl-&gt;addRole(new Zend_Acl_Role('editor'), 'staff');
+
+// Administrator はアクセス制御を受け継ぎません
+$acl-&gt;addRole(new Zend_Acl_Role('administrator'));</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.defining"></a>2.1.5. アクセス制御の定義</h3></div></div></div>
+<p>
+            ACL に適切なロールが含まれた状態になりました。これで、リソースに対して
+            ロールがどのようにアクセスするのかという規則を定義できる状態になりました。
+            この例では特定のリソースを定義していないことにお気づきかもしれません。
+            この場合、規則はすべてのリソースに対して適用されます。
+            Zend_Acl を使用すると、全般的なものであろうが特殊なものであろうが
+            規則を適用するだけで定義できるようになります。
+            リソースやロールは、その継承元で定義されている規則を引き継ぐからです。
+        </p>
+<p>
+            そのため、複雑な規則の組み合わせを最小限のコードで定義できるようになります。
+            上で定義した基本的な権限を適用するには、次のようにします。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl.php';
+
+$acl = new Zend_Acl();
+
+require_once 'Zend/Acl/Role.php';
+
+$roleGuest = new Zend_Acl_Role('guest');
+$acl-&gt;addRole($roleGuest);
+$acl-&gt;addRole(new Zend_Acl_Role('staff'), $roleGuest);
+$acl-&gt;addRole(new Zend_Acl_Role('editor'), 'staff');
+$acl-&gt;addRole(new Zend_Acl_Role('administrator'));
+
+// Guest は、コンテンツを閲覧することもにが可能です
+$acl-&gt;allow($roleGuest, null, 'view');
+
+/* 上と同じ内容を、このように書くこともできます
+$acl-&gt;allow('guest', null, 'view');
+//*/
+
+// Staff は guest の権限をすべて引き継いだうえで、さらに追加の権限を必要とします
+$acl-&gt;allow('staff', null, array('edit', 'submit', 'revise'));
+
+// Editor は、staff の権限 (view、edit、submit および revise)
+// を引き継いだうえで、さらに追加の権限を必要とします
+$acl-&gt;allow('editor', null, array('publish', 'archive', 'delete'));
+
+// Administrator は何も引き継ぎませんが、すべての権限が認められています
+$acl-&gt;allow('administrator');</pre>
+<p>
+            上の <code class="code">allow()</code> のコールにおける <code class="code">null</code> は、
+            規則をすべてのリソースに対して適用することを意味します。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.querying"></a>2.1.6. ACL への問い合わせ</h3></div></div></div>
+<p>
+            これで、柔軟な ACL が作成できました。これにより、
+            ウェブアプリケーションの使用者が、
+            ある機能を使用するために必要な権限を持っているかを調べられるようになりました。
+            問い合わせを行うのは簡単で、単に <code class="code">isAllowed()</code>
+            メソッドを使用するだけです。
+        </p>
+<pre class="programlisting">&lt;?php
+echo $acl-&gt;isAllowed('guest', null, 'view') ?
+     "allowed" : "denied"; // allowed となります
+
+echo $acl-&gt;isAllowed('staff', null, 'publish') ?
+     "allowed" : "denied"; // denied となります
+
+echo $acl-&gt;isAllowed('staff', null, 'revise') ?
+     "allowed" : "denied"; // allowed となります
+
+echo $acl-&gt;isAllowed('editor', null, 'view') ?
+     "allowed" : "denied"; // guest から引き継いでいるので allowed となります
+
+echo $acl-&gt;isAllowed('editor', null, 'update') ?
+     "allowed" : "denied"; // 'update' 用の規則がないので denied となります
+
+echo $acl-&gt;isAllowed('administrator', null, 'view') ?
+     "allowed" : "denied"; // administrator はすべての権限が許可されているので allowed となります
+
+echo $acl-&gt;isAllowed('administrator') ?
+     "allowed" : "denied"; // administrator はすべての権限が許可されているので allowed となります
+
+echo $acl-&gt;isAllowed('administrator', null, 'update') ?
+     "allowed" : "denied"; // administrator はすべての権限が許可されているので allowed となります</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.initregistry.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.acl.refining.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">1.9. Zend::initRegistry($registry = 'Zend_Registry') </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 2.2. アクセス制御の洗練</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

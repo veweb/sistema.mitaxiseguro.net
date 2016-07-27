@@ -1,0 +1,350 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第3章 Zend_Auth</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.acl.advanced.html" title="2.3. 高度な使用法">
+<link rel="next" href="zend.auth.adapter.digest.html" title="3.2. ダイジェスト認証">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.auth.html#zend.auth.introduction" title="3.1. 導入">
+<link rel="section" href="zend.auth.adapter.digest.html" title="3.2. ダイジェスト認証">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第3章 Zend_Auth</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.acl.advanced.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.auth.adapter.digest.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.auth"></a>第3章 Zend_Auth</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.auth.html#zend.auth.introduction">3.1. 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.adapters">3.1.1. アダプタ</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.results">3.1.2. 結果</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.persistence">3.1.3. ID の永続性</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.using">3.1.4. Zend_Auth の使用法</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.auth.adapter.digest.html">3.2. ダイジェスト認証</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.introduction">3.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.specifics">3.2.2. 使用</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.identity">3.2.3. ID</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.auth.introduction"></a>3.1. 導入</h2></div></div></div>
+<p>
+        Zend_Auth は、認証のための API を提供します。
+        また、一般的な使用例に対応する具象認証アダプタも用意しています。
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Zend_Auth には、
+            <a href="zend.auth.adapter.digest.html" title="3.2. ダイジェスト認証">ダイジェスト認証用のアダプタ</a>
+            だけが含まれています。これは、Zend_Auth の考え方を説明するためのシンプルな設計のアダプタです。
+            今後、さらにいろいろなアダプタを開発する予定です。
+            「こんなアダプタがほしい」っていう方はいますか? そんな皆さんは、ぜひ
+            <a href="http://framework.zend.com/wiki/x/qx4" target="_top">投票に参加</a>
+            してください。あるいは、
+            <a href="http://framework.zend.com/wiki/x/GgE" target="_top">自分でつくってしまう</a>
+            のも大歓迎です!
+        </p></td></tr>
+</table></div>
+<p>
+        Zend_Auth が扱うのはあくまでも <span class="strong"><strong>認証 (authentication)</strong></span>
+        であり、<span class="strong"><strong>承認 (authorization)</strong></span> ではありません。
+        認証 (authentication) とはつまり、あるエンティティが何者であるのかを示す
+        (識別する) ことです。これを、なんらかの条件にもとづいて行います。
+        承認 (authorization) とは、あるエンティティが他のエンティティに対して
+        アクセスしたり何らかの操作をしたりする権限があるかどうかを判定する処理です。
+        これは Zend_Auth の対象外となります。
+        Zend Framework における認証やアクセス制御の詳細については、
+        <a href="zend.acl.html" title="第2章 Zend_Acl">Zend_Acl</a> を参照ください。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.adapters"></a>3.1.1. アダプタ</h3></div></div></div>
+<p>
+            Zend_Auth アダプタの使用目的は、
+            LDAP や RDBMS あるいはファイル
+            のような特定の型の認証サービスに対する認証を行うことです。
+            アダプタによってそのオプションや挙動は大きくことなるでしょうが、
+            いくつかの基本処理は、あらゆるアダプタで共通となります。
+            たとえば認証条件 (いわゆる ID) を受け取り、認証を行い、
+            何らかの結果を返すという処理は、すべての Zend_Auth アダプタで共通です。
+        </p>
+<p>
+            各 Zend_Auth 認証アダプタは、<code class="code">Zend_Auth_Adapter_Interface</code>
+            を実装しています。このインターフェイスで定義されているメソッドが
+            <code class="code">authenticate()</code> で、アダプタクラスはこれを実装して認証を行います。
+            各アダプタクラスは、<code class="code">authenticate()</code>
+            をコールする前に準備を済ませておく必要があります。
+            つまり、アダプタ側で用意しなければならない機能としては
+            認証条件 (ユーザ名およびパスワードなど) の取得や
+            アダプタ固有のオプションの設定
+            (データベースのテーブルを使用するアダプタならデータベースへの接続設定など)
+            があるということです。
+        </p>
+<p>
+            以下にあげるのは認証アダプタのサンプルで、
+            これはユーザ名とパスワードを受け取って認証を行います。
+            その他の詳細、例えば認証サービスへの実際の問い合わせなどは、
+            例を簡潔にするため省略しています。
+
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Auth/Adapter/Interface.php';
+
+class MyAuthAdapter implements Zend_Auth_Adapter_Interface
+{
+    /**
+     * 認証用のユーザ名とパスワードを設定します
+     *
+     * @return void
+     */
+    public function __construct($username, $password)
+    {
+        // ...
+    }
+
+    /**
+     * 認証を試みます
+     *
+     * @throws Zend_Auth_Adapter_Exception が、認証処理をできなかった場合に発生します
+     * @return Zend_Auth_Result
+     */
+    public function authenticate()
+    {
+        // ...
+    }
+}</pre>
+<p>
+
+            docblock コメントで説明しているとおり、
+            <code class="code">authenticate()</code> は
+            <code class="code">Zend_Auth_Result</code> (あるいは <code class="code">Zend_Auth_Result</code> の派生クラス)
+            のインスタンスを返す必要があります。何らかの理由で認証の問い合わせができなかった場合は、
+            <code class="code">authenticate()</code> は
+            <code class="code">Zend_Auth_Adapter_Exception</code>
+            から派生した例外をスローしなければなりません。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.results"></a>3.1.2. 結果</h3></div></div></div>
+<p>
+            Zend_Auth アダプタは、<code class="code">authenticate()</code> の結果として
+            <code class="code">Zend_Auth_Result</code> のインスタンスを返します。
+            これにより、認証を試みた結果を表します。アダプタのインスタンスを作成した際に
+            <code class="code">Zend_Auth_Result</code> オブジェクトが作成され、
+            以下の三つのメソッドで Zend_Auth アダプタの結果に対する共通の操作ができます。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">isValid()</code> - その結果が
+                        認証の成功を表している場合にのみ true を返します。
+                    </p></li>
+<li><p>
+                        <code class="code">getIdentity()</code> - 認証を試みた ID 情報を返します。
+                    </p></li>
+<li><p>
+                        <code class="code">getMessages()</code> - 認証に失敗した場合に、
+                        関連するメッセージの配列を返します。
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.persistence"></a>3.1.3. ID の永続性</h3></div></div></div>
+<p>
+            認証情報 (パスワードなど) を含む認証を要求するのは便利なものですが、
+            リクエストごとにいちいち認証情報を引き回すのではなく、
+            認証済みの ID を保持し続けることも重要です。
+        </p>
+<p>
+            HTTP はステートレスなプロトコルです。しかし、
+            クッキーやセッションといった技術によって、
+            サーバサイドのウェブアプリケーションでも
+            複数リクエスト間でステート (状態) を保持し続けられるようになりました。
+            Zend_Auth は、デフォルトで
+            <a href="zend.session.html" title="第25章 Zend_Session">Zend_Session</a> を使用しており、
+            認証に成功した後の ID 情報を PHP のセッションで永続管理するようにしています。
+        </p>
+<p>
+            認証に成功すると、<code class="code">Zend_Auth::authenticate()</code> は
+            認証結果の ID を永続ストレージに保存します。デフォルトでは、
+            <code class="code">Zend_Auth</code> が使用するストレージクラスは
+            <a href="zend.session.html" title="第25章 Zend_Session">Zend_Session</a> にもとづいたものとなります。
+            ストレージクラスを変更するには、
+            <code class="code">Zend_Auth::setStorage()</code> でストレージオブジェクトを指定します。
+        </p>
+<p>
+            自動的に永続ストレージに ID を保存するのはまずい場合もあるでしょう。
+            そんな場合は、<code class="code">Zend_Auth</code> クラスを使用せずに
+            アダプタクラスを直接利用します。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.using"></a>3.1.4. Zend_Auth の使用法</h3></div></div></div>
+<p>
+            Zend_Auth の使用法には、次の二通りがあります。
+            </p>
+<div class="orderedlist"><ol type="1">
+<li><p>
+                    間接的に <code class="code">Zend_Auth::authenticate()</code> 経由で使用する
+                </p></li>
+<li><p>
+                    直接、アダプタの <code class="code">authenticate()</code> メソッドを使用する
+                </p></li>
+</ol></div>
+<p>
+        </p>
+<p>
+            次の例は、Zend_Auth アダプタを間接的に
+            <code class="code">Zend_Auth</code> クラスから使用するものです。
+
+            </p>
+<pre class="programlisting">&lt;?php
+// Zend_Auth のシングルトンインスタンスへの参照を取得します
+require_once 'Zend/Auth.php';
+$auth = Zend_Auth::getInstance();
+
+// 認証アダプタを設定します
+$authAdapter = new MyAuthAdapter($username, $password);
+
+// 認証を試み、その結果を取得します
+$result = $auth-&gt;authenticate($authAdapter);
+
+if (!$result-&gt;isValid()) {
+    // 認証に失敗したので、原因を表示します
+    foreach ($result-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+} else {
+    // 認証に成功しました。ID ($username) がセッションに保存されます
+    // $result-&gt;getIdentity() === $auth-&gt;getIdentity()
+    // $result-&gt;getIdentity() === $username
+}</pre>
+<p>
+        </p>
+<p>
+            上の例においてリクエスト内で認証が行われると、
+            認証に成功した際にその ID を取得するのは簡単なことです。
+            </p>
+<pre class="programlisting">&lt;?php
+$auth = Zend_Auth::getInstance();
+if ($auth-&gt;hasIdentity()) {
+    // ID があるのでそれを取得します
+    $identity = $auth-&gt;getIdentity();
+}</pre>
+<p>
+        </p>
+<p>
+            永続ストレージから認証 ID を削除するには、単純に
+            <code class="code">clearIdentity()</code> メソッドを使用します。
+            これは、アプリケーションの "ログアウト" 処理を実装するためのものです。
+            </p>
+<pre class="programlisting">&lt;?php
+Zend_Auth::getInstance()-&gt;clearIdentity();</pre>
+<p>
+        </p>
+<p>
+            自動的に永続ストレージが用いられるのがまずい場合もあるでしょう。
+            そんな場合は、<code class="code">Zend_Auth</code> クラスをバイパスして
+            アダプタクラスを直接使用します。
+            アダプタクラスを直接使用するとは、アダプタオブジェクトの設定と準備を行い、
+            その <code class="code">authenticate()</code> メソッドをコールするということです。
+            アダプタ固有の詳細情報については、各アダプタのドキュメントで説明します。
+            以下の例は、<code class="code">MyAuthAdapter</code> を直接使用するものです。
+
+            </p>
+<pre class="programlisting">&lt;?php
+// 認証アダプタを設定します
+$authAdapter = new MyAuthAdapter($username, $password);
+
+// 認証を試み、その結果を取得します
+$result = $authAdapter-&gt;authenticate();
+
+if (!$result-&gt;isValid()) {
+    // 認証に失敗したので、原因を表示します
+    foreach ($result-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+} else {
+    // 認証に成功しました
+    // $result-&gt;getIdentity() === $username
+}</pre>
+<p>
+        </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.acl.advanced.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.auth.adapter.digest.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2.3. 高度な使用法 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 3.2. ダイジェスト認証</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

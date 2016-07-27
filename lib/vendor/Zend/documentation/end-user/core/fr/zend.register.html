@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1.7. Zend::register()</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.html" title="Chapitre 1. Zend">
+<link rel="prev" href="zend.dump.html" title="1.6. Zend::dump()">
+<link rel="next" href="zend.registry.html" title="1.8. Zend::registry()">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">1.7. Zend::register()</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.dump.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 1. Zend</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.registry.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.register"></a>1.7. Zend::register()</h2></div></div></div>
+<p>
+    Enregistre un objet dans le magasin d'objets.
+    </p>
+<pre class="programlisting">&lt;?php
+	
+Zend::register($name, $object)
+
+?&gt;</pre>
+<p>
+    Le registre est un mécanisme qui fournit à l'application des instances 
+    singleton d'objets. En enregistrant une seule fois l'objet dans le registre, 
+    puis en l'obtenant auprès du registre à chaque fois que cela s'avère 
+    nécessaire, la même instance est toujours retournée.
+    </p>
+<p>
+    L'argument <code class="code">$name</code> est une chaîne arbitraire permettant de nommer 
+    l'objet au sein du magasin. Ce nom devra être fourni 
+    à <code class="code">Zend::registry()</code> pour obtenir de nouveau l'objet.
+    </p>
+<p>
+     L'argument <code class="code">$name</code> doit être une chaîne de caractères, seuls des 
+     objets peuvent être stockés dans le registre, un objet ne peut jamais être 
+     enlevé du registre et une instance donnée ne peut être stockée qu'une et 
+     une seule fois dans le registre. Le non respect de ces règles entraînera le 
+     lancement d'une exception <code class="code">Zend_Exception</code>.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.dump.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.registry.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">1.6. Zend::dump() </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 1.8. Zend::registry()</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

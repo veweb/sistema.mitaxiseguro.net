@@ -1,0 +1,436 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>24.4. Zend_Service_Flickr</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="prev" href="zend.service.amazon.html" title="24.3. Zend_Service_Amazon">
+<link rel="next" href="zend.service.yahoo.html" title="24.5. Zend_Service_Yahoo">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.service.flickr.html#zend.service.flickr.introduction" title="24.4.1. Inleiding voor het zoeken in Flickr">
+<link rel="subsection" href="zend.service.flickr.html#zend.service.flickr.finding-users" title="24.4.2. Flickr gebruikers vinden">
+<link rel="subsection" href="zend.service.flickr.html#zend.service.flickr.getimagedetails" title="24.4.3. Flickr beelddetails opvragen">
+<link rel="subsection" href="zend.service.flickr.html#zend.service.flickr.classes" title="24.4.4. Zend_Service_Flickr Klassen">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">24.4. Zend_Service_Flickr</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.service.amazon.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 24. Zend_Service</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.service.yahoo.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.service.flickr"></a>24.4. Zend_Service_Flickr</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.flickr.introduction"></a>24.4.1. Inleiding voor het zoeken in Flickr</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Flickr</code> is een eenvoudige API om de Flickr REST web service te gebruiken. Om de Flickr
+			web services te gebruiken moet je een API key hebben. Om deze te verkrijgen en voor meer informatie over de
+			Flickr REST Web Service, kan je terecht bij de
+            <a href="http://www.flickr.com/services/api/" target="_top">Flickr API documentatie</a>.
+        </p>
+<p>
+			In het volgende voorbeeld gebruiken we de <code class="code">tagSearch()</code> methode om foto's te zoeken die "php" in
+			de tags hebben.
+        </p>
+<div class="example">
+<a name="id4876008"></a><p class="title"><b>Voorbeeld 24.10. Eenvoudige Flickr Photo zoekopdracht</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Flickr.php';
+
+$flickr = new Zend_Service_Flickr('MY_API_KEY');
+
+$results = $flickr-&gt;tagSearch("php");
+
+foreach ($results as $result) {
+    echo $result-&gt;title . '&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            <code class="code">tagSearch()</code> aanvaardt een optionele tweede parameter met een array van opties.
+          </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.flickr.finding-users"></a>24.4.2. Flickr gebruikers vinden</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Flickr</code> biedt drie verschillende mogelijkheden om Flickr gebruikersinformatie 
+			te verkrijgen:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                <code class="code">userSearch()</code>: Aanvaardt een string query van spatiegescheiden vermeldingen en een optionele
+				tweede parameter als een array van zoekopties, en geeft een <code class="code">Zend_Service_Flickr_ResultSet</code>
+                object terug.
+              </p></li>
+<li><p>
+                <code class="code">getIdByUsername()</code>: Geeft een string user ID terug, verbonden met de opgegeven gebruikersnaam string.
+              </p></li>
+<li><p>
+                <code class="code">getIdByEmail()</code>: Geeft een string user ID terug, verbonden met de opgegeven gebruikerse-mail string.
+              </p></li>
+</ul></div>
+<div class="example">
+<a name="id4876727"></a><p class="title"><b>Voorbeeld 24.11. Een Flickr gebruiker vinden door middel van zijn e-mailadres</b></p>
+<p>
+				In dit voorbeeld hebben we het e-mailadres van de Flickr gebruiker, en we verkrijgen de gebruikersinformatie
+				door de <code class="code">userSearch()</code> methode te gebruiken:
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Flickr.php';
+
+$flickr = new Zend_Service_Flickr('MY_API_KEY');
+
+$results = $flickr-&gt;userSearch($userEmail);
+
+foreach ($results as $result) {
+    echo $result-&gt;title . '&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.flickr.getimagedetails"></a>24.4.3. Flickr beelddetails opvragen</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Flickr</code> maakt het snel en eenvoudig om details van een beeld te verkrijgen via zijn ID.
+            Gebruik gewoon de <code class="code">getImageDetails()</code> methode zoals in het volgende voorbeeld:
+        </p>
+<div class="example">
+<a name="id4876785"></a><p class="title"><b>Voorbeeld 24.12. Flickr beelddetails verkrijgen</b></p>
+<p>
+				Wanneer je een Flickr beeld ID hebt is het eenvoudig informatie over dat beeld te verkrijgen:
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Flickr.php';
+
+$flickr = new Zend_Service_Flickr('MY_API_KEY');
+
+$image = $flickr-&gt;getImageDetails($imageId);
+
+echo "Beeld ID $imageId is $image-&gt;width x $image-&gt;height pixels.&lt;br /&gt;\n";
+echo "&lt;a href=\"$image-&gt;clickUri\"&gt;Klik hier voor het beeld&lt;/a&gt;\n";
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.flickr.classes"></a>24.4.4. Zend_Service_Flickr Klassen</h3></div></div></div>
+<p>
+        De volgende klassen worden alleen teruggegeven door <code class="code">tagSearch()</code> en <code class="code">userSearch()</code>:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="zend.service.flickr.html#zend.service.flickr.classes.resultset" title="24.4.4.1. Zend_Service_Flickr_ResultSet"><code class="code">Zend_Service_Flickr_ResultSet</code></a></p></li>
+<li><p><a href="zend.service.flickr.html#zend.service.flickr.classes.result" title="24.4.4.2. Zend_Service_Flickr_Result"><code class="code">Zend_Service_Flickr_Result</code></a></p></li>
+<li><p><a href="zend.service.flickr.html#zend.service.flickr.classes.image" title="24.4.4.3. Zend_Service_Flickr_Image"><code class="code">Zend_Service_Flickr_Image</code></a></p></li>
+</ul></div>
+<p>
+    </p>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.flickr.classes.resultset"></a>24.4.4.1. Zend_Service_Flickr_ResultSet</h4></div></div></div>
+<p>Vertegenwoordigt een set resultaten van een Flickr zoekopdracht.</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Implementeert de
+                <code class="code">SeekableIterator</code>
+                voor gemakkelijke iteratie (bv., door
+                <code class="code">foreach</code>
+                te gebruiken), evenals onmiddellijke toegang tot een specifiek resultaat door
+                <code class="code">seek()</code> te gebruiken.
+            </p></td></tr>
+</table></div>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.flickr.classes.resultset.properties"></a>24.4.4.1.1. Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4876926"></a><p class="title"><b>Tabel 24.10. Zend_Service_Flickr_ResultSet Eigenschappen</b></p>
+<table summary="Zend_Service_Flickr_ResultSet Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>totalResultsAvailable</td>
+<td>int</td>
+<td>Totaal aantal beschikbare resultaten</td>
+</tr>
+<tr>
+<td>totalResultsReturned</td>
+<td>int</td>
+<td>Totaal aantal teruggestuurde resultaten</td>
+</tr>
+<tr>
+<td>firstResultPosition</td>
+<td>int</td>
+<td>De offset in de totale set resultaten van deze set resultaten</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.flickr.classes.resultset.totalResults"></a>24.4.4.1.2. Zend_Service_Flickr_ResultSet::totalResults()</h5></div></div></div>
+<p>
+                <code class="methodsynopsis"><span class="type">int </span><span class="methodname">totalResults</span>();</code>
+            </p>
+<p>
+                Geeft het totaal aantal resultaten in deze set resultaten terug.
+            </p>
+<p>
+                <a href="zend.service.flickr.html#zend.service.flickr.classes" title="24.4.4. Zend_Service_Flickr Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.flickr.classes.result"></a>24.4.4.2. Zend_Service_Flickr_Result</h4></div></div></div>
+<p>
+			Een enkel beeldresultaat van een Flickr zoekopdracht
+        </p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.flickr.classes.result.properties"></a>24.4.4.2.1. Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4877073"></a><p class="title"><b>Tabel 24.11. Zend_Service_Flickr_Result Eigenschappen</b></p>
+<table summary="Zend_Service_Flickr_Result Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>Beeld ID</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>int</td>
+<td>Het NSID van de eigenaar van de foto.</td>
+</tr>
+<tr>
+<td>secret</td>
+<td>string</td>
+<td>Een key gebruikt in het bouwen van een URL.</td>
+</tr>
+<tr>
+<td>server</td>
+<td>string</td>
+<td>De servernaam om in het bouwen van een URL te gebruiken.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>De titel van de foto.</td>
+</tr>
+<tr>
+<td>ispublic</td>
+<td>boolean</td>
+<td>de foto is publiek.</td>
+</tr>
+<tr>
+<td>isfriend</td>
+<td>boolean</td>
+<td>Je kan de foto zien omdat je een vriend bent van de eigenaar.</td>
+</tr>
+<tr>
+<td>isfamily</td>
+<td>boolean</td>
+<td>Je kan de foto zien omdat je familie bent van de eigenaar.</td>
+</tr>
+<tr>
+<td>license</td>
+<td>string</td>
+<td>De licentie waaronder de foto beschikbaar is.</td>
+</tr>
+<tr>
+<td>date_upload</td>
+<td>string</td>
+<td>De datum waarop de foto werd geupload.</td>
+</tr>
+<tr>
+<td>date_taken</td>
+<td>string</td>
+<td>De datum waarop de foto werd genomen.</td>
+</tr>
+<tr>
+<td>owner_name</td>
+<td>string</td>
+<td>De schermnaam van de eigenaar.</td>
+</tr>
+<tr>
+<td>icon_server</td>
+<td>string</td>
+<td>De server die gebruikt werd om icon URLs te assembleren.</td>
+</tr>
+<tr>
+<td>Square</td>
+<td><a href="zend.service.flickr.html#zend.service.flickr.classes.image" title="24.4.4.3. Zend_Service_Flickr_Image">Zend_Service_Flickr_Image</a></td>
+<td>Een 75x75 thumbnailbeeld.</td>
+</tr>
+<tr>
+<td>Thumbnail</td>
+<td><a href="zend.service.flickr.html#zend.service.flickr.classes.image" title="24.4.4.3. Zend_Service_Flickr_Image">Zend_Service_Flickr_Image</a></td>
+<td>Een 100 pixel thumbnailbeeld.</td>
+</tr>
+<tr>
+<td>Small</td>
+<td><a href="zend.service.flickr.html#zend.service.flickr.classes.image" title="24.4.4.3. Zend_Service_Flickr_Image">Zend_Service_Flickr_Image</a></td>
+<td>Een 240 pixel thumbnailbeeld.</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td><a href="zend.service.flickr.html#zend.service.flickr.classes.image" title="24.4.4.3. Zend_Service_Flickr_Image">Zend_Service_Flickr_Image</a></td>
+<td>Een 500 pixel thumbnailbeeld.</td>
+</tr>
+<tr>
+<td>Large</td>
+<td><a href="zend.service.flickr.html#zend.service.flickr.classes.image" title="24.4.4.3. Zend_Service_Flickr_Image">Zend_Service_Flickr_Image</a></td>
+<td>Een 640 pixel thumbnailbeeld.</td>
+</tr>
+<tr>
+<td>Original</td>
+<td><a href="zend.service.flickr.html#zend.service.flickr.classes.image" title="24.4.4.3. Zend_Service_Flickr_Image">Zend_Service_Flickr_Image</a></td>
+<td>Het oorspronkelijk beeld.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.flickr.html#zend.service.flickr.classes" title="24.4.4. Zend_Service_Flickr Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.flickr.classes.image"></a>24.4.4.3. Zend_Service_Flickr_Image</h4></div></div></div>
+<p>Representeert een beeld teruggegeven door een Flickr zoekopdracht.</p>
+<div class="sect4" lang="nl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.flickr.classes.image.properties"></a>24.4.4.3.1. Eigenschappen</h5></div></div></div>
+<div class="table">
+<a name="id4877445"></a><p class="title"><b>Tabel 24.12. Zend_Service_Flickr_Image Eigenschappen</b></p>
+<table summary="Zend_Service_Flickr_Image Eigenschappen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Naam</th>
+<th>Type</th>
+<th>Beschrijving</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>uri</td>
+<td>string</td>
+<td>URI voor het oorspronkelijk beeld</td>
+</tr>
+<tr>
+<td>clickUri</td>
+<td>string</td>
+<td>Een klikbaar URI (bv. de Flickr pagina) voor het beeld</td>
+</tr>
+<tr>
+<td>width</td>
+<td>int</td>
+<td>Breedte van het beeld</td>
+</tr>
+<tr>
+<td>height</td>
+<td>int</td>
+<td>Hoogte van het beeld</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.flickr.html#zend.service.flickr.classes" title="24.4.4. Zend_Service_Flickr Klassen">Terug naar de klasselijst</a>
+            </p>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.service.amazon.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.service.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.service.yahoo.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">24.3. Zend_Service_Amazon </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 24.5. Zend_Service_Yahoo</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

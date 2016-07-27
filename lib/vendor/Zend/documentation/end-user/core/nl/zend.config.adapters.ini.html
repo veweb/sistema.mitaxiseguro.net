@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.3. Zend_Config_Ini</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="prev" href="zend.config.theory_of_operation.html" title="5.2. Werkingstheorie">
+<link rel="next" href="zend.config.adapters.xml.html" title="5.4. Zend_Config_Xml">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.3. Zend_Config_Ini</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.config.theory_of_operation.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 5. Zend_Config</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.adapters.xml.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.config.adapters.ini"></a>5.3. Zend_Config_Ini</h2></div></div></div>
+<p>
+        <code class="code">Zend_Config_Ini</code> staat programmeurs toe configuratiedate op te slaan in een gekend INI formaat en deze terug in te lezen in de toepassing door gebruik te maken van een syntax met geneste objecteigenshappen. Het INI formaat is gespecializeerd om een hiërarchie van configuratiedata keys te verstrekken, evenals de erfelijkheid tussen verschillende configuratiedata sekties. Hiërachies van configuratiedata worden ondersteund door de keys te scheiden met een punt (<code class="code">.</code>). Een sektie kan een andere sektie uitbreiden of overerven door een dubbelpunt te schrijven achter de sektienaam (<code class="code">:</code>) en de naam van de sektie van dewelke de data wordt geërfd.
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        <code class="code">Zend_Config_Ini</code> gebruikt de <a href="http://php.net/parse_ini_file" target="_top"><code class="code">parse_ini_file()</code></a> PHP functie. Ga deze dokumentatie na om op de hoogte te zijn van specifiek gedrag van de functie, die wordt overgedragen naar <code class="code">Zend_Config_Ini</code>, zoals hoe speciale waarden als <code class="code">true</code>, <code class="code">false</code>, <code class="code">yes</code>, <code class="code">no</code>, and <code class="code">null</code> worden behandeld.
+      </p></td></tr>
+</table></div>
+<div class="example">
+<a name="id4791449"></a><p class="title"><b>Voorbeeld 5.2. Zend_Config_Ini gebruiken</b></p>
+<p>
+            Dit voorbeeld illustreert een basisgebruik van <code class="code">Zend_Config_Ini</code> voor het inladen van configuratiedata vanuit een INI bestand. In dit voorbeeld vind je configuratiedata voor zowel een productiesysteem als een preproductiesysteem. Vermits de preproductiesysteem configuratiedata sterk overeenkomt met de productieserver configuratiedata, erft de preproductieserver sectie van de productie sectie. In dit geval is de beslissing arbitrair en zou dit andersom kunnen worden geschreven, de productieserver sectie zou erven van de preproductieserver sectie, alhoewel het niet het geval zou kunnen zijn in meer complexe situaties. Veronderstel dan dat de volgende configuratiedata in <code class="code">/path/to/config.ini</code> staat :
+        </p>
+<pre class="programlisting">; Configuratiedata voor productieserver
+[productie]
+webhost           = www.example.com
+database.type     = pdo_mysql
+database.host     = db.example.com
+database.username = dbuser
+database.password = secret
+database.name     = dbname
+
+; Preproductieserver configuratiedata erft van productieserver en
+; overschrijft waarden waar nodig
+[preproductie : productie]
+database.host     = dev.example.com
+database.username = devuser
+database.password = devsecret</pre>
+<p>
+            Veronderstel vervolgens dat de programmeur de preproductie configuratiedata van het INI bestand nodig heeft. Het is eenvoudig om die data in te laden door het INI bestand en de preproductie sectie te specifiëren :
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Config/Ini.php';
+
+$config = new Zend_Config_Ini('/path/to/config.ini', 'preproductie');
+
+echo $config-&gt;database-&gt;host; // geeft "dev.example.com"
+echo $config-&gt;database-&gt;name; // geeft "dbname"</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.config.theory_of_operation.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.config.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.adapters.xml.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">5.2. Werkingstheorie </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 5.4. Zend_Config_Xml</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.2. Zend_Db_Profiler</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="prev" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="next" href="zend.db.select.html" title="9.3. Zend_Db_Select">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.db.profiler.html#zend.db.profiler.introduction" title="9.2.1. 導入">
+<link rel="subsection" href="zend.db.profiler.html#zend.db.profiler.using" title="9.2.2. プロファイラの使用">
+<link rel="subsection" href="zend.db.profiler.html#zend.db.profiler.advanced" title="9.2.3. プロファイラの高度な使用法">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.2. Zend_Db_Profiler</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.html">前のページ</a> </td>
+<th width="60%" align="center">第9章 Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.select.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.profiler"></a>9.2. Zend_Db_Profiler</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.profiler.introduction"></a>9.2.1. 導入</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Profiler</code> を使用すると、クエリの情報を取得することができます。
+            アダプタが実際に実行したクエリの内容や実行所要時間などが取得でき、
+            余計なデバッグコードをクラスに追加しなくてもクエリを調べられるようになります。
+            さらに、条件を指定して特定のクエリだけの情報を取得することもできます。
+        </p>
+<p>
+            プロファイラを有効にするには、アダプタのコンストラクタで指定するか、
+            あるいは後からアダプタに指示します。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Db.php';
+
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot',
+    'profiler' =&gt; true  // プロファイラを使用します。false (デフォルト) にすると無効になります。
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// プロファイラを無効にします
+$db-&gt;getProfiler()-&gt;setEnabled(false);
+
+// プロファイラを有効にします
+$db-&gt;getProfiler()-&gt;setEnabled(true);
+?&gt;</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.profiler.using"></a>9.2.2. プロファイラの使用</h3></div></div></div>
+<p>
+            好きなところでアダプタの
+            <code class="code">getProfiler()</code> メソッドを使用すれば、
+            プロファイラを取得できます。
+        </p>
+<pre class="programlisting">&lt;?php
+$profiler = $db-&gt;getProfiler();
+?&gt;</pre>
+<p>
+            これは、<code class="code">Zend_Db_Profiler</code> オブジェクトのインスタンスを返します。
+            このインスタンスのさまざまなメソッドを使用することで、
+            クエリの内容を調べることができます。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">getTotalNumQueries()</code> は、
+                    情報を取得したクエリの総数を返します。
+                </p></li>
+<li><p>
+                    <code class="code">getTotalElapsedSecs()</code> は、
+                    情報を取得したクエリの実行所要時間の合計を返します。
+                </p></li>
+<li><p>
+                    <code class="code">getQueryProfiles()</code> は、
+                    すべてのクエリ情報を配列で返します。
+                </p></li>
+<li><p>
+                    <code class="code">getLastQueryProfile()</code> は、最後に
+                    (直近に) 実行されたクエリの情報を (そのクエリが
+                    完了したか否かにかかわらず) 返します
+                    (クエリが完了していない場合は、終了時刻が null となります)。
+                </p></li>
+<li><p>
+                    <code class="code">clear()</code> は、スタック上に残っている
+                    過去のクエリ情報をすべて消去します。
+                </p></li>
+</ul></div>
+<p>
+            <code class="code">getLastQueryProfile()</code> の返り値、および
+            <code class="code">getQueryProfiles()</code> の個々の要素は
+            <code class="code">Zend_Db_Profiler_Query</code> オブジェクトで、
+            これを使用すると個々のクエリ自体の情報を調べられます。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">getQuery()</code> は、クエリの SQL テキストを返します。
+                </p></li>
+<li><p>
+                    <code class="code">getElapsedSecs()</code> は、
+                    クエリの実行所要時間を返します。
+                </p></li>
+</ul></div>
+<p>
+            <code class="code">Zend_Db_Profiler</code> の提供する情報は、
+            アプリケーションのボトルネックを調査したり
+            クエリをデバッグしたりする場合に有用です。
+            例えば、直近に実行されたクエリが実際のところどんなものだったのかを知るには次のようにします。
+        </p>
+<pre class="programlisting">&lt;?php
+$query = $profiler-&gt;getLastQueryProfile();
+
+echo $query-&gt;getQuery();
+?&gt;</pre>
+<p>
+            ページの生成に時間がかかっているとしましょう。この場合、
+            プロファイラを使用してまず全クエリの実行所要秒数を取得します。
+            それから、個々のクエリを調べ、一番時間がかかっているのはどれかを見つけます。
+        </p>
+<pre class="programlisting">&lt;?php
+$totalTime    = $profiler-&gt;getTotalElapsedSecs();
+$queryCount   = $profiler-&gt;getTotalNumQueries();
+$longestTime  = 0;
+$longestQuery = null;
+
+foreach ($profiler-&gt;getQueryProfiles() as $query) {
+    if ($query-&gt;getElapsedSecs() &gt; $longestTime) {
+        $longestTime  = $query-&gt;getElapsedSecs();
+        $longestQuery = $query-&gt;getQuery();
+    }
+}
+
+echo '全部で ' . $queryCount . ' 件のクエリが ' . $totalTime . ' 秒で実行されました' . "\n";
+echo '平均の所要時間: ' . $totalTime / $queryCount . ' 秒' . "\n";
+echo '1 秒あたりのクエリ実行数: ' . $queryCount / $totalTime . "\n";
+echo '所要時間の最大値: ' . $longestTime . "\n";
+echo "一番時間のかかっているクエリ: \n" . $longestQuery . "\n";
+?&gt;</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.profiler.advanced"></a>9.2.3. プロファイラの高度な使用法</h3></div></div></div>
+<p>
+            単にクエリを調べるだけでなく、どのクエリを調べるのかという
+            条件を指定することも可能です。以下で説明するメソッドは、
+            <code class="code">Zend_Db_Profiler</code> インスタンスのメソッドです。
+        </p>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.db.profiler.advanced.filtertime"></a>9.2.3.1. クエリの実行所要時間による絞り込み</h4></div></div></div>
+<p>
+                <code class="code">setFilterElapsedSecs()</code> は、クエリの情報を取得する条件として
+                実行所要時間の最小値を指定します。このフィルタを削除するには、
+                メソッドに null 値を渡します。
+            </p>
+<pre class="programlisting">&lt;?php
+// 所要時間が 5 秒以上のクエリのみ調べます
+$profiler-&gt;setFilterElapsedSecs(5);
+
+// 所要時間にかかわらず、すべてのクエリを調べます
+$profiler-&gt;setFilterElapsedSecs(null);
+?&gt;</pre>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.db.profiler.advanced.filtertype"></a>9.2.3.2. クエリの形式による絞り込み</h4></div></div></div>
+<p>
+                <code class="code">setFilterQueryType()</code> は、クエリの情報を取得する条件として
+                クエリの形式を指定します。複数の形式を扱うには、それらの論理 OR を指定します。
+                クエリの形式は、<code class="code">Zend_Db_Profiler</code>
+                のクラス定数として以下のように定義されています。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">Zend_Db_Profiler::CONNECT</code>:
+                        接続操作、あるいはデータベースの選択。
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::QUERY</code>:
+                        他の形式にあてはまらないクエリ。
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::INSERT</code>:
+                        新しいデータをデータベースに追加するクエリ。
+                        一般的には SQL の INSERT。
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::UPDATE</code>:
+                        既存のデータを更新するクエリ。通常は SQL の UPDATE。
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::DELETE</code>:
+                        既存のデータを削除するクエリ。通常は SQL の DELETE。
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::SELECT</code>:
+                        既存のデータを取得するクエリ。通常は SQL の SELECT。
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::TRANSACTION</code>:
+                        トランザクションに関する操作。例えばトランザクションの開始や
+                        コミット、ロールバックなど。
+                    </p></li>
+</ul></div>
+<p>
+                既存のフィルタを削除するには、
+                <code class="code">setFilterElapsedSecs()</code> の引数に
+                <code class="code">null</code> だけを渡します。
+            </p>
+<pre class="programlisting">&lt;?php
+// SELECT クエリのみを調べます
+$profiler-&gt;setFilterQueryType(Zend_Db_Profiler::SELECT);
+
+// SELECT、INSERT そして UPDATE クエリを調べます
+$profiler-&gt;setFilterQueryType(Zend_Db_Profiler::SELECT | Zend_Db_Profiler::INSERT | Zend_Db_Profiler::UPDATE);
+
+// DELETE クエリを調べます (削除されたデータを見つけることができます)
+$profiler-&gt;setFilterQueryType(Zend_Db_Profiler::DELETE);
+
+// すべてのフィルタを削除します
+$profiler-&gt;setFilterQueryType(null);
+?&gt;</pre>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.db.profiler.advanced.getbytype"></a>9.2.3.3. クエリの型を指定することによる情報の取得</h4></div></div></div>
+<p>
+                <code class="code">setFilterQueryType()</code> を使用すると、生成される情報を減らすことができます。
+                すべての情報を保持しておくほうがよい場合もありますが、
+                普通はそのときに必要な情報のみが見られればよいでしょう。
+                <code class="code">getQueryProfiles()</code> のもうひとつの機能として、
+                最初の引数にクエリの型 (あるいは複数の型の論理和)
+                を指定することによるその場での絞り込みが可能です。
+                クエリの型を表す定数については <a href="zend.db.profiler.html#zend.db.profiler.advanced.filtertype" title="9.2.3.2. クエリの形式による絞り込み">項9.2.3.2. 「クエリの形式による絞り込み」</a> 
+                を参照ください。
+            </p>
+<pre class="programlisting">&lt;?php
+// SELECT クエリの情報のみを取得します
+$profiles = $profiler-&gt;getQueryProfiles(Zend_Db_Profiler::SELECT);
+
+// SELECT、INSERT そして UPDATE クエリの情報のみを取得します
+$profiles = $profiler-&gt;getQueryProfiles(Zend_Db_Profiler::SELECT | Zend_Db_Profiler::INSERT | Zend_Db_Profiler::UPDATE);
+
+// DELETE クエリの情報を取得します (データがなぜ削除されたのかを
+// 知ることができます)
+$profiles = $profiler-&gt;getQueryProfiles(Zend_Db_Profiler::DELETE);
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.select.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第9章 Zend_Db </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 9.3. Zend_Db_Select</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

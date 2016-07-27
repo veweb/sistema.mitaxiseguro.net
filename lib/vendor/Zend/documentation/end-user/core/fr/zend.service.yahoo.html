@@ -1,0 +1,710 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>24.5. Zend_Service_Yahoo</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="prev" href="zend.service.flickr.html" title="24.4. Zend_Service_Flickr">
+<link rel="next" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.introduction" title="24.5.1. Introduction">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.websearch" title="24.5.2. Rechercher sur le Web avec Yahoo!">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.imagesearch" title="24.5.3. Trouver des images avec Yahoo!">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.localsearch" title="24.5.4. Trouver des entreprises et des services locaux avec Yahoo!">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.newssearch" title="24.5.5. Rechercher dans Yahoo! News">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">24.5. Zend_Service_Yahoo</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.service.flickr.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 24. Zend_Service</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.session.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.service.yahoo"></a>24.5. Zend_Service_Yahoo</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.introduction"></a>24.5.1. Introduction</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Yahoo</code> est une API simple pour utiliser les APIs REST de Yahoo!
+            <code class="code">Zend_Service_Yahoo</code> vous permet de rechercher dans Yahoo! Web search, Yahoo! News,
+            Yahoo! Local et Yahoo! Images. Pour pouvoir utiliser l'API REST de Yahoo!, vous devez avoir un identifiant Yahoo Application.
+            Pour obtenir un identifiant Yahoo Application, veuillez compléter et soumettre le 
+            <a href="http://api.search.yahoo.com/webservices/register_application" target="_top">formulaire de demande d'identifiant Yahoo! Application</a>.
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.websearch"></a>24.5.2. Rechercher sur le Web avec Yahoo!</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Yahoo</code> vous permet d'effectuer des recherches sur le net avec Yahoo! en utilisant la méthode
+            <code class="code">webSearch()</code>, qui accepte une chaîne de requête en paramètre, et un tableau d'options de recherches comme
+            second paramètre. Pour la liste détaillée des options, veuillez vous référer à la documentation
+            <a href="http://developer.yahoo.net/search/web/V1/webSearch.html" target="_top">Yahoo! Web Search</a>.            
+            La méthode <code class="code">webSearch()</code> retourne un objet <code class="code">Zend_Service_Yahoo_WebResultSet</code>.
+        </p>
+<div class="example">
+<a name="id4884938"></a><p class="title"><b>Exemple 24.13. Rechercher sur le Web avec Yahoo!</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Yahoo.php';
+$yahoo = new Zend_Service_Yahoo("ID_APPLICATION_YAHOO");
+$results = $yahoo-&gt;webSearch('PHP');
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.imagesearch"></a>24.5.3. Trouver des images avec Yahoo!</h3></div></div></div>
+<p>
+            Vous pouvez rechercher des Images avec Yahoo! en utilisant la méthode <code class="code">imageSearch()</code> de <code class="code">Zend_Service_Yahoo</code>.
+            Cette méthode accepte une chaîne de requête en paramètres, et un tableau d'options en second paramètre optionnel. Pour la liste
+            complète des options, veuillez vous référer à la documentation <a href="http://developer.yahoo.net/search/image/V1/imageSearch.html" target="_top">Yahoo! Image Search</a>.
+        </p>
+<div class="example">
+<a name="id4884998"></a><p class="title"><b>Exemple 24.14. Trouver des images avec Yahoo!</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Yahoo.php';
+$yahoo = new Zend_Service_Yahoo("ID_APPLICATION_YAHOO");
+$results = $yahoo-&gt;imageSearch('PHP');
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.localsearch"></a>24.5.4. Trouver des entreprises et des services locaux avec Yahoo!</h3></div></div></div>
+<p>
+            Vous pouvez rechercher des entreprises et des services locaux avec Yahoo!, en utilisant la méthode <code class="code">localSearch()</code>.
+            Pour plus de détails, veuillez vous référer à la documentation <a href="http://developer.yahoo.net/search/local/V1/localSearch.html" target="_top">Yahoo! Local Search</a>.
+        </p>
+<div class="example">
+<a name="id4885050"></a><p class="title"><b>Exemple 24.15. Trouver des entreprises locales et des services avec Yahoo!</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Yahoo.php';
+$yahoo = new Zend_Service_Yahoo("ID_APPLICATION_YAHOO");
+$results = $yahoo-&gt;localSearch('Ordinateurs Apple', array('zip' =&gt; '95014'));
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.newssearch"></a>24.5.5. Rechercher dans Yahoo! News</h3></div></div></div>
+<p>
+            Rechercher dans Yahoo! News est simple, il vous suffit simplement d'utiliser la méthode <code class="code">newsSearch()</code>, comme
+            le montre l'exemple suivant. Pour plus de détails, veuillez vous référer à la documentation 
+            <a href="http://developer.yahoo.net/search/news/V1/newsSearch.html" target="_top">Yahoo! News Search</a>.
+        </p>
+<div class="example">
+<a name="id4885106"></a><p class="title"><b>Exemple 24.16. Rechercher dans Yahoo! News</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Yahoo.php';
+$yahoo = new Zend_Service_Yahoo("ID_APPLICATION_YAHOO");
+$results = $yahoo-&gt;newsSearch('PHP');
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.classes"></a>24.5.6. Classes Zend_Service_Yahoo</h3></div></div></div>
+<p>
+        Les classes sont toutes retournées par les divers recherches Yahoo!. Chaque type de recherche retourne un jeu de résultat 
+        de spécifique sur lequel on peut facilement itérer, avec chaque résultat contenu dans un résultat du type de l'objet.
+        Toutes les classes de jeu de résultat implémentent l'interface <code class="code">SeekableIterator</code>, permettant des itérations et 
+        une recherche sur un résultat particulier.
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.resultset" title="24.5.6.1. Zend_Service_Yahoo_ResultSet"><code class="code">Zend_Service_Yahoo_ResultSet</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.webresultset" title="24.5.6.2. Zend_Service_Yahoo_WebResultSet"><code class="code">Zend_Service_Yahoo_WebResultSet</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.imageresultset" title="24.5.6.3. Zend_Service_Yahoo_ImageResultSet"><code class="code">Zend_Service_Yahoo_ImageResultSet</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.localresultset" title="24.5.6.4. Zend_Service_Yahoo_LocalResultSet"><code class="code">Zend_Service_Yahoo_LocalResultSet</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.newsresultset" title="24.5.6.5. Zend_Service_Yahoo_NewsResultSet"><code class="code">Zend_Service_Yahoo_NewsResultSet</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.result" title="24.5.6.6. Zend_Service_Yahoo_Result"><code class="code">Zend_Service_Yahoo_Result</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.webresult" title="24.5.6.7. Zend_Service_Yahoo_WebResult"><code class="code">Zend_Service_Yahoo_WebResult</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.imageresult" title="24.5.6.8. Zend_Service_Yahoo_ImageResult"><code class="code">Zend_Service_Yahoo_ImageResult</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.localresult" title="24.5.6.9. Zend_Service_Yahoo_LocalResult"><code class="code">Zend_Service_Yahoo_LocalResult</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.newsresult" title="24.5.6.10. Zend_Service_Yahoo_NewsResult"><code class="code">Zend_Service_Yahoo_NewsResult</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.image" title="24.5.6.11. Zend_Service_Yahoo_Image"><code class="code">Zend_Service_Yahoo_Image</code></a></p></li>
+</ul></div>
+<p>
+    </p>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.resultset"></a>24.5.6.1. Zend_Service_Yahoo_ResultSet</h4></div></div></div>
+<p>
+            Chaque jeu de résultat spécifique à la recherche est étendu de cette classe de base.
+        </p>
+<p>
+            Chaque jeu de résultat spécifique à la recherche retourne un objet <a href="zend.service.yahoo.html#zend.service.yahoo.classes.result" title="24.5.6.6. Zend_Service_Yahoo_Result">Zend_Service_Yahoo_Result</a>
+            spécifique à la recherche.
+        </p>
+<div class="sect4" lang="fr">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.resultset.totalResults"></a>24.5.6.1.1. Zend_Service_Yahoo_ResultSet::totalResults()</h5></div></div></div>
+<p>
+                <code class="methodsynopsis"><span class="type">int </span><span class="methodname">totalResults</span>();</code>
+            </p>
+<p>
+                Retourne le nombre de résultats retourné par la recherche.
+            </p>
+</div>
+<div class="sect4" lang="fr">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.resultset.properties"></a>24.5.6.1.2. Propriétés</h5></div></div></div>
+<div class="table">
+<a name="id4885378"></a><p class="title"><b>Tableau 24.13. Zend_Service_Yahoo_ResultSet</b></p>
+<table summary="Zend_Service_Yahoo_ResultSet" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nom</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>totalResultsAvailable</td>
+<td>int</td>
+<td>Nombre total de résultats trouvés.</td>
+</tr>
+<tr>
+<td>totalResultsReturned</td>
+<td>int</td>
+<td>Nombre de résultats pour le jeu de résultat courant.</td>
+</tr>
+<tr>
+<td>firstResultPosition</td>
+<td>int</td>
+<td>Position du premier résultat dans ce jeu, par rapport au nombre total des résultats.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.webresultset"></a>24.5.6.2. Zend_Service_Yahoo_WebResultSet</h4></div></div></div>
+<p>
+            <code class="code">Zend_Service_Yahoo_WebResultSet</code> représent un jeu de résutat Yahoo! Web Search.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                <code class="code">Zend_Service_Yahoo_WebResultSet</code> étend <a href="zend.service.yahoo.html#zend.service.yahoo.classes.resultset" title="24.5.6.1. Zend_Service_Yahoo_ResultSet">Zend_Service_Yahoo_ResultSet</a>.
+            </p></td></tr>
+</table></div>
+<p>
+            <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+        </p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.imageresultset"></a>24.5.6.3. Zend_Service_Yahoo_ImageResultSet</h4></div></div></div>
+<p>
+            <code class="code">Zend_Service_Yahoo_ImageResultSet</code> représente un jeu de résultat Yahoo! Image Search.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                <code class="code">Zend_Service_Yahoo_ImageResultSet</code> étend <a href="zend.service.yahoo.html#zend.service.yahoo.classes.resultset" title="24.5.6.1. Zend_Service_Yahoo_ResultSet">Zend_Service_Yahoo_ResultSet</a>
+            </p></td></tr>
+</table></div>
+<p>
+            <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+        </p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.localresultset"></a>24.5.6.4. Zend_Service_Yahoo_LocalResultSet</h4></div></div></div>
+<p>
+            <code class="code">Zend_Service_Yahoo_LocalResultSet</code> représente un jeu de résultats Yahoo! Local Search.
+        </p>
+<div class="table">
+<a name="id4885594"></a><p class="title"><b>Tableau 24.14. Propriétés de Zend_Service_Yahoo_LocalResultSet</b></p>
+<table summary="Propriétés de Zend_Service_Yahoo_LocalResultSet" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nom</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>resultSetMapURL</td>
+<td>string</td>
+<td>L'URL de la page Web contenant une carte graphique contenant tous les résultats affiché dessus.</td>
+</tr></tbody>
+</table>
+</div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                <code class="code">Zend_Service_Yahoo_LocalResultSet</code> étend <a href="zend.service.yahoo.html#zend.service.yahoo.classes.resultset" title="24.5.6.1. Zend_Service_Yahoo_ResultSet">Zend_Service_Yahoo_ResultSet</a>
+            </p></td></tr>
+</table></div>
+<p>
+            <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+        </p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.newsresultset"></a>24.5.6.5. Zend_Service_Yahoo_NewsResultSet</h4></div></div></div>
+<p>
+            <code class="code">Zend_Service_Yahoo_NewsResultSet</code> représente un jeu de résultat Yahoo! News Search.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                <code class="code">Zend_Service_Yahoo_NewsResultSet</code> étend <a href="zend.service.yahoo.html#zend.service.yahoo.classes.resultset" title="24.5.6.1. Zend_Service_Yahoo_ResultSet">Zend_Service_Yahoo_ResultSet</a>
+            </p></td></tr>
+</table></div>
+<p>
+            <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+        </p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.result"></a>24.5.6.6. Zend_Service_Yahoo_Result</h4></div></div></div>
+<p>
+            Chaque résultat spécifique à la recherche est étendu de cette classe de base.
+        </p>
+<div class="sect4" lang="fr">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.result.properties"></a>24.5.6.6.1. Propriétés</h5></div></div></div>
+<div class="table">
+<a name="id4885755"></a><p class="title"><b>Tableau 24.15. Propriétés de Zend_Service_Yahoo_Result</b></p>
+<table summary="Propriétés de Zend_Service_Yahoo_Result" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nom</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Title</td>
+<td>string</td>
+<td>Titre du résultat</td>
+</tr>
+<tr>
+<td>Url</td>
+<td>string</td>
+<td>URL du résultat</td>
+</tr>
+<tr>
+<td>ClickUrl</td>
+<td>string</td>
+<td>URL pour pointer sur ce résultat</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.webresult"></a>24.5.6.7. Zend_Service_Yahoo_WebResult</h4></div></div></div>
+<p>
+            Each Web Search result is returned as a <code class="code">Zend_Service_Yahoo_WebResult</code> object.
+        </p>
+<div class="sect4" lang="fr">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.webresult.properties"></a>24.5.6.7.1. Propriétés</h5></div></div></div>
+<div class="table">
+<a name="id4885874"></a><p class="title"><b>Tableau 24.16. Propriétés de Zend_Service_Yahoo_WebResult</b></p>
+<table summary="Propriétés de Zend_Service_Yahoo_WebResult" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nom</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Summary</td>
+<td>string</td>
+<td>Sommaire du résultat</td>
+</tr>
+<tr>
+<td>MimeType</td>
+<td>string</td>
+<td>type Mime du résultat</td>
+</tr>
+<tr>
+<td>ModificationDate</td>
+<td>string</td>
+<td>Timestamp UNIX de la date de la dernière modification du résultat.</td>
+</tr>
+<tr>
+<td>CacheUrl</td>
+<td>string</td>
+<td>URL Yahoo! du cache web du résultat, s'il existe.</td>
+</tr>
+<tr>
+<td>CacheSize</td>
+<td>int</td>
+<td>Taille du cache.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.imageresult"></a>24.5.6.8. Zend_Service_Yahoo_ImageResult</h4></div></div></div>
+<p>
+            Each Image Search result is returned as a <code class="code">Zend_Service_Yahoo_ImageResult</code> object.
+        </p>
+<div class="sect4" lang="fr">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.imageresult.properties"></a>24.5.6.8.1. Propriétés</h5></div></div></div>
+<div class="table">
+<a name="id4886024"></a><p class="title"><b>Tableau 24.17. Propriétés de Zend_Service_Yahoo_ImageResult</b></p>
+<table summary="Propriétés de Zend_Service_Yahoo_ImageResult" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nom</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Summary</td>
+<td>string</td>
+<td>Sommaire du résultat</td>
+</tr>
+<tr>
+<td>RefererUrl</td>
+<td>string</td>
+<td>L'URL de la page qui contient l'image</td>
+</tr>
+<tr>
+<td>FileSize</td>
+<td>int</td>
+<td>La taille (en octets) de l'image</td>
+</tr>
+<tr>
+<td>FileFormat</td>
+<td>string</td>
+<td>Le format de l'image (bmp, gif, jpeg, png, etc.)</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>int</td>
+<td>La hauteur de l'image</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>int</td>
+<td>LA largeur de l'image</td>
+</tr>
+<tr>
+<td>Thumbnail</td>
+<td><a href="zend.service.yahoo.html#zend.service.yahoo.classes.image" title="24.5.6.11. Zend_Service_Yahoo_Image">Zend_Service_Yahoo_Image</a></td>
+<td>Vignette de l'image</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.localresult"></a>24.5.6.9. Zend_Service_Yahoo_LocalResult</h4></div></div></div>
+<p>
+            Chaque résultat de recherche locale est retourné dans un objet <code class="code">Zend_Service_Yahoo_LocalResult</code>.
+        </p>
+<div class="sect4" lang="fr">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.localresult.properties"></a>24.5.6.9.1. Propriétés</h5></div></div></div>
+<div class="table">
+<a name="id4886207"></a><p class="title"><b>Tableau 24.18. Propriétés de Zend_Service_Yahoo_LocalResult</b></p>
+<table summary="Propriétés de Zend_Service_Yahoo_LocalResult" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nom</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Address</td>
+<td>string</td>
+<td>Adresse de la rue du résultat</td>
+</tr>
+<tr>
+<td>City</td>
+<td>string</td>
+<td>Ville dans laquelle réside le résultat</td>
+</tr>
+<tr>
+<td>State</td>
+<td>string</td>
+<td>Etat dans lequel réside le résultat</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td>string</td>
+<td>Numéro de téléphone du résultat</td>
+</tr>
+<tr>
+<td>Rating</td>
+<td>int</td>
+<td>Appréciation des utilisateur pour ce résultat</td>
+</tr>
+<tr>
+<td>Distance</td>
+<td>float</td>
+<td>Distance entre l'endroit ou vous vous trouvez et le résultat</td>
+</tr>
+<tr>
+<td>MapUrl</td>
+<td>string</td>
+<td>L'URL d'une carte pour le résultat</td>
+</tr>
+<tr>
+<td>BusinessUrl</td>
+<td>string</td>
+<td>L'URL du site de l'entreprise, s'il est connu</td>
+</tr>
+<tr>
+<td>BusinessClickUrl</td>
+<td>string</td>
+<td>L'URL pour faire un lien sur le site de l'entreprise, s'il est connu</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.newsresult"></a>24.5.6.10. Zend_Service_Yahoo_NewsResult</h4></div></div></div>
+<p>
+            Chaque résultat de News Search est retourné comme un objet <code class="code">Zend_Service_Yahoo_NewsResult</code>.
+        </p>
+<div class="sect4" lang="fr">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.newsresult.properties"></a>24.5.6.10.1. Propriétés</h5></div></div></div>
+<div class="table">
+<a name="id4886418"></a><p class="title"><b>Tableau 24.19. Propriétés de Zend_Service_Yahoo_NewsResult</b></p>
+<table summary="Propriétés de Zend_Service_Yahoo_NewsResult" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nom</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Summary</td>
+<td>string</td>
+<td>Sommaire du résultat</td>
+</tr>
+<tr>
+<td>NewsSource</td>
+<td>string</td>
+<td>L'entreprise qui a distribué l'article</td>
+</tr>
+<tr>
+<td>NewsSourceUrl</td>
+<td>string</td>
+<td>L'URL de l'entreprise qui a distribué l'article</td>
+</tr>
+<tr>
+<td>Language</td>
+<td>string</td>
+<td>La langue de l'article</td>
+</tr>
+<tr>
+<td>PublishDate</td>
+<td>string</td>
+<td>La date de publication de l'article, au format timestamp UNIX</td>
+</tr>
+<tr>
+<td>ModificationDate</td>
+<td>string</td>
+<td>La date de la dernière modification de l'article, au format timestamp UNIX</td>
+</tr>
+<tr>
+<td>Thumbnail</td>
+<td><a href="zend.service.yahoo.html#zend.service.yahoo.classes.image" title="24.5.6.11. Zend_Service_Yahoo_Image">Zend_Service_Yahoo_Image</a></td>
+<td>Miniature de l'image pour cet article, si elle existe</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.image"></a>24.5.6.11. Zend_Service_Yahoo_Image</h4></div></div></div>
+<p>
+            Toutes les images retournées, par Yahoo! Image Search ou Yahoo! News Search sont représentées par un objet <code class="code">Zend_Service_Yahoo_Image</code>.
+        </p>
+<div class="sect4" lang="fr">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.image.properties"></a>24.5.6.11.1. Propriétés</h5></div></div></div>
+<div class="table">
+<a name="id4886606"></a><p class="title"><b>Tableau 24.20. Propriétés de Zend_Service_Yahoo_Image</b></p>
+<table summary="Propriétés de Zend_Service_Yahoo_Image" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nom</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Url</td>
+<td>string</td>
+<td>URL de l'image</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>int</td>
+<td>Largeur de l'image</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>int</td>
+<td>Hauteur de l'image</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Classes Zend_Service_Yahoo">Retour à la liste des classes</a>
+            </p>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.service.flickr.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.service.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.session.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">24.4. Zend_Service_Flickr </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> Chapitre 25. Zend_Session</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

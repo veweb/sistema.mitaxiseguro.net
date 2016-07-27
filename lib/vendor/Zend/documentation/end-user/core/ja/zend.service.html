@@ -1,0 +1,142 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第24章 Zend_Service</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.server.reflection.html" title="23.2. Zend_Server_Reflection">
+<link rel="next" href="zend.service.akismet.html" title="24.2. Zend_Service_Akismet">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.service.html#zend.service.introduction" title="24.1. 導入">
+<link rel="section" href="zend.service.akismet.html" title="24.2. Zend_Service_Akismet">
+<link rel="section" href="zend.service.amazon.html" title="24.3. Zend_Service_Amazon">
+<link rel="section" href="zend.service.flickr.html" title="24.4. Zend_Service_Flickr">
+<link rel="section" href="zend.service.yahoo.html" title="24.5. Zend_Service_Yahoo">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第24章 Zend_Service</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.server.reflection.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.service.akismet.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.service"></a>第24章 Zend_Service</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.service.html#zend.service.introduction">24.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.service.akismet.html">24.2. Zend_Service_Akismet</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.introduction">24.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.verifykey">24.2.2. API キーの検証</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.isspam">24.2.3. スパムのチェック</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.submitspam">24.2.4. 既知のスパムの送信</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.submitham">24.2.5. 無実のデータ (ハム) の送信</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.accessors">24.2.6. Zend 固有のアクセス用メソッド</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.amazon.html">24.3. Zend_Service_Amazon</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.introduction">24.3.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.countrycodes">24.3.2. 国コード</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.itemlookup">24.3.3. ASIN を使用した商品の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.itemsearch">24.3.4. Amazon の商品検索の実行</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.query">24.3.5. もうひとつのクエリ API の使用法</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.classes">24.3.6. Zend_Service_Amazon クラス群</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.flickr.html">24.4. Zend_Service_Flickr</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.introduction">24.4.1. Flickr 検索の導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.finding-users">24.4.2. Flickr ユーザの検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.getimagedetails">24.4.3. Flickr 画像の詳細の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.classes">24.4.4. Zend_Service_Flickr クラス群</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.yahoo.html">24.5. Zend_Service_Yahoo</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.introduction">24.5.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.websearch">24.5.2. Yahoo! を使用したウェブの検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.imagesearch">24.5.3. Yahoo! を使用した画像の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.localsearch">24.5.4. Yahoo! を使用した Local Businesses and Services の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.newssearch">24.5.5. Yahoo! News の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.classes">24.5.6. Zend_Service_Yahoo クラス群</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.service.introduction"></a>24.1. 導入</h2></div></div></div>
+<p>
+        <code class="code">Zend_Service</code> は、SOAP や REST
+        などのウェブサービスの実装基盤となる抽象クラスです。
+    </p>
+<p>
+        汎用的な XML ベースの REST サービスのサポートが必要なら、
+        <a href="zend.rest.client.html" title="21.2. Zend_Rest_Client"><code class="code">Zend_Rest_Client</code></a> を参照ください。
+    </p>
+<p>
+        <code class="code">Zend_Service</code> を継承したクラスや <code class="code">Zend_Rest_Client</code>
+        を使用して REST ベースのウェブサービスにアクセスすることに加え、
+        Zend では有名なウェブサービスもサポートしています。たとえば
+        <a href="zend.service.akismet.html" title="24.2. Zend_Service_Akismet">Akismet</a>、
+        <a href="zend.service.amazon.html" title="24.3. Zend_Service_Amazon">Amazon</a>、
+        <a href="zend.service.flickr.html" title="24.4. Zend_Service_Flickr">Flickr</a> および
+        <a href="zend.service.yahoo.html" title="24.5. Zend_Service_Yahoo">Yahoo!</a> などです。
+        将来はさらにいろいろ追加されるでしょう。
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.server.reflection.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.service.akismet.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">23.2. Zend_Server_Reflection </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 24.2. Zend_Service_Akismet</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

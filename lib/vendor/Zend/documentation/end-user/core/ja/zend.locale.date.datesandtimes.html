@@ -1,0 +1,495 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>15.4. 日付および時刻の扱い</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="prev" href="zend.locale.parsing.html" title="15.3. 正規化および地域化">
+<link rel="next" href="zend.locale.languages.html" title="15.5. ロケールがサポートする言語">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.locale.date.datesandtimes.html#zend.locale.date.normalize" title="15.4.1. 日付および時刻の正規化">
+<link rel="subsection" href="zend.locale.date.datesandtimes.html#zend.locale.date.test" title="15.4.2. 日付かどうかの確認">
+<link rel="subsection" href="zend.locale.date.datesandtimes.html#zend.locale.time.normalizing" title="15.4.3. 時刻の正規化">
+<link rel="subsection" href="zend.locale.date.datesandtimes.html#zend.locale.time.test" title="15.4.4. 時刻かどうかの確認">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">15.4. 日付および時刻の扱い</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.locale.parsing.html">前のページ</a> </td>
+<th width="60%" align="center">第15章 Zend_Locale</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.locale.languages.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.locale.date.datesandtimes"></a>15.4. 日付および時刻の扱い</h2></div></div></div>
+<p>
+        <code class="code">Zend_Locale_Format</code> では、日付や時刻を扱うためのメソッドを提供しています。
+        これらを使用して、さまざまなロケールのさまざまな書式間での変換や正規化を行います。
+        日付データや
+        <a href="zend.date.constants.html" title="8.5. 日付関数全般用の定数">
+          <code class="code">Zend_Date</code> がサポートする、さまざまな標準書式や地域化された日付書式
+        </a>
+        を満たす日付文字列の操作には <code class="code">Zend_Date</code> を使用します。
+        既存の定義済み書式を使用すると、「十分にテストされたコードが使用できる」
+        「(一般的な使用法に従う限り) 可搬性や相互運用性を保証できる」といった利点があります。
+        以下の例は、ここで推奨した内容に従っていません。しかし、
+        非標準の書式を使用することで、これらの例は不必要にわかりにくくなってしまっています。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.date.normalize"></a>15.4.1. 日付および時刻の正規化</h3></div></div></div>
+<p>
+            <code class="code">getDate()</code> メソッドは、地域化された書式の日付を含む文字列をパースします。
+            結果は構造化された配列で返されます。この配列のキーが、日付の各部分を表します。
+            さらに、この配列には 'format' というキーがあり、
+            入力日付文字列をパースする際に使用する書式文字列がここに含まれます。
+            地域化された日付文字列が日付/時刻のすべての要素を含んでいるとは限らないので、
+            配列のすべてのキーが存在するとは限りません。
+            たとえば年月日のみが指定された場合は、時刻に関する情報は配列から取り除かれます。
+            逆に時分秒のみが指定された場合も同様です。
+            入力に日付や時刻が含まれない場合は、例外がスローされます。
+        </p>
+<p>
+            また、<code class="code">getCorrectableDate()</code> メソッドは
+            'fixed' というキーを追加します。ここには数値が格納され、
+            入力の日付文字列の年月日の順序を入れ替えたりして
+            使用する書式にあわせるための情報を表します。
+        </p>
+<div class="table">
+<a name="id4851874"></a><p class="title"><b>表 15.2. getCorrectableDate() の 'fixed' キーの値</b></p>
+<table summary="getCorrectableDate() の 'fixed' キーの値" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>値</th>
+<th>意味</th>
+<td class="auto-generated"> </td>
+<td class="auto-generated"> </td>
+</tr></thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>なにも修正しません。</td>
+<td class="auto-generated"> </td>
+<td class="auto-generated"> </td>
+</tr>
+<tr>
+<td>1</td>
+<td>無効な月を修正します。</td>
+<td class="auto-generated"> </td>
+<td class="auto-generated"> </td>
+</tr>
+<tr>
+<td>2</td>
+<td>日付と年の位置を入れ替えます。</td>
+<td class="auto-generated"> </td>
+<td class="auto-generated"> </td>
+</tr>
+<tr>
+<td>3</td>
+<td>月と年の位置を入れ替えます。</td>
+<td class="auto-generated"> </td>
+<td class="auto-generated"> </td>
+</tr>
+<tr>
+<td>4</td>
+<td>月と日の位置を入れ替えます。</td>
+<td class="auto-generated"> </td>
+<td class="auto-generated"> </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+            BCMath 拡張モジュールが有効な場合に、
+            以下のような値が返されます。
+        </p>
+<div class="table">
+<a name="id4851962"></a><p class="title"><b>表 15.3. 返り値</b></p>
+<table summary="返り値" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>getDate() 書式文字</th>
+<th>配列のキー</th>
+<th>返される値</th>
+<th>最小値</th>
+<th>最大値</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>d</td>
+<td>day</td>
+<td>integer</td>
+<td>1</td>
+<td>31</td>
+</tr>
+<tr>
+<td>M</td>
+<td>month</td>
+<td>integer</td>
+<td>1</td>
+<td>12</td>
+</tr>
+<tr>
+<td>y</td>
+<td>year</td>
+<td>integer</td>
+<td>無制限</td>
+<td>PHP の整数型の最大値</td>
+</tr>
+<tr>
+<td>h</td>
+<td>hour</td>
+<td>integer</td>
+<td>0</td>
+<td>PHP の整数型の最大値</td>
+</tr>
+<tr>
+<td>m</td>
+<td>minute</td>
+<td>integer</td>
+<td>0</td>
+<td>PHP の整数型の最大値</td>
+</tr>
+<tr>
+<td>s</td>
+<td>second</td>
+<td>integer</td>
+<td>0</td>
+<td>PHP の整数型の最大値</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="example">
+<a name="id4852125"></a><p class="title"><b>例 15.28. 日付の正規化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$date = Zend_Locale_Format::getDate('13.04.2006', 'dd.MM.yyyy');
+$dateObject = Zend_Date('13.04.2006', 'dd.MM.yyyy'); // この日付に対応する Zend_Date オブジェクトを作成します
+
+print_r($date); // 出力は、このようになります
+
+Array
+(
+    [format] =&gt; dd.MM.yyyy
+    [day] =&gt; 13
+    [month] =&gt; 4
+    [year] =&gt; 2006
+)
+
+// 入力値に何らかの問題がある場合に、自動的に修正します
+$date2 = Zend_Locale_Format::getCorrectableDate('04.13.2006', 'dd.MM.yyyy');
+
+print_r($date); // 出力は、このようになります
+
+Array
+(
+    [format] =&gt; dd.MM.yyyy
+    [day] =&gt; 13
+    [month] =&gt; 4
+    [year] =&gt; 2006
+    [fixed] =&gt; 4
+)
+?&gt;</pre>
+</div>
+<p>
+            <code class="code">getDate()</code> は "ロケール対応" なので、
+            <code class="code">$locale</code> を指定することで
+            そのロケールの書式の日付文字列を使用できます。
+            <code class="code">getCorrectableDate()</code> は簡単なテストを行って
+            日付や月の妥当性を確認します。問題が見つかったら、
+            経験則によってそれを何とか修正しようとします。
+        </p>
+<div class="example">
+<a name="id4852178"></a><p class="title"><b>例 15.29. ロケールを指定した日付の正規化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+$date = Zend_Locale_Format::getDate('13.04.2006', null, $locale);
+
+print_r ($date);
+?&gt;</pre>
+</div>
+<p>
+            入力に日付と時刻の両方が含まれている場合に、
+            完全な日付と時刻が返されます。
+        </p>
+<div class="example">
+<a name="id4852204"></a><p class="title"><b>例 15.30. 日付と時刻の正規化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+$date = Zend_Locale_Format::getDate('13.04.2005 22:14:55', false, $locale);
+
+print_r ($date);
+?&gt;</pre>
+</div>
+<p>
+            書式を指定したい場合は、
+            <code class="code">$locale</code> ではなく <code class="code">$format</code> 引数を指定します。
+            <code class="code">$format</code> としてサポートされるのは、一文字のコード
+            (H, m, s, y, M, d) および MMMM、EEEE だけです。
+        </p>
+<div class="example">
+<a name="id4852244"></a><p class="title"><b>例 15.31. ユーザ定義の日付書式への正規化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$date = Zend_Locale_Format::getDate('13200504T551422', 'ddyyyyMM ssmmHH');
+
+print_r ($date);
+?&gt;</pre>
+</div>
+<p>
+            書式には次の記号が使用できます。
+        </p>
+<div class="table">
+<a name="id4852268"></a><p class="title"><b>表 15.4. 書式定義</b></p>
+<table summary="書式定義" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>書式指定文字</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>d あるいは dd</td>
+<td>1 桁あるいは 2 桁の日</td>
+</tr>
+<tr>
+<td>M あるいは MM</td>
+<td>1 桁あるいは 2 桁の月</td>
+</tr>
+<tr>
+<td>y あるいは yy</td>
+<td>1 桁あるいは 2 桁の年</td>
+</tr>
+<tr>
+<td>yyyy</td>
+<td>4 桁の年</td>
+</tr>
+<tr>
+<td>h</td>
+<td>1 桁あるいは 2 桁の時</td>
+</tr>
+<tr>
+<td>m</td>
+<td>1 桁あるいは 2 桁の分</td>
+</tr>
+<tr>
+<td>s</td>
+<td>1 桁あるいは 2 桁の秒</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+            適切な書式の例は、次のようになります。
+        </p>
+<div class="table">
+<a name="id4852378"></a><p class="title"><b>表 15.5. 書式の例</b></p>
+<table summary="書式の例" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>書式</th>
+<th>入力</th>
+<th>出力</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>dd.MM.yy</td>
+<td>1.4.6</td>
+<td>['day'] =&gt; 1,
+                                   ['month'] =&gt; 4, 
+                                   ['year'] =&gt; 6</td>
+</tr>
+<tr>
+<td>dd.MM.yy</td>
+<td>01.04.2006</td>
+<td>['day'] =&gt; 1, ['month'] =&gt; 4, ['year'] =&gt; 2006</td>
+</tr>
+<tr>
+<td>yyyyMMdd</td>
+<td>1.4.6</td>
+<td>['day'] =&gt; 6, ['month'] =&gt; 4, ['year'] =&gt; 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note"><table border="0" summary="Note: データベースの日付書式">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">データベースの日付書式</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                データベース (たとえば MySql や MsSql など) の日付値をパースするには、
+                getDate() のかわりに Zend_Date の ISO_8601 書式を使用します。
+            </p></td></tr>
+</table></div>
+<p>
+            <code class="code">getCorrectableDate()</code> は簡単なテストを行って
+            日付や月の妥当性を確認します。問題が見つかったら、
+            経験則によってそれを何とか修正しようとします。
+            <code class="code">getDate()</code> は、
+            入力に問題がある場合にそれを自動で検出し、訂正します。
+            たとえば年の位置が違っている場合などがこれにあたります。
+        </p>
+<div class="example">
+<a name="id4852497"></a><p class="title"><b>例 15.32. 入力された日付の訂正処理</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$date = Zend_Locale_Format::getCorrectableDate('41.10.20', 'ddMMyy');
+
+// 41 は、日付ではなく年として返されます
+print_r ($date);
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.date.test"></a>15.4.2. 日付かどうかの確認</h3></div></div></div>
+<p>
+            <code class="code">isDate($inputString, $format, $locale)</code> を使用して、
+            指定した文字列が有効な日付を含むかどうかを調べます。
+            <code class="code">isDate()</code> メソッドは <code class="code">getDate()</code> を使用します。
+            <code class="code">getCorrectableDate()</code> を使用すると、
+            入力が日付書式を満たしていない場合にも true を返してしまうので、これは使用しません。
+            月と日の位置が入れ替わっているなどのエラーが入力で検出された場合、
+            <code class="code">isCorrectableDate()</code> メソッドは
+            経験則によってそれを "修正" してから検証します。
+        </p>
+<div class="example">
+<a name="id4852567"></a><p class="title"><b>例 15.33. 日付かどうかの確認</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+if (Zend_Locale_Format::isDate('13.Apr.2006', $locale) {
+    print "日付です";
+} else {
+    print "日付ではありません";
+} 
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.time.normalizing"></a>15.4.3. 時刻の正規化</h3></div></div></div>
+<p>
+            通常、入力に日付と時刻が両方含まれている場合は、
+            時刻は日付とともに返されます。
+            適切な書式はわからないが、ユーザの入力のロケールがわかるという場合に
+            <code class="code">getTime()</code> を使用します。
+            これは、選択したロケールに対するデフォルトの時刻書式を使用するからです。
+        </p>
+<div class="example">
+<a name="id4852618"></a><p class="title"><b>例 15.34. 未知の時刻の正規化</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+if (Zend_Locale_Format::getTime('13:44:42', $locale) {
+    print "時刻です";
+} else {
+    print "時刻ではありません";
+} 
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.time.test"></a>15.4.4. 時刻かどうかの確認</h3></div></div></div>
+<p>
+            <code class="code">isTime()</code> を使用して、
+            指定した文字列が有効な時刻を含むかどうかを調べます。
+        </p>
+<div class="example">
+<a name="id4852658"></a><p class="title"><b>例 15.35. 時刻かどうかの確認</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('de_AT');
+if (Zend_Locale_Format::isTime('13:44:42', $locale) {
+    print "時刻です";
+} else {
+    print "時刻ではありません";
+} 
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.locale.parsing.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.locale.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.locale.languages.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">15.3. 正規化および地域化 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 15.5. ロケールがサポートする言語</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

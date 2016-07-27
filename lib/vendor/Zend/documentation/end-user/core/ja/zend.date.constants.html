@@ -1,0 +1,1281 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>8.5. 日付関数全般用の定数</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="prev" href="zend.date.overview.html" title="8.4. Zend_Date API の概要">
+<link rel="next" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.date.constants.html#zend.date.constants.using" title="8.5.1. 定数の使用">
+<link rel="subsection" href="zend.date.constants.html#zend.date.constants.list" title="8.5.2. 全定数の一覧">
+<link rel="subsection" href="zend.date.constants.html#zend.date.constants.selfdefinedformats" title="8.5.3. 自分で定義する出力フォーマット">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">8.5. 日付関数全般用の定数</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.date.overview.html">前のページ</a> </td>
+<th width="60%" align="center">第8章 Zend_Date</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.date.constants"></a>8.5. 日付関数全般用の定数</h2></div></div></div>
+<p>
+        <code class="code">Zend_Date</code> のメソッドでパラメータ <code class="code">$parts</code>
+        を持つものはすべて、以下の定数のいずれかをパラメータとして指定することができます。
+        これにより、日付の中の特定の要素や使用する書式
+        (例: RFC 822) を指定します。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.constants.using"></a>8.5.1. 定数の使用</h3></div></div></div>
+<p>
+            たとえば、定数<code class="code">Zend_Date::HOUR</code> の使用法は次のようになります。
+            曜日・時・分・秒・その他の要素が世界各地でさまざまな形式で表されていたとしても、
+            オブジェクトのタイムゾーン設定を使用して自動的に正しい値で計算を行います。
+            これは、内部のタイムスタンプの値が何であるかや
+            ユーザが世界中のどこにいるかとは関係がありません。
+            使用する単位にかかわらず、出力結果は GMT/UTC
+            あるいはロケールにあわせて地域化された形式となります。
+            以下の出力サンプルは、
+            Europe/GMT+1 (ドイツ、オーストリア、フランスなど)
+            にあわせて地域化された形式です。
+        </p>
+<div class="table">
+<a name="id4815692"></a><p class="title"><b>表 8.7. Zend_Date::HOUR を使用した操作</b></p>
+<table summary="Zend_Date::HOUR を使用した操作" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>関数/入力</th>
+<th>説明</th>
+<th>元の日付</th>
+<th>使用後の出力</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>get(Zend_Date::HOUR)</td>
+<td>時間を出力する</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>14</td>
+</tr>
+<tr>
+<td>set(12, Zend_Date::HOUR)</td>
+<td>新しい時間を設定する</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>2009-02-13T12:53:27+01:00</td>
+</tr>
+<tr>
+<td>add(12, Zend_Date::HOUR)</td>
+<td>時間を足す</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>2009-02-14T02:53:27+01:00</td>
+</tr>
+<tr>
+<td>sub(12, Zend_Date::HOUR)</td>
+<td>時間を引く</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>2009-02-13T02:53:27+01:00</td>
+</tr>
+<tr>
+<td>compare(12, Zend_Date::HOUR)</td>
+<td>時間を比較し、0 か 1 あるいは -1 を返す</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>1 (オブジェクト &gt; 引数 の場合)</td>
+</tr>
+<tr>
+<td>copy(Zend_Date::HOUR)</td>
+<td>時間部のみをコピーする</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>1970-01-01T14:00:00+01:00</td>
+</tr>
+<tr>
+<td>equals(14, Zend_Date::HOUR)</td>
+<td>時間を比較し、TRUE あるいは FALSE を返す</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>isEarlier(12, Zend_Date::HOUR)</td>
+<td>時間を比較し、TRUE あるいは FALSE を返す</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>isLater(12, Zend_Date::HOUR)</td>
+<td>時間を比較し、TRUE あるいは FALSE を返す</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.constants.list"></a>8.5.2. 全定数の一覧</h3></div></div></div>
+<p>
+            日付/時刻の各要素に対応する定数が <code class="code">Zend_Date</code> で定義されています。
+            <code class="code">Zend_Date</code> がサポートするすべての定数を以下に示します。
+        </p>
+<div class="table">
+<a name="id4816564"></a><p class="title"><b>表 8.8. 日に関する定数</b></p>
+<table summary="日に関する定数" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>定数</th>
+<th>説明</th>
+<th>日付</th>
+<th>影響を受ける部分の例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Zend_Date::DAY</td>
+<td>日 (二桁の数値)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>2009-02-<span class="strong"><strong>06</strong></span>T14:53:27+01:00 (06)</td>
+</tr>
+<tr>
+<td>Zend_Date::DAY_SHORT</td>
+<td>日 (一桁あるいは二桁の数値)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>2009-02-0<span class="strong"><strong>6</strong></span>T14:53:27+01:00 (6)</td>
+</tr>
+<tr>
+<td>Zend_Date::WEEKDAY</td>
+<td>曜日 (地域化された完全な曜日名)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Friday</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::WEEKDAY_SHORT</td>
+<td>曜日 (地域化された曜日名の短縮形。三文字)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Fre</strong></span> が金曜日を表す</td>
+</tr>
+<tr>
+<td>Zend_Date::WEEKDAY_NAME</td>
+<td>曜日 (地域化された曜日名の短縮形。二文字)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Fr</strong></span> が金曜日を表す</td>
+</tr>
+<tr>
+<td>Zend_Date::WEEKDAY_NARROW</td>
+<td>曜日 (地域化された曜日名の短縮形。一文字)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>F</strong></span> が金曜日を表す</td>
+</tr>
+<tr>
+<td>Zend_Date::WEEKDAY_DIGIT</td>
+<td>曜日 (0 = 日曜日, 6 = 土曜日)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>5</strong></span> が金曜日を表す</td>
+</tr>
+<tr>
+<td>Zend_Date::WEEKDAY_8601</td>
+<td>ISO 8601 にもとづく曜日 (1 = 月曜日, 7 = 日曜日)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>5</strong></span> が金曜日を表す</td>
+</tr>
+<tr>
+<td>Zend_Date::DAY_OF_YEAR</td>
+<td>日数 (一桁あるいは二桁の数値)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>43</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::DAY_SUFFIX</td>
+<td>英語で日付の後に追加する文字 (st, nd, rd, th)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>th</strong></span>
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table">
+<a name="id4816834"></a><p class="title"><b>表 8.9. 週に関する定数</b></p>
+<table summary="週に関する定数" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>定数</th>
+<th>説明</th>
+<th>日付</th>
+<th>影響を受ける部分の例</th>
+</tr></thead>
+<tbody><tr>
+<td>Zend_Date::WEEK</td>
+<td>週 (1 から 53 までの数値)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>7</strong></span>
+                        </td>
+</tr></tbody>
+</table>
+</div>
+<div class="table">
+<a name="id4816892"></a><p class="title"><b>表 8.10. 月に関する定数</b></p>
+<table summary="月に関する定数" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>定数</th>
+<th>説明</th>
+<th>日付</th>
+<th>影響を受ける部分の例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Zend_Date::MONTH_NAME</td>
+<td>月 (地域化された完全な月名)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>February</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::MONTH_NAME_SHORT</td>
+<td>月 (地域化された月名の短縮形。三文字)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Feb</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::MONTH_NAME_NARROW</td>
+<td>月 (地域化された月名の短縮形。一文字)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>F</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::MONTH</td>
+<td>月 (二桁の月番号)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>2009-<span class="strong"><strong>02</strong></span>-06T14:53:27+01:00 (02)</td>
+</tr>
+<tr>
+<td>Zend_Date::MONTH_DIGIT</td>
+<td>月 (一桁あるいは二桁の月番号)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>2009-0<span class="strong"><strong>2</strong></span>-06T14:53:27+01:00 (2)</td>
+</tr>
+<tr>
+<td>Zend_Date::MONTH_DAYS</td>
+<td>当月の日数 (数値)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>28</strong></span>
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table">
+<a name="id4817066"></a><p class="title"><b>表 8.11. 年に関する定数</b></p>
+<table summary="年に関する定数" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>定数</th>
+<th>説明</th>
+<th>日付</th>
+<th>影響を受ける部分の例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Zend_Date::YEAR</td>
+<td>年 (数値)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>2009</strong></span>-02-06T14:53:27+01:00</td>
+</tr>
+<tr>
+<td>Zend_Date::YEAR_8601</td>
+<td>ISO 8601 の年 (数値)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>2009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::YEAR_SHORT</td>
+<td>年 (二桁の数値)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>20<span class="strong"><strong>09</strong></span>-02-06T14:53:27+01:00</td>
+</tr>
+<tr>
+<td>Zend_Date::YEAR_SHORT_8601</td>
+<td>ISO 8601 の年 (二桁の数値)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>09</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::LEAPYEAR</td>
+<td>今年がうるう年かどうか? (TRUE あるいは FALSE)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>FALSE</strong></span>
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table">
+<a name="id4817216"></a><p class="title"><b>表 8.12. 時間に関する定数</b></p>
+<table summary="時間に関する定数" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>定数</th>
+<th>説明</th>
+<th>日付</th>
+<th>影響を受ける部分の例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Zend_Date::HOUR</td>
+<td>時 (00-23、二桁)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>14</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::HOUR_SHORT</td>
+<td>時 (0-23、一桁あるいは二桁)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>14</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::HOUR_SHORT_AM</td>
+<td>時 (1-12、一桁あるいは二桁)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>2</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::HOUR_AM</td>
+<td>時 (01-12、二桁)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>02</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::MINUTE</td>
+<td>分 (00-59、二桁)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>2009-02-06T14:<span class="strong"><strong>53</strong></span>:27+01:00</td>
+</tr>
+<tr>
+<td>Zend_Date::MINUTE_SHORT</td>
+<td>分 (0-59、一桁あるいは二桁)</td>
+<td>2009-02-06T14:03:27+01:00</td>
+<td>2009-02-06T14:0<span class="strong"><strong>3</strong></span>:27+01:00</td>
+</tr>
+<tr>
+<td>Zend_Date::SECOND</td>
+<td>秒 (00-59、二桁)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>2009-02-06T14:53:<span class="strong"><strong>27</strong></span>+01:00</td>
+</tr>
+<tr>
+<td>Zend_Date::SECOND_SHORT</td>
+<td>秒 (0-59、一桁あるいは二桁)</td>
+<td>2009-02-06T14:53:07+01:00</td>
+<td>2009-02-06T14:53:0<span class="strong"><strong>7</strong></span>+01:00</td>
+</tr>
+<tr>
+<td>Zend_Date::MILLISECOND</td>
+<td>ミリ秒 (理論上は無限大)</td>
+<td>2009-02-06T14:53:27.20546</td>
+<td>2009-02-06T14:53:27.<span class="strong"><strong>20546</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::MERIDIEM</td>
+<td>その日の中での時間 (午前/午後)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>afternoon</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::SWATCH</td>
+<td>Swatch Internet Time</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>620</strong></span>
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table">
+<a name="id4817504"></a><p class="title"><b>表 8.13. タイムゾーンに関する定数</b></p>
+<table summary="タイムゾーンに関する定数" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>定数</th>
+<th>説明</th>
+<th>日付</th>
+<th>影響を受ける部分の例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Zend_Date::TIMEZONE</td>
+<td>タイムゾーン名 (省略形文字列)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>CET</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::TIMEZONE_NAME</td>
+<td>タイムゾーン名 (文字列)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Europe/Paris</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::TIMEZONE_SECS</td>
+<td>GMT との時差を表す秒数 (integer)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>3600</strong></span> seconds to GMT</td>
+</tr>
+<tr>
+<td>Zend_Date::GMT_DIFF</td>
+<td>GMT との時差を表す秒数 (文字列)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>+0100</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::GMT_DIFF_SEP</td>
+<td>GMT との時差を表す秒数 (文字列、分割形式)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>+01:00</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::DAYLIGHT</td>
+<td>夏時間かそうでないか? (TRUE あるいは FALSE)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>FALSE</strong></span>
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table">
+<a name="id4817678"></a><p class="title"><b>表 8.14. 日付フォーマットに関する定数 (タイムゾーンを含むフォーマット)</b></p>
+<table summary="日付フォーマットに関する定数 (タイムゾーンを含むフォーマット)" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>定数</th>
+<th>説明</th>
+<th>日付</th>
+<th>影響を受ける部分の例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Zend_Date::ISO_8601</td>
+<td>ISO 8601 形式の日付 (文字列)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>2009-02-13T14:53:27+01:00</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::RFC_2822</td>
+<td>RFC 2822 形式の日付 (文字列)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Fri, 13 Feb 2009 14:53:27 +0100</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::TIMESTAMP</td>
+<td>
+                            <a href="http://en.wikipedia.org/wiki/Unix_Time" target="_top">Unix time</a> (1970 年 1 月 1 日からの経過秒数)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>1234533207</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::ATOM</td>
+<td>ATOM 形式の日付 (文字列)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>2009-02-13T14:53:27+01:00</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::COOKIE</td>
+<td>クッキー形式の日付 (クッキー用の文字列)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Friday, 13-Feb-09 14:53:27 Europe/Paris</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::RFC_822</td>
+<td>RFC 822 形式の日付 (文字列)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Fri, 13 Feb 09 14:53:27 +0100</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::RFC_850</td>
+<td>RFC 850 形式の日付 (文字列)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Friday, 13-Feb-09 14:53:27 Europe/Paris</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::RFC_1036</td>
+<td>RFC 1036 形式の日付 (文字列)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Fri, 13 Feb 09 14:53:27 +0100</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::RFC_1123</td>
+<td>RFC 1123 形式の日付 (文字列)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Fri, 13 Feb 2009 14:53:27 +0100</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::RSS</td>
+<td>RSS フィード形式の日付 (文字列)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Fri, 13 Feb 2009 14:53:27 +0100</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::W3C</td>
+<td>HTML/HTTP 用の W3C 形式の日付 (文字列)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>2009-02-13T14:53:27+01:00</strong></span>
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+            特に注意すべきなのは <code class="code">Zend_Date::DATES</code> です。これは、
+            <code class="code">Zend_Date</code> で <span class="strong"><strong>入力</strong></span>
+            フォーマットを指定する際に使用すると、特別な働きをします。
+            入力フォーマットとして <code class="code">$part</code> で使用すると、
+            この定数は、さまざまな類似日付書式をできるだけ受け入れようとします。
+            経験則にもとづいて入力日付文字列を自動的に分解し、単純なエラーを (もしあれば)
+            できるだけ修正します。たとえば年、月、日の順序がおかしい場合などです。
+        </p>
+<div class="table">
+<a name="id4816160"></a><p class="title"><b>表 8.15. 日付および時刻フォーマットに関する定数 (ロケールによって変化する書式)</b></p>
+<table summary="日付および時刻フォーマットに関する定数 (ロケールによって変化する書式)" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>定数</th>
+<th>説明</th>
+<th>日付</th>
+<th>影響を受ける部分の例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Zend_Date::ERA</td>
+<td>時代 (地域化された文字列の短縮形)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>AD</strong></span> (紀元後)</td>
+</tr>
+<tr>
+<td>Zend_Date::ERA_NAME</td>
+<td>時代 (地域化された文字列の完全系)</td>
+<td>2009-02-06T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>anno domini</strong></span> (紀元後)</td>
+</tr>
+<tr>
+<td>
+<span class="strong"><strong>Zend_Date::DATES</strong></span>
+                        </td>
+<td>標準の日付 (地域化された文字列、デフォルト値)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>13.02.2009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::DATE_FULL</td>
+<td>完全な日付 (地域化された文字列、完全形)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>Friday, 13. February 2009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::DATE_LONG</td>
+<td>長い日付 (地域化された文字列、長い形式)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>13. February 2009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::DATE_MEDIUM</td>
+<td>通常の日付 (地域化された文字列、通常の形式)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>13.02.2009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::DATE_SHORT</td>
+<td>省略形の日付 (地域化された文字列、短縮形式)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>13.02.09</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::TIMES</td>
+<td>標準の時刻 (地域化された文字列、デフォルト値)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>14:53:27</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::TIME_FULL</td>
+<td>完全な時刻 (地域化された文字列、完全形)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>14:53 Uhr CET</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::TIME_LONG</td>
+<td>長い時刻 (地域化された文字列、長い形式)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>14:53:27 CET</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::TIME_MEDIUM</td>
+<td>通常の時刻 (地域化された文字列、通常の形式)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>14:53:27</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Zend_Date::TIME_SHORT</td>
+<td>省略形の時刻 (地域化された文字列、短縮形式)</td>
+<td>2009-02-13T14:53:27+01:00</td>
+<td>
+<span class="strong"><strong>14:53</strong></span>
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.constants.selfdefinedformats"></a>8.5.3. 自分で定義する出力フォーマット</h3></div></div></div>
+<p>
+            たいていのフォーマットについては ISO 8601 形式で対応できるでしょう。
+            しかし、ISO 形式ですべてが対応できるわけではありません。
+            フォーマット文字列の長さは無制限です。
+            また、同じ定数を複数回使用してもかまいません。
+            次の例は、以下の表にまとめたフォーマット定数を使用して自分でフォーマットを定義するものです。
+        </p>
+<div class="example">
+<a name="id4818496"></a><p class="title"><b>例 8.10. 自分で定義するフォーマットの例</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$locale = new Zend_Locale('de_AT');
+$date = new Zend_Date(1234567890, false, $locale);
+print $date-&gt;toString("'Era:GGGG='GGGG, ' Date:yy.MMMM.dd'yy.MMMM.dd");
+?&gt;</pre>
+</div>
+<div class="table">
+<a name="id4818510"></a><p class="title"><b>表 8.16. 
+              <span class="strong">ISO 8601 日付出力</span>
+              に関する定数
+            </b></p>
+<table summary="
+              ISO 8601 日付出力
+              に関する定数
+            " border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>定数</th>
+<th>説明</th>
+<th>対応する要素</th>
+<th>影響を受ける部分の例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>G</td>
+<td>時代 (地域化された省略形)</td>
+<td>Zend_Date::ERA</td>
+<td>
+<span class="strong"><strong>AD</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>GG</td>
+<td>時代 (地域化された省略形)</td>
+<td>Zend_Date::ERA</td>
+<td>
+<span class="strong"><strong>AD</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>GGG</td>
+<td>時代 (地域化された省略形)</td>
+<td>Zend_Date::ERA</td>
+<td>
+<span class="strong"><strong>AD</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>GGGG</td>
+<td>時代 (地域化された完全形)</td>
+<td>Zend_Date::ERA_NAME</td>
+<td>
+<span class="strong"><strong>anno domini</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>GGGGG</td>
+<td>時代 (地域化された省略形)</td>
+<td>Zend_Date::ERA</td>
+<td>
+<span class="strong"><strong>a</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>y</td>
+<td>年 (最低一桁)</td>
+<td>Zend_Date::YEAR</td>
+<td>
+<span class="strong"><strong>9</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>yy</td>
+<td>年 (最低二桁)</td>
+<td>Zend_Date::YEAR_SHORT</td>
+<td>
+<span class="strong"><strong>09</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>yyy</td>
+<td>年 (最低三桁)</td>
+<td>Zend_Date::YEAR</td>
+<td>
+<span class="strong"><strong>2009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>yyyy</td>
+<td>年 (最低四桁)</td>
+<td>Zend_Date::YEAR</td>
+<td>
+<span class="strong"><strong>2009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>yyyyy</td>
+<td>年 (最低五桁)</td>
+<td>Zend_Date::YEAR</td>
+<td>
+<span class="strong"><strong>02009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Y</td>
+<td>ISO 8601 形式の年 (最低一桁)</td>
+<td>Zend_Date::YEAR_8601</td>
+<td>
+<span class="strong"><strong>9</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>YY</td>
+<td>ISO 8601 形式の年 (最低二桁)</td>
+<td>Zend_Date::YEAR_SHORT_8601</td>
+<td>
+<span class="strong"><strong>09</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>YYY</td>
+<td>ISO 8601 形式の年 (最低三桁)</td>
+<td>Zend_Date::YEAR_8601</td>
+<td>
+<span class="strong"><strong>2009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>YYYY</td>
+<td>ISO 8601 形式の年 (最低四桁)</td>
+<td>Zend_Date::YEAR_8601</td>
+<td>
+<span class="strong"><strong>2009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>YYYYY</td>
+<td>ISO 8601 形式の年 (最低五桁)</td>
+<td>Zend_Date::YEAR_8601</td>
+<td>
+<span class="strong"><strong>02009</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>M</td>
+<td>月 (一桁あるいは二桁)</td>
+<td>Zend_Date::MONTH_DIGIT</td>
+<td>
+<span class="strong"><strong>2</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>MM</td>
+<td>月 (二桁)</td>
+<td>Zend_Date::MONTH</td>
+<td>
+<span class="strong"><strong>02</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>MMM</td>
+<td>月 (地域化された省略形)</td>
+<td>Zend_Date::MONTH_NAME_SHORT</td>
+<td>
+<span class="strong"><strong>Feb</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>MMMM</td>
+<td>月 (地域化された完全形)</td>
+<td>Zend_Date::MONTH_NAME</td>
+<td>
+<span class="strong"><strong>February</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>MMMMM</td>
+<td>月 (地域化された省略形、一桁)</td>
+<td>Zend_Date::MONTH_NAME_NARROW</td>
+<td>
+<span class="strong"><strong>F</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>w</td>
+<td>週 (一桁あるいは二桁)</td>
+<td>Zend_Date::WEEK</td>
+<td>
+<span class="strong"><strong>5</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>ww</td>
+<td>週 (二桁)</td>
+<td>Zend_Date::WEEK</td>
+<td>
+<span class="strong"><strong>05</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>d</td>
+<td>その月の日付 (一桁あるいは二桁)</td>
+<td>Zend_Date::DAY_SHORT</td>
+<td>
+<span class="strong"><strong>9</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>dd</td>
+<td>その月の日付 (二桁)</td>
+<td>Zend_Date::DAY</td>
+<td>
+<span class="strong"><strong>09</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>D</td>
+<td>その年の日付 (一桁、二桁あるいは三桁)</td>
+<td>Zend_Date::DAY_OF_YEAR</td>
+<td>
+<span class="strong"><strong>7</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>DD</td>
+<td>その年の日付 (二桁あるいは三桁)</td>
+<td>Zend_Date::DAY_OF_YEAR</td>
+<td>
+<span class="strong"><strong>07</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>DDD</td>
+<td>その年の日付 (三桁)</td>
+<td>Zend_Date::DAY_OF_YEAR</td>
+<td>
+<span class="strong"><strong>007</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>E</td>
+<td>曜日 (地域化された省略形、一桁)</td>
+<td>Zend_Date::WEEKDAY_NARROW</td>
+<td>
+<span class="strong"><strong>M</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>EE</td>
+<td>曜日 (地域化された省略形、二桁)</td>
+<td>Zend_Date::WEEKDAY_NAME</td>
+<td>
+<span class="strong"><strong>Mo</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>EEE</td>
+<td>曜日 (地域化された省略形、三桁)</td>
+<td>Zend_Date::WEEKDAY_SHORT</td>
+<td>
+<span class="strong"><strong>Mon</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>EEEE</td>
+<td>曜日 (地域化された完全形)</td>
+<td>Zend_Date::WEEKDAY</td>
+<td>
+<span class="strong"><strong>Monday</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>EEEEE</td>
+<td>曜日 (地域化された省略形、一桁)</td>
+<td>Zend_Date::WEEKDAY_NARROW</td>
+<td>
+<span class="strong"><strong>M</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>e</td>
+<td>曜日番号 (一桁あるいは二桁)</td>
+<td>Zend_Date::WEEKDAY_NARROW</td>
+<td>
+<span class="strong"><strong>4</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>ee</td>
+<td>曜日番号 (二桁)</td>
+<td>Zend_Date::WEEKDAY_NARROW</td>
+<td>
+<span class="strong"><strong>04</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>a</td>
+<td>午前/午後 (地域化された形式)</td>
+<td>Zend_Date::MERIDIEM</td>
+<td>
+<span class="strong"><strong>vorm.</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>h</td>
+<td>時間 (1-12) (一桁あるいは二桁)</td>
+<td>Zend_Date::HOUR_SHORT_AM</td>
+<td>
+<span class="strong"><strong>2</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>hh</td>
+<td>時間 (01-12) (二桁)</td>
+<td>Zend_Date::HOUR_AM</td>
+<td>
+<span class="strong"><strong>02</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>H</td>
+<td>時間 (0-23) (一桁あるいは二桁)</td>
+<td>Zend_Date::HOUR_SHORT</td>
+<td>
+<span class="strong"><strong>2</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>HH</td>
+<td>時間 (00-23) (二桁)</td>
+<td>Zend_Date::HOUR</td>
+<td>
+<span class="strong"><strong>02</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>m</td>
+<td>分 (0-59) (一桁あるいは二桁)</td>
+<td>Zend_Date::MINUTE_SHORT</td>
+<td>
+<span class="strong"><strong>2</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>mm</td>
+<td>分 (00-59) (二桁)</td>
+<td>Zend_Date::MINUTE</td>
+<td>
+<span class="strong"><strong>02</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>s</td>
+<td>秒 (0-59) (一桁あるいは二桁)</td>
+<td>Zend_Date::SECOND_SHORT</td>
+<td>
+<span class="strong"><strong>2</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>ss</td>
+<td>秒 (00-59) (二桁)</td>
+<td>Zend_Date::SECOND</td>
+<td>
+<span class="strong"><strong>02</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>S</td>
+<td>ミリ秒</td>
+<td>Zend_Date::MILLISECOND</td>
+<td>
+<span class="strong"><strong>20536</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>z</td>
+<td>タイムゾーン (地域化された省略形)</td>
+<td>Zend_Date::TIMEZONE</td>
+<td>
+<span class="strong"><strong>CET</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>zz</td>
+<td>タイムゾーン (地域化された省略形)</td>
+<td>Zend_Date::TIMEZONE</td>
+<td>
+<span class="strong"><strong>CET</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>zzz</td>
+<td>タイムゾーン (地域化された省略形)</td>
+<td>Zend_Date::TIMEZONE</td>
+<td>
+<span class="strong"><strong>CET</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>zzzz</td>
+<td>タイムゾーン (地域化された完全形)</td>
+<td>Zend_Date::TIMEZONE_NAME</td>
+<td>
+<span class="strong"><strong>Europe/Paris</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>Z</td>
+<td>タイムゾーンの時差</td>
+<td>Zend_Date::GMT_DIFF</td>
+<td>
+<span class="strong"><strong>+0100</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>ZZ</td>
+<td>タイムゾーンの時差</td>
+<td>Zend_Date::GMT_DIFF</td>
+<td>
+<span class="strong"><strong>+0100</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>ZZZ</td>
+<td>タイムゾーンの時差</td>
+<td>Zend_Date::GMT_DIFF</td>
+<td>
+<span class="strong"><strong>+0100</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>ZZZZ</td>
+<td>タイムゾーンの時差 (分割形式)</td>
+<td>Zend_Date::GMT_DIFF_SEP</td>
+<td>
+<span class="strong"><strong>+01:00</strong></span>
+                        </td>
+</tr>
+<tr>
+<td>A</td>
+<td>ミリ秒</td>
+<td>Zend_Date::MILLISECOND</td>
+<td>
+<span class="strong"><strong>20563</strong></span>
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.date.overview.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.date.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">8.4. Zend_Date API の概要 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 第9章 Zend_Db</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

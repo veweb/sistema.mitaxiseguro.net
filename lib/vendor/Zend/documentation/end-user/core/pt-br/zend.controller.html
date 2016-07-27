@@ -1,0 +1,298 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Capítulo 7. Zend_Controller</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="index.html" title="Guia de Referência do Programador">
+<link rel="prev" href="zend.console.getopt.configuration.html" title="6.4. Configuring Zend_Console_Getopt">
+<link rel="next" href="zend.controller.getting-started.html" title="7.2. Iniciando">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="section" href="zend.controller.html#zend.controller.overview" title="7.1. Visão Geral">
+<link rel="section" href="zend.controller.getting-started.html" title="7.2. Iniciando">
+<link rel="section" href="zend.controller.subclassing.html" title="7.3. Subclassing">
+<link rel="section" href="zend.controller.providedsubclasses.html" title="7.4. Provided Subclasses">
+<link rel="section" href="zend.controller.action.html" title="7.5. Action Controllers">
+<link rel="section" href="zend.controller.plugins.html" title="7.6. Plugins">
+<link rel="section" href="zend.controller.modular.html" title="7.7. Using a Conventional Modular Directory Structure">
+<link rel="section" href="zend.controller.exceptions.html" title="7.8. MVC Exceptions">
+<link rel="section" href="zend.controller.migration.html" title="7.9. Migrating from Previous Versions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Capítulo 7. Zend_Controller</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.console.getopt.configuration.html">Anterior</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.getting-started.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.controller"></a>Capítulo 7. Zend_Controller</h2></div></div></div>
+<div class="toc">
+<p><b>Índice</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.controller.html#zend.controller.overview">7.1. Visão Geral</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.introduction">7.1.1. Introdução</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.routing-process">7.1.2. Processo de Roteamento</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.dispatch-token">7.1.3. Ficha de Despacho</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.dispatching">7.1.4. Processo de Despacho</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.getting-started.html">7.2. Iniciando</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.introduction">7.2.1. Introdução</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration">7.2.2. Configuração do Servidor</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap">7.2.3. Arquivo de Inicialização</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure">7.2.4. Estrutura de Diretórios</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.overview.indexcontroller">7.2.5. IndexController</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.subclassing.html">7.3. Subclassing</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.introduction">7.3.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.conventions">7.3.2. Conventions</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.router.interface">7.3.3. Router Interface</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.dispatcher.interface">7.3.4. Dispatcher Interface</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.providedsubclasses.html">7.4. Provided Subclasses</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.introduction">7.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.request.http">7.4.2. Zend_Controller_Request_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter">7.4.3. Zend_Controller_RewriteRouter</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.http">7.4.4. Zend_Controller_Response_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.cli">7.4.5. Zend_Controller_Response_Cli</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.action.html">7.5. Action Controllers</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.introduction">7.5.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.initialization">7.5.2. Object initialization</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.prepostdispatch">7.5.3. Pre- and Post-Dispatch Hooks</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.accessors">7.5.4. Accessors</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.utilmethods">7.5.5. Utility Methods</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.plugins.html">7.6. Plugins</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.introduction">7.6.1. Introdução</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.controller.modular.html">7.7. Using a Conventional Modular Directory Structure</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.introduction">7.7.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.directories">7.7.2. Specifying Module Controller Directories</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.router">7.7.3. Routing to modules</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.defaultcontroller">7.7.4. Module or Global Default Controller</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.exceptions.html">7.8. MVC Exceptions</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.introduction">7.8.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.handling">7.8.2. How can you handle exceptions?</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.internal">7.8.3. MVC Exceptions You May Encounter</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.migration.html">7.9. Migrating from Previous Versions</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerotwo">7.9.1. Migrating from 0.2.0 or before to 0.6.0</a></span></dt></dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.overview"></a>7.1. Visão Geral</h2></div></div></div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.introduction"></a>7.1.1. Introdução</h3></div></div></div>
+<p><code class="code">Zend_Controller</code> fornece os alicerces para construção de
+    websites baseados no padrão de projeto Modelo-Visão-Controlador
+    (MVC).</p>
+<p>O sistema <code class="code">Zend_Controller</code> foi projetado para ser leve,
+    modular, e extensível. É um design minimalista cujo objetivo é oferecer
+    flexibilidade e alguma liberdade aos usuários, ao mesmo tempo em que
+    fornece uma estrutura que permite aos sistemas construídos com base no
+    <code class="code">Zend_Controller</code> compartilharem algumas convenções comuns e
+    padrões similares de código.</p>
+<p>O fluxo de trabalho do <code class="code">Zend_Controller</code> é implementado
+    por alguns componentes. Não é necessário entender completamente a
+    orquestração destes componentes para usar o sistema, sendo mais útil
+    compreender a maneira como os processos trabalham. </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">Zend_Controller_Front</code> rege todo o fluxo de
+          trabalho do sistema <code class="code">Zend_Controller</code>. Trata-se de uma
+          implementação do padrão FrontController.
+          <code class="code">Zend_Controller_Front</code> processa todas as requisições
+          recebidas pelo servidor e atualmente é responsável por delegar
+          requisições para os ActionControllers
+          (<code class="code">Zend_Controller_Action</code>).</p></li>
+<li><p><code class="code">Zend_Controller_Router</code> é o roteador. Roteamento é
+          p processo de tomar a parte final de uma URI e desmembrá-la para
+          determinar qual controlador, e a respectiva ação deste controlador,
+          deverá receber a requisição. Esta definição de controlador, ação, e
+          parâmetros opcionais, está empacotada em um valor do objeto chamado
+          <code class="code">Zend_Controller_Dispatcher_Token</code>. Este é então
+          processado pelo <code class="code">Zend_Controller_Dispatcher</code>. O
+          roteamento ocorre somente uma vez: quando o pedido inicial é
+          recebido e antes do primeiro controlador ser despachado.</p></li>
+<li><p><code class="code">Zend_Controller_Dispatcher</code> é o despachante.
+          Despachar é o processo de tomar o
+          <code class="code">Zend_Controller_Dispatcher_Token</code>, localizar o arquivo
+          de controle apropriado, instanciar uma classe controladora contida
+          neste arquivo (deve implementar
+          <code class="code">Zend_Controller_Action</code>), e finalmente executar o método
+          de ação do objeto controlador. Diferentemente do roteamento, que
+          ocorre somente uma vez, os despacho são executados em um laço.
+          <code class="code">Zend_Controller_Dispatcher</code> é repetidamente chamado pelo
+          <code class="code">Zend_Controller_Front</code> até que todas as ações tenham
+          sido despachadas sequencialmente.</p></li>
+<li><p><code class="code">Zend_Controller_Action</code> é o componente controlador
+          base. Cada controlador é uma classe simples, que extende a classe
+          <code class="code">Zend_Controller_Action class</code>, e esta classe possui
+          métodos de ação.</p></li>
+</ul></div>
+<p> O fluxo de trabalho do <code class="code">Zend_Controller</code> é
+    relativamente simples. Um pedido é recebido pelo
+    <code class="code">Zend_Controller_Front</code>, que por sua vez chama
+    <code class="code">Zend_Controller_Router</code> para determinar qual controlador (e
+    respectiva ação deste controlador) será despachado.
+    <code class="code">Zend_Controller_Router</code> decompõe a URI em um objeto
+    <code class="code">Zend_Controller_Dispatcher_Token</code> que descreve para onde
+    despachar. <code class="code">Zend_Controller_Front</code> entra então em um laço de
+    despacho. Ele chama <code class="code">Zend_Controller_Dispatcher</code>, passando-lhe
+    a ficha de despacho, para ser despachada ao controlador atual (e
+    respectiva ação). Quando o controlador termina, o controle retorna ao
+    <code class="code">Zend_Controller_Front</code>. Se o controlador indicar que outro
+    controlador deverá ser despachado para retornar uma nova ficha de
+    despacho, o laço continuará e outro despacho será executado. Caso
+    contrário, o processo termina.</p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.routing-process"></a>7.1.2. Processo de Roteamento</h3></div></div></div>
+<p>Antes de poder contruir seu primeiro controlador, você precisa
+    entender comom o processo de roteamento funciona e como foi implementado
+    em <code class="code">Zend_Controller_Router</code>. Lembre-se que o fluxo de trabalho
+    está dividido em "roteamento", que ocorre apenas uma vez, e "despacho",
+    que ocorre logo após, repetidas vezes em um laço.</p>
+<p><code class="code">Zend_Controller_Front</code> chama
+    <code class="code">Zend_Controller_Router</code> para mapear uma URI para um
+    controlador -- e uma ação deste controlador.
+    <code class="code">Zend_Controller_Router</code> toma a URI e decompõe-na em objetos
+    <code class="code">Zend_Controller_Dispatcher_Token</code>, que são passados ao
+    despachante (<code class="code">Zend_Controller_Dispatcher</code>).</p>
+<p>Este roteador emprega um mapeamento muito simples para determinar o
+    nome do controlador e sua respectiva ação: </p>
+<pre class="programlisting">
+http://framework.zend.com/controller/action/
+			</pre>
+<p> Observe, no exemplo acima, que o primeiro segmento
+    conterá sempre o nome do controlador e o segundo o nome da ação.</p>
+<p>Opcionalmente, parâmetros podem ser definidos na URI passada ao
+    controlador. Estes tomarão a forma de pares chave/valor: </p>
+<pre class="programlisting">
+http://framework.zend.com/controller/action/key1/value1/
+			</pre>
+<p>Se nada for informado na parte <code class="code">/controller/</code> da URI, ele
+    será tomado por "<code class="code">index</code>". Da mesma forma, se nada contiver a
+    parte <code class="code">/action/</code>, ela também será tomada por
+    "<code class="code">index</code>". Este exemplo ilustra: </p>
+<pre class="programlisting">
+http://framework.zend.com/roadmap/future/
+Controller: roadmap
+Action    : future
+
+http://framework.zend.com/roadmap/
+Controller: roadmap
+Action    : index
+
+http://framework.zend.com/
+Controller: index
+Action    : index
+				</pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+       Atualmente estamos desenvolvendo um novo roteador baseado em uma engine de reescrita que conferirá maior flexibilidade às funcionalidades atualmente presentes. Isto será incluído nas próximas versões do framework em um futuro bem próximo.
+    </td></tr>
+</table></div>
+<p>O nome do controlador, de sua respectiva ação, e quaisquer
+    parâmetros opcionais são empacotados em uma ficha de despacho,
+    <code class="code">Zend_Controller_Dispatcher_Token</code>. Esta ficha é retornada para
+    <code class="code">Zend_Controller_Front</code>, que irá entrar em laço de despacho.
+    Uma vez no laço de despacho, a ficha é passada para
+    <code class="code">Zend_Controller_Dispatcher</code>.</p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.dispatch-token"></a>7.1.3. Ficha de Despacho</h3></div></div></div>
+<p>A ficha de despacho é um simples valor do tipo objeto, que é passado
+    entre <code class="code">Zend_Controller_Front</code> e as classes que implementam as
+    interfaces do roteador e do despachante. Ela empacota a definição de um
+    controlador, uma ação, e parâmetros a serem passados à ação.</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>O nome do controlador é acessado por
+        <code class="code">getControllerName()</code> e
+        <code class="code">setControllerName()</code>.</p></li>
+<li><p>O nome da ação chamada é acessada por
+        <code class="code">getActionName()</code> e <code class="code">setActionName()</code>.</p></li>
+<li><p>Os parãmetros a serem passados à ação estão em um array
+        associativo são acessados por <code class="code">getParams()</code> e
+        <code class="code">setParams()</code>.</p></li>
+</ul></div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.dispatching"></a>7.1.4. Processo de Despacho</h3></div></div></div>
+<p>Despachar é o processo de tomar uma ficha,
+    <code class="code">Zend_Controller_Dispatcher_Token</code>, extrair a informação
+    contida nela: um nome de controlador, um nome de ação, e parâmetros
+    opcionais, e instanciar um controlador, chamando uma ação deste.</p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.console.getopt.configuration.html">Anterior</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.getting-started.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.4. Configuring Zend_Console_Getopt </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> 7.2. Iniciando</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

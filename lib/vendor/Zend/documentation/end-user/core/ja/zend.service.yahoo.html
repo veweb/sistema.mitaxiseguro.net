@@ -1,0 +1,747 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>24.5. Zend_Service_Yahoo</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="prev" href="zend.service.flickr.html" title="24.4. Zend_Service_Flickr">
+<link rel="next" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.introduction" title="24.5.1. 導入">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.websearch" title="24.5.2. Yahoo! を使用したウェブの検索">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.imagesearch" title="24.5.3. Yahoo! を使用した画像の検索">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.localsearch" title="24.5.4. Yahoo! を使用した Local Businesses and Services の検索">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.newssearch" title="24.5.5. Yahoo! News の検索">
+<link rel="subsection" href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">24.5. Zend_Service_Yahoo</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.service.flickr.html">前のページ</a> </td>
+<th width="60%" align="center">第24章 Zend_Service</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.session.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.service.yahoo"></a>24.5. Zend_Service_Yahoo</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.introduction"></a>24.5.1. 導入</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Yahoo</code> は、さまざまな Yahoo! REST API
+            群を使用するための単純な API です。
+            <code class="code">Zend_Service_Yahoo</code> を使用すると、
+            Yahoo! Web search、Yahoo! News、Yahoo! Local、Yahoo! Images
+            を検索できるようになります。 Yahoo! REST API を使用するには、
+            Yahoo! Application ID が必要です。Application ID を取得するには、
+            <a href="http://api.search.yahoo.com/webservices/register_application" target="_top">Application ID リクエストフォーム</a>
+            を使用してください。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.websearch"></a>24.5.2. Yahoo! を使用したウェブの検索</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Yahoo</code> の <code class="code">webSearch()</code>
+            メソッドを使用すると、Yahoo! でウェブを検索できます。
+            最初の引数に検索パラメータ、
+            オプションで 2 番目の引数に検索オプションの配列を指定します。
+            指定できるオプションの詳細については
+            <a href="http://developer.yahoo.net/search/web/V1/webSearch.html" target="_top">Yahoo! Web Search
+            ドキュメント</a> を参照ください。<code class="code">webSearch()</code> メソッドは
+            <code class="code">Zend_Service_Yahoo_WebResultSet</code> オブジェクトを返します。
+        </p>
+<div class="example">
+<a name="id4899055"></a><p class="title"><b>例 24.13. Yahoo! を使用したウェブの検索</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Yahoo.php';
+$yahoo = new Zend_Service_Yahoo("YAHOO_APPLICATION_ID");
+$results = $yahoo-&gt;webSearch('PHP');
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.imagesearch"></a>24.5.3. Yahoo! を使用した画像の検索</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Yahoo</code> の <code class="code">imageSearch()</code>
+            メソッドを使用すると、画像の検索ができます。
+            <a href="zend.service.yahoo.html#zend.service.yahoo.websearch" title="24.5.2. Yahoo! を使用したウェブの検索"><code class="code">webSearch()</code> メソッド</a>
+            と同様、最初の引数に検索パラメータ、
+            オプションで 2 番目の引数に検索オプションの配列を指定します。
+            指定できるオプションの詳細については
+            <a href="http://developer.yahoo.net/search/image/V1/imageSearch.html" target="_top">Yahoo! Image Search
+            ドキュメント</a> を参照ください。
+        </p>
+<div class="example">
+<a name="id4899131"></a><p class="title"><b>例 24.14. Yahoo! を使用した画像の検索</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Yahoo.php';
+$yahoo = new Zend_Service_Yahoo("YAHOO_APPLICATION_ID");
+$results = $yahoo-&gt;imageSearch('PHP');
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.localsearch"></a>24.5.4. Yahoo! を使用した Local Businesses and Services の検索</h3></div></div></div>
+<p>
+            <code class="code">localSearch()</code> メソッドを使用すると、
+            Yahoo! で local businesses and services を検索できます。
+            詳細は
+            <a href="http://developer.yahoo.net/search/local/V1/localSearch.html" target="_top">Yahoo! Local Search
+            ドキュメント</a> を参照ください。
+        </p>
+<div class="example">
+<a name="id4899186"></a><p class="title"><b>例 24.15. Yahoo! を使用した Local Businesses and Services の検索</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Yahoo.php';
+$yahoo = new Zend_Service_Yahoo("YAHOO_APPLICATION_ID");
+$results = $yahoo-&gt;localSearch('Apple Computers', array('zip' =&gt; '95014'));
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.newssearch"></a>24.5.5. Yahoo! News の検索</h3></div></div></div>
+<p>
+            Yahoo! News を検索するのは簡単です。単に <code class="code">newsSearch()</code> 
+            メソッドを下の例のように使用すればよいのです。詳細は
+            <a href="http://developer.yahoo.net/search/news/V1/newsSearch.html" target="_top">Yahoo! News Search
+            ドキュメント</a> を参照ください。
+        </p>
+<div class="example">
+<a name="id4899243"></a><p class="title"><b>例 24.16. Yahoo! News の検索</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Yahoo.php';
+$yahoo = new Zend_Service_Yahoo("YAHOO_APPLICATION_ID");
+$results = $yahoo-&gt;newsSearch('PHP');
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.yahoo.classes"></a>24.5.6. Zend_Service_Yahoo クラス群</h3></div></div></div>
+<p>
+            Yahoo! 検索から返される結果は、以下のクラスのいずれかとなります。
+            検索の種類によってそれに対応した結果セットが返され、
+            そのセットを順に処理していくと、中には検索の種類に応じた結果オブジェクトが含まれます。
+            すべての結果セットクラスは <code class="code">SeekableIterator</code>
+            インターフェイスを実装しています。
+            そのため、順次処理だけでなく特定の結果の処理も簡単にできます。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.resultset" title="24.5.6.1. Zend_Service_Yahoo_ResultSet"><code class="code">Zend_Service_Yahoo_ResultSet</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.webresultset" title="24.5.6.2. Zend_Service_Yahoo_WebResultSet"><code class="code">Zend_Service_Yahoo_WebResultSet</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.imageresultset" title="24.5.6.3. Zend_Service_Yahoo_ImageResultSet"><code class="code">Zend_Service_Yahoo_ImageResultSet</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.localresultset" title="24.5.6.4. Zend_Service_Yahoo_LocalResultSet"><code class="code">Zend_Service_Yahoo_LocalResultSet</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.newsresultset" title="24.5.6.5. Zend_Service_Yahoo_NewsResultSet"><code class="code">Zend_Service_Yahoo_NewsResultSet</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.result" title="24.5.6.6. Zend_Service_Yahoo_Result"><code class="code">Zend_Service_Yahoo_Result</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.webresult" title="24.5.6.7. Zend_Service_Yahoo_WebResult"><code class="code">Zend_Service_Yahoo_WebResult</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.imageresult" title="24.5.6.8. Zend_Service_Yahoo_ImageResult"><code class="code">Zend_Service_Yahoo_ImageResult</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.localresult" title="24.5.6.9. Zend_Service_Yahoo_LocalResult"><code class="code">Zend_Service_Yahoo_LocalResult</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.newsresult" title="24.5.6.10. Zend_Service_Yahoo_NewsResult"><code class="code">Zend_Service_Yahoo_NewsResult</code></a></p></li>
+<li><p><a href="zend.service.yahoo.html#zend.service.yahoo.classes.image" title="24.5.6.11. Zend_Service_Yahoo_Image"><code class="code">Zend_Service_Yahoo_Image</code></a></p></li>
+</ul></div>
+<p>
+        </p>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.resultset"></a>24.5.6.1. Zend_Service_Yahoo_ResultSet</h4></div></div></div>
+<p>
+                検索の種類に応じた結果セットは、この基底クラスを継承したものです。
+            </p>
+<p>
+                各結果セットは、検索の種類に応じた
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes.result" title="24.5.6.6. Zend_Service_Yahoo_Result">Zend_Service_Yahoo_Result</a>
+                オブジェクトを返します。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.resultset.totalResults"></a>24.5.6.1.1. Zend_Service_Yahoo_ResultSet::totalResults()</h5></div></div></div>
+<p>
+                    <code class="methodsynopsis"><span class="type">int </span><span class="methodname">totalResults</span>();</code>
+                </p>
+<p>
+                    検索結果として返された結果の総数を返します。
+                </p>
+</div>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.resultset.properties"></a>24.5.6.1.2. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4899520"></a><p class="title"><b>表 24.13. Zend_Service_Yahoo_ResultSet</b></p>
+<table summary="Zend_Service_Yahoo_ResultSet" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>totalResultsAvailable</td>
+<td>int</td>
+<td>
+                                    見つかった結果の総数。
+                                </td>
+</tr>
+<tr>
+<td>totalResultsReturned</td>
+<td>int</td>
+<td>現在の結果セットに含まれる結果の総数。</td>
+</tr>
+<tr>
+<td>firstResultPosition</td>
+<td>int</td>
+<td>このセットの最初の結果の、結果全体の中での位置。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.webresultset"></a>24.5.6.2. Zend_Service_Yahoo_WebResultSet</h4></div></div></div>
+<p>
+                <code class="code">Zend_Service_Yahoo_WebResultSet</code> は Yahoo! Web Search
+                の結果セットを表します。
+            </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    <code class="code">Zend_Service_Yahoo_WebResultSet</code> は
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes.resultset" title="24.5.6.1. Zend_Service_Yahoo_ResultSet">Zend_Service_Yahoo_ResultSet</a>
+                    を継承しています。
+                </p></td></tr>
+</table></div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.imageresultset"></a>24.5.6.3. Zend_Service_Yahoo_ImageResultSet</h4></div></div></div>
+<p>
+                <code class="code">Zend_Service_Yahoo_ImageResultSet</code> は、Yahoo! Image Search
+                の結果セットを表します。
+            </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    <code class="code">Zend_Service_Yahoo_ImageResultSet</code> は
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes.resultset" title="24.5.6.1. Zend_Service_Yahoo_ResultSet">Zend_Service_Yahoo_ResultSet</a>
+                    を継承しています。
+                </p></td></tr>
+</table></div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.localresultset"></a>24.5.6.4. Zend_Service_Yahoo_LocalResultSet</h4></div></div></div>
+<p>
+                <code class="code">Zend_Service_Yahoo_LocalResultSet</code> は、Yahoo! Local Search
+                の結果セットを表します。
+            </p>
+<div class="table">
+<a name="id4899741"></a><p class="title"><b>表 24.14. Zend_Service_Yahoo_LocalResultSet のプロパティ</b></p>
+<table summary="Zend_Service_Yahoo_LocalResultSet のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody><tr>
+<td>resultSetMapURL</td>
+<td>string</td>
+<td>返される結果が記された地図画像を含むウェブページの URL。</td>
+</tr></tbody>
+</table>
+</div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    <code class="code">Zend_Service_Yahoo_LocalResultSet</code> は
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes.resultset" title="24.5.6.1. Zend_Service_Yahoo_ResultSet">Zend_Service_Yahoo_ResultSet</a>
+                    を継承しています。
+                </p></td></tr>
+</table></div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.newsresultset"></a>24.5.6.5. Zend_Service_Yahoo_NewsResultSet</h4></div></div></div>
+<p>
+                <code class="code">Zend_Service_Yahoo_NewsResultSet</code> は、Yahoo! News Search
+                の結果セットを表します。
+            </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    <code class="code">Zend_Service_Yahoo_NewsResultSet</code> は
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes.resultset" title="24.5.6.1. Zend_Service_Yahoo_ResultSet">Zend_Service_Yahoo_ResultSet</a>
+                    を継承しています。
+                </p></td></tr>
+</table></div>
+<p>
+                <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.result"></a>24.5.6.6. Zend_Service_Yahoo_Result</h4></div></div></div>
+<p>
+                検索の種類に応じた検索結果は、この基底クラスを継承したものです。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.result.properties"></a>24.5.6.6.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4899907"></a><p class="title"><b>表 24.15. Zend_Service_Yahoo_Result のプロパティ</b></p>
+<table summary="Zend_Service_Yahoo_Result のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Title</td>
+<td>string</td>
+<td>結果項目のタイトル</td>
+</tr>
+<tr>
+<td>Url</td>
+<td>string</td>
+<td>結果項目の URL</td>
+</tr>
+<tr>
+<td>ClickUrl</td>
+<td>string</td>
+<td>結果項目へリンクする URL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.webresult"></a>24.5.6.7. Zend_Service_Yahoo_WebResult</h4></div></div></div>
+<p>
+                Web Search の結果は <code class="code">Zend_Service_Yahoo_WebResult</code>
+                オブジェクトとして返されます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.webresult.properties"></a>24.5.6.7.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4900028"></a><p class="title"><b>表 24.16. Zend_Service_Yahoo_WebResult のプロパティ</b></p>
+<table summary="Zend_Service_Yahoo_WebResult のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Summary</td>
+<td>string</td>
+<td>結果の概要</td>
+</tr>
+<tr>
+<td>MimeType</td>
+<td>string</td>
+<td>結果の mimetype</td>
+</tr>
+<tr>
+<td>ModificationDate</td>
+<td>string</td>
+<td>UNIX タイムスタンプで表した、結果の最終更新時刻</td>
+</tr>
+<tr>
+<td>CacheUrl</td>
+<td>string</td>
+<td>結果に対応する Yahoo! ウェブキャッシュの URL (もし存在すれば)</td>
+</tr>
+<tr>
+<td>CacheSize</td>
+<td>int</td>
+<td>キャッシュエントリの大きさ</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.imageresult"></a>24.5.6.8. Zend_Service_Yahoo_ImageResult</h4></div></div></div>
+<p>
+                Image Search の結果は <code class="code">Zend_Service_Yahoo_ImageResult</code>
+                オブジェクトとして返されます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.imageresult.properties"></a>24.5.6.8.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4900179"></a><p class="title"><b>表 24.17. Zend_Service_Yahoo_ImageResult のプロパティ</b></p>
+<table summary="Zend_Service_Yahoo_ImageResult のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Summary</td>
+<td>string</td>
+<td>結果の概要</td>
+</tr>
+<tr>
+<td>RefererUrl</td>
+<td>string</td>
+<td>画像を含むページの URL</td>
+</tr>
+<tr>
+<td>FileSize</td>
+<td>int</td>
+<td>画像ファイルのバイト数</td>
+</tr>
+<tr>
+<td>FileFormat</td>
+<td>string</td>
+<td>画像の形式 (bmp、gif、jpeg、png など)</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>int</td>
+<td>画像の高さ</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>int</td>
+<td>画像の幅</td>
+</tr>
+<tr>
+<td>Thumbnail</td>
+<td><a href="zend.service.yahoo.html#zend.service.yahoo.classes.image" title="24.5.6.11. Zend_Service_Yahoo_Image">Zend_Service_Yahoo_Image</a></td>
+<td>画像のサムネイル</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.localresult"></a>24.5.6.9. Zend_Service_Yahoo_LocalResult</h4></div></div></div>
+<p>
+                Local Search の結果は <code class="code">Zend_Service_Yahoo_LocalResult</code>
+                オブジェクトとして返されます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.localresult.properties"></a>24.5.6.9.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4900362"></a><p class="title"><b>表 24.18. Zend_Service_Yahoo_LocalResult のプロパティ</b></p>
+<table summary="Zend_Service_Yahoo_LocalResult のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Address</td>
+<td>string</td>
+<td>結果の番地</td>
+</tr>
+<tr>
+<td>City</td>
+<td>string</td>
+<td>結果が存在する市</td>
+</tr>
+<tr>
+<td>State</td>
+<td>string</td>
+<td>結果が存在する州</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td>string</td>
+<td>結果の電話番号</td>
+</tr>
+<tr>
+<td>Rating</td>
+<td>int</td>
+<td>結果に対するユーザの評価</td>
+</tr>
+<tr>
+<td>Distance</td>
+<td>float</td>
+<td>指定した位置から結果の位置までの距離</td>
+</tr>
+<tr>
+<td>MapUrl</td>
+<td>string</td>
+<td>結果の地図の URL</td>
+</tr>
+<tr>
+<td>BusinessUrl</td>
+<td>string</td>
+<td>ビジネスウェブサイトの URL (もしわかれば)</td>
+</tr>
+<tr>
+<td>BusinessClickUrl</td>
+<td>string</td>
+<td>ビジネスウェブサイトへのリンク用の URL (もしわかれば)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.newsresult"></a>24.5.6.10. Zend_Service_Yahoo_NewsResult</h4></div></div></div>
+<p>
+                News Search の結果は <code class="code">Zend_Service_Yahoo_NewsResult</code>
+                オブジェクトとして返されます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.newsresult.properties"></a>24.5.6.10.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4900567"></a><p class="title"><b>表 24.19. Zend_Service_Yahoo_NewsResult のプロパティ</b></p>
+<table summary="Zend_Service_Yahoo_NewsResult のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Summary</td>
+<td>string</td>
+<td>結果の概要</td>
+</tr>
+<tr>
+<td>NewsSource</td>
+<td>string</td>
+<td>記事を配信した会社</td>
+</tr>
+<tr>
+<td>NewsSourceUrl</td>
+<td>string</td>
+<td>記事を配信した会社の URL</td>
+</tr>
+<tr>
+<td>Language</td>
+<td>string</td>
+<td>記事が記述されている言語</td>
+</tr>
+<tr>
+<td>PublishDate</td>
+<td>string</td>
+<td>UNIX タイムスタンプで表した、記事の配信時刻</td>
+</tr>
+<tr>
+<td>ModificationDate</td>
+<td>string</td>
+<td>UNIX タイムスタンプで表した、記事の最終更新時刻</td>
+</tr>
+<tr>
+<td>Thumbnail</td>
+<td><a href="zend.service.yahoo.html#zend.service.yahoo.classes.image" title="24.5.6.11. Zend_Service_Yahoo_Image">Zend_Service_Yahoo_Image</a></td>
+<td>記事の画像サムネイル (もしあれば)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.yahoo.classes.image"></a>24.5.6.11. Zend_Service_Yahoo_Image</h4></div></div></div>
+<p>
+                Yahoo! Image Search あるいは Yahoo! News Search が返すすべての画像は
+                <code class="code">Zend_Service_Yahoo_Image</code> オブジェクトで表されます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.yahoo.classes.image.properties"></a>24.5.6.11.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4900754"></a><p class="title"><b>表 24.20. Zend_Service_Yahoo_Image のプロパティ</b></p>
+<table summary="Zend_Service_Yahoo_Image のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Url</td>
+<td>string</td>
+<td>画像の URL</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>int</td>
+<td>画像の幅</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>int</td>
+<td>画像の高さ</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.yahoo.html#zend.service.yahoo.classes" title="24.5.6. Zend_Service_Yahoo クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.service.flickr.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.service.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.session.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">24.4. Zend_Service_Flickr </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 第25章 Zend_Session</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

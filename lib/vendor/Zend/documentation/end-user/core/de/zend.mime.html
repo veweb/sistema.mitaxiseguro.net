@@ -1,0 +1,204 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Kapitel 19. Zend_Mime</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="prev" href="zend.measure.types.html" title="18.6. Types of measurements">
+<link rel="next" href="zend.mime.message.html" title="19.2. Zend_Mime_Message">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="section" href="zend.mime.html#zend.mime.mime" title="19.1. Zend_Mime">
+<link rel="section" href="zend.mime.message.html" title="19.2. Zend_Mime_Message">
+<link rel="section" href="zend.mime.part.html" title="19.3. Zend_Mime_Part">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Kapitel 19. Zend_Mime</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.measure.types.html">Zurück</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.mime.message.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="de">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.mime"></a>Kapitel 19. Zend_Mime</h2></div></div></div>
+<div class="toc">
+<p><b>Inhaltsverzeichnis</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.mime.html#zend.mime.mime">19.1. Zend_Mime</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.html#zend.mime.mime.introduction">19.1.1. Einführung</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.html#zend.mime.mime.static">19.1.2. Statische Methoden und Konstanten</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.html#zend.mime.mime.instantiation">19.1.3. Zend_Mime instanziieren</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.mime.message.html">19.2. Zend_Mime_Message</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.introduction">19.2.1. Einführung</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.instantiation">19.2.2. Instanziierung</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.addparts">19.2.3. MIME Abschnitte hinzufügen</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.bondary">19.2.4. Grenzbehandlung</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.parse">19.2.5. Parst einen String um ein Zend_Mime_Message Objekt zu erstellen
+		(Experimentell)</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.mime.part.html">19.3. Zend_Mime_Part</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.introduction">19.3.1. Einführung</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.instantiation">19.3.2. Instanziierung</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.methods">19.3.3. Methoden für das übertragen der des Teils der Nachricht zu einem String</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mime.mime"></a>19.1. Zend_Mime</h2></div></div></div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.mime.introduction"></a>19.1.1. Einführung</h3></div></div></div>
+<p>
+            <code class="code">Zend_Mime</code> ist eine Hilfsklasse für die Verarbeitung von mehrteiligen MIME 
+            Nachrichten. Es wird von <a href="zend.mail.html" title="Kapitel 17. Zend_Mail"><code class="code">Zend_Mail</code></a> and 
+            <a href="zend.mime.message.html" title="19.2. Zend_Mime_Message"><code class="code">Zend_Mime_Message</code></a> verwendet
+            und kann von anderen Anwendungen verwendet werden, die MIME Unterstützung benötigen.
+        </p>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.mime.static"></a>19.1.2. Statische Methoden und Konstanten</h3></div></div></div>
+<p>
+            <code class="code">Zend_Mime</code> stellt einige einfache statische Hilfsmethoden für die MIME 
+            Verarbeitung bereit:
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">Zend_Mime::isPrintable()</code>: Gibt TRUE zurück, wenn der String keine 
+                        nicht druckbaren Zeichen enthält, ansonsten wird FALSE zurückgegeben.
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Mime::encodeBase64()</code>: Kodiert einen String in die base64 
+                        Kodierung.
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Mime::encodeQuotedPrintable()</code>: Kodiert einen String mit dem 
+                        "quoted-printable" Mechanismus.
+                    </p></li>
+</ul></div>
+<p>
+    	</p>
+<p>
+    	    <code class="code">Zend_Mime</code> definiert einen Satz Konstanten, die üblicherweise von 
+    	    MIME Nachrichten verwendet werden:
+    	    </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+        	            <code class="code">Zend_Mime::TYPE_OCTETSTREAM</code>: 'application/octet-stream'
+                    </p></li>
+<li><p>
+        	            <code class="code">Zend_Mime::TYPE_TEXT</code>: 'text/plain'
+                    </p></li>
+<li><p>
+    	                <code class="code">Zend_Mime::TYPE_HTML</code>: 'text/html'
+                    </p></li>
+<li><p>
+    	                <code class="code">Zend_Mime::ENCODING_7BIT</code>: '7bit'
+                    </p></li>
+<li><p>
+    	                <code class="code">Zend_Mime::ENCODING_8BIT</code>: '8bit';
+                    </p></li>
+<li><p>
+        	            <code class="code">Zend_Mime::ENCODING_QUOTEDPRINTABLE</code>: 'quoted-printable'
+                    </p></li>
+<li><p>
+        	            <code class="code">Zend_Mime::ENCODING_BASE64</code>: 'base64'
+                    </p></li>
+<li><p>
+    	                <code class="code">Zend_Mime::DISPOSITION_ATTACHMENT</code>: 'attachment'
+                    </p></li>
+<li><p>
+    	                <code class="code">Zend_Mime::DISPOSITION_INLINE</code>: 'inline'
+                    </p></li>
+</ul></div>
+<p>
+    	</p>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.mime.instantiation"></a>19.1.3. Zend_Mime instanziieren</h3></div></div></div>
+<p>
+    	    Wenn ein <code class="code">Zend_Mime</code> instanziiert wird, wird eine MIME Abgrenzung 
+    	    gespeichert, die von allen nachfolgenden nicht statischen Methodenaufrufen für dieses
+    	    Objekt verwendet wird. Wenn der Konstruktur mit einem String Parameter aufgerufen wird,
+    	    wird dieser Wert als MIME Abgrenzung  verwendet. Anderfalls wird eine zufällige MIME 
+    	    Abgrenzung während der Konstruktionsphase generiert. 
+    	</p>
+<p>
+    	    Ein <code class="code">Zend_Mime</code> Objekt hat die folgenden Methoden:
+    	    </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">boundary()</code>: Gibt den String mit der MIME Abgrenzung zurück.
+                    </p></li>
+<li><p>
+                        <code class="code">boundaryLine()</code>: Gibt die komplette Zeile der MIME Abgrenzung zurück.
+                    </p></li>
+<li><p>
+                        <code class="code">mimeEnd()</code>: Gibt die komplette Endzeile der MIME Abgrenzung zurück.
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.measure.types.html">Zurück</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.mime.message.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">18.6. Types of measurements </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 19.2. Zend_Mime_Message</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

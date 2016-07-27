@@ -1,0 +1,200 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10.4. Consuming an RSS Feed</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="prev" href="zend.feed.findFeeds.html" title="10.3. Retrieving Feeds from Web Pages">
+<link rel="next" href="zend.feed.consuming-atom.html" title="10.5. Consuming an Atom Feed">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.4. Consuming an RSS Feed</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.findFeeds.html">上一页</a> </td>
+<th width="60%" align="center">第 10 章 Zend_Feed</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.consuming-rss"></a>10.4. Consuming an RSS Feed</h2></div></div></div>
+<p>
+        Reading an RSS feed is as simple as instantiating a <code class="code">Zend_Feed_Rss</code> object with the URL
+        of the feed:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+$channel = new Zend_Feed_Rss('http://rss.example.com/channelName');
+
+?&gt;</pre>
+<p>
+        If any errors occur fetching the feed, a <code class="code">Zend_Feed_Exception</code> will be thrown.
+    </p>
+<p>
+        Once you have a feed object, you can access any of the standard RSS "channel" properties directly
+        on the object:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+echo $channel-&gt;title();
+
+?&gt;</pre>
+<p>
+        Note the function syntax. <code class="code">Zend_Feed</code> uses a convention of treating properties as XML
+        object if they are requested with variable "getter" syntax (<code class="code">$obj-&gt;property</code>) and as
+        strings if they are access with method syntax (<code class="code">$obj-&gt;property()</code>). This enables access
+        to the full text of any individual node while still allowing full access to all children.
+    </p>
+<p>
+        If channel properties have attributes, they are accessible using PHP's array syntax:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+echo $channel-&gt;category['domain'];
+
+?&gt;</pre>
+<p>
+        Since XML attributes cannot have children, method syntax is not necessary for accessing attribute
+        values.
+    </p>
+<p>
+        Most commonly you'll want to loop through the feed and do something with its entries.
+        <code class="code">Zend_Feed_Abstract</code> implements PHP's <code class="code">Iterator</code> interface, so printing all
+        titles of articles in a channel is just a matter of:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+foreach ($channel as $item) {
+    echo $item-&gt;title() . "\n";
+}
+
+?&gt;</pre>
+<p>
+        If you are not familiar with RSS, here are the standard elements you can expect to be available in
+        an RSS channel and in individual RSS items (entries).
+    </p>
+<p>
+        Required channel elements:
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">title</code> - The name of the channel</p></li>
+<li><p><code class="code">link</code> - The URL of the web site corresponding to the channel</p></li>
+<li><p><code class="code">description</code> - A sentence or several describing the channel</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        Common optional channel elements:
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">pubDate</code> - The publication date of this set of content, in RFC 822 date
+                format</p></li>
+<li><p><code class="code">language</code> - The language the channel is written in</p></li>
+<li><p><code class="code">category</code> - One or more (specified by multiple tags) categories the
+                channel belongs to</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        RSS <code class="code">&lt;item&gt;</code> elements do not have any strictly required elements. However, either
+        <code class="code">title</code> or <code class="code">description</code> must be present.
+    </p>
+<p>
+        Common item elements:
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">title</code> - The title of the item</p></li>
+<li><p><code class="code">link</code> - The URL of the item</p></li>
+<li><p><code class="code">description</code> - A synopsis of the item</p></li>
+<li><p><code class="code">author</code> - The author's email address</p></li>
+<li><p><code class="code">category</code> - One more more categories that the item belongs to</p></li>
+<li><p><code class="code">comments</code> - URL of comments relating to this item</p></li>
+<li><p><code class="code">pubDate</code> - The date the item was published, in RFC 822 date format</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        In your code you can always test to see if an element is non-empty with:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+if ($item-&gt;propname()) {
+    // ... proceed.
+}
+
+?&gt;</pre>
+<p>
+        If you use <code class="code">$item-&gt;propname</code> instead, you will always get an empty object which will
+        evaluate to <code class="code">TRUE</code>, so your check will fail.
+    </p>
+<p>
+        For further information, the official RSS 2.0 specification is available at:
+        <a href="http://blogs.law.harvard.edu/tech/rss" target="_top">http://blogs.law.harvard.edu/tech/rss</a>
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.findFeeds.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.feed.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.3. Retrieving Feeds from Web Pages </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 10.5. Consuming an Atom Feed</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>12.5. Google Blogger の使用法</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="prev" href="zend.gdata.base.html" title="12.4. Google Base の使用法">
+<link rel="next" href="zend.gdata.calendar.html" title="12.6. Google Calendar の使用法">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.gdata.blogger.html#zend.gdata.blogger.compatibility" title="12.5.1. Blogger のバージョン間の互換性について理解する">
+<link rel="subsection" href="zend.gdata.blogger.html#zend.gdata.blogger.query" title="12.5.2. blog の検索">
+<link rel="subsection" href="zend.gdata.blogger.html#zend.gdata.blogger.post" title="12.5.3. 自分の blog への投稿">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">12.5. Google Blogger の使用法</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.gdata.base.html">前のページ</a> </td>
+<th width="60%" align="center">第12章 Zend_Gdata</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.calendar.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.gdata.blogger"></a>12.5. Google Blogger の使用法</h2></div></div></div>
+<p>
+        ウェブログのホスティングサービスである Blogger.com は、
+        Google Data API に参加しています。
+        PHP アプリケーションで Zend_Gdata_Blogger を使用すると、
+        既存のブログに対する問い合わせができます。
+        また、認証済みのアクセスを確立したうえで新しいエントリを投稿することもできます。
+    </p>
+<p>
+        Google Blogger API についての詳細な情報は
+        <a href="http://code.google.com/apis/blogger/overview.html" target="_top">http://code.google.com/apis/blogger/overview.html</a>
+        を参照ください。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.blogger.compatibility"></a>12.5.1. Blogger のバージョン間の互換性について理解する</h3></div></div></div>
+<p>
+            Google Data API を使用して現在のバージョンの 
+            Blogger にアクセスする際とベータ版の Blogger
+            にアクセスする際には、いくつかの違いがあります。
+            最大の違いは認証に関する点です。以下の表を参照ください。
+        </p>
+<div class="table">
+<a name="id4836041"></a><p class="title"><b>表 12.1. 現在の Blogger サービスとベータ版の Blogger サービスの違い</b></p>
+<table summary="現在の Blogger サービスとベータ版の Blogger サービスの違い" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th align="left">項目</th>
+<th>現在の Blogger サービス</th>
+<th>ベータ版の Blogger サービス</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Google Data API のサポート</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td>認証元</td>
+<td align="center">Blogger.com のアカウント</td>
+<td align="center">Google.com のアカウント</td>
+</tr>
+<tr>
+<td>ClientLogin 認証のサポート</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td>HTTP ベーシック認証のサポート</td>
+<td align="center">Yes</td>
+<td align="center">No</td>
+</tr>
+<tr>
+<td>AuthSub 認証のサポート</td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td>認証前のフィードのフォーマット</td>
+<td align="center">Atom 0.3</td>
+<td align="center">Atom 1.0</td>
+</tr>
+<tr>
+<td>認証後のフィードのフォーマット</td>
+<td align="center">Atom 1.0</td>
+<td align="center">Atom 1.0</td>
+</tr>
+<tr>
+<td>エントリの投稿の際のフォーマット</td>
+<td align="center">Atom 1.0</td>
+<td align="center">Atom 1.0</td>
+</tr>
+<tr>
+<td>クエリパラメータのサポート</td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.blogger.query"></a>12.5.2. blog の検索</h3></div></div></div>
+<p>
+            <code class="code">setBlogName()</code> メソッドで blog の名前を指定します。
+            これは blogspot URL に
+            <code class="code">http://blogname.blogspot.com</code>
+            のようにあらわれる名前となります。
+            あるいは、フィードを要求する際に blog の名前を指定することもできます。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBlog = new Zend_Gdata_Blogger();
+
+// blog のフィードを取得する方法...
+$feed = $gdataBlog-&gt;getBloggerFeed('blogname');
+
+// blog のフィードを取得する別の方法...
+$gdataBlog-&gt;setBlogName('blogname');
+$feed = $gdataBlog-&gt;getBloggerFeed();
+?&gt;</pre>
+<p>
+            このオブジェクトの使用法についての詳細は、
+            <a href="zend.feed.html#zend.feed.introduction" title="10.1. 導入">Zend_Feed</a>
+            のドキュメントを参照ください。
+        </p>
+<p>
+            <code class="code">setPublishedMin()</code> メソッドおよび <code class="code">setPublishedMax()</code>
+            メソッドで、エントリの日付の範囲を指定します。
+            <code class="code">publishedMin</code> を指定すると、
+            それより前に公開されたエントリはフィードに含まれません。
+            同様に、<code class="code">publishedMax</code>
+            で指定した日付より後で公開されたエントリもフィードに含まれません。
+        </p>
+<p>
+            フィード内のエントリは、<code class="code">&lt;updated&gt;</code>
+            要素の順で並べ替えられ、一番新しいエントリがフィードの先頭にくるようになります。
+        </p>
+<div class="note"><table border="0" summary="Note: カテゴリ検索や全文検索はサポートしません">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">カテゴリ検索や全文検索はサポートしません</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>
+                Google Blogger API は、現在は
+                カテゴリ、キーワードあるいはタグによる検索をサポートしていません。
+                <code class="code">setCategory()</code> を使用して検索しようとすると、
+                Zend_Gdata_Blogger は例外をスローします。
+            </p>
+<p>
+                Google Blogger API は、現在は全文検索をサポートしていません。
+                <code class="code">setQuery()</code> を使用して検索しようとすると、
+                Zend_Gdata_Blogger は例外をスローします。
+            </p>
+</td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.blogger.post"></a>12.5.3. 自分の blog への投稿</h3></div></div></div>
+<p>
+            <code class="code">post()</code> メソッドを使用して、
+            エントリを自分の blog に投稿することができます。
+            そのためには、認証済みの Zend_Http_Client を使用する必要があります。
+            これは Zend_Gdata_AuthSub クラスあるいは
+            Zend_Gdata_ClientLogin クラスを使用して作成します。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBlog = new Zend_Gdata_Blogger($authenticatedHttpClient);
+$gdataBlog-&gt;setBlogName('myblog');
+
+$xmlString = &lt;&lt;&lt;XML
+&lt;entry xmlns='http://www.w3.org/2005/Atom'&gt;
+  &lt;title type='text'&gt;Marriage!&lt;/title&gt;
+  &lt;content type='xhtml'&gt;
+    &lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+      &lt;p&gt;Mr. Darcy has &lt;em&gt;proposed marriage&lt;/em&gt; to me!&lt;/p&gt;
+      &lt;p&gt;He is the last man on earth I would ever desire to marry.&lt;/p&gt;
+      &lt;p&gt;Whatever shall I do?&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/content&gt;
+  &lt;author&gt;
+    &lt;name&gt;Elizabeth Bennet&lt;/name&gt;
+    &lt;email&gt;liz@gmail.com&lt;/email&gt;
+  &lt;/author&gt;
+&lt;/entry&gt;
+XML;
+
+$xml = new SimpleXMLElement($xmlString);
+
+$response = $gdataBlog-&gt;post($xml-&gt;asXML());
+?&gt;</pre>
+<p>
+            現在の認証済みアカウントの blog のフィードを取得するには
+            <code class="code">getBloggerListFeed()</code> メソッドを使用します。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBlog = new Zend_Gdata_Blogger($authenticatedHttpClient);
+$myBlogs = $gdataBlog-&gt;getBloggerListFeed();
+?&gt;</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.gdata.base.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.gdata.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.calendar.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">12.4. Google Base の使用法 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 12.6. Google Calendar の使用法</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

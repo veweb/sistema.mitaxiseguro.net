@@ -1,0 +1,145 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>19.3. Zend_Mime_Part</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="prev" href="zend.mime.message.html" title="19.2. Zend_Mime_Message">
+<link rel="next" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.mime.part.html#zend.mime.part.introduction" title="19.3.1. Introduction">
+<link rel="subsection" href="zend.mime.part.html#zend.mime.part.instantiation" title="19.3.2. Instantiation">
+<link rel="subsection" href="zend.mime.part.html#zend.mime.part.methods" title="19.3.3. Méthods for générer la partie du message part en une chaîne de caractères">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">19.3. Zend_Mime_Part</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mime.message.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 19. Zend_Mime</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.pdf.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mime.part"></a>19.3. Zend_Mime_Part</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.part.introduction"></a>19.3.1. Introduction</h3></div></div></div>
+<p>
+	    Cette classe représente une seule partie d'une message MIME. 
+	    Elle contient le contenu actuel de la partie du message ainsi que des informations
+	    sur son encodage, le content type et le nom de fichier original.
+	    Elle fournie une méthode pour générer une chaîne de caractères à partir de données
+	    stockées. Les objets <code class="code">Zend_Mime_Part</code> peuvent-être ajoutés à 
+	    <a href="zend.mime.message.html" title="19.2. Zend_Mime_Message"><code class="code">Zend_Mime_Message</code></a> pour assembler
+	    un message multipart complet.
+	  </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.part.instantiation"></a>19.3.2. Instantiation</h3></div></div></div>
+<p>
+		<code class="code">Zend_Mime_Part</code> est instantiée avec une chaîne de caractères qui
+		représente le contenu de cette nouvelle partie. Le type doit être OCTET-STREAM, 
+		et l'encodage 8 bits. Après instantiation de <code class="code">Zend_Mime_Part</code>, les métas-informations
+		peuvent être définies en accédant directement aux attributs :
+		</p>
+<pre class="programlisting">&lt;?php
+public $type = ZMime::TYPE_OCTETSTREAM;
+public $encoding = ZMime::ENCODING_8BIT;
+public $id;
+public $disposition;
+public $filename;
+public $description;
+public $charset;
+?&gt;</pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.part.methods"></a>19.3.3. Méthods for générer la partie du message part en une chaîne de caractères</h3></div></div></div>
+<p>
+    <code class="code">-&gt;getContent()</code> retourne le contenu encodé de MimePart en une chaîne de caractères
+    en utilisant l'encodage spécifié dans l'attribut $encoding. 
+    Les valeurs valides sont ZMime::ENCODING_*, le conversions de jeux de caractères ne sont pas effectuées.
+    </p>
+<p>
+	    <code class="code">-&gt;getHeaders()</code> returns the Mime-Headers for the
+	    MimePart as generated from the information in the publicly accessable
+	    attributes. The attributes of the object need to be set correctly before
+	    this method is called. 
+	    </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">$charset</code> doit être définit dans le charset actuel du contenu, si c'est un type text (Text ou HTML).
+                </p></li>
+<li><p>
+                    <code class="code">$id</code> doit être définit pour identifier un content-id pour les images d'une mail HTML.
+                </p></li>
+<li><p>
+	                <code class="code">$filename</code> contient le nom que le fichier aura lors du téléchargement.
+                </p></li>
+<li><p>
+	                <code class="code">$disposition</code> définit si le fichier doit être traité comme une pièce jointe ou s'il est utilisé
+	                dans le mail (HTML).
+                </p></li>
+<li><p>
+	                <code class="code">$description</code> sert uniquement pour information.
+                </p></li>
+</ul></div>
+<p>
+      </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mime.message.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.mime.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.pdf.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">19.2. Zend_Mime_Message </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> Chapitre 20. Zend_Pdf</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

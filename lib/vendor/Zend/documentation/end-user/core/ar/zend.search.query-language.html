@@ -1,0 +1,377 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.4. Query Language</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="prev" href="zend.search.searching.html" title="22.3. Searching an Index">
+<link rel="next" href="zend.search.query-api.html" title="22.5. Query Construction API">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.terms" title="22.4.1. Terms">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.fields" title="22.4.2. Fields">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.modifiers" title="22.4.3. Term Modifiers">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.proximity-search" title="22.4.4. Proximity Searches">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.boosting" title="22.4.5. Boosting a Term">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.boolean" title="22.4.6. Boolean Operators">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.grouping" title="22.4.7. Grouping">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.field-grouping" title="22.4.8. Field Grouping">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.escaping" title="22.4.9. Escaping Special Characters">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.4. Query Language</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.searching.html">السابق</a> </td>
+<th width="60%" align="center">فصل 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.query-api.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.query-language"></a>22.4. Query Language</h2></div></div></div>
+<p>
+        Java Lucene and Zend_Search_Lucene provide quite powerful query language.
+    </p>
+<p>
+        It mostly the same, but has some diffirences, which are mentioned below.
+    </p>
+<p>
+        Full Java Lucene query language syntax documentation can be found
+        <a href="http://lucene.apache.org/java/docs/queryparsersyntax.html" target="_top">here</a>.
+    </p>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.terms"></a>22.4.1. Terms</h3></div></div></div>
+<p>
+            A query is broken up into terms and operators. There are three types of terms: Single Terms, Phrases,
+            and Subqueries.
+        </p>
+<p>
+            A Single Term is a single word such as "test" or "hello".
+        </p>
+<p>
+            A Phrase is a group of words surrounded by double quotes such as "hello dolly".
+        </p>
+<p>
+            A Subquery is a query surrounded by parentheses such as "(hello dolly)".
+        </p>
+<p>
+            Multiple terms can be combined together with Boolean operators to form a more complex query (see below).
+        </p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.fields"></a>22.4.2. Fields</h3></div></div></div>
+<p>
+            Lucene supports fielded data. When performing a search you can either specify a field, or use
+            the default field. The field names depend on indexed data and default field is defined
+            by current settings.
+        </p>
+<p>
+            The first and major difference from Java Lucene is that terms are searched through
+            <span class="emphasis"><em>all fields</em></span> by default.
+        </p>
+<p>
+            There are two static methods in Zend_Search_Lucene class, which allow to operate with this settengs:
+        </p>
+<pre class="programlisting">&lt;?php
+$defaultSearchField = Zend_Search_Lucene::getDefaultSearchField();
+...
+Zend_Search_Lucene::setDefaultSearchField('contents');
+?&gt;</pre>
+<p>
+            <code class="code">null</code> value means, that search is performed through all field. It's a default setting.
+        </p>
+<p>
+            You can specify field by typing the field name followed by a colon ":" and then the term you
+            are looking for.
+        </p>
+<p>
+            As an example, let's assume a Lucene index contains two fields, title and text and text is the default field.
+            If you want to find the document entitled "The Right Way" which contains the text "don't go this way",
+            you can enter:
+        </p>
+<pre class="programlisting">title:"The Right Way" AND text:go</pre>
+<p>
+            or
+        </p>
+<pre class="programlisting">title:"Do it right" AND go</pre>
+<p>
+            If "text" is the default field, the field indicator is not required.
+        </p>
+<p>
+            Note: The field is only valid for the term, phrase or subquery that it directly precedes,
+            so the query
+            </p>
+<pre class="programlisting">title:Do it right</pre>
+<p>
+            Will only find "Do" in the title field. It will find "it" and "right" in the default field,
+            if default field is set, or in tha all indexed fields, if default field is set to <code class="code">null</code>.
+        </p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.modifiers"></a>22.4.3. Term Modifiers</h3></div></div></div>
+<p>
+            Lucene supports modifying query terms to provide a wide range of searching options.
+        </p>
+<p>
+            Zend_Search_Lucene supports "~" modifier only for phrases now
+            <sup>[<a name="id4870225" href="#ftn.id4870225">10</a>]</sup>
+        </p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.proximity-search"></a>22.4.4. Proximity Searches</h3></div></div></div>
+<p>
+            Lucene supports finding words are a within a specific distance away. To do a proximity search
+            use the tilde, "~", symbol at the end of a Phrase. For example to search for a "Zend" and
+            "Framework" within 10 words of each other in a document use the search:
+            </p>
+<pre class="programlisting">"Zend Framework"~10</pre>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.boosting"></a>22.4.5. Boosting a Term</h3></div></div></div>
+<p>
+            Java Lucene and Zend_Search_Lucene provide the relevance level of matching documents based
+            on the terms found. To boost a term use the caret, "^", symbol with a boost factor (a number)
+            at the end of the term you are searching. The higher the boost factor, the more relevant
+            the term will be.
+        </p>
+<p>
+            Boosting allows you to control the relevance of a document by boosting its term. For example,
+            if you are searching for
+            </p>
+<pre class="programlisting">PHP framework</pre>
+<p>
+            and you want the term "PHP" to be more relevant boost it using the ^ symbol along with the
+            boost factor next to the term. You would type:
+            </p>
+<pre class="programlisting">PHP^4 framework</pre>
+<p>
+            This will make documents with the term PHP appear more relevant. You can also boost Phrase
+            Terms  and subqueries as in the example:
+            </p>
+<pre class="programlisting">"PHP framework"^4 "Zend Framework"</pre>
+<p>
+            By default, the boost factor is 1. Although the boost factor must be positive,
+            it can be less than 1 (e.g. 0.2)
+        </p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.boolean"></a>22.4.6. Boolean Operators</h3></div></div></div>
+<p>
+            Boolean operators allow terms to be combined through logic operators.
+            Lucene supports AND, "+", OR, NOT and "-" as Boolean operators.
+            Java Lucene needs boolean operators t obe ALL CAPS. Zend_Search_Lucene doesn't.
+        </p>
+<p>
+            Boolean operators allow terms to be combined through logic operators.
+            Lucene supports AND, "+", OR, NOT and "-" as Boolean operators.
+        </p>
+<p>
+            AND, OR, and NOT operators and "+", "-" defines two styles to construct boolean queries.
+            As opposed to Java Lucene Zend_Search_Lucene doesn't allow to mix these two styles.
+        </p>
+<p>
+            If AND/OR/NOT style is used, then AND/OR operator must be present between all query terms.
+            Each term may also be preceded by NOT operator. AND operator has higher precedence than OR.
+            It differs from Java Lucene behavior.
+        </p>
+<div class="sect3" lang="ar">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.and"></a>22.4.6.1. AND</h4></div></div></div>
+<p>
+                The AND operator means, that all terms in "AND group" must match document.
+            </p>
+<p>
+                To search for documents that contain "PHP framework" and "Zend Framework" use the query:
+                </p>
+<pre class="programlisting">"PHP framework" AND "Zend Framework"</pre>
+<p>
+            </p>
+</div>
+<div class="sect3" lang="ar">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.or"></a>22.4.6.2. OR</h4></div></div></div>
+<p>
+                The OR operator devides query into several optional parts.
+            </p>
+<p>
+                To search for documents that contain "PHP framework" or "Zend Framework" use the query:
+                </p>
+<pre class="programlisting">"PHP framework" OR "Zend Framework"</pre>
+<p>
+            </p>
+</div>
+<div class="sect3" lang="ar">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.not"></a>22.4.6.3. NOT</h4></div></div></div>
+<p>
+                The NOT operator excludes documents that contain the term after NOT. But "AND group", which contains
+                only terms with NOT operator, gives empty result instead of full set indexed documents.
+            </p>
+<p>
+                To search for documents that contain "PHP framework" but not "Zend Framework" use the query:
+                </p>
+<pre class="programlisting">"PHP framework" AND NOT "Zend Framework"</pre>
+<p>
+            </p>
+</div>
+<div class="sect3" lang="ar">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.other-form"></a>22.4.6.4. &amp;&amp;, ||, and ! operators</h4></div></div></div>
+<p>
+                &amp;&amp;, ||, and ! may be used instead of AND, OR, and NOT operators.
+            </p>
+</div>
+<div class="sect3" lang="ar">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.plus"></a>22.4.6.5. +</h4></div></div></div>
+<p>
+                The "+" or required operator requires that the term after the "+" symbol must match the document.
+            </p>
+<p>
+                To search for documents that must contain "Zend" and may contain "Framework" use the query:
+                </p>
+<pre class="programlisting">+Zend Framework</pre>
+<p>
+            </p>
+</div>
+<div class="sect3" lang="ar">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.minus"></a>22.4.6.6. -</h4></div></div></div>
+<p>
+                The "-" or prohibit operator excludes documents that matches the term after the "-" symbol.
+            </p>
+<p>
+                To search for documents that contain "PHP framework" but not "Zend Framework" use the query:
+                </p>
+<pre class="programlisting">"PHP framework" -"Zend Framework"</pre>
+<p>
+            </p>
+</div>
+<div class="sect3" lang="ar">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.no-operator"></a>22.4.6.7. no operator</h4></div></div></div>
+<p>
+                If no operator is used, then term is optional. It may be or may not be presented within document,
+                but documents with this term will have higher score.
+            </p>
+<p>
+                To search for documents that requires "PHP framework" and may contain "Zend Framework" use the query:
+                </p>
+<pre class="programlisting">+"PHP framework" "Zend Framework"</pre>
+<p>
+            </p>
+</div>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.grouping"></a>22.4.7. Grouping</h3></div></div></div>
+<p>
+            Java Lucene and Zend_Search_Lucene support using parentheses to group clauses to form sub queries. This can be
+            useful if you want to control the boolean logic for a query or mix different boolean query styles:
+            </p>
+<pre class="programlisting">+(framework OR library) +php</pre>
+<p>
+            Zend_Search_Lucene supports subqueries of any level.
+        </p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.field-grouping"></a>22.4.8. Field Grouping</h3></div></div></div>
+<p>
+            Lucene supports using parentheses to group multiple clauses to a single field.
+        </p>
+<p>
+            To search for a title that contains both the word "return" and the phrase "pink panther" use the query:
+            </p>
+<pre class="programlisting">title:(+return +"pink panther")</pre>
+<p>
+            Zend_Search_Lucene supports subqueries of any level.
+        </p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.escaping"></a>22.4.9. Escaping Special Characters</h3></div></div></div>
+<p>
+            Lucene supports escaping special characters that are part of the query syntax. The current list special
+            characters are:
+        </p>
+<p>
+            + - &amp;&amp; || ! ( ) { } [ ] ^ " ~ * ? : \
+        </p>
+<p>
+            + and - inside single terms are treated as common characters.
+        </p>
+<p>
+            To escape these character use the \ before the character. For example to search for (1+1):2 use the query:
+            </p>
+<pre class="programlisting">\(1\+1\)\:2</pre>
+<p>
+        </p>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4870225" href="#id4870225">10</a>] </sup>
+                    "~" for terms is used for fuzzy search, but fuzzy search queries are not supported yet.
+                </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.searching.html">السابق</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">أعلى</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.query-api.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.3. Searching an Index </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> 22.5. Query Construction API</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

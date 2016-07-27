@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.6. Zend_Db_Table_Rowset</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="prev" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="next" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.db.tablerowset.html#zend.db.table.rowset.introduction" title="9.6.1. Introduction">
+<link rel="subsection" href="zend.db.tablerowset.html#zend.db.table.rowset.fetch" title="9.6.2. Aller chercher un ensemble de lignes">
+<link rel="subsection" href="zend.db.tablerowset.html#zend.db.table.rowset.iterate" title="9.6.3. Itérer sur l'ensemble de lignes">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.6. Zend_Db_Table_Rowset</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.tablerow.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.tablerowset"></a>9.6. Zend_Db_Table_Rowset</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.rowset.introduction"></a>9.6.1. Introduction</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Table_Rowset</code> constitue un itérateur sur une série d'objets <code class="code">Zend_Db_Table_Row</code>. 
+            En général, vous n'instanciez pas directement <code class="code">Zend_Db_Table_Rowset</code>; vous obtenez plutôt un objet 
+            <code class="code">Zend_Db_Table_Rowset</code> comme valeur de renvoi des méthodes <code class="code">Zend_Db_Table::find()</code> ou 
+            <code class="code">fetchAll()</code>. Vous pouvez ensuite itérer sur les objets <code class="code">Zend_Db_Table_Row</code> ainsi rassemblés et les modifier comme vous voulez.
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.rowset.fetch"></a>9.6.2. Aller chercher un ensemble de lignes</h3></div></div></div>
+<p>
+             La première chose à faire consiste à instancier la classe <code class="code">Zend_Db_Table</code>.
+        </p>
+<pre class="programlisting">&lt;?php
+// définition d'un adaptateur
+require_once 'Zend/Db.php';
+$parametres = array (
+    'adapter'  =&gt; 'PDO_MYSQL',
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'arthur',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory($parametres);
+
+// définition de l'adaptateur par défaut de tous les objets Zend_Db_Table
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+
+// connexion à une table de la base de données
+class TableRonde extends Zend_Db_Table {}
+$table = new TableRonde();
+?&gt;
+        </pre>
+<p>
+             Puis, on obtient plusieurs enregistrements de la base de données en passant plusieurs clés à la méthode <code class="code">Zend_Db_Table::find()</code> 
+             ou en utilisant la méthode <code class="code">Zend_Db_Table::fetchAll()</code>; le résultat renvoyé sera un objet <code class="code">Zend_Db_Table_Rowset</code> qui vous permettra 
+             d'itérer sur les objets <code class="code">Zend_Db_Table_Row</code> associés aux enregistrements de l'ensemble.
+        </p>
+<pre class="programlisting">&lt;?php
+// on va chercher plusieurs enregistrements de la table
+$lignes = $table-&gt;fetchAll();
+
+//
+// $lignes constitue maintenant un objet Zend_Db_Table_Rowset composé d'un
+// objet Zend_Db_Table_Row par enregistrement du résultat
+//
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.rowset.iterate"></a>9.6.3. Itérer sur l'ensemble de lignes</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Table_Rowset</code> implémente l'interface SPL, ce qui signifie que vous pouvez itérer sur les objets <code class="code">Zend_Db_Table_Rowset</code> à l'aide de foreach(), 
+            tout comme pour les tableaux. La valeur obtenue à chaque itération sera un objet <code class="code">Zend_Db_Table_Row</code> qui correspond à un enregistrement de la table; 
+            vous pouvez ensuite voir, modifier et enregistrer les propriétés de cet enregistrement.
+        </p>
+<pre class="programlisting">&lt;?php
+// connexion à une table de la base de données
+class TableRonde extends Zend_Db_Table {}
+$table = new TableRonde();
+
+// récupération de plusieurs enregistrements de la table
+$lignes = $table-&gt;fetchAll();
+
+// affichage
+foreach($lignes as $ligne) {
+    // $ligne est un objet Zend_Db_Table_Row
+    echo "&lt;p&gt;La couleur préférée de " . htmlspecialchars($ligne-&gt;titre) . " "
+       . htmlspecialchars($ligne-&gt;prenom) . " est " . 
+htmlspecialchars($ligne-&gt;couleurPreferee)
+       . ".&lt;/p&gt;\n";
+
+    // mise à jour du nombre de fois où cette ligne a été affichée
+    // (propriété associée à la colonne "nombre_de_fois_affichee" de la table)
+    $ligne-&gt;nombreDeFoisAffichee ++;
+
+    // enregistrement avec ses nouvelles informations
+    $ligne-&gt;save();
+}
+?&gt;
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.tablerow.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.5. Zend_Db_Table_Row </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> Chapitre 10. Zend_Feed</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

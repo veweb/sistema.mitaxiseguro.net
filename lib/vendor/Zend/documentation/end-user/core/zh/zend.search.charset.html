@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.6. 字符集</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="prev" href="zend.search.queries.html" title="22.5. 查询类型">
+<link rel="next" href="zend.search.extending.html" title="22.7. 扩展性">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.description" title="22.6.1.  UTF-8 和单字节字符集支持">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.6. 字符集</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.queries.html">上一页</a> </td>
+<th width="60%" align="center">第 22 章 Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.extending.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.charset"></a>22.6. 字符集</h2></div></div></div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.description"></a>22.6.1.  UTF-8 和单字节字符集支持</h3></div></div></div>
+<p>
+            被设计于工作在 UTF-8 字符集下。索引文件在 Java 的"modified UTF-8 encoding"编码下保存文件。Zend_Search_Lucene 内核完全支持它，只有一处例外。
+            <sup>[<a name="id4809461" href="#ftn.id4809461">8</a>]</sup>
+
+        </p>
+<p>
+            然而，各类文本和查询分析程序使用 ctype_alpha() 来进行文本和查询的记号化处理。而 ctype_alpha() 不支持 UTF-8，在不久的将来需要被替换为别的什么机制。
+        </p>
+<p>
+            在此之前我们强烈推荐将你的数据转化成 ASCII 表示
+            <sup>[<a name="id4809363" href="#ftn.id4809363">9</a>]</sup>
+            (不管是存储原始文档，或者进行搜索)：
+        </p>
+<pre class="programlisting">&lt;?php
+$doc = new Zend_Search_Lucene_Document();
+...
+$docText = iconv('ISO-8859-1', 'ASCII//TRANSLIT', $docText);
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', $docText));
+
+...
+
+$query = iconv('', 'ASCII//TRANSLIT', $query);
+$hits = $index-&gt;find($query);
+?&gt;</pre>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote">
+<p><sup>[<a name="ftn.id4809461" href="#id4809461">8</a>] </sup>
+                   Zend_Search_Lucene 只支持基本多语言平面(Basic Multilingual Plane, BMP)字符集(从 0x0000 到 0xFFFF)，不支持辅助字符集(supplementary characters)(那些代码指针大于 0xFFFF 的字符)
+               </p>
+<p>
+                   Java 2 通过一对两个 16 位字符的值来表示这些字符，第一个来自高半代理(high-surrogates)区(0xD800-0xDBFF)，第二个来自低半代理(low- surrogates)区(0xDC00-0xDFFF)。它们将常用的 UTF-8 字符编码为 6 个字节。而标准的 UTF-8 通过四个字节来表示附加的字符。
+               </p>
+<p>
+                  (译注：有关信息请参考 Unicode 标准。可能大家更想知道的是 BMP 中是否支持中文，答案是肯定的。事实上 BMP 中 CJK 字符集所占的比例最高。) 
+               </p>
+</div>
+<div class="footnote"><p><sup>[<a name="ftn.id4809363" href="#id4809363">9</a>] </sup>
+                   如果数据包含非 ASCII 字符或者来自 UTF-8。
+               </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.queries.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.extending.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.5. 查询类型 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 22.7. 扩展性</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

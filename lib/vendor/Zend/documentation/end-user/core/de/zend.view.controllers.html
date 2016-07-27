@@ -1,0 +1,202 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>28.2. Controller Skripte</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="prev" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="next" href="zend.view.scripts.html" title="28.3. View Scripte">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="subsection" href="zend.view.controllers.html#zend.view.controllers.assign" title="28.2.1. Variablen übergeben">
+<link rel="subsection" href="zend.view.controllers.html#zend.view.controllers.render" title="28.2.2. Verarbeitung eines View Skripts">
+<link rel="subsection" href="zend.view.controllers.html#zend.view.controllers.script-paths" title="28.2.3. Pfade für View Skripte">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">28.2. Controller Skripte</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.view.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 28. Zend_View</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.view.scripts.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.controllers"></a>28.2. Controller Skripte</h2></div></div></div>
+<p>
+        Der Controller ist der Ort, wo du Zend_View instanziieren und konfigurieren kannst. Du 
+        übergibst dann die Variablen an den View und teilst ihm mit, welches bestimmte Skript für 
+        die Ausgabe benutzt werden soll. 
+    </p>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.controllers.assign"></a>28.2.1. Variablen übergeben</h3></div></div></div>
+<p>
+            Dein Controller Skript sollte notwendige Variablen an den View übergeben, bevor es die
+            Kontrolle an das View Skript übergibt. Normalerweise kannst du eine Variable nach der
+            anderen übergeben und an den bezeichneten Eigenschaften der View Instanz zuordnen.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;a = "Hay";
+$view-&gt;b = "Bee";
+$view-&gt;c = "Sea";
+?&gt;
+        </pre>
+<p>
+            Allerdings kann dies mühsam sein, wenn du bereits alle Werte gesammelt hast, um sie  
+            einem Array oder einem Objekt zuzuordnen. 
+        </p>
+<p>
+            Mit der assign() Methode kannst Du auch ein Array oder ein Objekt auf einmal übergeben. 
+            Das folgende Beispiel hat den selben Effekt wie die obigen einzelnen Übergaben.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+
+// übergebe ein Array mit Schlüssel-Wert Paaren, 
+// wo der Schlüssel der Variablenname und der 
+// Wert die übergebene Variable ist
+$array = array(
+    'a' =&gt; "Hay",
+    'b' =&gt; "Bee",
+    'c' =&gt; "Sea",
+);
+$view-&gt;assign($array);
+
+// mache das selbe mit den öffentlichen Eigenschaften
+// eines Objektes; beachte wir wir das Objekt beim 
+// Übergeben in ein Array umwandeln
+$obj = new StdClass;
+$obj-&gt;a = "Hay";
+$obj-&gt;b = "Bee";
+$obj-&gt;c = "Sea";
+$view-&gt;assign((array) $obj);
+?&gt;
+        </pre>
+<p>
+            Alternativ kannst du die assign() Methode auch benutzen, um nacheinander einen 
+            Variablennamen und den Wert der Variable zu übergeben.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;assign('a', "Hay");
+$view-&gt;assign('b', "Bee");
+$view-&gt;assign('c', "Sea");
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.controllers.render"></a>28.2.2. Verarbeitung eines View Skripts</h3></div></div></div>
+<p>
+            Sobald du alle notwendigen Variablen übergeben hast, sollte der Controller dem 
+            Zend_View mitteilen, ein bestimmtes View Skript zu verarbeiten. Dies funktioniert über
+            die render() Methode. Beachte, dass diese Methode die verarbeitete Ausgabe zurück- aber 
+            nicht ausgibt, so dass du die Ausgabe selber zur passenden Zeit per echo() oder print() 
+            ausgeben musst. 
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;a = "Hay";
+$view-&gt;b = "Bee";
+$view-&gt;c = "Sea";
+echo $view-&gt;render('someView.php');
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.controllers.script-paths"></a>28.2.3. Pfade für View Skripte</h3></div></div></div>
+<p>
+            Standardmäßig erwartet Zend_View, dass deine View Skripte im selben Verzeichnis wie 
+            das Conntroller Skript liegen. Wenn dein Controller Skript zum Beispiel im Pfad 
+            "/path/to/app/controllers" liegt und es $view-&gt;render('someView.php') aufruft, wird 
+            Zend_View nach der Datei "/path/to/app/controllers/someView.php" schauen.
+        </p>
+<p>
+            Es ist durchaus wahrscheinlich, dass deine View Skripte woanders liegen. Verwende 
+            die setScriptPath() Methode, um Zend_View mitzuteilen, wo es nach View Skripten 
+            schauen soll. 
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;setScriptPath('/path/to/app/views');
+?&gt;
+        </pre>
+<p>
+            Wenn du nun $view-&gt;render('someView.php') aufrufst, wird es nach der Datei 
+            "/path/to/app/views/someView.php" schauen. 
+        </p>
+<p>
+            Durch Verwendung der addScriptPath() Methode können die Pfade "gestapelt" werden. Wenn 
+            du Pfade zu diesem Stapelspeicher hinzufügst, wird Zend_View im zuletzt
+            hinzugefügten Pfad nach dem angeforderten View Skript schauen. Dies erlaubt dir, 
+            Standard Views mit spezialisierten Views zu überschreiben, so dass Du  "Themen" 
+            oder "Skins" für einige Views erstellen kannst, während du andere bestehen lässt.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;addScriptPath('/path/to/app/views');
+$view-&gt;addScriptPath('/path/to/custom/');
+
+// wenn du nun $view-&gt;render('booklist.php') aufrufst, wird 
+// Zend_View zuerst nach der Datei "/path/to/custom/booklist.php",
+// dann nach "/path/to/app/views/booklist.php" und zuguterletzt 
+// im aktuellen Pfad nach der Datei "booklist.php" schauen
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.view.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.view.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.view.scripts.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitel 28. Zend_View </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 28.3. View Scripte</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

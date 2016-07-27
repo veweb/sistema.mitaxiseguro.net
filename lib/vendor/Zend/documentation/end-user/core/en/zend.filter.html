@@ -1,0 +1,141 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 11. Zend_Filter</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="index.html" title="Programmer's Reference Guide">
+<link rel="prev" href="zend.feed.custom-feed.html" title="10.8. Custom Feed and Entry Classes">
+<link rel="next" href="zend.filter.filter_chains.html" title="11.2. Filter Chains">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="section" href="zend.filter.html#zend.filter.introduction" title="11.1. Introduction">
+<link rel="section" href="zend.filter.filter_chains.html" title="11.2. Filter Chains">
+<link rel="section" href="zend.filter.writing_filters.html" title="11.3. Writing Filters">
+<link rel="section" href="zend.filter.input.html" title="11.4. Zend_Filter_Input">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 11. Zend_Filter</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.custom-feed.html">Prev</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.filter.filter_chains.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.filter"></a>Chapter 11. Zend_Filter</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.filter.html#zend.filter.introduction">11.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.filter_chains.html">11.2. Filter Chains</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.writing_filters.html">11.3. Writing Filters</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.input.html">11.4. Zend_Filter_Input</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction">11.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.theory_of_operation">11.4.2. Theory of Operation</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.filter.introduction"></a>11.1. Introduction</h2></div></div></div>
+<p>
+        The Zend_Filter component provides a set of commonly needed data filters. It also provides a simple
+        filter chaining mechanism by which multiple filters may be applied to a single datum in a
+        user-defined order.
+    </p>
+<p>
+        <span class="strong"><strong>What is a filter?</strong></span>
+    </p>
+<p>
+        In the physical world, a filter is typically used for removing unwanted portions of input, and the
+        desired portion of the input passes through as filter output (e.g., coffee). In such scenarios, a
+        filter is an operator that produces a subset of the input. This type of filtering is useful for web
+        applications - removing illegal input, trimming unnecessary white space, etc.
+    </p>
+<p>
+        This basic definition of a filter may be extended to include generalized transformations upon input.
+        A common transformation applied in web applications is the escaping of HTML entities. For example, if
+        a form field is automatically populated with untrusted input (e.g., from a web browser), this value
+        should either be free of HTML entities or contain only escaped HTML entities, in order to prevent
+        undesired behavior and security vulnerabilities. To meet this requirement, HTML entities that appear
+        in the input must either be removed or escaped. Of course, which approach is more appropriate depends
+        on the situation. A filter that removes the HTML entities operates within the scope of the first
+        definition of filter - an operator that produces a subset of the input. A filter that escapes the
+        HTML entities, however, transforms the input (e.g., "<code class="code">&amp;</code>" is transformed to
+        "<code class="code">&amp;amp;</code>"). Supporting such use cases for web developers is important, and "to
+        filter," in the context of using Zend_Filter, means to perform some transformations upon input data.
+    </p>
+<p>
+        Having this filter definition established provides the foundation for
+        <code class="code">Zend_Filter_Interface</code>, which requires a single method named <code class="code">filter()</code> to be
+        implemented by a filter class.
+    </p>
+<p>
+        Following is a basic example of using a filter upon two input data, the ampersand (<code class="code">&amp;</code>)
+        and double quote (<code class="code">"</code>) characters:
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Filter/HtmlEntities.php';
+$htmlEntities = new Zend_Filter_HtmlEntities();
+echo $htmlEntities-&gt;filter('&amp;'); // &amp;amp;
+echo $htmlEntities-&gt;filter('"'); // &amp;quot;</pre>
+<p>
+
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.custom-feed.html">Prev</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.filter.filter_chains.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.8. Custom Feed and Entry Classes </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 11.2. Filter Chains</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

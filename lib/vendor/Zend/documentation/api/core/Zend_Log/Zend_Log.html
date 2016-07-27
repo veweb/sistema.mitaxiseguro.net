@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs For Class Zend_Log</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> Zend_Log</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+											<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">license:</span> <a href="http://framework.zend.com/license/new-bsd">New BSD License</a></li>
+				<li><span class="field">copyright:</span> Copyright (c) 2005-2007 Zend Technologies USA Inc. (http://www.zend.com)</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Zend---Log.php.html">/Zend/Log.php</a> (line <span class="field">44</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-const-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constant Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Constants</span> (<a href="#sec-consts">details</a>)
+												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="const-summary">
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#LEVEL_ALL" title="details" class="const-name">LEVEL_ALL</a> = 					<span class="var-type"> 255</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#LEVEL_DEBUG" title="details" class="const-name">LEVEL_DEBUG</a> = 					<span class="var-type"> 1</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#LEVEL_ERROR" title="details" class="const-name">LEVEL_ERROR</a> = 					<span class="var-type"> 8</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#LEVEL_INFO" title="details" class="const-name">LEVEL_INFO</a> = 					<span class="var-type"> 2</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#LEVEL_SEVERE" title="details" class="const-name">LEVEL_SEVERE</a> = 					<span class="var-type"> 16</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#LEVEL_WARNING" title="details" class="const-name">LEVEL_WARNING</a> = 					<span class="var-type"> 4</span>
+
+				</div>
+							</div>
+		</div>
+	</div>
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																				<div class="var-title">
+					<img src="../media/images/StaticVariable.png" alt=" " />
+					static <span class="var-type">array</span>
+					<a href="#$_levelNames" title="details" class="var-name">$_levelNames</a>
+				</div>
+																																												<div class="var-title">
+					<img src="../media/images/Variable.png" alt=" " />
+					<span class="var-type"><a href="../Zend_Log/Adapter/Zend_Log_Adapter_Interface.html">Zend_Log_Adapter_Interface</a></span>
+					<a href="#$_adapter" title="details" class="var-name">$_adapter</a>
+				</div>
+																<div class="var-title">
+					<img src="../media/images/Variable.png" alt=" " />
+					<span class="var-type">array</span>
+					<a href="#$_fields" title="details" class="var-name">$_fields</a>
+				</div>
+																<div class="var-title">
+					<img src="../media/images/Variable.png" alt=" " />
+					<span class="var-type">integer</span>
+					<a href="#$_levelMask" title="details" class="var-name">$_levelMask</a>
+				</div>
+																								<div class="var-title">
+					<img src="../media/images/Variable.png" alt=" " />
+					<span class="var-type">string</span>
+					<a href="#$_logName" title="details" class="var-name">$_logName</a>
+				</div>
+																<div class="var-title">
+					<img src="../media/images/Variable.png" alt=" " />
+					<span class="var-type">string</span>
+					<a href="#$_messagePrefix" title="details" class="var-name">$_messagePrefix</a>
+				</div>
+																<div class="var-title">
+					<img src="../media/images/Variable.png" alt=" " />
+					<span class="var-type">string</span>
+					<a href="#$_messageSuffix" title="details" class="var-name">$_messageSuffix</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+											
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#close" title="details" class="method-name">close</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">array</span>
+										<a href="#getFields" title="details" class="method-name">getFields</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">array</span>
+										<a href="#getLoggerInfo" title="details" class="method-name">getLoggerInfo</a>
+										()
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#hasLogger" title="details" class="method-name">hasLogger</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#isLogLevel" title="details" class="method-name">isLogLevel</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$level</span>)
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#log" title="details" class="method-name">log</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>, [<span class="var-type">integer</span>&nbsp;<span class="var-name">$level</span> = <span class="var-default">self::LEVEL_DEBUG</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$logName_or_fields</span> = <span class="var-default">null</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#registerLogger" title="details" class="method-name">registerLogger</a>
+											(<span class="var-type"><a href="../Zend_Log/Adapter/Zend_Log_Adapter_Interface.html">Zend_Log_Adapter_Interface</a></span>&nbsp;<span class="var-name">$logAdapter</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">void</span>
+										<a href="#setAdapterOption" title="details" class="method-name">setAdapterOption</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$optionKey</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$optionValue</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#setDefaultLogger" title="details" class="method-name">setDefaultLogger</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#setFields" title="details" class="method-name">setFields</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#setLevel" title="details" class="method-name">setLevel</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$level</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#setMask" title="details" class="method-name">setMask</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$mask</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#setMessagePrefix" title="details" class="method-name">setMessagePrefix</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$prefix</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#setMessageSuffix" title="details" class="method-name">setMessageSuffix</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$suffix</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+															
+				<div class="method-definition">
+					<img src="../media/images/StaticMethod.png" alt=" "/>
+					static 						<span class="method-result">boolean</span>
+										<a href="#unregisterLogger" title="details" class="method-name">unregisterLogger</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+									</div>
+																																																																																																																																							</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+												<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$_levelNames" id="$_levelNames"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../media/images/StaticVariable.png" />
+		<span class="var-title">
+			static <span class="var-type">array</span>
+			<span class="var-name">$_levelNames</span>
+			 = <span class="var-default">array(<br />        1  =&gt; 'DEBUG',<br />        2  =&gt; 'INFO',<br />        4  =&gt; 'WARNING',<br />        8  =&gt; 'ERROR',<br />        16 =&gt; 'SEVERE'<br />        )</span>			(line <span class="line-number">66</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This array contains the names of the log levels in order to support  logging the names of the log message level instead of its numeric value.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+
+<a name="var$_adapter" id="$_adapter"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type"><a href="../Zend_Log/Adapter/Zend_Log_Adapter_Interface.html">Zend_Log_Adapter_Interface</a></span>
+			<span class="var-name">$_adapter</span>
+			 = <span class="var-default"> null</span>			(line <span class="line-number">117</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Every instance of Zend_Log must contain a child object which  is an implementation of Zend_Log_Adapter that provides the log  storage.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_fields" id="$_fields"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$_fields</span>
+			 = <span class="var-default">array('message' =&gt; '',<br />                               'level'   =&gt; '')</span>			(line <span class="line-number">140</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Array of available fields for logging</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_levelMask" id="$_levelMask"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">integer</span>
+			<span class="var-name">$_levelMask</span>
+			 = <span class="var-default"> self::LEVEL_ALL</span>			(line <span class="line-number">108</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Logging level mask, the bitwise OR of any of the  Zend_Log::LEVEL_* constants that will be logged by this  instance of Zend_Log.  All other levels will be ignored.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_logName" id="$_logName"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_logName</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">99</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">When this class is instantiated by registerLogger, it is</p>
+<p class="description"><p>pushed onto the $_instances associative array.  The $_logName  is the key to instance in this array, and also how the user  will specify the instance when using the other static method  calls (e.g. Zend_Log::log() ).</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_messagePrefix" id="$_messagePrefix"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_messagePrefix</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">125</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">A string which is automatically prefixed to any message sent  to the Zend_Log::log() method.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_messageSuffix" id="$_messageSuffix"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_messageSuffix</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">133</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">A string which is automatically appended to any message sent  to the Zend_Log::log() method.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																			<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodclose" id="close"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static close</span> (line <span class="line-number">442</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Destroy all Zend_Log instances in Zend_Log::$_instances.  This is equivalent to calling unregister()  for each log instance.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			close
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetFields" id="getFields"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static getFields</span> (line <span class="line-number">331</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns an array of the log fields.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">array</span>
+		<span class="method-name">
+			getFields
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetLoggerInfo" id="getLoggerInfo"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static getLoggerInfo</span> (line <span class="line-number">263</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns information about the registered loggers.</p>
+<p class="description"><p>array(2) {    [&quot;LOG&quot;]=&gt;          array key is the logger name    array(2) {       [&quot;adapter&quot;]=&gt;   string,  name of the Zend_Log_AdapterClass class       [&quot;default&quot;]=&gt;   boolean, is this the default logger?     }   }</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Is there at least one registered logger?</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">array</span>
+		<span class="method-name">
+			getLoggerInfo
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodhasLogger" id="hasLogger"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static hasLogger</span> (line <span class="line-number">240</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns True if the specified logName is a registered logger.  If no logName is supplied,  the function returns True if at least one logger exists.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Registered logger?</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			hasLogger
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span><span class="var-description">: Name of registered logger to check, or null.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodisLogLevel" id="isLogLevel"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static isLogLevel</span> (line <span class="line-number">543</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Tests if the supplied $level is one of the valid log levels (Zend_Log::LEVEL_* constants).</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Is it a valid level?</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			isLogLevel
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$level</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$level</span><span class="var-description">: Value to test</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlog" id="log"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static log</span> (line <span class="line-number">351</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends a message to the log.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">throws:</span> Zend_Log_Exception</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			log
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>, [<span class="var-type">integer</span>&nbsp;<span class="var-name">$level</span> = <span class="var-default">self::LEVEL_DEBUG</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$logName_or_fields</span> = <span class="var-default">null</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$message</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$level</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$logName_or_fields</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodregisterLogger" id="registerLogger"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static registerLogger</span> (line <span class="line-number">194</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Instantiates a new instance of Zend_Log carrying the supplied Zend_Log_Adapter_Interface and stores  it in the $_instances array.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">throws:</span> Zend_Log_Exception</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			registerLogger
+		</span>
+					(<span class="var-type"><a href="../Zend_Log/Adapter/Zend_Log_Adapter_Interface.html">Zend_Log_Adapter_Interface</a></span>&nbsp;<span class="var-name">$logAdapter</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../Zend_Log/Adapter/Zend_Log_Adapter_Interface.html">Zend_Log_Adapter_Interface</a></span>
+				<span class="var-name">$logAdapter</span><span class="var-description">: Log adapter implemented from Zend_Log_Adapter_Interface</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span><span class="var-description">: Name of this instance, used to access it from other static functions.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAdapterOption" id="setAdapterOption"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static setAdapterOption</span> (line <span class="line-number">530</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets and adapter-specific option.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">void</span>
+		<span class="method-name">
+			setAdapterOption
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$optionKey</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$optionValue</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$optionKey</span><span class="var-description">: The option name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$optionValue</span><span class="var-description">: The option value</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span><span class="var-description">: Name of this instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetDefaultLogger" id="setDefaultLogger"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static setDefaultLogger</span> (line <span class="line-number">286</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the default logger.  If no logName is specified, then &quot;LOG&quot; is used.  For any  named logger other than &quot;LOG&quot;, the logger must have been registered with registerLogger().</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			setDefaultLogger
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span><span class="var-description">: Name of this instance, used to access it from other static functions.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetFields" id="setFields"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static setFields</span> (line <span class="line-number">306</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the values for log fields. Omitted fields are set to default values.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			setFields
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$fields</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetLevel" id="setLevel"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static setLevel</span> (line <span class="line-number">491</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the logging level of the log instance to one of the Zend_Log::LEVEL_* constants.  Only  messages with this log level will be logged by the instance, all others will be ignored.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">throws:</span> Zend_Log_Exception</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			setLevel
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$level</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$level</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span><span class="var-description">: Name of this instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetMask" id="setMask"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static setMask</span> (line <span class="line-number">511</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the logging level of the log instance based on a mask.  The mask is the bitwise OR  of any of the Zend_Log::LEVEL_* constants.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">throws:</span> Zend_Log_Exception</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			setMask
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$mask</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$mask</span><span class="var-description">: The log level mask</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span><span class="var-description">: Name of this instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetMessagePrefix" id="setMessagePrefix"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static setMessagePrefix</span> (line <span class="line-number">460</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets a message prefix.  The prefix will be automatically prepended to any message that is  sent to the specified log.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			setMessagePrefix
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$prefix</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$prefix</span><span class="var-description">: The prefix string</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span><span class="var-description">: Name of this instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetMessageSuffix" id="setMessageSuffix"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static setMessageSuffix</span> (line <span class="line-number">475</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets a message suffix.  The suffix will be automatically appended to any message that is  sent to the specified log.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			setMessageSuffix
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$suffix</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$suffix</span><span class="var-description">: The suffix string</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span><span class="var-description">: Name of this instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodunregisterLogger" id="unregisterLogger"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/StaticMethod.png" />
+		<span class="method-title">static unregisterLogger</span> (line <span class="line-number">218</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Destroys an instance of Zend_Log in the $_instances array that was added by registerLogger()</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True</li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">throws:</span> Zend_Log_Exception</li>
+			</ul>
+	
+	<div class="method-signature">
+		static <span class="method-result">boolean</span>
+		<span class="method-name">
+			unregisterLogger
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$logName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$logName</span><span class="var-description">: Name of this instance, used to access it from other static functions.</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	<a name="sec-consts"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Constants</a> (<span class="disabled">details</span>)
+						
+			
+												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+														| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="constLEVEL_ALL" id="LEVEL_ALL"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">LEVEL_ALL</span>
+			 = <span class="const-default"> 255</span>
+			(line <span class="line-number">49</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Mask that includes all log levels</p>
+	
+	
+</div>
+<a name="constLEVEL_DEBUG" id="LEVEL_DEBUG"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">LEVEL_DEBUG</span>
+			 = <span class="const-default"> 1</span>
+			(line <span class="line-number">54</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Log levels</p>
+	
+	
+</div>
+<a name="constLEVEL_ERROR" id="LEVEL_ERROR"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">LEVEL_ERROR</span>
+			 = <span class="const-default"> 8</span>
+			(line <span class="line-number">57</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constLEVEL_INFO" id="LEVEL_INFO"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">LEVEL_INFO</span>
+			 = <span class="const-default"> 2</span>
+			(line <span class="line-number">55</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constLEVEL_SEVERE" id="LEVEL_SEVERE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">LEVEL_SEVERE</span>
+			 = <span class="const-default"> 16</span>
+			(line <span class="line-number">58</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constLEVEL_WARNING" id="LEVEL_WARNING"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">LEVEL_WARNING</span>
+			 = <span class="const-default"> 4</span>
+			(line <span class="line-number">56</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+						
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 21 Feb 2007 11:53:04 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.1</a>
+	</p>
+	</div></body>
+</html>

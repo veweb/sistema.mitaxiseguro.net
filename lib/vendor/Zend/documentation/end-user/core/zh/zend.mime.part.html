@@ -1,0 +1,139 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>19.3. Zend_Mime_Part</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="prev" href="zend.mime.message.html" title="19.2. Zend_Mime_Message">
+<link rel="next" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="subsection" href="zend.mime.part.html#zend.mime.part.introduction" title="19.3.1. 简介">
+<link rel="subsection" href="zend.mime.part.html#zend.mime.part.instantiation" title="19.3.2. 实例化">
+<link rel="subsection" href="zend.mime.part.html#zend.mime.part.methods" title="19.3.3. 渲染消息段为字符串的方法">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">19.3. Zend_Mime_Part</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mime.message.html">上一页</a> </td>
+<th width="60%" align="center">第 19 章 Zend_Mime</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.pdf.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mime.part"></a>19.3. Zend_Mime_Part</h2></div></div></div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.part.introduction"></a>19.3.1. 简介</h3></div></div></div>
+<p>
+	      <code class="code">Zend_Mime_Part</code>表示MIME消息的一个段。它包含了MIME消息段的实际内容以及编码、内容类型和原始的文件名等一些附加信息。
+	      它也提供了一个方法，用来从存储的数据产生字符串。<code class="code">Zend_Mime_Part</code>对象可以被添加到<a href="zend.mime.message.html" title="19.2. Zend_Mime_Message"><code class="code">Zend_Mime_Message</code></a>中去，
+	      来聚合产生一个完整的多段的MIME消息。
+	  </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.part.instantiation"></a>19.3.2. 实例化</h3></div></div></div>
+<p>
+      <code class="code">Zend_Mime_Part</code>通过表示段的内容的字符串来实例化。缺省的内容类型为OCTET-STREAM，编码为8Bit。
+       在<code class="code">Zend_Mime_Part</code>实例化之后, 可以直接访问它的属性来设置元信息：
+    </p>
+<pre class="programlisting">&lt;?php            
+public $type = ZMime::TYPE_OCTETSTREAM;
+public $encoding = ZMime::ENCODING_8BIT;
+public $id;
+public $disposition;
+public $filename;
+public $description;
+public $charset;
+?&gt;</pre>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mime.part.methods"></a>19.3.3. 渲染消息段为字符串的方法</h3></div></div></div>
+<p><code class="code">-&gt;getContent()</code>方法，返回经过编码的消息段字符串，编码方式由属性$encoding指定。
+        有效的编码方式为Zend_Mime::ENCODING_*。字符集的转换还未实现。</p>
+<p>
+        <code class="code">-&gt;getHeaders()</code>方法，返回产自对象公有属性的MIME消息段的消息头。
+         在该方法调用之前，对象的这些共有属性必须被正确的设置。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">$charset</code>
+                    如果内容为Text类型(纯文本或HTML)，该属性被设置为实际的字符集。 
+                </p></li>
+<li><p>
+                    <code class="code">$id</code>
+                    可能被设置，用来标识HTML邮件中内嵌图片的content-id。 
+                </p></li>
+<li><p>
+                    <code class="code">$filename</code>
+                       给出了当文件被下载时的文件名。 
+                </p></li>
+<li><p>
+                    <code class="code">$disposition</code>
+                       指定了文件是当作附件，还是当作邮件的内嵌资源。
+                </p></li>
+<li><p>
+                    <code class="code">$description</code>
+                       只用在提供信息上。
+                </p></li>
+</ul></div>
+<p>
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mime.message.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.mime.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.pdf.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">19.2. Zend_Mime_Message </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 第 20 章 Zend_Pdf</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

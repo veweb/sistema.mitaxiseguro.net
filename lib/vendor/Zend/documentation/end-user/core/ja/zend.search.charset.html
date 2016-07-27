@@ -1,0 +1,212 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.6. 文字セット</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="prev" href="zend.search.query-api.html" title="22.5. クエリ作成用の API">
+<link rel="next" href="zend.search.extending.html" title="22.7. 拡張性">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.description" title="22.6.1. UTF-8 およびシングルバイト文字セットのサポート">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.default_analyzer" title="22.6.2. デフォルトのテキスト解析器">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.utf_analyzer" title="22.6.3. UTF-8 互換のテキスト解析器">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.6. 文字セット</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.query-api.html">前のページ</a> </td>
+<th width="60%" align="center">第22章 Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.extending.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.charset"></a>22.6. 文字セット</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.description"></a>22.6.1. UTF-8 およびシングルバイト文字セットのサポート</h3></div></div></div>
+<p>
+            Zend_Search_Lucene は、内部的には UTF-8 文字セットで動作します。
+            インデックスファイルには、unicode のデータが Java の
+            "modified UTF-8 encoding" で保存されます。
+            Zend_Search_Lucene はこの文字セットを完全にサポートしていますが、
+            ひとつだけ例外があります。
+            <sup>[<a name="id4886623" href="#ftn.id4886623">9</a>]</sup>
+        </p>
+<p>
+            実際の入力データのエンコーディングを指定するには
+            Zend_Search_Lucene の API を使用します。
+            データは、自動的に UTF-8 エンコーディングに変換されます。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.default_analyzer"></a>22.6.2. デフォルトのテキスト解析器</h3></div></div></div>
+<p>
+            しかし、デフォルトのテキスト解析器
+            (クエリパーサの中でもこれが用いられます) は、
+            テキストやクエリのトークン化に ctype_alpha()
+            を使用しています。
+        </p>
+<p>
+            ctype_alpha() は UTF-8 と互換性がありません。
+            したがって、この解析器は
+            テキストをインデックス化する前に 'ASCII//TRANSLIT'
+            エンコーディングに変換します。
+            同じ処理がクエリのパース時にも行われますが、これは透過的に行われます。
+            <sup>[<a name="id4887327" href="#ftn.id4887327">10</a>]</sup>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.utf_analyzer"></a>22.6.3. UTF-8 互換のテキスト解析器</h3></div></div></div>
+<p>
+            Zend_Search_Lucene には、機能限定版の UTF-8 解析器も含まれています。
+            これを有効にするには、以下のようなコードを使用します。
+
+            </p>
+<pre class="programlisting">&lt;?php
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8());
+?&gt;</pre>
+<p>
+        </p>
+<p>
+            これは、データを UTF-8 モードでトークン化してインデックスを作成し、
+            UTF-8 互換の文字で何の問題もなく動作します。
+        </p>
+<p>
+            制限事項は次のふたつです。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>非 ascii 文字を、すべて文字として扱う (常にそうだというわけではありません)</p></li>
+<li><p>大文字小文字を区別する</p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            これらの制限があるためにこの解析器はデフォルトにはなっていません。
+            しかし、これが便利に使えるかたもいることでしょう。
+        </p>
+<p>
+            大文字小文字を区別しないようにさせるには、
+            <code class="code">strtolower()</code> による変換を使用します。
+            </p>
+<pre class="programlisting">&lt;?php
+setlocale(LC_CTYPE, 'de_DE.iso-8859-1');
+
+...
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8());
+
+...
+
+$doc = new Zend_Search_Lucene_Document();
+
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', strtolower($contents)));
+
+// 検索用の Title フィールド (インデックス化しますが保存しません)
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('title', strtolower($title)));
+
+// 取得用の Title フィールド (インデックス化せず、保存します)
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnIndexed('_title', $title));
+
+?&gt;</pre>
+<p>
+        </p>
+<p>
+            同様の変換を、クエリ文字列でも行う必要があります。
+            </p>
+<pre class="programlisting">&lt;?php
+setlocale(LC_CTYPE, 'de_DE.iso-8859-1');
+
+...
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8());
+
+...
+
+$hits = $index-&gt;find(strtolower($query));
+?&gt;</pre>
+<p>
+        </p>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote">
+<p><sup>[<a name="ftn.id4886623" href="#id4886623">9</a>] </sup>
+                   Zend_Search_Lucene では Basic Multilingual Plane
+                   (BMP) 文字 (0x0000 から 0xFFFF まで) のみをサポートしており、
+                   "supplementary characters" (コードポイントが
+                   0xFFFF より大きい文字) はサポートしていません。
+               </p>
+<p>
+                   Java 2 では、これらを文字 (16 ビット)
+                   のペアで表します。最初の文字が上位サロゲート (0xD800-0xDBFF)、
+                   2 番目の文字が下位サロゲート (0xDC00-0xDFFF) となります。
+                   その後、これらが 6 バイトの UTF-8 文字にエンコードされます。
+                   標準的な UTF-8 では、supplementary characters
+                   を 4 バイトで表します。
+               </p>
+</div>
+<div class="footnote"><p><sup>[<a name="ftn.id4887327" href="#id4887327">10</a>] </sup>
+                   'ASCII//TRANSLIT' への変換は、現在のロケールおよび
+                   OS に依存します。
+               </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.query-api.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.extending.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.5. クエリ作成用の API </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 22.7. 拡張性</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

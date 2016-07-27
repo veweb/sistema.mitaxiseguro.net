@@ -1,0 +1,607 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.4. Estilo de Código</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="prev" href="coding-standard.naming-conventions.html" title="A.3. Convenções de Nomes">
+<link rel="next" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.php-code-demarcation" title="A.4.1. Demarcação de Código PHP">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.strings" title="A.4.2. Strings">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.arrays" title="A.4.3. Arrays">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.classes" title="A.4.4. Classes">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.functions-and-methods" title="A.4.5. Funções e Métodos">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.control-statements" title="A.4.6. Instruções de Controle">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standards.inline-documentation" title="A.4.7. Documentação Inline ">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.4. Estilo de Código</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="coding-standard.naming-conventions.html">Anterior</a> </td>
+<th width="60%" align="center">Apêndice A. Padrões de Codificação do Framework Zend para PHP</th>
+<td width="20%" align="right"> <a accesskey="n" href="copyrights.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="coding-standard.coding-style"></a>A.4. Estilo de Código</h2></div></div></div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.php-code-demarcation"></a>A.4.1. Demarcação de Código PHP</h3></div></div></div>
+<p>
+		        Código PHP deve sempre estar delimitado de forma completa, com tags padrão do PHP:
+
+                </p>
+<pre class="programlisting">
+&lt;?php
+
+?&gt;</pre>
+<p>
+            </p>
+<p>
+		Tags curtas não são permitidas.
+	    </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.strings"></a>A.4.2. Strings</h3></div></div></div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.literals"></a>A.4.2.1. String Literal</h4></div></div></div>
+<p>
+		    Quando uma string é literal (não contém substituições de variável), deve ser usado apóstrofo
+		    ou aspas simples para demarcar o texto.
+
+                    </p>
+<pre class="programlisting">
+$a = 'Exemplo de Texto';</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.literals-containing-apostrophes"></a>A.4.2.2. String Literal Contendo Apóstrofos</h4></div></div></div>
+<p>
+		    Quando uma string literal contém apóstrofos dentro de si, é permitido demarcar
+		    o texto com aspas ou "aspas duplas". Isto é especialmente encorajado para declarações SQL:
+
+                    </p>
+<pre class="programlisting">
+$sql = "SELECT `id`, `name` from `people` WHERE `name`='Fred' OR `name`='Susan'";</pre>
+<p>
+
+		    A sintaxe acima é preferida ao invés de escapar os apóstrofos.
+                </p>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.variable-substitution"></a>A.4.2.3. Substituição de Variáveis</h4></div></div></div>
+<p>
+		    A substituição de variáveis é permitida usando qualquer uma das duas formas:
+
+                    </p>
+<pre class="programlisting">
+$greeting = "Olá $nome, bem-vindo de volta!";
+
+$greeting = "Olá {$nome}, bem-vindo de volta!";</pre>
+<p>
+                </p>
+<p>
+                    Por consistência, a forma a seguir não é permitida:
+
+                    </p>
+<pre class="programlisting">
+$greeting = "Olá ${nome}, bem-vindo de volta!";</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.string-concatenation"></a>A.4.2.4. Concatenação de String</h4></div></div></div>
+<p>
+		    Strings devem ser concatenadas usando o operador ".". Um espaço deve sempre
+		    ser adicionado antes e depois do operador "." para melhorar a legibilidade: 
+
+                    </p>
+<pre class="programlisting">
+$company = 'Zend' . 'Technologies';</pre>
+<p>
+                </p>
+<p>
+		    Quando estiver concatenando strings com o operador ".", é permitido quebrar a declaração em
+		    várias linhas para melhorar a legibilidade. Nestes casos, cada linha sucessiva deverá ser colocada
+		    num bloco com espaço em branco de forma que o operador "." esteja alinhado abaixo do operador "=":
+
+                    </p>
+<pre class="programlisting">
+$sql = "SELECT `id`, `name` FROM `people` "
+     . "WHERE `name` = 'Susan' "
+     . "ORDER BY `name` ASC ";</pre>
+<p>
+                </p>
+</div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.arrays"></a>A.4.3. Arrays</h3></div></div></div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.arrays.numerically-indexed"></a>A.4.3.1. Arrays Indexados Numericamente</h4></div></div></div>
+<p>Números negativos não são permitidos como índices.</p>
+<p>
+		    Um array indexado pode começar com qualquer número não negativo, porém
+		    isto é desencorajado. É recomendado que todo array tenha um índice inicial 0.
+                </p>
+<p>
+			Quando declarar arrays indexados com o construtor <code class="code">array</code>, um espaço deve ser
+			adicionado depois de cada vírgula para melhorar a legibilidade:
+			
+			</p>
+<pre class="programlisting">
+$sampleArray = array(1, 2, 3, 'Zend', 'Studio');</pre>
+<p>
+		</p>
+<p>
+			Também é permitido declarar arrays indexados em várias linhas usando o construtor "array".
+			Neste caso, cada linha sucessiva deve ser colocada num bloco com espaços de forma que
+			o início de cada código alinhe-se conforme mostrado abaixo:
+			
+			</p>
+<pre class="programlisting">
+$sampleArray = array(1, 2, 3, 'Zend', 'Studio',
+		    $a, $b, $c,
+		    56.44, $d, 500);</pre>
+<p>
+		</p>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.arrays.associative"></a>A.4.3.2. Arrays Associativos</h4></div></div></div>
+<p>
+		    Quando declarar arrays associativos com o construtor <code class="code">array</code>, é recomendado
+		    quebrar a declaração em múltiplas linhas. Neste caso, cada linha sucessiva deve estar num bloco
+		    com espaço em branco, de forma que as chaves e valores estejam alinhados:
+
+                    </p>
+<pre class="programlisting">
+$sampleArray = array('firstKey'  =&gt; 'firstValue',
+                     'secondKey' =&gt; 'secondValue');</pre>
+<p>
+                 </p>
+</div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.classes"></a>A.4.4. Classes</h3></div></div></div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.classes.declaration"></a>A.4.4.1. Declaração de Classes</h4></div></div></div>
+<p>
+		    Classes devem ser nomeadas seguindo a convenção de nomes.
+                </p>
+<p>
+		    A chave de abertura é sempre escrita embaixo do nome da classe (forma de "uma única chave real").
+                </p>
+<p>
+		    Toda classe deve ter um bloco de documentação, dentro do padrão do PHPDocumentor.
+                </p>
+<p>
+                    Todo código dentro de uma classe deve estar indentado com quatro espaços.
+                </p>
+<p>
+                    Somente uma classe é permitida por arquivo PHP.
+                </p>
+<p>
+                    Colocar código adicional em um arquivo de classe é permitido mas desencorajado. Nestes arquivos,
+		    duas linhas em branco devem separar a classe do código PHP adicional no arquivo.
+                </p>
+<p>
+		    Este é um exemplo de declaração aceitável de classe :
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Bloco de documentação aqui
+ */
+class SampleClass
+{
+    // conteúdo completo da classe
+    // deve estar indentado com quatro espaços
+}</pre>
+<p>
+	            </p>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.classes.member-variables"></a>A.4.4.2. Variáveis Membros de Classe</h4></div></div></div>
+<p>
+		    Variáveis membro devem ser nomeadas de acordo com a convenção de nomes de variáveis.
+                </p>
+<p>
+		    Quaisquer variáveis declaradas numa classe devem ser listadas no topo da classe, antes
+		    de declarar qualquer função.
+                </p>
+<p>
+		    O construtor <code class="code">var</code> não é permitido. Variáveis membro sempre declaram sua 
+		    visibilidade usando o construtor <code class="code">private</code>, <code class="code">protected</code>
+        ou <code class="code">public</code>. Acessar variáveis membro diretamente tornando-as públicas
+		    é permitido mas desencorajado em favor de variáveis de acesso (set/get).
+                </p>
+</div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.functions-and-methods"></a>A.4.5. Funções e Métodos</h3></div></div></div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.functions-and-methods.declaration"></a>A.4.5.1. Declaração de Funções e Métodos</h4></div></div></div>
+<p>
+		    Nomes de funções devem seguir a convenção de nomes.
+	    	</p>
+<p>
+		    Funções dentro de classes sempre declaram sua visibilidade usando o 
+		    construtor <code class="code">private</code>, <code class="code">protected</code> ou <code class="code">public</code>.
+       </p>
+<p>
+		    Como classes, a chave de abertura deve sempre ser escrita abaixo do nome da função 
+		    (forma de "uma única chave real").
+	    	
+                    Não há espaços entre o nome da função e os parênteses para os argumentos. 
+	     	</p>
+<p>
+                    Funções no escopo global são fortemente desencorajadas.
+                </p>
+<p>
+		    Este é um exemplo de declaração aceitável de função:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Bloco de documentação aqui
+ */
+ class foo
+
+    /**
+    * Bloco de documentação aqui
+    */
+    public function bar()
+    {
+        // todo conteúdo da função
+        // deve ser indentado com quatro espaços
+    }
+}</pre>
+<p>
+                </p>
+<p>
+                    <span class="emphasis"><em>NOTA:</em></span> Passar valores por referência na declaração da função é 
+                    permitido somente neste caso:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Bloco de documentação aqui
+ */
+ class foo
+
+    /**
+    * Bloco de documentação aqui
+    */
+    public function bar(&amp;$baz)
+    {
+        // todo conteúdo da função
+        // deve ser indentado com quatro espaços
+    }
+}</pre>
+<p>
+                </p>
+<p>
+		    Passar valores por referência ao chamar a função é proibido.
+                </p>
+<p>
+		     O valor de retorno não deve estar entre parênteses. Isto pode impedir a boa legibilidade
+		     e pode ainda quebrar o código de um método que seja alterado posteriormente para retornar
+		     por referência.
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Documentation Block Here
+ */
+class Foo
+{
+    /**
+     * ERRADO
+     */
+    public function bar()
+    {
+        return($this-&gt;bar);
+    }
+
+    /**
+     * CERTO
+     */
+    public function bar()
+    {
+        return $this-&gt;bar;
+    }
+}</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.functions-and-methods.usage"></a>A.4.5.2. Uso de Funções e Métodos</h4></div></div></div>
+<p>
+                    Argumentos de funções são separados por um espaço simples depois
+                    da vírgula. Este é um exemplo de chamada de função que tenha três argumentos:
+
+                    </p>
+<pre class="programlisting">
+threeArguments(1, 2, 3);</pre>
+<p>
+                </p>
+<p>
+                    Passar parâmetros por referência na chamada da função é proibido. Veja a seção de 
+                    declaração de funções para o modo correto de passar argumentos por referência.
+                </p>
+<p>
+                    Para funções que permitem arrays nos argumentos, a chamada da função pode incluir o 
+                    construtor "array" e pode ser dividido em várias linhas para melhorar a legibilidade.
+                    Nestes casos, o padrão para escrever arrays também se aplica:
+
+                    </p>
+<pre class="programlisting">
+threeArguments(array(1, 2, 3), 2, 3);
+
+threeArguments(array(1, 2, 3, 'Zend', 'Studio',
+                     $a, $b, $c,
+                     56.44, $d, 500), 2, 3);</pre>
+<p>
+                </p>
+</div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.control-statements"></a>A.4.6. Instruções de Controle</h3></div></div></div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.control-statements.if-else-elseif"></a>A.4.6.1. If / Else / Elseif</h4></div></div></div>
+<p>
+                    Instruções de controle baseadas nos construtores <code class="code">if</code> e <code class="code">elseif</code>
+                    devem ter um espaço simples antes do parêntese de abertura da condição e um espaço
+                    simples depois do parêntese de fechamento.
+                </p>
+<p>
+                    Dentro das declarações condicionais entre os parênteses, operadores devem ser separados
+                    por espaços para legibilidade. Parênteses internos são encorajados para melhorar o agrupamento
+                    lógico de condicionais extensas.
+                </p>
+<p>
+                    A chave de abertura é sempre escrita na mesma linha da instrução condicional. A chave de
+                    fechamento é sempre escrita em sua própria linha. Qualquer conteúdo dentro das chaves deve
+                    ser indentado por quatro espaços.
+
+                    </p>
+<pre class="programlisting">
+if ($a != 2) {
+    $a = 2;
+}</pre>
+<p>
+                </p>
+<p>
+                    Para instruções "if" que incluem "elseif" ou "else", a formatação deve ser como
+                    nos exemplos:
+
+                    </p>
+<pre class="programlisting">
+if ($a != 2) {
+    $a = 2;
+} else {
+   $a = 7;
+}
+
+
+if ($a != 2) {
+    $a = 2;
+} elseif ($a == 3) {
+   $a = 4;
+} else {
+   $a = 7;
+}</pre>
+<p>
+                    O PHP permite, em certas circunstâncias, que as instruções sejam escritas sem as chaves.
+                    O padrão de código não as diferencia, pois todas instruções "if", "elseif" ou "else"
+                    devem utilizar as chaves.
+                </p>
+<p>
+                    O uso do construtor "elseif" é permitido mas altamente desencorajado em favor da 
+                    combinação "else if".
+                </p>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.coding-style.control-statements.switch"></a>A.4.6.2. Switch</h4></div></div></div>
+<p>
+                    Instruções de controle escritas com o construtor "switch" devem ter um espaço simples antes
+                    do parêntese de abertura da instrução condicional e um espaço simples depois do parêntese 
+                    de fechamento.
+                </p>
+<p>
+                    Todo conteúdo da instrução "switch" deve ser indentado com quatro espaços. O conteúdo
+                    abaixo de cada instrução "case" deve ser indentado com quatro espaços adicionais.
+                </p>
+<pre class="programlisting">
+switch ($numPeople) {
+    case 1:
+        break;
+
+    case 2:
+        break;
+
+    default:
+        break;
+}</pre>
+<p>
+                    O construtor <code class="code">default</code> jamais pode ser omitido da instrução <code class="code">switch</code>.
+                </p>
+<p>
+                    <span class="emphasis"><em>NOTA:</em></span> Algumas vezes é útil escrever uma instrução <code class="code">case</code> que entra no próximo
+                    case sem incluir um <code class="code">break</code> ou <code class="code">return</code>. Para distinguir aqueles cases dos bugs, 
+                    qualquer instrução <code class="code">case</code> onde <code class="code">break</code> ou <code class="code">return</code> são omitidos deve
+                    conter o comentário "// break intentionally omitted".
+                </p>
+</div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standards.inline-documentation"></a>A.4.7. Documentação Inline </h3></div></div></div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.documentation-format"></a>A.4.7.1. Formato da Documentação</h4></div></div></div>
+<p>
+                    Todos blocos de documentação ("dockblocks") devem ser compatíveis com o formato do phpDocumentor.
+                    A descrição do formato do phpDocumentor está além do escopo deste documento.
+                    Para maiores informações, visite: <a href="http://phpdoc.org/" target="_top">http://phpdoc.org"&gt;</a>
+                </p>
+<p>
+                    Todo código fonte escrito para o Framework Zend ou que trabalhe com o framework deve conter
+                    um bloco de documentação em nível de arquivo no topo de cada arquivo e um bloco de documentação
+                    em nível de classe imediatamente acima de cada classe. Abaixo seguem exemplos destes blocos de 
+                    documentação:
+                </p>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.files"></a>A.4.7.2. Arquivos</h4></div></div></div>
+<p>
+                    Cada arquivo que contenha código PHP deve ter um bloco de cabeçalho no topo do arquivo que
+                    contenha, no mínimo, estas tags do phpDocumentor:
+
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Short description for file
+ *
+ * Long description for file (if any)...
+ *
+ * LICENSE: Some license information
+ *
+ * @copyright  2005 Zend Technologies
+ * @license    http://www.zend.com/license/3_0.txt   PHP License 3.0
+ * @version    CVS: $Id:$
+ * @link       http://dev.zend.com/package/PackageName
+ * @since      File available since Release 1.2.0
+*/</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.classes"></a>A.4.7.3. Classes</h4></div></div></div>
+<p>
+                    Toda classe deve ter um bloco de documentação que contenha, no mínimo, as seguintes 
+                    tags do phpDocumentor:
+
+                    </p>
+<pre class="programlisting">
+/**
+ * Short description for class
+ *
+ * Long description for class (if any)...
+ *
+ * @copyright  2005 Zend Technologies
+ * @license    http://www.zend.com/license/3_0.txt   PHP License 3.0
+ * @version    Release: @package_version@
+ * @link       http://dev.zend.com/package/PackageName
+ * @since      Class available since Release 1.2.0
+ * @deprecated Class deprecated in Release 2.0.0
+ */</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.functions"></a>A.4.7.4. Funções</h4></div></div></div>
+<p>
+                Toda função, incluindo métodos de objetos, deve ter um bloco de documentação 
+                que contenha, no mínimo, as seguintes tags:
+
+                    </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Descrição da função</p></li>
+<li><p>Todos argumentos</p></li>
+<li><p>Todos os possíveis valores de retorno</p></li>
+</ul></div>
+<p>
+                </p>
+<p>
+                    Não é necessário usar a tag "@access" pois o nível de acesso é conhecido através 
+                    do construtor "public", "private", ou "protected" usado para declarar a função.
+                </p>
+<p>
+                    Se uma função/método pode gerar uma excessão, use @throws:
+
+                    </p>
+<pre class="programlisting">
+@throws exceptionclass [description]
+</pre>
+<p>
+                </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="coding-standard.naming-conventions.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="coding-standard.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="copyrights.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">A.3. Convenções de Nomes </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> Apêndice B. Informação de Direitos Autorais</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

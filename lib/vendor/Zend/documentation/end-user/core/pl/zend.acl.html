@@ -1,0 +1,417 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Rozdział 2. Zend_Acl</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="index.html" title="Przewodnik Programisty">
+<link rel="prev" href="zend.initregistry.html" title="1.9. Zend::initRegistry($registry = 'Zend_Registry')">
+<link rel="next" href="zend.acl.refining.html" title="2.2. Analiza kontroli dostępu">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="section" href="zend.acl.html#zend.acl.introduction" title="2.1. Wprowadzenie">
+<link rel="section" href="zend.acl.refining.html" title="2.2. Analiza kontroli dostępu">
+<link rel="section" href="zend.acl.advanced.html" title="2.3. Zaawansowane użycie">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Rozdział 2. Zend_Acl</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.initregistry.html">Poprzedni</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.acl.refining.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="pl">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.acl"></a>Rozdział 2. Zend_Acl</h2></div></div></div>
+<div class="toc">
+<p><b>Spis treści</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.acl.html#zend.acl.introduction">2.1. Wprowadzenie</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.resources">2.1.1. O zasobach</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.roles">2.1.2. O rolach</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.creating">2.1.3. Tworzenie list kontroli dostępu (ACL)</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.role_registry">2.1.4. Rejestrowanie ról</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.defining">2.1.5. Definiowanie kontroli dostępu</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.querying">2.1.6. Zapytania ACL</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.acl.refining.html">2.2. Analiza kontroli dostępu</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.refining.html#zend.acl.refining.precise">2.2.1. Precyzyjna kontrola dostępu</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.refining.html#zend.acl.refining.removing">2.2.2. Usuwanie kontroli dostępu</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.acl.advanced.html">2.3. Zaawansowane użycie</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.advanced.html#zend.acl.advanced.storing">2.3.1. Trwałe przechowywanie danych ACL</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.advanced.html#zend.acl.advanced.assertions">2.3.2. Tworzenie warunkowych reguł ACL z zapewnieniami</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.acl.introduction"></a>2.1. Wprowadzenie</h2></div></div></div>
+<p>
+        Zend_Acl zapewnia lekką i elastyczną obsługę funkcjonalności list 
+        kontroli dostępu (ACL) oraz zarządzania uprawnieniami. Ogólnie rzecz 
+        biorąc, aplikacja może używać takiej funkcjonalności do kontrolowania
+        dostępu do określonych chronionych obiektów przez inne obiekty.
+    </p>
+<p>
+        Dla celów tej dokumentacji,
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <span class="strong"><strong>Zasób</strong></span> jest obiektem do 
+                    którego dostęp jest kontrolowany.
+                </p></li>
+<li><p>
+                    <span class="strong"><strong>Rola</strong></span> jest obiektem, który
+                    może zażądać dostępu do Zasobu.
+                </p></li>
+</ul></div>
+<p>
+
+        Przystępnie mówiąc, <span class="strong"><strong>role żądają dostępu do zasobów</strong></span>.
+        Na przykład, jeśli osoba zażąda dostępu do samochodu, to ta osoba jest
+        rolą, a samochód jest zasobem, więc dostęp do samochodu jest kontrolowany.
+    </p>
+<p>
+        Dzięki określeniu i użyciu list kontroli dostępu (ACL), aplikacja może
+        kontrolować to, w jaki sposób żądające obiekty (role) mają przydzielany
+        dostęp do chronionych obiektów (zasobów).
+    </p>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.resources"></a>2.1.1. O zasobach</h3></div></div></div>
+<p>
+            W Zend_Acl, tworzenie zasobu jest bardzo proste. Zend_Acl zapewnia
+            interfejs <code class="code">Zend_Acl_Resource_Interface</code> aby ułatwić
+            programistom tworzenie zasobów. Klasa jedynie implementuje ten
+            interfejs, który składa się z jednej metody, <code class="code">getResourceId()</code>, 
+            dzięki ktorej Zend_Acl wie, że obiekt jest zasobem. Dodatkowo w 
+            Zend_Acl dołączona jest klasa <code class="code">Zend_Acl_Resource</code>, 
+            która jest podstawową implementacją zasobu do użycia przez 
+            programistów gdy jest to potrzebne.
+        </p>
+<p>
+            Zend_Acl zapewnia drzewiastą strukturę, w której mogą być dodawane 
+            zasoby (lub inaczej "obszary będące pod kontrolą"). Dzięki temu, że
+            zasoby są przechowywane w strukturze drzewiastej, mogą być one
+            organizowane od ogólnych (od korzeni) do szczegółowych (do gałęzi).             
+            Zapytanie do konkretnego zasobu automatycznie przeszuka całą  
+            hierarchię zasobów, dla reguł przypisanych do przodka zasobów, 
+            pozwalając na proste dziedziczenie reguł. Na przykład, jeśli 
+            domyślna reguła ma być zastosowana do każdego budynku w mieście, 
+            wystarczy przypisać regułę do miasta, zamiast przypisywać regułę to 
+            każdego z budynków z osobna. Niektóre z budynków mogą wymagać 
+            wyjątków od tej reguły i jest to osiągane w łatwy sposób w Zend_Acl
+            poprzez przypisanie takiej wyjątkowej reguły dla każdego z budynków
+            wymagających wyjątku od reguły. Zasób może dziedziczyć tylko od 
+            jednego zasobu rodzica, a ten rodzic może także dziedziczyć tylko od 
+            jednego zasobu itd.
+        </p>
+<p>
+            Zend_Acl także obsługuje przywileje dla zasobów (np., "create", 
+            "read", "update", "delete") i programista może przypisać reguły,
+            które mają zastosowanie do wszystkich przywilejów, lub dla 
+            konkretnych przywilejów dla zasobu.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.roles"></a>2.1.2. O rolach</h3></div></div></div>
+<p>
+            Tak jak tworzenie zasobów, tworzenie ról także jest bardzo proste.
+            Zend_Acl zapewnia interfejs <code class="code">Zend_Acl_Role_Interface</code> 
+            w celu ułatwienia programistom tworzenia ról. Klasa jedynie implementuje ten
+            interfejs, który składa się z jednej metody, <code class="code">getRoleId()</code>, 
+            dzięki ktorej Zend_Acl wie, że obiekt jest rolą. Dodatkowo w 
+            Zend_Acl dołączona jest klasa <code class="code">Zend_Acl_Role</code>, 
+            która jest podstawową implementacją roli do użycia przez 
+            programistów gdy jest to potrzebne.
+        </p>
+<p>
+            W Zend_Acl rola może dziedziczyć z jednej lub więcej ról. Jest to po
+            to, aby możliwe było dziedziczenie zasad dla ról. Na przykład rola, 
+            użytkownik "sally", może dziedziczyć z jednej lub więcej ról 
+            rodziców, takich jak na przykład "editor" oraz "administrator". 
+            Programista może przypisać reguły dla ról "editor" oraz 
+            "administrator" osobno, a "sally" będzie dziedziczyć te reguły od 
+            obu ról, bez konieczności przypisania reguł bezpośrednio dla 
+            "sally".
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Notatka</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Przez to, że Zend_Acl obsługuje dziedziczenie ról od wielu 
+                innych ról i możliwe jest wystąpienie konfliktów, konieczny
+                jest jednoznaczny sposób rozwiązywania takich konfliktów. 
+                Zend_Acl rozwiązuje takie potencjalne konflikty zakładając, że 
+                najbardziej dziedziczona rola, czyli ta najmocniej zagłębiona, 
+                ma najwyższy priorytet. Więc gdy znaleziona zostanie reguła dla 
+                roli - rodzica, zaczynając od najbardziej zagnieżdżonej roli, 
+                żadne inne wyższe role nie będą wzięte pod uwagę, ponieważ 
+                reguła o najwyższym priorytecie została już osiągnięta.
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.creating"></a>2.1.3. Tworzenie list kontroli dostępu (ACL)</h3></div></div></div>
+<p>
+            ACL może reprezentować dowolny zestaw fizycznych lub wirtualnych 
+            obiektów których potrzebujesz. Dla celów prezentacji utworzymy ACL
+            dla prostego Systemu Zarządzania Treścią (Content Management System 
+            - CMS), w którym różnymi obszarami zarządza kilka poziomów grup. 
+            Aby utworzyć nowy obiekt ACL, utwórzmy instancję ACL bez parametrów:
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl.php';
+
+$acl = new Zend_Acl();</pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Notatka</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Zend_Acl domyślnie jest implementacją "whitelist", co oznacza, że
+                o ile programista nie określił tego inaczej, Zend_Acl 
+                zabrania dostępu każdej z ról do do wszystkich przywilejów dla 
+                wszystkich zasobów.
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.role_registry"></a>2.1.4. Rejestrowanie ról</h3></div></div></div>
+<p>
+            System Zarządzania Treścią prawie zawsze potrzebuje hierarchii 
+            uprawnień aby określić możliwości jego użytkowników.
+            Może być tu grupa 'Guest' aby pozwolić na limitowany dostęp 
+            dla celów demonstracyjnych, grupa 'Staff' dla większości 
+            użytkowników aplikacji CMS, którzy przeprowadzają najczęstsze 
+            codzienne operacje, grupa 'Editor' dla tych odpowiedzialnych za 
+            publikowanie, przeglądanie, archiwizowanie i usuwanie zawartości i 
+            ostatecznie grupa 'Administrator', której zadania obejmują zarówno 
+            zadania wszystkich innych grup, jak i zarządzanie ważnymi 
+            informacjami, zarządzanie użytkownikami, konfigurację baz danych 
+            oraz przeprowadzanie kopii zapasowych/eksportu danych.
+            Ten zestaw pozwoleń może być reprezentowany w rejestrze ról, 
+            pozwalając każdej grupie dziedziczyć uprawnienia z grup rodziców, 
+            a także umożliwiając każdej z grup posiadanie własnych unikalnych 
+            uprawnień. Uprawnienia mogą być wyrażone w taki sposób:
+        </p>
+<div class="table">
+<a name="id4733587"></a><p class="title"><b>Tabela 2.1. Kontrola dostępu dla przykładowego CMS</b></p>
+<table summary="Kontrola dostępu dla przykładowego CMS" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nazwa</th>
+<th>Unikalne uprawnienia</th>
+<th>Dzidziczy uprawnienia od</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Guest</td>
+<td>View</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Staff</td>
+<td>Edit, Submit, Revise</td>
+<td>Guest</td>
+</tr>
+<tr>
+<td>Editor</td>
+<td>Publish, Archive, Delete</td>
+<td>Staff</td>
+</tr>
+<tr>
+<td>Administrator</td>
+<td>(posiada cały dostęp)</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+            W tym przykładzie użyty jest obiekt <code class="code">Zend_Acl_Role</code>, ale
+            dozwolony jest dowolny obiekt, który implementuje interfejs 
+            <code class="code">Zend_Acl_Role_Interface</code>. Te grupy mogą być dodane
+            do rejestru ról w taki sposób:
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl.php';
+
+$acl = new Zend_Acl();
+
+// Dodajemy grupy do rejestru ról używając obiektu Zend_Acl_Role
+require_once 'Zend/Acl/Role.php';
+
+// Grupa guest nie dziedziczy kontroli dostępu
+$roleGuest = new Zend_Acl_Role('guest');
+$acl-&gt;addRole($roleGuest);
+
+// Grupa staff dzidziczy od grupy guest
+$acl-&gt;addRole(new Zend_Acl_Role('staff'), $roleGuest);
+
+/* alternatywnie, powyższe mogłoby wyglądać tak:
+$roleGuest = $acl-&gt;addRole(new Zend_Acl_Role('staff'), 'guest');
+//*/
+
+// Grupa editor dzidziczy od grupy staff
+$acl-&gt;addRole(new Zend_Acl_Role('editor'), 'staff');
+
+// Administrator nie dziedziczy kontroli dostępu
+$acl-&gt;addRole(new Zend_Acl_Role('administrator'));</pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.defining"></a>2.1.5. Definiowanie kontroli dostępu</h3></div></div></div>
+<p>
+            Teraz gdy ACL zawiera stosowne role, możemy ustalić reguły, które
+            definiują w jaki sposób role mają uzyskiwać dostęp do zasobów.
+            Mogłeś zauważyć, że nie zdefiniowaliśmy w tym przykładzie żadnych 
+            konkretnych zasobów, co jest uproszczone w celu zilustrowania, że 
+            reguły mają zastosowanie do wszystkich zasobów. Zend_Acl zapewnia 
+            implementację dzięki której reguły mogą być przypisane od ogólnych 
+            do szczegółowych, minimalizując ilość potrzebnych reguł, ponieważ 
+            zasoby oraz role dziedziczą reguły, które są definiowane dla ich 
+            przodków.
+        </p>
+<p>
+            Możemy więc zdefiniować rozsądny kompleksowy zestaw reguł przy 
+            minimalnej ilości kodu. Aby zastosować podstawowe uprawnienia 
+            zdefiniowane wyżej zrób tak:
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl.php';
+
+$acl = new Zend_Acl();
+
+require_once 'Zend/Acl/Role.php';
+
+$roleGuest = new Zend_Acl_Role('guest');
+$acl-&gt;addRole($roleGuest);
+$acl-&gt;addRole(new Zend_Acl_Role('staff'), $roleGuest);
+$acl-&gt;addRole(new Zend_Acl_Role('editor'), 'staff');
+$acl-&gt;addRole(new Zend_Acl_Role('administrator'));
+
+// Grupa guest może tylko oglądać zawartość
+$acl-&gt;allow($roleGuest, null, 'view');
+
+/* alternatywnie, powyższe mogłoby wyglądać tak:
+$acl-&gt;allow('guest', null, 'view');
+//*/
+
+// Grupa staff dzidziczy uprawnienia view od grupy guest, ale także potrzebuje dodatkowych uprawnień
+$acl-&gt;allow('staff', null, array('edit', 'submit', 'revise'));
+
+// Grupa editor dziedziczy uprawnienia view, edit, submit, oraz revise od grupy staff,
+// ale także potrzebuje dodatkowych uprawnień
+$acl-&gt;allow('editor', null, array('publish', 'archive', 'delete'));
+
+// Administrator nie dziedziczy niczego, ale ma dostęp do wszystkich zasobów
+$acl-&gt;allow('administrator');</pre>
+<p>
+            Wartości <code class="code">null</code> w powyższych wywołaniach metod 
+            <code class="code">allow()</code> oznaczają, że reguły dotyczą wszystkich zasobów.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.introduction.querying"></a>2.1.6. Zapytania ACL</h3></div></div></div>
+<p>
+            Posiadamy teraz elastyczne ACL, ktore mogą być użyte do określenia,
+            czy żądająca osoba posiada uprawnienia do przeprowadzenia określonej
+            akcji w aplikacji web. Przeprowadzenie zapytań jest bardzo proste 
+            poprzez użycie metody <code class="code">isAllowed()</code>:
+        </p>
+<pre class="programlisting">&lt;?php
+echo $acl-&gt;isAllowed('guest', null, 'view') ?
+     "allowed" : "denied"; // dozwolone
+
+echo $acl-&gt;isAllowed('staff', null, 'publish') ?
+     "allowed" : "denied"; // zabronione
+
+echo $acl-&gt;isAllowed('staff', null, 'revise') ?
+     "allowed" : "denied"; // dozwolone
+
+echo $acl-&gt;isAllowed('editor', null, 'view') ?
+     "allowed" : "denied"; // dozwolone ponieważ jest dziedziczone od gościa 
+
+echo $acl-&gt;isAllowed('editor', null, 'update') ?
+     "allowed" : "denied"; // zabronione ponieważ nie ma reguły dla 'update'
+
+echo $acl-&gt;isAllowed('administrator', null, 'view') ?
+     "allowed" : "denied"; // dozwolone ponieważ administrator ma wszystkie uprawnienia
+
+echo $acl-&gt;isAllowed('administrator') ?
+     "allowed" : "denied"; // dozwolone ponieważ administrator ma wszystkie uprawnienia
+
+echo $acl-&gt;isAllowed('administrator', null, 'update') ?
+     "allowed" : "denied"; // dozwolone ponieważ administrator ma wszystkie uprawnienia</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.initregistry.html">Poprzedni</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.acl.refining.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">1.9. Zend::initRegistry($registry = 'Zend_Registry') </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 2.2. Analiza kontroli dostępu</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

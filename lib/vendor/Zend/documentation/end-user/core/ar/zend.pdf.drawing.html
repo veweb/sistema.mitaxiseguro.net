@@ -1,0 +1,837 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>20.5. Drawing.</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="prev" href="zend.pdf.pages.html" title="20.4. Document pages.">
+<link rel="next" href="zend.pdf.usage.html" title="20.6. Zend_Pdf module usage example.">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.geometry" title="20.5.1. Geometry.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.color" title="20.5.2. Colors.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.shape-drawing" title="20.5.3. Shape Drawing.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.text-drawing" title="20.5.4. Text Drawing.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.using-fonts" title="20.5.5. Using fonts.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.image-drawing" title="20.5.6. Image Drawing.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.line-drawing-style" title="20.5.7. Line drawing style.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.fill-style" title="20.5.8. Fill style.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.rotations" title="20.5.9. Rotations.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.save-restore" title="20.5.10. Save/restore graphics state.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.clipping" title="20.5.11. Clipping draw area.">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.styles" title="20.5.12. Styles.">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">20.5. Drawing.</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.pdf.pages.html">السابق</a> </td>
+<th width="60%" align="center">فصل 20. Zend_Pdf</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.pdf.usage.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.pdf.drawing"></a>20.5. Drawing.</h2></div></div></div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.geometry"></a>20.5.1. Geometry.</h3></div></div></div>
+<p>
+        PDF uses the same geometry as PostScript. It starts from bottom-left corner of page
+        and by default is measured in points (1/72 of an inch).
+        </p>
+<p>
+        Page size can be retrieved from a page object:
+        </p>
+<p>
+            </p>
+<pre class="programlisting">
+$width  = $pdfPage-&gt;getWidth();
+$height = $pdfPage-&gt;getHeight();
+            </pre>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.color"></a>20.5.2. Colors.</h3></div></div></div>
+<p>
+        PDF has a powerful capabilities for colors representation. Zend_Pdf module supports Gray Scale,
+        RGB and CMYK color spaces. Any of them can be used in any place, where <code class="code">Zend_Pdf_Color</code>
+        object is required. <code class="code">Zend_Pdf_Color_GrayScale</code>, <code class="code">Zend_Pdf_Color_RGB</code> and
+        <code class="code">Zend_Pdf_Color_CMYK</code> classes provide this functionality:
+        </p>
+<pre class="programlisting">
+// $grayLevel (float number). 0.0 (black) - 1.0 (white)
+$color1 = new Zend_Pdf_Color_GrayScale($grayLevel);
+
+// $r, $g, $b (float numbers). 0.0 (minimum intensity) - 1.0 (maximum intensity)
+$color2 = new Zend_Pdf_Color_RGB($r, $g, $b);
+
+// $c, $m, $y, $k (float numbers). 0.0 (minimum intensity) - 1.0 (maximum intensity)
+$color3 = new Zend_Pdf_Color_CMYK($c, $m, $y, $k);
+        </pre>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.shape-drawing"></a>20.5.3. Shape Drawing.</h3></div></div></div>
+<p>
+        All drawing operations can be done in a context of PDF page.
+        </p>
+<p>
+        <code class="code">Zend_Pdf_Page</code> class provides a set of drawing primitives:
+        </p>
+<pre class="programlisting">
+/**
+ * Draw a line from x1,y1 to x2,y2.
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ */
+public function drawLine($x1, $y1, $x2, $y2);
+        </pre>
+<pre class="programlisting">
+/**
+ * Draw a rectangle.
+ *
+ * Fill types:
+ * Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE - fill rectangle and stroke (default)
+ * Zend_Pdf_Page::SHAPE_DRAW_STROKE      - stroke rectangle
+ * Zend_Pdf_Page::SHAPE_DRAW_FILL        - fill rectangle
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ * @param integer $fillType
+ */
+public function drawRectangle($x1, $y1, $x2, $y2, $fillType = Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE);
+        </pre>
+<pre class="programlisting">
+/**
+ * Draw a polygon.
+ *
+ * If $fillType is Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE or Zend_Pdf_Page::SHAPE_DRAW_FILL,
+ * then polygon is automatically closed.
+ * See detailed description of these methods in a PDF documentation
+ * (section 4.4.2 Path painting Operators, Filling)
+ *
+ * @param array $x  - array of float (the X co-ordinates of the vertices)
+ * @param array $y  - array of float (the Y co-ordinates of the vertices)
+ * @param integer $fillType
+ * @param integer $fillMethod
+ */
+public function drawPolygon($x, $y,
+                            $fillType = Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE,
+                            $fillMethod = Zend_Pdf_Page::FILL_METHOD_NON_ZERO_WINDING);
+        </pre>
+<pre class="programlisting">
+/**
+ * Draw a circle centered on x, y with a radius of radius.
+ *
+ * Angles are specified in radians
+ *
+ * Method signatures:
+ * drawCircle($x, $y, $radius);
+ * drawCircle($x, $y, $radius, $fillType);
+ * drawCircle($x, $y, $radius, $startAngle, $endAngle);
+ * drawCircle($x, $y, $radius, $startAngle, $endAngle, $fillType);
+ *
+ *
+ * It's not a really circle, because PDF supports only cubic Bezier curves.
+ * But very good approximation.
+ * It differs from a real circle on a maximum 0.00026 radiuses
+ * (at PI/8, 3*PI/8, 5*PI/8, 7*PI/8, 9*PI/8, 11*PI/8, 13*PI/8 and 15*PI/8 angles).
+ * At 0, PI/4, PI/2, 3*PI/4, PI, 5*PI/4, 3*PI/2 and 7*PI/4 it's exactly a tangent to a circle.
+ *
+ * @param float $x
+ * @param float $y
+ * @param float $radius
+ * @param mixed $param4
+ * @param mixed $param5
+ * @param mixed $param6
+ */
+public function  drawCircle($x, $y, $radius, $param4 = null, $param5 = null, $param6 = null);
+        </pre>
+<pre class="programlisting">
+/**
+ * Draw an ellipse inside the specified rectangle.
+ *
+ * Method signatures:
+ * drawEllipse($x1, $y1, $x2, $y2);
+ * drawEllipse($x1, $y1, $x2, $y2, $fillType);
+ * drawEllipse($x1, $y1, $x2, $y2, $startAngle, $endAngle);
+ * drawEllipse($x1, $y1, $x2, $y2, $startAngle, $endAngle, $fillType);
+ *
+ * Angles are specified in radians
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ * @param mixed $param5
+ * @param mixed $param6
+ * @param mixed $param7
+ */
+public function drawEllipse($x1, $y1, $x2, $y2, $param5 = null, $param6 = null, $param7 = null);
+        </pre>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.text-drawing"></a>20.5.4. Text Drawing.</h3></div></div></div>
+<p>
+        Text drawing operations also exist in the context of a PDF page. You can draw a single line of text
+        at any position on the page by supplying the x and y coordinates of the baseline. Current font and
+        current font size are used for text drawing operations (see detailed description below).
+        </p>
+<pre class="programlisting">
+/**
+ * Draw a line of text at the specified position.
+ *
+ * @param string $text
+ * @param float $x
+ * @param float $y
+ * @param string $charEncoding (optional) Character encoding of source text.
+ *   Defaults to current locale.
+ * @throws Zend_Pdf_Exception
+ */
+public function drawText($text, $x, $y, $charEncoding = '');
+        </pre>
+<div class="example">
+<a name="id4863637"></a><p class="title"><b>مثال 20.5. Draw a string on the page.</b></p>
+<pre class="programlisting">&lt;?php
+...
+$pdfPage-&gt;drawText('Hello world!', 72, 720);
+...
+?&gt;
+            </pre>
+</div>
+<p>
+        By default, text strings are interpreted using the character encoding method of the current locale. If
+        you have a string that uses a different encoding method (such as a UTF-8 string read from a file on disk,
+        or a MacRoman string obtained from a legacy database), you can indicate the character encoding at draw
+        time and Zend_Pdf will handle the conversion for you. You can supply source strings in any encoding 
+        method supported by PHP's <code class="code"><a href="http://www.php.net/manual/function.iconv.php" target="_top">iconv()</a></code> function:
+        </p>
+<div class="example">
+<a name="id4863739"></a><p class="title"><b>مثال 20.6. Draw a UTF-8-encoded string on the page.</b></p>
+<pre class="programlisting">&lt;?php
+...
+// Read a UTF-8-encoded string from disk
+$unicodeString = fread($fp, 1024);
+
+// Draw the string on the page
+$pdfPage-&gt;drawText($unicodeString, 72, 720, 'UTF-8');
+...
+?&gt;
+            </pre>
+</div>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.using-fonts"></a>20.5.5. Using fonts.</h3></div></div></div>
+<p>
+        <code class="code">Zend_Pdf_Page::drawText()</code> uses the page's current font and font size, which is set with
+        the <code class="code">Zend_Pdf_Page::setFont()</code> method:
+        </p>
+<pre class="programlisting">
+/**
+ * Set current font.
+ *
+ * @param Zend_Pdf_Resource_Font $font
+ * @param float $fontSize
+ */
+public function setFont(Zend_Pdf_Resource_Font $font, $fontSize);
+        </pre>
+<p>
+        PDF documents support PostScript Type 1 and TrueType fonts, as well as two specialized PDF types, Type 3
+        and composite fonts. There are also 14 standard Type 1 fonts built-in to every PDF viewer: Courier (4
+        styles), Helvetica (4 styles), Times (4 styles), Symbol, and Zapf Dingbats.
+        </p>
+<p>
+        Zend_Pdf currently supports the standard 14 PDF fonts as well as your own custom TrueType fonts. Font
+        objects are obtained via one of two factory methods: <code class="code">Zend_Pdf_Font::fontWithName($fontName)</code>
+        for the standard 14 PDF fonts or <code class="code">Zend_Pdf_Font::fontWithPath($filePath)</code> for custom fonts.
+        </p>
+<div class="example">
+<a name="id4863822"></a><p class="title"><b>مثال 20.7. Create a standard font.</b></p>
+<pre class="programlisting">&lt;?php
+...
+// Create new font
+$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+
+// Apply font
+$pdfPage-&gt;setFont($font, 36);
+...
+?&gt;
+            </pre>
+</div>
+<p>
+        Constants for the standard 14 PDF font names are defined in the <code class="code">Zend_Pdf_Font</code> class:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Zend_Pdf_Font::FONT_COURIER</p></li>
+<li><p>Zend_Pdf_Font::FONT_COURIER_BOLD</p></li>
+<li><p>Zend_Pdf_Font::FONT_COURIER_ITALIC</p></li>
+<li><p>Zend_Pdf_Font::FONT_COURIER_BOLD_ITALIC</p></li>
+<li><p>Zend_Pdf_Font::FONT_TIMES</p></li>
+<li><p>Zend_Pdf_Font::FONT_TIMES_BOLD</p></li>
+<li><p>Zend_Pdf_Font::FONT_TIMES_ITALIC</p></li>
+<li><p>Zend_Pdf_Font::FONT_TIMES_BOLD_ITALIC</p></li>
+<li><p>Zend_Pdf_Font::FONT_HELVETICA</p></li>
+<li><p>Zend_Pdf_Font::FONT_HELVETICA_BOLD</p></li>
+<li><p>Zend_Pdf_Font::FONT_HELVETICA_ITALIC</p></li>
+<li><p>Zend_Pdf_Font::FONT_HELVETICA_BOLD_ITALIC</p></li>
+<li><p>Zend_Pdf_Font::FONT_SYMBOL</p></li>
+<li><p>Zend_Pdf_Font::FONT_ZAPFDINGBATS</p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+        You can also use any individual TrueType font (which usually has a '.ttf' extension) or an
+        OpenType font ('.otf' extension) if it contains TrueType outlines. Currently unsupported,
+        but planned for a future release are Mac OS X .dfont files and Microsoft TrueType Collection
+        ('.ttc' extension) files.
+        </p>
+<p>
+        To use a TrueType font, you must provide the full file path to the font program. If the font
+        cannot be read for some reason, or if it is not a TrueType font, the factory method will throw
+        an exception:
+        </p>
+<div class="example">
+<a name="id4863970"></a><p class="title"><b>مثال 20.8. Create a TrueType font.</b></p>
+<pre class="programlisting">&lt;?php
+...
+// Create new font
+$goodDogCoolFont = Zend_Pdf_Font::fontWithPath('/path/to/GOODDC__.TTF');
+
+// Apply font
+$pdfPage-&gt;setFont($goodDogCoolFont, 36);
+...
+?&gt;
+            </pre>
+</div>
+<p>
+        By default, custom fonts will be embedded in the resulting PDF document. This allows recipients
+        to view the page as intended, even if they don't have the proper fonts installed on their system.
+        If you are concerned about file size, you can request that the font program not be embedded by
+        passing a 'do not embed' option to the factory method:
+        </p>
+<div class="example">
+<a name="id4864000"></a><p class="title"><b>مثال 20.9. Create a TrueType font, but do not embed it in the PDF document.</b></p>
+<pre class="programlisting">&lt;?php
+...
+// Create new font
+$goodDogCoolFont = Zend_Pdf_Font::fontWithPath('/path/to/GOODDC__.TTF',
+                                               Zend_Pdf_Font::EMBED_DONT_EMBED);
+
+// Apply font
+$pdfPage-&gt;setFont($goodDogCoolFont, 36);
+...
+?&gt;
+            </pre>
+</div>
+<p>
+        If the font program is not embedded but the recipient of the PDF file has the font installed on
+        their system, they will see the document as intended. If they do not have the correct font
+        installed, the PDF viewer application will do its best to synthesize a replacement.
+        </p>
+<p>
+        Some fonts have very specific licensing rules which prevent them from being embedded in PDF 
+        documents. So you are not caught off-guard by this, if you try to use a font that cannot be
+        embedded, the factory method will throw an exception.
+        </p>
+<p>
+        You can still use these fonts, but you must either pass the do not embed flag as described above,
+        or you can simply suppress the exception:
+        </p>
+<div class="example">
+<a name="id4864047"></a><p class="title"><b>مثال 20.10. Do not throw an exception for fonts that cannot be embeded.</b></p>
+<pre class="programlisting">&lt;?php
+...
+$font = Zend_Pdf_Font::fontWithPath('/path/to/unEmbeddableFont.ttf',
+                                    Zend_Pdf_Font::EMBED_SUPPRESS_EMBED_EXCEPTION);
+...
+?&gt;
+            </pre>
+</div>
+<p>
+        This suppression technique is preferred if you allow an end-user to choose their own fonts. Fonts
+        which can be embedded in the PDF document will be; those that cannot, won't.
+        </p>
+<p>
+        Font programs can be rather large, some reaching into the tens of megabytes. By default, all embedded
+        fonts are compressed using the Flate compression scheme, resulting in a space savings of 50% on average.
+        If, for some reason, you do not want to compress the font program, you can disable it with an option:
+        </p>
+<div class="example">
+<a name="id4864084"></a><p class="title"><b>مثال 20.11. Do not compress an embedded font.</b></p>
+<pre class="programlisting">&lt;?php
+...
+$font = Zend_Pdf_Font::fontWithPath('/path/to/someReallyBigFont.ttf',
+                                    Zend_Pdf_Font::EMBED_DONT_COMPRESS);
+...
+?&gt;
+            </pre>
+</div>
+<p>
+        Finally, when necessary, you can combine the embedding options by using the bitwise OR operator:
+        </p>
+<div class="example">
+<a name="id4864110"></a><p class="title"><b>مثال 20.12. Combining font embedding options.</b></p>
+<pre class="programlisting">&lt;?php
+...
+$font = Zend_Pdf_Font::fontWithPath($someUserSelectedFontPath,
+                                    (Zend_Pdf_Font::EMBED_SUPPRESS_EMBED_EXCEPTION |
+                                     Zend_Pdf_Font::EMBED_DONT_COMPRESS));
+...
+?&gt;
+            </pre>
+</div>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.image-drawing"></a>20.5.6. Image Drawing.</h3></div></div></div>
+<p>
+        <code class="code">Zend_Pdf_Page</code> class provides drawImage() method to draw image:
+        </p>
+<pre class="programlisting">
+/**
+ * Draw an image at the specified position on the page.
+ *
+ * @param Zend_Pdf_Image $image
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ */
+public function drawImage(Zend_Pdf_Image $image, $x1, $y1, $x2, $y2);
+        </pre>
+<p>
+        Image objects are represented by descendants of <code class="code">Zend_Pdf_Image</code> class.
+        </p>
+<p>
+        JPG, PNG and TIFF images are supported now:
+        </p>
+<div class="example">
+<a name="id4864182"></a><p class="title"><b>مثال 20.13. Image drawing.</b></p>
+<pre class="programlisting">&lt;?php
+...
+//Create image object directly (choose one)
+$image = new Zend_Pdf_Image_JPEG('my_image.jpg');
+$image = new Zend_Pdf_Image_TIFF('my_image.tiff');
+$image = new Zend_Pdf_Image_PNG('my_image.png');
+
+//or use the Zend_Pdf_ImageFactory to load the appropriate type
+$image = Zend_Pdf_ImageFactory::factory('my_image.jpg');
+
+$pdfPage-&gt;drawImage($image, 100, 100, 400, 300);
+...
+?&gt;
+            </pre>
+</div>
+<p>
+            <span class="emphasis"><em>Important! Zend_Pdf_Image_JPEG class requires PHP GD extension to be configured.</em></span>
+            <span class="emphasis"><em>Important! Zend_Pdf_Image_PNG class requires ZLIB extension to be configured to work with Alpha channel images.</em></span>
+        </p>
+<p>
+            Refer to the PHP documentation for detailed information
+            (<a href="http://www.php.net/manual/en/ref.image.php" target="_top">http://www.php.net/manual/en/ref.image.php</a>).
+            (<a href="http://www.php.net/manual/en/ref.zlib.php" target="_top">http://www.php.net/manual/en/ref.zlib.php</a>).
+        </p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.line-drawing-style"></a>20.5.7. Line drawing style.</h3></div></div></div>
+<p>
+        Line drawing style is defined by line width, line color and line dashing pattern.
+        All of this parameters can be assigned by <code class="code">Zend_Pdf_Page</code>
+        class methods:
+        </p>
+<pre class="programlisting">
+/** Set line color. */
+public function setLineColor(Zend_Pdf_Color $color);
+
+/** Set line width. */
+public function setLineWidth(float $width);
+
+/**
+ * Set line dashing pattern.
+ *
+ * Pattern is an array of floats: array(on_length, off_length, on_length, off_length, ...)
+ * Phase is shift from the beginning of line.
+ *
+ * @param array $pattern
+ * @param array $phase
+ */
+public function setLineDashingPattern($pattern, $phase = 0);
+        </pre>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.fill-style"></a>20.5.8. Fill style.</h3></div></div></div>
+<p>
+        <code class="code">Zend_Pdf_Page::drawRectangle()</code>, <code class="code">Zend_Pdf_Page::drawPoligon()</code>,
+        <code class="code">Zend_Pdf_Page::drawCircle()</code> and <code class="code">Zend_Pdf_Page::drawEllipse()</code> methods take
+        <code class="code">$fillType</code> argument as an optional parameter. It can be:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Zend_Pdf_Page::SHAPE_DRAW_STROKE - stroke shape</p></li>
+<li><p>Zend_Pdf_Page::SHAPE_DRAW_FILL - only fill shape</p></li>
+<li><p>Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE - fill and stroke (default behavior)</p></li>
+</ul></div>
+<p>
+        <code class="code">Zend_Pdf_Page::drawPoligon()</code> methods also takes an additional parameter
+        <code class="code">$fillMethod</code>:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>Zend_Pdf_Page::FILL_METHOD_NON_ZERO_WINDING (default behavior)</p>
+<p>
+                <em class="citetitle">PDF reference</em> describes this rule as follows:
+                </p>
+<div class="blockquote"><blockquote class="blockquote"><p>
+The nonzero winding number rule determines whether a given point is inside a
+path by conceptually drawing a ray from that point to infinity in any direction
+and then examining the places where a segment of the path crosses the ray. Starting
+with a count of 0, the rule adds 1 each time a path segment crosses the ray
+from left to right and subtracts 1 each time a segment crosses from right to left.
+After counting all the crossings, if the result is 0 then the point is outside the path;
+otherwise it is inside.
+
+Note: The method just described does not specify what to do if a path segment coincides
+with or is tangent to the chosen ray. Since the direction of the ray is arbitrary,
+the rule simply chooses a ray that does not encounter such problem intersections.
+For simple convex paths, the nonzero winding number rule defines the inside
+and outside as one would intuitively expect. The more interesting cases are those
+involving complex or self-intersecting paths like the ones shown in Figure 4.10
+(in a PDF Reference).
+
+For a path consisting of a five-pointed star, drawn with five connected straight
+line segments intersecting each other, the rule considers the inside to be the entire
+area enclosed by the star, including the pentagon in the center. For a path composed
+of two concentric circles, the areas enclosed by both circles are considered
+to be inside, provided that both are drawn in the same direction. If the circles are
+drawn in opposite directions, only the "doughnut" shape between them is inside,
+according to the rule; the "doughnut hole" is outside.
+                </p></blockquote></div>
+<p>
+            </p>
+</li>
+<li>
+<p>Zend_Pdf_Page::FILL_METHOD_EVEN_ODD</p>
+<p>
+                <em class="citetitle">PDF reference</em> describes this rule as follows:
+                </p>
+<div class="blockquote"><blockquote class="blockquote"><p>
+An alternative to the nonzero winding number rule is the even-odd rule. This rule
+determines the "insideness" of a point by drawing a ray from that point in any
+direction and simply counting the number of path segments that cross the ray,
+regardless of direction. If this number is odd, the point is inside; if even, the point
+is outside. This yields the same results as the nonzero winding number rule for
+paths with simple shapes, but produces different results for more complex
+shapes.
+
+Figure 4.11 (in a PDF Reference) shows the effects of applying the even-odd rule
+to complex paths. For the five-pointed star, the rule considers the triangular
+points to be inside the path, but not the pentagon in the center. For the two
+concentric circles, only the "doughnut" shape between the two circles is considered inside,
+regardless of the directions in which the circles are drawn.
+                    </p></blockquote></div>
+<p>
+            </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.rotations"></a>20.5.9. Rotations.</h3></div></div></div>
+<p>
+        PDF page can be rotated before applying any draw operation.
+        It can be done by <code class="code">Zend_Pdf_Page::rotate()</code> method:
+        </p>
+<pre class="programlisting">
+/**
+ * Rotate the page around ($x, $y) point by specified angle (in radians).
+ *
+ * @param float $angle
+ */
+public function rotate($x, $y, $angle);
+        </pre>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.save-restore"></a>20.5.10. Save/restore graphics state.</h3></div></div></div>
+<p>
+        At any time page graphics state (current font, font size, line color, fill color,
+        line style, page rotation, clip area) can be saved and then restored. Save operation puts
+        data to a graphics state stack, restore operation retrieves it from there.
+        </p>
+<p>
+        There are two methods in <code class="code">Zend_Pdf_Page</code> class for these operations:
+        </p>
+<pre class="programlisting">
+/**
+ * Save the graphics state of this page.
+ * This takes a snapshot of the currently applied style, position, clipping area and
+ * any rotation/translation/scaling that has been applied.
+ */
+public function saveGS();
+
+/**
+ * Restore the graphics state that was saved with the last call to saveGS().
+ */
+public function restoreGS();
+        </pre>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.clipping"></a>20.5.11. Clipping draw area.</h3></div></div></div>
+<p>
+        PDF and Zend_Pdf module support clipping of draw area.
+        Current clip area limits the regions of the page affected by painting operators. It's a whole page initially.
+        </p>
+<p>
+        <code class="code">Zend_Pdf_Page</code> class provides a set of methods for clipping operations.
+        </p>
+<pre class="programlisting">
+/**
+ * Intersect current clipping area with a rectangle.
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ */
+public function clipRectangle($x1, $y1, $x2, $y2);
+        </pre>
+<pre class="programlisting">
+/**
+ * Intersect current clipping area with a polygon.
+ *
+ * @param array $x  - array of float (the X co-ordinates of the vertices)
+ * @param array $y  - array of float (the Y co-ordinates of the vertices)
+ * @param integer $fillMethod
+ */
+public function clipPolygon($x, $y, $fillMethod = Zend_Pdf_Page::FILL_METHOD_NON_ZERO_WINDING);
+        </pre>
+<pre class="programlisting">
+/**
+ * Intersect current clipping area with a circle.
+ *
+ * @param float $x
+ * @param float $y
+ * @param float $radius
+ * @param float $startAngle
+ * @param float $endAngle
+ */
+public function clipCircle($x, $y, $radius, $startAngle = null, $endAngle = null);
+        </pre>
+<pre class="programlisting">
+/**
+ * Intersect current clipping area with an ellipse.
+ *
+ * Method signatures:
+ * drawEllipse($x1, $y1, $x2, $y2);
+ * drawEllipse($x1, $y1, $x2, $y2, $startAngle, $endAngle);
+ *
+ * @todo process special cases with $x2-$x1 == 0 or $y2-$y1 == 0
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ * @param float $startAngle
+ * @param float $endAngle
+ */
+public function clipEllipse($x1, $y1, $x2, $y2, $startAngle = null, $endAngle = null);
+        </pre>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.styles"></a>20.5.12. Styles.</h3></div></div></div>
+<p>
+        <code class="code">Zend_Pdf_Style</code> class provides styles functionality.
+        </p>
+<p>
+        Styles can be used to store a set of graphic state parameters and apply it to a PDF page by one operation:
+        </p>
+<pre class="programlisting">
+/**
+ * Set the style to use for future drawing operations on this page
+ *
+ * @param Zend_Pdf_Style $style
+ */
+public function setStyle(Zend_Pdf_Style $style);
+
+/**
+ * Return the style, applied to the page.
+ *
+ * @return Zend_Pdf_Style|null
+ */
+public function getStyle();
+        </pre>
+<p>
+        <code class="code">Zend_Pdf_Style</code> class provides a set of methods to set or get different graphics state parameters:
+        </p>
+<pre class="programlisting">
+/**
+ * Set line color.
+ *
+ * @param Zend_Pdf_Color $color
+ */
+public function setLineColor(Zend_Pdf_Color $color);
+        </pre>
+<pre class="programlisting">
+/**
+ * Get line color.
+ *
+ * @return Zend_Pdf_Color|null
+ */
+public function getLineColor();
+        </pre>
+<pre class="programlisting">
+/**
+ * Set line width.
+ *
+ * @param float $width
+ */
+public function setLineWidth($width);
+        </pre>
+<pre class="programlisting">
+/**
+ * Get line width.
+ *
+ * @return float
+ */
+public function getLineWidth();
+        </pre>
+<pre class="programlisting">
+/**
+ * Set line dashing pattern
+ *
+ * @param array $pattern
+ * @param float $phase
+ */
+public function setLineDashingPattern($pattern, $phase = 0);
+        </pre>
+<pre class="programlisting">
+/**
+ * Get line dashing pattern
+ *
+ * @return array
+ */
+public function getLineDashingPattern();
+        </pre>
+<pre class="programlisting">
+/**
+ * Get line dashing phase
+ *
+ * @return float
+ */
+public function getLineDashingPhase();
+        </pre>
+<pre class="programlisting">
+/**
+ * Set fill color.
+ *
+ * @param Zend_Pdf_Color $color
+ */
+public function setFillColor(Zend_Pdf_Color $color);
+        </pre>
+<pre class="programlisting">
+/**
+ * Get fill color.
+ *
+ * @return Zend_Pdf_Color|null
+ */
+public function getFillColor();
+        </pre>
+<pre class="programlisting">
+/**
+ * Set current font.
+ *
+ * @param Zend_Pdf_Resource_Font $font
+ * @param float $fontSize
+ */
+public function setFont(Zend_Pdf_Resource_Font $font, $fontSize);
+        </pre>
+<pre class="programlisting">
+/**
+ * Modify current font size
+ *
+ * @param float $fontSize
+ */
+public function setFontSize($fontSize);
+        </pre>
+<pre class="programlisting">
+/**
+ * Get current font.
+ *
+ * @return Zend_Pdf_Resource_Font $font
+ */
+public function getFont();
+        </pre>
+<pre class="programlisting">
+/**
+ * Get current font size
+ *
+ * @return float $fontSize
+ */
+public function getFontSize();
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.pdf.pages.html">السابق</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.pdf.html">أعلى</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.pdf.usage.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">20.4. Document pages. </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> 20.6. Zend_Pdf module usage example.</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,687 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>17.14. メールメッセージの読み込み</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="prev" href="zend.mail.smtp-secure.html" title="17.13. セキュアな SMTP トランスポート">
+<link rel="next" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.mail.read.html#zend.mail.read-example" title="17.14.1. Pop3 によるシンプルな読み込み例">
+<link rel="subsection" href="zend.mail.read.html#zend.mail.read-open-local" title="17.14.2. ローカルに保存されたメールのオープン">
+<link rel="subsection" href="zend.mail.read.html#zend.mail.read-open-remote" title="17.14.3. リモートに保存されたメールのオープン">
+<link rel="subsection" href="zend.mail.read.html#zend.mail.read-fetching" title="17.14.4. メッセージの取得およびシンプルなメソッド">
+<link rel="subsection" href="zend.mail.read.html#zend.mail.read-message" title="17.14.5. メッセージの操作">
+<link rel="subsection" href="zend.mail.read.html#zend.mail.read-folders" title="17.14.6. フォルダの使用法">
+<link rel="subsection" href="zend.mail.read.html#zend.mail.read-advanced" title="17.14.7. 高度な使用法">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">17.14. メールメッセージの読み込み</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mail.smtp-secure.html">前のページ</a> </td>
+<th width="60%" align="center">第17章 Zend_Mail</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.measure.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mail.read"></a>17.14. メールメッセージの読み込み</h2></div></div></div>
+<p>
+        <code class="code">Zend_Mail</code> を使用すると、
+        ローカルあるいはリモートに保存されたメールを読み込むことができます。
+        すべての保存形式に共通の基本 API では、メッセージ数を数えたり
+        メッセージを読み込んだりすることができます。また、
+        いくつかの保存形式では、特殊な追加機能も実装されています。
+        各保存形式で実装されている機能の概要については以下の表を参照ください。
+    </p>
+<div class="table">
+<a name="id4860858"></a><p class="title"><b>表 17.1. メール読み込み機能の概要</b></p>
+<table summary="メール読み込み機能の概要" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>機能</th>
+<th>Mbox</th>
+<th>Maildir</th>
+<th>Pop3</th>
+<th>IMAP</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>保存形式</td>
+<td>ローカル</td>
+<td>ローカル</td>
+<td>リモート</td>
+<td>リモート</td>
+</tr>
+<tr>
+<td>メッセージの取得</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>mime パートの取得</td>
+<td>エミュレート</td>
+<td>エミュレート</td>
+<td>エミュレート</td>
+<td>エミュレート</td>
+</tr>
+<tr>
+<td>フォルダ</td>
+<td>Yes </td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>メッセージ/フォルダ の作成</td>
+<td>No</td>
+<td>対応予定</td>
+<td>No</td>
+<td>対応予定</td>
+</tr>
+<tr>
+<td>フラグ</td>
+<td>No</td>
+<td>対応予定</td>
+<td>No</td>
+<td>対応予定</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mail.read-example"></a>17.14.1. Pop3 によるシンプルな読み込み例</h3></div></div></div>
+<pre class="programlisting">&lt;?php
+$mail = new Zend_Mail_Storage_Pop3(array('host'     =&gt; 'localhost',
+                                         'user'     =&gt; 'test',
+                                         'password' =&gt; 'test'));
+
+echo $mail-&gt;countMessages() . " messages found\n";
+foreach ($mail as $message) {
+    echo "Mail from '{$message-&gt;from}': {$message-&gt;subject}\n";
+}
+</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mail.read-open-local"></a>17.14.2. ローカルに保存されたメールのオープン</h3></div></div></div>
+<p>
+            ローカルのメール保存形式としては、Mbox および Maildir
+            をサポートしています。これらはともに、もっともシンプルな形式です。
+        </p>
+<p>
+            Mbox ファイルからメールを読み込むには、そのファイル名を
+            <code class="code">Zend_Mail_Storage_Mbox</code> のコンストラクタに渡すだけです。
+        </p>
+<pre class="programlisting">&lt;?php
+$mail = new Zend_Mail_Storage_Mbox(array('filename' =&gt; '/home/test/mail/inbox'));
+</pre>
+<p>Maildir もほぼ同様ですが、こちらはディレクトリ名を指定します。</p>
+<pre class="programlisting">&lt;?php
+$mail = new Zend_Mail_Storage_Maildir(array('dirname' =&gt; '/home/test/mail/'));
+</pre>
+<p>
+         どちらのコンストラクタも、もし読み込めなかった場合は
+         <code class="code">Zend_Mail_Exception</code> をスローします。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mail.read-open-remote"></a>17.14.3. リモートに保存されたメールのオープン</h3></div></div></div>
+<p>
+            リモートの保存形式としては、もっとも有名なふたつである
+            Pop3 と Imap をサポートしています。それぞれ、
+            ホスト名とユーザ名を指定して接続、ログインします。
+            デフォルトのパスワードは空の文字列で、デフォルトのポート番号は
+            そのプロトコルの RFC で指定されているものです。
+        </p>
+<pre class="programlisting">&lt;?php
+// Pop3 での接続
+$mail = new Zend_Mail_Storage_Pop3(array('host'     =&gt; 'example.com'
+                                         'user'     =&gt; 'test',
+                                         'password' =&gt; 'test'));
+
+// Imap での接続
+$mail = new Zend_Mail_Storage_Imap(array('host'     =&gt; 'example.com'
+                                         'user'     =&gt; 'test',
+                                         'password' =&gt; 'test'));
+
+// example for a none standard port
+$mail = new Zend_Mail_Storage_Pop3(array('host'     =&gt; 'example.com',
+                                         'port'     =&gt; 1120
+                                         'user'     =&gt; 'test',
+                                         'password' =&gt; 'test'));
+</pre>
+<p>
+            どちらの保存形式についても、SSL や TLS をサポートしています。
+            SSL を使用する場合、デフォルトのポートは RFC
+            にあるとおりに変更されます。
+        </p>
+<pre class="programlisting">&lt;?php
+// Zend_Mail_Storage_Pop3 の例ですが、Zend_Mail_Storage_Imap でも同様です
+
+// SSL を使用する場合はポートが異なります (デフォルトは Pop3 なら 995、Imap なら 993)
+$mail = new Zend_Mail_Storage_Pop3(array('host'     =&gt; 'example.com'
+                                         'user'     =&gt; 'test',
+                                         'password' =&gt; 'test',
+                                         'ssl'      =&gt; 'SSL'));
+
+// use TLS
+$mail = new Zend_Mail_Storage_Pop3(array('host'     =&gt; 'example.com'
+                                         'user'     =&gt; 'test',
+                                         'password' =&gt; 'test',
+                                         'ssl'      =&gt; 'TLS'));
+</pre>
+<p>
+            どちらのコンストラクタも、エラーの形式によって
+            <code class="code">Zend_Mail_Exception</code> あるいは <code class="code">Zend_Mail_Protocol_Exception</code>
+            (<code class="code">Zend_Mail_Exception</code> を継承したもの) をスローします。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mail.read-fetching"></a>17.14.4. メッセージの取得およびシンプルなメソッド</h3></div></div></div>
+<p>
+            ストレージをオープンしたら、メッセージを取得することができます。
+            メッセージを取得するには、メッセージ番号が必要です。
+            これは、最初のメッセージを 1 番とする連番となります。
+            メッセージを取得する際に使用するメソッドは <code class="code">getMessage()</code> です。
+        </p>
+<pre class="programlisting">&lt;?php
+$message = $mail-&gt;getMessage($messageNum);
+</pre>
+<p>
+            配列形式のアクセスもサポートしていますが、<code class="code">getMessage()</code>
+            に追加のパラメータを渡すことはサポートしていません。
+            なにも気にせずデフォルトでいいなら、このように使用します。
+        </p>
+<pre class="programlisting">&lt;?php
+$message = $mail[$messageNum];
+</pre>
+<p>全メッセージについて順に処理するために、Iterator インターフェイスも実装されています。</p>
+<pre class="programlisting">&lt;?php
+foreach ($mail as $messageNum =&gt; $message) {
+    // do stuff ...
+}
+</pre>
+<p>
+            保存されているメッセージ数を数えるには、
+            <code class="code">countMessages()</code> メソッドあるいは配列形式のアクセスを使用します。
+        </p>
+<pre class="programlisting">&lt;?php
+// メソッド
+$maxMessage = $mail-&gt;countMessages();
+
+// 配列形式のアクセス
+$maxMessage = count($mail);
+</pre>
+<p>
+            メールを削除するには、<code class="code">removeMessage()</code>
+            メソッドあるいは配列形式のアクセスを使用します。
+        </p>
+<pre class="programlisting">&lt;?php
+// メソッド
+$mail-&gt;removeMessage($messageNum);
+
+// 配列形式のアクセス
+unset($mail[$messageNum]);
+</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mail.read-message"></a>17.14.5. メッセージの操作</h3></div></div></div>
+<p><code class="code">getMessage()</code> でメッセージを取得したら、
+        次にしたくなることは、ヘッダの取得やマルチパートメッセージの各パートの取得などでしょう。
+        すべてのヘッダには、プロパティあるいはメソッド
+        <code class="code">getHeader()</code> (一般的でないヘッダの場合) でアクセスできます。
+        ヘッダ名は、内部では小文字で表されます。
+        したがって、メールメッセージ内のでのヘッダ名は関係ありません。
+        また、ヘッダ名にダッシュが入っている場合は、
+        camel-case で保持されます。</p>
+<pre class="programlisting">&lt;?php
+// メッセージオブジェクトを取得します
+$message = $mail-&gt;getMessage(1);
+
+// メッセージの件名を出力します
+echo $message-&gt;subject . "\n";
+
+// content-type ヘッダを取得します
+$type = $message-&gt;contentType;
+</pre>
+<p>同名のヘッダが複数ある場合 (たとえば Received ヘッダなど)、
+        それを文字列ではなく配列として扱うこともできます。これは
+        <code class="code">getHeader()</code> メソッドを使用して行います。</p>
+<pre class="programlisting">&lt;?php
+// ヘッダをプロパティとして取得します - 結果は常に文字列で、
+// メッセージ内で複数あらわれる場合は改行文字で区切られます
+$received = $message-&gt;received;
+
+// getHeader() メソッドを使用しても同様です
+$received = $message-&gt;getHeader('received', 'string');
+
+// 配列形式の場合、複数あらわれるとそれぞれ別のエントリとなるので便利です
+$received = $message-&gt;getHeader('received', 'array');
+foreach ($received as $line) {
+    // なにかをします
+}
+
+// 書式を指定しなかった場合は内部表現で取得します
+// (ひとつしかない場合は文字列、複数ある場合は配列となります)
+$received = $message-&gt;getHeader('received');
+if (is_string($received)) {
+    // メッセージ内にそのヘッダはひとつしかありません
+}
+</pre>
+<p><code class="code">getHeaders()</code> メソッドは、すべてのヘッダを配列で返します。
+        キーはヘッダ名を小文字にしたもので、値は文字列 (そのヘッダがひとつの場合)
+        あるいは文字列の配列 (そのヘッダが複数の場合) となります。</p>
+<pre class="programlisting">&lt;?php
+// すべてのヘッダを出力します
+foreach ($message-&gt;getHeaders as $name =&gt; $value) {
+    if (is_string($value)) {
+        echo "$name: $value\n";
+        continue;
+    }
+    foreach ($value as $entry) {
+        echo "$name: $entry\n";
+    }
+}
+</pre>
+<p>マルチパートメッセージがないのなら、その内容は
+        <code class="code">getContent()</code> で簡単に取得できます。ヘッダの場合とは異なり、
+        内容は必要になった時点で初めて取得します
+        (いわゆる遅延取得っていうやつです)。</p>
+<pre class="programlisting">&lt;?php
+// メッセージの内容を HTML で出力します
+echo '&lt;pre&gt;';
+echo $message-&gt;getContent();
+echo '&lt;/pre&gt;';
+</pre>
+<p>マルチパートメッセージであるかどうかを調べるには <code class="code">isMultipart()</code>
+        メソッドを使用します。マルチパートメッセージがある場合は、
+        <code class="code">getPart()</code> メソッドで <code class="code">Zend_Mail_Part</code> のインスタンスを取得します。
+        <code class="code">Zend_Mail_Part</code> は <code class="code">Zend_Mail_Message</code> の基底クラスなので、
+        <code class="code">getHeader()</code> や <code class="code">getHeaders()</code>、<code class="code">getContent()</code>、
+        <code class="code">getPart()</code>、<code class="code">isMultipart</code> といったメソッドを同様に使えます。
+        また、ヘッダもプロパティとして使用できます。</p>
+<pre class="programlisting">&lt;?php
+// マルチパートの最初の部分を取得します
+$part = $message;
+while ($part-&gt;isMultipart()) {
+    $part = $message-&gt;getPart(1);
+}
+echo 'Type of this part is ' . strtok($part-&gt;contentType, ';') . "\n";
+echo "Content:\n";
+echo $part-&gt;getContent();
+</pre>
+<p>Zend_Mail_Part は RecursiveIterator も実装しています。
+        つまり、すべてのパートを順にスキャンすることも簡単にできます。また、
+        結果を簡単に出力できるよう、マジックメソッド __toString()
+        を実装しています。このメソッドは、パートの中身を返します。</p>
+<pre class="programlisting">&lt;?php
+// 最初の text/plain パートを出力します
+$foundPart = null;
+foreach (RecursiveIteratorIterator($mail-&gt;getMessage(1)) as $part) {
+    try {
+        if (strtok($part-&gt;contentType, ';') == 'text/plain') {
+            $foundPart = $part;
+            break;
+        }
+    } catch (Zend_Mail_Exception $e) {
+        // 無視します
+    }
+}
+if (!$foundPart) {
+    echo 'プレーンテキストのパートがありません';
+} else {
+    echo "プレーンテキストパート: \n" . $foundPart;
+}
+</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mail.read-folders"></a>17.14.6. フォルダの使用法</h3></div></div></div>
+<p>
+            Pop3 以外のすべての保存形式は、フォルダをサポートしています。
+            これはメールボックスとも言います。各保存形式で、
+            フォルダをサポートするために実装しているインターフェイスが
+            <code class="code">Zend_Mail_Storage_Folder_Interface</code> です。
+            これらすべてのクラスでは、コンストラクタで追加のオプションパラメータ
+            folder を指定できます。これは、ログイン後に使用するフォルダを指定するものです。
+        </p>
+<p>
+            ローカルの保存形式では、<code class="code">Zend_Mail_Storage_Folder_Mbox</code>
+            あるいは <code class="code">Zend_Mail_Storage_Folder_Maildir</code>
+            のいずれかのクラスを使用します。どちらもパラメータ dirname
+            が必須で、これは基底ディレクトリの名前となります。
+            maildir のフォーマットは maildir++ で定義されているもの
+            (デフォルトの区切り文字はドットです)、一方 Mbox
+            は Mbox ファイルのディレクトリ階層を使用します。Mbox
+            の基底ディレクトリに INBOX という名前の Mbox ファイルがない場合は、
+            コンストラクタで別のフォルダを設定する必要があります。
+        </p>
+<p>
+            <code class="code">Zend_Mail_Storage_Imap</code> は、デフォルトでフォルダをサポートしています。
+            これらの保存形式をオープンする例を以下に示します。
+        </p>
+<pre class="programlisting">&lt;?php
+// mbox でフォルダを使用します
+$mail = new Zend_Mail_Storage_Folder_Mbox(array('dirname' =&gt; '/home/test/mail/'));
+
+// mbox で INBOX 以外のデフォルトフォルダを使用します。
+// Zend_Mail_Storage_Folder_Maildir および Zend_Mail_Storage_Imap でも動作します
+$mail = new Zend_Mail_Storage_Folder_Mbox(array('dirname' =&gt; '/home/test/mail/',
+                                                'folder'  =&gt; 'Archive'));
+
+// maildir でフォルダを使用します
+$mail = new Zend_Mail_Storage_Folder_Maildir(array('dirname' =&gt; '/home/test/mail/'));
+
+// maildir で区切り文字にコロンを使用します。Maildir++ の推奨する形式です
+$mail = new Zend_Mail_Storage_Folder_Maildir(array('dirname' =&gt; '/home/test/mail/'
+                                                   'delim'   =&gt; ':'));
+
+// imap の場合は、フォルダを使用するしないにかかわらず同じ形式です
+$mail = new Zend_Mail_Storage_Imap(array('host'     =&gt; 'example.com'
+                                         'user'     =&gt; 'test',
+                                         'password' =&gt; 'test'));
+</pre>
+<p>
+            getFolders($root = null) メソッドを使用すると、
+            ルートフォルダあるいは指定したフォルダから始まるフォルダ階層を取得できます。
+            返り値は <code class="code">Zend_Mail_Storage_Folder</code> のインスタンスとなります。これは
+            <code class="code">RecursiveIterator</code> を実装しており、子要素もすべて
+            <code class="code">Zend_Mail_Storage_Folder</code> のインスタンスとなります。
+            これらの各インスタンスはローカル名およびグローバル名を持っており、
+            それぞれ <code class="code">getLocalName()</code> メソッドおよび
+            <code class="code">getGlobalName()</code> メソッドで取得できます。
+            グローバル名とはルートフォルダからの絶対名称 (区切り文字を含む) で、
+            ローカル名とは親フォルダから見た名前のことです。
+        </p>
+<div class="table">
+<a name="id4862526"></a><p class="title"><b>表 17.2. Mail フォルダの名前</b></p>
+<table summary="Mail フォルダの名前" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>グローバル名</th>
+<th>ローカル名</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>/INBOX</td>
+<td>INBOX</td>
+</tr>
+<tr>
+<td>/Archive/2005</td>
+<td>2005</td>
+</tr>
+<tr>
+<td>List.ZF.General</td>
+<td>General</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+            イテレータを使用する際は、要素のキーはローカル名となります。
+            グローバル名を取得するには、マジックメソッド
+            <code class="code">__toString()</code> を使用します。
+            フォルダによっては、選択できないものもあるかもしれません。
+            これは、そのフォルダにメッセージを保存できず、
+            メッセージを選ぼうとしてエラーになっていることを意味します。
+            これを確認するためのメソッドが
+            <code class="code">isSelectable()</code> です。
+            ツリー全体をビューに出力するのは、このように非常に簡単です。
+        </p>
+<pre class="programlisting">&lt;?php
+$folders = new RecursiveIteratorIterator($this-&gt;mail-&gt;getFolders(),
+                                         RecursiveIteratorIterator::SELF_FIRST);
+echo '&lt;select name="folder"&gt;';
+foreach ($folders as $localName =&gt; $folder) {
+    $localName = str_pad('', $folders-&gt;getDepth(), '-', STR_PAD_LEFT) . $localName;
+    echo '&lt;option';
+    if (!$folder-&gt;isSelectable()) {
+        echo ' disabled="disabled"';
+    }
+    echo ' value="' . htmlspecialchars($folder) . '"&gt;'
+        . htmlspecialchars($localName) . '&lt;/option&gt;';
+}
+echo '&lt;/select&gt;';
+</pre>
+<p>
+            現在選択されているフォルダを返すメソッドは <code class="code">getSelectedFolder()</code>
+            です。フォルダを変更するには <code class="code">selectFolder()</code> メソッドを使用します。
+            このメソッドのパラメータには、グローバル名を指定しなければなりません。
+            区切り文字を書き込んでしまうことを防ぎたければ、
+            <code class="code">Zend_Mail_Storage_Folder</code> インスタンスのプロパティを使用します。
+        </p>
+<pre class="programlisting">&lt;?php
+// 選択した保存形式とその設定により、$rootFolder-&gt;Archive-&gt;2005
+// は以下の内容と同等になります
+//   /Archive/2005
+//  Archive:2005
+//  INBOX.Archive.2005
+//  ...
+$folder = $mail-&gt;getFolders()-&gt;Archive-&gt;2005;
+echo 'Last folder was ' . $mail-&gt;getSelectedFolder() . "new folder is $folder\n";
+$mail-&gt;selectFolder($folder);
+</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.mail.read-advanced"></a>17.14.7. 高度な使用法</h3></div></div></div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="id4862688"></a>17.14.7.1. NOOP の使用</h4></div></div></div>
+<p>
+                リモートの保存形式を使用しており、何らかの事情で接続をずっと保持し続けたい場合は
+                noop を使用します。
+            </p>
+<pre class="programlisting">&lt;?php
+foreach ($mail as $message) {
+
+    // 何かの計算 ...
+
+    $mail-&gt;noop(); // 接続をキープします
+
+    // また別の処理 ...
+
+    $mail-&gt;noop(); // 接続をキープします
+}
+</pre>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="id4862711"></a>17.14.7.2. インスタンスのキャッシュ</h4></div></div></div>
+<p>
+            <code class="code">Zend_Mail_Storage_Mbox</code>、<code class="code">Zend_Mail_Storage_Folder_Mbox</code>、<code class="code">Zend_Mail_Storage_Maildir</code>
+            および <code class="code">Zend_Mail_Storage_Folder_Maildir</code> は、マジックメソッド
+            <code class="code">__sleep()</code> と <code class="code">__wakeup()</code> を実装しています。
+            つまり、シリアライズが可能であるということです。
+            これで、ファイルやディレクトリツリーを何度もパースする必要がなくなります。
+            難点があるとすれば、Mbox や Maildir を変更することができなくなるということです。
+            簡単な解決策としては、最終更新時刻が変更されたときに Mbox ファイルをパースしなおしたり、
+            フォルダがなくなった場合にフォルダ構造を再パースしたり
+            (これはエラーとなりますが、その後別のフォルダを検索することができます)
+            といったことが考えられます。よりよい方法は、シグナルファイル的なものを用意して
+            変更情報をそこに記録し、まずそれをチェックしてからキャッシュを利用するようにすることです。
+            </p>
+<pre class="programlisting">&lt;?php
+// ここでは、特定のキャッシュハンドラ/クラスは使用しません。
+// 使用するキャッシュハンドラにあわせてコードを変更してください
+$signal_file = '/home/test/.mail.last_change';
+$mbox_basedir = '/home/test/mail/';
+$cache_id = 'example mail cache ' . $mbox_basedir . $signal_file;
+
+$cache = new Your_Cache_Class();
+if (!$cache-&gt;isCached($cache_id) || filemtime($signal_file) &gt; $cache-&gt;getMTime($cache_id)) {
+    $mail = new Zend_Mail_Storage_Folder_Pop3(array('dirname' =&gt; $mbox_basedir));
+} else {
+    $mail = $cache-&gt;get($cache_id);
+}
+
+// 何らかの処理 ...
+
+$cache-&gt;set($cache_id, $mail);
+</pre>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="id4862790"></a>17.14.7.3. プロトコルクラスの拡張</h4></div></div></div>
+<p>
+                リモートの保存形式では、ふたつのクラス <code class="code">Zend_Mail_Storage_&lt;Name&gt;</code> および
+                <code class="code">Zend_Mail_Protocol_&lt;Name&gt;</code> を使用しています。
+                プロトコルクラスは、プロトコルのコマンドを処理して、レスポンスを
+                PHP に受け渡しします。コマンドに対応したメソッド、
+                さまざまなデータ構造に対応した変数を保持します。
+                もう一方のメインクラスでは、共通インターフェイスを実装します。
+            </p>
+<p>
+                プロトコルを追加したい場合は、プロトコルクラスを継承したものを作成し、
+                それをメインクラスのコンストラクタで使用します。
+                例として、PHP3 接続の前に別のポートをノックしなければならないという場面を考えてみましょう。
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend.php';
+Zend::loadClass('Zend_Mail_Storage_Pop3');
+
+class Example_Mail_Exception extends Zend_Mail_Exception
+{
+}
+
+class Example_Mail_Protocol_Exception extends Zend_Mail_Protocol_Exception
+{
+}
+
+class Example_Mail_Protocol_Pop3_Knock extends Zend_Mail_Protocol_Pop3
+{
+    private $host, $port;
+
+    public function __construct($host, $port = null)
+    {
+        // このクラスでは自動接続は行いません
+        $this-&gt;host = $host;
+        $this-&gt;port = $port;
+    }
+
+    public function knock($port)
+    {
+        $sock = @fsockopen($this-&gt;host, $port);
+        if ($sock) {
+            fclose($sock);
+        }
+    }
+
+    public function connect($host = null, $port = null, $ssl = false)
+    {
+        if ($host === null) {
+            $host = $this-&gt;host;
+        }
+        if ($port === null) {
+            $port = $this-&gt;port;
+        }
+        parent::connect($host, $port);
+    }
+}
+
+class Example_Mail_Pop3_Knock extends Zend_Mail_Storage_Pop3
+{
+    public function __construct(array $params)
+    {
+        // ... $params をここでチェックします! ...
+        $protocol = new Example_Mail_Protocol_Pop3_Knock($params['host']);
+
+        // 「特別な」処理をここでします
+        foreach ((array)$params['knock_ports'] as $port) {
+            $protocol-&gt;knock($port);
+        }
+
+        // 正しい状態に修正します
+        $protocol-&gt;connect($params['host'], $params['port']);
+        $protocol-&gt;login($params['user'], $params['password']);
+
+        // 親を初期化します
+        parent::__construct($protocol);
+    }
+}
+
+$mail = new Example_Mail_Pop3_Knock(array('host'        =&gt; 'localhost',
+                                          'user'        =&gt; 'test',
+                                          'password'    =&gt; 'test',
+                                          'knock_ports' =&gt; array(1101, 1105, 1111)));
+</pre>
+<p>
+                ご覧の通り、メインクラスのコンストラクタでは
+                接続、ログイン、(サポートされるなら) フォルダの選択
+                までを済ませているものと期待しています。
+                したがって、独自のプロトコルクラスを使用する場合は、
+                これらを確実に処理しておく必要があります。そうしないと、
+                その後のメソッドが失敗してしまいます。
+            </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mail.smtp-secure.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.mail.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.measure.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">17.13. セキュアな SMTP トランスポート </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 第18章 Zend_Measure</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

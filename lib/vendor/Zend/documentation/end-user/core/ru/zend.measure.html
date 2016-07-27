@@ -1,0 +1,175 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Глава 18. Zend_Measure</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="index.html" title="Руководство разработчика">
+<link rel="prev" href="zend.mail.read.html" title="17.14. Reading Mail Messages">
+<link rel="next" href="zend.measure.creation.html" title="18.2. Creation of Measurements">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="section" href="zend.measure.html#zend.measure.introduction" title="18.1. Introduction">
+<link rel="section" href="zend.measure.creation.html" title="18.2. Creation of Measurements">
+<link rel="section" href="zend.measure.output.html" title="18.3. Outputting measurements">
+<link rel="section" href="zend.measure.edit.html" title="18.4. Manipulating Measurements">
+<link rel="section" href="zend.measure.special.html" title="18.5. Special functions">
+<link rel="section" href="zend.measure.types.html" title="18.6. Types of measurements">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Глава 18. Zend_Measure</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mail.read.html">Пред.</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.measure.creation.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ru">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.measure"></a>Глава 18. Zend_Measure</h2></div></div></div>
+<div class="toc">
+<p><b>Содержание</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.measure.html#zend.measure.introduction">18.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.measure.creation.html">18.2. Creation of Measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.number">18.2.1. Creating measurements from integers and floats</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.string">18.2.2. Creating measurements from strings</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.localized">18.2.3. Measurements from localized strings</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.output.html">18.3. Outputting measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.auto">18.3.1. Automatic output</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.value">18.3.2. Outputting values</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.unit">18.3.3. Output with unit of measurement</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.localized">18.3.4. Output as localized string</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.edit.html">18.4. Manipulating Measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.convert">18.4.1. Convert</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.add">18.4.2. Add and subtract</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.equal">18.4.3. Compare</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.compare">18.4.4. Compare</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.changevalue">18.4.5. Manually change values</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.changetype">18.4.6. Manually change types</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.special.html">18.5. Special functions</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.typelist">18.5.1. Listing all known types</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.unitlist">18.5.2. Listing all known units</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.types.html">18.6. Types of measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.binary">18.6.1. Hints for Zend_Measure_Binary</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.decimal">18.6.2. Hints for Zend_Measure_Number</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.roman">18.6.3. Roman numbers</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.measure.introduction"></a>18.1. Introduction</h2></div></div></div>
+<p>
+        <code class="code">Zend_Measure_*</code> classes provide a generic and easy way for working with measurements. Using
+        <code class="code">Zend_Measure_*</code> classes, you can convert measurements into different units of the same type. They
+        can be added, subtracted and compared against each other. From a given input made in the user's native language,
+        the unit of measurement can be automatically extracted. Numerous units of measurement are supported.
+    </p>
+<div class="example">
+<a name="id4873450"></a><p class="title"><b>Пример 18.1. Converting measurements</b></p>
+<p>
+            The following introductory example shows automatic conversion of units of measurement. To convert a
+            measurement, its value and its type have to be known. The value can be an integer, a float, or even a string
+            containing a number. Conversions are only possible for units of the same type (mass, area, temperature,
+            velocity, etc.), not between types.
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+$locale = new Zend_Locale('en');
+$unit = new Zend_Measure_Length(100, Zend_Measure_Length::METER, $locale);
+
+// Convert meters to yards
+echo $unit-&gt;convertTo(Zend_Measure_Length::YARD);
+?&gt;</pre>
+</div>
+<p>
+        <code class="code">Zend_Measure_*</code> includes support for many different units of measurement. The units of measurement
+        all have a unified notation: <code class="code">Zend_Measure_&lt;TYPE&gt;::NAME_OF_UNIT</code>, where &lt;TYPE&gt;
+        corresponds to a well-known physical or numerical property. . Every unit of measurement consists of a conversion
+        factor and a display unit. A detailed list can be found in the chapter
+        <a href="zend.measure.types.html" title="18.6. Types of measurements"><code class="code">Types of measurements</code>
+        </a>
+        .
+    </p>
+<div class="example">
+<a name="id4874132"></a><p class="title"><b>Пример 18.2. The <code class="code">meter</code> measurement</b></p>
+<p>
+            The <code class="code">meter</code> is used for measuring lengths, so its type constant can be found in the
+            <code class="code">Length</code> class. To refer to this unit of measurement, the notation <code class="code">Length::METER</code>
+            must be used. The display unit is <code class="code">m</code>.
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+echo Zend_Measure_Length::STANDARD;  // outputs 'Length::METER'
+echo Zend_Measure_Length::KILOMETER; // outputs 'Length::KILOMETER'
+
+$unit = new Zend_Measure_Length(100,'METER');
+echo $unit;
+// outputs '100 m'
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mail.read.html">Пред.</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.measure.creation.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">17.14. Reading Mail Messages </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 18.2. Creation of Measurements</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

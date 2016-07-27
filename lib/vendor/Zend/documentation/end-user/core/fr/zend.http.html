@@ -1,0 +1,837 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapitre 13. Zend_Http</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="index.html" title="Guide de référence du programmeur">
+<link rel="prev" href="zend.gdata.exception.html" title="12.9. Catching Gdata Exceptions">
+<link rel="next" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - Utilisation avancée">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="section" href="zend.http.html#zend.http.client" title="13.1. Zend_Http_Client">
+<link rel="section" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - Utilisation avancée">
+<link rel="section" href="zend.http.client.adapters.html" title="13.3. Zend_Http_Client - Connection Adapters">
+<link rel="section" href="zend.http.cookies.html" title="13.4. Zend_Http_Cookie and Zend_Http_CookieJar">
+<link rel="section" href="zend.http.response.html" title="13.5. Zend_Http_Response">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapitre 13. Zend_Http</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.gdata.exception.html">Précédent</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.http.client.advanced.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="fr">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.http"></a>Chapitre 13. Zend_Http</h2></div></div></div>
+<div class="toc">
+<p><b>Table des matières</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.http.html#zend.http.client">13.1. Zend_Http_Client</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.introduction">13.1.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.configuration">13.1.2. Configuration Parameters</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.basic-requests">13.1.3. Performing Basic HTTP Requests</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.parameters">13.1.4. Adding GET and POST parameters </a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.redirections">13.1.5. HTTP Redirections</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.cookies">13.1.6. Adding Cookies and Using Cookie Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.custom_headers">13.1.7. Setting Custom Request Headers</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.file_uploads">13.1.8. File Uploads</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.raw_post_data">13.1.9. Sending Raw POST Data</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.http_authentication">13.1.10. HTTP Authentication</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.multiple_requests">13.1.11. Sending Multiple Requests With the Same Client</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.adapters">13.1.12. Connection Adapters</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.testing">13.1.13. Writing Tests With Zend_Http_Client Objects</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.advanced.html">13.2. Zend_Http_Client - Utilisation avancée</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.redirections">13.2.1. Redirections HTTP</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.cookies">13.2.2. Ajout de cookies et gestion de leur persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.custom_headers">13.2.3. Définir des entêtes personnalisés</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.file_uploads">13.2.4. Envoi de fichiers</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.raw_post_data">13.2.5. Envoyer des données brutes via POST</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.http_authentication">13.2.6. Authentification HTTP</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.multiple_requests">13.2.7. Envoyer plusieurs requêtes avec le même client</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.adapters.html">13.3. Zend_Http_Client - Connection Adapters</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapters.overview">13.3.1. Overview</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#id4833416">13.3.2. The Socket Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.proxy">13.3.3. The Proxy Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.test">13.3.4. The Test Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.extending">13.3.5. Creating your own connection adapters</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.cookies.html">13.4. Zend_Http_Cookie and Zend_Http_CookieJar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.introduction">13.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.instantiating">13.4.2. Instantiating Zend_Http_Cookie Objects</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.accessors">13.4.3. Zend_Http_Cookie getter methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.matching">13.4.4. Zend_Http_Cookie: Matching against a scenario</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar">13.4.5. The Zend_Http_CookieJar Class: Instantiation</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.adding_cookies">13.4.6. Adding Cookies to a Zend_Http_CookieJar object</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.getting_cookies">13.4.7. Retrieving Cookies From a Zend_Http_CookieJar object</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.response.html">13.5. Zend_Http_Response</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.introduction">13.5.1. Introduction</a></span></dt></dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.http.client"></a>13.1. Zend_Http_Client</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.introduction"></a>13.1.1. Introduction</h3></div></div></div>
+<p>
+            Zend_Http_Client provides an easy interface for preforming Hyper-Text 
+            Transfer Protocol (HTTP) requests. Zend_Http_Client supports most simple 
+            features expected from an HTTP client, as well as some more complex 
+            features such as HTTP authentication and file uploads. Successful 
+            requests (and most unsuccessful ones too) return a Zend_Http_Response 
+            object, which provides access to the response's headers and body (see 
+            <a href="zend.http.response.html" title="13.5. Zend_Http_Response">Section 13.5, « Zend_Http_Response »</a>).
+        </p>
+<p>
+            The class constructor optionally accepts a URL as it's first parameter
+            (can be either a string or a Zend_Uri_Http object), and an optional 
+            array of configuration parameters. Both can be left out, 
+            and set later using the setUri() and setConfig() methods.
+            </p>
+<div class="example">
+<a name="id4829042"></a><p class="title"><b>Exemple 13.1. Instantiating a Zend_Http_Client object</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    $client = new Zend_Http_Client('http://example.org', array(
+        'maxredirects' =&gt; 0,
+        'timeout'      =&gt; 30));
+        
+    // This is actually exactly the same:
+    $client = new Zend_Http_Client();
+    $client-&gt;setUri('http://example.org');
+    $client-&gt;setConfig(array(
+        'maxredirects' =&gt; 0,
+        'timeout'      =&gt; 30));
+
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.configuration"></a>13.1.2. Configuration Parameters</h3></div></div></div>
+<p>
+            The constructor and setConfig() method accept an associative array 
+            of configuration parameters. Setting these parameters is optional, 
+            as they all have default values.
+            </p>
+<div class="table">
+<a name="id4829074"></a><p class="title"><b>Tableau 13.1. Zend_Http_Client configuration parameters</b></p>
+<table summary="Zend_Http_Client configuration parameters" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Expected Values</th>
+<th>Default Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>maxredirects</td>
+<td>Maximum number of redirections to follow (0 = none)</td>
+<td>integer</td>
+<td>5</td>
+</tr>
+<tr>
+<td>strictredirects</td>
+<td>Whether to strictly follow the RFC when redirecting (see <a href="zend.http.html#zend.http.client.redirections" title="13.1.5. HTTP Redirections">Section 13.1.5, « HTTP Redirections »</a>)</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>useragent</td>
+<td>User agent identifier string (sent in request headers)</td>
+<td>string</td>
+<td>'Zend_Http_Client'</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>Connection timeout (seconds)</td>
+<td>integer</td>
+<td>10</td>
+</tr>
+<tr>
+<td>httpversion</td>
+<td>HTTP protocol version</td>
+<td>float (1.1 or 1.0)</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>adapter</td>
+<td>Connection adapter class to use (see <a href="zend.http.html#zend.http.client.adapters" title="13.1.12. Connection Adapters">Section 13.1.12, « Connection Adapters »</a>)</td>
+<td>mixed</td>
+<td>'Zend_Http_Client_Adapter_Socket'</td>
+</tr>
+<tr>
+<td>keepalive</td>
+<td>Whether to enable keep-alive connections with the server. Useful and might improve performance if several
+                            consecutive requests to the same server are performned.</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.basic-requests"></a>13.1.3. Performing Basic HTTP Requests</h3></div></div></div>
+<p>
+            Performing simple HTTP requests is very easily done using the 
+            request() method, and rarely needs more than three lines of code:
+            </p>
+<div class="example">
+<a name="id4829943"></a><p class="title"><b>Exemple 13.2. Preforming a Simple GET Request</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    $client = new Zend_Http_Client('http://example.org');
+    $response = $client-&gt;request();
+?&gt;</pre>
+</div>
+<p>
+            The request() method takes one optional parameter - the request method.
+            This can be either GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS or 
+            CONNECT as defined by the HTTP protocol
+            <sup>[<a name="id4829958" href="#ftn.id4829958">1</a>]</sup>. 
+            For convenience, these are all defined as class constants:
+            Zend_Http_Request::GET, Zend_Http_Request::POST and so on.
+        </p>
+<p>
+            If no method is specified, the method set by the last setMethod()
+            call is used. If setMethod() was never called, the default request
+            method is GET (see the above example).
+            </p>
+<div class="example">
+<a name="id4829989"></a><p class="title"><b>Exemple 13.3. Using Request Methods Other Than GET</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Preforming a POST request
+    $response = $client-&gt;request('POST');
+    
+    // Yet another way of preforming a POST request
+    $client-&gt;setMethod(Zend_Http_Client::POST);
+    $response = $client-&gt;request();
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.parameters"></a>13.1.4. Adding GET and POST parameters </h3></div></div></div>
+<p>
+            Adding GET parameters to an HTTP request is quite simple, and can 
+            be done either by specifying them as part of the URL, or by using
+            the setParameterGet() method. 
+            This method takes the GET parameter's name as it's first parameter,
+            and the GET parameter's value as it's second parameter. 
+            For convenience, the setParameterGet() method can also accept a
+            single associative array of name =&gt; value GET variables - which may
+            be more comfortable when several GET parameters need to be set.
+            </p>
+<div class="example">
+<a name="id4830037"></a><p class="title"><b>Exemple 13.4. Setting GET Parameters</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Setting a get parameter using the setParameterGet method
+    $client-&gt;setParameterGet('knight', 'lancelot');
+
+    // This is equivalent to setting such URL:
+    $client-&gt;setUri('http://example.com/index.php?knight=lancelot');
+    
+    // Adding several parameters with one call
+    $client-&gt;setParameterGet(array(
+        'first_name'  =&gt; 'Bender',
+        'middle_name' =&gt; 'Bending'
+        'made_in'     =&gt; 'Mexico',
+    ));
+?&gt;</pre>
+</div>
+<p>
+        </p>
+<p>
+            While GET parameters can be sent with every request method, POST
+            parameters are only sent in the body of POST requests. Adding POST
+            parameters to a request is very similar to adding GET parameters, 
+            and can be done with the setParameterPost() method, which is
+            similar to the setParameterGet() method in structure.
+            </p>
+<div class="example">
+<a name="id4830061"></a><p class="title"><b>Exemple 13.5. Setting POST Parameters</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Setting a POST parameter
+    $client-&gt;setParameterPost('language', 'fr');
+    
+    // Setting several POST parameters, one of them with several values
+    $client-&gt;setParameterPost(array(
+        'language'  =&gt; 'es',
+        'country'   =&gt; 'ar',
+        'selection' =&gt; array(45, 32, 80)
+    ));
+?&gt;</pre>
+</div>
+<p>
+            Note that when sending POST requests, you can set both GET and 
+            POST parameters. On the other hand, while setting POST parameters
+            for a non-POST request will not trigger and error, it is useless. 
+            Unless the request is a POST request, POST parameters are simply 
+            ignored.
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.redirections"></a>13.1.5. HTTP Redirections</h3></div></div></div>
+<p>
+            By default, Zend_Http_Client automatically handles HTTP redirections,
+            and will follow up to 5 redirections. This can be changed by setting 
+            the 'maxredirects' configuration parameter. 
+        </p>
+<p>
+            According to the HTTP/1.1 RFC, HTTP 301 and 302 responses should be
+            treated by the client by resending the same request to the 
+            specified location - using the same request method. However, most 
+            clients to not implement this and always use a GET request when 
+            redirecting. By default, Zend_Http_Client does the same - when 
+            redirecting on a 301 or 302 response, all GET and POST parameters
+            are reset, and a GET request is sent to the new location. This 
+            behavior can be changed by setting the 'strictredirects' configuration
+            parameter to boolean TRUE:
+            </p>
+<div class="example">
+<a name="id4830140"></a><p class="title"><b>Exemple 13.6. Forcing RFC 2616 Strict Redirections on 301 and 302 Responses</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Strict Redirections
+    $client-&gt;setConfig(array('strictredirects' =&gt; true)
+    
+    // Non-strict Redirections
+    $client-&gt;setConfig(array('strictredirects' =&gt; false)
+?&gt;</pre>
+</div>
+<p>
+        </p>
+<p>
+            You can always get the number of redirections done after sending a 
+            request using the getRedirectionsCount() method.
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.cookies"></a>13.1.6. Adding Cookies and Using Cookie Persistence</h3></div></div></div>
+<p>
+        	Zend_Http_Client provides an easy interface for adding cookies
+        	to your request, so that no direct header modification is 
+        	required. This is done using the setCookie() method. This method
+        	can be used in several ways:
+        	</p>
+<div class="example">
+<a name="id4830187"></a><p class="title"><b>Exemple 13.7. Setting Cookies Using setCookie()</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Easy and simple: by providing a cookie name and cookie value
+    $client-&gt;setCookie('flavor', 'chocolate chips');
+    
+    // By directly providing a raw cookie string (name=value)
+    // Note that the value must be already URL encoded
+    $client-&gt;setCookie('flavor=chocolate%20chips');
+    
+    // By providing a Zend_Http_Cookie object
+    $cookie = Zend_Http_Cookie::factory('flavor=chocolate%20chips');
+    $client-&gt;setCookie($cookie);
+?&gt;</pre>
+</div>
+<p>
+        	For more information about Zend_Http_Cookie objects, see
+        	<a href="zend.http.cookies.html" title="13.4. Zend_Http_Cookie and Zend_Http_CookieJar">Section 13.4, « Zend_Http_Cookie and Zend_Http_CookieJar »</a>.
+        </p>
+<p>
+            Zend_Http_Client also provides the means for cookie stickiness -
+            that is having the client internally store all sent and received
+            cookies, and resend them automatically on subsequent requests. This
+            is useful, for example when you need to log in to a remote site 
+            first and receive and authentication or session ID cookie before 
+            sending further requests.
+            </p>
+<div class="example">
+<a name="id4829685"></a><p class="title"><b>Exemple 13.8. Enabling Cookie Stickiness</b></p>
+<pre class="programlisting">
+&lt;?php
+    // To turn cookie stickiness on, set a Cookie Jar 
+    $client-&gt;setCookieJar();
+    
+    // First request: log in and start a session
+    $client-&gt;setUri('http://example.com/login.php');
+    $client-&gt;addParameterPost('user', 'h4x0r');
+    $client-&gt;addParameterPost('password', '1337');
+    $client-&gt;request('POST');
+    
+    // The Cookie Jar automatically stores the cookies set
+    // in the response, like a session ID cookie.
+    
+    // Now we can send our next request - the stored cookies
+    // will be automatically sent.
+    $client-&gt;setUri('http://example.com/read_member_news.php');
+    $client-&gt;request('GET');
+?&gt;</pre>
+</div>
+<p>
+            For more information about the Zend_Http_CookieJar class, see
+        	<a href="zend.http.cookies.html#zend.http.cookies.cookiejar" title="13.4.5. The Zend_Http_CookieJar Class: Instantiation">Section 13.4.5, « The Zend_Http_CookieJar Class: Instantiation »</a>.
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.custom_headers"></a>13.1.7. Setting Custom Request Headers</h3></div></div></div>
+<p>
+            Setting custom headers can be done by using the setHeaders() method.
+            This method is quite diverse and can be used in several ways, as 
+            the following example shows:
+            </p>
+<div class="example">
+<a name="id4829796"></a><p class="title"><b>Exemple 13.9. Setting A Single Custom Request Header</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Setting a single header, overwriting any previous value
+    $client-&gt;setHeaders('Host', 'www.example.com');
+    
+    // Another way of doing the exact same thing
+    $client-&gt;setHeaders('Host: www.example.com');
+    
+    // Setting several values for the same header (useful mostly for Cookie headers):
+    $client-&gt;setHeaders('Cookie', array(
+        'PHPSESSID=1234567890abcdef1234567890abcdef',
+        'language=he'
+    ));
+?&gt;</pre>
+</div>
+<p>
+        </p>
+<p>
+            setHeader() can also be easily used to set multiple headers in one
+            call, by providing an array of headers as a single parameter:
+            </p>
+<div class="example">
+<a name="id4829724"></a><p class="title"><b>Exemple 13.10. Setting Multiple Custom Request Headers</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Setting multiple headers, overwriting any previous value
+    $client-&gt;setHeaders(array(
+        'Host' =&gt; 'www.example.com',
+        'Accept-encoding', 'gzip,deflate',
+        'X-Powered-By' =&gt; 'Zend Framework'));
+    
+    // The array can also contain full array strings:
+    $client-&gt;setHeaders(array(
+        'Host: www.example.com',
+        'Accept-encoding: gzip,deflate',
+        'X-Powered-By: Zend Framework'));
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.file_uploads"></a>13.1.8. File Uploads</h3></div></div></div>
+<p>
+            You can upload files through HTTP using the setFileUpload method. 
+            This method takes a file name as the first parameter, a form name 
+            as the second parameter, and data as a third optional parameter. 
+            If the third data parameter is null, the first file name parameter
+            is considered to be a real file on disk, and Zend_Http_Client will
+            try to read this file and upload it. If the data parameter is not
+            null, the first file name parameter will be sent as the file name,
+            but no actual file needs to exist on the disk.
+            The second form name parameter is always required, and is equivalent
+            to the "name" attribute of an &gt;input&lt; tag, if the file was to
+            be uploaded through an HTML form.
+            A fourth optional parameter provides the file's content-type. If
+            not specified, and Zend_Http_Client reads the file from the disk,
+            the mime_content_type function will be used to guess the file's 
+            content type, if it is available. In any case, the default MIME
+            type will be application/octet-stream.
+            </p>
+<div class="example">
+<a name="id4830501"></a><p class="title"><b>Exemple 13.11. Using setFileUpload to Upload Files</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Uploading arbitrary data as a file
+    $text = 'this is some plain text';
+    $client-&gt;setFileUpload('some_text.txt', 'upload', $text, 'text/plain');
+    
+    // Uploading an existing file 
+    $client-&gt;setFileUpload('/tmp/Backup.tar.gz', 'bufile');
+    
+    // Send the files
+    $client-&gt;submit('POST');
+?&gt;</pre>
+</div>
+<p>
+            In the first example, the $text variable is uploaded and will be
+            available as $_FILES['upload'] on the server side. In the second
+            example, the existing file /tmp/Backup.tar.gz is uploaded to the 
+            server and will be available as $_FILES['bufile']. The content type
+            will be guesses automatically if possible - and if not, the content
+            type will be set to 'application/octet-stream'. 
+        </p>
+<div class="note"><table border="0" summary="Note: Uploading files">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Uploading files</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                When uploading files, the HTTP request content-type is 
+                automatically set to multipart/form-data. Keep in mind that
+                you must send a POST or PUT request in order to upload files. 
+                Most servers will ignore the requests body on other request
+                methods.
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.raw_post_data"></a>13.1.9. Sending Raw POST Data</h3></div></div></div>
+<p>
+            You can use a Zend_Http_Client to send raw POST data using the
+            setRawData() method. This method takes two parameters: the first
+            is the data to send in the request body. The second optional
+            parameter is the content-type of the data. While this parameter is
+            optional, you should usually set it before sending the request - 
+            either using setRawData(), or with another method: setEncType().
+            </p>
+<div class="example">
+<a name="id4830612"></a><p class="title"><b>Exemple 13.12. Sending Raw POST Data</b></p>
+<pre class="programlisting">
+&lt;?php
+    $xml = '&lt;book&gt;' . 
+           '  &lt;title&gt;Islands in the Stream&lt;/title&gt;' . 
+           '  &lt;author&gt;Ernest Hemingway&lt;/author&gt;' . 
+           '  &lt;year&gt;1970&lt;/year&gt;' . 
+           '&lt;/book&gt;';
+           
+    $client-&gt;setRawData($xml, 'text/xml')-&gt;request('POST');
+    
+    // Another way to do the same thing:
+    $client-&gt;setRawData($xml)-&gt;setEncType('text/xml')-&gt;request('POST');
+?&gt;</pre>
+</div>
+<p>
+            The data should be available on the server side through PHP's 
+            $HTTP_RAW_POST_DATA variable or through the php://input stream.
+        </p>
+<div class="note"><table border="0" summary="Note: Using raw POST data">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Using raw POST data</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Setting raw POST data for a request will override any POST
+                parameters or file uploads. You should not try to use both on
+                the same request. Keep in mind that most servers will ignore 
+                the request body unless you send a POST request.
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.http_authentication"></a>13.1.10. HTTP Authentication</h3></div></div></div>
+<p>
+            Currently, Zend_Http_Client only supports basic HTTP authentication.
+            This feature is utilized using the setAuth() method. The method 
+            takes 3 parameters: The user name, the password and an optional
+            authentication type parameter. As mentioned, currently only basic
+            authentication is supported (digest authentication support is
+            planned).
+            </p>
+<div class="example">
+<a name="id4830680"></a><p class="title"><b>Exemple 13.13. Setting HTTP Authentication User and Password</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Using basic authentication
+    $client-&gt;setAuth('shahar', 'myPassword!', Zend_Http_Client::AUTH_BASIC);
+    
+    // Since basic auth is default, you can just do this:
+    $client-&gt;setAuth('shahar', 'myPassword!');
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.multiple_requests"></a>13.1.11. Sending Multiple Requests With the Same Client</h3></div></div></div>
+<p>
+            Zend_Http_Client was also designed specifically to handle several
+            consecutive requests with the same object. This is useful in cases
+            where a script requires data to be fetched from several places, or
+            when accessing a specific HTTP resource requires logging in and 
+            obtaining a session cookie, for example. 
+        </p>
+<p>
+            When performing several requests to the same host, it is highly 
+            recommended to enable the 'keepalive' configuration flag. This way,
+            if the server supports keep-alive connections, the connection to the
+            server will only be closed once all requests are done and the Client
+            object is destroyed. This prevents the overhead of opening and 
+            closing TCP connections to the server.
+        </p>
+<p>
+            When you perform several requests with the same client, but want
+            to make sure all the request-specific parameters are cleared, you
+            should use the resetParameters() method. This ensures that GET and
+            POST parameters, request body and request-specific headers are 
+            reset and are not reused in the next request.
+        </p>
+<div class="note"><table border="0" summary="Note: Reseting parameters">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Reseting parameters</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Note that non-request specific headers are not reset when the 
+                resetParameters method is used. As a matter of fact, only the
+                'Content-length' and 'Content-type' headers are reset. This 
+                allows you to set-and-forget headers like 'Accept-language' and
+                'Accept-encoding'
+            </p></td></tr>
+</table></div>
+<p>
+            Another feature designed specifically for consecutive requests is 
+            the Cookie Jar object. Cookie Jars allow you to automatically save
+            cookies set by the server in the first request, and send them on
+            consecutive requests transparently. This allows, for example, going
+            through an authentication request before sending the actual data
+            fetching request.
+        </p>
+<p>
+            If your application requires one authentication request per user,
+            and consecutive requests might be performed in more than one script
+            in your application, it might be a good idea to store the Cookie Jar
+            object in the user's session. This way, you will only need to 
+            authenticate the user once every session.
+        </p>
+<div class="example">
+<a name="id4830782"></a><p class="title"><b>Exemple 13.14. Performing consecutive requests with one client</b></p>
+<pre class="programlisting">
+&lt;?php
+    // First, instantiate the client 
+    $client = new Zend_Http_Client('http://www.example.com/fetchdata.php', array(
+        'keepalive' =&gt; true
+    ));
+    
+    // Do we have the cookies stored in our session?
+    if (isset($_SESSION['cookiejar']) &amp;&amp; 
+        $_SESSION['cookiejar'] instanceof Zend_Http_CookieJar)) {
+        
+        $client-&gt;setCookieJar($_SESSION['cookiejar']);
+    } else {
+        // If we don't, authenticate and store cookies
+        $client-&gt;setCookieJar();
+        $client-&gt;setUri('http://www.example.com/login.php');
+        $client-&gt;setParameterPost(array(
+            'user' =&gt; 'shahar',
+            'pass' =&gt; 'somesecret'
+        ));
+        $client-&gt;request(Zend_Http_Client::POST);
+        
+        // Now, clear parameters and set the URI to the original one
+        // (note that the cookies that were set by the server are now
+        // stored in the jar)
+        $client-&gt;resetParameters();
+        $client-&gt;setUri('http://www.example.com/fetchdata.php');
+    }
+    
+    $response = $client-&gt;request(Zend_Http_Client::GET);
+    
+    // Store cookies in session, for next page
+    $_SESSION['cookiejar'] = $client-&gt;getCookieJar();
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.adapters"></a>13.1.12. Connection Adapters</h3></div></div></div>
+<p>
+            Zend_Http_Client is based on a connection adapter design. The
+            connection adapter is the object in charge of performing the 
+            actual connection to the server, as well as writing requests 
+            and writing responses.
+            This connection adapter can be replaced, and you can create and
+            extend the default connection adapter to suite your special needs,
+            without the need to extend or replace the entire HTTP client
+            class, and with the same interface.
+        </p>
+<p>
+            Currently, the Zend_Http_Client class provides two built-in 
+            connection adapters: 
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">Zend_Http_Client_Adapter_Socket</code>: The 
+                    default adapter, which is a plain socket based adapter, 
+                    and does not require any special PHP extension to use.
+                    </p></li>
+<li><p><code class="code">Zend_Http_Client_Adapter_Test</code>: This is a
+                    dummy adapter, that should be used for testing purposes only.
+                    It does not perform any real connections, and returns a 
+                    predefined response.
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            The Zend_Http_Client object's adapter connection adapter is set 
+            using the 'adapter' configuartion option. When instantiating the
+            client object, you can set the 'adapter' configuration option to
+            a string containing the adapter's name (eg. 'Zend_Http_Client_Adapter_Socket')
+            or to a variable holding an adapter object (eg <code class="code">
+            new Zend_Http_Client_Adapter_test</code>). You can also set the 
+            adapter later, using the Zend_Http_Client-&gt;setConfig() method.
+        </p>
+<p>
+            You can create your own connection adapters and use them. In order
+            to do so, you must create your own class that implements the 
+            Zend_Http_Client_Adapter_Interface interface. You could, for 
+            example, create a connection adapter that uses persistent sockets,
+            or a connection adapter with caching abilities, and use them as 
+            needed in your application.
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.testing"></a>13.1.13. Writing Tests With Zend_Http_Client Objects</h3></div></div></div>
+<p>
+            Sometimes, it is very hard to test code that relys on HTTP connections.
+            For example, testing an application that pulls an RSS feed from a remote 
+            server will require a network connection, which is not always available.
+        </p>
+<p>
+            For this reason, the Zend_Http_Client_Adapter_Test adapter is provided.
+            You can write your application to use Zend_Http_Client, and just for 
+            testing purposes, for example in your unit testing suite, you can replace
+            the default adapter with a Test adapter, allowing you to run tests 
+            without actually performing server connections.
+        </p>
+<p>
+            The Zend_Http_Client_Adapter_Test adapter provides an additional 
+            method, setResponse() method. This method takes one parameter,
+            which represents an HTTP response as either text or a Zend_Http_Response
+            object. Once set, your Test adapter will always return this response,
+            without even performing an actual HTTP request.         
+        </p>
+<div class="example">
+<a name="id4830959"></a><p class="title"><b>Exemple 13.15. Testing Your Code Without Accessing The Network</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Instantiate a new adapter and client
+    $adapter = new Zend_Http_Client_Adapter_Test();
+    $client = Zend_Http_Client('http://www.example.com', array(
+        'adapter' =&gt; $adapter
+    ));
+    
+    // Set the expected response
+    $adapter-&gt;setResponse(
+        "HTTP/1.1 200 OK"        . "\r\n" .
+        "Content-type: text/xml" . "\r\n" .
+                                   "\r\n" . 
+        '&lt;?xml version="1.0" encoding="UTF-8"?&gt;' . 
+        '&lt;rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"' . 
+	    '     xmlns:wfw="http://wellformedweb.org/CommentAPI/"' . 
+	    '     xmlns:dc="http://purl.org/dc/elements/1.1/"&gt;' . 
+        '  &lt;channel&gt;' . 
+        '    &lt;title&gt;Premature Optimization&lt;/title&gt;' . 
+        // and so on...
+        '&lt;/rss&gt;');
+    
+    $response = $client-&gt;request('GET');
+    // .. continue parsing $response..
+?&gt;</pre>
+</div>
+<p>
+            The above example shows how you can preset your HTTP client to 
+            return the response you need. Then, you can continue testing your
+            own code, without being dependent on a network connection, the server's
+            response, etc. In this case, the test would continue to check how 
+            the application parses the XML in the response body.
+        </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4829958" href="#id4829958">1</a>] </sup>
+                See RFC 2616 - <a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_top">http://www.w3.org/Protocols/rfc2616/rfc2616.html</a>.
+              </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.gdata.exception.html">Précédent</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.http.client.advanced.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">12.9. Catching Gdata Exceptions </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 13.2. Zend_Http_Client - Utilisation avancée</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

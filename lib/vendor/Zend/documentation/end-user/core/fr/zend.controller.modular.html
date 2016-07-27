@@ -1,0 +1,194 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.7. Using a Conventional Modular Directory Structure</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="prev" href="zend.controller.plugins.html" title="7.6. Plugins">
+<link rel="next" href="zend.controller.exceptions.html" title="7.8. MVC Exceptions">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.introduction" title="7.7.1. Introduction">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.directories" title="7.7.2. Specifying Module Controller Directories">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.router" title="7.7.3. Routing to modules">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.defaultcontroller" title="7.7.4. Module or Global Default Controller">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.7. Using a Conventional Modular Directory Structure</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.plugins.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.exceptions.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.modular"></a>7.7. Using a Conventional Modular Directory Structure</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.introduction"></a>7.7.1. Introduction</h3></div></div></div>
+<p>
+            The Conventional Modular directory structure allows you to separate
+            different MVC applications into self-contained units, and re-use
+            them with different front controllers. To illustrate such a
+            directory structure:
+        </p>
+<pre class="programlisting">
+docroot/
+    index.php
+application/
+    controllers/
+        IndexController.php
+        FooController.php
+    blog/
+        controllers/
+            IndexController.php
+        models/
+        views/
+    news/
+        controllers/
+            IndexController.php
+            ListController.php
+        models/
+        views/
+</pre>
+<p>
+            In this paradigm, the module name serves as a prefix to the
+            controllers it contains. The above example contains three
+            module controllers, 'Blog_IndexController', 'News_IndexController', and
+            'News_ListController'. Two global controllers, 'IndexController' and
+            'FooController' are also defined; neither of these will be
+            namespaced. This directory structure will be used for examples in
+            this chapter.
+        </p>
+<p>
+            So, how do you implement such a directory layout using the Zend
+            Framework MVC components?
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.directories"></a>7.7.2. Specifying Module Controller Directories</h3></div></div></div>
+<p>
+            The first step to making use of modules is to modify how you specify
+            the controller directory list in the front controller. In the basic
+            MVC series, you pass either an array or a string to
+            setControllerDirectory(), or a path to addControllerDirectory().
+            When using modules, you need to alter your calls to these methods
+            slightly.
+        </p>
+<p>
+            With setControllerDirectory(), you will need to pass an associative
+            array and specify key/value pairs of module name/directory paths.
+            The special key 'default' will be used for global controllers (those
+            not needing a module namespace).  All entries should contain a
+            string key pointing to a single path. As an example:
+        </p>
+<pre class="programlisting">
+$front-&gt;setControllerDirectory(array(
+      'default' =&gt; '/path/to/application/controllers',
+      'blog'    =&gt; '/path/to/application/blog/controllers'
+));
+</pre>
+<p>
+            addControllerDirectory() will take an optional second argument. When
+            using modules, pass the module name as the second argument; if not
+            specified, the path will be added to the default namespace. As an
+            example:
+        </p>
+<pre class="programlisting">
+$front-&gt;addControllerDirectory('/path/to/application/news/controllers', 'news');
+</pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.router"></a>7.7.3. Routing to modules</h3></div></div></div>
+<p>
+            The default route in <code class="code">Zend_Controller_Router_Rewrite</code> is
+            an object of type <code class="code">Zend_Controller_Router_Route_Module</code>.
+            This route expects one of the following routing schemas:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">:module/:controller/:action/*</code></p></li>
+<li><p><code class="code">:controller/:action/*</code></p></li>
+</ul></div>
+<p>
+            In other words, it will match a controller and action by themselves
+            or with a preceding module. The rules for matching specify that a
+            module will only be matched if a key of the same name exists in the
+            controller directory array passed to the front controller and
+            dispatcher.
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.defaultcontroller"></a>7.7.4. Module or Global Default Controller</h3></div></div></div>
+<p>
+            In the default router, if a controller was not specified in the URL,
+            a default controller is used (<code class="code">IndexController</code>, unless
+            otherwise requested). With modular controllers, if a module has been
+            specified but no controller, the dispatcher first looks for this
+            default controller in the module path, and then falls back on the
+            default controller found in the 'default', global, namespace.
+        </p>
+<p>
+            If you wish to always default to the global namespace, set the
+            <code class="code">useGlobalDefault</code> parameter in the front controller:
+        </p>
+<pre class="programlisting">
+$front-&gt;setParam('useGlobalDefault', true);
+</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.plugins.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.exceptions.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.6. Plugins </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 7.8. MVC Exceptions</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

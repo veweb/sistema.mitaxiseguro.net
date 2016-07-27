@@ -1,0 +1,178 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.7. Модульная структуры директорий</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="prev" href="zend.controller.plugins.html" title="7.6. Плагины">
+<link rel="next" href="zend.controller.exceptions.html" title="7.8. Исключения">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.introduction" title="7.7.1. Введение">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.directories" title="7.7.2. Определение директорий контроллеров для модулей">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.router" title="7.7.3. Маршрутизация применительно к модулям">
+<link rel="subsection" href="zend.controller.modular.html#zend.controller.modular.defaultcontroller" title="7.7.4. Контроллер, используемый по умолчанию - для модуля или общий">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.7. Модульная структуры директорий</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.plugins.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.exceptions.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.modular"></a>7.7. Модульная структуры директорий</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.introduction"></a>7.7.1. Введение</h3></div></div></div>
+<p>
+            Модульная структура директорий позволяет делить различные
+            MVC-приложения в самодостаточные единицы и повторно использовать их
+            с различными фронт-контроллерами. Следующая структура директорий
+            иллюстрирует это:
+
+        </p>
+<pre class="programlisting">
+docroot/
+    index.php
+application/
+    controllers/
+        IndexController.php
+        FooController.php
+    blog/
+        controllers/
+            IndexController.php
+        models/
+        views/
+    news/
+        controllers/
+            IndexController.php
+            ListController.php
+        models/
+        views/
+</pre>
+<p>
+            В этой парадигме имена модулей используются как префиксы к
+            контроллерам в этих модулях. Пример выше содержит три контроллера в
+            модулях: 'Blog_IndexController', 'News_IndexController' и
+            'News_ListController'. Также определены два общих контроллера:
+            'IndexController' и 'FooController'. Эта структура директорий будет
+            использоваться для последующих примеров в этом разделе.
+
+        </p>
+<p>
+            Итак, как можно реализовать такую организацию на уровне директорий, используя компоненты MVC в Zend Framework?
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.directories"></a>7.7.2. Определение директорий контроллеров для модулей</h3></div></div></div>
+<p>
+            Первым шагом в использовании модулей является изменение способа определения список директорий во фронт-контроллере. В основной серии MVC вы передаете методу setControllerDirectory() массив или строку, а методу addControllerDirectory() - путь. При использованиии модулей нужно несколько изменить вызовы этих методов.
+
+        </p>
+<p>
+            Методу setControllerDirectory() нужно будет передавать ассоциативный массив, в котором пары 'имя модуля'-'пути директорий' определены как ключ и значение массива соответственно. Специальный ключ 'default' используется для общих контроллеров. Все ключи (имена модулей) должны указывать на единственный путь. Например:
+
+        </p>
+<pre class="programlisting">
+$front-&gt;setControllerDirectory(array(
+      'default' =&gt; '/path/to/application/controllers',
+      'blog'    =&gt; '/path/to/application/blog/controllers'
+));
+</pre>
+<p>
+            Метод addControllerDirectory() принимает необязательный второй параметр. Если используются модули, то передавайте имя модуля в качестве второго аргумента; если он не определен, то путь будет добавлен в пространство имен, используемое по умолчанию ('default'). Например:
+
+        </p>
+<pre class="programlisting">
+$front-&gt;addControllerDirectory('/path/to/application/news/controllers', 'news');
+</pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.router"></a>7.7.3. Маршрутизация применительно к модулям</h3></div></div></div>
+<p>
+            Маршрут, используемый по умолчанию в <code class="code">Zend_Controller_Router_Rewrite</code> является объектом <code class="code">Zend_Controller_Router_Route_Module</code>. Этот объект использует следующие схемы маршрутизации:
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">:module/:controller/:action/*</code></p></li>
+<li><p><code class="code">:controller/:action/*</code></p></li>
+</ul></div>
+<p>
+            Другими словами, он будет соответсвовать контроллеру и действию без модуля или контроллеру и действию с предшествующим модулем. Правила сопоставления предписывают, что модуль должен только тогда соответствовать пути, если ключ с тем же именем существует в массиве директорий контроллера.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.modular.defaultcontroller"></a>7.7.4. Контроллер, используемый по умолчанию - для модуля или общий</h3></div></div></div>
+<p>
+            В маршрутизаторе, используемом по умолчанию, если контроллер не был определен в URL, то используется контроллер по умолчанию (<code class="code">IndexController</code>, если не был установлен другой). В случае использования модулей, если был определен модуль без контроллера, то диспетчер сначала ищет используемый по умолчанию контроллер в директории модуля, затем в общем пространстве имен.
+
+        </p>
+<p>
+            Если вы хотите всегда использовать общее пространство имен, то установите параметр <code class="code">useGlobalDefault</code> во фронт-контроллере:
+
+        </p>
+<pre class="programlisting">
+$front-&gt;setParam('useGlobalDefault', true);
+</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.plugins.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.exceptions.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.6. Плагины </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 7.8. Исключения</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

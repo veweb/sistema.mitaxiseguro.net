@@ -1,0 +1,190 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>11.4. Zend_Filter_Input</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="prev" href="zend.filter.writing_filters.html" title="11.3. Pisanie filtrów">
+<link rel="next" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.filter.input.html#zend.filter.input.introduction" title="11.4.1. Wprowadzenie">
+<link rel="subsection" href="zend.filter.input.html#zend.filter.input.theory_of_operation" title="11.4.2. Opis działania">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">11.4. Zend_Filter_Input</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.filter.writing_filters.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 11. Zend_Filter</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.filter.input"></a>11.4. Zend_Filter_Input</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.introduction"></a>11.4.1. Wprowadzenie</h3></div></div></div>
+<p>
+            Klasa <code class="literal">Zend_Filter_Input</code> dostarcza metody, które zapewniają 
+            uporządkowane podejście do filtrowania danych przychodzących. Jej przeznaczenie 
+            jest różnorodne, ponieważ zaspokaja ona potrzeby trzech różnych grup ludzi:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    Programiści
+                </p>
+<p>
+                    Chociaż filtrowanie danych wejściowych nigdy nie może być tak łatwe jak nierobienie niczego, programiści potrzebują zapewnić
+                    integralną czystość swoim danym nie dodając w tym celu niepotrzebnej złożoności kodu.
+                </p>
+</li>
+<li>
+<p>
+                    Menadżerzy
+                </p>
+<p>
+                    Menadżerzy którzy chcą zachować kontrolę nad dużą grupą programistów mogą narzucić gotowy sposób filtrowania danych
+                    wejściowych, a także mogą wyeliminować dostęp to niefiltrowanych danych wejściowych.
+                </p>
+</li>
+<li>
+<p>
+                    Audytorzy
+                </p>
+<p>
+                    Ci, którzy sprawdzają kod aplikacji potrzebują szybko i solidnie sprawdzić kiedy 
+                    i gdzie używane są dane wejściowe w czystej postaci. Zasady, które sprzyjają 
+                    pisaniu przejrzystego kodu wspierają także audytorów zapewniając im jasne 
+                    odróżnienie pomiędzy różnymi sposobami filtrowania danych wejściowych.
+                </p>
+</li>
+</ul></div>
+<p>
+            Jest wiele różnych zdań na temat filtrowania danych przychodzących i jest wiele 
+            różnych metod, których programiści mogą użyć. Filtrowanie whitelist, filtrowanie 
+            blacklist, wyrażenia regularne, wyrażenia warunkowe oraz natywne funkcje PHP 
+            są tylko kilkoma przykładami filtrowania danych przychodzących.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.theory_of_operation"></a>11.4.2. Opis działania</h3></div></div></div>
+<p>
+            W celu zapewnienia uporządkowanego dostępu do filtrowania danych
+            wejściowych, domyślnie <code class="literal">Zend_Filter_Input</code> próbuje
+            forsować kontrolowany dostęp do danych wejściowych ustawiając 
+            wartość źródłowej tablicy na <code class="code">null</code>.
+        </p>
+<p>
+            W podejściu domyślnym (ścisłym), do konstruktora przekazywany jest
+            jeden argument - tablica danych do filtrowania. Niefiltrowane dane
+            są dostępnę tylko za pomocą metody <code class="code">getRaw()</code>:
+        </p>
+<pre class="programlisting">&lt;?php
+// $_POST['email'] === 'webmaster@example.com'
+
+// Filtruje dane z tablicy $_POST
+require_once 'Zend/Filter/Input.php';
+$filterPost = new Zend_Filter_Input($_POST);
+
+// $_POST ma teraz wartość null
+echo null === $_POST ? 'yes' : 'no'; // wyświetla 'yes'
+
+// Pobiera niefiltrowaną wartość e-mail
+echo $filterPost-&gt;getRaw('email'); // wyświetla 'webmaster@example.com'</pre>
+<p>
+            <code class="literal">Zend_Filter_Input</code> ustawia wartość przekazanej 
+            tablicy (<code class="literal">$_POST</code>) na <code class="literal">null</code>, więc
+            bezpośredni do niej dostęp nie jest już możliwy. (Dane niefiltrowane
+            są wciąż dostępne za pomocą metody <code class="literal">getRaw()</code>, która
+            jest łatwiejsza do monitorowania)
+        </p>
+<p>
+            W podejściu opcjnalnym (nieścisłym), wartość <code class="literal">false</code>
+            jest przekazywana jako drugi argument do konstruktora:
+        </p>
+<pre class="programlisting">&lt;?php
+// $_POST['email'] === 'webmaster@example.com'
+
+// Filtruje dane z tablicy $_POST
+require_once 'Zend/Filter/Input.php';
+$filterPost = new Zend_Filter_Input($_POST, false);
+
+// tablica $_POST wciąż jest zdefiniowana
+echo null === $_POST ? 'yes' : 'no'; // wyświetla 'no'
+
+// Pobiera niefiltrowaną wartość e-mail
+echo $filterPost-&gt;getRaw('email'); // wyświetla 'webmaster@example.com'</pre>
+<p>
+            Użycie filtra jest dokładnie takie same, ale 
+            <code class="literal">Zend_Filter_Input</code> nie ustawia wartości 
+            oryginalnej tablicy (<code class="literal">$_POST</code>) na 
+            <code class="literal">null</code>, więc programiści wciąż mają do niej 
+            bezpośredni dostęp. Te podejście jest odradzane na rzecz podejścia
+            ścisłego.
+        </p>
+<p>
+            <code class="literal">Zend_Filter_Input</code> jest zaprojektowany do pracy
+            z tablicami. Wiele źródeł danych wejścioywych jest oparta na 
+            superglobalnych tablicach PHP (<code class="literal">$_GET</code>, 
+            <code class="literal">$_POST</code>, <code class="literal">$_COOKIE</code>, itp.), a
+            tablice są główną konstrukcją używaną do przechowywania danych
+            wejściowych z innych źródeł. Jeśli potrzebujesz filtrować dane
+            skalarne, zobacz <a href="zend.filter.html" title="Rozdział 11. Zend_Filter">Rozdział 11, <i>Zend_Filter</i></a>.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.filter.writing_filters.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.filter.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">11.3. Pisanie filtrów </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> Rozdział 12. Zend_Gdata</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>20.4. Dokument Seiten</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="prev" href="zend.pdf.save.html" title="20.3. Änderungen von PDF Dokumenten speichern">
+<link rel="next" href="zend.pdf.drawing.html" title="20.5. Zeichnen">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">20.4. Dokument Seiten</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.pdf.save.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 20. Zend_Pdf</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.pdf.drawing.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.pdf.pages"></a>20.4. Dokument Seiten</h2></div></div></div>
+<p>
+        Die Abstraktion von PDF Dokumentseiten wird durch die Klasse <code class="code">Zend_Pdf_Page</code> 
+        abgebildet.
+    </p>
+<p>
+        PDF Seiten werden entweder aus einem vorhandenen PDF gelesen oder erstellt.
+    </p>
+<p>
+        Neue Seiten können durch die Erstellung eines neuen <code class="code">Zend_Pdf_Page</code> Objektes 
+        oder durch den Aufruf der <code class="code">Zend_Pdf::newPage()</code> Methode erhalten werden, die ein
+        <code class="code">Zend_Pdf_Page</code> Objekt zurückgibt. Der Unterschied ist, dass die 
+        <code class="code">Zend_Pdf::newPage()</code> Methode eine Seite erstellt, die bereits an das vorhandene
+        Dokument angehängt worden ist. Im Gegensatz dazu können ungebundene Seiten bei verschiedenen 
+        PDF Dokumenten verwendet werden und sind ein wenig performanter
+    <sup>[<a name="id4862178" href="#ftn.id4862178">7</a>]</sup>. Du hast die Wahl, welche Vorgehensweise verwendet werden sollte.
+    </p>
+<p>
+        Die <code class="code">Zend_Pdf::newPage()</code> Methode und der <code class="code">Zend_Pdf_Page</code> Konstruktor
+        benötigen die gleichen Parameter. Das ist entweder die Seitengröße ($x, $y) in Punkten 
+        (1/72 Zoll) oder eine vordefinierte Konstante, die als Seitentyp verwendet wird:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Zend_Pdf_Page::SIZE_A4</p></li>
+<li><p>Zend_Pdf_Page::SIZE_A4_LANDSCAPE</p></li>
+<li><p>Zend_Pdf_Page::SIZE_LETTER</p></li>
+<li><p>Zend_Pdf_Page::SIZE_LETTER_LANDSCAPE</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        Dokumentseiten werden in der öffentlichen Eigenschaft <code class="code">$pages</code> der 
+        <code class="code">Zend_Pdf</code> Klasse abgelegt. Dies ist ein Array mit <code class="code">Zend_Pdf_Page</code>
+        Objekten. Es definiert den Satz und die Reihenfolge der Dokumentseiten und kann
+        wie ein normales Array verändert werden:
+    </p>
+<div class="example">
+<a name="id4862845"></a><p class="title"><b>Beispiel 20.4. Verwaltung von PDF Dokumentseiten</b></p>
+<pre class="programlisting">&lt;?php
+...
+// Umgekehrte Seitenreihenfolge
+$pdf-&gt;pages = array_reverse($pdf-&gt;pages);
+...
+// Füge eine neue Seite hinzu
+$pdf-&gt;pages[] = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
+// Füge eine neue Seite hinzu
+$pdf-&gt;pages[] = $pdf-&gt;newPage(Zend_Pdf_Page::SIZE_A4);
+
+// Entferne eine bestimmte Seite
+unset($pdf-&gt;pages[$id]);
+
+...
+?&gt;</pre>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4862178" href="#id4862178">7</a>] </sup>
+            Dies ist eine Einschränkung der V1.0 Version der Zend_Pdf Komponente. Sie wird in 
+            zukünftigen Versionen beseitigt werden. Aber ungebundene Seiten werden immer ein 
+            besseres (also optimaleres) Ergebnis für gemeinsame Benutzung in Dokumenten liefern. 
+        </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.pdf.save.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.pdf.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.pdf.drawing.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">20.3. Änderungen von PDF Dokumenten speichern </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 20.5. Zeichnen</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

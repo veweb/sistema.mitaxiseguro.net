@@ -1,0 +1,483 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Rozdział 12. Zend_Gdata</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="index.html" title="Przewodnik Programisty">
+<link rel="prev" href="zend.filter.input.html" title="11.4. Zend_Filter_Input">
+<link rel="next" href="zend.gdata.authsub.html" title="12.2. Authenticating with AuthSub">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="section" href="zend.gdata.html#zend.gdata.introduction" title="12.1. Introduction to Gdata">
+<link rel="section" href="zend.gdata.authsub.html" title="12.2. Authenticating with AuthSub">
+<link rel="section" href="zend.gdata.clientlogin.html" title="12.3. Authenticating with ClientLogin">
+<link rel="section" href="zend.gdata.base.html" title="12.4. Using Google Base">
+<link rel="section" href="zend.gdata.blogger.html" title="12.5. Using Google Blogger">
+<link rel="section" href="zend.gdata.calendar.html" title="12.6. Using Google Calendar">
+<link rel="section" href="zend.gdata.codesearch.html" title="12.7. Using Google CodeSearch">
+<link rel="section" href="zend.gdata.data.html" title="12.8. Using the Gdata Data Helper">
+<link rel="section" href="zend.gdata.exception.html" title="12.9. Catching Gdata Exceptions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Rozdział 12. Zend_Gdata</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.filter.input.html">Poprzedni</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.authsub.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="pl">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.gdata"></a>Rozdział 12. Zend_Gdata</h2></div></div></div>
+<div class="toc">
+<p><b>Spis treści</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.gdata.html#zend.gdata.introduction">12.1. Introduction to Gdata</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.authentication">12.1.1. Google Data Client Authentication</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.dependencies">12.1.2. Dependencies</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.creation">12.1.3. Creating a new Gdata client</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.parameters">12.1.4. Common query parameters</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.getfeed">12.1.5. Fetching a feed</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.post">12.1.6. Posting entries to Google servers</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.delete">12.1.7. Deleting entries on Google servers</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.authsub.html">12.2. Authenticating with AuthSub</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.authsub.html#zend.gdata.authsub.login">12.2.1. Creating an AuthSub authenticated Http Client</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.authsub.html#zend.gdata.authsub.logout">12.2.2. Revoking AuthSub authentication</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.clientlogin.html">12.3. Authenticating with ClientLogin</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.login">12.3.1. Creating a ClientLogin authenticated Http Client</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.terminating">12.3.2. Terminating a ClientLogin authenticated Http Client</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.base.html">12.4. Using Google Base</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.query">12.4.1. Querying Base data</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.post">12.4.2. Updating Base data</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.metadata">12.4.3. Querying Base metadata</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.blogger.html">12.5. Using Google Blogger</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.compatibility">12.5.1. Understanding Blogger version compatibility</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.query">12.5.2. Querying a blog</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.post">12.5.3. Posting to your blog</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.calendar.html">12.6. Using Google Calendar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.calendar.html#zend.gdata.calendar.query">12.6.1. Querying Google Calendar</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.calendar.html#zend.gdata.calendar.post">12.6.2. Posting to Google Calendar</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.codesearch.html">12.7. Using Google CodeSearch</a></span></dt>
+<dt><span class="sect1"><a href="zend.gdata.data.html">12.8. Using the Gdata Data Helper</a></span></dt>
+<dt><span class="sect1"><a href="zend.gdata.exception.html">12.9. Catching Gdata Exceptions</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.gdata.introduction"></a>12.1. Introduction to Gdata</h2></div></div></div>
+<p>
+        Google Data APIs provide programmatic interface to some of Google's
+        online services.
+        Client applications submit queries and data via HTTP, and retrieve
+        results.
+        The Zend_Gdata component is a PHP 5 interface for accessing Google Data
+        from PHP.
+    </p>
+<p>
+        See
+        <a href="http://code.google.com/apis/gdata/" target="_top">http://code.google.com/apis/gdata/</a>
+        for more information about Google Data API.
+    </p>
+<p>
+        The services that are accessible by Zend_Gdata include the
+        following:
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <a href="zend.gdata.base.html" title="12.4. Using Google Base">Google Base</a>
+                    provides a search tool for online products,
+                    jobs, events, personal ads, and other types of entries.
+                    People post items and describe them with commonly-named
+                    attributes.
+                </p></li>
+<li><p>
+                    <a href="zend.gdata.blogger.html" title="12.5. Using Google Blogger">Google Blogger</a>
+                    is a popular internet provider of
+                    "push-button publishing" and syndication.
+                </p></li>
+<li><p>
+                    <a href="zend.gdata.calendar.html" title="12.6. Using Google Calendar">Google Calendar</a>
+                    is an online scheduling and collaboration tool.
+                </p></li>
+<li><p>
+                    <a href="zend.gdata.codesearch.html" title="12.7. Using Google CodeSearch">Google CodeSearch</a>
+                    allows you to search public source code from many projects.
+                </p></li>
+</ul></div>
+<p>
+    </p>
+<div class="note"><table border="0" summary="Note: Unsupported services">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Unsupported services</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>
+            Google Data API also supports Google Spreadsheets, but Zend_Gdata
+            does not provide a helper class for Spreadsheets in this release.
+        </p>
+<p>
+            Zend_Gdata does not provide an interface to any other Google
+            service, such as Search, Gmail, Translation, or Maps.
+            Only services that support the Google Data API are supported.
+        </p>
+</td></tr>
+</table></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.authentication"></a>12.1.1. Google Data Client Authentication</h3></div></div></div>
+<p>
+            Most Google Data services require client applications to
+            authenticate against the Google server before accessing
+            private data, or saving or deleting data.
+            There are two implementations of authentication for Google Data:
+            <a href="zend.gdata.authsub.html" title="12.2. Authenticating with AuthSub">AuthSub</a> and
+            <a href="zend.gdata.clientlogin.html" title="12.3. Authenticating with ClientLogin">ClientLogin</a>.
+            Zend_Gdata offers class interfaces for both of these methods.
+        </p>
+<p>
+            Most other types of queries against Google Data services do not
+            require authentication.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.dependencies"></a>12.1.2. Dependencies</h3></div></div></div>
+<p>
+            Zend_Gdata makes use of 
+            <a href="zend.feed.html#zend.feed.introduction" title="10.1. Wprowadzenie">Zend_Feed</a> and
+            <a href="zend.http.html#zend.http.client" title="13.1. Zend_Http_Client - Introduction">Zend_Http_Client</a> to send
+            requests to google.com and fetch results.  The response to most
+            Google Data requests is returned as a Zend_Feed object in the
+            format of an Atom or RSS feed.
+        </p>
+<p>
+            Zend_Gdata assumes your PHP application is running on a host that
+            has a direct connection to the internet.
+            The Zend_Gdata client operates by contacting Google Data servers.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.creation"></a>12.1.3. Creating a new Gdata client</h3></div></div></div>
+<p>
+            Create a new object of class Zend_Gdata or one of the
+            subclasses available that offer helper methods for
+            service-specific behavior.
+        </p>
+<p>
+            The single optional parameter to the Zend_Gdata constructor
+            is an instance of 
+            <a href="zend.http.html#zend.http.client" title="13.1. Zend_Http_Client - Introduction">Zend_Http_Client</a>.
+            If you don't pass this parameter, Zend_Gdata creates a default
+            Zend_Http_Client object.
+            Specifying the Zend_Http_Client object allows you to
+            pass configuration options to that client object.
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Gdata.php';
+require_once 'Zend/Http/Client.php';
+
+$client = new Zend_Http_Client();
+$client-&gt;setConfig( ...options... );
+
+$gdata = new Zend_Gdata($client);
+?&gt;</pre>
+<p>
+            Also see the sections on authentication for methods to
+            create an authenticated Zend_Http_Client object.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.parameters"></a>12.1.4. Common query parameters</h3></div></div></div>
+<p>
+            You can specify parameters to customize queries with Zend_Gdata.
+            Some parameters apply only to individual Google Data services.
+            These parameters are documented in later sections for each service.
+            Some parameters apply in a common way to multiple Google Data services.
+            These parameters are described below.
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    The <code class="code">alt</code> parameter specifies the feed type.
+                    The value of the parameter can be
+                    <code class="code">atom</code>,
+                    <code class="code">rss</code>,
+                    <code class="code">json</code>,
+                    or <code class="code">json-in-script</code>.
+                    If you don't specify this parameter, the default feed type
+                    is <code class="code">atom</code>.
+                </p>
+<p>
+                    Set this parameter with the <code class="code">setAlt()</code>
+                    function.
+                </p>
+</li>
+<li>
+<p>
+                    The <code class="code">maxResults</code> parameter limits the number
+                    of entries in the feed.  The value of the parameter is
+                    an integer.  The number of entries returned in the feed 
+                    will not exceed this value.
+                </p>
+<p>
+                    Set this parameter with the <code class="code">setMaxResults()</code>
+                    function.
+                </p>
+</li>
+<li>
+<p>
+                    The <code class="code">startIndex</code> parameter specifies the
+                    ordinal number of the first entry returned in the feed.
+                    Entries before this number are skipped.
+                </p>
+<p>
+                    Set this parameter with the <code class="code">setStartIndex()</code>
+                    function.
+                </p>
+</li>
+<li>
+<p>
+                    The <code class="code">updatedMin</code> and <code class="code">updatedMax</code>
+                    parameters specify bounds on the entry date.
+                    If you specify a value for <code class="code">updatedMin</code>,
+                    no entries that were updated earlier than the date
+                    you specify are included in the feed.  Likewise
+                    no entries updated after the date specified by
+                    <code class="code">updatedMax</code> are included.
+                </p>
+<p>
+                    You can use numeric timestamps, or a variety of
+                    date/time string representations as the value for
+                    these parameters.
+                </p>
+<p>
+                    Set this parameter with the <code class="code">setUpdatedMin()</code>
+                    and <code class="code">setUpdatedMax()</code> functions.
+                </p>
+</li>
+</ul></div>
+<p>
+            There is a <code class="code">get</code> function for each
+            <code class="code">set</code> function.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata();
+$gdata-&gt;setMaxResults(10);
+echo $gdata-&gt;getMaxResults();   // returns 10
+?&gt;</pre>
+<p>
+            The Zend_Gdata class also implements "magic" getter and
+            setter methods, so you can use the name of the parameter
+            as a virtual member of the class.  You can use
+            <code class="code">isset()</code> and <code class="code">unset()</code> on these
+            virtual members.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata();
+$gdata-&gt;maxResults = 10;
+echo $gdata-&gt;maxResults;        // returns 10
+echo isset($gdata-&gt;maxResults); // returns true
+unset($gdata-&gt;maxResults);      // clears parameter
+?&gt;</pre>
+<p>
+            You can clear all parameters with the <code class="code">resetParameters()</code>
+            function.  This is useful to do if you reuse a Zend_Gdata
+            object for multiple queries.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata();
+$gdata-&gt;maxResults = 10;
+// ...get feed...
+
+$gdata-&gt;resetParameters();      // clears all parameters
+// ...get a different feed...
+?&gt;</pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.getfeed"></a>12.1.5. Fetching a feed</h3></div></div></div>
+<p>
+            Use the <code class="code">getFeed()</code> function to retrieve
+            a feed from a specified URI.
+            This function returns an object of class Zend_Feed.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata();
+$gdata-&gt;setQuery('digital camera');
+$gdata-&gt;setMaxResults(10);
+$uri = 'http://www.google.com/base/feeds/snippets'
+    . $gdata-&gt;getQueryString();
+$feed = $gdata-&gt;getFeed($uri);
+?&gt;</pre>
+<p>
+            See the documentation for <a href="zend.feed.html#zend.feed.introduction" title="10.1. Wprowadzenie">Zend_Feed</a>
+            for more information on how to use this object.
+        </p>
+<p>
+            See later sections for special functions in each
+            helper class for Google Data services.  These
+            functions help you to get feeds from the URI that is
+            appropriate for the respective service.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.post"></a>12.1.6. Posting entries to Google servers</h3></div></div></div>
+<p>
+            The Zend_Gdata object has a function <code class="code">post()</code>
+            with which you can upload data to save new entries
+            to Google Data services.
+        </p>
+<p>
+            You are responsible for constructing a string containing
+            the correct XML structure for an entry of the respective
+            Google Data service you are using.  You may use PHP class
+            libraries such as DOM XML or SimpleXML.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata($authenticatedHttpClient);
+
+$xmlString = &lt;&lt;&lt;XML
+&lt;entry xmlns='http://www.w3.org/2005/Atom'
+    xmlns:gd='http://schemas.google.com/g/2005'&gt;
+  &lt;category scheme='http://schemas.google.com/g/2005#kind'
+    term='http://schemas.google.com/g/2005#event'&gt;&lt;/category&gt;
+  &lt;title type='text'&gt;Tennis with Beth&lt;/title&gt;
+  &lt;content type='text'&gt;Meet for a quick lesson.&lt;/content&gt;
+  &lt;author&gt;
+    &lt;name&gt;Jo March&lt;/name&gt;
+    &lt;email&gt;jo@gmail.com&lt;/email&gt;
+  &lt;/author&gt;
+  &lt;gd:transparency
+    value='http://schemas.google.com/g/2005#event.opaque'&gt;
+  &lt;/gd:transparency&gt;
+  &lt;gd:eventStatus
+    value='http://schemas.google.com/g/2005#event.confirmed'&gt;
+  &lt;/gd:eventStatus&gt;
+  &lt;gd:where valueString='Rolling Lawn Courts'&gt;&lt;/gd:where&gt;
+  &lt;gd:when startTime='2006-04-17T15:00:00.000Z'
+    endTime='2006-04-17T17:00:00.000Z'&gt;&lt;/gd:when&gt;
+&lt;/entry&gt;
+XML;
+
+$xml = new SimpleXMLElement($xmlString);
+
+$myCalendar = 'http://www.google.com/calendar/feeds/default/private/full';
+$gdata-&gt;post($xml-&gt;asXML(), $myCalendar);
+?&gt;</pre>
+<p>
+            To post entries, you must be using an authenticated
+            Zend_Http_Client that you created using the Zend_Gdata_AuthSub
+            or Zend_Gdata_ClientLogin classes.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.introduction.delete"></a>12.1.7. Deleting entries on Google servers</h3></div></div></div>
+<p>
+            The Zend_Gdata object has a function <code class="code">delete()</code>
+            with which you can delete entries from Google Data
+            services.  Pass the <code class="code">&lt;id&gt;</code> value from
+            a feed entry to the <code class="code">delete()</code> method.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata($authenticatedHttpClient);
+// a Google Data feed
+$feedUri = ...;
+$feed = $gdata-&gt;getFeed($feedUri);
+foreach ($feed as $feedEntry) {
+    // extract the &lt;id&gt; element
+    $id = $feedEntry-&gt;id();
+    $gdata-&gt;delete($id);
+}
+?&gt;</pre>
+<p>
+            You can also use the <code class="code">delete()</code> method without
+            a feed object, if you pass a correct URI identifying an
+            entry.
+        </p>
+<pre class="programlisting">&lt;?php
+$gdata = new Zend_Gdata($authenticatedHttpClient);
+$uri = 'http://www.google.com/calendar/feeds/default/private/entryID';
+$gdata-&gt;delete($uri);
+?&gt;</pre>
+<p>
+            In the above example, replace "<code class="code">entryID</code>" with the
+            ID value for the specific entry you want to delete.
+        </p>
+<p>
+            To delete entries, you must be using an authenticated
+            Zend_Http_Client that you created using the Zend_Gdata_AuthSub
+            or Zend_Gdata_ClientLogin classes.
+        </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.filter.input.html">Poprzedni</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.authsub.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">11.4. Zend_Filter_Input </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 12.2. Authenticating with AuthSub</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

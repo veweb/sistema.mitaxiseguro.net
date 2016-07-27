@@ -1,0 +1,153 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>12.3. ClientLogin による認証</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="prev" href="zend.gdata.authsub.html" title="12.2. AuthSub による認証">
+<link rel="next" href="zend.gdata.base.html" title="12.4. Google Base の使用法">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.login" title="12.3.1. ClientLogin 認証済みの Http クライアントの作成">
+<link rel="subsection" href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.terminating" title="12.3.2. Http クライアントの ClientLogin 認証の解除">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">12.3. ClientLogin による認証</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.gdata.authsub.html">前のページ</a> </td>
+<th width="60%" align="center">第12章 Zend_Gdata</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.base.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.gdata.clientlogin"></a>12.3. ClientLogin による認証</h2></div></div></div>
+<p>
+        ClientLogin を使用すると、PHP アプリケーションで
+        Google Data サービスへのアクセスのための認証ができるようになります。
+        ユーザの認証情報を、Http クライアントに指定します。
+    </p>
+<p>
+        Google Data ClientLogin 認証についての詳細は、
+        <a href="http://code.google.com/apis/accounts/AuthForInstalledApps.html" target="_top"> http://code.google.com/apis/accounts/AuthForInstalledApps.html </a>
+        を参照ください。
+    </p>
+<p>
+        Google のドキュメントでは、ClientLogin 方式は
+        "インストールするアプリケーション" に適しており、一方 AuthSub は
+        "ウェブアプリケーション" に適しているとされています。
+        これらの違いは、AuthSub はユーザとのやりとりが発生するということです。
+        ブラウザのインターフェイスを用いて、リクエストのリダイレクトを行います。
+        ClientLogin では PHP のコードでアカウント情報を提供します。
+        ユーザが直接認証情報を入力する必要がなくなります。
+    </p>
+<p>
+        ClientLogin で使用する認証情報は、Google サービスの正当な認証情報でなければなりません。
+        しかし、それは PHP アプリケーションを使用するユーザ自身のものである必要はありません。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.clientlogin.login"></a>12.3.1. ClientLogin 認証済みの Http クライアントの作成</h3></div></div></div>
+<p>
+            ClientLogin を使用した認証済みの Http クライアントを作成するには、
+            静的関数 <code class="code">Zend_Gdata_ClientLogin::getHttpClient()</code>
+            をコールし、Google アカウントの認証情報をプレーンテキストで渡します。
+            この関数の返り値は、Zend_Http_Client クラスのオブジェクトとなります。
+        </p>
+<p>
+            オプションの三番目のパラメータには、Google Data
+            サービスの名前が指定できます。たとえば、'cl'
+            は Google Calendar を表します。デフォルトは 'xapi' で、
+            これは Google Data サーバの汎用的なサービス名を表します。
+        </p>
+<p>
+            オプションの四番目のパラメータには Zend_Http_Client
+            のインスタンスを指定できます。これによって、
+            たとえばプロキシサーバなどのクライアント設定を行うことができます。
+            このパラメータに <code class="code">null</code> を渡すと、
+            汎用的な Zend_Http_Client オブジェクトが作成されます。
+        </p>
+<p>
+            オプションの五番目のパラメータには、Google Data
+            サーバがクライアントアプリケーションを識別するための短い文字列
+            (これはログ記録の際に使用します) を指定できます。
+            デフォルトでは、これは "Zend-ZendFramework" となります。
+        </p>
+<p>
+            以下の例は、PHP のウェブアプリケーションのコードです。
+            Google Calendar サービスに対する認証を行い、
+            認証済みの Http クライアントを使用して Zend_Gdata
+            クライアントオブジェクトを作成します。
+        </p>
+<pre class="programlisting">&lt;?php
+// Google アカウントの情報を指定します
+$email = 'johndoe@gmail.com';
+$passwd = 'xxxxxxxx';
+$client = Zend_Gdata_ClientLogin::getHttpClient($email, $passwd, 'cl');
+
+$cal = new Zend_Gdata_Calendar($client);
+?&gt;</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.clientlogin.terminating"></a>12.3.2. Http クライアントの ClientLogin 認証の解除</h3></div></div></div>
+<p>
+            ClientLogin 認証を解除する方法はありません。というのは、これは
+            AuthSub のようにトークンを使用した認証ではないからです。
+            ClientLogin 認証に使用する情報は Google アカウントのユーザ名とパスワードであり、
+            これらは将来も繰り返し使用することができます。
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.gdata.authsub.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.gdata.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.base.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">12.2. AuthSub による認証 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 12.4. Google Base の使用法</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

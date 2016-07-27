@@ -1,0 +1,191 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>6.2. Getopt の規則の宣言</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="prev" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="next" href="zend.console.getopt.fetching.html" title="6.3. オプションおよび引数の取得">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.console.getopt.rules.html#zend.console.getopt.rules.short" title="6.2.1. 短い形式のオプションの宣言">
+<link rel="subsection" href="zend.console.getopt.rules.html#zend.console.getopt.rules.long" title="6.2.2. 長い形式のオプションの宣言">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">6.2. Getopt の規則の宣言</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.console.getopt.html">前のページ</a> </td>
+<th width="60%" align="center">第6章 Zend_Console_Getopt</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.console.getopt.fetching.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.console.getopt.rules"></a>6.2. Getopt の規則の宣言</h2></div></div></div>
+<p>
+        <code class="code">Zend_Console_Getopt</code> クラスのコンストラクタは、
+        ひとつから三つの引数を指定します。最初の引数では、
+        このアプリケーションでサポートするオプションを宣言します。
+        このクラスは、オプションを宣言するためのもうひとつの構文もサポートしています。
+        以下の節で、これらの構文についての書式や使用法を参照ください。
+    </p>
+<p>
+        コンストラクタには、さらに二つの引数を指定します。
+        これらはオプションです。二番目の引数に指定するのは
+        コマンドライン引数です。デフォルトは
+        <code class="code">$_SERVER['argv']</code> となります。
+    </p>
+<p>
+        コンストラクタの三番目の引数には、設定オプションを指定します。
+        これで <code class="code">Zend_Console_Getopt</code> の振る舞いを変更します。
+        使用可能なオプションについては
+        <a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.config" title="6.4.5. 設定の追加">設定の追加</a>
+        を参照ください。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.rules.short"></a>6.2.1. 短い形式のオプションの宣言</h3></div></div></div>
+<p>
+            <code class="code">Zend_Console_Getopt</code> は、GNU Getopt
+            と似た形式のコンパクトな構文をサポートしています
+            (<a href="http://www.gnu.org/software/libc/manual/html_node/Getopt.html" target="_top">http://www.gnu.org/software/libc/manual/html_node/Getopt.html</a>
+            を参照ください)。
+            この構文は、一文字のフラグでのみ使用できます。
+            アプリケーションでサポートするフラグに対応する文字を、
+            ひとつの文字列にまとめてで指定します。
+            文字の後ろにコロン ("<code class="code">:</code>") を続けると、
+            そのフラグがパラメータを要求することを表します。
+        </p>
+<div class="example">
+<a name="id4795245"></a><p class="title"><b>例 6.1. 短い形式の構文の使用</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Console/Getopt.php';
+$opts = new Zend_Console_Getopt('abp:');
+?&gt;</pre>
+</div>
+<p>
+            上の例は、<code class="code">Zend_Console_Getopt</code> を用いて、
+            使用するオプションを "<code class="code">-a</code>"、
+            "<code class="code">-b</code>" あるいは "<code class="code">-p</code>" と宣言するものです。
+            最後のフラグにはパラメータが必要となります。
+        </p>
+<p>
+	    短い構文が使用できるのは、一文字のフラグに限られます。
+	    エイリアスやパラメータ型、ヘルプ文字列は短い構文ではサポートしません。
+	</p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.rules.long"></a>6.2.2. 長い形式のオプションの宣言</h3></div></div></div>
+<p>
+            より高機能な別の構文もサポートしています。この構文では、
+            フラグにエイリアスを設定したりオプションパラメータの型を指定したり、
+            ユーザに対して使用法を示すヘルプ文字列を指定したりもできます。
+            短い構文のオプションを宣言する場合には文字列を使用しましたが、
+            長い構文の場合は連想配列を使用します。
+            これをコンストラクタの最初の引数として指定します。
+        </p>
+<p>
+            連想配列の各要素のキーは、フラグの名前とエイリアスをパイプ記号
+            ("<code class="code">|</code>") で連結した文字列となります。
+            そのオプションがパラメータを必要とする場合は、
+            フラグに続けて等号 ("<code class="code">=</code>") を書き、
+            その後にパラメータの型を表す文字を続けます。
+	</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+		    "<code class="code">=s</code>" は文字列パラメータを表します。
+		</p></li>
+<li><p>
+		    "<code class="code">=w</code>" はワードパラメータ
+		    (空白を含まない文字列) を表します。
+		</p></li>
+<li><p>
+		    "<code class="code">=i</code>" は整数パラメータを表します。
+		</p></li>
+</ul></div>
+<p>
+            そのパラメータがオプションである場合は、等号の代わりにダッシュ
+            ("<code class="code">-</code>") を使用します。
+        </p>
+<p>
+            連想配列の各要素の値は、ヘルプ文字列を表します。これは、
+            ユーザに対してプログラムの使用法を説明するものです。
+        </p>
+<div class="example">
+<a name="id4796267"></a><p class="title"><b>例 6.2. 長い形式の構文の使用</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Console/Getopt.php';
+$opts = new Zend_Console_Getopt(
+  array(
+    'apple|a'    =&gt; 'このオプションはリンゴを選択します。パラメータは不要です。',
+    'banana|b=i' =&gt; 'このオプションはバナナを選択します。整数パラメータが必須です。',
+    'pear|p-s'   =&gt; 'このオプションは洋ナシを選択します。オプションで文字列パラメータを指定します。'
+  )
+);
+?&gt;
+            </pre>
+</div>
+<p>
+            上の例では、三種類のオプションを宣言しています。
+	    "<code class="code">--apple</code>" および "<code class="code">-a</code>" は同じ意味を持つエイリアスで、
+	    このオプションはパラメータを受け取りません。
+            "<code class="code">--banana</code>" および "<code class="code">-b</code>" は同じ意味を持つエイリアスで、
+            このオプションには整数値のパラメータが必須となります。
+            最後に "<code class="code">--pear</code>" および "<code class="code">-p</code>" は同じ意味を持つエイリアスで、
+            このオプションには任意で文字列のパラメータを指定することができます。
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.console.getopt.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.console.getopt.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.console.getopt.fetching.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第6章 Zend_Console_Getopt </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 6.3. オプションおよび引数の取得</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

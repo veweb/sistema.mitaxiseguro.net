@@ -1,0 +1,424 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.4. クエリ言語</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="prev" href="zend.search.searching.html" title="22.3. インデックスの検索">
+<link rel="next" href="zend.search.query-api.html" title="22.5. クエリ作成用の API">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.terms" title="22.4.1. 用語">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.fields" title="22.4.2. フィールド">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.modifiers" title="22.4.3. 単語の修正子">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.proximity-search" title="22.4.4. 近接検索">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.boosting" title="22.4.5. 単語の強調">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.boolean" title="22.4.6. 論理演算子">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.grouping" title="22.4.7. グループ化">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.field-grouping" title="22.4.8. フィールドのグループ化">
+<link rel="subsection" href="zend.search.query-language.html#zend.search.query-language.escaping" title="22.4.9. 特殊文字のエスケープ">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.4. クエリ言語</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.searching.html">前のページ</a> </td>
+<th width="60%" align="center">第22章 Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.query-api.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.query-language"></a>22.4. クエリ言語</h2></div></div></div>
+<p>
+        Java Lucene および Zend_Search_Lucene では、非常に強力なクエリ言語を使用できます。
+    </p>
+<p>
+        これら二つはほぼ同じですが、微妙に異なる点もあります。
+        異なる点については以下で説明します。
+    </p>
+<p>
+        Java Lucene のクエリ言語の文法についての完全な文書は
+        <a href="http://lucene.apache.org/java/docs/queryparsersyntax.html" target="_top">ここ</a>
+        にあります。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.terms"></a>22.4.1. 用語</h3></div></div></div>
+<p>
+            クエリは、単語と演算子から成り立ちます。単語には三種類の形式があります。
+            単一の単語、フレーズ、そしてサブクエリです。
+        </p>
+<p>
+            単一の単語とは、"test" や "hello" のようなひとつの単語です。
+        </p>
+<p>
+            フレーズとは、ダブルクォートで囲まれた複数の単語のグループ、たとえば
+            "hello dolly" です。
+        </p>
+<p>
+            サブクエリとは、括弧で囲まれたクエリ、たとえば "(hello dolly)" です。
+        </p>
+<p>
+            複数の単語を論理演算子で組み合わせることで、より複雑なクエリを作成できます
+            (以下を参照ください)。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.fields"></a>22.4.2. フィールド</h3></div></div></div>
+<p>
+            Lucene は、フィールド指定したデータをサポートしています。
+            検索を行う際には、クエリを指定することもできますし、
+            デフォルトのフィールドを使用することもできます。
+            フィールド名はインデックス化されたデータに依存します。また、
+            デフォルトのフィールドは現在の設定によって決まります。
+        </p>
+<p>
+            Java Lucene との最初の (そして大きな) 違いは、デフォルトでは
+            <span class="emphasis"><em>すべてのフィールド</em></span> が検索の対象になるということです。
+        </p>
+<p>
+            Zend_Search_Lucene クラスにはふたつの静的メソッドがあり、
+            この設定を操作することができます。
+        </p>
+<pre class="programlisting">&lt;?php
+$defaultSearchField = Zend_Search_Lucene::getDefaultSearchField();
+...
+Zend_Search_Lucene::setDefaultSearchField('contents');
+?&gt;</pre>
+<p>
+            <code class="code">null</code> 値は、すべてのフィールドを検索の対象とすることを意味します。
+            これがデフォルトの設定です。
+        </p>
+<p>
+            フィールドを指定するには、まずフィールド名をタイプし、その後にコロン ":"
+            を続け、探したい単語を指定します。
+        </p>
+<p>
+            例を見てみましょう。Lucene インデックスにはふたつのフィールド
+            title および text があり、text がデフォルトのフィールドであるとします。
+            タイトルが "The Right Way" で本文に "don't go this way"
+            が含まれるドキュメントを探したいなら、
+        </p>
+<pre class="programlisting">title:"The Right Way" AND text:go</pre>
+<p>
+            あるいは
+        </p>
+<pre class="programlisting">title:"Do it right" AND go</pre>
+<p>
+            とします。"text" がデフォルトのフィールドなら、フィールドの指定は必須ではなくなります。
+        </p>
+<p>
+            注意: フィールドが有効なのは、その直後にある単語、
+            フレーズあるいはサブクエリだけであることに注意しましょう。つまり、クエリ
+            </p>
+<pre class="programlisting">title:Do it right</pre>
+<p>
+            は "Do" だけを title フィールドから探し、"it" や "right"
+            はデフォルトのフィールドから探します。デフォルトのフィールドが
+            <code class="code">null</code> に設定されている場合は、"it" や "right"
+            はすべてのフィールドから探します。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.modifiers"></a>22.4.3. 単語の修正子</h3></div></div></div>
+<p>
+            Lucene は、クエリの単語を修飾して幅広い検索オプションを指定することをサポートしています。
+        </p>
+<p>
+            Zend_Search_Lucene では、現在は "~" 修正子をフレーズについてのみサポートしています。
+            <sup>[<a name="id4884325" href="#ftn.id4884325">8</a>]</sup>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.proximity-search"></a>22.4.4. 近接検索</h3></div></div></div>
+<p>
+            Lucene は、複数の単語が指定した範囲内にあらわれる状態の検索をサポートしています。
+            近接検索を行うには、チルダ記号 "~" をフレーズの最後に指定します。
+            たとえば、"Zend" と "Framework" がお互い 10 ワードの範囲内にあらわれるドキュメントを検索するには
+            </p>
+<pre class="programlisting">"Zend Framework"~10</pre>
+<p>
+            とします。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.boosting"></a>22.4.5. 単語の強調</h3></div></div></div>
+<p>
+            Java Lucene および Zend_Search_Lucene は、
+            見つかった単語にもとづいてドキュメントの関連度を提供します。
+            ある単語の関連性を高くするには、キャレット記号 "^" に強調度 (数値)
+            をあわせたものを、検索する単語の最後につなげます。
+            強調度を高くするほど、その単語の関連性が高くなります。
+        </p>
+<p>
+            この機能を使用すると、単語の強調度によってドキュメントの関連性を制御できるようになります。
+            たとえば
+            </p>
+<pre class="programlisting">PHP framework</pre>
+<p>
+            を検索しようとしており、単語 "PHP" をより重視したいとしましょう。
+            そんな場合は ^ 記号と強調度を単語の後に続けます。つまり
+            </p>
+<pre class="programlisting">PHP^4 framework</pre>
+<p>
+            のようにします。これにより、PHP という単語を含むドキュメントがより重視されるようになります。
+            フレーズやサブクエリを強調することも可能です。たとえば
+            </p>
+<pre class="programlisting">"PHP framework"^4 "Zend Framework"</pre>
+<p>
+            のようになります。デフォルトの強調度は 1 です。強調度には正の数値を指定しますが、
+            1 より小さくする (たとえば 0.2 など) ことも可能です。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.boolean"></a>22.4.6. 論理演算子</h3></div></div></div>
+<p>
+            論理演算子によって、複数の単語を組み合わせることができます。
+            Lucene では、論理演算子として AND、"+"、OR、NOT および "-"
+            をサポートしています。Java Lucene では論理演算子をすべて大文字にする必要がありますが、
+            Zend_Search_Lucene ではその必要はありません。
+        </p>
+<p>
+            論理演算子によって、複数の単語を組み合わせることができます。
+            Lucene では、論理演算子として AND、"+"、OR、NOT および "-"
+            をサポートしています。
+        </p>
+<p>
+            論理クエリを作成するための方式は、大きく AND、OR および NOT の組と "+"、"-"
+            の組に分けられます。Java Lucene とは異なり、Zend_Search_Lucene
+            ではこれらの二つの組を混ぜて使うことはできません。
+        </p>
+<p>
+            AND/OR/NOT 形式を使用する場合は、AND/OR 演算子がすべてのクエリ単語の間に存在する必要があります。
+            各単語の前には NOT 演算子をつけることができます。AND 演算子の優先順位は OR
+            より高くなります。これは Java Lucene の挙動とは異なります。
+        </p>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.and"></a>22.4.6.1. AND</h4></div></div></div>
+<p>
+                AND 演算子の意味は、"AND グループ"
+                のすべての単語がドキュメントにマッチしなければならないということです。
+            </p>
+<p>
+                "PHP framework" および "Zend Framework" を含むドキュメントを検索するには
+                </p>
+<pre class="programlisting">"PHP framework" AND "Zend Framework"</pre>
+<p>
+                を使用します。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.or"></a>22.4.6.2. OR</h4></div></div></div>
+<p>
+                OR 演算子は、クエリをいくつかのオプションに分割します。
+            </p>
+<p>
+                "PHP framework" あるいは "Zend Framework" を含むドキュメントを検索するには
+                </p>
+<pre class="programlisting">"PHP framework" OR "Zend Framework"</pre>
+<p>
+                を使用します。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.not"></a>22.4.6.3. NOT</h4></div></div></div>
+<p>
+                NOT 演算子は、NOT の後に続く単語を含むドキュメントを除外します。
+                しかし "AND グループ" が NOT 演算子つきの単語しか含まない場合は、
+                インデックス化されたドキュメント全体ではなく空の結果を返します。
+            </p>
+<p>
+                "PHP framework" を含むが "Zend Framework" は含まないドキュメントを検索するには
+                </p>
+<pre class="programlisting">"PHP framework" AND NOT "Zend Framework"</pre>
+<p>
+                を使用します。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.other-form"></a>22.4.6.4. &amp;&amp;、|| および ! 演算子</h4></div></div></div>
+<p>
+                &amp;&amp;、|| および ! は、それぞれ AND、OR および NOT 演算子の代わりに使用します。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.plus"></a>22.4.6.5. +</h4></div></div></div>
+<p>
+                "+" 演算子 (必須演算子) は、
+                "+" 記号の後の単語が必ずドキュメントにマッチしなければならないことを意味します。
+            </p>
+<p>
+                "Zend" を必ず含み、"Framework" を含んでも含まなくてもかまわないドキュメントを検索するには
+                </p>
+<pre class="programlisting">+Zend Framework</pre>
+<p>
+                を使用します。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.minus"></a>22.4.6.6. -</h4></div></div></div>
+<p>
+                "-" 演算子 (禁止演算子) は、
+                "-" 記号の後の単語を含むドキュメントを検索結果から除外します。
+            </p>
+<p>
+                "PHP framework" は含むが "Zend Framework" は含まないドキュメントを検索するには
+                </p>
+<pre class="programlisting">"PHP framework" -"Zend Framework"</pre>
+<p>
+                を使用します。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.search.query-language.boolean.no-operator"></a>22.4.6.7. 演算子なし</h4></div></div></div>
+<p>
+                演算子を使用しなかった場合は、
+                その挙動は "デフォルトの boolean 演算子" として定義されます。
+            </p>
+<p>
+                これは、デフォルトでは <code class="code">OR</code> となります。
+            </p>
+<p>
+                つまり、その単語は任意となるということです。
+                その単語はドキュメント中に存在するかもしれないし、しないかもしれません。
+                ただ、その単語を含むドキュメントのほうが高いスコアとなります。
+            </p>
+<p>
+                "PHP framework" は必須で "Zend Framework" は含んでも含まなくてもかまわないドキュメントを検索するには
+                </p>
+<pre class="programlisting">+"PHP framework" "Zend Framework"</pre>
+<p>
+                を使用します。
+            </p>
+<p>
+                デフォルトの boolean 演算子を設定したり取得したりするには、それぞれ
+                <code class="code">Zend_Search_Lucene_Search_QueryParser::setDefaultOperator($operator)</code> および
+                <code class="code">Zend_Search_Lucene_Search_QueryParser::getDefaultOperator()</code> を使用します。
+            </p>
+<p>
+                これらのメソッドで使用する定数は、
+                <code class="code">Zend_Search_Lucene_Search_QueryParser::B_AND</code> および
+                <code class="code">Zend_Search_Lucene_Search_QueryParser::B_OR</code> です。
+            </p>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.grouping"></a>22.4.7. グループ化</h3></div></div></div>
+<p>
+            Java Lucene および Zend_Search_Lucene では、
+            括弧を使用して条件をグループ化することによるサブクエリの作成をサポートしています。
+            これは、クエリのロジックを制御したい場合や異なるスタイルの論理クエリを共用したい場合などに便利です。
+            </p>
+<pre class="programlisting">+(framework OR library) +php</pre>
+<p>
+            Zend_Search_Lucene は、あらゆるレベルのサブクエリをサポートしています。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.field-grouping"></a>22.4.8. フィールドのグループ化</h3></div></div></div>
+<p>
+            Lucene では、括弧を使用して複数の条件をひとつのフィールドに適用することができます。
+        </p>
+<p>
+            タイトルに単語 "return" とフレーズ "pink panther" の両方を含むドキュメントを検索するには
+            </p>
+<pre class="programlisting">title:(+return +"pink panther")</pre>
+<p>
+            を使用します。Zend_Search_Lucene は、あらゆるレベルのサブクエリをサポートしています。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.query-language.escaping"></a>22.4.9. 特殊文字のエスケープ</h3></div></div></div>
+<p>
+            Lucene は、クエリの文法に含まれる特殊文字のエスケープをサポートしています。
+            特殊文字に含まれるの文字は次のとおりです。
+        </p>
+<p>
+            + - &amp;&amp; || ! ( ) { } [ ] ^ " ~ * ? : \
+        </p>
+<p>
+            + および - が単一の単語の中に含まれる場合は、通常の文字として扱われます。
+        </p>
+<p>
+            これらの文字をエスケープするには、その文字の前に \ をつけます。
+            たとえば、(1+1):2 を検索するには
+            </p>
+<pre class="programlisting">\(1\+1\)\:2</pre>
+<p>
+            を使用します。
+        </p>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4884325" href="#id4884325">8</a>] </sup>
+                    "~" はあいまい検索に用いられます。しかし、あいまい検索のクエリはまだサポートされていません。
+                </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.searching.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.query-api.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.3. インデックスの検索 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 22.5. クエリ作成用の API</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

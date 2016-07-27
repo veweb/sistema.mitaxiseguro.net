@@ -1,0 +1,204 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>18.2. Creation of Measurements</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="prev" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="next" href="zend.measure.output.html" title="18.3. Outputting measurements">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.measure.creation.html#zend.measure.creation.number" title="18.2.1. Measurements from variables">
+<link rel="subsection" href="zend.measure.creation.html#zend.measure.creation.string" title="18.2.2. Measurements from strings">
+<link rel="subsection" href="zend.measure.creation.html#zend.measure.creation.localized" title="18.2.3. Measurements from localized strings">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">18.2. Creation of Measurements</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.measure.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 18. Zend_Measure</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.measure.output.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.measure.creation"></a>18.2. Creation of Measurements</h2></div></div></div>
+<p>
+        When creating a measurement object, <code class="code">Zend_Measure</code> methods expect the input/original value as the
+        first parameter. This can be a
+        <a href="zend.measure.creation.html#zend.measure.creation.number" title="18.2.1. Measurements from variables"><code class="code">numeric argument</code>
+        </a>
+        , a
+        <a href="zend.measure.creation.html#zend.measure.creation.string" title="18.2.2. Measurements from strings"><code class="code">string</code>
+        </a>
+        without units, or a
+        <a href="zend.measure.creation.html#zend.measure.creation.localized" title="18.2.3. Measurements from localized strings"><code class="code">localized string</code> with unit(s) specified.
+        </a>
+        . The second parameter defines the type of the measurement. Both parameters are mandatory. As an optional third
+        parameter, the language can be defined.
+    </p>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.creation.number"></a>18.2.1. Measurements from variables</h3></div></div></div>
+<div class="example">
+<a name="id4852470"></a><p class="title"><b>Exemple 18.2. Creation using integer variables</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend.php';
+Zend::loadClass('Zend_Measure');
+
+$integer = 1234;
+$unit = new Zend_Measure($integer,Zend_Measure::LENGTH);
+
+echo $unit;
+// outputs '1234 m'
+?&gt;</pre>
+</div>
+<div class="note"><table border="0" summary="Note: Using floating point">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Using floating point</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Instead of integer types, floating point types may be used, but
+                <a href="http://www.php.net/float" target="_top">"simple decimal fractions like 0.1 or 0.7 cannot be converted into their internal binary counterparts without a little loss of precision,"</a>
+                sometimes giving surprising results. Also, do not compare two "float" type numbers for equality.
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.creation.string"></a>18.2.2. Measurements from strings</h3></div></div></div>
+<p>
+            Many measurements received as input to ZF applications can only be passed to <code class="code">Zend_Measure</code>
+            classes as strings, such as numbers written using
+            <a href="http://en.wikipedia.org/wiki/Roman_numerals" target="_top">roman numerals</a>
+            or extremely large binary values that exceed the precision of PHP's native integer and float types. Since
+            integers can be denoted using strings, if there is any risk of losing precision due to limitations of PHP's
+            native integer and float types, using strings instead. <code class="code">Zend_Measure_Number</code> uses the BCMath
+            extension to support arbitrary precision, as shown in the example below, to avoid limitations in many PHP
+            functions, such as
+            <a href="http://php.net/bin2dec" target="_top"><code class="code">bin2dec()</code>
+            </a>
+            .
+        </p>
+<div class="example">
+<a name="id4852558"></a><p class="title"><b>Exemple 18.3. Creation using strings</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend.php';
+Zend::loadClass('Zend_Measure');
+Zend::loadClass('Zend_Measure_Number');
+
+$mystring = "10010100111010111010100001011011101010001";
+$unit = new Zend_Measure($mystring,Zend_Measure_Number::BINARY);
+
+echo $unit;
+?&gt;</pre>
+</div>
+<p>
+            Measurements can also be just a part of an arbitrary string. Usually, <code class="code">Zend_Measure</code> can
+            automatically extract the desired measurement. Only the first identifiable number will be used for
+            measurement creation. If there are more numbers in the string, the rest will be ignored.
+        </p>
+<div class="example">
+<a name="id4852589"></a><p class="title"><b>Exemple 18.4. Arbitrary texts</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend.php';
+Zend::loadClass('Zend_Measure');
+
+$mystring = "My house is 125m² in size";
+$unit = new Zend_Measure($mystring,Zend_Measure::AREA);
+
+echo $unit;
+?&gt;</pre>
+</div>
+<div class="example">
+<a name="id4852602"></a><p class="title"><b>Exemple 18.5. Arbitrary texts</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend.php';
+Zend::loadClass('Zend_Measure');
+
+$mystring = "My house is 125m² in size, it has 5 rooms of 25m² each.";
+$unit = new Zend_Measure($mystring,Zend_Measure::AREA);
+
+echo $unit;
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.creation.localized"></a>18.2.3. Measurements from localized strings</h3></div></div></div>
+<p>
+            When a string is entered in a localized notation, the correct interpretation can not be determined without
+            knowing the intended locale. The division of decimal digits with "." and grouping of thousands with "," is
+            common in the English language, but not so in other languages. For example, the English number "1,234.50"
+            would be interpreted as meaning "1.2345" in German. To deal with such problems, the locale-aware
+            <code class="code">Zend_Measure</code> family of classes offer the possibility to specify a language or region to
+            disambiguate the input data and properly interpret the intended semantic value.
+        </p>
+<div class="example">
+<a name="id4852654"></a><p class="title"><b>Exemple 18.6. Localized string</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend.php';
+Zend::loadClass('Zend_Measure');
+
+$locale = new Zend_Locale('de');
+$mystring = "1.234.567,89 Meter";
+$unit = new Zend_Measure($mystring,Zend_Measure::LENGTH, $locale);
+
+echo $unit;
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.measure.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.measure.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.measure.output.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapitre 18. Zend_Measure </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 18.3. Outputting measurements</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

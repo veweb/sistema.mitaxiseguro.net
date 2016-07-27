@@ -1,0 +1,206 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>28.2. Controller Scripts</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="prev" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="next" href="zend.view.scripts.html" title="28.3. View Scripts">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.view.controllers.html#zend.view.controllers.assign" title="28.2.1. Variabelen toewijzen">
+<link rel="subsection" href="zend.view.controllers.html#zend.view.controllers.render" title="28.2.2. Een View Script weergeven">
+<link rel="subsection" href="zend.view.controllers.html#zend.view.controllers.script-paths" title="28.2.3. View Script Paden">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">28.2. Controller Scripts</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.view.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 28. Zend_View</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.view.scripts.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.controllers"></a>28.2. Controller Scripts</h2></div></div></div>
+<p>
+		De controller is waar je Zend_View instantieert en configureert.
+		Je wijst dan variabelen aan de view toe en vertelt het view de
+		output weer te geven door middel van een bepaald script.
+    </p>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.controllers.assign"></a>28.2.1. Variabelen toewijzen</h3></div></div></div>
+<p>
+			Je controller script zou de nodige variabelen aan het view moeten
+			toewijzen voordat het de controle aan het view script overhandigd.
+			Normaal gesproken kan je toewijzingen één per één doen door
+			waarden aan de eigenschappen van de view instantie toe te wijzen:
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;a = "Hooi";
+$view-&gt;b = "Bij";
+$view-&gt;c = "Zee";
+?&gt;
+        </pre>
+<p>
+			Dit kan wel vervelend zijn als je reeds alle waarden die
+			toegewezen moeten worden in een array of objekt voorhanden hebt.
+        </p>
+<p>
+			de assign() methode laat je "bulk" toewijzingen doen vanaf een array
+			of objekt. De volgende voorbeelden hebben hetzelfde effekt als de
+			hierboven beschreven één per één eigenschapstoewijzingen:
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+
+// wij een array van key/waarde-paren toe, waar de key
+// de variabelnaam is, en de waarde de toegewezen waarde.
+$array = array(
+    'a' =&gt; "Hooi",
+    'b' =&gt; "Bij",
+    'c' =&gt; "Zee",
+);
+$view-&gt;assign($array);
+
+// doe hetzelfde met de publieke eigenschappen van een
+// objekt. Merk op hoe we naar een array casten bij de toewijzing.
+$obj = new StdClass;
+$obj-&gt;a = "Hooi";
+$obj-&gt;b = "Bij";
+$obj-&gt;c = "Zee";
+$view-&gt;assign((array) $obj);
+?&gt;
+        </pre>
+<p>
+			Anderzijds kan je de toewijzingsmethode gebruiken om
+			één per één toewijzingen te doen door een string
+			variabelnaam door te geven, en dan de variabelwaarde.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;assign('a', "Hooi");
+$view-&gt;assign('b', "Bij");
+$view-&gt;assign('c', "Zee");
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.controllers.render"></a>28.2.2. Een View Script weergeven</h3></div></div></div>
+<p>
+			Eenmaal je al de nodige variabelen hebt toegewezen zou de controller
+			Zend_View moeten vertellen dat het een bepaald view script moet weergeven.
+			Dat doe je door de render() methode op te roepen. Merk op dat de methide
+			het weergegeven view zal terugsturen en niet afprinten. Je moet het dus zelf
+			afprinten of echo-en wanneer dat jou past.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;a = "Hooi";
+$view-&gt;b = "Bij";
+$view-&gt;c = "Zee";
+echo $view-&gt;render('eenView.php');
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.controllers.script-paths"></a>28.2.3. View Script Paden</h3></div></div></div>
+<p>
+			Standaard verwacht Zend_View dat je view scripts relatief zijn
+			tenoverstaan van het aanroepende script. Bijvoorbeeld, als je controller
+			script zich in "/map/naar/toepassing/controllers" bevindt en het roept
+			$view-&gt;render('eenView.php') op, zal Zend_View naar
+			"/map/naar/toepassing/controllers/eenView.php" zoeken.
+        </p>
+<p>
+			waarschijnlijk zijn je scripts ergens anders ondergebracht. Om
+			Zend_View daarvan op de hoogte te brengen gebruik je de
+			setScriptPath() methode.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;setScriptPath('/map/naar/toepassing/views');
+?&gt;
+        </pre>
+<p>
+			Als je nu $view-&gt;render('eenView.php') oproept zal het naar
+			"/pad/naar/toepassing/views/eenView.php' kijken.
+        </p>
+<p>
+			In feite kan je paden "opstapelen" door de addScriptPath()
+            methode te gebruiken. Terwijl je paden aan de stapel toevoegt
+			zal Zend_View in het meest recente pad kijken voor het
+			gevraagde view script. Dit laat je toe de standaard te overschrijven
+			met verpersoonlijkte views zodat je persoonlijke "thema's" of "skins"
+			voor sommige views kan maken terwijl die niet op andere views van
+			toepassing zijn.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;addScriptPath('/pad/naar/toepassing/views');
+$view-&gt;addScriptPath('/pad/naar/persoonlijk/');
+
+// wanneer je nu $view-&gt;render('boeklijst.php') oproept zal Zend_View
+// eerst kijken naar "pad/naar/persoonlijk/boeklijst.php", dan naar
+// "/pad/naar/toepassing/views/boeklijst.php", en uiteindelijk in
+// de huidige map naar "boeklijst.php".
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.view.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.view.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.view.scripts.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Hoofdstuk 28. Zend_View </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 28.3. View Scripts</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

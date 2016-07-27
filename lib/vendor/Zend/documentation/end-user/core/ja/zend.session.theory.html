@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>25.5. 動作原理</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="prev" href="zend.session.globalsessionmanagement.html" title="25.4. グローバルセッションの管理">
+<link rel="next" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">25.5. 動作原理</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.session.globalsessionmanagement.html">前のページ</a> </td>
+<th width="60%" align="center">第25章 Zend_Session</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.uri.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.session.theory"></a>25.5. 動作原理</h2></div></div></div>
+<p>
+        <code class="code">Zend_Session</code> は、シングルトンである <code class="code">$_SESSION</code>
+        へのすべてのアクセスを、静的メソッドでカプセル化しています。
+        一般に、Zend_Session および Zend_Session_Namespace
+        コンポーネントを使用する開発者は
+        <code class="code">$_SESSION</code> を直接操作すべきではありません。
+        しかし、既存のコードを Zend_Session と共存させることも可能です。
+        その場合は、Zend_Session_Namespace の名前空間を使用することで、既存のコードが
+        <code class="code">$_SESSION</code> で使用しているキーとだぶらないようにします。
+        現在、既存のコード (あるいは他の PHP アプリケーション)
+        と予期せずセッション状態データを共有してしまうという問題の発生を
+        検出することはできません。
+        したがって、他の節で挙げられているガイドラインに従い、
+        できるだけ混乱を生じないよう気をつけなければなりません。
+    </p>
+<p>
+        グローバルなセッションの管理は、Zend_Session で定義されている
+        静的な "クラス" メソッド群を使用します。これは、Zend_Session_Namespace
+        および関連コンポーネントが管理するすべてのセッションに影響をおよぼします。
+        ほとんどの開発者は、Zend_Session を直接使用する必要はないでしょう。
+    </p>
+<p>
+        <code class="code">$_SESSION</code> とは異なり、Zend_Session_Namespace
+        はすべてのセッションデータを別々の名前空間に分離します。
+        データを PHP の配列に保存し、その配列を <code class="code">$_SESSION</code>
+        に保存するのです。この配列のキーが名前空間となります。
+        Zend_Session_Namespace のインスタンスを作成すると、選択した名前空間用の、
+        一意でない "ウィンドウ" が返されます。
+        指定したキー (名前空間名) に関連付けられる名前空間はひとつだけですが、
+        複数の "ウィンドウ" で同じ名前空間を使うことが可能です。
+        これらのインスタンスは、セッション状態データの操作を
+        指定した名前空間内に制限するはたらきをするもので、
+        Zend_Session_Namespace のインスタンスを作成する際に明示的に名前を指定します。
+        Zend_Session のインスタンスは、このようにしてローカルスコープの変数
+        (Zend_Session_Namespace インスタンスオブジェクト)
+        によるスコープの制限を行います。
+        これにより、セッション名前空間を効率的にローカルスコープに取り込みます。
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.session.globalsessionmanagement.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.session.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.uri.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">25.4. グローバルセッションの管理 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 第26章 Zend_Uri</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

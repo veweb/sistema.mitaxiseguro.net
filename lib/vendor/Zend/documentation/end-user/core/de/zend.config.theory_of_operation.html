@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.2. Theory of Operation</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="prev" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="next" href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.2. Theory of Operation</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.config.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 5. Zend_Config</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.adapters.ini.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.config.theory_of_operation"></a>5.2. Theory of Operation</h2></div></div></div>
+<p>
+        Konfigurations-Daten werden dem <code class="code">Zend_Config</code>-Konstruktor als assoziatives Array zur Verfügung gestellt. Das Array kann mehrdimensional sein, um die Übergabe geordneter Daten zu unterstützen. Spezifische Adapter fungieren als Schnittstelle zwischen der Datenhaltung und dem <code class="code">Zend_Config</code>-Konstruktor, indem sie die Daten für diesen als Array aufbereiten. Es können auch direkt aus dem eigenen Code Arrays an den <code class="code">Zend_Config</code>-Konstruktor übergeben werden, ohne eine Adapter-Klasse zu benutzen. In manchen Situationen kann das angebracht sein.
+    </p>
+<p>
+        <code class="code">Zend_Config</code> implementiert die Programmieradapter <code class="code">Countable</code> und <code class="code">Iterator</code> um den einfachen Zugriff auf Konfigurationsdaten zu gewährleisten. Dementsprechend kann man die <a href="http://php.net/count" target="_top"><code class="code">count()</code></a>-Funktion und auch PHP-Konstrukte wie <a href="http://php.net/foreach" target="_top"><code class="code">foreach</code></a> auf <code class="code">Zend_Config</code>-Objekte anwenden.
+    </p>
+<p>
+        Standardmäßig gewährt <code class="code">Zend_Config</code> nur Lesezugriff auf die Daten und der Versuch einer Wertzuweisung (wie z. B. <code class="code">$config-&gt;database-&gt;host = 'example.com'</code>) löst einen Fehler aus. Dieses Standard-Verhalten kann mit Hilfe des Konstruktors aber so überschrieben werden, dass die Veränderung von Daten erlaubt ist.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Es muss angemerkt werden, dass hierbei nur die Daten im Speicher verändert werden. Es wird keine Änderung an den Konfigurations-Daten auf dem Speichermedium vorgenommen. Werkzeuge zur Veränderung gespeicherter Konfigurations-Daten liegen nicht im Bereich von <code class="code">Zend_Config</code>. Drittanbieter bieten bereits diverse Open-Source-Lösungen für das Erstellen und Verändern von Konfigurations-Datensätzen in verschienen Formaten.
+            </p></td></tr>
+</table></div>
+<p>
+    </p>
+<p>
+        Adapter-Klassen erben von der <code class="code">Zend_Config</code>-Klasse, da sie ihre Funktionalität nutzen.
+    </p>
+<p>
+        Die Familie der <code class="code">Zend_Config</code>-Klassen ermöglicht es, Daten in Sektionen einzuteilen. Beim Initialisieren eines <code class="code">Zend_Config</code>-Adapter-Objektes können eine einzelne spezifizierte Sektion, mehrere spezifizierte Sektionen oder alle Sektionen (wenn keine spezifiziert ist) geladen werden.
+    </p>
+<p>
+        Die <code class="code">Zend_Config</code>-Adapter-Klassen unterstützen ein Modell einfacher Vererbung, welches es ermöglicht, dass Konfigurations-Daten aus einer Sektion an eine Andere vererbt werden können. Dadurch kann die Notwendigeit doppelter Konfigurations-Daten für verschiedene Einsatzgebiete reduziert oder beseitigt werden. Eine erbende Sektion kann die von der Eltern-Sektion geerbten Werte auch überschreiben. Wie auch bei der Klassen-Vererbung in PHP kann eine Sektion von einer Eltern-Sektion geerbt werden, die wiederum von einer Großeltern-Sektion geerbt hat und so weiter. Mehrfaches Erben (Beispielsweise der Fall, dass Sektion C direkt von den Eltern-Sektionen A und B erbt) wird dagegen nicht unterstützt.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.config.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.config.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.adapters.ini.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitel 5. Zend_Config </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 5.3. Zend_Config_Ini</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

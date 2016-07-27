@@ -1,0 +1,146 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Appendix A. Zend Framework PHP Coding Standard</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="index.html" title="Programmer's Reference Guide">
+<link rel="prev" href="zend.xmlrpc.server.html" title="29.3. Zend_XmlRpc_Server">
+<link rel="next" href="coding-standard.php-file-formatting.html" title="A.2. PHP File Formatting">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="section" href="coding-standard.html#coding-standard.overview" title="A.1. Overview">
+<link rel="section" href="coding-standard.php-file-formatting.html" title="A.2. PHP File Formatting">
+<link rel="section" href="coding-standard.naming-conventions.html" title="A.3. Naming Conventions">
+<link rel="section" href="coding-standard.coding-style.html" title="A.4. Coding Style">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Appendix A. Zend Framework PHP Coding Standard</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.xmlrpc.server.html">Prev</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="coding-standard.php-file-formatting.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="appendix" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="coding-standard"></a>Appendix A. Zend Framework PHP Coding Standard</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="sect1"><a href="coding-standard.html#coding-standard.overview">A.1. Overview</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.html#coding-standard.overview.scope">A.1.1. Scope</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.html#coding-standard.overview.goals">A.1.2. Goals</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.php-file-formatting.html">A.2. PHP File Formatting</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.general">A.2.1. General</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation">A.2.2. Indentation</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.max-line-length">A.2.3. Maximum Line Length</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.line-termination">A.2.4. Line Termination</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.naming-conventions.html">A.3. Naming Conventions</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes">A.3.1. Classes</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces">A.3.2. Interfaces</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames">A.3.3. Filenames</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.functions-and-methods">A.3.4. Functions and Methods</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.variables">A.3.5. Variables</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.constants">A.3.6. Constants</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.coding-style.html">A.4. Coding Style</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.php-code-demarcation">A.4.1. PHP Code Demarcation</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.strings">A.4.2. Strings</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.arrays">A.4.3. Arrays</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.classes">A.4.4. Classes</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.functions-and-methods">A.4.5. Functions and Methods</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.control-statements">A.4.6. Control Statements</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standards.inline-documentation">A.4.7. Inline Documentation</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="coding-standard.overview"></a>A.1. Overview</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.overview.scope"></a>A.1.1. Scope</h3></div></div></div>
+<p>
+                This document provides the guidelines and resources for developers
+                and teams developing or developing on the Zend Framework. The
+                subjects covered are:
+
+                </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>PHP File Formatting</p></li>
+<li><p>Naming Conventions</p></li>
+<li><p>Coding Style</p></li>
+<li><p>Inline Documentation</p></li>
+</ul></div>
+<p>
+            </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.overview.goals"></a>A.1.2. Goals</h3></div></div></div>
+<p>
+                Good coding standards are important in any development project, but particularly
+                when multiple developers are working on the same project. Having coding standards
+                helps ensure that the code is of high quality, has fewer bugs, and is easily maintained.
+            </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.xmlrpc.server.html">Prev</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="coding-standard.php-file-formatting.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">29.3. Zend_XmlRpc_Server </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> A.2. PHP File Formatting</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.5. Query Types</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="prev" href="zend.search.query-language.html" title="22.4. Query Language">
+<link rel="next" href="zend.search.charset.html" title="22.6. Karakterset.">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.search.queries.html#zend.search.queries.term-query" title="22.5.1. Term Query">
+<link rel="subsection" href="zend.search.queries.html#zend.search.queries.multiterm-query" title="22.5.2. Multi-Term Query">
+<link rel="subsection" href="zend.search.queries.html#zend.search.queries.phrase-query" title="22.5.3. Phrase Query">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.5. Query Types</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.query-language.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.charset.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.queries"></a>22.5. Query Types</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.queries.term-query"></a>22.5.1. Term Query</h3></div></div></div>
+<p>
+        Term queries zijn bedoeld voor het zoeken met een enkele term.
+        </p>
+<p>
+        Query string:
+        </p>
+<pre class="programlisting">
+    $hits = $index-&gt;find('word1');
+        </pre>
+<p>of</p>
+<p>
+        Query opbouw door API:
+        </p>
+<pre class="programlisting">&lt;?php
+
+    $term  = new Zend_Search_Lucene_Index_Term('word1');
+    $query = new Zend_Search_Lucene_Search_Query_Term($term);
+    $hits  = $index-&gt;find($query);
+
+?&gt;</pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.queries.multiterm-query"></a>22.5.2. Multi-Term Query</h3></div></div></div>
+<p>
+            Multi term queries zijn bedoeld voor het zoeken op een set met termen.
+        </p>
+<p>
+            Elke term in een set kan gedefinieerd worden als noodzakelijk, verboden of geen van beiden (optioneel).
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    noodzakelijk betekent dat documenten waar de term niet in voorkomt, niet in het resultaat 
+                    terugkomen;
+                    </p></li>
+<li><p>
+                    verboden betekent dat documenten waar deze term wel in voorkomt niet in het resultaat terugkomen;
+                    </p></li>
+<li><p>
+                    geen van beiden betekent dat de term niet verboden is voor documenten, maar de term ook niet 
+                    noodzakelijk is. Een document moet in dit geval minimaal een term bevatten om in het resultaat 
+                    terug te komen.
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            Dit betekent dat wanneer een optionele term aan een query wordt toegevoerd met noodzakelijke termen, 
+            de documenten in het resultaat hetzelfde blijven, maar documenten waarin de optionele term gevonden word 
+            bovenaan de result set komen te staan.
+        </p>
+<p>
+        Beide zoekmethodes kunnen worden gebruikt voor multiterm zoekopdrachten.
+        </p>
+<p>
+            Query string:
+        </p>
+<pre class="programlisting">&lt;?php
+
+$hits = $index-&gt;find('+word1 author:word2 -word3');
+
+?&gt;</pre>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                '+' word gebruikt voor een noodzakelijke term.
+              </p></li>
+<li><p>
+                '-' word gebruikt voor een verboden term.
+              </p></li>
+<li><p>
+                'field:' prefix word gebruikt om een document veld aan te geven bij het zoeken.
+                Wanneer het niet wordt ingegeven, wordt 'contents' gebruikt.
+              </p></li>
+</ul></div>
+<p>
+        </p>
+<p>of</p>
+<p>
+        Query opbouw door API:
+        </p>
+<pre class="programlisting">&lt;?php
+
+    $query = new Zend_Search_Lucene_Search_Query_MultiTerm();
+
+    $query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word1'), true);
+    $query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word2'), null);
+    $query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word3'), false);
+
+    $hits  = $index-&gt;find($query);
+
+?&gt;</pre>
+<p>
+            <code class="code">$signs</code> array bevat informatie over het type term:
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    true word gebruikt om een noodzakelijke term te definieren.
+                  </p></li>
+<li><p>
+                    false word gebruikt om een verboden term te definieren.
+                  </p></li>
+<li><p>
+                    null word gebruikt om geen noodzakelijk en geen verboden term te definieren.
+                  </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.queries.phrase-query"></a>22.5.3. Phrase Query</h3></div></div></div>
+<p>
+            Phrase Queries zijn bedoeld voor het zoeken op zinnen (uitdrukkingen?).
+        </p>
+<p>
+            Phrase Queries zijn erg flexibel en staan toe om te zoeken op zowel exacte als 'slordige' zinnen. 
+            Zinnen kunnen ook gaten of termen bevatten op bepaalde plaatsen. (Dit kan door de Analyser worden 
+            aangemaakt voor verschillende doeleinden. Voorbeeld: Een term kan gedupliceerd worden om een bepaalde 
+            term extra gewicht te geven of verschillende synoniemen kunnen op een plek worden geplaatst).
+            De volgende phrase queries kunnen alleen door de API worden aangemaakt:
+        </p>
+<pre class="programlisting">&lt;?php
+$query1 = new Zend_Search_Lucene_Search_Query_Phrase();
+
+// Voeg 'word1' op relatieve positie 0 toe.
+$query1-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word1'));
+
+// Voeg 'word2' op relatieve positie 1 toe.
+$query1-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word2'));
+
+// Voeg 'word3' op relatieve positie 3 toe.
+$query1-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word3'), 3);
+
+...
+
+$query2 = new Zend_Search_Lucene_Search_Query_Phrase(
+                array('word1', 'word2', 'word3'), array(0,1,3));
+
+...
+
+// Query zonder gat.
+$query3 = new Zend_Search_Lucene_Search_Query_Phrase(
+                array('word1', 'word2', 'word3'));
+
+...
+
+$query4 = new Zend_Search_Lucene_Search_Query_Phrase(
+                array('word1', 'word2'), array(0,1), 'annotation');
+
+?&gt;</pre>
+<p>
+            Phrase query kunnen worden aangemaakt met een enkele stap in de klasse constructor of stap voor stap met de 
+            <code class="code">Zend_Search_Lucene_Search_Query_Phrase::addTerm()</code> methode.
+        </p>
+<p>
+            Zend_Search_Lucene_Search_Query_Phrase klasse constructor accepteert drie optionele argumenten:
+        </p>
+<pre class="programlisting">Zend_Search_Lucene_Search_Query_Phrase([array $terms[, array $offsets[, string $field]]]);</pre>
+<p>
+            <code class="code">$terms</code> is een array van strings, welke een set van zin termen bevat.
+            Wanneer het niet wordt meegegeven of null is, wordt een lege query aangemaakt.
+        </p>
+<p>
+            <code class="code">$offsets</code> is een array van integers, welke startpunten van termen in een zin bevatten.
+            Wanneer het niet wordt meegegeven of null is, wordt uitgegaan van posities zoals <code class="code">array(0, 1, 2, 3, ...)</code>.
+        </p>
+<p>
+            <code class="code">$field</code> is een string, welke aangeeft welk document veld doorzocht moet worden.
+            Wanneer het niet wordt meegegeven of null is, dan wordt het standaard veld doorzicht.
+            Deze versie van Zend_Search_Lucene behandelt het 'contents' veld als standaard, maar het plan is dit aan 
+            te passen tot "ieder veld" in volgende versies.
+        </p>
+<p>
+            Dus:
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase(array('zend', 'framework'));</pre>
+<p>
+            zoekt naar de 'zend framework' uitdrukking.
+        </p>
+<pre class="programlisting">&lt;$query = new Zend_Search_Lucene_Search_Query_Phrase(array('zend', 'download'), array(0, 2));</pre>
+<p>
+            zoekt naar 'zend ????? download' en dus voldoet 'zend platform download', 'zend studio download',
+            'zend core download', 'zend framework download' hieraan.
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase(array('zend', 'framework'), null, 'title');</pre>
+<p>
+            zoekt naar 'zend framework' in het 'title' veld.
+        </p>
+<p>
+            <code class="code">Zend_Search_Lucene_Search_Query_Phrase::addTerm()</code> methode accepteert twee argumenten.
+            Noodzakelijk <code class="code">Zend_Search_Lucene_Index_Term</code> object en optioneel positie:
+        </p>
+<pre class="programlisting">Zend_Search_Lucene_Search_Query_Phrase::addTerm(Zend_Search_Lucene_Index_Term $term[, integer $position]);</pre>
+<p>
+            <code class="code">$term</code> omschrijft de volgende term binnen de uitdrukking. Het moet hetzelfde veld als eerdere 
+            termen omschrijven.
+            Anders wordt er een exceptie opgeworpen.
+        </p>
+<p>
+            <code class="code">$position</code> geeft de positie van de term aan.
+        </p>
+<p>
+            Dus:
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase();
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('zend'));
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('framework'));</pre>
+<p>
+            zoekt naar de 'zend framework' uitdrukking.
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase();
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('zend'), 0);
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('framework'), 2);</pre>
+<p>
+            zoekt naar de 'zend ????? download' uitdrukking en dus zal 'zend platform download', 'zend studio download',
+            'zend core download', 'zend framework download' hieraan voldoen.
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase();
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('zend', 'title'));
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('framework', 'title'));</pre>
+<p>
+            zoekt naar 'zend framework' in het 'title' veld.
+        </p>
+<p>
+            Slop factor zet het aantal woorden dat is toegestaan binnen een query uitdrukking. Wanneer deze nul is, 
+            wordt er op een exacte uitdrukking gezocht. Voor hogere waardes werkt het als een WITHIN of NEAR operator.
+        </p>
+<p>
+            De 'slop' is eigenlijk een editie-afstand, waar de eenheden overeenkomen met wijzigingen in de
+            positie van termen in de query uitdrukking. Voorbeeld: om de volgorde van twee woorden aan te passen is 
+            twee wijzigingen (de eerste wijzigingen zet beide termen op dezelfde positie), om het herschikken
+            van uitdrukkingen toe te staan dient 'slop' minstens twee te zijn.
+        </p>
+<p>
+            Exactere overeenkomsten krijgen een hogere score dan slordigere overeenkomsten, dus zoekresultaten worden 
+            geordend op exactheid. 'Slop' staat standaard op nul, waardoor exacte overeenkomsten noodzakelijk zijn.
+        </p>
+<p>
+            Slop factor kan na het aanmaken van een query worden aangegeven: 
+        </p>
+<pre class="programlisting">&lt;?php
+
+// Query zonder een gat.
+$query = new Zend_Search_Lucene_Search_Query_Phrase(array('word1', 'word2'));
+
+// Zoek naar 'word1 word2', 'word1 ... word2'
+$query-&gt;setSlop(1);
+$hits1 = $index-&gt;find($query);
+
+// Zoek naar 'word1 word2', 'word1 ... word2',
+// 'word1 ... ... word2', 'word2 word1'
+$query-&gt;setSlop(2);
+$hits2 = $index-&gt;find($query);
+
+?&gt;</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.query-language.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.charset.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.4. Query Language </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 22.6. Karakterset.</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

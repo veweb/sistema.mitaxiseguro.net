@@ -1,0 +1,162 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>فصل 10. Zend_Feed</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="index.html" title="دليل المبرمج">
+<link rel="prev" href="zend.db.tablerowset.html" title="9.6. Zend_Db_Table_Rowset">
+<link rel="next" href="zend.feed.importing.html" title="10.2. Importing Feeds with Zend_Feed">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+<link rel="section" href="zend.feed.html#zend.feed.introduction" title="10.1. Introduction">
+<link rel="section" href="zend.feed.importing.html" title="10.2. Importing Feeds with Zend_Feed">
+<link rel="section" href="zend.feed.findFeeds.html" title="10.3. Retrieving Feeds from Web Pages">
+<link rel="section" href="zend.feed.consuming-rss.html" title="10.4. Consuming an RSS Feed">
+<link rel="section" href="zend.feed.consuming-atom.html" title="10.5. Consuming an Atom Feed">
+<link rel="section" href="zend.feed.consuming-atom-single-entry.html" title="10.6. Consuming a Single Atom Entry">
+<link rel="section" href="zend.feed.modifying-feed.html" title="10.7. Modifying Feed and Entry structures">
+<link rel="section" href="zend.feed.custom-feed.html" title="10.8. Custom Feed and Entry Classes">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">فصل 10. Zend_Feed</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.tablerowset.html">السابق</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.importing.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ar">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.feed"></a>فصل 10. Zend_Feed</h2></div></div></div>
+<div class="toc">
+<p><b>قائمة المحتويات</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.feed.html#zend.feed.introduction">10.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.importing.html">10.2. Importing Feeds with Zend_Feed</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.findFeeds.html">10.3. Retrieving Feeds from Web Pages</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-rss.html">10.4. Consuming an RSS Feed</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-atom.html">10.5. Consuming an Atom Feed</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-atom-single-entry.html">10.6. Consuming a Single Atom Entry</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.modifying-feed.html">10.7. Modifying Feed and Entry structures</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.custom-feed.html">10.8. Custom Feed and Entry Classes</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.introduction"></a>10.1. Introduction</h2></div></div></div>
+<p>
+        <code class="code">Zend_Feed</code> provides functionality for consuming RSS and Atom feeds. It provides a
+        natural syntax for accessing elements of feeds, feed attributes, and entry attributes.
+        <code class="code">Zend_Feed</code> also has extensive support for modifying feed and entry structure with the
+        same natural syntax, and turning the result back into XML. In the future, this modification support
+        could provide support for the Atom Publishing Protocol.
+    </p>
+<p>
+        Programmatically, <code class="code">Zend_Feed</code> consists of a base <code class="code">Zend_Feed</code> class, abstract
+        <code class="code">Zend_Feed_Abstract</code> and <code class="code">Zend_Feed_EntryAbstract</code> base classes for
+        representing Feeds and Entries, specific implementations of feeds and entries for RSS and Atom, and
+        a behind-the-scenes helper for making the natural syntax magic work.
+    </p>
+<p>
+        In the example below, we demonstrate a simple use case of retrieving an RSS feed and saving relevant
+        portions of the feed data to a simple PHP array, which could then be used for printing the data, storing
+        to a database, etc.
+    </p>
+<div class="note"><table border="0" summary="Note: Be aware">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[ملاحظة]" src="images/note.png"></td>
+<th align="left">Be aware</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Many RSS feeds have different channel and item properties available. The RSS specification provides for
+            many optional properties, so be aware of this when writing code to work with RSS data.
+        </p></td></tr>
+</table></div>
+<div class="example">
+<a name="id4821180"></a><p class="title"><b>مثال 10.1. Putting Zend_Feed to Work on RSS Feed Data</b></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'Zend/Feed.php';
+
+// Fetch the latest Slashdot headlines
+try {
+    $slashdotRss = Zend_Feed::import('http://rss.slashdot.org/Slashdot/slashdot');
+} catch (Zend_Feed_Exception $e) {
+    // feed import failed
+    echo "Exception caught importing feed: {$e-&gt;getMessage()}\n";
+    exit;
+}
+
+// Initialize the channel data array
+$channel = array(
+    'title'       =&gt; $slashdotRss-&gt;title(),
+    'link'        =&gt; $slashdotRss-&gt;link(),
+    'description' =&gt; $slashdotRss-&gt;description(),
+    'items'       =&gt; array()
+    );
+
+// Loop over each channel item and store relevant data
+foreach ($slashdotRss as $item) {
+    $channel['items'][] = array(
+        'title'       =&gt; $item-&gt;title(),
+        'link'        =&gt; $item-&gt;link(),
+        'description' =&gt; $item-&gt;description()
+        );
+}
+
+?&gt;   </pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.tablerowset.html">السابق</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.importing.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.6. Zend_Db_Table_Rowset </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> 10.2. Importing Feeds with Zend_Feed</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

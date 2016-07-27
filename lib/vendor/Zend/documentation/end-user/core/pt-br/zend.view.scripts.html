@@ -1,0 +1,205 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>28.3. Scripts de Visualização</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="prev" href="zend.view.controllers.html" title="28.2. Scripts Controladores">
+<link rel="next" href="zend.view.helpers.html" title="28.4. Assistentes de Visualização (Modificadores)">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="zend.view.scripts.html#zend.view.scripts.escaping" title="28.3.1. Escapando a Saída">
+<link rel="subsection" href="zend.view.scripts.html#zend.view.scripts.templates" title="28.3.2. Sistemas de Template">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">28.3. Scripts de Visualização</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.view.controllers.html">Anterior</a> </td>
+<th width="60%" align="center">Capítulo 28. Zend_View</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.view.helpers.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.scripts"></a>28.3. Scripts de Visualização</h2></div></div></div>
+<p>
+        Uma vez que seu controlador tenha atribuido as variáveis e chamado o método, Zend_View incluirá o script de visualização requerido e o executará dentro do escopo de sua própria instância.  Portanto, em seus scripts de visualização, as referências a $this apontarão para a própria instância de Zend_View.
+    </p>
+<p>
+        Variáveis atribuídas à visualização pelo controlador são referidas como propriedades de instância. Por exemplo, se o controlador atribuir a variável 'algumacoisa', você deve referir-se a ela como $this-&gt;algumacoisa em seu scritp de visualização.  (Isto permite um rastreamento dos valores que foram atribuidos ao script, e que são internos ao mesmo).
+    </p>
+<p>
+        A fim de lembrar, aqui está um exemplo de script de visualização originado da introdução do Zend_View.
+    </p>
+<pre class="programlisting">&lt;?php if ($this-&gt;books): ?&gt;
+    
+    &lt;!-- Uma tabela contendo alguns livros. --&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Autor&lt;/th&gt;
+            &lt;th&gt;Título&lt;/th&gt;
+        &lt;/tr&gt;
+        
+        &lt;?php foreach ($this-&gt;books as $key =&gt; $val): ?&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;?php echo $this-&gt;escape($val['author']) ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?php echo $this-&gt;escape($val['title']) ?&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;?php endforeach; ?&gt;
+        
+    &lt;/table&gt;
+    
+&lt;?php else: ?&gt;
+    
+    &lt;p&gt;Não existem livros a serem exibidos.&lt;/p&gt;
+    
+&lt;?php endif; ?&gt;
+    </pre>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.scripts.escaping"></a>28.3.1. Escapando a Saída</h3></div></div></div>
+<p>
+            Uma das tarefas mais importantes a ser executada por scripts de visualização é assegurar que a saída seja corretamente escapada; entre outras coisas, isto ajuda a evitar ataques do tipo site-cruzado. A menos que você esteja usando uma função, método, ou assistente que realize o escape, você sempre deverá escapar o conteúdo das variáveis antes de exibí-lo.
+        </p>
+<p>
+            Zend_View implementa um método chamado escape() que realiza corretamente o escape para você.
+        </p>
+<pre class="programlisting">&lt;?php
+// maneira ruim:
+echo $this-&gt;variable;
+
+// maneira recomendada:
+echo $this-&gt;escape($this-&gt;variable);
+?&gt;
+        </pre>
+<p>
+        Por padrão, o método escape() usa a função PHP htmlspecialchars() para fazer o escape.  Mas, dependendo do seu ambiente, você pode desejar um comportamento diferente para o escape. Use o método setEscape() no nível do controlador para instruir o  Zend_View sobre qual função de callback utilizar para fazer o escape.
+        </p>
+<pre class="programlisting">&lt;?php
+// cria uma instância de Zend_View
+$view = new Zend_View();
+
+// instrui o uso de htmlentities como método de escape
+$view-&gt;setEscape('htmlentities');
+
+// ou instrui o uso de um método estático de classe
+$view-&gt;setEscape(array('SomeClass', 'methodName'));
+
+// ou mesmo um método de instância
+$obj = new SomeClass();
+$view-&gt;setEscape(array($obj, 'methodName'));
+
+// e renderiza a visualização
+echo $view-&gt;render(...);
+?&gt;
+        </pre>
+<p>
+            A função ou método de callback deverá tomar o valor a ser escapado como seu primeiro parâmetro, e os demais parâmetros deverão ser opcionais.
+        </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.scripts.templates"></a>28.3.2. Sistemas de Template</h3></div></div></div>
+<p>
+            Embora o PHP em sí seja um poderoso sistema de template, muitos desenvolvedores sentiram que ele é muito potente ou complexo para seus designers de templates.  Como tal, o script de visualização pode ser usado para instanciar e manipular um objeto de template separadamente, tal como um template ao estilo PHPLIB (ou Smarty).  O script de visualização para este tipo de tarefa pode ser algo como isto:
+        </p>
+<pre class="programlisting">&lt;?php
+include_once 'template.inc';
+$tpl = new Template();
+
+if ($this-&gt;books) {
+    $tpl-&gt;setFile(array(
+        "booklist" =&gt; "booklist.tpl",
+        "eachbook" =&gt; "eachbook.tpl",
+    ));
+    
+    foreach ($this-&gt;books as $key =&gt; $val) {
+        $tpl-&gt;set_var('author', $this-&gt;escape($val['author']);
+        $tpl-&gt;set_var('title', $this-&gt;escape($val['title']);
+        $tpl-&gt;parse("books", "eachbook", true);
+    }
+    
+    $tpl-&gt;pparse("output", "booklist");
+} else {
+    $tpl-&gt;setFile("nobooks", "nobooks.tpl")
+    $tpl-&gt;pparse("output", "nobooks");
+}
+?&gt;
+        </pre>
+<p>
+            Estes seriam os arquivos de template relacionados:
+        </p>
+<pre class="programlisting">
+&lt;!-- booklist.tpl --&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Author&lt;/th&gt;
+        &lt;th&gt;Title&lt;/th&gt;
+    &lt;/tr&gt;
+    {books}
+&lt;/table&gt;
+
+&lt;!-- eachbook.tpl --&gt;
+    &lt;tr&gt;
+        &lt;td&gt;{author}&lt;/td&gt;
+        &lt;td&gt;{title}&lt;/td&gt;
+    &lt;/tr&gt;
+
+&lt;!-- nobooks.tpl --&gt;
+&lt;p&gt;There are no books to display.&lt;/p&gt;
+
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.view.controllers.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.view.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.view.helpers.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">28.2. Scripts Controladores </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> 28.4. Assistentes de Visualização (Modificadores)</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

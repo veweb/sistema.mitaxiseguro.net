@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>27.4. メールアドレスの検証</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="prev" href="zend.validate.writing_validators.html" title="27.3. バリデータの書き方">
+<link rel="next" href="zend.validate.validating_hostnames.html" title="27.5. ホスト名の検証">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">27.4. メールアドレスの検証</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.validate.writing_validators.html">前のページ</a> </td>
+<th width="60%" align="center">第27章 Zend_Validate</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.validate.validating_hostnames.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.validate.validating_email_addresses"></a>27.4. メールアドレスの検証</h2></div></div></div>
+<p>
+        Zend_Validate_Email は、メールアドレスの検証を行います。
+        このバリデータは、まずメールアドレスを
+        local-part @ hostname
+        に分割し、メールアドレスやホスト名の仕様にあわせて検証します。
+    </p>
+<p>
+        <span class="strong"><strong>基本的な使用法</strong></span>
+    </p>
+<p>
+        基本的な使用法は、以下のようになります。
+        
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/EmailAddress.php';
+$validator = new Zend_Validate_EmailAddress();
+if ($validator-&gt;isValid($email)) {
+    // メールアドレスは正しい形式のようです
+} else {
+    // 不正な形式なので、理由を表示します
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+        これは、メールアドレス <code class="code">$email</code> を検証し、失敗した場合は
+        その原因を表す便利なエラーメッセージを
+        <code class="code">$validator-&gt;getMessages()</code> で取得します。
+        
+    </p>
+<p>
+        <span class="strong"><strong>複雑なローカルパート</strong></span>
+    </p>
+<p>
+        Zend_Validate_Email は、メールアドレスの検証を
+        RFC2822 にもとづいて行います。たとえば、妥当な形式のメールアドレスとしては
+        <code class="code">bob@domain.com</code>、<code class="code">bob+jones@domain.us</code>、
+        <code class="code">"bob@jones"@domain.com</code> および <code class="code">"bob jones"@domain.com</code>
+        などがあります。
+        
+        かつて使われていたものの、現在は有効とはみなされないフォーマットもあります
+        (たとえば、メールアドレスに改行文字や "\" を使用するなど)。
+    </p>
+<p>
+        <span class="strong"><strong>さまざまな形式のホスト名の検証</strong></span>
+    </p>
+<p>
+        メールアドレスのホスト名部分の検証は、Zend_Validate_Hostname
+        で行います。デフォルトでは、<code class="code">domain.com</code>
+        形式の DNS ホスト名のみが有効となります。しかし、
+        IP アドレスやローカルホスト名も有効にしたいこともあるでしょう。
+        
+        その場合は、Zend_Validate_EmailAddress
+        のインスタンスを作成する際にパラメータを渡さなければなりません。
+        このパラメータで、認めたいホスト名の形式を指定します。
+        詳細は Zend_Validate_Hostname を参照ください。
+        たとえば DNS ホスト名およびローカルホスト名のどちらも許可するには、次のようにします。
+        
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/EmailAddress.php';
+$validator = new Zend_Validate_EmailAddress(Zend_Validate_Hostname::ALLOW_DNS | Zend_Validate_Hostname::ALLOW_LOCAL);
+if ($validator-&gt;isValid($email)) {
+    // メールアドレスは正しい形式のようです
+} else {
+    // 不正な形式なので、理由を表示します
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.validate.writing_validators.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.validate.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.validate.validating_hostnames.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">27.3. バリデータの書き方 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 27.5. ホスト名の検証</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

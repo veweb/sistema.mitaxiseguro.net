@@ -1,0 +1,309 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>6.4. Zend_Console_Getopt の設定</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="prev" href="zend.console.getopt.fetching.html" title="6.3. オプションおよび引数の取得">
+<link rel="next" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addrules" title="6.4.1. オプションの規則の追加">
+<link rel="subsection" href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addhelp" title="6.4.2. ヘルプメッセージの追加">
+<link rel="subsection" href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addaliases" title="6.4.3. オプションのエイリアスの追加">
+<link rel="subsection" href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addargs" title="6.4.4. 引数リストの追加">
+<link rel="subsection" href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.config" title="6.4.5. 設定の追加">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">6.4. Zend_Console_Getopt の設定</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.console.getopt.fetching.html">前のページ</a> </td>
+<th width="60%" align="center">第6章 Zend_Console_Getopt</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.console.getopt.configuration"></a>6.4. Zend_Console_Getopt の設定</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.configuration.addrules"></a>6.4.1. オプションの規則の追加</h3></div></div></div>
+<p>
+	    <code class="code">Zend_Console_Getopt</code> のコンストラクタで指定するもの以外にも、
+	    追加でオプションの規則を指定することができます。その際には
+	    <code class="code">addRules()</code> メソッドを使用します。
+	    <code class="code">addRules()</code> に渡す引数は、コンストラクタの最初の引数と同じです。
+	    短い形式のオプション指定を表す文字列、
+	    あるいは長い形式のオプション指定を表す連想配列となります。
+	    オプションを指定する構文の詳細は、
+            <a href="zend.console.getopt.rules.html" title="6.2. Getopt の規則の宣言">Getopt の規則の宣言</a>
+	    を参照ください。
+	</p>
+<div class="example">
+<a name="id4797553"></a><p class="title"><b>例 6.7. addRules() の使用法</b></p>
+<pre class="programlisting">&lt;?php
+$opts = new Zend_Console_Getopt('abp:');
+$opts-&gt;addRules(
+  array(
+    'verbose|v' =&gt; '詳細な出力を表示する'
+  )
+);
+?&gt;</pre>
+</div>
+<p>
+	    上の例は、"<code class="code">--verbose</code>" というオプションと
+	    そのエイリアス "<code class="code">-v</code>" を
+	    コンストラクタで定義したオプションに追加しています。
+	    <code class="code">Zend_Console_Getopt</code> のインスタンスには、
+	    短い形式のオプションと長い形式のオプションが共存可能であることに注意しましょう。
+	</p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.configuration.addhelp"></a>6.4.2. ヘルプメッセージの追加</h3></div></div></div>
+<p>
+	    長い形式のオプション規則を宣言する際に指定するヘルプ文字列に加え、
+	    <code class="code">setHelp()</code> メソッドでもヘルプ文字列を規則と関連付けることができます。
+	    <code class="code">setHelp()</code> メソッドの引数は連想配列で、
+	    キーがフラグ名、値が対応するヘルプ文字列となります。
+	</p>
+<div class="example">
+<a name="id4797626"></a><p class="title"><b>例 6.8. setHelp() の使用法</b></p>
+<pre class="programlisting">&lt;?php
+$opts = new Zend_Console_Getopt('abp:');
+$opts-&gt;setHelp(
+    array(
+	'a' =&gt; 'このオプションはリンゴを選択します。パラメータは不要です。',
+	'b' =&gt; 'このオプションはバナナを選択します。整数パラメータが必須です。',
+	'p' =&gt; 'このオプションは洋ナシを選択します。オプションで文字列パラメータを指定します。'
+    )
+);
+?&gt;</pre>
+</div>
+<p>
+	    エイリアスつきでオプションを宣言した場合は、
+	    どのエイリアスでも連想配列のキーに使用できます。
+	</p>
+<p>
+	    オプションを短い構文で宣言した場合、ヘルプ文字列を設定するには
+	    <code class="code">setHelp()</code> メソッドが唯一の手段となります。
+	</p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.configuration.addaliases"></a>6.4.3. オプションのエイリアスの追加</h3></div></div></div>
+<p>
+	    オプションのエイリアスを宣言するには <code class="code">setAliases</code>
+	    メソッドを使用します。引数は連想配列で、
+	    先ほど宣言したフラグがキー、そしてそのフラグのエイリアスが値となります。
+	    ここで指定したエイリアスが、既存のエイリアスにマージされます。
+	    言い換えると、もともと定義されていたエイリアスもそのまま有効であるということです。
+	</p>
+<p>
+	    エイリアスは一度しか宣言できません。既存のエイリアスを再定義しようとすると
+	    <code class="code">Zend_Console_Getopt_Exception</code> がスローされます。
+	</p>
+<div class="example">
+<a name="id4797711"></a><p class="title"><b>例 6.9. setAliases() の使用法</b></p>
+<pre class="programlisting">&lt;?php
+$opts = new Zend_Console_Getopt('abp:');
+$opts-&gt;setAliases(
+    array(
+	'a' =&gt; 'apple',
+	'a' =&gt; 'apfel',
+	'p' =&gt; 'pear'
+    )
+);
+?&gt;</pre>
+</div>
+<p>
+            上の例では
+            "<code class="code">-a</code>"、"<code class="code">--apple</code>" および
+            "<code class="code">--apfel</code>" をお互いエイリアス指定した後で、
+            "<code class="code">-p</code>" と "<code class="code">--pear</code>"
+            もエイリアスとしています。
+        </p>
+<p>
+	    オプションを短い構文で宣言した場合、エイリアスを定義するには
+	    <code class="code">setAliases()</code> メソッドが唯一の手段となります。
+	</p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.configuration.addargs"></a>6.4.4. 引数リストの追加</h3></div></div></div>
+<p>
+	    デフォルトでは、<code class="code">Zend_Console_Getopt</code> は
+	    <code class="code">$_SERVER['argv']</code> の配列を使用して
+	    コマンドライン引数をパースします。
+	    コンストラクタの二番目の引数として、引数を含む別の配列を指定することもできます。
+	    さらに、もっと別の引数を追加するには
+	    <code class="code">addArguments()</code> メソッドを使用し、
+	    既存の引数配列を置き換えるには <code class="code">setArguments()</code>
+	    メソッドを使用します。どちらの場合についても、
+	    これらのメソッドのパラメータは単純な文字列の配列となります。
+	    <code class="code">addArguments()</code> は現在の引数にその配列を追加し、
+	    <code class="code">setArguments()</code> は現在の引数をその配列で置き換えます。
+	</p>
+<div class="example">
+<a name="id4797823"></a><p class="title"><b>例 6.10. addArguments() および setArguments() の使用法</b></p>
+<pre class="programlisting">&lt;?php
+// デフォルトでは、コンストラクタは $_SERVER['argv'] を使用します
+$opts = new Zend_Console_Getopt('abp:');
+
+// 既存の引数に配列を追加します
+$opts-&gt;addArguments(array('-a', '-p', 'p_parameter', 'non_option_arg));
+
+// 新しい配列で既存の引数を置き換えます
+$opts-&gt;setArguments(array('-a', '-p', 'p_parameter', 'non_option_arg));
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.configuration.config"></a>6.4.5. 設定の追加</h3></div></div></div>
+<p>
+	    <code class="code">Zend_Console_Getopt</code> コンストラクタの
+	    三番目の引数は、設定オプションの配列です。
+	    これは、返り値となるオブジェクトのインスタンスの挙動を設定するものです。
+	    設定オプションを指定するために <code class="code">setOptions()</code>
+	    メソッドを指定することもできます。あるいは、
+	    オプションを個別に設定するには
+	    <code class="code">setOption()</code> メソッドを使用します。
+	</p>
+<div class="note"><table border="0" summary='Note: "オプション" という用語について'>
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">"オプション" という用語について</th>
+</tr>
+<tr><td align="left" valign="top">
+            ここでいう "オプション" は、
+            <code class="code">Zend_Console_Getopt</code> クラスの設定に使用するもののことを指しています。
+            オプションという言葉の意味自体は、Zend Framework
+            のその他の部分で使用している意味と同じです。
+            <code class="code">Zend_Console_Getopt</code> がパースする
+            コマンドラインオプションのことではありません。
+        </td></tr>
+</table></div>
+<p>
+	    現在サポートしているオプションには、
+	    クラス定数が定義されています。
+	    オプションとそれに対応する定数 (およびリテラル値)
+	    の一覧を以下にまとめます。
+	</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+		    <code class="code">Zend_Console_Getopt::CONFIG_DASHDASH</code> ("dashDash")
+		    を true にすると、フラグの終了を表す特殊フラグ "<code class="code">--</code>"
+		    を有効にします。ダブルダッシュの後に続くコマンドライン引数は、
+		    たとえダッシュで始まっていてもオプションとはみなされません。
+		    この設定オプションは、デフォルトで true となっています。
+		</p></li>
+<li><p>
+		    <code class="code">Zend_Console_Getopt::CONFIG_DASHDASH</code> ("ignoreCase")
+		    を true にすると、大文字小文字が違うだけのフラグをお互いエイリアスとして扱います。
+		    つまり、"<code class="code">-a</code>" と
+		    "<code class="code">-A</code>" は同じフラグとみなされます。
+		    この設定オプションは、デフォルトでは false となっています。
+		</p></li>
+<li><p>
+                    <code class="code">Zend_Console_Getopt::CONFIG_RULEMODE</code>
+                    ("ruleMode") には <code class="code">Zend_Console_Getopt::MODE_ZEND</code>
+                    ("zend") あるいは <code class="code">Zend_Console_Getopt::MODE_GNU</code>
+                    ("gnu")  のいずれかを指定します。
+		    独自の構文を使用するためにクラスを拡張する場合を除き、
+		    このオプションを使用する必要はありません。
+		    <code class="code">Zend_Console_Getopt</code>
+		    でサポートされている二つのモードは明確です。
+		    文字列を指定した場合は <code class="code">MODE_GNU</code>、
+		    それ以外の場合は <code class="code">MODE_ZEND</code> とみなします。
+		    もしクラスを拡張して別の構文形式を追加した場合は、
+		    そのモードをこのオプションで指定する必要があります。
+		</p></li>
+</ul></div>
+<p>
+	    将来は、さらに多くの設定オプションがこのクラスに追加される予定です。
+	</p>
+<p>
+	    <code class="code">setOption()</code>
+	    メソッドに渡す引数は、設定オプション名とその値のふたつです。
+	</p>
+<div class="example">
+<a name="id4798046"></a><p class="title"><b>例 6.11. setOption() の使用法</b></p>
+<pre class="programlisting">&lt;?php
+$opts = new Zend_Console_Getopt('abp:');
+$opts-&gt;setOption('ignoreCase', true);
+?&gt;</pre>
+</div>
+<p>
+	    <code class="code">setOptions()</code> メソッドに渡す引数は連想配列です。
+	    そのキーが設定オプション名、そして値として設定値を指定します。
+	    これは、クラスのコンストラクタで使用するフォーマットでもあります。
+            指定した設定項目が既存の設定にマージされるので、
+            すべてのオプションを指定する必要はありません。
+	</p>
+<div class="example">
+<a name="id4798079"></a><p class="title"><b>例 6.12. setOptions() の使用法</b></p>
+<pre class="programlisting">&lt;?php
+$opts = new Zend_Console_Getopt('abp:');
+$opts-&gt;setOptions(
+    array(
+        'ignoreCase' =&gt; true,
+	'dashDash'   =&gt; false
+    )
+);
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.console.getopt.fetching.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.console.getopt.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.3. オプションおよび引数の取得 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 第7章 Zend_Controller</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

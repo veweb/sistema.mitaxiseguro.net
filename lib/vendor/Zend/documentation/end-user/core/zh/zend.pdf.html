@@ -1,0 +1,159 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第 20 章 Zend_Pdf</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="index.html" title="Zend Framework手册 中文版">
+<link rel="prev" href="zend.mime.part.html" title="19.3. Zend_Mime_Part">
+<link rel="next" href="zend.pdf.create.html" title="20.2. Creating and loading PDF documents.">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="section" href="zend.pdf.html#zend.pdf.introduction" title="20.1. Introduction.">
+<link rel="section" href="zend.pdf.create.html" title="20.2. Creating and loading PDF documents.">
+<link rel="section" href="zend.pdf.save.html" title="20.3. Save changes to the PDF document.">
+<link rel="section" href="zend.pdf.pages.html" title="20.4. Document pages.">
+<link rel="section" href="zend.pdf.drawing.html" title="20.5. Drawing.">
+<link rel="section" href="zend.pdf.usage.html" title="20.6. Zend_Pdf module usage example.">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第 20 章 Zend_Pdf</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mime.part.html">上一页</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.pdf.create.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.pdf"></a>第 20 章 Zend_Pdf</h2></div></div></div>
+<div class="toc">
+<p><b>目录</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.pdf.html#zend.pdf.introduction">20.1. Introduction.</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.create.html">20.2. Creating and loading PDF documents.</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.save.html">20.3. Save changes to the PDF document.</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.pages.html">20.4. Document pages.</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.drawing.html">20.5. Drawing.</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.geometry">20.5.1. Geometry.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.color">20.5.2. Colors.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.shape-drawing">20.5.3. Shape Drawing.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.text-drawing">20.5.4. Text Drawing.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.using-fonts">20.5.5. Using fonts.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.image-drawing">20.5.6. Image Drawing.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.line-drawing-style">20.5.7. Line drawing style.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.fill-style">20.5.8. Fill style.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.rotations">20.5.9. Rotations.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.save-restore">20.5.10. Save/restore graphics state.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.clipping">20.5.11. Clipping draw area.</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.styles">20.5.12. Styles.</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.pdf.usage.html">20.6. Zend_Pdf module usage example.</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.pdf.introduction"></a>20.1. Introduction.</h2></div></div></div>
+<p>
+    Zend_Pdf module is a PDF (Portable Document Format) manipulation engine written entirely in PHP 5.
+    It can load existing documents, create new, modify and save modified documents.
+    Thus it can help any PHP-driven application dynamically prepare documents in a PDF by modifying existing template
+    or generating document from a scratch.
+
+    Zend_Pdf module supports the following features:
+    </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+            Create new document or load existing one.
+            <sup>[<a name="id4800718" href="#ftn.id4800718">2</a>]</sup>
+            </p></li>
+<li><p>
+            Retrieving specified revision of the document.
+            </p></li>
+<li><p>
+            Manipulate pages within document. Changing page order, adding new pages, removing pages
+            from a document.
+            </p></li>
+<li><p>
+            Different drawing primitives (lines, rectangles, polygons, circles, ellipses and sectors).
+            </p></li>
+<li><p>
+            Text drawing using any of the 14 standard (built-in) fonts or your own custom TrueType fonts.
+            </p></li>
+<li><p>
+            Rotations.
+            </p></li>
+<li><p>
+            Image drawing.
+            <sup>[<a name="id4800654" href="#ftn.id4800654">3</a>]</sup>
+            </p></li>
+<li><p>
+            Incremental PDF file update.
+            </p></li>
+</ul></div>
+<p>
+    </p>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4800718" href="#id4800718">2</a>] </sup>
+                PDF V1.4 (Acrobat 5) documents are supported for loading now.
+                </p></div>
+<div class="footnote"><p><sup>[<a name="ftn.id4800654" href="#id4800654">3</a>] </sup>
+                JPG, PNG [Up to 8bit+Alpha] and TIFF images are supported.
+                </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mime.part.html">上一页</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.pdf.create.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">19.3. Zend_Mime_Part </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 20.2. Creating and loading PDF documents.</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

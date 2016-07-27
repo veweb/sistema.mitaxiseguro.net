@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.4. Zend_Config_Xml</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="prev" href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini">
+<link rel="next" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.4. Zend_Config_Xml</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.config.adapters.ini.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 5. Zend_Config</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.console.getopt.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.config.adapters.xml"></a>5.4. Zend_Config_Xml</h2></div></div></div>
+<p>
+        <code class="code">Zend_Config_Xml</code> ermöglicht es Entwicklern, Konfigurations-Daten in einfachen XML-Dateien zu speichern und sie mit einer Syntax auszulesen, die dem Zugriff auf die Eigenschaften verschachtelter Objekte entspricht. Der Name des Root-Elementes der XML-Datei ist unwichtig und kann beliebig gewählt werden. Die erste Ebene der XML-Struktur stellt die Konfigurationsdaten-Sektionen dar. Hirarchische Strukturen können im XLM-Format durch Verschachteln von XML-Elementen unterhalb der Sektions-Ebene umgesetzt werden. Der Inhalt eines XML-Blatt-Elementes (Leaf) ist der Wert eines Konfigurations-Eintrages. Die Sektions-Vererbung wird durch ein spezielles Attribut namens <code class="code">extends</code> unterstützt, der Wert des Attributs entspricht dabei dem Namen der Sektion, von der Daten geerbt werden sollen.
+    </p>
+<div class="note"><table border="0" summary="Note: Rückgabe Typen">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Rückgabe Typen</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Konfigurations-Daten, die in <code class="code">Zend_Config_Xml</code> eingelesen wurden, werden immer als Strings zurück gegeben. Die Konvertierung der Daten von Strings in andere Datentypen ist Aufgabe der Entwickler und von deren Bedürfnissen abhängig.
+        </p></td></tr>
+</table></div>
+<div class="example">
+<a name="id4792997"></a><p class="title"><b>Beispiel 5.3. Zend_Config_Xml benutzen</b></p>
+<p>
+            Dieses Beispiel zeigt die grundlegende Nutzung von <code class="code">Zend_Config_Xml</code> um Konfigurations-Daten aus einem XML-File zu laden. In diesem Beispiel gibt es Konfigurations-Daten für ein Produktiv- und ein Staging-System. Da sich die Daten für das Staging-System nur unwesentlich von denen für das Produktiv-System unterscheiden, erbt das Staging-System vom Produktiv-System. In diesem Fall ist die Entscheidung darüber, welche Sektion von welcher erben soll, willkürlich und es könnte auch anders herum gemacht werden. In komplexeren Fällen ist das möglicherweise nicht der Fall. Nehmen wir also an, dass sich die folgenden Konfigurations-Daten in der Datei <code class="code">/path/to/config.xml</code> befinden:
+        </p>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;configdata&gt;
+    &lt;production&gt;
+        &lt;webhost&gt;www.example.com&lt;/webhost&gt;
+        &lt;database&gt;
+            &lt;type&gt;pdo_mysql&lt;/type&gt;
+            &lt;host&gt;db.example.com&lt;/host&gt;
+            &lt;username&gt;dbuser&lt;/username&gt;
+            &lt;password&gt;secret&lt;/password&gt;
+            &lt;name&gt;dbname&lt;/name&gt;
+        &lt;/database&gt;
+    &lt;/production&gt;
+    &lt;staging extends="production"&gt;
+        &lt;database&gt;
+            &lt;host&gt;dev.example.com&lt;/host&gt;
+            &lt;username&gt;devuser&lt;/username&gt;
+            &lt;password&gt;devsecret&lt;/password&gt;
+        &lt;/database&gt;
+    &lt;/staging&gt;
+&lt;/configdata&gt;</pre>
+<p>
+            Nehmen wir weiterhin an, dass der Anwendungs-Entwickler die Staging-Konfiguration aus diesem XML-File benötigt. Es ist ein Leichtes, diese Daten zu laden, es muss nur das XML-File und die Staging-Sektion spezifiziert werden:
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Config/Xml.php';
+
+$config = new Zend_Config_Xml('/path/to/config.xml', 'staging');
+
+echo $config-&gt;database-&gt;host; // gibt "dev.example.com" aus
+echo $config-&gt;database-&gt;name; // gibt "dbname" aus</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.config.adapters.ini.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.config.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.console.getopt.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">5.3. Zend_Config_Ini </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> Kapitel 6. Zend_Console_Getopt</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

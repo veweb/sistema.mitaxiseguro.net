@@ -1,0 +1,206 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>28.2. Skrypt kontrolera</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="prev" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="next" href="zend.view.scripts.html" title="28.3. Skrypty widoków">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.view.controllers.html#zend.view.controllers.assign" title="28.2.1. Przekazywanie zmiennych">
+<link rel="subsection" href="zend.view.controllers.html#zend.view.controllers.render" title="28.2.2. Wykonywanie skryptu widoku">
+<link rel="subsection" href="zend.view.controllers.html#zend.view.controllers.script-paths" title="28.2.3. Ścieżki skryptu widoku">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">28.2. Skrypt kontrolera</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.view.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 28. Zend_View</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.view.scripts.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.controllers"></a>28.2. Skrypt kontrolera</h2></div></div></div>
+<p>
+        Kontroler jest miejscem, w którym tworzysz i konfigurujesz instancję 
+        Zend_View. Potem przypisujesz do tej instancji zmienne zawierające dane,
+        a następnie wybierasz skrypt widoku, który ma być zrenderowany.
+    </p>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.controllers.assign"></a>28.2.1. Przekazywanie zmiennych</h3></div></div></div>
+<p>
+            Twój skrypt kontrolera powinien przypisać potrzebne zmienne do 
+            instancji widoku, zanim przekaże kontrolę do skryptu widoku. Możesz 
+            to zrobić przypisując zmienne do zmiennych instancji widoku:
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;a = "Hay";
+$view-&gt;b = "Bee";
+$view-&gt;c = "Sea";
+?&gt;
+        </pre>
+<p>
+            Jednak mogłoby być niewygodnie gdy zmienne, które masz przekazać
+            są zebrane w tablicy lub obiekce.
+        </p>
+<p>
+            Metoda assign() pozwala na automatyczne przypisanie wszystkich 
+            zmiennych z tablicy lub obiektu. Poniższe przykłady dają taki sam
+            efekt jak poprzedni przykład, w którym zmienne były przypisywane
+            pojedynczo:
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+
+// przypisuje tablicę zmiennych w postaci par
+// klucz-wartość, gdzie klucz jest nazwą przypisanej
+// zmiennej, a wartość jest jej wartościa.
+$array = array(
+    'a' =&gt; "Hay",
+    'b' =&gt; "Bee",
+    'c' =&gt; "Sea",
+);
+$view-&gt;assign($array);
+
+// robi to samo z publicznymi właściwościami
+// obiektu. zauważ jak rzutujemy obiekt na 
+// tablicę podczas przypisywania
+$obj = new StdClass;
+$obj-&gt;a = "Hay";
+$obj-&gt;b = "Bee";
+$obj-&gt;c = "Sea";
+$view-&gt;assign((array) $obj);
+?&gt;
+        </pre>
+<p>
+            Oczywiście możesz także przypisywać zmienne jedna po drugiej,
+            przekazując nazwę zmiennej jako łańcuch znaków, a potem wartość 
+            zmiennej:
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;assign('a', "Hay");
+$view-&gt;assign('b', "Bee");
+$view-&gt;assign('c', "Sea");
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.controllers.render"></a>28.2.2. Wykonywanie skryptu widoku</h3></div></div></div>
+<p>
+            Kiedy już przypisałeś wszystkie zmienne, kontroler powinien przekazać
+            obiektowi Zend_View informację o wykonaniu konkretnego skryptu widoku.
+            Zrób to wywołując metodę render(). Zauważ, że ta metoda zwróci
+            wygenerowany widok zamiast wyświetlając go, więc musisz sam go wyświetlić
+            za pomocą funkcji echo() lub print().
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;a = "Hay";
+$view-&gt;b = "Bee";
+$view-&gt;c = "Sea";
+echo $view-&gt;render('someView.php');
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.controllers.script-paths"></a>28.2.3. Ścieżki skryptu widoku</h3></div></div></div>
+<p>
+            Domyślnie, Zend_View oczekuje, że skrypty widoku są umieszczone
+            względnie do skryptu wywołującego. Na przykład jeśli 
+            Twój skrypt kontrolera jest w katalogu "/path/to/app/controllers" 
+            i wywołuje on $view-&gt;render('someView.php'), to Zend_View będzie
+            szukać pliku "/path/to/app/controllers/someView.php".
+        </p>
+<p>
+            Oczywiście, Twoje skrypty są pewnie umieszczone gdzieś indziej.
+            Aby poinformować Zend_View o tym, gdzie ma szukać skryptów, użyj
+            metody setScriptPath().
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;setScriptPath('/path/to/app/views');
+?&gt;
+        </pre>
+<p>
+            Teraz kiedy wywołasz metodę $view-&gt;render('someView.php'), będzie ona
+            szukać pliku "/path/to/app/views/someView.php".
+        </p>
+<p>
+            Oczywiście możesz dodawać ścieżki na stos używająć metody addScriptPath().
+            Gdy dodajesz ścieżki na stos, Zend_View będzie szukać skryptu widoku
+            począwszy od ostatnio dodanej ścieżki. To pozwala na nadpisanie domyślnych 
+            widoków za pomocą innych widoków, dzięki czemu możesz tworzyć różne 
+            "motywy" czy "skórki" dla niektórych widoków, zostawiając inne bez zmian.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;addScriptPath('/path/to/app/views');
+$view-&gt;addScriptPath('/path/to/custom/');
+
+// teraz gdy wywołasz $view-&gt;render('booklist.php'), Zend_View będzie
+// wpierw szukać pliku "/path/to/custom/booklist.php", potem
+// "/path/to/app/views/booklist.php", a ostatecznie pliku "booklist.php"
+// w bieżącym katalogu
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.view.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.view.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.view.scripts.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Rozdział 28. Zend_View </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 28.3. Skrypty widoków</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

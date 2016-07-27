@@ -1,0 +1,27 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           asignacionUnidadPiloto
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          asignacion_unidad_piloto
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: Lista de asignaciones a unidades con pilotos
+        hide: [created_at,updated_at,created_by,updated_by]
+        max_per_page: 10
+      filter:
+        class: false
+      form:    ~
+      edit:
+        title: Modificar Asignacion
+      new:
+        title: Agregar nueva asigancion

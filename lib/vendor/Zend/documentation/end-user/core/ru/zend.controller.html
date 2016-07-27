@@ -1,0 +1,745 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Глава 7. Zend_Controller</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="index.html" title="Руководство разработчика">
+<link rel="prev" href="zend.console.getopt.configuration.html" title="6.4. Configuring Zend_Console_Getopt">
+<link rel="next" href="zend.controller.getting-started.html" title="7.2. Начало работы">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="section" href="zend.controller.html#zend.controller.overview" title="7.1. Обзор">
+<link rel="section" href="zend.controller.getting-started.html" title="7.2. Начало работы">
+<link rel="section" href="zend.controller.subclassing.html" title="7.3. Создание подклассов">
+<link rel="section" href="zend.controller.providedsubclasses.html" title="7.4. Готовые подклассы">
+<link rel="section" href="zend.controller.action.html" title="7.5. Контроллеры действий">
+<link rel="section" href="zend.controller.plugins.html" title="7.6. Плагины">
+<link rel="section" href="zend.controller.modular.html" title="7.7. Модульная структуры директорий">
+<link rel="section" href="zend.controller.exceptions.html" title="7.8. Исключения">
+<link rel="section" href="zend.controller.migration.html" title="7.9. Переход с предыдущих версий">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Глава 7. Zend_Controller</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.console.getopt.configuration.html">Пред.</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.getting-started.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ru">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.controller"></a>Глава 7. Zend_Controller</h2></div></div></div>
+<div class="toc">
+<p><b>Содержание</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.controller.html#zend.controller.overview">7.1. Обзор</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.introduction">7.1.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.request">7.1.2. Объект запроса</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.routing-process">7.1.3. Процесс маршрутизации</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.dispatching">7.1.4. Процесс диспетчеризации</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.response">7.1.5. Объект ответа</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.getting-started.html">7.2. Начало работы</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.introduction">7.2.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration">7.2.2. Конфигурация сервера</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap">7.2.3. Файл загрузки</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure">7.2.4. Структура каталогов</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.overview.indexcontroller">7.2.5. Контроллер по умолчанию</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.subclassing.html">7.3. Создание подклассов</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.introduction">7.3.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.conventions">7.3.2. Соглашения</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.front">7.3.3. Фронт-контроллер</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.request.abstract">7.3.4. Абстрактный класс запроса</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.router.interface">7.3.5. Интерфейс маршрутизатора</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.dispatcher.interface">7.3.6. Интерфейс диспетчера</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.action">7.3.7. Контроллер действий</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.response.abstract">7.3.8. Объект ответа</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.providedsubclasses.html">7.4. Готовые подклассы</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.introduction">7.4.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.request.http">7.4.2. Zend_Controller_Request_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter">7.4.3. Zend_Controller_Router_Rewrite</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.http">7.4.4. Zend_Controller_Response_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.cli">7.4.5. Zend_Controller_Response_Cli</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.action.html">7.5. Контроллеры действий</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.introduction">7.5.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.initialization">7.5.2. Инициализация объекта</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.prepostdispatch">7.5.3. Перехватчики Pre- и Post-Dispatch</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.accessors">7.5.4. Методы доступа</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.utilmethods">7.5.5. Вспомогательные методы</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.plugins.html">7.6. Плагины</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.introduction">7.6.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.writing">7.6.2. Написание плагинов</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.using">7.6.3. Использование плагинов</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.modular.html">7.7. Модульная структуры директорий</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.introduction">7.7.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.directories">7.7.2. Определение директорий контроллеров для модулей</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.router">7.7.3. Маршрутизация применительно к модулям</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.defaultcontroller">7.7.4. Контроллер, используемый по умолчанию - для модуля или общий</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.exceptions.html">7.8. Исключения</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.introduction">7.8.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.handling">7.8.2. Как я могу обрабатывать исключения?</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.internal">7.8.3. Исключения MVC</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.migration.html">7.9. Переход с предыдущих версий</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerosix">7.9.1. Переход с 0.6.0 на 0.8.0</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerotwo">7.9.2. Переход с 0.2.0 или более ранних версий на 0.6.0</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.overview"></a>7.1. Обзор</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.introduction"></a>7.1.1. Введение</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller</code> предоставляет основу для построения
+            веб-сайта, базирующегося на паттерне Model-View-Controller (MVC).
+
+        </p>
+<p>
+            Система <code class="code">Zend_Controller</code> задумана как легковесная,
+            модульная и расширяемая. Ее архитектура в минималистском стиле
+            обеспечивает гибкость и некоторую свободу пользователям и в то же
+            время предоставляет достаточно структуры, чтобы системы, построенные
+            с использованием <code class="code">Zend_Controller</code> разделяли некоторые
+            общие соглашения и имели сходный код.
+
+        </p>
+<p>
+            Рабочий процесс <code class="code">Zend_Controller</code> осуществляется
+            несколькими компонентами. Несмотря на то, что для использования
+            этой системы нет необходимости в совершенном понимании внутренней
+            работы всех компонент, полезно иметь практические знания данного
+            процесса.
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">Zend_Controller_Front</code> (далее
+                        фронт-контроллер) управляет всем рабочим процессом
+                        системы <code class="code">Zend_Controller</code>. Это интерпретация
+                        паттерна FrontController.
+                        <code class="code">Zend_Controller_Front</code> обрабатывает все
+                        запросы, полученные сервером, и в конечном счете
+                        отвечает за делегацию запросов контроллерам действий
+                        (<code class="code">Zend_Controller_Action</code>).
+
+                    </p></li>
+<li>
+<p>
+					              <code class="code">Zend_Controller_Request_Abstract</code>
+					              представляет переменные запроса и предоставляет
+                        методы для установки и получения имен контроллера,
+                        действия и любых параметров запроса. Кроме того, он
+                        отслеживает, было ли обработано представляемое им
+                        действие диспетчером
+                        <code class="code">Zend_Controller_Dispatcher</code>.
+                        Расширения абстрактного объекта запроса могут
+                        использоваться для инкапсуляции всех переменных
+                        запроса, позволяя роутерам извлекать информацию
+                        из переменных запроса для того, чтобы устанавливать имена
+                        контроллера и действия.
+
+					         </p>
+<p>
+                       По умолчанию используется
+                       <code class="code">Zend_Controller_Request_Http</code>. Он
+                       предоставляет доступ ко всем переменным HTTP-запроса.
+
+                   </p>
+</li>
+<li>
+<p>
+        					      <code class="code">Zend_Controller_Router_Interface</code>
+        					      используется для определения маршрутизаторов.
+        					      Маршрутизация — это процесс исследования переменных запроса для определения того, какой
+                                  контроллер и какое действие в этом контроллере
+                                  должны получить этот запрос. Эти контроллер,
+                                  действие и опциональные параметры
+                                  устанавливаются в объекте запроса для
+                                  обработки диспетчером
+                                  <code class="code">Zend_Controller_Dispatcher_Standard</code>.
+                                  Маршрутизация производится только один раз: когда вначале получен запрос и до того, как
+                                  первый контроллер примет управление.
+
+                    </p>
+<p>
+                        Используемый по умолчанию маршрутизатор -
+                        <code class="code">Zend_Controller_Router_Rewrite</code>.
+
+                    </p>
+<p>
+                        Используемый по умолчанию маршрутизатор
+                        <code class="code">Zend_Controller_Router_Rewrite</code> принимает
+                        конечную точку URI так, как она определена в
+                        <code class="code">Zend_Controller_Request_Http</code>, и
+                        разлагает ее на контроллер, действие и параметры,
+                        основываясь на пути в URL. Например, URL
+                        <code class="code">http://localhost/foo/bar/key/value</code>
+                        будет расшифрован следующим образом: контроллер
+                        <code class="code">foo</code>, действие <code class="code">bar</code> и
+                        параметр <code class="code">key</code> со значением
+                        <code class="code">value</code>.      
+
+        					  </p>
+<p>
+                        <code class="code">Zend_Controller_Router_Rewrite</code> может также использоваться для сопоставления с произвольными путями, за более подробной информацией см. <a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter" title="7.4.3. Zend_Controller_Router_Rewrite">Раздел 7.4.3, «Zend_Controller_Router_Rewrite»</a>
+
+                    </p>
+</li>
+<li>
+<p>
+				          	    <code class="code">Zend_Controller_Dispatcher_Interface</code>
+				          	    используется для определения диспетчеров.
+				          	    Диспетчеризация — это процесс извлечения контроллера и
+				          	    действия из объекта запроса, нахождения соответствующих
+                        файла/класса контроллера и метода действия в
+                        классе контроллера. Ситуации, когда соответствующие
+                        контроллер или действие не найдены, решаются
+                        определением контроллеров и действий по умолчанию.
+
+                    </p>
+<p>
+                        Фактически процесс диспетчеризации состоит из
+                        инстанцирования класса контроллера и вызова метода
+                        действия в этом классе. В отличие от маршрутизации,
+                        которая производится только один раз, диспетчеризация
+                        производится циклически. Если флаг диспетчеризации
+                        объекта запроса сбрасывается, то цикл будет
+                        повторяться, при этом вызывается действие, которое будет
+                        установлено на данный момент в объекте запроса.
+                        Если цикл завершится с установленным флагом
+                        диспетчеризации (значение <code class="code">true</code>) в объекте
+                        запроса, то этим завершается процесс диспетчеризации. 
+                         
+
+                    </p>
+<p>
+                        По умолчанию используется диспетчер
+                        <code class="code">Zend_Controller_Dispatcher_Standard</code>.
+                        Он определяет контроллеры как классы с именами,
+                        завершающимися словом Controller, и в которых все "слова" начинаются
+                        со сточной буквы, методы действий — как методы с
+                        именами, завершающимися словом Action, и в которых все
+                        "слова", кроме первого, начинаются со строчной буквы:
+                        <code class="code">SomeFooController::barAction</code>.
+                        В этом случае на контроллер нужно ссылаться как на
+                        <code class="code">somefoo</code>, а на действие как на
+                        <code class="code">bar</code>.
+
+        				    </p>
+<p>
+                        Кроме этого, вы можете определять модуль, используемый
+                        при загрузке контроллера. Модуль используется для
+                        определения префикса класса и поддиректории, в которой
+                        следует искать класс. Для того, чтобы использовать
+                        модули, установите параметр <code class="code">useModules</code> во
+                        фронт-контроллере:
+
+                    </p>
+<pre class="programlisting">
+$front-&gt;setParam('useModules', true);
+</pre>
+<p>
+                        При этом необходимо установить соответствие директорий
+                        модулям. Вы можете делать это как при установке
+                        директорий так и при добавлении новой: 
+
+                    </p>
+<pre class="programlisting">
+$front-&gt;setControllerDirectory(array(
+    0      =&gt; '/path/to/default/controllers',
+    'user' =&gt; '/path/to/user/controllers'
+));
+
+// OR
+$front-&gt;setControllerDirectory('/path/to/default/controllers');
+$front-&gt;addControllerDirectory('/path/to/user/controllers', 'user');
+</pre>
+<p>
+                        В качестве примера рассмотрим следующий URL:
+
+                    </p>
+<pre class="programlisting">
+http://example.com/user/news/action
+</pre>
+<p>
+                        В этом примере указаны модуль 'user' и контроллер
+                        'news'. Если был определен модуль 'user' с
+                        соответствующей директорией, то из нее загружается файл
+                        <code class="code">NewsController.php</code>, при этом ожидается, что
+                        в нем определен класс <code class="code">User_NewsController</code>.
+                        
+                        Диспетчер переводит это как "класс
+                        <code class="code">User_NewsController</code>" и ищет его, используя
+                        путь <code class="code">User/NewsController.php</code> в путях,
+                        заданных через
+                        <code class="code">setControllerDirectory()</code>.
+
+                    </p>
+<p>
+                        Модули полезны, если вы хотите разделить код по
+                        директориям, использовать код сторонних
+                        разработчиков или повторно использовать одну и ту же
+                        библиотеку контроллеров для различных приложений.
+
+                    </p>
+</li>
+<li><p>
+				          	    <code class="code">Zend_Controller_Action</code> — базовая
+				          	    составляющая контроллера. Каждый контроллер является
+				          	    отдельным классом, наследующим от класса 
+				          	    <code class="code">Zend_Controller_Action</code>, и этот класс
+				          	    имеет методы действия.
+
+					          </p></li>
+<li>
+<p>
+                        <code class="code">Zend_Controller_Response_Abstract</code>
+                        определяет основной класс ответа, используемый для
+                        сбора и возвращения ответов из действий контроллеров.
+                        Он собирает заголовки и содержимое и, поскольку
+                        реализует метод <code class="code">__toString()</code>, может
+                        выводиться конструкцией echo для отправки всех
+                        заголовков и содержимого одновременно.
+
+                    </p>
+<p>
+                        По умолчанию используется класс
+                        <code class="code">Zend_Controller_Response_Http</code>, который
+                        пригоден для использования в среде HTTP. 
+
+                    </p>
+</li>
+</ul></div>
+<p>
+
+            Рабочий процесс <code class="code">Zend_Controller</code> относительно простой.
+            Запрос получается объектом <code class="code">Zend_Controller_Front</code>,
+            который по очереди вызывает <code class="code">Zend_Controller_Router_Rewrite</code>
+            для определения того, какой контроллер (и какое действие в этом контроллере) следует использовать.
+            <code class="code">Zend_Controller_Router_Rewrite</code>
+            анализирует URI для установки имен контроллера и действия в запросе.
+            Затем <code class="code">Zend_Controller_Front</code> входит в цикл
+            диспетчеризации. Он вызывает
+            <code class="code">Zend_Controller_Dispatcher_Standard</code> и передает ему
+            запрос для запуска контроллера и действия, определенных в запросе
+            (или тех, которые используются по умолчанию). После того, как
+            контроллер завершит работу, управление возвращается
+            <code class="code">Zend_Controller_Front</code>. Если предыдущий контроллер
+            посредством переустановки статуса диспетчеризации в запросе
+            указал, что должен быть запущен другой контроллер, то цикл
+            продолжается и выполняется запуск другого контроллера. В противном
+            случае процесс завершается.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.request"></a>7.1.2. Объект запроса</h3></div></div></div>
+<p>
+    		    Объект запроса является простым объектом значений, который
+    		    передается между <code class="code">Zend_Controller_Front</code>, роутером,
+            диспетчером и контроллерами. Он включает в себя определение
+            контроллера, действия и параметров, которые нужно передать
+            действию, а также остальные переменные запроса, будь это HTTP, CLI
+            или PHP-GTK.
+
+    		</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    Имя контроллера получается посредством методов
+                    <code class="code">getControllerName()</code> и
+                    <code class="code">setControllerName()</code>.  
+
+    			      </p></li>
+<li><p>
+                    Имя действия, вызываемого внутри контроллера получается
+                    посредством методов <code class="code">getActionName()</code> и
+                    <code class="code">setActionName()</code>.
+
+    			      </p></li>
+<li><p>
+                    Параметры для передачи вызываемому действию являются
+                    ассоциативным массивом пар ключ/значение, который
+                    получается через методы <code class="code">getParams()</code>
+                    и <code class="code">setParams()</code>, или, если требуется получить
+                    отдельное значение, через <code class="code">getParam()</code> и
+                    <code class="code">setParam()</code>.
+
+    			      </p></li>
+</ul></div>
+<p>
+            Методов может быть больше, в зависимости от типа запроса.
+            Например, используемый по умолчанию запрос
+            <code class="code">Zend_Controller_Request_Http</code> имеет методы для
+            получения URI запроса, пути, параметры $_GET и $_POST и т.д.  
+
+        </p>
+<p>
+            Объект запроса передается Zend_Controller_Front либо, если
+            ничего не было передано, инициализируется в начале процесса
+            диспетчеризации до того, как будет запущен прощесс маршрутизации.
+            Он передается каждому объекту в цепочке диспетчеризации.
+
+        </p>
+<p>
+            Кроме этого, объект запроса особенно полезен в тестировании.
+            Разработчики могут имитировать переменные запроса, включая в объект
+            запроса контроллер, действие, параметры, URI и т.д., и затем
+            передавая его фронт-контроллеру для проверки работы приложения.
+            Если комбинируется с объектом ответа, становится возможным
+            тщательное и точное юнит-тестирование приложений на основе MVC.  
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.routing-process"></a>7.1.3. Процесс маршрутизации</h3></div></div></div>
+<p>
+            Перед тем, как начать писать свой первый контроллер, надо сначала
+            понять, как работает процесс маршрутизации, и как это реализовано в
+            <code class="code">Zend_Controller_Router_Rewrite</code>. Помните, что рабочий
+            процесс делится на маршрутизацию, которая выполняется только один
+            раз, и диспетчеризацию, которая выполняется циклически после
+            маршрутизации.
+
+        </p>
+<p>
+            <code class="code">Zend_Controller_Front</code> вызывает
+            <code class="code">Zend_Controller_Router_Rewrite</code> (или другой установленный маршрутизатор) для определения того, какой контроллер
+            (и какое действие внутри этого контроллера) соответствует данному
+            URI. <code class="code">Zend_Controller_Router</code> извлекает URI из объекта запроса и передает его объектам маршрута в своей цепочке; по
+            умолчанию он использует <code class="code">Zend_Controller_Router_Route_Module</code>
+            для сопоставления с приходящими URL-ами. Объект маршрута разбирает URL для определения контроллера, действия
+            и других параметров URL, переданных в пути, и устанавливает
+            их в объекте запроса.
+
+        </p>
+<p>
+            <code class="code">Zend_Controller_Router_Route_Module</code> использует очень
+            простую схему определения имени контроллера и имени действия в этом
+            контроллере:
+
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/controller/action/
+        </pre>
+<p>
+            Обратите внимание, что первый сегмент всегда является именем
+            контроллера, а второй сегмент — именем действия.
+
+        </p>
+<p>
+            В URI могут быть определены параметры, которые будут переданы
+            контроллеру. Они имеют вид пар ключ/значение:
+
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/controller/action/key1/value1/
+        </pre>
+<p>
+            Если в пути URI отсутствуют контроллер и действие, то
+            <code class="code">Zend_Controller_Dispatcher_Standard</code> попытается
+            получить значения из параметров объекта запроса и, если ничего не
+            найдено, использовать значения по умолчанию. В обоих случаях
+            значениями по умолчанию будет "<code class="code">index</code>". Следующие
+            примеры иллюстрируют это:
+
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/roadmap/future/
+Controller: roadmap
+Action    : future
+
+http://framework.zend.com/roadmap/
+Controller: roadmap
+Action    : index
+
+http://framework.zend.com/
+Controller: index
+Action    : index
+        </pre>
+<p>
+            Кроме этого, вы можете определять контроллеры в поддиректориях или
+            модулях следующими способами:
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    Могут использоваться имена контроллеров со знаком 
+                    подчеркивания (_). Например,
+                    <code class="code">http://framework.zend.com/admin_roadmap/future</code>
+                    должен соответствовать классу контроллера
+                    Admin_RoadmapController.
+                    Альтернативный разделитель путей может быть задан через
+                    метод диспетчера <code class="code">setPathSeparator()</code>. 
+
+                </p></li>
+<li>
+<p>
+                    После установки параметра <code class="code">useModules</code> во
+                    фронт-контроллере вы можете указывать соответствие
+                    поддиректориям, используя чистый URI. URL в предыдущем
+                    примере может быть преобразован в
+                    <code class="code">http://framework.zend.com/admin/roadmap/future</code>.
+                    Для этого установите параметр <code class="code">useModules</code> во
+                    фронт-контроллере или маршрутизаторе и добавьте директорию
+                    контроллера как модуль 'admin': 
+
+                </p>
+<pre class="programlisting">
+$router-&gt;setParam('useModules', true);
+// ИЛИ
+$front-&gt;setParam('useModules', true);
+
+// И
+$front-&gt;addControllerDirectory('/path/to/admin/controllers', 'admin');
+</pre>
+<p>
+                    Это будет работать как основного маршрутизатора, так и
+                    для RewriteRouter.
+
+                </p>
+</li>
+</ul></div>
+<div class="note"><table border="0" summary="Note: Гибкость">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Гибкость</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+		            Если вы хотите большей гибкости, то можете обратиться к <a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter" title="7.4.3. Zend_Controller_Router_Rewrite">Раздел 7.4.3, «Zend_Controller_Router_Rewrite»</a>.
+
+            </p></td></tr>
+</table></div>
+<p>
+		        Имя контроллера, имя действия в этом контроллере и любые
+            необязательные параметры (включая модуль) устанавливаются в объекте
+            запроса. Когда <code class="code">Zend_Controller_Front</code> входит в цикл
+            диспетчеризации, объект запроса передается
+            <code class="code">Zend_Controller_Dispatcher_Standard</code>. 
+
+		    </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.dispatching"></a>7.1.4. Процесс диспетчеризации</h3></div></div></div>
+<p>
+		        Диспетчеризация — это процесс принятия объекта запроса
+            (<code class="code">Zend_Controller_Request_Abstract</code>), извлечения
+            содержащихся в нем имени контроллера, имени действия и
+            необязательных параметров, и затем инстанцирования контроллера,
+            вызова действия в нем. Если не найдены контроллер и действие,
+            то будут использоваться значения, принятые для них по умолчанию.
+            Для обоих <code class="code">Zend_Controller_Dispatcher_Standard</code>
+            использует <code class="code">index</code> как значение по умолчанию, но
+            позволяет изменять значения по умолчанию через методы
+            <code class="code">setDefaultController()</code> и
+            <code class="code">setDefaultAction()</code>. 
+
+		    </p>
+<p>
+            Диспетчеризация производится в цикле во фронт-контроллере.
+            До того, как будет запущен процесс диспетчеризации,
+            фронт-контроллер выполняет маршрутизацию запроса для нахождения
+            определенных пользователем значений контроллера, действия и
+            необязательных параметров. Затем он входит в цикл диспетчеризации,
+            обрабатывая запрос.
+
+        </p>
+<p>
+            В начале каждой итерации цикла он устанавливает флаг в объекте
+            запроса, означающий, что действие было запущено. Если
+            действие или методы pre/postDispatch установленного плагина сбросят
+            этот флаг, то цикл диспетчеризации продолжится и попытается
+            обработать запрос снова. Изменяя контроллер и/или действие в
+            запросе и сбрасывая флаг диспетчеризации, разработчик может
+            определять цепочку запросов для обработки.       
+
+        </p>
+<p>
+            Метод действия контроллера, который таким образом управляет
+            диспетчеризацией, называется <code class="code">_forward()</code>; вызывайте
+            этот метод из любого метода pre/postDispatch() или действия,
+            указывая контроллер, действие и необязательные параметры,
+            которые вы, возможно, захотите передать новому действию.
+
+        </p>
+<pre class="programlisting">
+public function myAction()
+{
+    // выполнение каких-либо действий...
+    // передача управления другому действию FooController::barAction()
+    // в текущем модуле
+    $this-&gt;_forward('bar', 'foo', null, array('baz' =&gt; 'bogus'));
+}
+</pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.response"></a>7.1.5. Объект ответа</h3></div></div></div>
+<p>
+		        Объект ответа составляет логичную пару объекту запроса. Его
+            назначение — сбор контента и/или заголовков, таким образом
+            они могут возвращаться вместе. Кроме этого, фронт-контроллер
+            будет передавать любые пойманные исключения объекту ответа,
+            давая разработчику возможность должным образом обрабатывать
+            исключения. Эта возможность может быть отключена установкой
+            <code class="code">Zend_Controller_Front::throwExceptions(true)</code>: 
+
+        </p>
+<pre class="programlisting">
+$front-&gt;throwExceptions(true);
+</pre>
+<p>
+            Для отправки выходных данных ответа, включая заголовки, используйте метод <code class="code">sendOutput()</code>.
+
+        </p>
+<pre class="programlisting">
+$response-&gt;sendOutput();
+</pre>
+<p>
+            Разработчики должны использовать объекты ответа в своих контроллерах.
+            Вместо непосредственного вывода и отправки заголовков, следует
+            помещать их в объект запроса: 
+
+        </p>
+<pre class="programlisting">
+// В действии контроллера:
+// Установка заголовка
+$this-&gt;getResponse()
+    -&gt;setHeader('Content-Type', 'text/html')
+    -&gt;appendBody($content);
+</pre>
+<p>
+            Посредством таких операций вы добьетесь того, что все заголовки
+            будут выведены одновременно до того, как будет выведено содержимое.
+
+        </p>
+<p>
+            Для проверки того, произошло ли исключение в приложении,
+            проверяйте флаг <code class="code">isException()</code> в объекте ответа и
+            извлекайте объект исключения, используя метод
+            <code class="code">getException()</code>. Кроме этого, можно создавать
+            объекты ответа, которые перенаправляют на страницы
+            сообщений об ошибке, журналируют сообщения исключения, обеспечивают
+            привлекательный формат сообщений исключения (для среды разработки)
+            и т.п.
+
+        </p>
+<p>
+            Вы можете получить объект ответа после вызова метода dispatch()
+            фронт-контроллера или указать фронт-контроллеру, чтобы он возвращал
+            объект ответа вместо его вывода.   
+
+        </p>
+<pre class="programlisting">
+// получение объекта ответа после диспетчеризации
+$front-&gt;dispatch();
+$response = $front-&gt;getResponse();
+if ($response-&gt;isException()) {
+    // log, mail, etc...
+}
+
+// или dispatch() возвращает объект ответа 
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+
+// делаем что-либо...
+
+// вывод ответа
+$response-&gt;sendResponse();
+</pre>
+<p>
+            По умолчанию сообщения исключений не отображаются. Это поведение
+            может быть переопределено вызовом метода
+            <code class="code">renderExceptions()</code> или включением возможности генерации
+            исключений throwExceptions() фронт-контроллером, как показано ниже: 
+
+        </p>
+<pre class="programlisting">
+$response-&gt;renderExceptions(true);
+$front-&gt;dispatch($request, $response);
+
+// или:
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+$response-&gt;renderExceptions();
+$response-&gt;sendResponse();
+
+// или:
+$front-&gt;throwExceptions(true);
+$front-&gt;dispatch();
+</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.console.getopt.configuration.html">Пред.</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.getting-started.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.4. Configuring Zend_Console_Getopt </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 7.2. Начало работы</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

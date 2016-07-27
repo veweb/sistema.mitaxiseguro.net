@@ -1,0 +1,173 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.6. Zend_Db_Table_Rowset</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="prev" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="next" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.db.tablerowset.html#zend.db.table.rowset.introduction" title="9.6.1. Inleiding">
+<link rel="subsection" href="zend.db.tablerowset.html#zend.db.table.rowset.fetch" title="9.6.2. Een Rowset verkrijgen">
+<link rel="subsection" href="zend.db.tablerowset.html#zend.db.table.rowset.iterate" title="9.6.3. Door de Rowset lopen">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.6. Zend_Db_Table_Rowset</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.tablerow.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.tablerowset"></a>9.6. Zend_Db_Table_Rowset</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.rowset.introduction"></a>9.6.1. Inleiding</h3></div></div></div>
+<p>
+			Zend_Db_Table_Rowset is een iterator voor Zend_Db_Table_Row object 
+			verzamelingen. In het algemeen instantieer je geen alleenstaande
+			Zend_Db_Table_Rowset; maar krijg je een Zend_Db_Table_Rowset terug als
+			resultaat van een oproep aan Zend_Db_Table::find() of fetchAll(). Je
+			kan dan door de verzameling Zend_Db_Table_Row objecten lopen en deze
+			wijzigen indien je dat wenst.
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.rowset.fetch"></a>9.6.2. Een Rowset verkrijgen</h3></div></div></div>
+<p>
+			Het eerste wat je moet doen is een Zend_Db_Table klasse instantiëren.
+        </p>
+<pre class="programlisting">&lt;?php
+// een adapter opzetten
+require_once 'Zend/Db.php';
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// de standaard adapter zetten voor alle Zend_Db_Table objekten
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+
+// verbinden met een tabel in de database
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+<p>
+			Verkrijg vele records van de database door
+			Zend_Db_Table::find() met meerdere keys te gebruiken,
+			of door Zend_Db_Table::fetchAll() te gebruiken; het aldus
+			bekomen resultaat zal een Zend_Db_Table_Rowset object zijn
+			dat je toelaat door de individuele Zend_Db_Table_Row 
+			objecten in de recordset te lopen.
+        </p>
+<pre class="programlisting">&lt;?php
+// verkrijg meerdere records van de tabel
+$rowset = $table-&gt;fetchAll();
+
+//
+// $rowset is nu een Zend_Db_Table_Rowset object bestaande uit
+// één Zend_Db_Table_Row object per record in de resultaten
+//
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.rowset.iterate"></a>9.6.3. Door de Rowset lopen</h3></div></div></div>
+<p>
+            Zend_Db_Table_Rowset implementeert de SPL Iterator interface,
+			wat betekent dat je door Zend_Db_Table_Rowset objecten kan lopen
+			zoals je dat doet met arrays door foreach() te gebruiken. Elke
+			waarde die je zo verkrijgt zal een Zend_Db_Table_Row object zijn
+			dat overeenkomt met een record van de tabel. Je kan dan de
+			eigenschappen ervan afbeelden, wijzigen en terug opslaan.
+        </p>
+<pre class="programlisting">&lt;?php
+// verbinden met een tabel in de database
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+
+// meerdere records verkrijgen van de tabel
+$rowset = $table-&gt;fetchAll();
+
+// ze allemaal afbeelden
+foreach ($rowset as $row) {
+    // $row is een Zend_Db_Table_Row objekt
+    echo "&lt;p&gt;De lievelingskleur van " . htmlspecialchars($row-&gt;nobleTitle) . " "
+       . htmlspecialchars($row-&gt;firstName)
+       . " is " . htmlspecialchars($row-&gt;favoriteColor)
+       . ".&lt;/p&gt;\n";
+
+	// update het aantal keer dat we deze rij hebben afgebeeld
+	// (deze eigenschap mapt naar een kolom in de tabel "times_displayed")
+    $row-&gt;timesDisplayed ++;
+
+	// de record opslaan met de nieuwe informatie
+    $row-&gt;save();
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.tablerow.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.5. Zend_Db_Table_Row </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> Hoofdstuk 10. Zend_Feed</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

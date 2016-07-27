@@ -1,0 +1,310 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.2. Zend_Db_Profiler</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="prev" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="next" href="zend.db.select.html" title="9.3. Zend_Db_Select">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.db.profiler.html#zend.db.profiler.introduction" title="9.2.1. Wprowadzenie">
+<link rel="subsection" href="zend.db.profiler.html#zend.db.profiler.using" title="9.2.2. Użycie profilera">
+<link rel="subsection" href="zend.db.profiler.html#zend.db.profiler.advanced" title="9.2.3. Zaawansowane użycie profilera">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.2. Zend_Db_Profiler</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.select.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.profiler"></a>9.2. Zend_Db_Profiler</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.profiler.introduction"></a>9.2.1. Wprowadzenie</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Profiler</code> może być włączony aby pozwolić na
+            profilowanie zapytań. Profilowanie umożliwia zbadanie czasu trwania
+            zapytań pozwalając na inspekcję przeprowadzonych zapytań bez potrzeby 
+            dodawania dodatkowego kodu do klas. Zaawansowane użycie pozwala także
+            programiście decydować o tym, jakich typów zapytania mają być profilowane.
+        </p>
+<p>
+            Włącz profiler przekazując odpowiednią dyrektywę do konstruktora 
+            adaptera, lub wywołując później metodę adaptera.
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Db.php';
+
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot',
+    'profiler' =&gt; true  // włącz profiler; ustaw false aby wyłączyć (domyślne)
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// wyłącz profiler:
+$db-&gt;getProfiler()-&gt;setEnabled(false);
+
+// włącz profiler:
+$db-&gt;getProfiler()-&gt;setEnabled(true);
+?&gt;</pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.profiler.using"></a>9.2.2. Użycie profilera</h3></div></div></div>
+<p>
+            W dowolnym momencie możesz pobrać profiler używając metody 
+            adaptera <code class="code">getProfiler()</code>:
+        </p>
+<pre class="programlisting">&lt;?php
+$profiler = $db-&gt;getProfiler();
+?&gt;</pre>
+<p>
+            Zwraca to instancję <code class="code">Zend_Db_Profiler</code>. Używając tej
+            instancji programista może zbadać zapytania używając rozmaitych
+            metod:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">getTotalNumQueries()</code> zwraca liczbę wszystkich
+                    zapytań które były profilowane.
+                </p></li>
+<li><p>
+                    <code class="code">getTotalElapsedSecs()</code> zwraca całkowity czas
+                    trwania profilowanych zapytań.
+                </p></li>
+<li><p>
+                    <code class="code">getQueryProfiles()</code> zwraca tablicę wszystkich
+                    profilów zapytań.
+                </p></li>
+<li><p>
+                    <code class="code">getLastQueryProfile()</code> zwraca ostatni (najnowszy) 
+                    profil zapytania, niezależnie od tego czy zostało ono zakończone czy 
+                    nie (jeśli nie zostało, to czas zakończenia będzie miał wartość null)
+                </p></li>
+<li><p>
+                    <code class="code">clear()</code> czyści wszystkie poprzednie profile
+                    zapytań ze stosu.
+                </p></li>
+</ul></div>
+<p>
+            Wartość zwracana przez <code class="code">getLastQueryProfile()</code> oraz
+            pojedyncze elementy tablicy zwracanej przez <code class="code">getQueryProfiles()</code> 
+            są obiektami <code class="code">Zend_Db_Profiler_Query</code>, które dają możliwość
+            sprawdzenia osobno każdego zapytania.
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">getQuery()</code> zwraca tekst SQL zapytania.
+                </p></li>
+<li><p>
+                    <code class="code">getElapsedSecs()</code> zwraca czas trwania zapytania
+                </p></li>
+</ul></div>
+<p>
+            Informacja której dostarcza <code class="code">Zend_Db_Profiler</code> jest 
+            użyteczna przy profilowaniu wąskich gardeł w aplikacjach oraz
+            do szukania błędów w wykonanych zapytaniach. Na przykład aby
+            zobaczyć ostatnie zapytanie jakie było wykonane:
+        </p>
+<pre class="programlisting">&lt;?php
+$query = $profiler-&gt;getLastQueryProfile();
+
+echo $query-&gt;getQuery();
+?&gt;</pre>
+<p>
+            Możliwe, że strona generuje się powoli; użyj profilera aby ustalić
+            czas wykonania wszystkich zapytań, a następnie przejść poprzez
+            zapytania aby znaleść te, które trwało najdłużej:
+        </p>
+<pre class="programlisting">&lt;?php
+$totalTime    = $profiler-&gt;getTotalElapsedSecs();
+$queryCount   = $profiler-&gt;getTotalNumQueries();
+$longestTime  = 0;
+$longestQuery = null;
+
+foreach ($profiler-&gt;getQueryProfiles() as $query) {
+    if ($query-&gt;getElapsedSecs() &gt; $longestTime) {
+        $longestTime  = $query-&gt;getElapsedSecs();
+        $longestQuery = $query-&gt;getQuery();
+    }
+}
+
+echo 'Wykonano ' . $queryCount . ' zapytań w czasie ' . $totalTime . ' sekund' . "\n";
+echo 'Średni czas trwania zapytania: ' . $totalTime / $queryCount . ' sekund' . "\n";
+echo 'Zapytań na sekundę:: ' . $queryCount / $totalTime . "\n";
+echo 'Czas trwania najdłuższego zapytania: ' . $longestTime . "\n";
+echo "Najdłuższe zapytanie: \n" . $longestQuery . "\n";
+?&gt;</pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.profiler.advanced"></a>9.2.3. Zaawansowane użycie profilera</h3></div></div></div>
+<p>
+            Oprócz sprawdzania zapytań, profiler pozwala także programiście na 
+            określenie typów zapytań które mają być profilowane. Poniższe
+            metody operują na instancji <code class="code">Zend_Db_Profiler</code>:
+        </p>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.db.profiler.advanced.filtertime"></a>9.2.3.1. Filtrowanie ze względu na czas trwania zapytania</h4></div></div></div>
+<p>
+                <code class="code">setFilterElapsedSecs()</code> pozwala programiście ustalić
+                minimalny czas trwania zapytania jaki jest potrzebny do tego by 
+                zostało ono profilowane. Aby usunąć filtr, wywołaj metodę z 
+                wartością null w parametrze.
+            </p>
+<pre class="programlisting">&lt;?php
+// Profiluj tylko zapytania które trwają przynajmniej 5 sekund:
+$profiler-&gt;setFilterElapsedSecs(5);
+
+// Profiluj wszystkie zapytania, niezależnie od czasu ich trwania:
+$profiler-&gt;setFilterElapsedSecs(null);
+?&gt;</pre>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.db.profiler.advanced.filtertype"></a>9.2.3.2. Filtrowanie ze względu na typ zapytania</h4></div></div></div>
+<p>
+                <code class="code">setFilterQueryType()</code> pozwala programiście określić,
+                które typy zapytań powinny być profilowane; aby profilować 
+                zapytania wielu typów użyj logicznego operatora OR. Typy zapytań
+                są zdefiniowane jako stałe w <code class="code">Zend_Db_Profiler</code>:
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">Zend_Db_Profiler::CONNECT</code>: operacje
+                        połączenia lub wybierania bazy danych.
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::QUERY</code>: ogólne zapytania 
+                         które nie pasują do pozostałych typów.
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::INSERT</code>: każde zapytanie
+                        które wstawia nowe dane do bazy, generalnie SQL INSERT.
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::UPDATE</code>: każde zapytanie
+                        ktore uaktualnia dane w bazie, najczęściej SQL UPDATE.
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::DELETE</code>: każde zapytanie
+                        które usuwa istnięjące dane, najczęściej SQL DELETE.
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::SELECT</code>: każde zapytanie
+                        które pobiera istnięjące dane, najczęściej SQL SELECT.
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Db_Profiler::TRANSACTION</code>: każda
+                        operacja transakcyjna, taka jak start transakcji, potwierdzenie
+                        zmian czy ich cofnięcie.
+                    </p></li>
+</ul></div>
+<p>
+                Analogicznie jak w metodzie <code class="code">setFilterElapsedSecs()</code>,
+                możesz usunąć wszystkie istniejące filtry przekazując metodzie
+                pusty parametr <code class="code">null</code>.
+            </p>
+<pre class="programlisting">&lt;?php
+// profiluj tylko zapytania SELECT
+$profiler-&gt;setFilterQueryType(Zend_Db_Profiler::SELECT);
+
+// profiluj zapytania SELECT, INSERT, oraz UPDATE
+$profiler-&gt;setFilterQueryType(Zend_Db_Profiler::SELECT | Zend_Db_Profiler::INSERT | Zend_Db_Profiler::UPDATE);
+
+// profiluj zapytania DELETE 
+$profiler-&gt;setFilterQueryType(Zend_Db_Profiler::DELETE);
+
+// Usuń wszystkie filtry
+$profiler-&gt;setFilterQueryType(null);
+?&gt;</pre>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.db.profiler.advanced.getbytype"></a>9.2.3.3. Pobieranie profili na podstawie typów zapytań</h4></div></div></div>
+<p>
+                Użycie metody <code class="code">setFilterQueryType()</code> może zmniejszyć
+                ilość wygenerowanych profili. Jakkolwiek, czasem bardziej użyteczne
+                jest przechowywanie wszystkich profili i wyświetlanie tylko
+                tych których potrzebujesz w danym momencie. Inną funkcjonalnością
+                metody <code class="code">getQueryProfiles()</code> jest to, że może ona
+                przeprowadzić te filtrowanie w locie, po przekazaniu typu
+                zapytań (lub logicznej kombinacji typów zapytań) jako pierwszego
+                argumentu; przejdź do <a href="zend.db.profiler.html#zend.db.profiler.advanced.filtertype" title="9.2.3.2. Filtrowanie ze względu na typ zapytania">Sekcja 9.2.3.2, „Filtrowanie ze względu na typ zapytania”</a> 
+                aby zobaczyć listę stałych określających typy zapytań.
+            </p>
+<pre class="programlisting">&lt;?php
+// Pobierz jedynie profile zapytań SELECT
+$profiles = $profiler-&gt;getQueryProfiles(Zend_Db_Profiler::SELECT);
+
+// Pobierz jedynie profile zapytań SELECT, INSERT, oraz UPDATE
+$profiles = $profiler-&gt;getQueryProfiles(Zend_Db_Profiler::SELECT | Zend_Db_Profiler::INSERT | Zend_Db_Profiler::UPDATE);
+
+// Pobierz jedynie profile zapytań DELETE
+$profiles = $profiler-&gt;getQueryProfiles(Zend_Db_Profiler::DELETE);
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.select.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Rozdział 9. Zend_Db </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 9.3. Zend_Db_Select</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

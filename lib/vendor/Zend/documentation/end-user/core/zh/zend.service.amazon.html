@@ -1,0 +1,912 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>24.3. Zend_Service_Amazon</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="prev" href="zend.service.akismet.html" title="24.2. Zend_Service_Akismet">
+<link rel="next" href="zend.service.flickr.html" title="24.4. Zend_Service_Flickr">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.introduction" title="24.3.1. Introduction">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.countrycodes" title="24.3.2. 国家代码">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. 用ASIN来搜索指定的Amazon出版物">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. 对Amazon出版物的搜索">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.query" title="24.3.5. 另一个可选的查询 API">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">24.3. Zend_Service_Amazon</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.service.akismet.html">上一页</a> </td>
+<th width="60%" align="center">第 24 章 Zend_Service</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.service.flickr.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.service.amazon"></a>24.3. Zend_Service_Amazon</h2></div></div></div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.introduction"></a>24.3.1. Introduction</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Amazon</code> 是一个简单的用来操作Amazon web services的API.
+            <code class="code">Zend_Service_Amazon</code> 含两组不同的API,　一组是传统的遵循 Amazon's自身标准的API；
+			另一个是一组相对简单的API,通过它我们可以非常容易的构建哪怕是很复杂的搜索请求。
+        </p>
+<p>
+            <code class="code">Zend_Service_Amazon</code> 允许开发者通过Amazon的Web Services的API来直接得到Amazon.com网站中的信息
+			． 例子包括：
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        保存出版物的信息, 如 图片, 描述, 价格,　等
+                    </p></li>
+<li><p>
+                        顾客和编辑的评
+                    </p></li>
+<li><p>
+                        类似的产品或附属产品
+                    </p></li>
+<li><p>
+                        Amazon.com 报价
+                    </p></li>
+<li><p>
+                        ListMania 列表
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            为了使用 <code class="code">Zend_Service_Amazon</code>, 你应当已经拥有了Amazon开发者API key
+			, 如果你要了解更多信息，请访问
+            <a href="http://www.amazon.com/gp/aws/landing.html" target="_top">Amazon Web Services</a> .
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top">
+            你的Amazon开发者API key是和你的Amazon Id相联系的， 所以请小心使用，不要随便泄漏啦 .
+        </td></tr>
+</table></div>
+<div class="example">
+<a name="id4813862"></a><p class="title"><b>例 24.4. 用传统的API搜索Amazon</b></p>
+<p>
+                在这个例子中, 我们在Amazon中搜索PHP图书，然后遍历结果并打印出它们.
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY&amp;');
+$response = $amazon-&gt;itemSearch(array('SearchIndex' =&gt; 'Books', 'Keywords' =&gt; 'php'));
+foreach ($response as $r) {
+    echo $r-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+<div class="example">
+<a name="id4813879"></a><p class="title"><b>例 24.5.  使用Query API搜索来Amazon</b></p>
+<p>
+                这里, 我们同样在Amazon中搜索PHP图书, 但是我们将使用Query API来代替上面的方式, 类似 Fluent Interface 设计模式.
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon/Query.php';
+$query = new Zend_Service_Amazon_Query('AMAZON_API_KEY');
+$query-&gt;category('Books')-&gt;Keywords('PHP');
+$results = $query-&gt;search();
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.countrycodes"></a>24.3.2. 国家代码</h3></div></div></div>
+<p>
+            默认情况下,  <code class="code">Zend_Service_Amazon</code> 会选择连接到 Amazon 美国("US") 的web service. 如果你希望它连接到其他的国家,
+			 可以简单的指定一个适当的国家代码作为构造函数的第二的参数来实现:
+        </p>
+<div class="example">
+<a name="id4813942"></a><p class="title"><b>例 24.6. 选择一个 Amazon Web Service 国家</b></p>
+<pre class="programlisting">&lt;?php
+// Connect to Amazon in Japan
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY', 'JP');
+?&gt;       </pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top">
+                有效的国家代码: <code class="code">CA</code>, <code class="code">DE</code>, <code class="code">FR</code>, <code class="code">JP</code>,
+                <code class="code">UK</code>, 和 <code class="code">US</code>.
+            </td></tr>
+</table></div>
+</div>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.itemlookup"></a>24.3.3. 用ASIN来搜索指定的Amazon出版物</h3></div></div></div>
+<p>
+            如果你知道一个出版物的ASIN,你可以通过<code class="code">itemLookup()</code> 方法来获得这个出版物.
+        </p>
+<div class="example">
+<a name="id4814003"></a><p class="title"><b>例 24.7. 用ASIN来搜索指定的Amazon出版物</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY');
+$item = $amazon-&gt;itemLookup('B0000A432X');
+?&gt;       </pre>
+</div>
+<p>
+            <code class="code">itemLookup()</code> 方法还可以接受第二个参数（可选）来传递搜索选项 . 更多细节, 包括现有的选项列表, 请参考
+            <a href="http://www.amazon.com/gp/aws/sdk/main.html/103-9285448-4703844?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemLookupOperation" target="_top">relevant Amazon documentation</a>.
+        </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.itemsearch"></a>24.3.4. 对Amazon出版物的搜索</h3></div></div></div>
+<p>
+            基于现有的各种条件来查询一个出版物可以简单的通过
+            <code class="code">itemSearch()</code> 方法来实现．如下面的例子:
+        </p>
+<div class="example">
+<a name="id4814061"></a><p class="title"><b>例 24.8. 对Amazon出版物的搜索</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY');
+$response = $amazon-&gt;itemSearch(array('SearchIndex' =&gt; 'Books', 'Keywords' =&gt; 'php'));
+foreach($response as $r) {
+    echo $r-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+<p>
+            The <code class="code">itemSearch()</code> 方法接受一个数组作为参数来处理搜索请求.　更多细节, 包括现有的选项列表, 请参考
+            <a href="http://www.amazon.com/gp/aws/sdk/main.html/103-9285448-4703844?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemSearchOperation" target="_top">relevant Amazon documentation</a>
+        </p>
+<div class="tip"><table border="0" summary="Tip">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[提示]" src="images/tip.png"></td>
+<th align="left">提示</th>
+</tr>
+<tr><td align="left" valign="top">
+            The <a href="zend.service.amazon.html#zend.service.amazon.query" title="24.3.5. 另一个可选的查询 API"><code class="code">Zend_Service_Amazon_Query</code></a> 类是对这个方法的简单包装.
+        </td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.query"></a>24.3.5. 另一个可选的查询 API</h3></div></div></div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.query.introduction"></a>24.3.5.1. 简介</h4></div></div></div>
+<p>
+            <code class="code">Zend_Service_Amazon_Query</code> 为Amazon Web Service 提供另一个可选的查询 API. 这个API 使用Fluent Interface 模式.
+			 就是说, 你可以使用一个方法链表来实现所有的调用.  (e.g., <code class="code">$obj-&gt;method()-&gt;method2($arg)</code>)
+        </p>
+<p>
+            <code class="code">Zend_Service_Amazon_Query</code> 用过载来简单的构建一个出版物查询，然后允许你基于指定的标准进行搜索. 
+			用方法调用来提供每一个查询参数, 每个方法的参数对应那个查询参数的值：
+        </p>
+<div class="example">
+<a name="id4814161"></a><p class="title"><b>例 24.9. Search Amazon Using the Alternative Query API</b></p>
+<p>
+                在这个例子中, 使用新的查询 API 作为fluent interface来指定查询参数和值:
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon/Query.php';
+$query = new Zend_Service_Amazon_Query('MY_API_KEY');
+$query-&gt;Category('Books')-&gt;Keywords('PHP');
+$results = $query-&gt;search();
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+<p>
+                它设定查询参数<code class="code">Category</code> 为 "Books" ， <code class="code">Keywords</code> 为 "PHP".
+            </p>
+<p>
+                关于查询参数的更多信息, 请参考
+                <a href="http://www.amazon.com/gp/aws/sdk/main.html/102-9041115-9057709?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemSearchOperation" target="_top">relevant Amazon documentation</a>.
+            </p>
+</div>
+</div>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.classes"></a>24.3.6. Zend_Service_Amazon 类</h3></div></div></div>
+<p>
+        下面的类都是由
+        <a href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. 用ASIN来搜索指定的Amazon出版物"><code class="code">Zend_Service_Amazon::itemLookup()</code></a>
+        和
+        <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. 对Amazon出版物的搜索"><code class="code">Zend_Service_Amazon::itemSearch()</code></a>这两个方法返回的:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.item" title="24.3.6.1. Zend_Service_Amazon_Item"><code class="code">Zend_Service_Amazon_Item</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.image" title="24.3.6.2. Zend_Service_Amazon_Image"><code class="code">Zend_Service_Amazon_Image</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.resultset" title="24.3.6.3. Zend_Service_Amazon_ResultSet"><code class="code">Zend_Service_Amazon_ResultSet</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.offerset" title="24.3.6.4. Zend_Service_Amazon_OfferSet"><code class="code">Zend_Service_Amazon_OfferSet</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.offer" title="24.3.6.5. Zend_Service_Amazon_Offer"><code class="code">Zend_Service_Amazon_Offer</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.similarproduct" title="24.3.6.6. Zend_Service_Amazon_SimilarProduct"><code class="code">Zend_Service_Amazon_SimilarProduct</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.accessories" title="24.3.6.7. Zend_Service_Amazon_Accessories"><code class="code">Zend_Service_Amazon_Accessories</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.customerreview" title="24.3.6.8. Zend_Service_Amazon_CustomerReview"><code class="code">Zend_Service_Amazon_CustomerReview</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.editorialreview" title="24.3.6.9. Zend_Service_Amazon_EditorialReview"><code class="code">Zend_Service_Amazon_EditorialReview</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.listmania" title="24.3.6.10. Zend_Service_Amazon_Listmania"><code class="code">Zend_Service_Amazon_ListMania</code></a></p></li>
+</ul></div>
+<p>
+    </p>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.item"></a>24.3.6.1. Zend_Service_Amazon_Item</h4></div></div></div>
+<p>
+            <code class="code">Zend_Service_Amazon_Item</code> 一个用来代表由Amazon web service返回的出版物的类. 它包含了出版物的所有属性, 包括 标题, 描述, 评论, 等.
+        </p>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.item.asxml"></a>24.3.6.1.1. Zend_Service_Amazon_Item::asXML()</h5></div></div></div>
+<p>
+                <code class="methodsynopsis"><span class="type">string </span><span class="methodname">asXML</span>();</code>
+            </p>
+<p>返回出版物原始请求的xml字符串</p>
+</div>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.item.properties"></a>24.3.6.1.2. 属性</h5></div></div></div>
+<p>
+                <code class="code">Zend_Service_Amazon_Item</code> 有一组直接与 Amazon标准的API 对应的属性.
+            </p>
+<div class="table">
+<a name="id4814417"></a><p class="title"><b>表 24.1. Zend_Service_Amazon_Item 属性</b></p>
+<table summary="Zend_Service_Amazon_Item 属性" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名称</th>
+<th>类型</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>Amazon 出版物 ID</td>
+</tr>
+<tr>
+<td>DetailPageURL</td>
+<td>string</td>
+<td>到相关细节页面url</td>
+</tr>
+<tr>
+<td>SalesRank</td>
+<td>string</td>
+<td>出版物的销售等级</td>
+</tr>
+<tr>
+<td>SmallImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>出版物的小图片</td>
+</tr>
+<tr>
+<td>MediumImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>出版物的中等大小图片</td>
+</tr>
+<tr>
+<td>LargeImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>出版物的大图片</td>
+</tr>
+<tr>
+<td>Subjects</td>
+<td>array</td>
+<td>出版物的主题</td>
+</tr>
+<tr>
+<td>Offers</td>
+<td>
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.offerset" title="24.3.6.4. Zend_Service_Amazon_OfferSet">Zend_Service_Amazon_OfferSet</a>
+                                </code>
+                            </td>
+<td>提供出版物的小图片的简介和报价</td>
+</tr>
+<tr>
+<td>CustomerReviews</td>
+<td>array</td>
+<td>
+                                代表出版物的编辑评论的一组
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.customerreview" title="24.3.6.8. Zend_Service_Amazon_CustomerReview">Zend_Service_Amazon_CustomerReview</a>
+                                </code>
+                                对象构成的数组
+                            </td>
+</tr>
+<tr>
+<td>EditorialReviews</td>
+<td>array</td>
+<td>
+                                代表出版物的编辑评论的一组 
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.editorialreview" title="24.3.6.9. Zend_Service_Amazon_EditorialReview">Zend_Service_Amazon_EditorialReview</a>
+                                </code>
+                                对象构成的数组
+                            </td>
+</tr>
+<tr>
+<td>SimilarProducts</td>
+<td>array</td>
+<td>
+                                代表出版物的类似产品列表的一组
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.similarproduct" title="24.3.6.6. Zend_Service_Amazon_SimilarProduct">Zend_Service_Amazon_SimilarProduct</a>
+                                </code>
+                                对象构成的数组
+                            </td>
+</tr>
+<tr>
+<td>Accessories</td>
+<td>array</td>
+<td>
+                                代表出版物的附属产品列表的一组  
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.accessories" title="24.3.6.7. Zend_Service_Amazon_Accessories">Zend_Service_Amazon_Accessories</a>
+                                </code>
+                                对象构成的数组
+                            </td>
+</tr>
+<tr>
+<td>Tracks</td>
+<td>array</td>
+<td>代表ＣＤ或ＤＶＤ中歌曲数量和名称的数组</td>
+</tr>
+<tr>
+<td>ListmaniaLists</td>
+<td>array</td>
+<td>
+                                与指定出版物相关的Listmania列表 ，用
+                                <code class="code">
+                                    <a href="zend.service.amazon.html#zend.service.amazon.classes.listmania" title="24.3.6.10. Zend_Service_Amazon_Listmania">Zend_Service_Amazon_ListmainList</a>
+                                </code>
+                                对象的数组表示
+                            </td>
+</tr>
+<tr>
+<td>PromotionalTag</td>
+<td>string</td>
+<td>指定出版物的促销Tag</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">Back to Class List</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.image"></a>24.3.6.2. Zend_Service_Amazon_Image</h4></div></div></div>
+<p><code class="code">Zend_Service_Amazon_Image</code> 代表产品的远程图片.</p>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.image.properties"></a>24.3.6.2.1. 属性</h5></div></div></div>
+<div class="table">
+<a name="id4814789"></a><p class="title"><b>表 24.2. Zend_Service_Amazon_Image 属性</b></p>
+<table summary="Zend_Service_Amazon_Image 属性" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名称</th>
+<th>类型</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Url</td>
+<td>string</td>
+<td>图片的远程url</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>int</td>
+<td>图片的高度(像素)</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>int</td>
+<td>图片的宽度(像素)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">Back to Class List</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.resultset"></a>24.3.6.3. Zend_Service_Amazon_ResultSet</h4></div></div></div>
+<p>
+            <code class="code">Zend_Service_Amazon_ResultSet</code> 对象由
+            <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. 对Amazon出版物的搜索">Zend_Service_Amazon::itemSearch()</a>
+            方法返回，并且允许你更容易的处理返回的结果集.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                该对象实现了 <code class="code">SeekableIterator</code> 接口,我们可以很方便的进行遍历，也可以用<code class="code">seek()</code>直接访问指定的结果.
+            </p></td></tr>
+</table></div>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.resultset.totalresults"></a>24.3.6.3.1. Zend_Service_Amazon_ResultSet::totalResults()</h5></div></div></div>
+<code class="methodsynopsis"><span class="type">int </span><span class="methodname">totalResults</span>();</code><p>返回返回的搜索结果的总数</p>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">Back to Class List</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.offerset"></a>24.3.6.4. Zend_Service_Amazon_OfferSet</h4></div></div></div>
+<p>
+            每一个由
+            <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. 对Amazon出版物的搜索">Zend_Service_Amazon::itemSearch()</a>
+            和
+            <a href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. 用ASIN来搜索指定的Amazon出版物">Zend_Service_Amazon::itemLookup()</a>
+            返回的结果都包含一个
+            <code class="code">Zend_Service_Amazon_OfferSet</code>
+            对象 ,通过他我们可以得到出版物价格信息.
+        </p>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.offerset.parameters"></a>24.3.6.4.1. 属性</h5></div></div></div>
+<div class="table">
+<a name="id4815000"></a><p class="title"><b>表 24.3. Zend_Service_Amazon_OfferSet 属性</b></p>
+<table summary="Zend_Service_Amazon_OfferSet 属性" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名称</th>
+<th>类型</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>LowestNewPrice</td>
+<td>int</td>
+<td>在"New"条件下，出版物的最低价</td>
+</tr>
+<tr>
+<td>LowestNewPriceCurrency</td>
+<td>string</td>
+<td>
+                                <code class="code">LowestNewPrice</code>所使用的货币
+                            </td>
+</tr>
+<tr>
+<td>LowestOldPrice</td>
+<td>int</td>
+<td>在"Used"条件下，出版物的最低价</td>
+</tr>
+<tr>
+<td>LowestOldPriceCurrency</td>
+<td>string</td>
+<td>
+                                <code class="code">LowestOldPrice</code>的货币
+                            </td>
+</tr>
+<tr>
+<td>TotalNew</td>
+<td>int</td>
+<td>Total number of "new" condition available for the item</td>
+</tr>
+<tr>
+<td>TotalUsed</td>
+<td>int</td>
+<td>出版物可用的所有 "used" 条件的数量</td>
+</tr>
+<tr>
+<td>TotalCollectible</td>
+<td>int</td>
+<td>出版物可用的所有 "collectible" 条件的数量</td>
+</tr>
+<tr>
+<td>TotalRefurbished</td>
+<td>int</td>
+<td>出版物可用的所有 "refurbished" 条件的数量</td>
+</tr>
+<tr>
+<td>Offers</td>
+<td>array</td>
+<td>
+                                <code class="code">Zend_Service_Amazon_Offer</code>
+                                对象的数组
+                            </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">Back to Class List</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.offer"></a>24.3.6.5. Zend_Service_Amazon_Offer</h4></div></div></div>
+<p>
+            出版物的价格信息都由Zend的
+            <code class="code">Zend_Service_Amazon_Offer</code>
+            对象返回。
+        </p>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"></div>
+<div class="table">
+<a name="id4815214"></a><p class="title"><b>表 24.4. Zend_Service_Amazon_Offer 属性</b></p>
+<table summary="Zend_Service_Amazon_Offer 属性" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名称</th>
+<th>类型</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>MerchantId</td>
+<td>string</td>
+<td>商品的 Amazon ID</td>
+</tr>
+<tr>
+<td>GlancePage</td>
+<td>string</td>
+<td>商品的的摘要页的URL</td>
+</tr>
+<tr>
+<td>Condition</td>
+<td>string</td>
+<td>出版物的情况</td>
+</tr>
+<tr>
+<td>OfferListingId</td>
+<td>string</td>
+<td>ID 和价格列表</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>int</td>
+<td>出版物的报价</td>
+</tr>
+<tr>
+<td>CurrencyCode</td>
+<td>string</td>
+<td>出版物价格的货币代码</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>string</td>
+<td>出版物的有效性</td>
+</tr>
+<tr>
+<td>IsEligibleForSuperSaverShipping</td>
+<td>boolean</td>
+<td>判断这个出版物是否符合Super Saver Shipping的条件</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">Back to Class List</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.similarproduct"></a>24.3.6.6. Zend_Service_Amazon_SimilarProduct</h4></div></div></div>
+<p>
+            当我们搜索一个出版物时, Amazon 同时会返回一个相似产品的列表，
+			使顾客更容易找到他们喜欢的商品。这些类似产品的列表由<code class="code">Zend_Service_Amazon_SimilarProduct</code> 对相返回.
+        </p>
+<p>
+            每个对象包含相关的类似产品,并允许你进行进一步的请求来获得类似产品的全部信息
+        </p>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.similarproduct.properties"></a>24.3.6.6.1. 属性</h5></div></div></div>
+<div class="table">
+<a name="id4815410"></a><p class="title"><b>表 24.5. Zend_Service_Amazon_SimilarProduct 属性</b></p>
+<table summary="Zend_Service_Amazon_SimilarProduct 属性" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名称</th>
+<th>类型</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>产品 Amazon ID (ASIN)</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>string</td>
+<td>产品标题</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">Back to Class List</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.accessories"></a>24.3.6.7. Zend_Service_Amazon_Accessories</h4></div></div></div>
+<p>
+            返回出版物的附属产品由 <code class="code">Zend_Service_Amazon_Accessories</code> 对象表示
+        </p>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.accessories.properties"></a>24.3.6.7.1. 属性</h5></div></div></div>
+<div class="table">
+<a name="id4815510"></a><p class="title"><b>表 24.6. Zend_Service_Amazon_Accessories 属性</b></p>
+<table summary="Zend_Service_Amazon_Accessories 属性" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名称</th>
+<th>类型</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>产品 Amazon ID (ASIN)</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>string</td>
+<td>产品标题</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">Back to Class List</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.customerreview"></a>24.3.6.8. Zend_Service_Amazon_CustomerReview</h4></div></div></div>
+<p>
+            顾客的每条评论由 <code class="code">Zend_Service_Amazon_CustomerReview</code> 对相返回.
+        </p>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.customerreview.properties"></a>24.3.6.8.1. 属性</h5></div></div></div>
+<div class="table">
+<a name="id4815609"></a><p class="title"><b>表 24.7. Zend_Service_Amazon_CustomerReview 属性</b></p>
+<table summary="Zend_Service_Amazon_CustomerReview 属性" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名称</th>
+<th>类型</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Rating</td>
+<td>string</td>
+<td>出版物的评分</td>
+</tr>
+<tr>
+<td>HelpfulVotes</td>
+<td>string</td>
+<td>关于对评论是否有用的投票</td>
+</tr>
+<tr>
+<td>CustomerId</td>
+<td>string</td>
+<td>顾客 ID</td>
+</tr>
+<tr>
+<td>TotalVotes</td>
+<td>string</td>
+<td>所有投票</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>string</td>
+<td>评论的日期</td>
+</tr>
+<tr>
+<td>Summary</td>
+<td>string</td>
+<td>评论摘要</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>string</td>
+<td>评论内容</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">Back to Class List</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.editorialreview"></a>24.3.6.9. Zend_Service_Amazon_EditorialReview</h4></div></div></div>
+<p>
+            出版物的编辑评论由 <code class="code">Zend_Service_Amazon_EditorialReview</code> 对相返回 
+        </p>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.editorialreview.properties"></a>24.3.6.9.1. 属性</h5></div></div></div>
+<div class="table">
+<a name="id4815777"></a><p class="title"><b>表 24.8. Zend_Service_Amazon_EditorialReview 属性</b></p>
+<table summary="Zend_Service_Amazon_EditorialReview 属性" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名称</th>
+<th>类型</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Source</td>
+<td>string</td>
+<td>编辑评论的来源</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>string</td>
+<td>评论内容</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">Back to Class List</a>
+            </p>
+</div>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.listmania"></a>24.3.6.10. Zend_Service_Amazon_Listmania</h4></div></div></div>
+<p>
+            每个相关的List Mania  <code class="code">Zend_Service_Amazon_Listmania</code> 对相返回.
+        </p>
+<div class="sect4" lang="zh-cn">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.listmania.properties"></a>24.3.6.10.1. 属性</h5></div></div></div>
+<div class="table">
+<a name="id4815876"></a><p class="title"><b>表 24.9. Zend_Service_Amazon_Listmania 属性</b></p>
+<table summary="Zend_Service_Amazon_Listmania 属性" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名称</th>
+<th>类型</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ListId</td>
+<td>string</td>
+<td>列表 ID</td>
+</tr>
+<tr>
+<td>ListName</td>
+<td>string</td>
+<td>列表名称</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon 类">Back to Class List</a>
+            </p>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.service.akismet.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.service.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.service.flickr.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">24.2. Zend_Service_Akismet </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 24.4. Zend_Service_Flickr</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

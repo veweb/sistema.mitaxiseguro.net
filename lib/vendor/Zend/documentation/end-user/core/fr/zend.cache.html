@@ -1,0 +1,246 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapitre 4. Zend_Cache</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="index.html" title="Guide de référence du programmeur">
+<link rel="prev" href="zend.auth.adapter.digest.html" title="3.2. Digest Authentication">
+<link rel="next" href="zend.cache.theory.html" title="4.2. La th�orie du cache">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="section" href="zend.cache.html#zend.cache.introduction" title="4.1. Introduction">
+<link rel="section" href="zend.cache.theory.html" title="4.2. La th�orie du cache">
+<link rel="section" href="zend.cache.frontends.html" title="4.3. frontends Zend_Cache">
+<link rel="section" href="zend.cache.backends.html" title="4.4. Zend_Cache backends">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapitre 4. Zend_Cache</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.auth.adapter.digest.html">Précédent</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.cache.theory.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="fr">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.cache"></a>Chapitre 4. Zend_Cache</h2></div></div></div>
+<div class="toc">
+<p><b>Table des matières</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.cache.html#zend.cache.introduction">4.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.cache.theory.html">4.2. La th�orie du cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.factory">4.2.1. La m�thode de fabrique de <code class="code">Zend_Cache</code></a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.tags">4.2.2. Marquer les enregistrements</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.clean">4.2.3. Nettoyer le cache</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.frontends.html">4.3. frontends Zend_Cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.core">4.3.1. Zend_Cache_Core</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.output">4.3.2. Zend_Cache_Frontend_Output</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.function">4.3.3. Zend_Cache_Frontend_Function</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.class">4.3.4. Zend_Cache_Frontend_Class</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.file">4.3.5. Zend_Cache_Frontend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.page">4.3.6. Zend_Cache_Frontend_Page</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.backends.html">4.4. Zend_Cache backends</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.file">4.4.1. Zend_Cache_Backend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.sqlite">4.4.2. Zend_Cache_Backend_Sqlite</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.memcached">4.4.3. Zend_Cache_Backend_Memcached</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.apc">4.4.4. Zend_Cache_Backend_APC</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.introduction"></a>4.1. Introduction</h2></div></div></div>
+<p>
+        <code class="code">Zend_Cache</code> founit un moyen g�n�rique des mettre en cache des donn�es.
+    </p>
+<p>
+      Le cache dans le Framework Zend op�re via frontends alors que les caches d'enregistrements sont stock�s
+      gr�ce � des adapteurs de backend (<code class="code">File</code>, <code class="code">Sqlite</code>, <code class="code">Memcache</code>...)
+      � travers un syst�me souple d'IDs et de balises. En les utilisant, il est simple de supprimer des
+      types sp�cifiques d'enregistrements par la suite (par exemple: "supprime tous les enregistrement de
+      cache marqu� avec une balise donn�e")
+    </p>
+<p>
+        Le coeur du module (<code class="code">Zend_Cache_Core</code>) est g�n�rique, souple et configurable.
+        Pour le moment, pour vos besoins sp�cifiques, il y a des frontends qui �tendent <code class="code">Zend_Cache_Core</code>.
+        pour votre confort : <code class="code">Output</code>, <code class="code">File</code>, <code class="code">Function</code> and <code class="code">Class</code>.
+    </p>
+<div class="example">
+<a name="id4786542"></a><p class="title"><b>Exemple 4.1. Cr�er un frontend avec <code class="code">Zend_Cache::factory()</code></b></p>
+<p>
+            <code class="code">Zend_Cache::factory()</code> instancie les objets corrects et les lie ensemble.
+            Dans le premier exemple, nous allons utiliser le frontend <code class="code">Core</code> avec le
+            backend <code class="code">File</code>
+
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Cache.php';
+
+$frontendOptions = array(
+   'lifeTime' =&gt; 7200, // temps de vie du cache de 2 heures
+   'automaticSerialization' =&gt; true
+);
+
+$backendOptions = array(
+    'cacheDir' =&gt; './tmp/' // R�pertoire o� stocker les fichiers de cache
+);
+
+// cr�er un objet Zend_Cache_Code
+$cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+
+?&gt;</pre>
+<p>
+       </p>
+<p>
+            Maintenant que nous avons un frontend, nous pouvons mettre en cache tout type de donn�es.
+            Nous avons activ� la serialisation. Par exemple nous pouvons mettre en cache le r�sultat
+            d'une requ�te SQL couteuse. Apr�s qu'il soit mis en cache, il n'y a plus besoin de se connecter
+            � la base de donn�es. Les enregistrement r�cup�r� depuis le cache sont d�s�rialis�s.
+            </p>
+<pre class="programlisting">&lt;?php
+
+// $cache initialis� dans l'exemple pr�c�dent
+
+// on regarde si un cache existe d�j�
+if(!$result = $cache-&gt;get('myresult')) {
+
+    // le cache est manquant, connexion � la base de donn�es
+    $db = Zend_Db::factory( [...] );
+
+    $result = $db-&gt;fetchAll('SELECT * FROM grosse_table');
+
+    $cache-&gt;save($result, 'myresult');
+
+} else {
+
+    // il y a un cache
+    echo "This one is from cache!\n\n";
+
+}
+
+print_r($result);
+
+?&gt;</pre>
+<p>
+       </p>
+</div>
+<div class="example">
+<a name="id4787331"></a><p class="title"><b>Exemple 4.2. Cache de sortie avec le frontend de sortie <code class="code">Zend_Cache</code></b></p>
+<p>
+            Nous marquons les sections dans lesquelles nous voulons une cache de sortie en ajoutant
+            de la logique conditionnelle, en encapsulant la section entre les m�thodes
+            <code class="code">start()</code> et <code class="code">end()</code> (cela ressemble au premier exemple
+            et est la core strategy de pour la mise en cache)
+        </p>
+<p>
+            A l'int�reieur, affichez vous donn�es comme d'habitude toutes les sorties seront misent en cache
+            quans la m�thode <code class="code">end()</code> est appel�e.
+            A la prochaine ex�cution, la section compl�te sera pass�e, au profit de la r�cup�ration de son cache
+            (si le cache est encore valide).
+            </p>
+<pre class="programlisting">&lt;?php
+
+$frontendOptions = array(
+   'lifeTime' =&gt; 30,                  // temps de vue du cache de 30 secondes
+   'automaticSerialization' =&gt; false  // par d�faut
+);
+
+$backendOptions = array('cacheDir' =&gt; './tmp/');
+
+$cache = Zend_Cache::factory('Output', 'File', $frontendOptions, $backendOptions);
+
+// nous passons un identifiant unique � la m�thode start()
+if(!$cache-&gt;start('mypage')) {
+    // output as usual:
+
+    echo 'Hello world! ';
+    echo 'Ceci est dy cache('.time().') ';
+
+    $cache-&gt;end(); // la sortie est sauvegard�e est envoy� au navigateur
+}
+
+echo 'Ceci n\' jamais mis en cache ('.time().').';
+
+?&gt;       </pre>
+<p>
+       </p>
+<p>
+           Notez que nous affichons le r�sultat de <code class="code">time()</code> deux fois; c'est dans un but de
+           d�monstrations. Essayez de lancer la page est de la rafraichir plusieurs fois; you allez
+           constater que la premier nombre ne change pas alors que le second change � chaque actualisation.
+           C'est parce que le premier nombre a �t� mis en cache est sauvegard�.
+           Apr�s 30 secondes, le nombre devrait de nouveau correspondre au second nombre
+           parce que le cache a espir� -- seulement pour �tre cach� de nouveau.
+           Vous devriez essayer �a dans votre navigateur ou dans une console.
+       </p>
+</div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        Lorsque vous utilisez Zend_Cache, faite attention � l'identifiant du cache (pass� � <code class="code">save()</code>
+        et <code class="code">start()</code>). Il doit �tre unique pour chaque ressource que vous mettez en cache, sinon il
+        est possible que des caches en efface d'autres, ou encore pire, s'affiche en lieu et place d'autres.
+    </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.auth.adapter.digest.html">Précédent</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.cache.theory.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.2. Digest Authentication </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 4.2. La th�orie du cache</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

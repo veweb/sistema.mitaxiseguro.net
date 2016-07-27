@@ -1,0 +1,259 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.3. Sous-classement</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="prev" href="zend.controller.getting-started.html" title="7.2. Mise en Route">
+<link rel="next" href="zend.controller.providedsubclasses.html" title="7.4. Provided Subclasses">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.subclassing.introduction" title="7.3.1. Introduction">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.subclassing.conventions" title="7.3.2. Conventions">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.router.interface" title="7.3.3. Interface de Routage">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.dispatcher.interface" title="7.3.4. Interface d'aiguillage">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.3. Sous-classement</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.getting-started.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.providedsubclasses.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.subclassing"></a>7.3. Sous-classement</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.subclassing.introduction"></a>7.3.1. Introduction</h3></div></div></div>
+<p>
+		    Le <code class="code">Zend_Controller</code> a été pensé dans un soucis permanent d'extensibilité, soit en faisant des sous-classes des classes existantes, 
+		    soit en écrivant de nouvelles classes qui implémentent les interfaces <code class="code">Zend_Controller_Router_Interface</code> et 
+		    <code class="code">Zend_Controller_Dispatcher_Interface</code>.
+		</p>
+<p>
+		    Les raisons possibles pour implémenter un nouveau routeur ou un nouvel aiguilleur peuvent être :
+			
+			</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+						Le système existant de routage d'URI ne convient pas, par exemple lors de son intégration dans un site Web existant qui 
+						utilise déjà ses propres conventions de routage, qui ne s'accordent pas avec les mécanisme de routage fournis par le Framework Zend.
+					</p></li>
+<li><p>
+					     Vous avez besoin d'implémenter un routage pour quelque chose de complètement différent. La classe <code class="code">Zend_Controller_Router</code> 
+					     ne fonctionne qu'avec des URIs. Il est possible et préférable que vous vouliez utiliser le design pattern MVC pour développer un 
+					     autre type de programme, comme une application en console. Dans le cas d'une application en console, un routeur personnalisé devrait 
+					     traiter les arguments de la ligne de commande pour définir la route.
+					</p></li>
+<li><p>
+					     Le mécanisme fournit par le <code class="code">Zend_Controller_Dispatcher</code> n'est pas approprié. 
+					     La configuration par défaut suppose par convention que les contrôleurs sont des classes et les action, des méthodes de ces classes. 
+					     Cependant, il existe beaucoup d'autres statégies pour le faire. Un exemple serait de faire correspondre un contrôleur à un 
+					     répertoire, et les actions de ce contrôleur aux fichiers à l'intérieur de ces répertoires, au lieu 
+					     d'appeller une méthode d'une classe, ceci pourrait permettre d'inclure un fichier d'un répertoire.
+					</p></li>
+<li><p>
+					    Vous souhaitez fournir des possibilités aditionnelles qui seront héritées par tous vos contrôleurs. 
+					    Par exemple <code class="code">Zend_Controller_Action</code> n'intègre pas <code class="code">Zend_View</code> par défaut. 
+					    Cependant, vous pourriez étendre votre propre contrôleur pour faire cela, et l'utiliser ne nécessiterait pas de modifier ni 
+					    <code class="code">Zend_Controller_Router</code> ni <code class="code">Zend_Controller_Dispatcher</code>.
+					</p></li>
+</ul></div>
+<p>
+			Soyez attentifs lorsque vous surchargez une part importante du système, en particulier l'aiguilleur. 
+			Un des avantages de <code class="code">Zend_Controller</code> est qu'il établit des conventions communes pour la création d'applications. 
+			Si trop de ces comportements par défaut sont modifiés, un certain nombre de ces avantages seront perdus. 
+			Cependant, il y a de nombreux besoins différents, et une seule solution ne peut y répondre complètement, d'où la liberté fournie si besoin est.
+		</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.subclassing.conventions"></a>7.3.2. Conventions</h3></div></div></div>
+<p>
+		    Lors d'un sous-classement d'une des classes du Zend_Controlleur, il est fortement recommandé de suivre ces conventions pour nommer ou 
+		    enregistrer les fichiers. Suivre cette méthode vous assure qu'un autre développeur familier avec le Framework Zend sera capable 
+		    de comprendre facilement votre projet.
+		</p>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.subclassing.prefix"></a>7.3.2.1. Préfixage</h4></div></div></div>
+<p>
+                Les classes inclues dans le Framework Zend suivent une convention ou chaque classe est préfixée par "<code class="code">Zend_</code>". 
+                C'est le préfixe. Nous recommandons que toutes vos classes soient nommées de la même façon, c'est à dire si 
+                le nom de votre entreprise est Widget, Inc., le préfixe pourrait être "<code class="code">Widget_</code>".
+			</p>
+</div>
+<div class="sect3" lang="fr">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.directory.layout"></a>7.3.2.2. Arborescence des répertoires</h4></div></div></div>
+<p>
+			    Les classes <code class="code">Zend_Controller</code> sont stockées dans le répertoire library comme ceci :
+
+    </p>
+<pre class="programlisting">
+/library
+  /Zend
+    /Controller
+      Action.php
+      Dispatcher.php
+      Router.php
+</pre>
+<p>			
+                En cas de sous-classement de <code class="code">Zend_Controller</code> , il est recommandé que les nouvelles classes soient 
+                stockées dans une structure identique avec votre préfixe. Cela facilitera la recherche pour qui est chargé de relire le code de votre projet.
+			</p>
+<p>
+				Par exemple, un projet de Widget, Inc. qui implémente uniquement un routeur personnalisé, l'arborescence ressemblerait à ceci :
+				
+</p>
+<pre class="programlisting">
+/library
+  /Zend
+  /Widget
+    /Controller
+      Router.php
+      README.txt
+</pre>
+<p>			
+                Veuillez noter que dans cet exemple, le répertoire <code class="code">Widget/Controller/</code> est la copie conforme du répertoire <code class="code">Zend/Controller/</code>
+                 lorsque c'est possible. Dans le cas présent, il fournit la classe <code class="code">Widget_Controller_Router</code>, qui serait soit une sous-classe, 
+                 soit un remplacement de <code class="code">Zend_Controller_Router</code> implémentant <code class="code">Zend_Controller_Router_Interface</code>.
+			</p>
+<p>
+                 Veuillez noter aussi que dans l'exemple ci-dessus, un fichier <code class="code">README.txt</code> a été placé dans <code class="code">Widget/Controller/</code>. 
+                 Zend vous encourage fortement à documenter vos projets en proposant des tests séparés, et une documentation pour vos clients. 
+                 Cependant, nous vous conseillons aussi de placer un simple fichier <code class="code">README.txt</code> directement dans le répertoire pour 
+                 expliquer brièvement vos changements, et leurs fonctionnements.
+			</p>
+</div>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.router.interface"></a>7.3.3. Interface de Routage</h3></div></div></div>
+<p>
+		    L'interface <code class="code">Zend_Controller_Router_Interface</code> fournie une définition pour une seule méthode :
+
+			</p>
+<pre class="programlisting">&lt;?php
+				
+  /**				
+   * @param  Zend_Controller_Dispatcher_Interface
+   * @throws Zend_Controller_Router_Exception
+   * @return Zend_Controller_Dispatcher_Token|boolean
+   */
+  public function route(Zend_Controller_Dispatcher_Interface $dispatcher);
+
+?&gt;</pre>
+<p>
+            Le routage n'a lieu qu'une seule fois : lorsque la requête est reçue en premier par le système. 
+            Le but de ce routeur est de générer un <code class="code">Zend_Controller_Dispatch_Token</code> qui spécifie un contrôleur 
+            et une action qui lui est associée. Ceci est ensuite passé dans l'aiguilleur. S'il n'est pas possible de définir une 
+            route pour un jeton d'aiguillage (nonsenical route) alors un bouléen <code class="code">FALSE</code> est retourné.
+		</p>
+<p>
+            Certains routeurs peuvent traiter des éléments dynamiques et ont besoin d'un moyen pour déterminer si le jeton d'aiguillage 
+            généré est aiguillable avant de le retourner. Pour cette raison, le routeur reçoit un objet gestionnaire de l'aiguilleur comme unique 
+            argument de sa méthode <code class="code">route()</code>. L'aiguilleur fournit une méthode de test <code class="code">isDispatchable()</code>.
+		</p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.dispatcher.interface"></a>7.3.4. Interface d'aiguillage</h3></div></div></div>
+<p>
+		    <code class="code">Zend_Controller_Front</code> appelera premièrement le routeur pour recevoir le premier jeton d'aiguillage, qu'il passera à l'aiguilleur. 
+		    L'aiguilleur aiguillera l'action (instancier le contrôleur, appeler son action) et retournera ensuite soit un bouléen, FALSE, soit un 
+		    autre jeton d'aiguillage. 
+		</p>
+<p>
+		    <code class="code">Zend_Controller_Front</code> apelle l'aiguilleur continuellement, jusqu'à ce qu'un jeton d'aiguillage ne lui soit pas retourné. 
+		    Ceci s'apelle la boucle d'aiguillage. Elle permet aux actions d'être traitées séquentiellement jusqu'à ce que toutes les tâches soient effectuées.
+		</p>
+<p>
+		     L'interface <code class="code">Zend_Controller_Dispatcher_Interface</code> fournie des définitions pour les deux méthodes suivantes :
+			
+			</p>
+<pre class="programlisting">&lt;?php
+				
+/**
+ * @param  Zend_Controller_Dispatcher_Token $route
+ * @return boolean
+ */
+public function isDispatchable(Zend_Controller_Dispatcher_Token $route);
+
+?&gt;</pre>
+<p>
+        <code class="code">isDispatchable()</code> vérifie si le jeton d'aiguillage est aiguillable. Si c'est le cas, elle retourne <code class="code">TRUE</code>. 
+        Dans les autres cas, elle retourne <code class="code">FALSE</code>. La définition de ce qui est aiguillable est laissée à la classe qui 
+        implémente l'interface. Dans le cas de l'implémentation par défaut <code class="code">Zend_Controller_Dispatcher</code>, cela veut dire que 
+        le fichier contrôleur existe, la classe existe dans ce fichier, et que la méthode d'action existe dans cette classe.
+        		
+		</p>
+<pre class="programlisting">&lt;?php
+			
+/**
+ * @param  Zend_Controller_Dispatcher_Token $route
+ * @return Zend_Controller_Dispatcher_Token|boolean
+ */
+public function dispatch(Zend_Controller_Dispatcher_Token $route);
+
+?&gt;</pre>
+<p>
+         La méthode <code class="code">dispatch()</code> constitue l'endroit où le vrai travail s'effectue. Cette méthode doit exécuter l'action du contrôleur. 
+         Elle doit aussi retourner un jeton d'aiguillage, ou un bouléen, FALSE, pour indiquer qu'il n'y a plus de tâches à effectuer.
+		</p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.getting-started.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.providedsubclasses.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.2. Mise en Route </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 7.4. Provided Subclasses</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

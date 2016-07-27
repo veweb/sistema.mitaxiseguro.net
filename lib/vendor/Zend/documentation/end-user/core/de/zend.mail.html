@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Kapitel 17. Zend_Mail</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="prev" href="zend.log.advanced-logging.html" title="16.4. Fortgeschrittenes Protokollieren: Mehrfache Protokolle">
+<link rel="next" href="zend.mail.sending.html" title="17.2. Versand über SMTP">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="section" href="zend.mail.html#zend.mail.introduction" title="17.1. Einführung">
+<link rel="section" href="zend.mail.sending.html" title="17.2. Versand über SMTP">
+<link rel="section" href="zend.mail.multiple-emails.html" title="17.3. Versand von mehrteiligen E-Mails über eine SMTP Verbindung">
+<link rel="section" href="zend.mail.different-transports.html" title="17.4. Verwendung von unterschiedlichen Versandwegen">
+<link rel="section" href="zend.mail.html-mails.html" title="17.5. HTML E-Mail">
+<link rel="section" href="zend.mail.attachments.html" title="17.6. Anhänge">
+<link rel="section" href="zend.mail.adding-recipients.html" title="17.7. Empfänger hinzufügen">
+<link rel="section" href="zend.mail.boundary.html" title="17.8. Die MIME Abgrenzung kontrollieren">
+<link rel="section" href="zend.mail.additional-headers.html" title="17.9. Zusätzliche Kopfzeilen">
+<link rel="section" href="zend.mail.character-sets.html" title="17.10. Zeichensätze">
+<link rel="section" href="zend.mail.encoding.html" title="17.11. Kodierung">
+<link rel="section" href="zend.mail.smtp-authentication.html" title="17.12. SMTP Authentifizierung">
+<link rel="section" href="zend.mail.smtp-secure.html" title="17.13. Securing SMTP Transport">
+<link rel="section" href="zend.mail.read.html" title="17.14. Reading Mail Messages">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Kapitel 17. Zend_Mail</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.log.advanced-logging.html">Zurück</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.mail.sending.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="de">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.mail"></a>Kapitel 17. Zend_Mail</h2></div></div></div>
+<div class="toc">
+<p><b>Inhaltsverzeichnis</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.mail.html#zend.mail.introduction">17.1. Einführung</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.sending.html">17.2. Versand über SMTP</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.multiple-emails.html">17.3. Versand von mehrteiligen E-Mails über eine SMTP Verbindung</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.different-transports.html">17.4. Verwendung von unterschiedlichen Versandwegen</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.html-mails.html">17.5. HTML E-Mail</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.attachments.html">17.6. Anhänge</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.adding-recipients.html">17.7. Empfänger hinzufügen</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.boundary.html">17.8. Die MIME Abgrenzung kontrollieren</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.additional-headers.html">17.9. Zusätzliche Kopfzeilen</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.character-sets.html">17.10. Zeichensätze</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.encoding.html">17.11. Kodierung</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.smtp-authentication.html">17.12. SMTP Authentifizierung</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.smtp-secure.html">17.13. Securing SMTP Transport</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.read.html">17.14. Reading Mail Messages</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-example">17.14.1. Simple example using Pop3</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-open-local">17.14.2. Opening a local storage</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-open-remote">17.14.3. Opening a remote storage</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-fetching">17.14.4. Fetching messages and simple methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-message">17.14.5. Working with messages</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-folders">17.14.6. Using folders</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-advanced">17.14.7. Advanced Use</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mail.introduction"></a>17.1. Einführung</h2></div></div></div>
+<p>
+        <code class="code">Zend_Mail</code> stellt verallgemeinerte Funktionalitäten zum Verfassen und Senden 
+        sowohl von Text E-Mails als auch von MIME-konformen mehrteiligen E-Mails bereit. Mails 
+        können mit <code class="code">Zend_Mail</code> durch die in PHP integrierte 
+        <a href="http://php.net/mail" target="_top"><code class="code">mail()</code></a> Funktion oder direkt über
+        eine SMTP Verbindung versandt werden.
+    </p>
+<div class="example">
+<a name="id4851416"></a><p class="title"><b>Beispiel 17.1. Einfache E-Mail mit Zend_Mail</b></p>
+<p>
+            Eine einfache E-Mail besteht aus einigen Empfängern, einem Betreff, einem Hauptteil und
+            einem Versender. Um solch eine Mail mit Hilfe der 
+            <a href="http://php.net/mail" target="_top"><code class="code">mail()</code></a> PHP Funktion zu versenden,
+            musst Du folgendes tun:
+       </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Mail.php';
+$mail = new Zend_Mail();
+$mail-&gt;setBodyText('Dies ist der Text dieser E-Mail.');
+$mail-&gt;setFrom('somebody@example.com', 'Ein Versender');
+$mail-&gt;addTo('somebody_else@example.com', 'Ein Empfänger');
+$mail-&gt;setSubject('TestBetreff');
+$mail-&gt;send();
+?&gt;       </pre>
+</div>
+<div class="note"><table border="0" summary="Note: Minimale Definitionen">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Minimale Definitionen</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Um eine E-Mail mit <code class="code">Zend_Mail</code> zu versenden, musst du mindestens einen Empfänger,
+            einen Versender (z.B., mit <code class="code">setFrom()</code>) und einen Nachrichtentext (Text und/oder 
+            HTML) angeben. 
+        </p></td></tr>
+</table></div>
+<p>
+        Für die meisten Mailattribute gibt es "Get" Methoden, um die im Mailobjekt abgelegten 
+        Informationen zu lesen. Für weitere Einzelheiten wende dich an die API Dokumentation. Eine
+        besondere Methode ist <code class="code">getRecipients()</code>. Sie gibt ein Array mit allen E-Mail 
+        Adressen der Empfänger zurück, die vor dem Methodenaufruf hinzugefügt worden sind.  
+    </p>
+<p>
+        Aus Sicherheitsgründen filtert <code class="code">Zend_Mail</code> alle Felder des Nachrichtenkopfs, um
+        eine "Header Injection" mittels Zeilenvorschubzeichen (<code class="code">\n</code>) zu verhindern.
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.log.advanced-logging.html">Zurück</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.mail.sending.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">16.4. Fortgeschrittenes Protokollieren: Mehrfache Protokolle </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 17.2. Versand über SMTP</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

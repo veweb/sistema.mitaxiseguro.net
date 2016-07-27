@@ -1,0 +1,511 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>13.4. Zend_Http_Cookie および Zend_Http_CookieJar</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="prev" href="zend.http.client.adapters.html" title="13.3. Zend_Http_Client - 接続アダプタ">
+<link rel="next" href="zend.http.response.html" title="13.5. Zend_Http_Response">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.http.cookies.html#zend.http.cookies.introduction" title="13.4.1. 導入">
+<link rel="subsection" href="zend.http.cookies.html#zend.http.cookies.cookie.instantiating" title="13.4.2. Zend_Http_Cookie のインスタンスの作成">
+<link rel="subsection" href="zend.http.cookies.html#zend.http.cookies.cookie.accessors" title="13.4.3. Zend_Http_Cookie のゲッターメソッド">
+<link rel="subsection" href="zend.http.cookies.html#zend.http.cookies.cookie.matching" title="13.4.4. Zend_Http_Cookie が条件に一致するものかどうかを調べる">
+<link rel="subsection" href="zend.http.cookies.html#zend.http.cookies.cookiejar" title="13.4.5. Zend_Http_CookieJar のインスタンスの作成">
+<link rel="subsection" href="zend.http.cookies.html#zend.http.cookies.cookiejar.adding_cookies" title="13.4.6. Zend_Http_CookieJar オブジェクトへのクッキーの追加">
+<link rel="subsection" href="zend.http.cookies.html#zend.http.cookies.cookiejar.getting_cookies" title="13.4.7. Zend_Http_CookieJar オブジェクトからのクッキーの取得">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">13.4. Zend_Http_Cookie および Zend_Http_CookieJar</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.http.client.adapters.html">前のページ</a> </td>
+<th width="60%" align="center">第13章 Zend_Http</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.http.response.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.http.cookies"></a>13.4. Zend_Http_Cookie および Zend_Http_CookieJar</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.cookies.introduction"></a>13.4.1. 導入</h3></div></div></div>
+<p>
+            Zend_Http_Cookie は、お察しのとおり、HTTP クッキーを表すクラスです。
+            HTTP レスポンス文字列をパースしたりクッキーを収集したり、
+            そしてプロパティに簡単にアクセスしたりするためのメソッドがあります。
+            また、クッキーが所定の条件にマッチしているかどうかを調べることもできます。
+            たとえばリクエスト URL、有効期限、セキュア接続か否かなどを調べます。
+        </p>
+<p>
+            Zend_Http_CookieJar は主に Zend_Http_Client で用いられ、ひとつあるいは複数の
+            Zend_Http_Cookie オブジェクトを保持します。
+            Zend_Http_CookieJar オブジェクトを Zend_Http_Client オブジェクトにアタッチすると、
+            クライアントから HTTP リクエストで送られるクッキーや
+            クライアントが HTTP レスポンスで受け取るクッキーがすべて
+            CookieJar オブジェクトに保存されます。そして、
+            クライアントが別のリクエストを送信する際には、まず CookieJar
+            オブジェクトを調べてリクエストにマッチするクッキーがあるかどうかを確認します。
+            あった場合は、それが自動的にリクエストヘッダに追加されます。
+            これは、連続した HTTP リクエストでユーザのセッションを保持し続けたい場合に便利です。
+            セッション ID が保存されたクッキーを、必要に応じて自動的に送信することができます。
+            さらに、必要に応じて Zend_Http_CookieJar オブジェクトをシリアライズし、
+            $_SESSION に格納することもできます。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.cookies.cookie.instantiating"></a>13.4.2. Zend_Http_Cookie のインスタンスの作成</h3></div></div></div>
+<p>
+            クッキーオブジェクトのインスタンスを作成する方法は二通りあります。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    コンストラクタで以下のような構文を使用します。
+                    <code class="code">new Zend_Http_Cookie(string $name, string $value, string $domain, [int $expires, [string $path, [boolean $secure]]]);</code>
+                    </p>
+<div class="itemizedlist"><ul type="circle">
+<li><p>
+                            <code class="code">$name</code>: クッキーの名前 (例 'PHPSESSID') (必須)
+                            </p></li>
+<li><p>
+                            <code class="code">$value</code>: クッキーの値 (必須)
+                            </p></li>
+<li><p>
+                            <code class="code">$domain</code>: クッキーのドメイン (例 '.example.com') (必須)
+                            </p></li>
+<li><p>
+                            <code class="code">$expires</code>: クッキーの有効期限を表す UNIX タイムスタンプ (オプション。デフォルトは null)。
+                            設定しなかった場合は、有効期限なしの 'セッションクッキー' として扱われます。
+                            </p></li>
+<li><p>
+                            <code class="code">$path</code>: クッキーのパス。たとえば '/foo/bar/' (オプション。デフォルトは '/')
+                            </p></li>
+<li><p>
+                            <code class="code">$secure</code>: クッキーの送信をセキュア接続 (HTTPS)
+                            時に限るかどうか (オプション。デフォルトは FALSE)
+                            </p></li>
+</ul></div>
+</li>
+<li><p>
+                    静的メソッド fromString() をコールし、HTTP レスポンスヘッダ 'Set-Cookie'
+                    あるいは HTTP リクエストヘッダ 'Cookie' に対応するクッキー文字列を指定します。
+                    この場合、クッキーの値は事前にエンコードしておく必要があります。
+                    クッキー文字列に 'domain' 部分が含まれない場合は、
+                    クッキーのドメインとパスを設定するための参照 URI を指定する必要があります。
+                    </p></li>
+</ul></div>
+<p>
+            </p>
+<div class="example">
+<a name="id4843372"></a><p class="title"><b>例 13.20. Zend_Http_Cookie のインスタンスの作成</b></p>
+<pre class="programlisting">&lt;?php
+// まずはコンストラクタを使用します。このクッキーの有効期限は二時間です。
+$cookie = new Zend_Http_Cookie('foo', 'bar', '.example.com', time() + 7200, '/path');
+
+// HTTP レスポンスヘッダ Set-Cookie を設定して使用することもできます。
+// このクッキーは先ほどのものとほとんど同じですが、有効期限はありません。
+// また、セキュア接続時にのみ送信されます。
+$cookie = Zend_Http_Cookie::fromString('foo=bar; domain=.example.com; path=/path; secure');
+
+// クッキーのドメインが設定されていない場合は、手動で設定する必要があります。
+$cookie = Zend_Http_Cookie::fromString('foo=bar; secure;', 'http://www.example.com/path');
+?&gt;</pre>
+</div>
+<p>
+            </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                クッキーオブジェクトを作成するのに Zend_Http_Cookie::fromString()
+                メソッドを使用した場合は、クッキーの値は URL エンコードされていなければなりません。
+                これはクッキー文字列と同様です。しかし、コンストラクタを使用する場合は、
+                エンコードされたものではなく、デコードされた実際の値を使用します。
+                </p></td></tr>
+</table></div>
+<p>
+        </p>
+<p>
+            クッキーオブジェクトを文字列に変換するには、マジックメソッド __toString()
+            を使用します。このメソッドは、HTTP リクエストヘッダ "Cookie" 用の文字列を作成します。
+            クッキーの名前と値が表示され、最後はセミコロン (';') となります。
+            この値は URL エンコードされ、そのまま Cookie ヘッダとして使用できるようになります。
+            </p>
+<div class="example">
+<a name="id4843396"></a><p class="title"><b>例 13.21. Zend_Http_Cookie オブジェクトの文字列化</b></p>
+<pre class="programlisting">&lt;?php
+// 新しいクッキーを作成します。
+$cookie = new Zend_Http_Cookie('foo', 'two words', '.example.com', time() + 7200, '/path');
+
+// これは 'foo=two+words;' を表示します。
+echo $cookie-&gt;__toString();
+
+// 上と同じことです。
+echo (string) $cookie;
+
+// PHP 5.2 以降では、これでもかまいません。
+echo $cookie;
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.cookies.cookie.accessors"></a>13.4.3. Zend_Http_Cookie のゲッターメソッド</h3></div></div></div>
+<p>
+            Zend_Http_Cookie のインスタンスを作成すると、
+            HTTP クッキーのさまざまなプロパティを取得するためのメソッドが使用できるようになります。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">string getName()</code>: クッキーの名前を取得します。
+                    </p></li>
+<li><p>
+                    <code class="code">string getValue()</code>: デコードされたクッキーの値を取得します。
+                    </p></li>
+<li><p>
+                    <code class="code">string getDomain()</code>: クッキーのドメインを取得します。
+                    </p></li>
+<li><p>
+                    <code class="code">string getPath()</code>: クッキーのパスを取得します。デフォルトは '/' です。
+                    </p></li>
+<li><p>
+                    <code class="code">int getExpiryTime()</code>: クッキーの有効期限を UNIX タイムスタンプで取得します。
+                    設定されていない場合は NULL を返します。
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            さらに、チェック用のメソッドも提供されています。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">boolean isSecure()</code>: クッキーの送信がセキュア接続に限定されているかどうかを調べます。
+                    要するに、もし true ならそのクッキーは HTTPS でしか送信されないということです。
+                    </p></li>
+<li><p>
+                    <code class="code">boolean isExpired(int $time = null)</code>: クッキーが有効期限切れになっているかどうかを調べます。
+                    有効期限が設定されていない場合は、常に true を返します。$time を指定すると、
+                    その時刻の時点で有効期限切れになるのかどうかを調べます。
+                    </p></li>
+<li><p>
+                    <code class="code">boolean isSessionCookie()</code>: クッキーが "セッションクッキー"、
+                    すなわち有効期限を持たないクッキー (セッション終了時に無効になるクッキー)
+                    であるかどうかを調べます。
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            </p>
+<div class="example">
+<a name="id4843757"></a><p class="title"><b>例 13.22. Zend_Http_Cookie のゲッターメソッドの使用法</b></p>
+<pre class="programlisting">&lt;?php
+// まずクッキーを作成します
+$cookie = Zend_Http_Client('foo=two+words; domain=.example.com; path=/somedir; secure; expires=Wednesday, 28-Feb-05 20:41:22 UTC');
+
+echo $cookie-&gt;getName();   // これは 'foo' を表示します
+echo $cookie-&gt;getValue();  // これは 'two words' を表示します
+echo $cookie-&gt;getDomain(); // これは '.example.com' を表示します
+echo $cookie-&gt;getPath();   // これは '/' を表示します
+
+echo date('Y-m-d', $cookie-&gt;getExpiryTime()); 
+// これは '2005-02-28' を表示します
+
+echo ($cookie-&gt;isExpired() ? 'Yes' : 'No');     
+// これは 'Yes' を表示します
+
+echo ($cookie-&gt;isExpired(strtotime('2005-01-01') ? 'Yes' : 'No'); 
+// これは 'No' を表示します
+
+echo ($cookie-&gt;isSessionCookie() ? 'Yes' : 'No'); 
+// これは 'No' を表示します
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.cookies.cookie.matching"></a>13.4.4. Zend_Http_Cookie が条件に一致するものかどうかを調べる</h3></div></div></div>
+<p>
+            調べるために Zend_Http_Cookie に含まれているのは match() メソッドだけです。
+            このメソッドを使用して、送ろうとしている HTTP リクエストに当てはまるクッキーであるかどうかを調べます。
+            その結果によって、クッキーをこのリクエストで送信するかどうかが決まります。
+            メソッドの構文やパラメータの内容は以下のとおりです。
+            <code class="code">boolean Zend_Http_Cookie-&gt;match(mixed $uri, [boolean $matchSessionCookies, [int $now]]);</code>
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">mixed $uri</code>: Zend_Uri_Http オブジェクトで、
+                    ドメインやパスのチェックに使用します。オプションとして、
+                    正しい形式の URL を文字列で渡すこともできます。
+                    指定した URL のスキーム (HTTP あるいは HTTPS)、
+                    ドメインおよびパスがすべて一致した場合にのみ、クッキーがマッチします。
+                    </p></li>
+<li><p>
+                    <code class="code">boolean $matchSessionCookies</code>:
+                    セッションクッキーをマッチの対象にするかどうか。
+                    デフォルトは true です。false に設定すると、
+                    有効期限の設定されていないクッキーはマッチしません。
+                    </p></li>
+<li><p>
+                    <code class="code">int $now</code>: クッキーの有効期限をチェックする基準となる時刻
+                    (UNIX タイムスタンプ形式)。指定しない場合のデフォルトは、現在時刻です。
+                    </p></li>
+</ul></div>
+<p>
+            </p>
+<div class="example">
+<a name="id4843880"></a><p class="title"><b>例 13.23. クッキーがマッチするかどうかの確認</b></p>
+<pre class="programlisting">&lt;?php
+// まずクッキーオブジェクトを作成します。これはセキュアなセッションクッキーです。
+$cookie = Zend_Http_Client('foo=two+words; domain=.example.com; path=/somedir; secure;');
+
+$cookie-&gt;match('https://www.example.com/somedir/foo.php'); 
+// これは true を返します。
+
+$cookie-&gt;match('http://www.example.com/somedir/foo.php'); 
+// これは false を返します。接続がセキュアでないからです。
+
+$cookie-&gt;match('https://otherexample.com/somedir/foo.php'); 
+// これは false を返します。ドメインが違っているからです。
+
+$cookie-&gt;match('https://example.com/foo.php'); 
+// これは false を返します。パスが違っているからです。
+
+$cookie-&gt;match('https://www.example.com/somedir/foo.php', false); 
+// これは false を返します。セッションクッキーはマッチさせないようにしているからです。
+
+$cookie-&gt;match('https://sub.domain.example.com/somedir/otherdir/foo.php'); 
+// これは true を返します。
+
+// 別のクッキーオブジェクトを作成します。今度はセキュアではなく、二時間で有効期限切れとなります。
+$cookie = Zend_Http_Client('foo=two+words; domain=www.example.com; expires=' . date(DATE_COOKIE, time() + 7200);
+
+$cookie-&gt;match('http://www.example.com/');
+// これは true を返します。
+
+$cookie-&gt;match('https://www.example.com/');
+// これは true を返します。セキュアでないクッキーは、セキュアな通信でも送信されます!
+
+$cookie-&gt;match('http://subdomain.example.com/');
+// これは false を返します。ドメインが違っているからです。
+
+$cookie-&gt;match('http://www.example.com/', true, time() + (3 * 3600));
+// これは false を返します。今から三時間後を時刻を指定したからです。
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.cookies.cookiejar"></a>13.4.5. Zend_Http_CookieJar のインスタンスの作成</h3></div></div></div>
+<p>
+            Zend_Http_CookieJar のインスタンスを直接作成する必要は、まずありません。
+            新しいクッキージャーを Zend_Http_Client オブジェクトにアタッチするには、単に
+            Zend_Http_Client-&gt;setCookieJar() メソッドをコールすればいいのです。これで、
+            新しい空のクッキージャーがクライアントに追加されます。このクッキージャーを取得するには
+            Zend_Http_Client-&gt;getCookieJar() を使用します。
+        </p>
+<p>
+            それでもやっぱり自分で CookieJar のインスタンスを作成したいというのなら、
+            "new Zend_Http_CookieJar()" と直接コールしてください。
+            コンストラクタには引数を何も指定しません。インスタンスを作成するもうひとつの方法としては、
+            静的メソッド Zend_Http_CookieJar::fromResponse() を使用するものがあります。
+            このメソッドは二つのパラメータを受け取ります。まず最初が Zend_Http_Response
+            オブジェクト、そして二つ目は参照先 URI で、これは文字列あるいは
+            Zend_Uri_Http オブジェクトのいずれかです。
+            このメソッドは新しい Zend_Http_CookieJar オブジェクトを返します。
+            このオブジェクトには、指定した HTTP レスポンスによって設定されたクッキーが既に含まれています。
+            クッキーのドメインとパスが Set-Cookie ヘッダで指定されていない場合は、
+            参照先 URI を使用して設定します。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.cookies.cookiejar.adding_cookies"></a>13.4.6. Zend_Http_CookieJar オブジェクトへのクッキーの追加</h3></div></div></div>
+<p>
+            通常は、CookieJar オブジェクトを追加した Zend_Http_Client オブジェクトが自動的に処理を行い、
+            HTTP レスポンスで設定されたクッキーをジャーに追加してくれます。
+            自分でクッキーをジャーに追加するには、二通りの方法があります。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">Zend_Http_CookieJar-&gt;addCookie($cookie[, $ref_uri])</code>:
+                    単一のクッキーをジャーに追加します。$cookie には Zend_Http_Cookie
+                    オブジェクトあるいは文字列を指定します。文字列は自動的に
+                    Cookie オブジェクトに変換されます。文字列を指定する場合は、同時に
+                    $ref_uri も指定しなければなりません。これは参照先 URI で、文字列あるいは
+                    Zend_Uri_Http オブジェクトを渡します。これをもとにして、
+                    クッキーのデフォルトのドメインとパスを決定します。
+                    </p></li>
+<li><p>
+                    <code class="code">Zend_Http_CookieJar-&gt;addCookiesFromResponse($response, $ref_uri)</code>: 
+                    HTTP レスポンス内のすべてのクッキーをジャーに追加します。
+                    $response は Set-Cookie ヘッダつきの Zend_Http_Response オブジェクトです。
+                    $ref_uri は参照先 URI で、文字列あるいは Zend_Uri_Http オブジェクトとなります。
+                    これをもとにして、クッキーのデフォルトのドメインとパスを決定します。
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.cookies.cookiejar.getting_cookies"></a>13.4.7. Zend_Http_CookieJar オブジェクトからのクッキーの取得</h3></div></div></div>
+<p>
+            クッキーを追加する場合と同様、クッキーをジャーから取得する作業についても
+            通常は手動で行う必要はありません。Zend_Http_Client
+            オブジェクトは、その HTTP リクエストで必要なクッキーを自動的に取得します。
+            とは言え、ジャーから手動でクッキーを取得するための方法も提供されています。
+            <code class="code">getCookie()</code>、
+            <code class="code">getAllCookies()</code> および <code class="code">getMatchingCookies()</code>
+            の三通りの方法です。
+        </p>
+<p>
+            注意すべき点は、これらのメソッドが特別なパラメータを受け取るようになっているということです。
+            このパラメータで、メソッドの返り値の型を指定します。
+            指定できる値は次の三種類です。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">Zend_Http_CookieJar::COOKIE_OBJECT</code>:
+                    Zend_Http_Cookie オブジェクトを返します。
+                    返されるクッキーが複数の場合は、オブジェクトの配列を返します。
+                    </p></li>
+<li><p>
+                    <code class="code">Zend_Http_CookieJar::COOKIE_STRING_ARRAY</code>:
+                    "foo=bar" 形式の文字列を返します。これは、HTTP リクエストの "Cookie"
+                    ヘッダで使用できる形式です。
+                    返されるクッキーが複数の場合は、文字列の配列を返します。
+                    </p></li>
+<li><p>
+                    <code class="code">Zend_Http_CookieJar::COOKIE_STRING_CONCAT</code>:
+                    COOKIE_STRING_ARRAY と似ていますが、返されるクッキーが複数の場合には
+                    それらをひとつの長い文字列に連結して返します。
+                    区切り文字はセミコロン (;) となります。
+                    これは、マッチするすべてのクッキーを単一の HTTP リクエストヘッダ
+                    "Cookie" で送信したい場合に非常に便利です。
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            クッキー取得のためのさまざまなメソッドのについて説明します。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">Zend_Http_CookieJar-&gt;getCookie($uri, $cookie_name[, $ret_as])</code>: 
+                    その URI (ドメインおよびパス) と名前にもとづいて、
+                    ジャーから単一のクッキーを取得します。
+                    $uri は文字列か Zend_Uri_Http オブジェクトで、URI を表します。
+                    $cookie_name はクッキー名を表す文字列です。
+                    $ret_as は先ほど説明したように返り値の型を指定します。
+                    $ret_type はオプションで、デフォルトは COOKIE_OBJECT です。
+                    </p></li>
+<li><p>
+                    <code class="code">Zend_Http_CookieJar-&gt;getAllCookies($ret_as)</code>: 
+                    ジャーからすべてのクッキーを取得します。
+                    $ret_as は先ほど説明したように返り値の型を指定します。
+                    指定しなかった場合の $ret_type のデフォルトは、COOKIE_OBJECT となります。
+                    </p></li>
+<li>
+<p>
+                    <code class="code">Zend_Http_CookieJar-&gt;getMatchingCookies($uri[, $matchSessionCookies[, $ret_as[, $now]]])</code>:
+                    指定した条件を満たす全てのクッキーをジャーから取得します。
+                    条件として指定するのは、URI および有効期限です。
+                    </p>
+<div class="itemizedlist"><ul type="circle">
+<li><p>
+                            <code class="code">$uri</code> は Zend_Uri_Http オブジェクトあるいは文字列です。
+                            接続形式 (セキュアかそうでないか)、ドメインおよびパスの条件を指定します。
+                            </p></li>
+<li><p>
+                            <code class="code">$matchSessionCookies</code> は boolean 値で、
+                            セッションクッキーを含めるかどうかを指定します。
+                            セッションクッキーとは、有効期限が指定されていないクッキーのことです。
+                            デフォルトは true です。
+                            </p></li>
+<li><p>
+                            <code class="code">$ret_as</code>
+                            は、先ほど説明したように返り値の型を指定します。
+                            指定しなかった場合のデフォルトは COOKIE_OBJECT です。
+                            </p></li>
+<li><p>
+                            <code class="code">$now</code> は整数値で表した UNIX タイムスタンプで、
+                            これを "現在時刻" として扱います。
+                            有効期限がこの時刻より前に設定されているクッキーはマッチしません。
+                            指定しなかった場合のデフォルト値は、現在時刻です。
+                            </p></li>
+</ul></div>
+<p>
+                    クッキーのマッチ方法についての詳細は
+                    <a href="zend.http.cookies.html#zend.http.cookies.cookie.matching" title="13.4.4. Zend_Http_Cookie が条件に一致するものかどうかを調べる">項13.4.4. 「Zend_Http_Cookie が条件に一致するものかどうかを調べる」</a>
+                    を参照ください。
+                    </p>
+</li>
+</ul></div>
+<p>
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.http.client.adapters.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.http.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.http.response.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">13.3. Zend_Http_Client - 接続アダプタ </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 13.5. Zend_Http_Response</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

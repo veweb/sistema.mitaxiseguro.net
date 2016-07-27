@@ -1,0 +1,369 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>15.2. Zend_Locale の使用法</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="prev" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="next" href="zend.locale.parsing.html" title="15.3. 正規化および地域化">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.copying" title="15.2.1. ロケールオブジェクトのコピー、クローン作成およびシリアライズ">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.equals" title="15.2.2. isEqual() - 同等">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getdefault" title="15.2.3. デフォルトのロケール">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.setlocale" title="15.2.4. 新しいロケールの設定">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getlocale" title="15.2.5. 言語および地域の取得">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getlanguage" title="15.2.6. 各地域での言語、地域、カレンダーの名前の取得">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getscriptdisplay" title="15.2.7. 翻訳された文字名の取得">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getscriptlist" title="15.2.8. 文字一覧の取得">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getquestion" title='15.2.9. "yes" および "no" に対応する翻訳の取得'>
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">15.2. Zend_Locale の使用法</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.locale.html">前のページ</a> </td>
+<th width="60%" align="center">第15章 Zend_Locale</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.locale.parsing.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.locale.functions"></a>15.2. Zend_Locale の使用法</h2></div></div></div>
+<p>
+        <code class="code">Zend_Locale</code> は、各ロケールについての情報も、
+        自分自身のロケールに合わせた形式で提供します。
+        たとえば他のロケールの名前や曜日名、月名などがこれにあたります。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.copying"></a>15.2.1. ロケールオブジェクトのコピー、クローン作成およびシリアライズ</h3></div></div></div>
+<p>
+            <a href="http://php.net/language.oop5.cloning" target="_top">オブジェクトのクローンを作成</a>し、
+            ロケールオブジェクトを正確かつ効率的に複製することができます。
+            ロケール対応のメソッドのほとんどは、<code class="code">$locale-&gt;toString()</code>
+            が返す文字列表現のロケールを受け付けます。
+        </p>
+<div class="example">
+<a name="id4848441"></a><p class="title"><b>例 15.6. clone</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('ar');
+
+// $locale オブジェクトをシリアライズして保存します
+$serializedLocale = $locale-&gt;serialize();
+// もとのオブジェクトを再度作成します
+$localeObject = unserialize($serializedLocale);
+
+// ロケールの文字列表記を取得します
+$stringLocale = $locale-&gt;toString();
+
+// $local オブジェクトの複製を作成します
+$copiedLocale = clone $locale;
+
+print "copied: ", $copiedLocale-&gt;toString();
+print "copied: ", $copiedLocale; // PHP は、__toString() 経由で自動的に toString() をコールします
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.equals"></a>15.2.2. isEqual() - 同等</h3></div></div></div>
+<p>
+            <code class="code">Zend_Locale</code> は、
+            二つのロケールを比較するための便利な関数も提供しています。
+            ロケール対応のクラスはすべて、これと同等の同一性チェック機能を提供しなければなりません。
+        </p>
+<div class="example">
+<a name="id4848493"></a><p class="title"><b>例 15.7. ロケールが同一かどうかの調査</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+$mylocale = new Zend_Locale('en_US');
+
+// ロケールが同一かどうかを調べます
+if ($locale-&gt;isEqual($mylocale) { 
+    print "これらのロケールは同一です";
+}
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getdefault"></a>15.2.3. デフォルトのロケール</h3></div></div></div>
+<p>
+            <code class="code">getDefault()</code> メソッドは、関連するロケールの配列を返します。
+            これは、ユーザのウェブブラウザからの情報 (取得できる場合)、
+            ホストサーバの環境変数および ZF の設定をもとに取得します。
+            <code class="code">Zend_Locale</code> のコンストラクタの最初のパラメータで、
+            <a href="zend.locale.html#zend.locale.selection" title="15.1.4. 正しいロケールの選択">
+              (<code class="code">BROWSER</code>、<code class="code">ENVIRONMENT</code> あるいは <code class="code">FRAMEWORK</code> のうちの)
+            </a>
+            どの情報を優先するかを選択します。
+            二番目のパラメータでは、マッチしたロケールをすべて返すのか
+            あるいは最初にマッチした/一番マッチしたものを返すのかを指定します。
+            ロケール対応のコンポーネントは、通常は最初のロケールのみを使用します。
+            優先度が指定されている場合は、それも考慮します。
+        </p>
+<div class="example">
+<a name="id4848577"></a><p class="title"><b>例 15.8. デフォルトロケールの取得</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+
+// すべてのデフォルトロケールを返します
+$found = $locale-&gt;getDefault();
+print_r($found);
+
+// ブラウザのロケールのみを返します
+$found2 = $locale-&gt;getDefault(Zend_Locale::BROWSER,TRUE);
+print_r($found2);
+?&gt;</pre>
+</div>
+<p>
+            <a href="zend.locale.html#zend.locale.selection" title="15.1.4. 正しいロケールの選択"><code class="code">BROWSER</code>、<code class="code">ENVIRONMENT</code> あるいは <code class="code">FRAMEWORK</code>
+            </a> のいずれかに対応するデフォルトロケールを取得するには、
+            それぞれ対応するメソッドを使用します。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">getEnvironment()</code>
+                    </p></li>
+<li><p>
+                        <code class="code">getBrowser()</code>
+                    </p></li>
+<li><p>
+                        <code class="code">getLocale()</code>
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.setlocale"></a>15.2.4. 新しいロケールの設定</h3></div></div></div>
+<p>
+            新しいロケールを設定するには、関数 <code class="code">setLocale()</code>
+            を使用します。この関数は、ロケール文字列をパラメータとして受け取ります。
+            ロケールを省略した場合は、ロケールが
+            <a href="zend.locale.html#zend.locale.selection" title="15.1.4. 正しいロケールの選択">自動的に選択</a>
+            されます。Zend_Locale オブジェクトは "light"
+            なので、このメソッドは既存のインスタンスを参照しているすべてのコードに影響をおよぼします。
+        </p>
+<div class="example">
+<a name="id4848698"></a><p class="title"><b>例 15.9. setLocale</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+
+// 実際のロケール
+print $locale-&gt;toString();
+
+// 新しいロケール
+$locale-&gt;setLocale('aa_DJ');
+print $locale-&gt;toString();
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getlocale"></a>15.2.5. 言語および地域の取得</h3></div></div></div>
+<p>
+            <code class="code">getLanguage()</code> を使用して、二文字の言語コード文字列を
+            ロケール識別文字列から取得します。また、
+            <code class="code">getRegion()</code> を使用して、二文字の地域コード文字列を
+            ロケール識別文字列から取得します。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getlanguage"></a>15.2.6. 各地域での言語、地域、カレンダーの名前の取得</h3></div></div></div>
+<p>
+            <code class="code">getLanguageDisplay($language, $locale)</code>
+            を使用して、ある言語の名前を指定した $locale
+            (デフォルトは、そのオブジェクトのロケール)
+            で表した文字列を取得します。また、
+            <code class="code">getLanguageList($locale)</code> を使用して、既知の言語名をすべて $locale
+            (デフォルトは、そのオブジェクトのロケール)
+            に翻訳した文字列の配列を取得します。
+        </p>
+<div class="example">
+<a name="id4848785"></a><p class="title"><b>例 15.10. getLanguageDisplay</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('en_US');
+print $locale-&gt;getLanguageDisplay('de'); // "German" と表示されます
+?&gt;</pre>
+</div>
+<p>
+            Zend_Locale で使用できるすべての言語の一覧を、それぞれの言語での表記で取得するには、
+            以下の例をウェブページで使用してみましょう
+            同様に <code class="code">getRegionList()</code> および
+            <code class="code">getRegionDisplay()</code> を使用すると、
+            あなたのネイティブ言語での地域名と別の言語での地域名の対応表を作成できます。
+            また、<code class="code">getCalendarList()</code> および
+            <code class="code">getCalendarDisplay()</code> も同様に動作します。
+            <code class="code">try .. catch</code> ブロックで、
+            存在しないロケールを使用した場合の例外を処理するようにしましょう。
+            すべての言語がすべてのロケールに対応しているわけではありません。
+            この例では、例外を無視することで、
+            スクリプトが途中で終わってしまうことを防いでいます。
+        </p>
+<div class="example">
+<a name="id4848851"></a><p class="title"><b>例 15.11. すべての言語を、その国のネイティブ言語で書き出す</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$sourceLanguage = null; // あなたのネイティブ言語のコードを設定します
+$locale = new Zend_Locale($sourceLanguage);
+$list = $locale-&gt;getLanguageList();
+
+foreach($list as $language =&gt; $content) {
+    try {
+        $output = $locale-&gt;getLanguageDisplay($language, $language);
+        if (is_string($output)) {
+            print "\n&lt;br&gt;[".$language."] ".$output;
+        }
+    } catch (Exception $e) {
+        continue;
+    }
+}
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getscriptdisplay"></a>15.2.7. 翻訳された文字名の取得</h3></div></div></div>
+<p>
+            <code class="code">getScriptDisplay()</code> は、指定した言語の文字名を翻訳したものを返します。
+            getLanguageDisplay() 関数と同様、この関数は別のロケールで結果を出力することもできます。
+            その場合はオプションの引数 $locale を指定します。
+        </p>
+<div class="example">
+<a name="id4848903"></a><p class="title"><b>例 15.12. getScriptDisplay</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+
+// 文字
+print $locale-&gt;getScriptDisplay('Latn');
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getscriptlist"></a>15.2.8. 文字一覧の取得</h3></div></div></div>
+<p>
+            <code class="code">getScriptList()</code>
+            を使用して、既知の文字名をすべて $locale
+            (デフォルトは、そのオブジェクトのロケール)
+            に翻訳した文字列の配列を取得します。
+            L10N の観点から、ここでいう文字とは
+            ある言語を表示するために使用する文字セットとなります。
+            英語を表示するための文字の名前はラテン文字 (Latin)
+            で、ISO-15924 における短縮形は "Latn" となります。
+        </p>
+<div class="example">
+<a name="id4848948"></a><p class="title"><b>例 15.13. getScriptList</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+
+// 文字の一覧
+print_r($locale-&gt;getScriptList());
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getquestion"></a>15.2.9. "yes" および "no" に対応する翻訳の取得</h3></div></div></div>
+<p>
+            プログラム上で、ユーザに "はい" あるいは "いいえ"
+            で答えてもらうことがよくあります。
+            <code class="code">getQuestion()</code> を使用すると、
+            ユーザに問い合わせるときに使用する単語を含む配列を、特定の $locale
+            (デフォルトは、そのオブジェクトのロケール)
+            にあわせて返します。この配列には四つの要素が含まれます。それぞれが
+            "はい"、"いいえ" とその省略形を現します。以下の例を参照ください。
+        </p>
+<div class="example">
+<a name="id4848277"></a><p class="title"><b>例 15.14. getQuestion()</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+
+// 設問の文字列
+print_r($locale-&gt;getQuestion());
+
+- - - 出力 - - -
+
+Array
+(
+    [yes] =&gt; yes
+    [yesabbr] =&gt; y
+    [no] =&gt; no
+    [noabbr] =&gt; n
+)
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.locale.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.locale.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.locale.parsing.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第15章 Zend_Locale </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 15.3. 正規化および地域化</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

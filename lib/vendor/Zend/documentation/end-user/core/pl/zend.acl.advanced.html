@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.3. Zaawansowane użycie</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="prev" href="zend.acl.refining.html" title="2.2. Analiza kontroli dostępu">
+<link rel="next" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.acl.advanced.html#zend.acl.advanced.storing" title="2.3.1. Trwałe przechowywanie danych ACL">
+<link rel="subsection" href="zend.acl.advanced.html#zend.acl.advanced.assertions" title="2.3.2. Tworzenie warunkowych reguł ACL z zapewnieniami">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.3. Zaawansowane użycie</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.acl.refining.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 2. Zend_Acl</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.auth.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.acl.advanced"></a>2.3. Zaawansowane użycie</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.advanced.storing"></a>2.3.1. Trwałe przechowywanie danych ACL</h3></div></div></div>
+<p>
+        Klasa Zend_Acl została zaprojektowana w taki sposób, aby nie wymagała
+        żadnej szczególnej technologii backendu do przechowywania danych ACL 
+        takiej jak np. baza danych czy serwer buforujący. Kompletna 
+        implementacja w PHP pozwala na podstawie Zend_Acl budować dostosowane 
+        narzędzia administracyjne, które są relatywnie łatwe oraz elastyczne.
+        Wiele sytuacji wymaga pewnej formy interaktywnego zarządzania ACL, a
+        Zend_Acl zapewnia metody ustawiania oraz odpytywania kontroli dostępu
+        aplikacji.
+        </p>
+<p>
+        Przechowywanie danych ACL jest zadaniem pozostawionym dla programisty,
+        dlatego, że przykłady użycia mogą się bardzo różnić w rozmaitych 
+        sytuacjach. Ponieważ możliwe jest serializowanie Zend_Acl, obiekty ACL 
+        mogą być serializowane za pomocą funkcji PHP 
+        <a href="http://php.net/serialize" target="_top"><code class="code">serialize()</code></a>, 
+        a wyniki mogą być przechowane tam gdzie określi to programista, na 
+        przykład w pliku, w bazie danych lub w mechanizmie buforowania.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.advanced.assertions"></a>2.3.2. Tworzenie warunkowych reguł ACL z zapewnieniami</h3></div></div></div>
+<p>
+        Czasem reguła przyznawania lub zabraniania dostępu roli do zasobu nie
+        powinna być absolutna, ale powinna być oparta na różnych kryteriach.
+        Na przykład załóżmy, że pewien dostęp powinien być przyznany, ale 
+        jedynie między godziną 8:00 a 17:00. Innym przykładem może być zabranie
+        dostępu adresom IP, które zostały oznaczone jako źródło nadużyć.
+        Zend_Acl ma wbudowaną obsługę implementowania reguł opartych na 
+        dowolnych warunkach, wedle potrzeb programisty.
+        </p>
+<p>
+        Zend_Acl zapewnia obsługę warunkowych reguł za pomocą interfejsu 
+        <code class="code">Zend_Acl_Assert_Interface</code>. W celu użycia interfejsu 
+        zapewnień reguł, programista pisze klasę, ktora implementuje metodę
+        <code class="code">assert()</code> interfejsu:
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl/Assert/Interface.php';
+
+class CleanIPAssertion implements Zend_Acl_Assert_Interface
+{
+    public function assert(Zend_Acl $acl, Zend_Acl_Role_Interface $role = null,
+                           Zend_Acl_Resource_Interface $resource = null, $privilege = null)
+    {
+        return $this-&gt;_isCleanIP($_SERVER['REMOTE_ADDR']);
+    }
+
+    protected function _isCleanIP($ip)
+    {
+        // ...
+    }
+}</pre>
+<p>
+        Kiedy klasa zapewnień jest już dostępna, programista musi przekazać 
+        klasę zapewnień kiedy przypisuje regułę warunkową. Reguła, która jest
+        utworzona z klasą zapewnienia będzie jedynie stosowana wtedy, gdy metoda 
+        zapewnienia zwróci logiczną wartośc true.
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl.php';
+
+$acl = new Zend_Acl();
+$acl-&gt;allow(null, null, null, new CleanIPAssertion());</pre>
+<p>
+        Powyższy kod tworzy warunkową regułę dostępu, ktora pozwala na dostęp
+        do wszystkich przywilejów do wszystkich zasobów dla wszystkich ról, z 
+        wyjątkiem adresów IP, będących na czarnej liście. Jeśli żądanie pochodzi 
+        z adresu IP, który nie jest uznany jako "czysty", wtedy reguła nie ma 
+        zastosowania. Z tego względu, że reguła ma zastosowanie do wszystkich 
+        ról, zasobów oraz przywilejów, zablokowany adres IP będzie miał 
+        zabroniony cały dostęp. Jest to specjalny przypadek i powinien być 
+        zrozumiany tak, że we  wszystkich innych przypadkach (np., tam gdzie
+        specyficzna rola, zasób lub przywilej są określone w regule), nieudane 
+        zapewnienie spowoduje, że reguła nie zostanie zastosowana i inne reguły 
+        powinny być zastosowane aby określić czy dostęp jest dozwolony czy 
+        zabroniony. 
+        </p>
+<p>
+        Metoda <code class="code">assert()</code> obiektu zapewnienia jest przekazywana do
+        ACL, roli, zasobu, oraz przywileju do których stosuje się zapytanie 
+        autoryzacyjne (np., <code class="code">isAllowed()</code>), w celu dostarczenia 
+        kontekstu dla klasy zapewnienia aby określić warunki zapewnienia tam
+        gdzie są one potrzebne.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.acl.refining.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.acl.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.auth.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2.2. Analiza kontroli dostępu </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> Rozdział 3. Zend_Auth</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

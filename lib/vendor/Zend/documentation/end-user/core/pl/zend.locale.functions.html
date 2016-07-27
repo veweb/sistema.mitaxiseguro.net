@@ -1,0 +1,346 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>15.2. Using Zend_Locale</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="prev" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="next" href="zend.locale.parsing.html" title="15.3. Normalization and Localization">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.copying" title="15.2.1. Copying, Cloning, and Serializing Locale Objects">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.equals" title="15.2.2. isEqual() - Equality">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getdefault" title="15.2.3. Default locales">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.setlocale" title="15.2.4. Set a new locale">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getlocale" title="15.2.5. Getting the language and region">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getlanguage" title="15.2.6. Obtaining localized name for languages, regions, and calendars">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getscriptdisplay" title="15.2.7. Get an translated string of an script">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getscriptlist" title="15.2.8. Get a list of scripts">
+<link rel="subsection" href="zend.locale.functions.html#zend.locale.getquestion" title='15.2.9. Obtaining translations for "yes" and "no"'>
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">15.2. Using Zend_Locale</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.locale.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 15. Zend_Locale</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.locale.parsing.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.locale.functions"></a>15.2. Using Zend_Locale</h2></div></div></div>
+<p>
+        <code class="code">Zend_Locale</code> also provides localized information about locales for each locale, including localized
+        names for other locales, days of the week, month names, etc.
+    </p>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.copying"></a>15.2.1. Copying, Cloning, and Serializing Locale Objects</h3></div></div></div>
+<p>
+            Use
+            <a href="http://php.net/language.oop5.cloning" target="_top">object cloning</a>
+            to duplicate a locale object exactly and efficiently. Most locale-aware methods also accept string
+            representations of locales, such as the result of <code class="code">$locale-&gt;toString()</code>.
+        </p>
+<div class="example">
+<a name="id4842113"></a><p class="title"><b>Przykład 15.6. clone</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('ar');
+
+// Save the $locale object as a serialization
+$serializedLocale = $locale-&gt;serialize();
+// re-create the original object
+$localeObject = unserialize($serializedLocale);
+
+// Obtain a string identification of the locale
+$stringLocale = $locale-&gt;toString();
+
+// Make a cloned copy of the $local object
+$copiedLocale = clone $locale;
+
+print "copied: ", $copiedLocale-&gt;toString();
+print "copied: ", $copiedLocale; // PHP automatically calls toString() via __toString();
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.equals"></a>15.2.2. isEqual() - Equality</h3></div></div></div>
+<p>
+            <code class="code">Zend_Locale</code> also provides a convenience function to compare two locales. All locale-aware
+            classes should provide a similar equality check.
+        </p>
+<div class="example">
+<a name="id4842779"></a><p class="title"><b>Przykład 15.7. Check for equal locales</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+$mylocale = new Zend_Locale('en_US');
+
+// Check if locales are equal
+if ($locale-&gt;isEqual($mylocale) { 
+    print "Locales are equal";
+}
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getdefault"></a>15.2.3. Default locales</h3></div></div></div>
+<p>
+            The method <code class="code">getDefault()</code> returns an array of relevant locales using information from the user's
+            web browser (if available), information from the environment of the host server, and ZF settings. As with
+            the constructor for <code class="code">Zend_Locale</code>, the first parameter selects a preference of which information
+            to consider
+            <a href="zend.locale.html#zend.locale.selection" title="15.1.4. Selecting the Right Locale">(<code class="code">BROWSER</code>, <code class="code">ENVIRONMENT</code>, or <code class="code">FRAMEWORK)</code>
+            </a>
+            first. The second parameter toggles between returning all matching locales or only the first/best match.
+            Locale-aware components normally use only the first locale. A quality rating is included, when avaiable.
+        </p>
+<div class="example">
+<a name="id4842846"></a><p class="title"><b>Przykład 15.8. Get default locales</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+
+// Return all default locales
+$found = $locale-&gt;getDefault();
+print_r($found);
+
+// Return only browser locales
+$found2 = $locale-&gt;getDefault(Zend_Locale::BROWSER,TRUE);
+print_r($found2);
+?&gt;</pre>
+</div>
+<p>
+            To obtain only the default locales relevent to the
+            <a href="zend.locale.html#zend.locale.selection" title="15.1.4. Selecting the Right Locale"><code class="code">BROWSER</code>, <code class="code">ENVIRONMENT</code>, or <code class="code">FRAMEWORK</code>
+            </a>
+            , use the corresponding method:
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">getEnvironment()</code>
+                    </p></li>
+<li><p>
+                        <code class="code">getBrowser()</code>
+                    </p></li>
+<li><p>
+                        <code class="code">getLocale()</code>
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.setlocale"></a>15.2.4. Set a new locale</h3></div></div></div>
+<p>
+            A new locale can be set with the function <code class="code">setLocale()</code>. This function takes a locale string as
+            parameter. If no locale is given, a locale is
+            <a href="zend.locale.html#zend.locale.selection" title="15.1.4. Selecting the Right Locale">automatically selected</a>
+            . Since Zend_Locale objects are "light", this method exists primarily to cause side-effects for code that
+            have references to the existing instance object.
+        </p>
+<div class="example">
+<a name="id4842952"></a><p class="title"><b>Przykład 15.9. setLocale</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+
+// Actual locale
+print $locale-&gt;toString();
+
+// new locale
+$locale-&gt;setLocale('aa_DJ');
+print $locale-&gt;toString();
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getlocale"></a>15.2.5. Getting the language and region</h3></div></div></div>
+<p>
+            Use <code class="code">getLanguage()</code> to obtain a string containing the two character language code from the string
+            locale identifier. Use <code class="code">getRegion()</code> to obtain a string containing the two character region code
+            from the string locale identifier.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getlanguage"></a>15.2.6. Obtaining localized name for languages, regions, and calendars</h3></div></div></div>
+<p>
+            Use <code class="code">getLanguageDisplay($language, $locale)</code> to obtain a string containing the translated name of
+            a language for a specific $locale (defaults to the current object's locale). Use
+            <code class="code">getLanguageList($locale)</code> to obtain an array of all known language names translated to the
+            language associated with $locale (defaults to the current object's locale). language will be returned.
+        </p>
+<div class="example">
+<a name="id4843026"></a><p class="title"><b>Przykład 15.10. getLanguageDisplay</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale('en_US');
+print $locale-&gt;getLanguageDisplay('de'); // echos "German"
+?&gt;</pre>
+</div>
+<p>
+            To generate a list of all languages known by Zend_Locale, with each language name shown in its own language,
+            try the example below in a web page. Similarly, <code class="code">getRegionList()</code> and
+            <code class="code">getRegionDisplay()</code> could be used to create a table mapping your native language names for
+            regions to the names of the regions shown in another language. Likewise, <code class="code">getCalendarList()</code> and
+            <code class="code">getCalendarDisplay()</code> work identically. Use a <code class="code">try .. catch</code> block to handle
+            exceptions that occur when using a locale that does not exist. Not all languages are also locales. In the
+            example, below exceptions are ignored to prevent early termination.
+        </p>
+<div class="example">
+<a name="id4843075"></a><p class="title"><b>Przykład 15.11. All Languages written in thier native language</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$sourceLanguage = null; // set to your native language code
+$locale = new Zend_Locale($sourceLanguage);
+$list = $locale-&gt;getLanguageList();
+
+foreach($list as $language =&gt; $content) {
+    try {
+        $output = $locale-&gt;getLanguageDisplay($language, $language);
+        if (is_string($output)) {
+            print "\n&lt;br&gt;[".$language."] ".$output;
+        }
+    } catch (Exception $e) {
+        continue;
+    }
+}
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getscriptdisplay"></a>15.2.7. Get an translated string of an script</h3></div></div></div>
+<p>
+            With <code class="code">getScriptDisplay()</code> the translated name of an script of the given language will be
+            returned. The same way as with the function getLanguageDisplay(), this function also supports the useage for
+            obtaining output localized to other locales, using the optional $locale argument.
+        </p>
+<div class="example">
+<a name="id4842591"></a><p class="title"><b>Przykład 15.12. getScriptDisplay</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+
+// Script
+print $locale-&gt;getScriptDisplay('Latn');
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getscriptlist"></a>15.2.8. Get a list of scripts</h3></div></div></div>
+<p>
+            Use <code class="code">getScriptList()</code> to obtain an array of all known script names translated to the selected
+            $locale (defaults to the current object's locale). For L10N purposes, a script is the set of characters used
+            to display a language. For English, the script name is Latin, and the short form in ISO-15924 is "Latn".
+        </p>
+<div class="example">
+<a name="id4842636"></a><p class="title"><b>Przykład 15.13. getScriptList</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+
+// ScriptList
+print_r($locale-&gt;getScriptList());
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.locale.getquestion"></a>15.2.9. Obtaining translations for "yes" and "no"</h3></div></div></div>
+<p>
+            Frequently, programs need to solicit a "yes" or "no" response from the user. Use <code class="code">getQuestion()</code>
+            to obtain an array containing the correct word(s) to use for prompting the user in a particular $locale
+            (defaults to the current object's locale). The array will contain four key-value pairs, for "yes", "no", and
+            their abbreviations, as shown in the example below.
+        </p>
+<div class="example">
+<a name="id4842684"></a><p class="title"><b>Przykład 15.14. getQuestion()</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Locale.php';
+
+$locale = new Zend_Locale();
+
+// Question strings
+print_r($locale-&gt;getQuestion());
+
+- - - Output - - -
+
+Array
+(
+    [yes] =&gt; yes
+    [yesabbr] =&gt; y
+    [no] =&gt; no
+    [noabbr] =&gt; n
+)
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.locale.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.locale.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.locale.parsing.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Rozdział 15. Zend_Locale </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 15.3. Normalization and Localization</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

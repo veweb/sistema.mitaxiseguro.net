@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1.2. Zend::loadFile()</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.html" title="第 1 章 Zend">
+<link rel="prev" href="zend.html" title="第 1 章 Zend">
+<link rel="next" href="zend.loadclass.html" title="1.3. Zend::loadClass()">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">1.2. Zend::loadFile()</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.html">上一页</a> </td>
+<th width="60%" align="center">第 1 章 Zend</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.loadclass.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.loadfile"></a>1.2. Zend::loadFile()</h2></div></div></div>
+<p>
+   	<code class="code">Zend::loadFile()</code>用来包含PHP文件。它其实是将PHP的<a href="http://php.net/include" target="_top"><code class="code">include()函数</code></a>封装而成的一个静态方法。当包含文件失败时，会抛出异常<code class="code">Zend_Exception</code> 。
+    </p>
+<pre class="programlisting">&lt;?php
+
+Zend::loadFile($filename, $dirs=null, $once=false)
+
+?&gt;</pre>
+<p>	
+	<code class="code">$filename</code>参数指定需要加载的文件，注意$filename不需要指定任何路径，只需要文件名即可。ZF会对文件作安全性检查。<code class="code">$filename</code>只能由字母，数字，连接符-,下划线_及英文句号.组成(半角)。<code class="code">$dirs</code>参数则不限，可以使用中文等。
+    </p>
+<p>The <code class="code">$dirs</code>参数用来指定文件所在目录，如果为空，则程序将会到系统的include_path下寻找文件是否存在（include_path可在php.ini中设置--Haohappy注）
+    </p>
+<p>
+    <code class="code">$once</code> 参数为布尔类型，只能是true或false，两者区别就和include()和include_once()的区别一样。
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.loadclass.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第 1 章 Zend </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 1.3. Zend::loadClass()</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

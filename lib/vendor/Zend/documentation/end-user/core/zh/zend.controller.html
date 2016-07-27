@@ -1,0 +1,458 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第 7 章 Zend_Controller</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="index.html" title="Zend Framework手册 中文版">
+<link rel="prev" href="zend.console.getopt.configuration.html" title="6.4. Configuring Zend_Console_Getopt">
+<link rel="next" href="zend.controller.getting-started.html" title="7.2. 入门">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="section" href="zend.controller.html#zend.controller.overview" title="7.1. 概述">
+<link rel="section" href="zend.controller.getting-started.html" title="7.2. 入门">
+<link rel="section" href="zend.controller.subclassing.html" title="7.3. 子类化（继承）">
+<link rel="section" href="zend.controller.providedsubclasses.html" title="7.4. Provided Subclasses">
+<link rel="section" href="zend.controller.action.html" title="7.5. Action Controllers">
+<link rel="section" href="zend.controller.plugins.html" title="7.6. 插件">
+<link rel="section" href="zend.controller.modular.html" title="7.7. Using a Conventional Modular Directory Structure">
+<link rel="section" href="zend.controller.exceptions.html" title="7.8. MVC Exceptions">
+<link rel="section" href="zend.controller.migration.html" title="7.9. Migrating from Previous Versions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第 7 章 Zend_Controller</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.console.getopt.configuration.html">上一页</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.getting-started.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.controller"></a>第 7 章 Zend_Controller</h2></div></div></div>
+<div class="toc">
+<p><b>目录</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.controller.html#zend.controller.overview">7.1. 概述</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.introduction">7.1.1. 简介</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.request">7.1.2. Request Object Request对象</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.routing-process">7.1.3. Route Process 路由过程</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.dispatching">7.1.4. Dispatch Process 分配过程</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.response">7.1.5. Response Object 响应对象</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.getting-started.html">7.2. 入门</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.introduction">7.2.1. 简介</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration">7.2.2. 服务器设置</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap">7.2.3. Bootstrap文件</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure">7.2.4. 目录结构</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.overview.defaultcontroller">7.2.5. 默认的控制器</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.subclassing.html">7.3. 子类化（继承）</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.introduction">7.3.1.  简介</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.conventions">7.3.2. 约定（规则）</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.router.interface">7.3.3. Router 接口</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.dispatcher.interface">7.3.4. Dispatcher 接口</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.providedsubclasses.html">7.4. Provided Subclasses</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.introduction">7.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.request.http">7.4.2. Zend_Controller_Request_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter">7.4.3. Zend_Controller_RewriteRouter</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.http">7.4.4. Zend_Controller_Response_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.cli">7.4.5. Zend_Controller_Response_Cli</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.action.html">7.5. Action Controllers</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.introduction">7.5.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.initialization">7.5.2. Object initialization</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.prepostdispatch">7.5.3. Pre- and Post-Dispatch Hooks</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.accessors">7.5.4. Accessors</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.utilmethods">7.5.5. Utility Methods</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.plugins.html">7.6. 插件</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.introduction">7.6.1. 简介</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.controller.modular.html">7.7. Using a Conventional Modular Directory Structure</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.introduction">7.7.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.directories">7.7.2. Specifying Module Controller Directories</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.router">7.7.3. Routing to modules</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.defaultcontroller">7.7.4. Module or Global Default Controller</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.exceptions.html">7.8. MVC Exceptions</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.introduction">7.8.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.handling">7.8.2. How can you handle exceptions?</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.internal">7.8.3. MVC Exceptions You May Encounter</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.migration.html">7.9. Migrating from Previous Versions</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerotwo">7.9.1. Migrating from 0.2.0 or before to 0.6.0</a></span></dt></dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.overview"></a>7.1. 概述</h2></div></div></div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.introduction"></a>7.1.1. 简介</h3></div></div></div>
+<p>			Zend_Controller是使用MVC模式来构建一个站点的基础。Zend_Controller体系是一个轻量的，模块化和可扩展的体系。它只提供最核心的必要的部分，允许开发者有很大的自由来灵活地构建自己的站点。使用Zend_Controller的站点，其文件组织和代码结构会比较相似。
+		</p>
+<p>			
+		</p>
+<p>
+			<code class="code">Zend_Controller</code> 的工作流(workflow)是通过几个组件来实现的。虽然不需要完全理解这几个组件的含义，如果你对工作流程有点了解是很有帮助的。
+
+			</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+						<code class="code">Zend_Controller_Front</code>是Zend_Controller_Controller体系的组织者，它是FrontController设计模式的实现。Zend_Controller_Front处理服务器接受的所有请求，并最后负责将请求分配给各个ActionController(<code class="code">Zend_Controller_Action</code>)
+					</p></li>
+<li>
+<p>                 
+						<code class="code">Zend_Controller_Request_Abstract</code>用于处理用户请求，提供各种类方法来设置和获得Controller和action的名称及各种请求的参数。另外，它可以跟踪其中的action是否已经被<code class="code">Zend_Controller_Dispatcher</code>分配。本抽象类的子类可用于封装整个请求环境，允许router从中获取用户请求相关信息，或设置controller和action的名称。
+					</p>
+<p>                        
+						Zend Framework默认使用<code class="code">Zend_Controller_Request_Http</code>类来处理用户请求，该类可用于访问HTTP请求相关信息（用户请求不一定通过HTTP，那么就需要你自己实现相关的类--Haohappy注），
+                    </p>
+</li>
+<li>
+<p>
+                        <code class="code">Zend_Controller_Router_Interface</code>用于定义router。路由是将检查用户请求并决定由哪一个controller，和其中哪一个 Action来接受请求的过程。request对象中的Controller,action和可选的参数将被<code class="code">Zend_Controller_Dispatcher</code>处理。路由只发生一次：当请求被服务器接收到时，在分配到第一个控制器之前。
+						
+						(所谓router，和我们熟知的网络路由器的功能是很相似的，具有判断网络地址和选择路径的功能，这里就是用来定位到某个控制器中的某个方法 --Haohappy注) 
+                    </p>
+<p>                      
+						默认的router是<code class="code">Zend_Controller_Router</code>，它将一个<code class="code">Zend_Controller_Request_Http</code>指定的URI分解成controller,action和参数。例如：URL<code class="code">http://localhost/foo/bar/key/value</code>将被分解成<code class="code">foo</code> controller,
+                        <code class="code">bar</code> action,并带有参数<code class="code">key</code>，参数值为<code class="code">value</code>.
+					</p>
+</li>
+<li>
+<p>                   
+				<code class="code">Zend_Controller_Dispatcher_Interface</code>接口用于定义dispatcher（分配器，或称调度器、派遣器等）。
+
+				“分配”是指从request对象中获取controller和action的名称，并映射到controller文件/类及其中action类方法的过程。如果controller或action不存在，会将请求分配到默认的控制器和方法进行处理。
+
+                    </p>
+<p>                       
+					实际上分配过程包括初始化controller类和调用类方法。和路由不一样，路由只发生一次，而分配是一个循环发生的过程。如果request对象的分配状态被重设为false，则循环就会重复，调用request中设置的方法。如果request对象的分配状态被设置成true，则分配过程结束。
+                    </p>
+<p>                       
+
+					默认的dispatcher是<code class="code">Zend_Controller_Dispatcher</code>。它规定了控制器类命名首字母大写，并以Controller结尾，而action方法则是首字母小写，以Action结尾，例如：
+					<code class="code">SomeFooController::barAction</code>. 
+
+					在例子中，控制器是<code class="code">somefoo</code>，而action是<code class="code">bar</code>.
+
+					</p>
+<p>                      
+					另外，在加载一个控制器的时候，你可以指定一个<code class="code">module</code>（模块）。有了module，我们可以将controller放在一个子目录中，而不用全部放在controllers目录下。要使用module，可以在front controller中设置参数 <code class="code">useModules</code>：
+
+                    </p>
+<pre class="programlisting">
+						$front-&gt;setParam('useModules', true);
+						
+					</pre>
+<p>
+                       举个例子，看下面的URL:
+                    </p>
+<pre class="programlisting">
+						http://example.com/user/news/action
+					
+					</pre>
+<p>                    
+					在上面的例子中，我们指定了'user'模块，并调用其中的news控制器。dispatcher会将其解释成<code class="code">User_NewsController</code>类，并在<code class="code">User/NewsController.php</code>文件中寻找该类。
+                    </p>
+<p>
+                    Module非常有用，当你想把代码分散到子目录中去的时候，或者使用第三方代码时，或者在不同的应用中重用相同的控制器时。
+                    </p>
+</li>
+<li><p>
+					<code class="code">Zend_Controller_Action</code>是最基本的控制器。每个具体的控制器都是从Zend_Controller_Action类继承而来，是Zend_Controller_Action的子类，并且有自己的action方法。
+					</p></li>
+<li>
+<p>                     
+					<code class="code">Zend_Controller_Response_Abstract</code>定义了基础的响应类，用于收集并返回action的响应，包括响应的头部(header)和主体(body)，由于它使用了 <code class="code">__toString()</code>方法，所以可以直接用echo来一次性输出所有header和内容。
+
+                    </p>
+<p>                       
+						默认的响应类是<code class="code">Zend_Controller_Response_Http</code>，它很适合于HTTP环境下使用。
+                    </p>
+</li>
+</ul></div>
+<p>		
+
+			Zend_Controller的工作流程相当简单。<code class="code">Zend_Controller_Front</code>接收一个请求，然后由<code class="code">Zend_Controller_Router</code>来决定分配给哪个controller。<code class="code">Zend_Controller_Router</code>把URI分解，便于设定请求中的controller和action的名称。<code class="code">Zend_Controller_Front</code>接着进入一个分配循环，调用Zend_Controller_Dispatcher，把dispatcher传给request，来调用请求中指定的具体的(或默认的)controller和action进行处理。在controller结束后，又把控制权交加给 <code class="code">Zend_Controller_Front</code>。如果controller发现需要调用另一个controller（request的分配状态被清零），循环会一直继续直到另一次分配执行完毕。
+		</p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.request"></a>7.1.2. Request Object Request对象</h3></div></div></div>
+<p>           
+			Request对象是一个简单的“值对象”(value object)，在 <code class="code">Zend_Controller_Front</code>和router、dispatcher和controller间传递。它封装了controller、action名称及要传递给某个action的参数，还有请求环境中的其它信息，请求环境可以是HTTP、命令行或PHP-GTK等。
+		</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>                
+				controller的名称可以通过<code class="code">getControllerName()</code> 和<code class="code">setControllerName()</code>来访问和设置。
+			</p></li>
+<li><p>                
+				action的名称可以通过<code class="code">getActionName()</code> 和<code class="code">setActionName()</code>来访问和设置。
+			</p></li>
+<li><p>             
+			传递给action的参数是一个关联数组，可以通过<code class="code">getParams()</code>和 <code class="code">setParams()</code>访问和设置，或者只访问和设置其中一个参数，可以用<code class="code">getParam()</code> 和 <code class="code">setParam()</code>。
+			</p></li>
+</ul></div>
+<p>
+           根据请求的不同类型，不同的请求类中可能有各种可用的方法，例如默认的请求类是<code class="code">Zend_Controller_Request_Http</code>，它有一些用于获取请求URI、路径信息，$_GET和$_POST参数等的类方法。
+        </p>
+<p>            
+			request对象被传递给front controller，或者如果没有提供request对象，会自动在分配过程一开始时实例化生成，在路由发生之前。request对象会被传递给dispatch循环中的每个对象。
+        </p>
+<p>         
+		另外，request对象在测试时非常有用。程序员可能会构造请求环境，包括controller、action、参数、URI等，并传递请求对象到front controller，来测试整个程序的工作流。同时使用request和response对象，精细和准确的单元测试将变成可能。
+        </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.routing-process"></a>7.1.3. Route Process 路由过程</h3></div></div></div>
+<p>
+			在你构建第一个控制器之前，你需要理解Zend_Controller_Router中的重定向过程是如何工作的。记住工作流程分为两步：一是路由（routing），只发生一次；二是分配（dispatching），循环过程。
+		</p>
+<p>
+         <code class="code">Zend_Controller_Front</code> 调用Zend_Controller_Router（或者你自己注册的router）来使一个URI映射到一个controller及其中的action上。<code class="code">Zend_Controller_Router</code>从request对象中获取URI，并分解之，决定将调用的controller、action和其它URL参数，并把分解所得的这些结果存入request对象。
+		</p>
+<p>
+			router使用很简单的方法来决定使用的controller及其action：
+
+			</p>
+<pre class="programlisting">
+				http://framework.zend.com/controller/action/
+			</pre>
+<p>
+			上面controller就是我们要采用的控制器，action就是我们要采用的action。
+		</p>
+<p>
+			可选择地，参数可以在URI中定义，并传递给controller。格式为key/value　：
+
+			</p>
+<pre class="programlisting">
+				http://framework.zend.com/controller/action/key1/value1/
+			</pre>
+<p>
+		</p>
+<p>	
+
+			如果URL中controller或action/这部份没有写，<code class="code">Zend_Controller_Dispatcher</code>会尝试从request对象的参数中获取相应的值，如果没有找到，则使用默认值。不论controller还是action，默认都是调用index。如：
+
+				</p>
+<pre class="programlisting">
+				http://framework.zend.com/roadmap/future/
+				Controller: roadmap
+				Action    : future
+
+				http://framework.zend.com/roadmap/
+				Controller: roadmap
+				Action    : index
+
+				http://framework.zend.com/
+				Controller: index
+				Action    : index
+				</pre>
+<p>
+			</p>
+<p>     
+			你也可以通过几种方式把controller放在子目录或模块下：
+			</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>                    
+				使用下划线_来命名控制器，例如：<code class="code">http://framework.zend.com/admin_roadmap/future</code>　将映射到Admin_RoadmapController控制器。如果你不想使用下划线，也可以使用其它分隔符号，通过dispatcher的setPathSeparator()方法可以设置。
+                </p></li>
+<li>
+<p>                   
+				通过设置front controller的<code class="code">useModules</code>参数，你可以使用干净漂亮的URI来访问子目录下的控制器。上例将访问<code class="code">http://framework.zend.com/admin/roadmap/future</code>。要达到这个目的，可以在front controller或者router中设置<code class="code">useModules</code>参数：
+                </p>
+<pre class="programlisting">
+				$front-&gt;setParam('useModules', true);
+				// or
+				$router-&gt;setParam('useModules', true);
+				</pre>
+<p>                    
+					这样的设置对于基本的router和RewriteRouter都有效。
+                </p>
+</li>
+</ul></div>
+<div class="note"><table border="0" summary="Note: Flexibility 灵活性">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">Flexibility 灵活性</th>
+</tr>
+<tr><td align="left" valign="top"><p>             
+				如果你想得到更多灵活性，你可以看看这里：
+				<a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter" title="7.4.3. Zend_Controller_RewriteRouter">第 7.4.3 节 “Zend_Controller_RewriteRouter”</a>。
+            </p></td></tr>
+</table></div>
+<p>           
+		controller和其中的action名称，及任何参数都在request对象中设置。当<code class="code">Zend_Controller_Front</code>进行dispatch循环时，request对象将被传递给 <code class="code">Zend_Controller_Dispatcher</code>。
+		</p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.dispatching"></a>7.1.4. Dispatch Process 分配过程</h3></div></div></div>
+<p>         
+			“分配”（Dispatching，是指分发请求到具体的控制器的过程，也是调用控制器和方法的过程，从这个角度说理解为“调度”更为准确 --Haohappy注）是根据request对象(<code class="code">Zend_Controller_Request_Abstract</code>)，从中得到controller和action名称及参数，然后实例化一个controller并调用其中方法的过程。如果没有发现controller和action的名称，它会使用默认值。 <code class="code">Zend_Controller_Dispatcher</code>指定<code class="code">index</code>作为默认值，但允许开发者自行指定默认值，可以通过<code class="code">setDefaultController()</code>和<code class="code">setDefaultAction()</code>方法。
+		</p>
+<p>        
+		调度过程发生于front controller内部的一个循环中。在调度发生之前，前端控制器把请求分解，得到控制器、方法的名称及参数，然后进行一个调度循环，分派请求。
+        </p>
+<p>           
+		在每次迭代的开始，request对象中都会有个标识变量(flag)来指示当前action是否已经被分配。如果一个action或者pre/postDispatch(分配前/后)插件清空了该标识变量，则分配过程会继续下去，尝试再次分配该请求。通过改变请求中的controller和/或action，或重设flag，程序员可以定义一定的“请求链”并执行。
+        </p>
+<p>
+            The action controller method that controlls such dispatching is
+            <code class="code">_forward()</code>; call this method from any of the
+            pre/postDispatch() or action methods, providing a controller,
+            action, and optionally any additional parameters you may wish to
+            send to the new action:
+
+		控制分配过程的类方法是 <code class="code">_forward()</code>，在任何 pre/postDispatch()方法或者action方法中调用该方法，即可调用另一个action：
+        </p>
+<pre class="programlisting">
+			public function myAction()
+			{
+			  // 进行一些处理...    
+			  //跳转到另一个action,FooController::barAction():
+			  $this-&gt;_forward('foo', 'bar', array('baz' =&gt; 'bogus'));
+			}
+			</pre>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.response"></a>7.1.5. Response Object 响应对象</h3></div></div></div>
+<p>
+         response对象与request对象从逻辑上说是相对应的，它的目的是收集服务器返回的内容的header和body。另外，front controller将把捕捉到的异常传递到response对象中，允许程序员优雅地处理异常。这个功能可以通过设设置 <code class="code">Zend_Controller_Front::throwExceptions(true)</code>来实现：
+        </p>
+<pre class="programlisting">
+$front-&gt;throwExceptions(true);
+</pre>
+<p>           
+			由于response对象使用了<code class="code">__toString()</code>方法，所以你可以很安全地用echo来输出该对象。也就是这样使用：
+        </p>
+<pre class="programlisting">
+echo $controller-&gt;getResponse();
+
+// or
+$response = $controller-&gt;getResponse();
+echo $response;
+</pre>
+<p>
+          程序员应当在controller中使用response对的是，不要直接输出内容或头部，应该把这些输出放到response对象中去：
+        </p>
+<pre class="programlisting">
+// Within an action controller action:
+// Set a header
+$this-&gt;getResponse()
+    -&gt;setHeader('Content-Type', 'text/html')
+    -&gt;appendBody($content);
+</pre>
+<p>         
+			这样做，所有的header会在发送内容之前设置一次。
+        </p>
+<p>
+           程序中是否发生异常，可以使用<code class="code">isException()</code>来检查response对象的flag，并且通过<code class="code">getException()</code>来得到该异常。另外，你也可以定制自己的response对象，使程序出错时转向到出错信息页、记录异常信息或格式化异常信息等。
+        </p>
+<p>           
+			在front controller进行dispatch()之后，你可以得到response对象，或者请求front controller返回response对象而不是直接显示输出。
+        </p>
+<pre class="programlisting">
+// retrieve post-dispatch:
+//得到dispatch后的响应：
+$front-&gt;dispatch();
+$response = $front-&gt;getResponse();
+if ($response-&gt;isException()) {
+    // log, mail, etc...
+}
+
+// Or, have the front controller dispatch() process return it
+// 或者，让front controller在dispatch()执行过程中返回响应
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+
+// do some processing...
+
+// finally, echo the response
+//最后，用echo输出响应信息
+echo $response;
+</pre>
+<p>
+        默认地，异常信息不会被显示。要显示异常信息，需要通过调用<code class="code">renderExceptions()</code>，或者启用front controller的throwExceptions()方法，例如：
+        </p>
+<pre class="programlisting">
+$response-&gt;renderExceptions(true);
+$front-&gt;dispatch($request, $response);
+
+// 或者
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+$response-&gt;renderExceptions();
+echo $response;
+
+// 或者
+$front-&gt;throwExceptions(true);
+$front-&gt;dispatch();
+</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.console.getopt.configuration.html">上一页</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.getting-started.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.4. Configuring Zend_Console_Getopt </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 7.2. 入门</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

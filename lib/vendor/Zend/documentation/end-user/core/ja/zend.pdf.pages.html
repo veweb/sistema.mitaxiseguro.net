@@ -1,0 +1,141 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>20.4. ドキュメントのページ</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="prev" href="zend.pdf.save.html" title="20.3. PDF ドキュメントへの変更内容の保存">
+<link rel="next" href="zend.pdf.drawing.html" title="20.5. 描画">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">20.4. ドキュメントのページ</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.pdf.save.html">前のページ</a> </td>
+<th width="60%" align="center">第20章 Zend_Pdf</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.pdf.drawing.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.pdf.pages"></a>20.4. ドキュメントのページ</h2></div></div></div>
+<p>
+    PDF ドキュメントのページの抽象化を行うのが
+    <code class="code">Zend_Pdf_Page</code> クラスです。
+    </p>
+<p>
+    PDF ページは既存の PDF から読み込むこともできますし、
+    新しく作成することもできます。
+    </p>
+<p>
+    新しいページを取得するには、直接 <code class="code">Zend_Pdf_Page</code>
+    オブジェクトを作成するか、<code class="code">Zend_Pdf::newPage()</code>
+    メソッドをコールします。このメソッドは <code class="code">Zend_Pdf_Page</code>
+    オブジェクトを返します。<code class="code">Zend_Pdf::newPage()</code>
+    の場合は、すでにドキュメントにアタッチされているページを作成するという点が異なります。
+    こうするとそのページを複数の PDF ドキュメントで使いまわすことができませんが、
+    多少高速になります
+    <sup>[<a name="id4870974" href="#ftn.id4870974">6</a>]</sup>。どちらの手法を使用するかはあなたしだいです。
+    </p>
+<p>
+    <code class="code">Zend_Pdf::newPage()</code> メソッドおよび <code class="code">Zend_Pdf_Page</code>
+    のコンストラクタは、どちらも同じ形式のパラメータを受け取ります。
+    ページサイズを ($x, $y) 形式のポイント数 (1/72 インチ)
+    で表したものか、定義済みの定数のうちのいずれかになります。
+    以下の定数が定義されています。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Zend_Pdf_Page::SIZE_A4</p></li>
+<li><p>Zend_Pdf_Page::SIZE_A4_LANDSCAPE</p></li>
+<li><p>Zend_Pdf_Page::SIZE_LETTER</p></li>
+<li><p>Zend_Pdf_Page::SIZE_LETTER_LANDSCAPE</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+    ドキュメントのページは、<code class="code">Zend_Pdf</code> クラスの public メンバである
+    <code class="code">$pages</code> に保存されます。これは <code class="code">Zend_Pdf_Page</code>
+    オブジェクトの配列です。これによってページの並び順も定義され、
+    一般的な配列と同じように操作することができます。
+    </p>
+<div class="example">
+<a name="id4871070"></a><p class="title"><b>例 20.4. PDF ドキュメントのページの操作</b></p>
+<pre class="programlisting">&lt;?php
+...
+// ページの並び順を反転します。
+$pdf-&gt;pages = array_reverse($pdf-&gt;pages);
+...
+// 新しいページを追加します。
+$pdf-&gt;pages[] = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
+// 新しいページを追加します。
+$pdf-&gt;pages[] = $pdf-&gt;newPage(Zend_Pdf_Page::SIZE_A4);
+
+// 指定したページを削除します。
+unset($pdf-&gt;pages[$id]);
+
+...
+?&gt;</pre>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4870974" href="#id4870974">6</a>] </sup>
+        これは Zend_Pdf モジュールのバージョン 1.0 の制限事項であり、
+        将来のバージョンではなくなる予定です。しかし、ドキュメント間で
+        ページを共有するには、アタッチされていないページのほうが
+        常によい結果となるでしょう。
+        </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.pdf.save.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.pdf.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.pdf.drawing.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">20.3. PDF ドキュメントへの変更内容の保存 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 20.5. 描画</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

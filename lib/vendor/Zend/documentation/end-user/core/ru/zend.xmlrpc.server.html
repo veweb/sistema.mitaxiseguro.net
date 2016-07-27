@@ -1,0 +1,601 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>29.3. Zend_XmlRpc_Server</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="prev" href="zend.xmlrpc.client.html" title="29.2. Zend_XmlRpc_Client">
+<link rel="next" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.xmlrpc.server.html#zend.xmlrpc.server.introduction" title="29.3.1. Введение">
+<link rel="subsection" href="zend.xmlrpc.server.html#zend.xmlrpc.server.usage" title="29.3.2. Основы использования">
+<link rel="subsection" href="zend.xmlrpc.server.html#zend.xmlrpc.server.structure" title="29.3.3. Структура сервера">
+<link rel="subsection" href="zend.xmlrpc.server.html#zend.xmlrpc.server.conventions" title="29.3.4. Соглашения">
+<link rel="subsection" href="zend.xmlrpc.server.html#zend.xmlrpc.server.namespaces" title="29.3.5. Использование пространства имен">
+<link rel="subsection" href="zend.xmlrpc.server.html#zend.xmlrpc.server.request" title="29.3.6. Специальные объекты запросов">
+<link rel="subsection" href="zend.xmlrpc.server.html#zend.xmlrpc.server.response" title="29.3.7. Специальные объекты ответов">
+<link rel="subsection" href="zend.xmlrpc.server.html#zend.xmlrpc.server.fault" title="29.3.8. Обработка исключений через сообщения об ошибке">
+<link rel="subsection" href="zend.xmlrpc.server.html#zend.xmlrpc.server.caching" title="29.3.9. Кэширование определений сервера между запросами">
+<link rel="subsection" href="zend.xmlrpc.server.html#zend.xmlrpc.server.use" title="29.3.10. Примеры использования">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">29.3. Zend_XmlRpc_Server</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.xmlrpc.client.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 29. Zend_XmlRpc</th>
+<td width="20%" align="right"> <a accesskey="n" href="coding-standard.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.xmlrpc.server"></a>29.3. Zend_XmlRpc_Server</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.server.introduction"></a>29.3.1. Введение</h3></div></div></div>
+<p>
+            Zend_XmlRpc_Server задуман как полнофункциональный XML-RPC сервер,
+            следующий <a href="http://www.xmlrpc.com/spec" target="_top">спецификациям
+            на www.xmlrpc.com</a>. Кроме того, он реализует метод
+            <code class="code">system.multicall()</code>, позволяющий добавлять несколько
+            запросов в один.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.server.usage"></a>29.3.2. Основы использования</h3></div></div></div>
+<p>
+            Наиболее простой пример использования:
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/XmlRpc/Server.php';
+require_once 'My/Service/Class.php';
+
+$server = new Zend_XmlRpc_Server();
+$server-&gt;setClass('My_Service_Class');
+echo $server-&gt;handle();</pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.server.structure"></a>29.3.3. Структура сервера</h3></div></div></div>
+<p>
+            Zend_XmlRpc_Server состоит из множества компонент от собственно
+            сервера до объектов запросов, ответов и сообщений об ошибке.  
+
+        </p>
+<p>
+            Для загрузки Zend_XmlRpc_Server разработчик должен прикрепить классы
+            или функции к серверу через методы <code class="code">setClass()</code> и
+            <code class="code">addFunction()</code>.
+
+        </p>
+<p>
+            После этого можно передать объект <code class="code">Zend_XmlRpc_Request</code>
+            методу <code class="code">Zend_XmlRpc_Server::handle()</code>; если он не был
+            передан, то будет проинциализирован объект
+            <code class="code">Zend_XmlRpc_Request_Http</code>, при этом данные запроса
+            берутся из <code class="code">php://input</code>. 
+
+        </p>
+<p>
+            Затем <code class="code">Zend_XmlRpc_Server::handle()</code> пытается определить
+            подходящий обработчик, основываясь на запрошенном методе. После
+            этого он возвращает основанный на
+            <code class="code">Zend_XmlRpc_Response</code> объект ответа или объект сообщения
+            об ошибке <code class="code">Zend_XmlRpc_Server_Fault</code>. Эти объекты имеют
+            метод <code class="code">__toString()</code>, который возвращает валидный XML-RPC
+            ответ в формате XML, что позволяет выводить эти объекты
+            непосредственно через <code class="code">echo()</code>.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.server.conventions"></a>29.3.4. Соглашения</h3></div></div></div>
+<p>
+            Zend_XmlRpc_Server позволяет разработчикам прикреплять функции и
+            методы класса, которые называются "диспетчерируемыми XML-RPC
+            методами". Через Zend_Server_Reflection он проводит интроспекцию по
+            всем прикрепленным методам, используя docblock'и функций и методов
+            для установки текста справки и сигнатур методов.
+
+        </p>
+<p>
+            Не обязательно, чтобы типы в XML-RPC один-в-один соответствовали
+            типам в PHP. Тем не менее, для наилучшего результата код пытается
+            угадать наиболее подходящий тип, основываясь на значениях
+            дескрипторов @param и @return. Некоторые типы в XML-RPC не имеют
+            эквивалентов в PHP и должны указываться в phpdoc. В их список
+            входят:
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    dateTime.iso8601, дата в формате YYYYMMDDTHH:mm:ss
+
+                </p></li>
+<li><p>base64, данные, закодированные по алгоритму base64</p></li>
+<li><p>struct, любой ассоциативный массив</p></li>
+</ul></div>
+<p>
+            Пример того, как указывается XML-RPC тип 
+
+        </p>
+<pre class="programlisting">&lt;?php
+/**
+* Это пример функции
+*
+* @param base64 $val1 Закодированные в base64 данные
+* @param dateTime.iso8601 $val2 Дата в ISO-формате
+* @param struct $val3 Ассоциативный массив
+* @return struct
+*/
+function myFunc($val1, $val2, $val3)
+{
+}</pre>
+<p>
+            PhpDocumentor не проводит валидацию типов, определенных для
+            параметров или возвращаемых значений, поэтому это не должно 
+            повлиять на вашу документацию по API. Указание типов необходимо,
+            если сервер проводит валидацию передаваемых методу параметров.
+
+        </p>
+<p>
+            Будет совершенно корректным с точки зрения синтаксиса определять
+            набор возможных типов как для параметров, так и для возвращаемых
+            значений; спецификация XML-RPC даже рекомендует, чтобы
+            system.methodSignature возвращал массив всех
+            возможных сигнатур метода (т.е. все возможные комбинации параметров
+            и возвращаемых значений). Вы можете делать это точно так же, как
+            обычно делаете для PhpDocumentor, используя оператор '|'. 
+
+        </p>
+<pre class="programlisting">&lt;?php
+/**
+* Это пример функции
+*
+* @param string|base64 $val1 Строка или закодированные в base64 данные
+* @param string|dateTime.iso8601 $val2 Строка или дата в ISO-формате
+* @param array|struct $val3 Обычный нумерованный массив или ассоциативный массив
+* @return boolean|struct
+*/
+function myFunc($val1, $val2, $val3)
+{
+}</pre>
+<p>
+            Тем не менее, следует учесть, что множество сигнатур может сбить с
+            толку разработчиков, использующих данный веб-сервис; иначе говоря,
+            следует стремится к тому, чтобы XML-RPC метод имел только одну
+            сигнатуру.    
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.server.namespaces"></a>29.3.5. Использование пространства имен</h3></div></div></div>
+<p>
+            В XML-RPC есть такое понятие, как пространства имен; по существу,
+            это позволяет группировать методы посредством разделенных точкой
+            пространств имен. Это позволяет предотвратить конфликты имен
+            методов, предоставляемых разными классами. Например, обычно XML-RPC
+            сервер предоставляет несколько методов в пространстве имен 'system':
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>system.listMethods</p></li>
+<li><p>system.methodHelp</p></li>
+<li><p>system.methodSignature</p></li>
+</ul></div>
+<p>
+            В нашем случае они соответствуют методам с теми же именами в
+            Zend_XmlRpc_Server. 
+
+        </p>
+<p>
+            Если необходимо добавить пространства имен для обслуживаемых
+            методов, то просто укажите пространство имен в качестве параметра
+            при вызове соответствующего метода для прикрепления функции или
+            класса: 
+
+        </p>
+<pre class="programlisting">&lt;?php
+// Все открытые методы в My_Service_Class можно будет вызывать как
+// myservice.имя_метода
+$server-&gt;setClass('My_Service_Class', 'myservice');
+
+// Функцию 'somefunc' можно будет вызывать как funcs.somefunc
+$server-&gt;addFunction('somefunc', 'funcs');</pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.server.request"></a>29.3.6. Специальные объекты запросов</h3></div></div></div>
+<p>
+            В большинстве случаев вы можете использовать включенный по умолчанию
+            в Zend_XmlRpc_Server тип запроса – Zend_XmlRpc_Request_Http. Тем не
+            менее, может потребоваться использование XML-RPC через CLI, GUI или
+            другие окружения, журналирование приходящих запросов. Для этого вы
+            можете создавать специальные объекты запроса, которые наследуют от
+            Zend_XmlRpc_Request. Важно помнить при этом, что
+            методы getMethod() и getParams() должны быть реализованы таким
+            образом, чтобы XML-RPC сервер мог получить из них ту информацию,
+            которая необходима для обработки запроса.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.server.response"></a>29.3.7. Специальные объекты ответов</h3></div></div></div>
+<p>
+            Как и в случае объектов запросов, Zend_XmlRpc_Server может
+            возвращать специальные объекты ответов; по умолчанию возвращается
+            объект Zend_XmlRpc_Response_Http, который отправляет соответствующий
+            XML-RPC заголовок <code class="code">Content-Type</code>. Одними из возможных
+            целей использования специальных объектов являются журналирование
+            ответов или отправка ответов обратно на STDOUT.
+
+        </p>
+<p>
+            Для того чтобы использовать специальный класс ответа, используйте
+            метод <code class="code">Zend_XmlRpc_Server::setResponseClass()</code> до вызова
+            метода <code class="code">handle()</code>.
+            
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.server.fault"></a>29.3.8. Обработка исключений через сообщения об ошибке</h3></div></div></div>
+<p>
+            Zend_XmlRpc_Server отлавливает исключения, сгенерированные
+            вызываемым методом и генерирует ответ с сообщением об ошибке сразу,
+            как только исключение поймано. Однако по умолчанию сообщение и код
+            исключения не используются в ответе с сообщением об ошибке. Это
+            сделано намеренно для того, чтобы защитить ваш код, т.к. многие
+            исключения могут предоставлять информацию о коде приложения или
+            среде выполнения, предназначенные разработчику.
+
+        </p>
+<p>
+            Тем не менее, можно включать классы исключений в список разрешенных
+            для отображения в ответах с сообщением об ошибке. Для этого
+            используйте Zend_XmlRpc_Server_Fault::attachFaultException() для
+            включения данного класса исключения в список разрешенных.   
+
+        </p>
+<pre class="programlisting">&lt;?php
+Zend_XmlRpc_Server_Fault::attachFaultException('My_Project_Exception');</pre>
+<p>
+            Если вы используете класс исключения, от которого наследуют другие
+            исключения в проекте, то можете cразу включить все "семейство"
+            исключений в список разрешенных. Zend_XmlRpc_Server_Exceptions
+            всегда находится в списке разрешенных исключений для того, чтобы
+            сообщать об определенных внутренних ошибках (вызов несуществующего
+            метода и т.д.).
+
+        </p>
+<p>
+            На любое исключение, не включенное в список разрешенных, будет
+            генерироваться ответ с кодом ошибки '404' и сообщением 'Unknown
+            error'.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.server.caching"></a>29.3.9. Кэширование определений сервера между запросами</h3></div></div></div>
+<p>
+            Прикрепление большого количества классов к экземпляру XML-RPC
+            сервера может отнимать много ресурсов – каждый класс должен
+            проверяться с использованием Reflection API (через
+            Zend_Server_Reflection), который создает список всех возможных
+            сигнатур методов для передачи классу сервера. 
+
+        </p>
+<p>
+            Чтобы сократить потерю производительности, можно использовать
+            Zend_XmlRpc_Server_Cache для кэширования определений сервера между
+            запросами. Если комбинировать его с __autoload(), то это может дать
+            значительный прирост производительности.
+
+        </p>
+<p>
+            Пример использования:
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend.php';
+require_once 'Zend/XmlRpc/Server.php';
+require_once 'Zend/XmlRpc/Server/Cache.php';
+
+function __autoload($class)
+{
+    Zend::loadClass($class);
+}
+
+$cacheFile = dirname(__FILE__) . '/xmlrpc.cache';
+$server = new Zend_XmlRpc_Server();
+
+if (!Zend_XmlRpc_Server_Cache::get($cacheFile, $server)) {
+    require_once 'My/Services/Glue.php';
+    require_once 'My/Services/Paste.php';
+    require_once 'My/Services/Tape.php';
+
+    $server-&gt;setClass('My_Services_Glue', 'glue');
+    $server-&gt;setClass('My_Services_Paste', 'paste');
+    $server-&gt;setClass('My_Services_Tape', 'tape');
+
+    Zend_XmlRpc_Server_Cache::save($cacheFile, $server);
+}
+
+echo $server-&gt;handle();</pre>
+<p>
+            В этом примере производится попытка получить определение сервера из
+            файла xmlrpc.cache, находящегося в той же директории, что и скрипт.
+            Если попытка не удалась, то загружаются нужные классы и
+            прикрепляются к экземпляру сервера, затем создается новый файл кэша
+            с определением сервера. 
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.server.use"></a>29.3.10. Примеры использования</h3></div></div></div>
+<p>
+            Ниже приведено несколько примеров использования, показывающий полный
+            набор возможных вариантов, доступных разработчикам. Примеры
+            использования построены на основе предоставленных ранее примеров.
+
+        </p>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.server.use.case1"></a>29.3.10.1. Основы использования</h4></div></div></div>
+<p>
+                В примере ниже прикрепляется функция в качестве
+                диспетчерируемого XML-RPC метода и обрабатываются входящие
+                вызовы.
+
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/XmlRpc/Server.php';
+
+/**
+ * Возвращает сумму MD5 переданного значения
+ *
+ * @param string $value Value to md5sum
+ * @return string MD5 sum of value
+ */
+function md5Value($value)
+{
+    return md5($value);
+}
+
+$server = new Zend_XmlRpc_Server();
+$server-&gt;addFunction('md5Value');
+echo $server-&gt;handle();</pre>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.server.use.case2"></a>29.3.10.2. Прикрепление класса</h4></div></div></div>
+<p>
+                Пример ниже иллюстрирует прикрепление открытых методов класса
+                как диспетчерируемых XML-RPC методов.
+
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/XmlRpc/Server.php';
+require_once 'Services/Comb.php';
+
+$server = new Zend_XmlRpc_Server();
+$server-&gt;setClass('Services_Comb');
+echo $server-&gt;handle();</pre>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.server.use.case3"></a>29.3.10.3. Прикрепление нескольких классов с использованием пространств имен</h4></div></div></div>
+<p>
+                Пример ниже демонстрирует прикрепление нескольких классов,
+                каждый со своим пространством имен.
+
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/XmlRpc/Server.php';
+require_once 'Services/Comb.php';
+require_once 'Services/Brush.php';
+require_once 'Services/Pick.php';
+
+$server = new Zend_XmlRpc_Server();
+$server-&gt;setClass('Services_Comb', 'comb');
+$server-&gt;setClass('Services_Brush', 'brush');
+$server-&gt;setClass('Services_Pick', 'pick');
+echo $server-&gt;handle();</pre>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.server.use.case4"></a>29.3.10.4. Указание исключений как используемых для ответов с сообщением об ошибке</h4></div></div></div>
+<p>
+                Пример ниже позволяет любым наследующим от Services_Exception
+                классам предоставлять свои коды и сообщения для подстановки в
+                ответ с сообщением об ошибке.  
+
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/XmlRpc/Server.php';
+require_once 'Zend/XmlRpc/Server/Fault.php';
+require_once 'Services/Exception.php';
+require_once 'Services/Comb.php';
+require_once 'Services/Brush.php';
+require_once 'Services/Pick.php';
+
+// Включение Services_Exceptions в список разрешенных исключений
+Zend_XmlRpc_Server_Fault::attachFaultException('Services_Exception');
+
+$server = new Zend_XmlRpc_Server();
+$server-&gt;setClass('Services_Comb', 'comb');
+$server-&gt;setClass('Services_Brush', 'brush');
+$server-&gt;setClass('Services_Pick', 'pick');
+echo $server-&gt;handle();</pre>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.server.use.case5"></a>29.3.10.5. Использование специальных объектов запроса</h4></div></div></div>
+<p>
+                В примере ниже инстанцируется специальный объект запроса и
+                передается серверу для обработки.
+
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/XmlRpc/Server.php';
+require_once 'Zend/XmlRpc/Server/Fault.php';
+require_once 'Services/Request.php';
+require_once 'Services/Exception.php';
+require_once 'Services/Comb.php';
+require_once 'Services/Brush.php';
+require_once 'Services/Pick.php';
+
+// Включение Services_Exceptions в список разрешенных исключений
+Zend_XmlRpc_Server_Fault::attachFaultException('Services_Exception');
+
+$server = new Zend_XmlRpc_Server();
+$server-&gt;setClass('Services_Comb', 'comb');
+$server-&gt;setClass('Services_Brush', 'brush');
+$server-&gt;setClass('Services_Pick', 'pick');
+
+// Создание объекта запроса
+$request = new Services_Request();
+
+echo $server-&gt;handle($request);</pre>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.server.use.case6"></a>29.3.10.6. Использование специальных объектов ответа</h4></div></div></div>
+<p>
+                Пример ниже демонстрирует указание специального класса ответа
+                для возвращаемого ответа.  
+
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/XmlRpc/Server.php';
+require_once 'Zend/XmlRpc/Server/Fault.php';
+require_once 'Services/Request.php';
+require_once 'Services/Response.php';
+require_once 'Services/Exception.php';
+require_once 'Services/Comb.php';
+require_once 'Services/Brush.php';
+require_once 'Services/Pick.php';
+
+// Включение Services_Exceptions в список разрешенных исключений
+Zend_XmlRpc_Server_Fault::attachFaultException('Services_Exception');
+
+$server = new Zend_XmlRpc_Server();
+$server-&gt;setClass('Services_Comb', 'comb');
+$server-&gt;setClass('Services_Brush', 'brush');
+$server-&gt;setClass('Services_Pick', 'pick');
+
+// Создание объекта запроса
+$request = new Services_Request();
+
+// Должен использоваться специальный класс ответа
+$server-&gt;setResponseClass('Services_Response');
+
+echo $server-&gt;handle($request);</pre>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.server.use.case7"></a>29.3.10.7. Кэширование определений сервера между запросами</h4></div></div></div>
+<p>
+                Пример ниже демонстрирует кэширование определений сервера между 
+                запросами.
+
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/XmlRpc/Server.php';
+require_once 'Zend/XmlRpc/Server/Fault.php';
+require_once 'Zend/XmlRpc/Server/Cache.php';
+require_once 'Services/Request.php';
+require_once 'Services/Response.php';
+require_once 'Services/Exception.php';
+require_once 'Services/Comb.php';
+require_once 'Services/Brush.php';
+require_once 'Services/Pick.php';
+
+// Указание файла кэша
+$cacheFile = dirname(__FILE__) . '/xmlrpc.cache';
+
+// Включение Services_Exceptions в список разрешенных исключений
+Zend_XmlRpc_Server_Fault::attachFaultException('Services_Exception');
+
+$server = new Zend_XmlRpc_Server();
+
+// Попытка получить определение сервера из кэша
+if (!Zend_XmlRpc_Server_Cache::get($cacheFile, $server)) {
+    $server-&gt;setClass('Services_Comb', 'comb'); 
+    $server-&gt;setClass('Services_Brush', 'brush');
+    $server-&gt;setClass('Services_Pick', 'pick');
+
+    // Сохранение в кэш
+    Zend_XmlRpc_Server_Cache::save($cacheFile, $server));
+}
+
+// Создание объекта запроса
+$request = new Services_Request();
+
+// Должен использоваться специальный класс ответа
+$server-&gt;setResponseClass('Services_Response');
+
+echo $server-&gt;handle($request);</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.xmlrpc.client.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.xmlrpc.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="coding-standard.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">29.2. Zend_XmlRpc_Client </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> Приложение A. Стандарт кодирования на PHP в Zend Framework'е</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

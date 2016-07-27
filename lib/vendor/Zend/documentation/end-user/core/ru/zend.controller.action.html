@@ -1,0 +1,272 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.5. Контроллеры действий</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="prev" href="zend.controller.providedsubclasses.html" title="7.4. Готовые подклассы">
+<link rel="next" href="zend.controller.plugins.html" title="7.6. Плагины">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.introduction" title="7.5.1. Введение">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.initialization" title="7.5.2. Инициализация объекта">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.prepostdispatch" title="7.5.3. Перехватчики Pre- и Post-Dispatch">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.accessors" title="7.5.4. Методы доступа">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.utilmethods" title="7.5.5. Вспомогательные методы">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.5. Контроллеры действий</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.providedsubclasses.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.plugins.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.action"></a>7.5. Контроллеры действий</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.introduction"></a>7.5.1. Введение</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller_Action</code> является абстрактным классом, который можно использовать в реализации контроллеров действий для последующего их использования с фронт-контроллером при разработке сайта, основанного на паттерне Model-View-Controller (MVC).
+
+		</p>
+<p>
+            Для того, чтобы использовать Zend_Controller_Action, нужно создать
+            его подкласс в действующей директории контроллеров (или расширить
+            его для создания своего базового класса контроллеров действий).
+            Подкласс может содержать методы действий, которые соответствуют
+            различным действиям, которыми должен управлять контроллер.
+            Маршрутизатор и диспетчер компоненты Zend_Controller будут
+            рассматривать любые методы в классе контроллера с именем,
+            заканчивающимся на 'Action', как возможные действия контроллеров.
+
+        </p>
+<p>
+            Для примера предположим, что ваш класс определен следующим образом: 
+
+        </p>
+<pre class="programlisting">
+class FooController extends Zend_Controller_Action
+{
+    public function barAction()
+    {
+        // do something
+    }
+
+    public function bazAction()
+    {
+        // do something
+    }
+}
+</pre>
+<p>
+            Приведенный выше класс FooController (контроллер 'foo') определяет
+            два действия - 'bar' и 'baz'.
+
+        </p>
+<p>
+            Класс может быть дополнен инициализирующим методом, методом,
+            используемым по умолчанию (если не был вызван метод, либо вызван
+            несуществующий метод), перехватчиками pre- и post-dispatch и
+            различными вспомогательными методами.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.initialization"></a>7.5.2. Инициализация объекта</h3></div></div></div>
+<p>
+            Несмотря на то, что вы всегда можете переопределить конструктор
+            контроллера действий, мы не рекомендуем делать этого.
+            Zend_Controller_Action::__construct() выполняет некоторые важные
+            задачи, такие, как регистрация объектов запроса и ответа, аргументов
+            вызова, переданных из фронт-контроллера. Если необходимо
+            переопределить контроллер, то всегда вызывайте конструктор
+            родительского класса parent::__construct($request, $response,
+            $invokeArgs) в конструкторе подкласса.
+
+        </p>
+<p>
+            Для осуществления своего инстанцирования более подходящим
+            является метод init(), который вызывается в конце __construct().
+            Например, если вы хотите устанавливать соединение с БД при
+            инстанцировании:
+
+        </p>
+<pre class="programlisting">
+class FooController extends Zend_Controller_Action
+{
+    public function init()
+    {
+        $this-&gt;db = Zend_Db::factory('Pdo_Mysql', array(
+            'host'     =&gt; 'myhost',
+            'username' =&gt; 'user',
+            'password' =&gt; 'XXXXXXX',
+            'dbname'   =&gt; 'website'
+        ));
+    }
+}
+</pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.prepostdispatch"></a>7.5.3. Перехватчики Pre- и Post-Dispatch</h3></div></div></div>
+<p>
+            Zend_Controller_Action определяет два метода, которые вызываются до
+            и после требуемого действия, preDispatch() и postDispatch(). Они
+            могут быть полезны во многих случаях: проверка аутентификации и прав
+            пользователя до запуска действия (действие может быть пропущено
+            через вызов _forward() в preDispatch()) или размещение
+            сгенерированного содержимого в боковой части сайта (метод
+            postDispatch()).
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.accessors"></a>7.5.4. Методы доступа</h3></div></div></div>
+<p>
+            Вместе с объектом регистрируются некоторые объекты и переменные, для
+            них есть свои методы доступа.
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                <span class="emphasis"><em>Объект запроса</em></span>: getRequest() может
+                использоваться для получения объекта запроса, используемого при
+                вызове действия.
+
+            </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>Объект ответа</em></span>: getResponse() может
+                    использоваться для получения объекта ответа. Некоторые
+                    типичные вызовы могут выглядеть следующим образом:
+
+                </p>
+<pre class="programlisting">
+$this-&gt;getResponse()-&gt;setHeader('Content-Type', 'text/xml');
+$this-&gt;getResponse()-&gt;appendBody($content);
+</pre>
+</li>
+<li><p>
+                    <span class="emphasis"><em>Аргументы вызова</em></span>: фронт-контроллер
+                    может добавлять параметры в маршрутизатор, диспетчер и
+                    контроллер действий. Для их получения используйте
+                    getInvokeArg($key), можно также извлечь весь список
+                    аргументов, используя метод getInvokeArgs().
+
+                </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>Параметры запроса</em></span>: Объект запроса
+                    включает в себя параметры запроса, такие, как значения _GET,
+                    _POST, или параметры, определенные в пути URL. Для их
+                    получения используйте <code class="code">_getParam($key)</code> или
+                    <code class="code">_getAllParams()</code>. Вы можете также установить
+                    параметры запроса, используя метод <code class="code">_setParam()</code>,
+                    это полезно при перенаправлении на другие действия через
+                    метод <code class="code">_forward()</code>.
+
+                </p>
+<p>
+                    Для определения того, существует ли параметр или нет
+                    (полезно для логического ветвления), используйте
+                    _hasParam($key).
+
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.utilmethods"></a>7.5.5. Вспомогательные методы</h3></div></div></div>
+<p>
+            Кроме методов доступа, Zend_Controller_Action имеет несколько
+            вспомогательных методов для выполнения некотрорых общих задач в
+            методах действий (или в pre-/post-dispatch).
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <span class="emphasis"><em>_forward($action, $controller = null, $module =
+                        null, array $params = null)</em></span>: выполняет другое
+                        действие. Если этоот метод вызывается в preDispatch(),
+                        то текущее действие будет пропущено, вместо этого
+                        начинает выполняться другое действие. В остальных
+                        случаях выполнение этого действия начинается только
+                        после выполнения текущего действия.
+
+                </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>_redirect($url, $code = 302)</em></span>:
+                    производит перенаправление по другому адресу. Этот метод
+                    принимает URL и код статуса HTTP (необязательный параметр).
+                    Перенаправление производится сразу и выполнение программы
+                    прерывается.
+
+                </p>
+<p>
+                    Если был задан код статуса, то он будет передан команде PHP
+                    header() при произведении перенаправления.
+
+                </p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.providedsubclasses.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.plugins.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.4. Готовые подклассы </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 7.6. Плагины</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

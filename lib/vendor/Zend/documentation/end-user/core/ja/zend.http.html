@@ -1,0 +1,362 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第13章 Zend_Http</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.gdata.exception.html" title="12.9. Gdata の例外の捕捉">
+<link rel="next" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - 高度な使用法">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.http.html#zend.http.client" title="13.1. Zend_Http_Client - 導入">
+<link rel="section" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - 高度な使用法">
+<link rel="section" href="zend.http.client.adapters.html" title="13.3. Zend_Http_Client - 接続アダプタ">
+<link rel="section" href="zend.http.cookies.html" title="13.4. Zend_Http_Cookie および Zend_Http_CookieJar">
+<link rel="section" href="zend.http.response.html" title="13.5. Zend_Http_Response">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第13章 Zend_Http</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.gdata.exception.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.http.client.advanced.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.http"></a>第13章 Zend_Http</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.http.html#zend.http.client">13.1. Zend_Http_Client - 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.introduction">13.1.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.configuration">13.1.2. 設定パラメータ</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.basic-requests">13.1.3. 基本的な HTTP リクエストの処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.parameters">13.1.4. GET や POST へのパラメータの追加</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.advanced.html">13.2. Zend_Http_Client - 高度な使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.redirections">13.2.1. HTTP リダイレクト</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.cookies">13.2.2. クッキーの追加および持続的なクッキーの使用</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.custom_headers">13.2.3. 独自のリクエストヘッダの設定</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.file_uploads">13.2.4. ファイルのアップロード</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.raw_post_data">13.2.5. 生の POST データの送信</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.http_authentication">13.2.6. HTTP 認証</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.multiple_requests">13.2.7. 同一クライアントでの複数リクエストの送信</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.adapters.html">13.3. Zend_Http_Client - 接続アダプタ</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapters.overview">13.3.1. 概要</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#id4840021">13.3.2. ソケットアダプタ</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.proxy">13.3.3. プロキシアダプタ</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.test">13.3.4. テストアダプタ</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.extending">13.3.5. 独自の接続アダプタの作成</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.cookies.html">13.4. Zend_Http_Cookie および Zend_Http_CookieJar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.introduction">13.4.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.instantiating">13.4.2. Zend_Http_Cookie のインスタンスの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.accessors">13.4.3. Zend_Http_Cookie のゲッターメソッド</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.matching">13.4.4. Zend_Http_Cookie が条件に一致するものかどうかを調べる</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar">13.4.5. Zend_Http_CookieJar のインスタンスの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.adding_cookies">13.4.6. Zend_Http_CookieJar オブジェクトへのクッキーの追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.getting_cookies">13.4.7. Zend_Http_CookieJar オブジェクトからのクッキーの取得</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.response.html">13.5. Zend_Http_Response</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.introduction">13.5.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.testers">13.5.2. 真偽チェック用のメソッド</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.acessors">13.5.3. アクセス用メソッド群</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.static_parsers">13.5.4. 静的 HTTP レスポンスパーサ</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.http.client"></a>13.1. Zend_Http_Client - 導入</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.introduction"></a>13.1.1. 導入</h3></div></div></div>
+<p>
+            Zend_Http_Client は、Hyper-Text Transfer Protocol (HTTP)
+            リクエストを簡単に扱うためのインターフェイスを提供します。
+            Zend_Http_Client は、HTTP クライアントとしての最低限の機能をサポートしているだけでなく、
+            HTTP 認証やファイルのアップロードといった高度な機能もサポートしています。
+            リクエストに成功すると (失敗しても) Zend_Http_Response
+            オブジェクトを返します。これを使用すると、レスポンスのヘッダや本文にアクセスできます
+            (<a href="zend.http.response.html" title="13.5. Zend_Http_Response">項13.5. 「Zend_Http_Response」</a> を参照ください)。
+        </p>
+<p>
+            クラスのコンストラクタには、オプションの引数として URL を指定することができます
+            (文字列か Zend_Uri_Http オブジェクトのどちらでも可能です)。
+            また、オプションで設定パラメータの配列を指定することもできます。
+            どちらも省略することが可能で、その場合は後から
+            setUri() メソッドや setConfig() メソッドで指定します。
+            </p>
+<div class="example">
+<a name="id4838504"></a><p class="title"><b>例 13.1. Zend_Http_Client のインスタンスの作成</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    $client = new Zend_Http_Client('http://example.org', array(
+        'maxredirects' =&gt; 0,
+        'timeout'      =&gt; 30));
+        
+    // これは、上とまったく同じことです
+    $client = new Zend_Http_Client();
+    $client-&gt;setUri('http://example.org');
+    $client-&gt;setConfig(array(
+        'maxredirects' =&gt; 0,
+        'timeout'      =&gt; 30));
+
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.configuration"></a>13.1.2. 設定パラメータ</h3></div></div></div>
+<p>
+            コンストラクタおよび setConfig() メソッドでは
+            設定パラメータの連想配列を受け取ります。
+            これらのパラメータは、設定してもしなくてもかまいません。
+            すべてのパラメータにはデフォルト値があります。
+            </p>
+<div class="table">
+<a name="id4838573"></a><p class="title"><b>表 13.1. Zend_Http_Client の設定パラメータ</b></p>
+<table summary="Zend_Http_Client の設定パラメータ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>パラメータ</th>
+<th>説明</th>
+<th>期待する値</th>
+<th>デフォルト値</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>maxredirects</td>
+<td>リダイレクトをたどる最大数 (0 = たどらない)</td>
+<td>integer</td>
+<td>5</td>
+</tr>
+<tr>
+<td>strictredirects</td>
+<td>リダイレクトの際に RFC に厳密に従うかどうか (<a href="zend.http.client.advanced.html#zend.http.client.redirections" title="13.2.1. HTTP リダイレクト">項13.2.1. 「HTTP リダイレクト」</a> を参照ください)</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>useragent</td>
+<td>ユーザエージェントを表す文字列 (リクエストヘッダに付加されます)</td>
+<td>string</td>
+<td>'Zend_Http_Client'</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>接続タイムアウト秒数</td>
+<td>integer</td>
+<td>10</td>
+</tr>
+<tr>
+<td>httpversion</td>
+<td>HTTP プロトコルのバージョン</td>
+<td>float (1.1 あるいは 1.0)</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>adapter</td>
+<td>使用する接続アダプタクラス (<a href="zend.http.client.adapters.html" title="13.3. Zend_Http_Client - 接続アダプタ">項13.3. 「Zend_Http_Client - 接続アダプタ」</a> を参照ください)</td>
+<td>mixed</td>
+<td>'Zend_Http_Client_Adapter_Socket'</td>
+</tr>
+<tr>
+<td>keepalive</td>
+<td>
+                             サーバとの keep-alive 接続を有効にするかどうか。
+                             同一サーバに連続してリクエストが発生する場合などに便利で、性能を向上させるでしょう。
+                            </td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.basic-requests"></a>13.1.3. 基本的な HTTP リクエストの処理</h3></div></div></div>
+<p>
+            シンプルな HTTP リクエストを実行するのは非常に簡単で、単に
+            request() メソッドを実行するだけです。たったの三行ですんでしまいます。
+            </p>
+<div class="example">
+<a name="id4839494"></a><p class="title"><b>例 13.2. シンプルな GET リクエストの処理</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    $client = new Zend_Http_Client('http://example.org');
+    $response = $client-&gt;request();
+?&gt;</pre>
+</div>
+<p>
+            request() メソッドには、オプションでパラメータを指定することができます。
+            このパラメータはリクエストメソッドで、HTTP プロトコルで定義されている
+            GET、POST、PUT、HEAD、DELETE、TRACE、OPTIONS そして CONNECT
+            のいずれかを指定可能です。
+            <sup>[<a name="id4839509" href="#ftn.id4839509">1</a>]</sup>. 
+            利便性を高めるため、これらはすべてクラス定数として定義されています。たとえば
+            Zend_Http_Request::GET、Zend_Http_Request::POST などのようになっています。
+        </p>
+<p>
+            メソッドを指定しない場合は、直近の setMethod() コールで指定されたメソッドを使用します。
+            setMethod() もコールされていない場合は、デフォルトのリクエストメソッドとして
+            GET を使用します (上の例を参照ください)。
+            </p>
+<div class="example">
+<a name="id4839561"></a><p class="title"><b>例 13.3. GET 以外のリクエストメソッドの使用</b></p>
+<pre class="programlisting">
+&lt;?php
+    // POST リクエストを実行します
+    $response = $client-&gt;request('POST');
+    
+    // POST リクエストを実行するためのもうひとつの方法です
+    $client-&gt;setMethod(Zend_Http_Client::POST);
+    $response = $client-&gt;request();
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.parameters"></a>13.1.4. GET や POST へのパラメータの追加</h3></div></div></div>
+<p>
+            GET パラメータを HTTP リクエストに追加するのは簡単です。
+            URL の一部として指定するか、あるいは setParameterGet() メソッドを使用します。
+            このメソッドは、GET パラメータの名前を最初の引数、そして
+            GET パラメータの値を二番目の引数として受け取ります。
+            さらに便利に使用するため、setParameterGet()
+            メソッドでは name =&gt; value 形式の連想配列で GET 変数を指定することもできます。
+            これは、複数の GET パラメータを指定する必要がある場合に便利です。
+            </p>
+<div class="example">
+<a name="id4839626"></a><p class="title"><b>例 13.4. GET パラメータの設定</b></p>
+<pre class="programlisting">
+&lt;?php
+    // setParameterGet メソッドで GET パラメータを指定します
+    $client-&gt;setParameterGet('knight', 'lancelot');
+
+    // このような URL を指定するのと同じことです
+    $client-&gt;setUri('http://example.com/index.php?knight=lancelot');
+    
+    // 複数のパラメータを一度に追加します
+    $client-&gt;setParameterGet(array(
+        'first_name'  =&gt; 'Bender',
+        'middle_name' =&gt; 'Bending'
+        'made_in'     =&gt; 'Mexico',
+    ));
+?&gt;</pre>
+</div>
+<p>
+        </p>
+<p>
+            GET パラメータはあらゆるリクエストメソッドで送信できますが、
+            POST パラメータは POST リクエストの本文としてしか送信できません。
+            POST パラメータをリクエストに追加する方法は、GET
+            パラメータを追加する場合と非常に似ています。
+            使用するのは setParameterPost() メソッドで、このメソッドの使用法は
+            setParameterGet() メソッドと同じです。
+            </p>
+<div class="example">
+<a name="id4839644"></a><p class="title"><b>例 13.5. POST パラメータの設定</b></p>
+<pre class="programlisting">
+&lt;?php
+    // POST パラメータを設定します
+    $client-&gt;setParameterPost('language', 'fr');
+    
+    // 複数の POST パラメータを設定します。そのうちのひとつは複数の値を持ちます。
+    $client-&gt;setParameterPost(array(
+        'language'  =&gt; 'es',
+        'country'   =&gt; 'ar',
+        'selection' =&gt; array(45, 32, 80)
+    ));
+?&gt;</pre>
+</div>
+<p>
+            POST リクエストを送信する際には、GET パラメータと POST
+            パラメータの両方を設定できることに注意しましょう。
+            一方、POST パラメータを POST 以外のリクエストで指定しても何のエラーも発生しませんが、
+            これは無意味です。POST 以外のリクエストでは、
+            POST パラメータを指定しても無視されます。
+        </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4839509" href="#id4839509">1</a>] </sup>
+                RFC 2616 - <a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_top">http://www.w3.org/Protocols/rfc2616/rfc2616.html</a> を参照ください。
+              </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.gdata.exception.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.http.client.advanced.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">12.9. Gdata の例外の捕捉 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 13.2. Zend_Http_Client - 高度な使用法</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

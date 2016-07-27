@@ -1,0 +1,176 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.8. Interoperando com Java Lucene</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="prev" href="zend.search.extending.html" title="22.7. Extensibilidade">
+<link rel="next" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="zend.search.java-lucene.html#zend.search.index-creation.file-formats" title="22.8.1. Formatos de arquivo">
+<link rel="subsection" href="zend.search.java-lucene.html#zend.search.index-creation.index-directory" title="22.8.2. Diretório índice">
+<link rel="subsection" href="zend.search.java-lucene.html#zend.search.java-lucene.source-code" title="22.8.3. Código fonte Java">
+<link rel="subsection" href="zend.search.java-lucene.html#zend.search.java-lucene.jar" title="22.8.4. Usando LuceneIndexCreation.jar">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.8. Interoperando com Java Lucene</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.extending.html">Anterior</a> </td>
+<th width="60%" align="center">Capítulo 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.server.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.java-lucene"></a>22.8. Interoperando com Java Lucene</h2></div></div></div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.file-formats"></a>22.8.1. Formatos de arquivo</h3></div></div></div>
+<p>Arquivos Zend_Search_Lucene são arquivos de índice binários
+    compatíveis com a versão 1.4 ou superior do Lucene.</p>
+<p>Uma descrição detalhada deste formato está disponível aqui: <a href="http://lucene.apache.org/java/docs/fileformats.html" target="_top">http://lucene.apache.org/java/docs/fileformats.html</a>.</p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.index-directory"></a>22.8.2. Diretório índice</h3></div></div></div>
+<p>Após a criação do índice, o diretório índice conterá os seguintes
+    arquivos:</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>O arquivo <code class="filename">segments</code> contém uma lista de
+        segmentos de índice.</p></li>
+<li><p>Os arquivos <code class="filename">*.cfs</code> contém segmentos de
+        índice. Nota! Um índice otimizado terá apenas um único
+        segmento.</p></li>
+<li><p>O arquivo <code class="filename">deletable</code> contém uma lista de
+        arquivos que não são mais utilizados pelo índice, mas que não puderam
+        ser removidos.</p></li>
+</ul></div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.java-lucene.source-code"></a>22.8.3. Código fonte Java</h3></div></div></div>
+<p>A listagem do programa Java abaixo oferece um exemplo de como
+    indexar um arquivo usando Java Lucene:</p>
+<pre class="programlisting">
+/**
+* Index creation:
+*/
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.document.*;
+
+import java.io.*
+
+...
+
+IndexWriter indexWriter = new IndexWriter("/data/my_index", 
+                                          new SimpleAnalyzer(), true);
+
+...
+
+String filename = "/path/to/file-to-index.txt"
+File f = new File(filename);
+
+Document doc = new Document();
+doc.add(Field.Text("path", filename));
+doc.add(Field.Keyword("modified",DateField.timeToString(f.lastModified())));
+doc.add(Field.Text("author", "unknown"));
+FileInputStream is = new FileInputStream(f);
+Reader reader = new BufferedReader(new InputStreamReader(is));
+doc.add(Field.Text("contents", reader));
+
+indexWriter.addDocument(doc);
+        </pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.java-lucene.jar"></a>22.8.4. Usando LuceneIndexCreation.jar</h3></div></div></div>
+<p>Para acelerar o aprendizado do Zend_Search_Lucene, rode o arquivo
+    JAR (Java) abaixo, conforme o exemplo, para gerar um índice a partir da
+    linha de comando. Para maiores informações sobre arquivos JAR visite:
+    <a href="http://java.sun.com/docs/books/tutorial/jar/basics/index.html" target="_top">http://java.sun.com/docs/books/tutorial/jar/basics/index.html</a>.</p>
+<p>O programa LuceneIndexCreation.jar processa arquivos de texto,
+    gerando índices a partir deles . Utilização: </p>
+<pre class="programlisting">
+    java -jar LuceneIndexCreation.jar [-c] [-s] &lt;document_dir&gt; &lt;index_dir&gt;
+    -c   - force index to be case sensitive
+    -s   - store content in the index
+    </pre>
+<p> Este comando processa o diretório
+    <code class="code">&lt;document_dir&gt;</code>, incluíndo todos os seus subdiretórios,
+    produzindo um índice Lucene. O índice é um conjunto de arquivos que serão
+    armazenados em um diretório reservado especificado por
+    <code class="code">&lt;index_dir&gt;</code>.</p>
+<p>Para cada documento a ser indexado, LuceneIndexCreation cria um
+    objeto documento contendo três campos: um campo
+    <span class="emphasis"><em>contents</em></span> que armazena o corpo do documento, um campo
+    <span class="emphasis"><em>modified</em></span> indicando a hora de modificação do arquivo,
+    e um campo <span class="emphasis"><em>path</em></span> contendo o nome e caminho completo
+    para o arquivo.</p>
+<p>O parâmetro <code class="option">-c</code>, quando especificado, força o índice
+    a ser sensível à caixa. Se omitido, todos os termos serão convertidos para
+    caractéres minúsculos antes de serem adicionados ao índice.</p>
+<p>O parâmetro <code class="option">-s</code>, determina que o campo
+    <code class="code">contents</code> seja gravado no índice para ser retornado junto com
+    os campos <code class="code">path</code> e <code class="code">modified</code>.</p>
+<p>Se omitido, <code class="code">contents</code> será indexado e <code class="code">path</code>
+    e <code class="code">modified</code> serão armazenados. Neste caso o conteúdo do
+    documento deverá ser recuperado a partir de uma fonte original indicada
+    pelo campo <code class="code">path</code>.</p>
+<p>Seja criterioso ao usar a opção <code class="option">-s</code>, pois ela
+    aumenta o tamanho do índice em cerca de cinco vezes
+    aproximadamente.</p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.extending.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.server.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.7. Extensibilidade </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> Capítulo 23. Zend_Server</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

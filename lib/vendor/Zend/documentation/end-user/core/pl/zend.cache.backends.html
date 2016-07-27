@@ -1,0 +1,313 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.4. Backendy Zend_Cache</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="prev" href="zend.cache.frontends.html" title="4.3. Frontendy Zend_Cache">
+<link rel="next" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.cache.backends.html#zend.cache.backends.file" title="4.4.1. Zend_Cache_Backend_File">
+<link rel="subsection" href="zend.cache.backends.html#zend.cache.backends.sqlite" title="4.4.2. Zend_Cache_Backend_Sqlite">
+<link rel="subsection" href="zend.cache.backends.html#zend.cache.backends.memcached" title="4.4.3. Zend_Cache_Backend_Memcached">
+<link rel="subsection" href="zend.cache.backends.html#zend.cache.backends.apc" title="4.4.4. Zend_Cache_Backend_APC">
+<link rel="subsection" href="zend.cache.backends.html#zend.cache.backends.platform" title="4.4.5. Zend_Cache_Backend_ZendPlatform">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.4. Backendy Zend_Cache</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.cache.frontends.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 4. Zend_Cache</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.backends"></a>4.4. Backendy Zend_Cache</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.backends.file"></a>4.4.1. Zend_Cache_Backend_File</h3></div></div></div>
+<p>
+            Ten backend przechowuje rekordy bufora w plikach (w wybranym katalogu). 
+        </p>
+<p>
+            Dostępne opcje to :
+        </p>
+<div class="table">
+<a name="id4791528"></a><p class="title"><b>Tabela 4.6. Dostępne opcje</b></p>
+<table summary="Dostępne opcje" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Opcja</th>
+<th>Typ danych</th>
+<th>Domyślna wartość</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">cacheDir</code></td>
+<td><code class="code">string</code></td>
+<td><code class="code">'/tmp/'</code></td>
+<td>
+                              Katalog w którym mają być przechowywane pliki bufora.
+                          </td>
+</tr>
+<tr>
+<td><code class="code">fileLocking</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                            Włącza / wyłącza fileLocking: Może zapobiec uszkodzeniu 
+                            bufora, ale nie ma to znaczenia w serwerach
+                            wielowątkowych lub systemach NFS...
+                          </td>
+</tr>
+<tr>
+<td><code class="code">readControl</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                            Włącza / wyłącza kontrolę odczytu: jeśli włączona, klucz kontrolny
+                            jest załączany w pliku bufora i ten klucz jest porównywany 
+                            z tym obliczonym podczas odczytywania bufora.
+                          </td>
+</tr>
+<tr>
+<td><code class="code">readControlType</code></td>
+<td><code class="code">string</code></td>
+<td><code class="code">'crc32'</code></td>
+<td>
+                            Typ kontroli odczytu (tylko jeśli kontrola odczytu jest włączona). Dostępne wartości to:
+                            'md5' (najlepszy, ale najwolniejszy), 'crc32' (odrobinę mniej bezpieczny, ale szybszy, lepszy wybór),
+                            'strlen' tylko dla testu długości (najszybszy).
+                        </td>
+</tr>
+<tr>
+<td><code class="code">hashedDirectoryLevel</code></td>
+<td><code class="code">int</code></td>
+<td><code class="code">0</code></td>
+<td>
+                              Poziom haszowanej struktury katalogów: 0 oznacza "brak
+                              haszowanej struktury", 1 oznacza "jeden poziom katalogów",
+                              2 oznacza "dwa poziomy"... Ta opcja może przyspieszyć
+                              buforowanie tylko wtedy gdy masz tysiące plików bufora.
+                              Tylko specyficzne testy pomogą Ci wybrać perfekcyjną
+                              wartość. Możliwe, że 1 lub 2 jest dobre na początek.
+                          </td>
+</tr>
+<tr>
+<td><code class="code">hashedDirectoryUmask</code></td>
+<td><code class="code">int</code></td>
+<td><code class="code">0700</code></td>
+<td>
+                              Maska Umask dla haszowanej struktury katalogów.
+                        </td>
+</tr>
+<tr>
+<td><code class="code">fileNamePrefix</code></td>
+<td><code class="code">string</code></td>
+<td><code class="code">'zend_cache'</code></td>
+<td>
+                              przedrostek dla plików bufora ; bądź naprawdę ostrożny
+                              z tą opcją, ponieważ zbyt prosta wartość w katalogu 
+                              systemowego bufora (jak np. /tmp) może spowodować
+                              niechciane działania podczas czyszczenia bufora.
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.backends.sqlite"></a>4.4.2. Zend_Cache_Backend_Sqlite</h3></div></div></div>
+<p>
+            Ten backend przechowuje rekordy bufora w bazie SQLite.
+        </p>
+<p>
+            Dostępne opcje to :
+        </p>
+<div class="table">
+<a name="id4792398"></a><p class="title"><b>Tabela 4.7. Dostępne opcje</b></p>
+<table summary="Dostępne opcje" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Opcja</th>
+<th>Typ danych</th>
+<th>Domyślna wartość</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">cacheDBCompletePath (mandatory)</code></td>
+<td><code class="code">string</code></td>
+<td><code class="code">null</code></td>
+<td>
+                              Kompletna ścieżka (wraz z nazwą pliku) bazy danych SQLite
+                          </td>
+</tr>
+<tr>
+<td><code class="code">automaticVacuumFactor</code></td>
+<td><code class="code">int</code></td>
+<td><code class="code">10</code></td>
+<td>
+                              Włącza / ustawia proces automatycznego czyszczenia
+                              Proces automatycznego czyszczenia defragmentuje plik bazy (i zmniejsza jego rozmiar)
+                              gdy wywoływane są metody clean() lub delete():
+                              0 oznacza brak automatycznego czyszczenia ;
+                              1 oznacza systematyczne czyszczenie (gdy wywoływane są metody delete() lub clean()) ;
+                              x (integer) &gt; 1 =&gt; automatyczne czyszczenie losow 1 raz na x wywołań clean() lub delete().
+                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.backends.memcached"></a>4.4.3. Zend_Cache_Backend_Memcached</h3></div></div></div>
+<p>
+            Ten backend przechowuje rekordy bufora w serwerze memcached. <a href="http://www.danga.com/memcached/" target="_top">memcached</a>
+            jest systemem buforowania w pamięci rozdzielonej o wysokiej wydajności. Aby użyć tego backendu, 
+            potrzebujesz działającego serwera memcached oraz <a href="http://pecl.php.net/package/memcache" target="_top">rozszerzenia PECL memcache</a>.
+        </p>
+<p>
+        	Bądź odstrożny: w tym backendzie nie są obecnie obsługiwane etykiety, 
+        	tak samo jak argument "doNotTestCacheValidity=true".
+        </p>
+<p>
+            Dostępne opcje to :
+        </p>
+<div class="table">
+<a name="id4792534"></a><p class="title"><b>Tabela 4.8. Dostępne opcje</b></p>
+<table summary="Dostępne opcje" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Opcja</th>
+<th>Typ danych</th>
+<th>Domyślna wartość</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">servers</code></td>
+<td><code class="code">array</code></td>
+<td><code class="code">array(array('host' =&gt; 'localhost','port' =&gt; 11211, 'persistent' =&gt; true))</code></td>
+<td>
+                              Tablica serwerów memcached ; każdy serwer memcached jest opisany przez asocjacyjną tablicę :
+                              'host' =&gt; (string) : nazwa serwera memcached, 
+                              'port' =&gt; (int) : port serwera memcached, 
+                              'persistent' =&gt; (bool) : używać czy nie używać stałych połączeń do tego serwera memcached
+                          </td>
+</tr>
+<tr>
+<td><code class="code">compression</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">flase</code></td>
+<td>
+                             wartość true jeśli chcesz użyć kompresji w locie
+                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.backends.apc"></a>4.4.4. Zend_Cache_Backend_APC</h3></div></div></div>
+<p>
+            Ten backend przechowuje rekordy bufora we współdzielonej pamięci za
+            pomocą rozszerzenia <a href="http://pecl.php.net/package/APC" target="_top">APC</a> 
+            (Alternatywny bufor PHP), które oczywiście jest wymagane jeśli chcemy 
+            użyć tego backendu.
+        </p>
+<p>
+            Bądź odstrożny: w tym backendzie nie są obecnie obsługiwane etykiety, 
+        	tak samo jak argument "doNotTestCacheValidity=true".
+        </p>
+<p>
+            Ten backend nie ma żadnych opcji.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.backends.platform"></a>4.4.5. Zend_Cache_Backend_ZendPlatform</h3></div></div></div>
+<p>
+            Ten backend używa API produktu <a href="http://www.zend.com/products/platform" target="_top">Zend Platform</a> do buforowania zawartości. Oczywiście aby użyć tego backendu, musisz mieć zainstalowaną aplikację Zend Platform.
+        </p>
+<p>
+	        Ten backend obsługuje etykiety, ale nie obsługuje trybu <code class="code">CLEANING_MODE_NOT_MATCHING_TAG</code> czyszczenia bufora.
+        </p>
+<p>
+            Ten backend nie ma żadnych opcji.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.cache.frontends.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.cache.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.3. Frontendy Zend_Cache </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> Rozdział 5. Zend_Config</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

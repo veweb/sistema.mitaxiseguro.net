@@ -1,0 +1,388 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第22章 Zend_Search</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.rest.server.html" title="21.3. Zend_Rest_Server">
+<link rel="next" href="zend.search.index-creation.html" title="22.2. インデックスの構築">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.search.html#zend.search.overview" title="22.1. 概要">
+<link rel="section" href="zend.search.index-creation.html" title="22.2. インデックスの構築">
+<link rel="section" href="zend.search.searching.html" title="22.3. インデックスの検索">
+<link rel="section" href="zend.search.query-language.html" title="22.4. クエリ言語">
+<link rel="section" href="zend.search.query-api.html" title="22.5. クエリ作成用の API">
+<link rel="section" href="zend.search.charset.html" title="22.6. 文字セット">
+<link rel="section" href="zend.search.extending.html" title="22.7. 拡張性">
+<link rel="section" href="zend.search.java-lucene.html" title="22.8. Java Lucene との相互運用">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第22章 Zend_Search</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.rest.server.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.index-creation.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.search"></a>第22章 Zend_Search</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.search.html#zend.search.overview">22.1. 概要</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.introduction">22.1.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.documents-and-fields">22.1.2. Document および Field オブジェクト</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.understanding-field-types">22.1.3. フィールド型について理解する</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.index-creation.html">22.2. インデックスの構築</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.creating">22.2.1. 新しいインデックスの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.updating">22.2.2. インデックスの更新</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.document-updating">22.2.3. ドキュメントの更新</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.counting">22.2.4. インデックスの大きさの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.optimization">22.2.5. インデックスの最適化</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.limitations">22.2.6. 制限</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.searching.html">22.3. インデックスの検索</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.query_building">22.3.1. クエリの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results">22.3.2. 検索結果</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results-scoring">22.3.3. 結果の重み付け</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.sorting">22.3.4. 検索結果の並べ替え</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.query-language.html">22.4. クエリ言語</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.terms">22.4.1. 用語</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.fields">22.4.2. フィールド</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.modifiers">22.4.3. 単語の修正子</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.proximity-search">22.4.4. 近接検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boosting">22.4.5. 単語の強調</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boolean">22.4.6. 論理演算子</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.grouping">22.4.7. グループ化</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.field-grouping">22.4.8. フィールドのグループ化</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.escaping">22.4.9. 特殊文字のエスケープ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.query-api.html">22.5. クエリ作成用の API</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.query-api.html#zend.search.queries.exceptions">22.5.1. クエリパーサの例外</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-api.html#zend.search.queries.term-query">22.5.2. 単一の単語のクエリ</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-api.html#zend.search.queries.multiterm-query">22.5.3. 複数の単語のクエリ</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-api.html#zend.search.queries.phrase-query">22.5.4. フレーズクエリ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.charset.html">22.6. 文字セット</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.description">22.6.1. UTF-8 およびシングルバイト文字セットのサポート</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.default_analyzer">22.6.2. デフォルトのテキスト解析器</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.utf_analyzer">22.6.3. UTF-8 互換のテキスト解析器</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.extending.html">22.7. 拡張性</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.analysis">22.7.1. テキスト解析</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.filters">22.7.2. トークンのフィルタリング</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.scoring">22.7.3. 重み付けのアルゴリズム</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.storage">22.7.4. 保存先</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.java-lucene.html">22.8. Java Lucene との相互運用</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.file-formats">22.8.1. ファイルフォーマット</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.index-directory">22.8.2. インデックスディレクトリ</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.source-code">22.8.3. Java のソースコード</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.jar">22.8.4. LuceneIndexCreation.jar の使用法</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.overview"></a>22.1. 概要</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.introduction"></a>22.1.1. 導入</h3></div></div></div>
+<p>
+            Zend_Search_Lucene は、完全に PHP 5
+            で書かれている汎用的なテキスト検索エンジンです。
+            インデックスをファイルシステム上に保存するためデータベースサーバを必要とせず、
+            たいていの PHP ウェブサイト上で動作させることができます。
+            Zend_Search_Lucene は、以下の機能をサポートしています。
+            
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>重要度による検索 - 最もマッチした結果が最初に返されます</p></li>
+<li><p>
+                       さまざまな強力な検索方式: フレーズ検索、ワイルドカード検索、
+                       あいまい検索、範囲指定検索などなど
+                        <sup>[<a name="id4875370" href="#ftn.id4875370">7</a>]</sup>
+                    </p></li>
+<li><p>指定したフィールド (例: タイトル、作者、内容) による検索</p></li>
+</ul></div>
+<p>
+        
+            Zend_Search_Lucene は Apache Lucene プロジェクトから派生したものです。
+            Lucene についての詳細は
+            <a href="http://lucene.apache.org/java/docs/" target="_top">http://lucene.apache.org/java/docs/</a> を参照ください。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.documents-and-fields"></a>22.1.2. Document および Field オブジェクト</h3></div></div></div>
+<p>
+                Zend_Search_Lucene は、ドキュメント単位でインデックスを作成します。
+                ドキュメントは名前つきのフィールドから構成され、
+                検索対象のコンテンツがフィールドの中に含まれます。
+            </p>
+<p>
+                ドキュメントを表すのが Zend_Search_Lucene_Document
+                オブジェクトです。このオブジェクトの中には、フィールドを表す
+                Zend_Search_Lucene_Field オブジェクトが含まれます。
+            </p>
+<p>
+                あらゆる種類の情報がインデックス化される可能性があることに注意しましょう。
+                アプリケーション固有の情報やメタデータをドキュメントのフィールドに格納し、
+                検索結果のドキュメントとして後で取得することができます。
+            </p>
+<p>
+                インデクサを制御するのは、あなたが作成するアプリケーションの役割です。
+                ということは、あなたのアプリケーションからアクセス可能な、
+                あらゆる内容のデータがインデックス化される可能性があるということです。
+                例えばファイルシステム、データベース、HTML フォームなどが考えられます。
+            </p>
+<p>
+                <code class="code">Zend_Search_Lucene_Field</code> クラスには、
+                さまざまな性質のフィールドを作成するための静的メソッドが定義されています。
+            </p>
+<pre class="programlisting">&lt;?php
+$doc = new Zend_Search_Lucene_Document();
+
+// フィールドはトークン化されませんが、インデックス化されて保存されます。
+// 保存されたフィールドは、インデックスから取得することができます。
+$doc-&gt;addField(Zend_Search_Lucene_Field::Keyword('doctype', 
+                                                 'autogenerated'));
+
+// フィールドはトークン化もインデックス化も行われませんが、インデックスに保存されます。
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnIndexed('created', 
+                                                   time()));
+
+// バイナリ文字列フィールドはトークン化もインデックス化も行われません。
+// しかしインデックスには保存されます。
+$doc-&gt;addField(Zend_Search_Lucene_Field::Binary('icon', 
+                                                $iconData));
+
+// フィールドがトークン化・インデックス化されてインデックスに保存されます。
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('annotation', 
+                                              'Document annotation text'));
+
+// フィールドはトークン化されてインデックス化されますが、インデックスには保存されません。
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', 
+                                                  'My document content'));
+
+?&gt;</pre>
+<p>
+                これらの各メソッド (<code class="code">Zend_Search_Lucene_Field::Binary()</code>
+                メソッドを除く) は、オプションのパラメータ
+                <code class="code">$encoding</code> を持っています。これで入力データのエンコーディングを指定します。
+            </p>
+<p>
+                エンコーディングはドキュメントによって異なるでしょうし、
+                同一ドキュメント内でもフィールドによって異なることもあるでしょう。
+
+                </p>
+<pre class="programlisting">&lt;?php
+$doc = new Zend_Search_Lucene_Document();
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('title', $title, 'iso-8859-1'));
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', $contents, 'utf-8'));
+?&gt;</pre>
+<p>
+            </p>
+<p>
+                エンコーディングパラメータを省略した場合は、
+                現在のロケールが処理時に使用されます。たとえば次のようになります。
+                </p>
+<pre class="programlisting">&lt;?php
+setlocale(LC_ALL, 'de_DE.iso-8859-1');
+...
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', $contents));
+?&gt;</pre>
+<p>
+            </p>
+<p>
+                フィールドをインデックス化したり返したりする際には、
+                常に UTF-8 エンコーディングとなります。UTF-8 への変換は自動的に行われます。
+            </p>
+<p>
+                テキスト解析器 (<a href="zend.search.extending.html#zend.search.extending.analysis" title="22.7.1. テキスト解析">以下を参照ください</a>)
+                は、テキストをその他のエンコーディングに変換したりもします。
+                実際、デフォルトの解析器はテキストを 'ASCII//TRANSLIT' エンコーディングに変換します。
+                ここで注意が必要なのは、このような変換は現在のロケールに依存して行われるということです。
+            </p>
+<p>
+                フィールドの名前は自由につけることができます。
+            </p>
+<p>
+                Java Lucene は、検索の際にデフォルトで使用されるフィールド名として "contents" を使用します。
+                Zend_Search_Lucene は、デフォルトではすべてのフィールドを検索します。
+                しかし、この挙動を変更することもできます。詳細は
+                <a href="zend.search.query-language.html#zend.search.query-language.fields" title="22.4.2. フィールド">"デフォルトの検索フィールド"</a>
+                の章を参照ください。
+            </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.understanding-field-types"></a>22.1.3. フィールド型について理解する</h3></div></div></div>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">Keyword</code> フィールドは、保存されインデックス化されます。
+                    つまり、検索した際に元の内容がそのまま返されるということです。
+                    トークン化は行われません (いくつかの単語に分割されることはありません)。
+                    列挙方のデータベースフィールドは、通常は Zend_Search_Lucene の
+                    Keyword フィールドにうまく収まることでしょう。
+                </p></li>
+<li><p>
+                    <code class="code">UnIndexed</code> フィールドは検索対象になりませんが、
+                    検索結果としては返されます。このフィールドに設定する値としては、
+                    データベースのタイムスタンプ、主キー、ファイルシステムのパス
+                    およびその他の外部識別子などがあります。
+                </p></li>
+<li><p>
+                    <code class="code">Binary</code> フィールドは、トークン化もインデックス化も行われません。
+                    しかし、検索結果として取得できるように保存されます。
+                    画像アイコンのようなバイナリデータをバイナリ文字列として
+                    エンコードしたものなどに対して使用します。
+                </p></li>
+<li><p>
+                    <code class="code">Text</code> フィールドは、保存されインデックス化され、
+                    そしてトークン化されます。検索項目として使用し、
+                    かつ検索結果としても取得したいような項目、
+                    例えばタイトルなどを保存するのに適しています。
+                </p></li>
+<li>
+<p>
+                    <code class="code">UnStored</code> フィールドはトークン化されインデックス化されます。
+                    しかしインデックスには保存されません。大量のテキストなどに適しています。
+                    データを保存してしまうとディスク上のインデックスのサイズが大きくなってしまうので、
+                    検索はしたいが結果としてそれを表示する必要がない場合などは、
+                    このフィールドを使用しましょう。Zend_Search_Lucene インデックスを
+                    リレーショナルデータベースと組み合わせて使用する場合などには
+                    UnStored フィールドが実用的に使用できるでしょう。
+                    大きなデータフィールドの内容の検索用に UnStored フィールドに保存し、
+                    結果をデータベースから取得するために、もうひとつ別の ID フィールドを使用します。
+               </p>
+<div class="table">
+<a name="id4880914"></a><p class="title"><b>表 22.1. Zend_Search_Lucene_Field の型</b></p>
+<table summary="Zend_Search_Lucene_Field の型" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>フィールド型</th>
+<th>保存</th>
+<th>インデックス化</th>
+<th>トークン化</th>
+<th>バイナリ</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Keyword</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>UnIndexed</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Binary</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>UnStored</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4875370" href="#id4875370">7</a>] </sup>
+                             現在サポートしているのは、単語検索および複数単語検索、そしてフレーズ検索、論理式およびサブクエリです。
+                           </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.rest.server.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.index-creation.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">21.3. Zend_Rest_Server </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 22.2. インデックスの構築</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10.2. Importer des flux avec Zend_Feed</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="prev" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="next" href="zend.feed.findFeeds.html" title="10.3. Obtenir des flux à partir de pages web">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.2. Importer des flux avec Zend_Feed</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 10. Zend_Feed</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.findFeeds.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.importing"></a>10.2. Importer des flux avec Zend_Feed</h2></div></div></div>
+<p>
+        <code class="code">Zend_Feed</code> permet aux développeurs d'obtenir très facilement 
+        des flux. Si vous connaissez l'URI d'un flux, utilisez simplement la 
+        méthode <code class="code">Zend_Feed::import()</code> :
+        </p>
+<pre class="programlisting">
+        
+&lt;?php
+
+$flux = Zend_Feed::import('http://flux.exemple.com/nomDuFlux');
+
+?&gt;   </pre>
+<p>
+    </p>
+<p>
+        Vous pouvez aussi utiliser <code class="code">Zend_Feed</code> pour aller chercher le 
+        contenu d'un flux à partir d'un fichier ou d'une chaîne PHP :
+        </p>
+<pre class="programlisting">
+&lt;?php
+
+// on importe un flux à partir d'un fichier texte
+$fluxAPartirDeFichierTexte = Zend_Feed::importFile('flux.xml');
+
+// on importe un flux à partir d'une variable PHP de type chaîne
+$fluxAPartirDePHP = Zend_Feed::importString($chaineFlux);
+
+?&gt;</pre>
+<p>
+    </p>
+<p>
+Dans chacun des exemples ci-dessus, une instance d'une classe étendant 
+<code class="code">Zend_Feed_Abstract</code> est renvoyée en cas de succès, selon le 
+type du flux. Si un flux RSS a été obtenu au moyen de l'une des méthodes 
+d'importation décrites ci-dessus, alors un objet 
+<code class="code">Zend_Feed_Rss</code> sera renvoyé. Par contre, si un flux Atom a 
+été importé, alors un objet <code class="code">Zend_Feed_Atom</code> est renvoyé. Les 
+méthodes d'importation déclencheront aussi une exception 
+<code class="code">Zend_Feed_Exception</code> en cas d'échec, par exemple si le flux 
+est illisible ou malformé.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.feed.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.findFeeds.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapitre 10. Zend_Feed </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 10.3. Obtenir des flux à partir de pages web</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

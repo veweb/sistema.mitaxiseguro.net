@@ -1,0 +1,279 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.2. Pierwsze kroki</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="prev" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="next" href="zend.controller.subclassing.html" title="7.3. Rozszerzanie">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.introduction" title="7.2.1. Wprowadzenie">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration" title="7.2.2. Konfiguracja serwera">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap" title="7.2.3. Plik ładujący">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure" title="7.2.4. Struktura katalogów">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.overview.defaultcontroller" title="7.2.5. Domyślny kontroler">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.2. Pierwsze kroki</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.subclassing.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.getting-started"></a>7.2. Pierwsze kroki</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.introduction"></a>7.2.1. Wprowadzenie</h3></div></div></div>
+<p>
+			Klasa <code class="code">Zend_Controller</code> została zbudowana w sposób bardzo 
+			elastyczny. Można ją rozwijać rozszerzając klasy istniejące lub 
+			pisząc nowe klasy implementujące różne interfejsy oraz klasy
+			abstrakcyjne, które są podstawą rodziny klas kontrolera.
+		</p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.server-configuration"></a>7.2.2. Konfiguracja serwera</h3></div></div></div>
+<p>
+			Klasa Zend_Controller została zbudowana w celu zapewnienia 
+			nowoczesnym witrynom estetycznych adresów URL (bez parametrów lub 
+			z ich małą ilością). Wymaga to zmian w konfiguracji serwera www w 
+			kwestii przekierowania żądań do pojedynczego pliku nazwanego 
+			"index.php". Ma on za zadanie ładować klasę 
+			<code class="code">Zend_Controller_Front</code>. Na serwerach Apache 
+			funkcjonalność taka jest dostarczana przez opcjonalny moduł mod_rewrite.
+		</p>
+<p>
+		    Pierwszym krokiem w konfiguracji serwera jest instalacja i uaktywnienie 
+		    mod_rewrite. Następnym krokiem jest stworzenie dwóch plików w głównym 
+		    katalogu serwera www: .htaccess oraz index.php. Plik .htaccess jest 
+		    używany przez serwer Apache i musi zawierać reguły mod_rewrite aby 
+		    przekierować wszystkie żądania do pliku index.php. Najprostszym 
+		    rozwiązaniem jest napisanie reguły mod_rewrite, która przekieruje 
+		    wszystkie żądania do pliku index.php z wyjątkiem żądań do plików 
+		    o wybranych rozszerzeniach. Oto przykład takiego pliku:
+        </p>
+<pre class="programlisting">
+RewriteEngine on
+RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php
+</pre>
+<p>
+			W powyższym przykładzie wszystkie żądania do plików o rozszerzeniach 
+			innych niż wymienione zostaną przekazane do pliku ładującego index.php. 
+			Jest to użyteczne podczas tworzenia aplikacji, jednak potem reguły 
+			powinny wyłączać konkretne katalogi.
+		</p>
+<div class="note"><table border="0" summary="Note: Lokalizacja pliku ładującego">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Lokalizacja pliku ładującego</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+    			Plik ładujący powinien być jedynym plikiem PHP umieszczonym w 
+    			głównym katalogu serwera www.
+			</p></td></tr>
+</table></div>
+<p>
+            Podstawowa funkcjonalność Zend_Controller także obsługuje adresy
+            URL zawierające parametry -- na przykład jak w adresie 
+            <code class="code">index.php?controller=foo&amp;action=bar</code>. Dodatkowo,
+            inny dołączony router, <code class="code">Zend_Controller_RewriteRouter</code>,
+            działa w różnych środowiskach, włączając w to wiele środowisk
+            nie posiadających możliwości takich jakie ma mod_rewrite.
+            Jeśli nie możesz użyć mod_rewrite lub odpowiednika, wciąż będziesz 
+            mógł użyć Zend_Controller dla swojego serwisu.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.bootstrap"></a>7.2.3. Plik ładujący</h3></div></div></div>
+<p>
+		    Po ustawieniu pliku .htaccess file, utwórz nowy plik o nazwie 
+		    <code class="code">index.php</code>. Jest to plik ładujący. Jego zadaniem jest 
+		    jedynie załadowanie klasy Zend_Controller_Front, która powinna być 
+		    umieszczona poza głównym katalogiem serwera.
+		</p>
+<p>
+		    Ze względów bezpieczeństwa Zend odradza przechowywanie jakichkolwiek 
+		    plików PHP w ścieżkach dostępnych poprzez serwer www (wewnątrz 
+		    głównego katalogu serwera www). Jest to bardzo dobrą praktyką, 
+		    powinna być ona stosowana zawsze gdy jest to możliwe.
+		</p>
+<p>
+			Utwórz plik ładujący o nazwie <code class="code">index.php</code> w głównym 
+			katalogu serwera www aby załadować klasę Zend_Controller_Front:
+        </p>
+<pre class="programlisting">&lt;?php
+				
+require_once 'Zend/Controller/Front.php';
+
+Zend_Controller_Front::run('/sciezka/do/kontrolerow');
+
+?&gt;</pre>
+<p>
+			Przeczytaj następna sekcję odnośnie do 
+			<code class="code">/path/to/your/controllers</code>.
+
+			Jak napisano w pliku <code class="code">README.txt</code>, ścieżka do katalogu 
+			zawierającego bibliotekę Zend Framework musi być podana w dyretywie 
+			<code class="code">include_path</code>. Jeśli nie jest ona ustawiona w pliku 
+			<code class="code">php.ini</code>, możesz użyć funkcji <code class="code">set_include_path()</code> w tym pliku, zanim użyjesz <code class="code">require_once()</code>.
+		</p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.directory-structure"></a>7.2.4. Struktura katalogów</h3></div></div></div>
+<p>
+		    Zalecane jest aby witryny zbudowane w oparciu o Zend Framework miały 
+		    podobną strukturę katalogów. Nie zawsze jest to możliwe, jednak w 
+		    większości przypadków jest. Zgodność z tą strukturą spowoduje, że 
+		    kod będzie bardziej zrozumiały dla osób zaznajomionych z konwencjami 
+		    Zend Framework.
+		</p>
+<p>	
+		    Zalecena struktura katalogów dotyczy zarówno bibliotek (Zend oraz 
+		    wszystkich innych) jak i struktury katalogów samej aplikacji.
+        </p>
+<pre class="programlisting">
+/application
+  /models
+  /views
+  /controllers
+/document_root
+  /images
+  /styles
+  .htaccess
+  index.php
+/library
+  /Zend
+</pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Notatka</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Ta sekcja nie jest jeszcze gotowa. Jest ona w trakcie tworzenia
+                i w przyszłości będzie zmieniona.
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.defaultcontroller"></a>7.2.5. Domyślny kontroler</h3></div></div></div>
+<p>
+		    Każda witryna musi mieć zdefiniowany domyślny kontroler. Jest to 
+		    kontroler, który jest wywoływany kiedy w adresie URL nie ma 
+		    określonego kontrolera, np. w takim adresie:
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/
+</pre>
+<p>
+            W dołączonej konfiguracji domyślny kontroler powinien nazywać się
+            <code class="code">IndexController</code>, i powinien być zdefiniowany w pliku
+            <code class="code">IndexController.php</code>. Wewnętrznie odpowiada to
+            kontrolerowi o nazwie 'index'.
+        </p>
+<p>
+            Możesz zmienić nazwę domyślnego kontrolera przed uruchomieniem
+            kontrolera frontowego wywołując metodę <code class="code">setDefaultController()</code> 
+            obiektu kontrolera frontowego lub obiektu dispatchera. Kiedy to
+            robisz, używaj wewnętrznych konwencji nazewnictwa. Dlatego klasa
+            <code class="code">HomeController</code> (w pliku <code class="code">HomeController.php</code>) 
+            odpowiadałaby kontrolerowi <code class="code">home</code>.
+        </p>
+<p>
+            Kontrolery powinny rozszerzać klasę <code class="code">Zend_Controller_Action</code>
+            i powinny być umieszczone w ścieżce kontrolerów.
+        </p>
+<pre class="programlisting">&lt;?php
+				
+require_once 'Zend/Controller/Action.php';
+
+class IndexController extends Zend_Controller_Action 
+{
+	public function indexAction()
+	{
+		echo 'Zostal wywolany IndexController';
+	}
+
+	public function noRouteAction()
+	{
+		$this-&gt;_redirect('/');
+	}
+}
+
+?&gt;</pre>
+<p>
+            Więcej szczegółów na temat domyślnego kontrolera i akcji, jak
+            i tworzenia akcji klas kontrolera będzie w następnych rozdziałach.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Notatka</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Ta sekcja nie jest jeszcze gotowa. Jest ona w trakcie tworzenia
+                i w przyszłości będzie zmieniona.
+            </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.subclassing.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Rozdział 7. Zend_Controller </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 7.3. Rozszerzanie</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

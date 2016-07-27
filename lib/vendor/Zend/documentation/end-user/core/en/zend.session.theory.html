@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>25.5. Theory</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="prev" href="zend.session.globalsessionmanagement.html" title="25.4. Global Session Management">
+<link rel="next" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">25.5. Theory</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.session.globalsessionmanagement.html">Prev</a> </td>
+<th width="60%" align="center">Chapter 25. Zend_Session</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.uri.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.session.theory"></a>25.5. Theory</h2></div></div></div>
+<p>
+        <code class="code">Zend_Session</code> provides an internal interface to encapsulate all access to the singleton
+        <code class="code">$_SESSION</code> using all static methods. In general, developers should not directly access
+        <code class="code">$_SESSION</code>, when using the Zend_Session and Zend_Session_Namespace. However, it is possible for
+        legacy code to coexist with Zend_Session, provided the namespaces used by Zend_Session_Namespace do not overlap
+        with the keys in <code class="code">$_SESSION</code> used by legacy code. Currently, no attempts are made to detect
+        problematic situations where legacy code (or another PHP application) unintentionally share and overlap session
+        state data. Thus, developers are urged to follow the best practices outlined in other sections to avoid
+        complications.
+    </p>
+<p>
+        All management and manipulation of global session management occurs using static "class" methods defined in
+        Zend_Session that affect the overall behavior of sessions managed by Zend_Session_Namespace and related
+        components. Most developers will not need to use Zend_Session directly.
+    </p>
+<p>
+        Unlike <code class="code">$_SESSION</code>, Zend_Session_Namespace logically segregates all session data into separate
+        namespaces, by storing data in a PHP array and storing the array in <code class="code">$_SESSION</code> using the namespace
+        as the key. Constructing an instance of Zend_Session_Namespace returns a non-unique "window" to the selected
+        namespace. Multiple "windows" are possible for the same namespace, although there is only one namespace possible
+        for a given programmatic key (the name of the namespace). These instances serve to restrict manipulation of
+        session state data to specific namespaces, as explicitly specified when creating an instance of
+        Zend_Session_Namespace. Zend_Session instances therefore help restrict scope by introducing a locally scoped
+        variable (Zend_Session_Namespace instance object) that effectively imports a specific session namespace into the
+        local scope.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.session.globalsessionmanagement.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.session.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.uri.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">25.4. Global Session Management </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 26. Zend_Uri</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

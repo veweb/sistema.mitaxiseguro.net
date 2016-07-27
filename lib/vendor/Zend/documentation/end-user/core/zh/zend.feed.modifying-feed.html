@@ -1,0 +1,134 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10.7. Modifying Feed and Entry structures</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="prev" href="zend.feed.consuming-atom-single-entry.html" title="10.6. Consuming a Single Atom Entry">
+<link rel="next" href="zend.feed.custom-feed.html" title="10.8. Custom Feed and Entry Classes">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.7. Modifying Feed and Entry structures</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.consuming-atom-single-entry.html">上一页</a> </td>
+<th width="60%" align="center">第 10 章 Zend_Feed</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.custom-feed.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.modifying-feed"></a>10.7. Modifying Feed and Entry structures</h2></div></div></div>
+<p>
+        <code class="code">Zend_Feed</code>'s natural syntax extends to constructing and modifying feeds and entries as well
+        as reading them. You can easily turn your new or modified objects back into well-formed XML for saving
+        to a file or sending to a server.
+    </p>
+<div class="example">
+<a name="id4767968"></a><p class="title"><b>例 10.5. Modifying an Existing Feed Entry</b></p>
+<pre class="programlisting">
+&lt;?php
+
+$feed = new Zend_Feed_Atom('http://atom.example.com/feed/1');
+$entry = $feed-&gt;current();
+
+$entry-&gt;title = 'This is a new title';
+$entry-&gt;author-&gt;email = 'my_email@example.com';
+
+echo $entry-&gt;saveXML();
+
+?&gt;   </pre>
+<p>
+            This will output a full (includes <code class="code">&lt;?xml ... &gt;</code> prologue) XML representation of the
+            new entry, including any necessary XML namespaces.
+        </p>
+<p>
+            Note that the above will work even if the existing entry does not already have an author tag. You can
+            use as many levels of <code class="code">-&gt;</code> access as you like before getting to an assignment; all of the
+            intervening levels will be created for you automatically if necessary.
+        </p>
+</div>
+<p>
+        If you want to use a namespace other than <code class="code">atom:</code>, <code class="code">rss:</code>, or <code class="code">osrss:</code>
+        in your entry, you need to register the namespace with <code class="code">Zend_Feed</code> using <code class="code">
+        Zend_Feed::registerNamespace()</code>. When you are modifying an existing element, it will always
+        maintain its original namespace. When adding a new element, it will go into the default namespace if
+        you do not explicitly specify another namespace.
+    </p>
+<div class="example">
+<a name="id4768918"></a><p class="title"><b>例 10.6. Creating an Atom Entry with Elements of Custom Namespaces</b></p>
+<pre class="programlisting">
+&lt;?php
+
+$entry = new Zend_Feed_EntryAtom();
+// id is always assigned by the server in Atom
+$entry-&gt;title = 'my custom entry';
+$entry-&gt;author-&gt;name = 'Example Author';
+$entry-&gt;author-&gt;email = 'me@example.com';
+
+// Now do the custom part.
+Zend_Feed::registerNamespace('myns', 'http://www.example.com/myns/1.0');
+
+$entry-&gt;{'myns:myelement_one'} = 'my first custom value';
+$entry-&gt;{'myns:container_elt'}-&gt;part1 = 'first nested custom part';
+$entry-&gt;{'myns:container_elt'}-&gt;part2 = 'second nested custom part';
+
+echo $entry-&gt;saveXML();
+
+?&gt;   </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.consuming-atom-single-entry.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.feed.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.custom-feed.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.6. Consuming a Single Atom Entry </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 10.8. Custom Feed and Entry Classes</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

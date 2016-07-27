@@ -1,0 +1,121 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1.5. Zend::exception()</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.html" title="Глава 1. Zend">
+<link rel="prev" href="zend.isreadable.html" title="1.4. Zend::isReadable()">
+<link rel="next" href="zend.dump.html" title="1.6. Zend::dump()">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">1.5. Zend::exception()</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.isreadable.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 1. Zend</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.dump.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.exception"></a>1.5. Zend::exception()</h2></div></div></div>
+<p>
+        Выполняет отложенную загрузку (lazy loading) класса исключения,
+        инстанцирует исключение и возвращает его.  
+
+    </p>
+<div class="note"><table border="0" summary="Note: Не рекомендуется к использованию">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Не рекомендуется к использованию</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Этот метод был добавлен в версии 0.6.0. В последнее время было
+            решено, что лучше использовать традиционные методы инстанцирования,
+            возбуждения и отлова исключений. Метод
+            <code class="code">Zend::exception()</code> не рекомендуется к использованию в
+            версии 0.6.1 и будет удален из Zend Framework в последующих версиях.
+
+        </p></td></tr>
+</table></div>
+<pre class="programlisting">&lt;?php
+
+Zend::exception($class, $message, $code);
+
+?&gt;</pre>
+<p>
+        Аргумент <code class="code">$class</code> определяет класс исключения для загрузки и
+        инстанцирования. Класс загружается с помощью
+        <a href="zend.loadclass.html" title="1.3. Zend::loadClass()">Раздел 1.3, «Zend::loadClass()»</a>, поэтому он
+        должен следовать соглашению по именованию классов фреймворка и быть
+        размещенным по пути, указанному в <code class="code">include_path</code>. 
+
+    </p>
+<p>
+        Параметры <code class="code">$message</code> и <code class="code">$code</code> являются
+        необязательными и передаются в качестве аргументов конструктору
+        класса исключения.
+
+    </p>
+<p>
+        В случае успеха производится загрузка класса исключения, создание
+        его экземпляра с использованием переданных параметров <code class="code">$message</code> и 
+        <code class="code">$code</code>, возвращение созданного объекта. Если
+        загрузка класса невозможна или этот класс не наследует от
+        класса <code class="code">Exception</code>, то генерируется исключение.
+
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.isreadable.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.dump.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">1.4. Zend::isReadable() </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 1.6. Zend::dump()</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.6. Jeux de caractères.</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="prev" href="zend.search.queries.html" title="22.5. Types de requêtes">
+<link rel="next" href="zend.search.extending.html" title="22.7. Extensibilité">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.description" title="22.6.1. Support d'UTF-8 et de jeux de caractères sur un octet.">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.6. Jeux de caractères.</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.queries.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.extending.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.charset"></a>22.6. Jeux de caractères.</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.description"></a>22.6.1. Support d'UTF-8 et de jeux de caractères sur un octet.</h3></div></div></div>
+<p>
+            Zend_Search_Lucene est créée pour fonctionnet avec UTF-8. Les fichier d'index stockent
+            des données unicode en JAVA "modified UTF-8 encoding". Le coeur de Zend_Search_Lucene
+            le supporte complètement, à une exception près:
+            <sup>[<a name="id4872856" href="#ftn.id4872856">10</a>]</sup>
+
+        </p>
+<p>
+            Cependant, les analyseurs de texte, et le parseur de requête utilisent ctype_alpha()
+            pour tokeniser le texte et les requêtes. ctype_alpha() ne supporte pas l'UTF-8 et 
+            devra être remplacé par quelque chose d'autre dans un future proche.
+        </p>
+<p>
+            Avant d'être fortement encouragé à convertir vos données en ASCII
+            <sup>[<a name="id4874343" href="#ftn.id4874343">11</a>]</sup>
+            (pour stocker les documents source, et pour effectuer des requêtes) :
+        </p>
+<pre class="programlisting">&lt;?php
+$doc = new Zend_Search_Lucene_Document();
+...
+$docText = iconv('ISO-8859-1', 'ASCII//TRANSLIT', $docText);
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', $docText));
+
+...
+
+$query = iconv('', 'ASCII//TRANSLIT', $query);
+$hits = $index-&gt;find($query);
+?&gt;</pre>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote">
+<p><sup>[<a name="ftn.id4872856" href="#id4872856">10</a>] </sup>
+                   Zend_Search_Lucene ne supporte uniquement que les caractères BMP (Basic Multilingual Plane) 
+                   (de 0x0000 à 0xFFFF) et ne supporte pas les "caractères supplémentaires" (les
+                    caractères dont le code est supérieur à 0xFFFF).
+               </p>
+<p>
+                   Java 2 représente ces caractères comme une paire de valeurs de type char (16-bit),
+                   en premier la gamme des hauts-substituts (0xD800-0xDBFF), en deuxième
+                   la game des bas-substituts (0xDC00-0xDFFF). Ensuite tout est encodé comme
+                   des caractères UTF-8 habituels dans six octets. La représentation standard d'UTF-8
+                   utilise quatre octets pour les caractères supplémentaires.
+               </p>
+</div>
+<div class="footnote"><p><sup>[<a name="ftn.id4874343" href="#id4874343">11</a>] </sup>
+                   Si les données contiennent des caractères non-ascii ou arrivent en UTF-8
+               </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.queries.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.extending.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.5. Types de requêtes </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 22.7. Extensibilité</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

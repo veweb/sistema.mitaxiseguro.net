@@ -1,0 +1,142 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>20.2. PDF ドキュメントの作成および読み込み</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="prev" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="next" href="zend.pdf.save.html" title="20.3. PDF ドキュメントへの変更内容の保存">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">20.2. PDF ドキュメントの作成および読み込み</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.pdf.html">前のページ</a> </td>
+<th width="60%" align="center">第20章 Zend_Pdf</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.pdf.save.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.pdf.create"></a>20.2. PDF ドキュメントの作成および読み込み</h2></div></div></div>
+<p>
+    <code class="code">Zend_Pdf</code> クラスは PDF ドキュメントを表すもので、
+    ドキュメントレベルの機能を提供します。
+    </p>
+<p>
+    新しいドキュメントを作成するには、新しい <code class="code">Zend_Pdf</code>
+    オブジェクトを作成しなければなりません。
+    </p>
+<p>
+    <code class="code">Zend_Pdf</code> クラスでは、既存の PDF を読み込むための
+    2 つの静的メソッドも提供しています。
+    <code class="code">Zend_Pdf::load()</code> および <code class="code">Zend_Pdf::parse()</code> です。
+    これらは両方とも Zend_Pdf オブジェクトを返します。
+    エラーが発生した場合には例外がスローされます。
+    </p>
+<div class="example">
+<a name="id4870233"></a><p class="title"><b>例 20.1. 新しい PDF ドキュメントの作成あるいは既存の PDF ドキュメントの読み込み</b></p>
+<pre class="programlisting">&lt;?php
+...
+// 新しい PDF ドキュメントを作成します。
+$pdf1 = new Zend_Pdf();
+
+// ファイルから PDF ドキュメントを読み込みます。
+$pdf2 = Zend_Pdf::load($fileName);
+
+// 文字列から PDF ドキュメントを読み込みます。
+$pdf3 = Zend_Pdf::parse($pdfString);
+...
+?&gt;</pre>
+</div>
+<p>
+    PDF ファイルでは、ドキュメントのインクリメンタルな更新がサポートされています。
+    つまり、ドキュメントを更新するたびに、そのドキュメントの新しい版が作成されます。
+    Zend_Pdf モジュールには、指定した版を取得する機能も含まれています。
+    </p>
+<p>
+    版を指定するには <code class="code">Zend_Pdf::load()</code> および
+    <code class="code">Zend_Pdf::parse()</code> メソッドの第 2 引数を使用するか、
+    <code class="code">Zend_Pdf::rollback()</code> を使用します。
+        <sup>[<a name="id4870270" href="#ftn.id4870270">5</a>]</sup>
+    call.
+    </p>
+<div class="example">
+<a name="id4870282"></a><p class="title"><b>例 20.2. 指定した版の PDF ドキュメントの取得</b></p>
+<pre class="programlisting">&lt;?php
+...
+// 前の版の PDF ドキュメントを読み込みます。
+$pdf1 = Zend_Pdf::load($fileName, 1);
+
+// 前の版の PDF ドキュメントを読み込みます。
+$pdf2 = Zend_Pdf::parse($pdfString, 1);
+
+// ドキュメントの最初の版を読み込みます。
+$pdf3 = Zend_Pdf::load($fileName);
+$revisions = $pdf3-&gt;revisions();
+$pdf3-&gt;rollback($revisions - 1);
+...
+?&gt;</pre>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4870270" href="#id4870270">5</a>] </sup>
+            <code class="code">Zend_Pdf::rollback()</code> メソッドは、
+            変更がドキュメントに適用される前に起動しなければなりません。
+            それ以外の場合の挙動は未定義です。
+            </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.pdf.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.pdf.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.pdf.save.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第20章 Zend_Pdf </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 20.3. PDF ドキュメントへの変更内容の保存</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

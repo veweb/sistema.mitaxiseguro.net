@@ -1,0 +1,598 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>29.2. Zend_XmlRpc_Client</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="prev" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="next" href="zend.xmlrpc.server.html" title="29.3. Zend_XmlRpc_Server">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.introduction" title="29.2.1. Wprowadzenie">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.method-calls" title="29.2.2. Wywołania metod">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.value.parameters" title="29.2.3. Typy i konwersje">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.requests-and-responses" title="29.2.4. Obiekt serwera proxy">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.error-handling" title="29.2.5. Obsługa błędów">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.introspection" title="29.2.6. Introspekcja serwerów">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.request-to-response" title="29.2.7. Od żądania do odpowiedzi">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.http-client" title="29.2.8. Klient HTTP i testowanie">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">29.2. Zend_XmlRpc_Client</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.xmlrpc.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 29. Zend_XmlRpc</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.xmlrpc.server.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.xmlrpc.client"></a>29.2. Zend_XmlRpc_Client</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.introduction"></a>29.2.1. Wprowadzenie</h3></div></div></div>
+<p>
+            The Zend Framework zapewnia obsługę wywoływania zdalnych serwisów 
+            XML-RPC jako klient w pakiecie <code class="code">Zend_XmlRpc_Client</code>. 
+            Do głównych funkcjonalności należą: automatyczna konwersja
+            typów pomiędzy PHP a XML-RPC, obiekt serwera proxy oraz dostęp
+            do możliwości introspekcji serwerów.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.method-calls"></a>29.2.2. Wywołania metod</h3></div></div></div>
+<p>
+            Konstruktor klasy <code class="code">Zend_XmlRpc_Client</code> odbiera w 
+            pierwszym parametrze adres URL zdalnego serwera XML-RPC. Nowa 
+            zwrócona instancja może być użyta do wywołania dowolnej ilości 
+            zdalnych metod tego serwera.
+        </p>
+<p>
+            Aby wywołać zdalną metodę za pomocą klienta XML-RPC, utwórz 
+            instancję i użyj metody <code class="code">call()</code>. Przykładowy kod poniżej
+            używa demonstracyjnego serwera XML-RPC na stronie Zend Framework.
+            Możesz go użyć do testowania lub eksplorowania komponentów 
+            <code class="code">Zend_XmlRpc</code>.
+        </p>
+<div class="example">
+<a name="id4903722"></a><p class="title"><b>Przykład 29.1. Wywołanie metody XML-RPC</b></p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/XmlRpc/Client.php';
+
+$client = new Zend_XmlRpc_Client('http://framework.zend.com/xmlrpc');
+
+echo $client-&gt;call('test.sayHello'); 
+
+// hello
+
+?&gt;</pre>
+</div>
+<p>
+            Wartość XML-RPC zwracana przez wywołanie zdalnej metody jest 
+            automatycznie konwertowana do odpowiedniego natywnego typu 
+            PHP. W powyższym przykładzie, zwraca jest wartość typu 
+            <code class="code">string</code> i jest ona natychmiast gotowa do użycia.
+        </p>
+<p>
+            Pierwszy parametr metody <code class="code">call()</code> to nazwa zdalnej metody 
+            do wywołania. Jeśli zdalna metoda wymaga jakichkolwiek parametrów, 
+            mogą być one wysłane przez podanie do metody <code class="code">call()</code>
+            drugiego opcjonalnego parametru w postaci tablicy wartości do 
+            przekazania do zdalnej metody:
+        </p>
+<div class="example">
+<a name="id4903776"></a><p class="title"><b>Przykład 29.2. Wywołanie metody XML-RPC z parametrem</b></p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/XmlRpc/Client.php';
+
+$client = new Zend_XmlRpc_Client('http://framework.zend.com/xmlrpc');
+
+$arg1 = 1.1;
+$arg2 = 'foo';
+
+$result = $client-&gt;call('test.sayHello', array($arg1, $arg2)); 
+
+// zmienna $result jest natywnego typu PHP
+
+?&gt;</pre>
+</div>
+<p>
+            Jeśli zdalna metoda nie wymaga parametrów, ten opcjonalony parametr
+            może pozostać pusty, lub może być pustą tablicą 
+            <code class="code">array()</code>. Tablica parametrów dla zdalnej metody może 
+            zawierać natywne typy PHP, obiekty <code class="code">Zend_XmlRpc_Value</code>, 
+            lub ich kombinacje.
+        </p>
+<p>
+            Metoda <code class="code">call()</code> automatycznie skonwertuje odpowiedź 
+            XML-RPC i zwróci wartość odpowiedniego natywnego typu PHP. Obiekt
+            <code class="code">Zend_XmlRpc_Response</code> ze zwróconą wartością będzie także
+            dostępny po wywołaniu poprzez wywołanie metody 
+            <code class="code">getLastResponse()</code>.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.value.parameters"></a>29.2.3. Typy i konwersje</h3></div></div></div>
+<p>
+            Niektóre zdalne wywołania metod wymagają parametrów. Są one 
+            przekazywane do metody <code class="code">call()</code> obiektu 
+            <code class="code">Zend_XmlRpc_Client</code> jako tablica w drugim parametrze.
+            Każdy podany parametr może być natywnego typu PHP, wtedy będzie 
+            automatycznie skonwertowany, lub może być obiektem reprezentującym 
+            specyficzny typ XML-RPC (jeden z obiektów <code class="code">Zend_XmlRpc_Value</code>).
+        </p>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.value.parameters.php-native"></a>29.2.3.1. Natywne typy PHP jako parametry</h4></div></div></div>
+<p>
+                Parametry mogą być przekazane do metody <code class="code">call()</code> jako
+                natywne zmienne PHP, czyli jako <code class="code">string</code>,
+                <code class="code">integer</code>, <code class="code">float</code>, <code class="code">boolean</code>, 
+                <code class="code">array</code>, lub <code class="code">object</code>. W tym przypadku
+                każda natywna wartość zostanie automatycznie wykryta i 
+                skonwertowana do jednego z typów XML-RPC, zgodnie z tą tabelą:
+            </p>
+<div class="table">
+<a name="id4903928"></a><p class="title"><b>Tabela 29.1. Konwersje między typami PHP oraz XML-RPC</b></p>
+<table summary="Konwersje między typami PHP oraz XML-RPC" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Natywny typ PHP</th>
+<th>Typ XML-RPC</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>integer</td>
+<td>int</td>
+</tr>
+<tr>
+<td>double</td>
+<td>double</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+</tr>
+<tr>
+<td>array</td>
+<td>array</td>
+</tr>
+<tr>
+<td>associative array</td>
+<td>struct</td>
+</tr>
+<tr>
+<td>object</td>
+<td>array</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.value.parameters.xmlrpc-value"></a>29.2.3.2. Obiekty <code class="code">Zend_XmlRpc_Value</code> jako parametry</h4></div></div></div>
+<p>
+                Parametry mogą być także tworzone jako instancje klasy
+                <code class="code">Zend_XmlRpc_Value</code> w celu określenia dokładnego typu
+                XML-RPC. Konieczne jest to gdy:
+
+                </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                            gdy chcesz być pewny, że parametr poprawnego typu 
+                            jest przekazany do procedury (np. procedura wymaga
+                            liczby całkowitej, a ty możesz pobrać tę wartość z
+                            bazy jako łańcuch znaków).
+                        </p></li>
+<li><p>
+                            Wtedy gdy procedura wymaga typu <code class="code">base64</code> 
+                            lub <code class="code">dateTime.iso8601</code> (które nie istnieją
+                            jako natywne typy PHP)
+                        </p></li>
+<li><p>
+                            Gdy automatyczna konwersja może nie zadziałać (np. 
+                            gdy chcesz przekazać pustą strukturę XML-RPC jako 
+                            parametr. Puste struktury są reprezentowane przez
+                            puste tablice w PHP, ale jeśli podasz pustą tablicę
+                            w parametrze będzie ona automatycznie skonwertowana
+                            do tablicy XML-RPC z tego powodu, że nie jest ona 
+                            tablicą asocjacyjną)
+                        </p></li>
+</ul></div>
+<p>
+            </p>
+<p>
+                Są dwa sposoby utworzenia obiektu <code class="code">Zend_XmlRpc_Value</code>: 
+                bezpośrednie utworzenie instancji jednej z podklas klasy
+                <code class="code">Zend_XmlRpc_Value</code>,lub użycie statycznej metody 
+                fabryki <code class="code">Zend_XmlRpc_Value::getXmlRpcValue()</code>.
+            </p>
+<div class="table">
+<a name="id4904137"></a><p class="title"><b>Tabela 29.2. Obiekty <code class="code">Zend_XmlRpc_Value</code> dla typów XML-RPC</b></p>
+<table summary="Obiekty Zend_XmlRpc_Value dla typów XML-RPC" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Typ XML-RPC</th>
+<th>Stała <code class="code">Zend_XmlRpc_Value</code>
+</th>
+<th>Obiekt <code class="code">Zend_XmlRpc_Value</code> Object</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>int</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_INTEGER</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Integer</code></td>
+</tr>
+<tr>
+<td>double</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_DOUBLE</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Double</code></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_BOOLEAN</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Boolean</code></td>
+</tr>
+<tr>
+<td>string</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_STRING</code></td>
+<td><code class="code">Zend_XmlRpc_Value_String</code></td>
+</tr>
+<tr>
+<td>base64</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_BASE64</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Base64</code></td>
+</tr>
+<tr>
+<td>dateTime.iso8601</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_DATETIME</code></td>
+<td><code class="code">Zend_XmlRpc_Value_DateTime</code></td>
+</tr>
+<tr>
+<td>array</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_ARRAY</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Array</code></td>
+</tr>
+<tr>
+<td>struct</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_STRUCT</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Struct</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                </p>
+<div class="note"><table border="0" summary="Note: Automatyczna konwersja">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Automatyczna konwersja</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                        Kiedy tworzymy nowy obiekt 
+                        <code class="code">Zend_XmlRpc_Value</code>, jego wartość jest 
+                        ustawiana jako typ PHP. Wartość będzie konwertowana do 
+                        określonego typu używając rzytowania typów PHP. Na 
+                        przykład, jeśli podany jest łańcuch znaków jako wartość 
+                        do obiektu <code class="code">Zend_XmlRpc_Value_Integer</code>,
+                        wartość ta będzie konwertowana za pomocą 
+                        <code class="code">(int)$value</code>.
+                    </p></td></tr>
+</table></div>
+<p>
+            </p>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.requests-and-responses"></a>29.2.4. Obiekt serwera proxy</h3></div></div></div>
+<p>
+            Innym sposobem wywołania zdalnych metod za pomocą klienta XML-RPC 
+            jest użycie serwera proxy. Jest to obiekt PHP, który rozszerza
+            zdalną przestrzeń nazw XML-RPC, powodując, że obiekt ten działa jak 
+            natywny obiekt PHP.
+        </p>
+<p>
+            Aby utworzyć instancję serwera proxy, wywołaj metodę 
+            <code class="code">getProxy()</code> instancji <code class="code">Zend_XmlRpc_Client</code>. 
+            To zwróci instancję obiektu <code class="code">Zend_XmlRpc_Client_ServerProxy</code>.
+            Wywołanie dowolnej metody na obiekcie serwera proxy będzie przekazane
+            do zdalnego serwera, a parametry będą przekazane jak do każdej innej
+            metody PHP.
+        </p>
+<div class="example">
+<a name="id4904404"></a><p class="title"><b>Przykład 29.3. Rozszerzanie domyślnej przestrzeni nazw</b></p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/XmlRpc/Client.php';
+
+$client = new Zend_XmlRpc_Client('http://framework.zend.com/xmlrpc');
+
+$server = $client-&gt;getProxy();           // Rozszerza domyślną przestrzeń nazw
+
+$hello = $server-&gt;test-&gt;sayHello(1, 2);  // test.Hello(1, 2) zwraca "hello"
+
+?&gt;
+            </pre>
+</div>
+<p>
+            Metoda <code class="code">getProxy()</code> pobiera opcjonalny argument 
+            określający, która przestrzeń nazw zdalnego serwera chcemy 
+            rozszerzyć. Jeśli przestrzeń nazwa nie zostanie określona, 
+            rozszerzona zostanie domyślna przestrzeń nazwa. W następnym 
+            przykładzie będzie rozszerzona przestrzeń nazw
+            <code class="code">test</code>:
+        </p>
+<div class="example">
+<a name="id4904452"></a><p class="title"><b>Przykład 29.4. Rozszerzanie dowolnej przestrzeni nazw</b></p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/XmlRpc/Client.php';
+
+$client = new Zend_XmlRpc_Client('http://framework.zend.com/xmlrpc');
+
+$test  = $client-&gt;getProxy('test');     // Rozszerza przestrzeń nazwa "test"
+
+$hello = $test-&gt;sayHello(1, 2);         // test.Hello(1,2) zwraca "hello"
+
+?&gt;</pre>
+</div>
+<p>
+            Jeśli zdalny serwer obsługuje zagnieżdżone przestrzenie nazwa o
+            dowolnej ilości zagnieżdżeń, mogą być one także użyte przez serwer
+            proxy. Na przykład, jeśli serwer w powyższym przykładzie posiada
+            metodę <code class="code">test.foo.bar()</code>, może być ona wywołana jako
+            <code class="code">$test-&gt;foo-&gt;bar()</code>.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.error-handling"></a>29.2.5. Obsługa błędów</h3></div></div></div>
+<p>
+            Dwa rodzaje błędów mogą wystąpić podczas wywoływania metod XML-RPC: 
+            błędy HTTP oraz błędy XML-RPC. Klient <code class="code">Zend_XmlRpc_Client</code>
+            rozpoznaje te błędy i daje możliwośc wykrycia i złapania każdego z
+            nich.
+        </p>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.client.error-handling.http"></a>29.2.5.1. Błędy HTTP</h4></div></div></div>
+<p>
+                Jeśli wystąpi jakiś błąd HTTP, na przykład gdy zdalny serwer 
+                HTTP zwróci błąd <code class="code">404 Not Found</code>, wyrzucony zostanie
+                wyjątek <code class="code">Zend_XmlRpc_Client_HttpException</code>.
+            </p>
+<div class="example">
+<a name="id4904548"></a><p class="title"><b>Przykład 29.5. Obsługa błędów HTTP</b></p>
+<pre class="programlisting">&lt;?php
+
+require_once 'Zend/XmlRpc/Client.php';
+
+$client = new Zend_XmlRpc_Client('http://foo/404');
+
+try {
+
+    $client-&gt;call('bar', array($arg1, $arg2));
+
+} catch (Zend_XmlRpc_HttpException $e) {
+    
+    // $e-&gt;getCode() zwraca 404
+    // $e-&gt;getMessage() zwraca "Not found"
+    
+}
+
+?&gt;</pre>
+</div>
+<p>
+                Zależnie od tego jak używany jest klient XML-RPC, gdy wystąpi
+                błąd HTTP zostanie wyrzucony wyjątek
+                <code class="code">Zend_XmlRpc_Client_HttpException</code>.
+            </p>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.client.error-handling.faults"></a>29.2.5.2. Błędy XML-RPC</h4></div></div></div>
+<p>
+                Błędy XML-RPC są analogiczne do wyjątków PHP. Jest to specjalny
+                typ zwracany przez wywołanie metody XML-RPC, który zawiera
+                zarówno kod błędu jak i informacje o błędzie. Błędy XML-RPC są
+                obsługiwane różnie, zależnie od kontekstu w jakim użyty jest 
+                obiekt <code class="code">Zend_XmlRpc_Client</code>.
+            </p>
+<p>
+                Gdy użyta jest metoda <code class="code">call()</code> lub obiekt serwera
+                proxy, błędy XML-RPC spowodują wyrzucenie wyjątku
+                <code class="code">Zend_XmlRpc_Client_FaultException</code>. Kod oraz 
+                informacje o błędzie wyjątku będą bezpośrednio mapować do
+                ich odpowiednich wartości oryginalnej odpowiedzi błędu XML-RPC.
+            </p>
+<div class="example">
+<a name="id4904633"></a><p class="title"><b>Przykład 29.6. Obsługa błędów XML-RPC</b></p>
+<pre class="programlisting">&lt;?php
+                                
+require_once 'Zend/XmlRpc/Client.php';
+
+$client = new Zend_XmlRpc_Client('http://framework.zend.com/xmlrpc');
+
+try {
+
+    $client-&gt;call('badMethod');
+
+} catch (Zend_XmlRpc_FaultException $e) {
+    
+    // $e-&gt;getCode() zwraca 1
+    // $e-&gt;getMessage() zwraca "Unknown method"
+    
+}
+
+?&gt;</pre>
+</div>
+<p>
+                Gdy metoda <code class="code">call()</code> jest użyta do przeprowadzenia
+                żądania, przy wystąpieniu błędu zostanie wyrzucony wyjątek
+                <code class="code">Zend_XmlRpc_FaultException</code>. Obiekt
+                <code class="code">Zend_XmlRpc_Response</code> zawierający błąd będzie także
+                dostępny przez wywołanie metody <code class="code">getLastResponse()</code>.
+            </p>
+<p>
+                Gdy do przeprowadzenia żądania użyta jest metoda 
+                <code class="code">doRequest()</code>, nie będzie wyrzucony żaden wyjątek.
+                Zamiast tego zwrócony zostanie obiekt
+                <code class="code">Zend_XmlRpc_Response</code> zawierający informacje o 
+                błędzie. Może to być sprawdzone za pomocą metody
+                <code class="code">isFault()</code> obiektu <code class="code">Zend_XmlRpc_Response</code>.
+            </p>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.introspection"></a>29.2.6. Introspekcja serwerów</h3></div></div></div>
+<p>
+            Niektóre serwery XML-RPC obsługują metody introspekcji w przestrzeni
+            nazw XML-RPC <code class="code">system.</code>. <code class="code">Zend_XmlRpc_Client</code> 
+            zapewnia specjalną obsługę dla serwerów z taką funkcjonalnością.
+        </p>
+<p>
+            Instancja <code class="code">Zend_XmlRpc_Client_ServerIntrospection</code> może
+            być odebrana przez wywołanie metody <code class="code">getIntrospector()</code> 
+            obiektu <code class="code">Zend_XmlRpcClient</code>. Następnie obiekt ten może 
+            być użyty do przeprowadzenia operacji introspekcji na serwerze.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.request-to-response"></a>29.2.7. Od żądania do odpowiedzi</h3></div></div></div>
+<p>
+            Wewnątrz wygląda to tak, że metoda <code class="code">call()</code> instancji 
+            obiektu <code class="code">Zend_XmlRpc_Client</code> buduje obiekt żądania 
+            (<code class="code">Zend_XmlRpc_Request</code>) i wysyła go do innej metody, 
+            <code class="code">doRequest()</code>, ktora zwraca obiekt odpowiedzi
+            (<code class="code">Zend_XmlRpc_Response</code>).
+        </p>
+<p>
+            Metoda <code class="code">doRequest()</code> jest także dostępna dla 
+            bezpośredniego użycia:
+        </p>
+<div class="example">
+<a name="id4904812"></a><p class="title"><b>Przykład 29.7. Przetwarzanie żądania do odpowiedzi</b></p>
+<pre class="programlisting">&lt;?php
+                                
+require_once 'Zend/XmlRpc/Client.php';
+
+$client = new Zend_XmlRpc_Client('http://framework.zend.com/xmlrpc');
+
+$request = new Zend_XmlRpc_Request();
+$request-&gt;setMethod('test.sayHello');
+$request-&gt;setParams(array('foo', 'bar'));
+
+$client-&gt;doRequest($request);
+
+// $server-&gt;getLastRequest() zwraca instancję Zend_XmlRpc_Request
+// $server-&gt;getLastResponse() zwraca instancję Zend_XmlRpc_Response
+
+?&gt;</pre>
+</div>
+<p>
+            Zawsze po wywołaniu metody XML-RPC przez klienta, niezależnie od 
+            tego czy za pomocą metody <code class="code">call()</code>, metody 
+            <code class="code">doRequest()</code> czy poprzez serwer proxy, ostatni obiekt
+            żądania i odpowiadający mu obiekt odpowiedzi będą zawsze dostępne
+            odpowiednio za pomocą metod <code class="code">getLastRequest()</code> oraz
+            <code class="code">getLastResponse()</code>.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.http-client"></a>29.2.8. Klient HTTP i testowanie</h3></div></div></div>
+<p>
+            We wszystkich poprzednich przykładach nie został określony żaden
+            klient HTTP. W takim wypadku utworzona zostaje nowa instancja 
+            <code class="code">Zend_Http_Client</code> z jej domyślnymi opcjami i ta 
+            instancja zostaje użyta automatycznie przez 
+            <code class="code">Zend_XmlRpc_Client</code>.
+        </p>
+<p>
+            Klient HTTP może być odebrany w dowolnej chwili za pomocą metody
+            <code class="code">getHttpClient()</code>. W większości przypadków domyślny
+            klient HTTP będzie wystarczający. Jakkolwiek, metoda 
+            <code class="code">setHttpClient()</code> pozwala na ustawienie innego klienta
+            HTTP dla danej instancji.
+        </p>
+<p>
+            Metoda <code class="code">setHttpClient()</code> jest szczególnie przydatna dla
+            testów jednostkowych. Gdy jest połączona z obiektem 
+            <code class="code">Zend_Http_Client_Adapter_Test</code>, zdalne serwisy mogą
+            być zasymulowane dla naszego testowania. Zobacz testy jednostkowe
+            dla <code class="code">Zend_XmlRpc_Client</code> aby zobaczyć jak można to
+            zrobić.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.xmlrpc.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.xmlrpc.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.xmlrpc.server.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Rozdział 29. Zend_XmlRpc </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 29.3. Zend_XmlRpc_Server</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

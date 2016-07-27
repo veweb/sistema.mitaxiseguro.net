@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10.7. Verändern der Feed- und Eintragsstruktur</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="prev" href="zend.feed.consuming-atom-single-entry.html" title="10.6. Einen einzelnen Atom Eintrag konsumieren">
+<link rel="next" href="zend.feed.custom-feed.html" title="10.8. Eigene Klassen für Feeds und Einträge">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.7. Verändern der Feed- und Eintragsstruktur</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.consuming-atom-single-entry.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 10. Zend_Feed</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.custom-feed.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.modifying-feed"></a>10.7. Verändern der Feed- und Eintragsstruktur</h2></div></div></div>
+<p>
+        Die natürliche Syntax von <code class="code">Zend_Feed</code> wurde für das Erstellen und Verändern von 
+        Feeds und Einträgen sowie das Lesen dieser erweitert. Du kannst die neuen oder veränderten
+        Objekte einfach in wohlgeformtes XML umsetzen, um es als Datei zu speichern oder an einen
+        Server zu senden.
+    </p>
+<div class="example">
+<a name="id4825744"></a><p class="title"><b>Beispiel 10.5. Verändern eines bestehenden Feed Eintrags</b></p>
+<pre class="programlisting">
+&lt;?php
+
+$feed = new Zend_Feed_Atom('http://atom.example.com/feed/1');
+$entry = $feed-&gt;current();
+
+$entry-&gt;title = 'Dies ist ein neuer Titel';
+$entry-&gt;author-&gt;email = 'my_email@example.com';
+
+echo $entry-&gt;saveXML();
+
+?&gt;   </pre>
+<p>
+            Dies gibt eine vollständige (enthält den <code class="code">&lt;?xml ... &gt;</code> Prolog) XML 
+            Darstellung des neuen Eintrags aus, inklusive jedes notwendige XML Namensraumes.
+        </p>
+<p>
+            Beachte, dass das Obige auch funktioniert, wenn der existierende Eintrag noch keinen
+            Autoren Tag beinhaltet. Du kannst soviele Ebenen von <code class="code">-&gt;</code> Verweisen 
+            verwenden, wie Du möchtest, um auf eine Zuordnung zugreifen zu können; alle dieser
+            zwischengeschalteten Stufen werden automatisch für dich erstellt wenn notwendig.
+        </p>
+</div>
+<p>
+        Wenn du einen anderen Namensraum als <code class="code">atom:</code>, <code class="code">rss:</code>, oder 
+        <code class="code">osrss:</code> in deinem Eintrag verwenden möchtest, musst du den Namensraum mit 
+        <code class="code">Zend_Feed</code> durch die Verwendung von <code class="code">Zend_Feed::registerNamespace()</code> 
+        registrieren. Wenn du ein bestehendes Element veränderst, wird es immer den ursprünglichen
+        Namensraum beibehalten. Wenn du ein neues Element hinzufügst, wird es den standardmäßigen 
+        Namensraum verwenden, wenn du nicht explizit einen anderen Namensraum festgelegt hast.
+    </p>
+<div class="example">
+<a name="id4826764"></a><p class="title"><b>Beispiel 10.6. Erstellen eines Atom Eintrags mit Elementen eines eigenen Namensraumes</b></p>
+<pre class="programlisting">
+&lt;?php
+
+$entry = new Zend_Feed_EntryAtom();
+// Die ID wird immer vom Server in Atom zugewiesen
+$entry-&gt;title = 'mein eigener Eintrag';
+$entry-&gt;author-&gt;name = 'Beispiel Autor';
+$entry-&gt;author-&gt;email = 'me@example.com';
+
+// Nun erledige den eigenen Teil
+Zend_Feed::registerNamespace('myns', 'http://www.example.com/myns/1.0');
+
+$entry-&gt;{'myns:myelement_one'} = 'mein erster eigener Wert ';
+$entry-&gt;{'myns:container_elt'}-&gt;part1 = 'Erster verschachtelter Teil';
+$entry-&gt;{'myns:container_elt'}-&gt;part2 = 'Zweiter verschachtelter Teil';
+
+echo $entry-&gt;saveXML();
+
+?&gt;   </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.consuming-atom-single-entry.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.feed.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.custom-feed.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.6. Einen einzelnen Atom Eintrag konsumieren </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 10.8. Eigene Klassen für Feeds und Einträge</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

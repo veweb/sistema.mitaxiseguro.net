@@ -1,0 +1,305 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Глава 26. Zend_Uri</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="index.html" title="Руководство разработчика">
+<link rel="prev" href="zend.session.theory.html" title="25.5. Теория">
+<link rel="next" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="section" href="zend.uri.html#zend.uri.chapter" title="26.1. Zend_Uri">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Глава 26. Zend_Uri</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.session.theory.html">Пред.</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.validate.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ru">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.uri"></a>Глава 26. Zend_Uri</h2></div></div></div>
+<div class="toc">
+<p><b>Содержание</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.uri.html#zend.uri.chapter">26.1. Zend_Uri</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.overview">26.1.1. Обзор</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.creation">26.1.2. Создание нового URI</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.manipulation">26.1.3. Работа с существующим URI</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.validation">26.1.4. Проверка URI</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.instance-methods">26.1.5. Общие методы</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.uri.chapter"></a>26.1. Zend_Uri</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.overview"></a>26.1.1. Обзор</h3></div></div></div>
+<p>
+      <code class="code">Zend_Uri</code> является компонентой, которая призвана облегчить
+      работу с URI (<a href="http://www.w3.org/Addressing/" target="_top">Uniform Resource
+      Identifiers</a>) и их валидацию. <code class="code">Zend_Uri</code> был создан для
+      обслуживания других компонент, таких, как <code class="code">Zend_Http_Client</code>,
+      но полезен и как отдельная утилита.
+
+    </p>
+<p>
+      URI всегда начинаются со схемы, после которой следует двоеточие. Структура
+      для разных схем может сильно отличаться. Класс <code class="code">Zend_Uri</code>
+      предоставляет фабрику (паттерн factory), которая возвращает его подклассы,
+      специализирующиеся в различных схемах. Подклассы называются
+      <code class="code">Zend_Uri_&lt;scheme&gt;</code>, где <code class="code">&lt;scheme&gt;</code> -
+      схема в нижнем регистре, с прописной первой буквой. Исключением из этого
+      правила является HTTPS, который обрабатывается подклассом
+      <code class="code">Zend_Uri_Http</code>.
+
+    </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.creation"></a>26.1.2. Создание нового URI</h3></div></div></div>
+<p>
+      <code class="code">Zend_Uri</code> будет строить с нуля новый URI, если
+      <code class="code">Zend_Uri::factory()</code> была передана только схема.     
+
+    </p>
+<div class="example">
+<a name="id4926813"></a><p class="title"><b>Пример 26.1. Создание нового URI с <code class="code">Zend_Uri::factory()</code></b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+// Для того, чтобы создать с нуля новый URI, передайте только схему.
+$uri = Zend_Uri::factory('http');
+
+// $uri является экземпляром Zend_Uri_Http
+ 
+?&gt;</pre>
+</div>
+<p>
+      Для того, чтобы создать с нуля новый URI, передайте
+      <code class="code">Zend_Uri::factory()</code> только схему. <sup>[<a name="id4927755" href="#ftn.id4927755">11</a>]</sup>. При передаче не поддерживаемой схемы
+      генерируется исключение <code class="code">Zend_Uri_Exception</code>.
+
+    </p>
+<p>
+      Если переданные схема или URI поддерживаются, то
+      <code class="code">Zend_Uri::factory()</code> вернет свой подкласс, который
+      специализируется на данной схеме.
+
+    </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.manipulation"></a>26.1.3. Работа с существующим URI</h3></div></div></div>
+<p>
+      Для того, чтобы работать с существующим URI, передайте его весь целиком
+      <code class="code">Zend_Uri::factory()</code>.
+ 
+    </p>
+<div class="example">
+<a name="id4927829"></a><p class="title"><b>Пример 26.2. Работа с существующим URI с <code class="code">Zend_Uri::factory()</code></b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+// Чтобы работать с существующим URI, передайте его как параметр
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+// $uri является экземпляром Zend_Uri_Http
+ 
+?&gt;</pre>
+</div>
+<p>
+      URI будет распарсен и проверен на валидность. Если он оказался невалидным,
+      то сразу же будет сгенерировано исключение
+      <code class="code">Zend_Uri_Exception</code>. Иначе <code class="code">Zend_Uri::factory()</code>
+      вернет свой подкласс, который специализируется на данной схеме.
+
+    </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.validation"></a>26.1.4. Проверка URI</h3></div></div></div>
+<p>
+      Функция <code class="code">Zend_Uri::check()</code> может использоваться в том случае,
+      когда нужна только проверка существующего URI. 
+
+    </p>
+<div class="example">
+<a name="id4927913"></a><p class="title"><b>Пример 26.3. Проверка URI с помощью <code class="code">Zend_Uri::check()</code></b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+// Проверка, является ли данный URI синтаксически корректным
+$valid = Zend_Uri::check('http://uri.in.question');
+
+// $valid равен TRUE при валидном URI, иначе FALSE
+ 
+?&gt;</pre>
+</div>
+<p>
+      <code class="code">Zend_Uri::check()</code> возвращает булево значение, использование
+      этой функции более удобно, чем вызов <code class="code">Zend_Uri::factory()</code> и
+      отлов исключения.
+
+    </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.instance-methods"></a>26.1.5. Общие методы</h3></div></div></div>
+<p>
+      Каждый экземпляр подкласса <code class="code">Zend_Uri</code> (т.е.
+      <code class="code">Zend_Uri_Http</code>) имеет несколько методов экземпляров, которые
+      полезны для работы с любыми видами URI.
+
+    </p>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.uri.instance-methods.getscheme"></a>26.1.5.1. Получение схемы URI</h4></div></div></div>
+<p>
+        Схема URI – часть URI, завершающаяся двоеточием. Например, схемой в
+        <code class="code">http://www.zend.com</code> является <code class="code">http</code>.
+
+      </p>
+<div class="example">
+<a name="id4928030"></a><p class="title"><b>Пример 26.4. Получение схемы из объекта <code class="code">Zend_Uri_*</code></b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+$scheme = $uri-&gt;getScheme();  // "http"
+ 
+?&gt;</pre>
+</div>
+<p>
+        Метод экземпляра <code class="code">getScheme()</code> возвращает схему из URI.
+
+      </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.uri.instance-methods.geturi"></a>26.1.5.2. Получение всего URI</h4></div></div></div>
+<div class="example">
+<a name="id4928079"></a><p class="title"><b>Пример 26.5. Получение всего URI из объекта <code class="code">Zend_Uri_*</code></b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+echo $uri-&gt;getUri();  // "http://www.zend.com"
+ 
+?&gt;</pre>
+</div>
+<p>
+        Метод <code class="code">getUri()</code> возвращает строковое представление всего
+        URI.
+
+      </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.uri.instance-methods.valid"></a>26.1.5.3. Проверка URI на валидность</h4></div></div></div>
+<p>
+        <code class="code">Zend_Uri::factory()</code> всегда производит синтаксическую
+        проверку переданных ему URI и не будет создавать новый экземпляр
+        подкласса <code class="code">Zend_Uri</code>, если данный URI не прошел проверку.
+        Тем не менее, после того, как был инстанцирован подкласс
+        <code class="code">Zend_Uri</code> для нового URI или на основе уже существующего,
+        в результате манипуляций с ним этот URI может стать невалидным.   
+
+      </p>
+<div class="example">
+<a name="id4928165"></a><p class="title"><b>Пример 26.6. Проверка объекта <code class="code">Zend_Uri_*</code></b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+$isValid = $uri-&gt;valid();  // TRUE
+ 
+?&gt;</pre>
+</div>
+<p>
+        Метод <code class="code">valid()</code> дает возможность проверить, является ли URI
+        по-прежнему валидным.
+
+      </p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4927755" href="#id4927755">11</a>] </sup>На момент
+      написания этой документации Zend_Uri поддерживает только схемы HTTP и
+      HTTPS.</p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.session.theory.html">Пред.</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.validate.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">25.5. Теория </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> Глава 27. Zend_Validate</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

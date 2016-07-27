@@ -1,0 +1,1378 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Referentiegids voor de programmeur</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="next" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Referentiegids voor de programmeur</th></tr>
+<tr>
+<td width="20%" align="left"> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="book" lang="nl">
+<div class="titlepage">
+<div>
+<div><h1 class="title">
+<a name="manual"></a>Referentiegids voor de programmeur</h1></div>
+<div><h2 class="subtitle">Zend Framework</h2></div>
+<div><p class="copyright">Copyright © 2005-2007 
+                Zend Technologies Inc.
+                (<a href="http://www.zend.com" target="_top">http://www.zend.com</a>)
+            </p></div>
+<div><p class="pubdate">2007-02-21</p></div>
+</div>
+<hr>
+</div>
+<div class="toc">
+<p><b>Inhoudsopgave</b></p>
+<dl>
+<dt><span class="chapter"><a href="zend.html">1. Zend</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.html#zend.introduction">1.1. Inleiding</a></span></dt>
+<dt><span class="sect1"><a href="zend.loadfile.html">1.2. Zend::loadFile()</a></span></dt>
+<dt><span class="sect1"><a href="zend.loadclass.html">1.3. Zend::loadClass()</a></span></dt>
+<dt><span class="sect1"><a href="zend.isreadable.html">1.4. Zend::isReadable()</a></span></dt>
+<dt><span class="sect1"><a href="zend.exception.html">1.5. Zend::exception()</a></span></dt>
+<dt><span class="sect1"><a href="zend.dump.html">1.6. Zend::dump()</a></span></dt>
+<dt><span class="sect1"><a href="zend.register.html">1.7. Zend::register()</a></span></dt>
+<dt><span class="sect1"><a href="zend.registry.html">1.8. Zend::registry()</a></span></dt>
+<dt><span class="sect1"><a href="zend.initregistry.html">1.9. Zend::initRegistry($registry = 'Zend_Registry')</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.acl.html">2. Zend_Acl</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.acl.html#zend.acl.introduction">2.1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.resources">2.1.1. About Resources</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.roles">2.1.2. About Roles</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.creating">2.1.3. Creating the Access Control List (ACL)</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.role_registry">2.1.4. Registering Roles</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.defining">2.1.5. Defining Access Controls</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.querying">2.1.6. Querying the ACL</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.acl.refining.html">2.2. Refining Access Controls</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.refining.html#zend.acl.refining.precise">2.2.1. Precise Access Controls</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.refining.html#zend.acl.refining.removing">2.2.2. Removing Access Controls</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.acl.advanced.html">2.3. Advanced Use</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.advanced.html#zend.acl.advanced.storing">2.3.1. Storing ACL Data for Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.advanced.html#zend.acl.advanced.assertions">2.3.2. Writing Conditional ACL Rules with Assertions</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.auth.html">3. Zend_Auth</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.auth.html#zend.auth.introduction">3.1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.adapters">3.1.1. Adapters</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.results">3.1.2. Results</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.persistence">3.1.3. Identity Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.using">3.1.4. Using Zend_Auth</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.auth.adapter.digest.html">3.2. Digest Authentication</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.introduction">3.2.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.specifics">3.2.2. Specifics</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.identity">3.2.3. Identity</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.cache.html">4. Zend_Cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.cache.html#zend.cache.introduction">4.1. Inleiding</a></span></dt>
+<dt><span class="sect1"><a href="zend.cache.theory.html">4.2. De theorie van het cachencaching</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.factory">4.2.1. De <code class="code">Zend_Cache</code> factory methode</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.tags">4.2.2. Records taggen</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.clean">4.2.3. Opschonen van de cache</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.frontends.html">4.3. Zend_Cache frontends</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.core">4.3.1. Zend_Cache_Core</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.output">4.3.2. Zend_Cache_Frontend_Output</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.function">4.3.3. Zend_Cache_Frontend_Function</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.class">4.3.4. Zend_Cache_Frontend_Class</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.file">4.3.5. Zend_Cache_Frontend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.page">4.3.6. Zend_Cache_Frontend_Page</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.backends.html">4.4. Zend_Cache backends</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.file">4.4.1. Zend_Cache_Backend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.sqlite">4.4.2. Zend_Cache_Backend_Sqlite</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.memcached">4.4.3. Zend_Cache_Backend_Memcached</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.apc">4.4.4. Zend_Cache_Backend_APC</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.config.html">5. Zend_Config</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.config.html#zend.config.introduction">5.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.theory_of_operation.html">5.2. Werkingstheorie</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.adapters.ini.html">5.3. Zend_Config_Ini</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.adapters.xml.html">5.4. Zend_Config_Xml</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.console.getopt.html">6. Zend_Console_Getopt</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.console.getopt.html#zend.console.getopt.introduction">6.1. Introduction to Getopt</a></span></dt>
+<dt><span class="sect1"><a href="zend.console.getopt.rules.html">6.2. Declaring Getopt Rules</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.rules.html#zend.console.getopt.rules.short">6.2.1. Declaring Options with the Short Syntax</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.rules.html#zend.console.getopt.rules.long">6.2.2. Declaring Options with the Long Syntax</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.console.getopt.fetching.html">6.3. Fetching Options and Arguments</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.exceptions">6.3.1. Handling Getopt Exceptions</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.byname">6.3.2. Fetching Options by Name</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.reporting">6.3.3. Reporting Options</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.remainingargs">6.3.4. Fetching Non-option Arguments</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.console.getopt.configuration.html">6.4. Configuring Zend_Console_Getopt</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addrules">6.4.1. Adding Option Rules</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addhelp">6.4.2. Adding Help Messages</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addaliases">6.4.3. Adding Option Aliases</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addargs">6.4.4. Adding Argument Lists</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.config">6.4.5. Adding Configuration</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.controller.html">7. Zend_Controller</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.controller.html#zend.controller.overview">7.1. Overview</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.introduction">7.1.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.request">7.1.2. Request Object</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.routing-process">7.1.3. Route Process</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.dispatching">7.1.4. Dispatch Process</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.response">7.1.5. Response Object</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.getting-started.html">7.2. Om te beginnen</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.introduction">7.2.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration">7.2.2. Server Configuratie</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap">7.2.3. Bootstrap Bestand</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure">7.2.4. Mappenstructuur</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.overview.indexcontroller">7.2.5. IndexController</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.subclassing.html">7.3. Onderklassen</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.introduction">7.3.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.conventions">7.3.2. Overeenkomsten</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.router.interface">7.3.3. Router Interface</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.dispatcher.interface">7.3.4. Dispatcher Interface</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.providedsubclasses.html">7.4. Provided Subclasses</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.introduction">7.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.request.http">7.4.2. Zend_Controller_Request_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter">7.4.3. Zend_Controller_RewriteRouter</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.http">7.4.4. Zend_Controller_Response_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.cli">7.4.5. Zend_Controller_Response_Cli</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.action.html">7.5. Action Controllers</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.introduction">7.5.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.initialization">7.5.2. Object initialization</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.prepostdispatch">7.5.3. Pre- and Post-Dispatch Hooks</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.accessors">7.5.4. Accessors</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.utilmethods">7.5.5. Utility Methods</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.plugins.html">7.6. Plugins</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.introduction">7.6.1. Inleiding</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.controller.modular.html">7.7. Using a Conventional Modular Directory Structure</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.introduction">7.7.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.directories">7.7.2. Specifying Module Controller Directories</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.router">7.7.3. Routing to modules</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.defaultcontroller">7.7.4. Module or Global Default Controller</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.exceptions.html">7.8. MVC Exceptions</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.introduction">7.8.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.handling">7.8.2. How can you handle exceptions?</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.internal">7.8.3. MVC Exceptions You May Encounter</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.migration.html">7.9. Migrating from Previous Versions</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerotwo">7.9.1. Migrating from 0.2.0 or before to 0.6.0</a></span></dt></dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.date.html">8. Zend_Date</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.date.html#zend.date.introduction">8.1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.html#zend.date.setdefaulttimezone">8.1.1. Always Set a Default Timezone</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.html#zend.date.why">8.1.2. Why Use Zend_Date?</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.date.basic.html">8.2. Basic Methods</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.basic.html#zend.date.basic.creation">8.2.1. The current date</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.basic.html#zend.date.basic.functions">8.2.2. Zend_Date by Example</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.date.definition.theory.html">8.3. Theory of Operation</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.date.definition.theory.html#zend.date.theory.internals">8.3.1. Internals</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.date.overview.html">8.4. Zend_Date API Overview</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.values">8.4.1. Working with Date Values</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.overview.detail">8.4.2. Date Part Specific Methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.overview.others">8.4.3. Additional Functions</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.date.constants.html">8.5. Constants for General Date Functions</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.constants.html#zend.date.constants.using">8.5.1. Using Constants</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.constants.html#zend.date.constants.list">8.5.2. List of All Constants</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.constants.html#zend.date.constants.selfdefinedformats">8.5.3. Self-Defined Formats</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.db.html">9. Zend_Db</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.db.html#zend.db.adapter">9.1. Zend_Db_Adapter</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.introduction">9.1.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.quoting">9.1.2. Quoting tegen SQL Injectie</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.queries">9.1.3. Directe Queries</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.transactions">9.1.4. Transacties</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.insert">9.1.5. Rijen Invoegen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.update">9.1.6. Rijen updaten</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.delete">9.1.7. Rijen Verwijderen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.fetch">9.1.8. Rijen Halen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.profiler.html">9.2. Zend_Db_Profiler</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.introduction">9.2.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.using">9.2.2. De Profiler Gebruiken</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.advanced">9.2.3. Geavanceerd Profiler Gebruik</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.select.html">9.3. Zend_Db_Select</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.introduction">9.3.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.fromcols">9.3.2. Kolommen FROM een tabel</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.joincols">9.3.3. Kolommen van geJOINde tabellen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.where">9.3.4. WHERE voorwaarden</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.group">9.3.5. GROUP BY clausule</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.having">9.3.6. HAVING voorwaarden</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.order">9.3.7. ORDER BY clausule</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.limit">9.3.8. LIMIT per Count en Offset</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.paging">9.3.9. LIMIT per Pagina en Count</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.table.html">9.4. Zend_Db_Table</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.introduction">9.4.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.getting-started">9.4.2. Om te beginnen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.name-and-key">9.4.3. Tabelnaam en Primaire Key</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.insert">9.4.4. Rijen invoegen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.udpate">9.4.5. Rijen updaten</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.delete">9.4.6. Rijen verwijderen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.findbykey">9.4.7. Rijen vinden per primaire key</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.fetchonerow">9.4.8. Eén enkele rij ophalen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.fetchmultiple">9.4.9. Meerdere rijen ophalen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.domain-logic">9.4.10. Domein Logica Invoegen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.tablerow.html">9.5. Zend_Db_Table_Row</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.introduction">9.5.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.fetch">9.5.2. Een rij ophalen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.modify">9.5.3. Waarden wijzigen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.tablerowset.html">9.6. Zend_Db_Table_Rowset</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.introduction">9.6.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.fetch">9.6.2. Een Rowset verkrijgen</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.iterate">9.6.3. Door de Rowset lopen</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.feed.html">10. Zend_Feed</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.feed.html#zend.feed.introduction">10.1. Inleiding</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.importing.html">10.2. Feeds importeren met Zend_Feed</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.findFeeds.html">10.3. Feeds verkregen van Web Paginas</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-rss.html">10.4. Een RSS Feed lezen</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-atom.html">10.5. Een Atom Feed lezen</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-atom-single-entry.html">10.6. Een enkele Atom entry lezen</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.modifying-feed.html">10.7. Feed en Entry structuren wijzigen</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.custom-feed.html">10.8. Aangepaste Feed en Entry klassen</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.filter.html">11. Zend_Filter</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.filter.html#zend.filter.filter">11.1. Zend_Filter</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.filter.html#zend.filter.filter.introduction">11.1.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.html#zend.filter.filter.usecases">11.1.2. Gebruik</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.filter.filter_chains.html">11.2. Filter Chains</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.writing_filters.html">11.3. Writing Filters</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.input.html">11.4. Zend_Filter_Input</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction">11.4.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction.whitelist">11.4.2. Witte lijst filteren</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction.blind">11.4.3. Blind Filteren</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction.blacklist">11.4.4. Zwarte lijst Filteren</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.theoryofoperation">11.4.5. Werkingstheorie</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.usecases">11.4.6. Gebruik</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.gdata.html">12. Zend_Gdata</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.gdata.html#zend.gdata.introduction">12.1. Introduction to Gdata</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.authentication">12.1.1. Google Data Client Authentication</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.dependencies">12.1.2. Dependencies</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.creation">12.1.3. Creating a new Gdata client</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.parameters">12.1.4. Common query parameters</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.getfeed">12.1.5. Fetching a feed</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.post">12.1.6. Posting entries to Google servers</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.delete">12.1.7. Deleting entries on Google servers</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.authsub.html">12.2. Authenticating with AuthSub</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.authsub.html#zend.gdata.authsub.login">12.2.1. Creating an AuthSub authenticated Http Client</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.authsub.html#zend.gdata.authsub.logout">12.2.2. Revoking AuthSub authentication</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.clientlogin.html">12.3. Authenticating with ClientLogin</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.login">12.3.1. Creating a ClientLogin authenticated Http Client</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.terminating">12.3.2. Terminating a ClientLogin authenticated Http Client</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.base.html">12.4. Using Google Base</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.query">12.4.1. Querying Base data</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.post">12.4.2. Updating Base data</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.metadata">12.4.3. Querying Base metadata</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.blogger.html">12.5. Using Google Blogger</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.compatibility">12.5.1. Understanding Blogger version compatibility</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.query">12.5.2. Querying a blog</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.post">12.5.3. Posting to your blog</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.calendar.html">12.6. Using Google Calendar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.calendar.html#zend.gdata.calendar.query">12.6.1. Querying Google Calendar</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.calendar.html#zend.gdata.calendar.post">12.6.2. Posting to Google Calendar</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.codesearch.html">12.7. Using Google CodeSearch</a></span></dt>
+<dt><span class="sect1"><a href="zend.gdata.data.html">12.8. Using the Gdata Data Helper</a></span></dt>
+<dt><span class="sect1"><a href="zend.gdata.exception.html">12.9. Catching Gdata Exceptions</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.http.html">13. Zend_Http</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.http.html#zend.http.client">13.1. Zend_Http_Client</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.introduction">13.1.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.basic-get-requests">13.1.2. Basis GET verzoeken met gespecificeerde HTTP Headers</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.requesting-multiple-domains">13.1.3. Multidomein verzoeken</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.settimeout">13.1.4. De HTTP Timeout wijzigen</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.setheaders">13.1.5. Dynamisch HTTP Headers zetten</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.making-other-requests">13.1.6. POST, PUT en DELETE HTTP verzoeken maken</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.advanced.html">13.2. Zend_Http_Client - Advanced Usage</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.redirections">13.2.1. HTTP Redirections</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.cookies">13.2.2. Adding Cookies and Using Cookie Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.custom_headers">13.2.3. Setting Custom Request Headers</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.file_uploads">13.2.4. File Uploads</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.raw_post_data">13.2.5. Sending Raw POST Data</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.http_authentication">13.2.6. HTTP Authentication</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.multiple_requests">13.2.7. Sending Multiple Requests With the Same Client</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.adapters.html">13.3. Zend_Http_Client - Connection Adapters</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapters.overview">13.3.1. Overview</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#id4829163">13.3.2. The Socket Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.proxy">13.3.3. The Proxy Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.test">13.3.4. The Test Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.extending">13.3.5. Creating your own connection adapters</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.cookies.html">13.4. Zend_Http_Cookie and Zend_Http_CookieJar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.introduction">13.4.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.instantiating">13.4.2. Instantiating Zend_Http_Cookie Objects</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.accessors">13.4.3. Zend_Http_Cookie getter methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.matching">13.4.4. Zend_Http_Cookie: Matching against a scenario</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar">13.4.5. The Zend_Http_CookieJar Class: Instantiation</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.adding_cookies">13.4.6. Adding Cookies to a Zend_Http_CookieJar object</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.getting_cookies">13.4.7. Retrieving Cookies From a Zend_Http_CookieJar object</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.response.html">13.5. Zend_Http_Response</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.introduction">13.5.1. Inleiding</a></span></dt></dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.json.html">14. Zend_Json</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.json.html#zend.json.introduction">14.1. Inleiding</a></span></dt>
+<dt><span class="sect1"><a href="zend.json.basics.html">14.2. Basisgebruik</a></span></dt>
+<dt><span class="sect1"><a href="zend.json.objects.html">14.3. JSON Objecten</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.locale.html">15. Zend_Locale</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.locale.html#zend.locale.introduction">15.1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.whatislocalization">15.1.1. What is Localization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.whatis">15.1.2. What is a Locale?</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.representation">15.1.3. How are Locales Represented?</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.selection">15.1.4. Selecting the Right Locale</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.interoperate">15.1.5. ZF Locale-Aware Classes</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.functions.html">15.2. Using Zend_Locale</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.copying">15.2.1. Copying, Cloning, and Serializing Locale Objects</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.equals">15.2.2. isEqual() - Equality</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getdefault">15.2.3. Default locales</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.setlocale">15.2.4. Set a new locale</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getlocale">15.2.5. Getting the language and region</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getlanguage">15.2.6. Obtaining localized name for languages, regions, and calendars</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getscriptdisplay">15.2.7. Get an translated string of an script</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getscriptlist">15.2.8. Get a list of scripts</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getquestion">15.2.9. Obtaining translations for "yes" and "no"</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.parsing.html">15.3. Normalization and Localization</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.normalize">15.3.1. Number normalization: getNumber($input, $precision = false, $locale = false)</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.localize">15.3.2. Number localization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.test">15.3.3. Number testing</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.normalize">15.3.4. Float value normalization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.localize">15.3.5. Floating point value localization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.test">15.3.6. Floating point value testing</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.normalize">15.3.7. Integer value normalization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.localize">15.3.8. Integer point value localization</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.test">15.3.9. Integer value testing</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.numbersystems">15.3.10. Numeral System Conversion</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.date.datesandtimes.html">15.4. Working with Dates and Times</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.date.normalize">15.4.1. Normalizing Dates and Times</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.date.test">15.4.2. Testing Dates</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.time.normalizing">15.4.3. Normalizing a Time</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.time.test">15.4.4. Testing Times</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.languages.html">15.5. Supported Languages for Locales</a></span></dt>
+<dt><span class="sect1"><a href="zend.locale.regions.html">15.6. Supported Regions for Locales</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.log.html">16. Zend_Log</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.log.html#zend.log.introduction">16.1. Inleiding</a></span></dt>
+<dt><span class="sect1"><a href="zend.log.simple-logging.html">16.2. Loggen naar een enkele Log</a></span></dt>
+<dt><span class="sect1"><a href="zend.log.log-levels.html">16.3. Log Levels</a></span></dt>
+<dt><span class="sect1"><a href="zend.log.advanced-logging.html">16.4. Geavanceerd Loggen: Meerdere Loggers</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.mail.html">17. Zend_Mail</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.mail.html#zend.mail.introduction">17.1. Inleiding</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.sending.html">17.2. E-mail sturen via SMTP</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.multiple-emails.html">17.3. Meerdere e-mails sturen via een SMTP verbinding</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.different-transports.html">17.4. Verschillende Transporten gebruiken</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.html-mails.html">17.5. HTML E-Mail</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.attachments.html">17.6. Bijlagen</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.adding-recipients.html">17.7. Geadresseerde bijvoegen</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.boundary.html">17.8. De MIME Boundary controleren</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.additional-headers.html">17.9. Bijkomende Headers</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.character-sets.html">17.10. Character Sets</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.encoding.html">17.11. Encoding</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.smtp-authentication.html">17.12. SMTP Authentificatie</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.smtp-secure.html">17.13. Securing SMTP Transport</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.read.html">17.14. Reading Mail Messages</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-example">17.14.1. Simple example using Pop3</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-open-local">17.14.2. Opening a local storage</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-open-remote">17.14.3. Opening a remote storage</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-fetching">17.14.4. Fetching messages and simple methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-message">17.14.5. Working with messages</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-folders">17.14.6. Using folders</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-advanced">17.14.7. Advanced Use</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.measure.html">18. Zend_Measure</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.measure.html#zend.measure.introduction">18.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.measure.creation.html">18.2. Creation of Measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.number">18.2.1. Measurements from variables</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.string">18.2.2. Measurements from strings</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.localized">18.2.3. Measurements from localized strings</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.output.html">18.3. Outputting measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.auto">18.3.1. Automatic output</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.value">18.3.2. Outputting values</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.unit">18.3.3. Output with unit of measurement</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.localized">18.3.4. Output as localized string</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.edit.html">18.4. Manipulating measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.convert">18.4.1. Convert</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.add">18.4.2. Add and subtract</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.equal">18.4.3. Compare</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.compare">18.4.4. Calculate differences</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.changevalue">18.4.5. Manually change values</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.changetype">18.4.6. Manually change types</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.special.html">18.5. Special functions</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.serial">18.5.1. Serializing and Deserializing</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.typelist">18.5.2. Listing all known types</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.unitlist">18.5.3. Listing all known units</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.types.html">18.6. Types of measurements</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.acceleration">18.6.1. Zend_Measure_Acceleration</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.angle">18.6.2. Zend_Measure_Angle</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.area">18.6.3. Zend_Measure_Area</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.binary">18.6.4. Zend_Measure_Binary</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.capacitance">18.6.5. Zend_Measure_Capacitance</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.cooking.volume">18.6.6. Zend_Measure_Cooking_Volume</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.cooking.weight">18.6.7. Zend_Measure_Cooking_Weight</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.current">18.6.8. Zend_Measure_Current</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.density">18.6.9. Zend_Measure_Density</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.energy">18.6.10. Zend_Measure_Energy</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.force">18.6.11. Zend_Measure_Force</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.flow.mass">18.6.12. Zend_Measure_Flow_Mass</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.flow.mole">18.6.13. Zend_Measure_Flow_Mole</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.flow.volume">18.6.14. Zend_Measure_Flow_Volume</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.frequency">18.6.15. Zend_Measure_Frequency</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.illumination">18.6.16. Zend_Measure_Illumination</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.length">18.6.17. Zend_Measure_Length</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.lightness">18.6.18. Zend_Measure_Lightness</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.number">18.6.19. Zend_Measure_Number</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.power">18.6.20. Zend_Measure_Power</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.pressure">18.6.21. Zend_Measure_Pressure</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.speed">18.6.22. Zend_Measure_Speed</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.temperature">18.6.23. Zend_Measure_Temperature</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.torque">18.6.24. Zend_Measure_Torque</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.viscosity.dynamic">18.6.25. Zend_Measure_Viscosity_Dynamic</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.viscosity.kinematic">18.6.26. Zend_Measure_Viscosity_Kinematic</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.volume">18.6.27. Zend_Measure_Volume</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.weight">18.6.28. Zend_Measure_Weight</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.mime.html">19. Zend_Mime</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.mime.html#zend.mime.introduction">19.1. Inleiding</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.html#zend.mime.static">19.1.1. Statische Methodes en Constanten</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.html#zend.mime.instatiation">19.1.2. Zend_Mime Instantiëren</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.mime.message.html">19.2. Zend_Mime_Message</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.introduction">19.2.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.instantiation">19.2.2. Instantiëring</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.addparts">19.2.3. MIME Delen Toevoegen</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.bondary">19.2.4. Boundary afhandeling</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.parse">19.2.5. Een string parsen om een Zend_Mime_Message object te maken 
+        (experimenteel)</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.mime.part.html">19.3. Zend_Mime_Part</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.introduction">19.3.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.instantiation">19.3.2. Instantiëring</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.methods">19.3.3. Methodes om een berichtdeel naar een string te schrijven</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.pdf.html">20. Zend_Pdf</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.pdf.html#zend.pdf.introduction">20.1. Inleiding</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.create.html">20.2. Maken en laden van PDF documenten</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.save.html">20.3. Wijzigen van het PDF document opslaan</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.pages.html">20.4. Document pagina's</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.drawing.html">20.5. Tekenen</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.geometry">20.5.1. Geometrie</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.color">20.5.2. Kleur</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.shape-drawing">20.5.3. Vormen tekenen</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.text-drawing">20.5.4. Tekst schrijven</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.using-fonts">20.5.5. Lettertypes gebruiken</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.image-drawing">20.5.6. Beelden tekenen</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.line-drawing-style">20.5.7. Lijnstijl tekenen</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.fill-style">20.5.8. Vulstijl</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.rotations">20.5.9. Rotaties</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.save-restore">20.5.10. Opslaan/herstellen van een grafische staat</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.clipping">20.5.11. Clipping draw area</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.styles">20.5.12. Stijlen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.pdf.usage.html">20.6. Een gebruiksvoorbeeld voor de Zend_Pdf module</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.rest.html">21. Zend_Rest</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.rest.html#zend.rest.introduction">21.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.rest.client.html">21.2. Zend_Rest_Client</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.introduction">21.2.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.return">21.2.2. Responses</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.args">21.2.3. Request Arguments</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.rest.server.html">21.3. Zend_Rest_Server</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.introduction">21.3.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.usage">21.3.2. REST Server Usage</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.args">21.3.3. Calling a Zend_Rest_Server Service</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.customstatus">21.3.4. Sending A Custom Status</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.customxml">21.3.5. Returning Custom XML Responses</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.search.html">22. Zend_Search</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.search.html#zend.search.overview">22.1. Overzicht</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.introduction">22.1.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.documents-and-fields">22.1.2. Document en Veld Objecten</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.understanding-field-types">22.1.3. Veld Types Begrijpen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.index-creation.html">22.2. Indexes Bouwen</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.creating">22.2.1. Een Nieuwe Index Maken</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.updating">22.2.2. Index Updaten</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.document-updating">22.2.3. Documenten updaten</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.searching.html">22.3. Het doorzoeken van een index</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.query-parser">22.3.1. Opbouwen van Queries</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results">22.3.2. Zoek resultaten</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results-scoring">22.3.3. Resultaten Scoring</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.query-language.html">22.4. Query Language</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.terms">22.4.1. Terms</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.fields">22.4.2. Fields</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.modifiers">22.4.3. Term Modifiers</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.proximity-search">22.4.4. Proximity Searches</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boosting">22.4.5. Boosting a Term</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boolean">22.4.6. Boolean Operators</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.grouping">22.4.7. Grouping</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.field-grouping">22.4.8. Field Grouping</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.escaping">22.4.9. Escaping Special Characters</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.queries.html">22.5. Query Types</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.term-query">22.5.1. Term Query</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.multiterm-query">22.5.2. Multi-Term Query</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.phrase-query">22.5.3. Phrase Query</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.charset.html">22.6. Karakterset.</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.description">22.6.1. Support voor UTF-8 en single-byte karaktersets.</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.search.extending.html">22.7. Uitbreidbaarheid</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.analysis">22.7.1. Tekst analysator</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.scoring">22.7.2. Score Algorithmes</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.storage">22.7.3. Opslag containers</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.java-lucene.html">22.8. Interoperatie met Java Lucene</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.file-formats">22.8.1. Bestandsformaten</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.index-directory">22.8.2. Index Map</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.source-code">22.8.3. Java Broncode</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.jar">22.8.4. LuceneIndexCreation.jar gebruiken</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.server.html">23. Zend_Server</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.server.html#zend.server.introduction">23.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.server.reflection.html">23.2. Zend_Server_Reflection</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.server.reflection.html#zend.server.reflection.introduction">23.2.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.server.reflection.html#zend.server.reflection.usage">23.2.2. Usage</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.service.html">24. Zend_Service</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.service.html#zend.service.introduction">24.1. Inleiding</a></span></dt>
+<dt><span class="sect1"><a href="zend.service.akismet.html">24.2. Zend_Service_Akismet</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.introduction">24.2.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.verifykey">24.2.2. Verify an API key</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.isspam">24.2.3. Check for spam</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.submitspam">24.2.4. Submitting known spam</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.submitham">24.2.5. Submitting false positives (ham)</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.accessors">24.2.6. Zend-specific Accessor Methods</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.amazon.html">24.3. Zend_Service_Amazon</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.introduction">24.3.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.countrycodes">24.3.2. Landcodes</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.itemlookup">24.3.3. Een specifiek item opzoeken met ASIN code</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.itemsearch">24.3.4. Amazon Item zoekopdrachten uitvoeren</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.query">24.3.5. De Alternatieve Query API gebruiken</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.classes">24.3.6. Zend_Service_Amazon Klassen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.flickr.html">24.4. Zend_Service_Flickr</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.introduction">24.4.1. Inleiding voor het zoeken in Flickr</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.finding-users">24.4.2. Flickr gebruikers vinden</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.getimagedetails">24.4.3. Flickr beelddetails opvragen</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.classes">24.4.4. Zend_Service_Flickr Klassen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.yahoo.html">24.5. Zend_Service_Yahoo</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.introduction">24.5.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.websearch">24.5.2. Het web doorzoeken met Yahoo!</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.imagesearch">24.5.3. Beelden vinden met Yahoo!</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.localsearch">24.5.4. Plaatselijke bedrijven en diensten vinden met Yahoo!</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.newssearch">24.5.5. Yahoo! News zoeken</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.classes">24.5.6. Zend_Service_Yahoo Klassen</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.session.html">25. Zend_Session</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.session.html#zend.session.introduction">25.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.session.basicusage.html">25.2. Basic Usage</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.basicexamples">25.2.1. Tutorial Examples</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.iteration">25.2.2. Iterating Over Session Namespaces</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.accessors">25.2.3. Accessors for Session Namespaces</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.advancedusage.html">25.3. Advanced Usage</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.startingasession">25.3.1. Starting a Session</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.locking">25.3.2. Locking Session Namespaces</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.controllers">25.3.3. Session Encapsulation and Controllers</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.limitinginstances">25.3.4. Limiting Instances of Zend_Session to One Per Namespace</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.globalsessionmanagement.html">25.4. Global Session Management</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.setoptions">25.4.1. setOptions()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.options">25.4.2. Options</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.regenerateid">25.4.3. regenerateId()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.rememberme">25.4.4. rememberMe(integer $seconds)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.forgetme">25.4.5. forgetMe()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.sessionexists">25.4.6. sessionExists()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.destroy">25.4.7. destroy(bool $remove_cookie = true, bool $readonly = true)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.stop">25.4.8. stop()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.writeClose">25.4.9. writeClose($readonly = true)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.expiresessioncookie">25.4.10. expireSessionCookie()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.savehandler">25.4.11. setSaveHandler(Zend_Session_SaveHandler_Interface $interface)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.getinstance">25.4.12. getInstance($instanceMustExist = false)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceisset">25.4.13. namespaceIsset($namespace, $name = null)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceunset">25.4.14. namespaceUnset($namespace, $name = null)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceset">25.4.15. namespaceSet($namespace, $name, $value)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceget">25.4.16. namespaceGet($namespace, $name = null)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.getiterator">25.4.17. getIterator()</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.theory.html">25.5. Theory</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.uri.html">26. Zend_Uri</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.uri.html#zend.uri.chapter">26.1. Zend_Uri</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.overview">26.1.1. Overview</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.creation">26.1.2. Creating a New URI</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.manipulation">26.1.3. Manipulating an Existing URI</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.validation">26.1.4. URI Validation</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.instance-methods">26.1.5. Common Instance Methods</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.validate.html">27. Zend_Validate</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.validate.html#zend.validate.introduction">27.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validator_chains.html">27.2. Validator Chains</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.writing_validators.html">27.3. Writing Validators</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_email_addresses.html">27.4. Validating Email Addresses</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_hostnames.html">27.5. Validating Hostnames</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.view.html">28. Zend_View</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.view.html#zend.view.introduction">28.1. Inleiding</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.controller">28.1.1. Controller Script</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.view">28.1.2. View Script</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.controllers.html">28.2. Controller Scripts</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.assign">28.2.1. Variabelen toewijzen</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.render">28.2.2. Een View Script weergeven</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.script-paths">28.2.3. View Script Paden</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.scripts.html">28.3. View Scripts</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.escaping">28.3.1. Escaping Output</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.templates">28.3.2. Template Systemen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.helpers.html">28.4. View Helpers</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.initial">28.4.1. Initiële Helpers</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.paths">28.4.2. Helper Paden</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.custom">28.4.3. Je eigen Helpers schrijven</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.xmlrpc.html">29. Zend_XmlRpc</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.xmlrpc.html#zend.xmlrpc.introduction">29.1. Inleiding</a></span></dt>
+<dt><span class="sect1"><a href="zend.xmlrpc.client.html">29.2. Zend_XmlRpc_Client</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.introduction">29.2.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.parameters">29.2.2. Parameters gebruiken</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.wsdl">29.2.3. Hints geven voor parameter types</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.response">29.2.4. Het antwoord terugkrijgen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.xmlrpc.server.html">29.3. Zend_XmlRpc_Server</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.introduction">29.3.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.usage">29.3.2. XML-RPC Server Basic Usage</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.structure">29.3.3. XML-RPC Server Structure</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.conventions">29.3.4. Conventions</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.namespaces">29.3.5. Utilizing Namespaces</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.request">29.3.6. Custom Request Objects</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.response">29.3.7. Custom Responses</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.fault">29.3.8. Handling Exceptions via Faults</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.caching">29.3.9. Caching Server Definitions Between Requests</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.use">29.3.10. Usage Examples</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="appendix"><a href="coding-standard.html">A. Zend Framework Programmeer Standaard</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="coding-standard.html#coding-standard.overview">A.1. Overzicht</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.html#coding-standard.overview.scope">A.1.1. Bereik</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.html#coding-standard.overview.goals">A.1.2. Doelen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.php-file-formatting.html">A.2. PHP Bestandsformattering</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.general">A.2.1. Algemeen</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation">A.2.2. Indenting</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.max-line-length">A.2.3. Maximale regellengte</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.line-termination">A.2.4. Regeleinde</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.naming-conventions.html">A.3. Benamingsovereenkomst</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes">A.3.1. Klassen</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces">A.3.2. Interfaces</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames">A.3.3. Bestandsnamen</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.functions-and-methods">A.3.4. Functies en methodes</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.variables">A.3.5. Variabelen</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.constants">A.3.6. Constanten</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.coding-style.html">A.4. Codestijl</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.php-code-demarcation">A.4.1. PHP Code Afbakening</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.strings">A.4.2. Strings</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.arrays">A.4.3. Arrays</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.classes">A.4.4. Klassen</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.functions-and-methods">A.4.5. Functies en Methodes</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.control-statements">A.4.6. Control Statements</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standards.inline-documentation">A.4.7. Inline Documentatie</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="appendix"><a href="copyrights.html">B. Auteursrechtinformatie</a></span></dt>
+<dt><span class="index"><a href="the.index.html">Register</a></span></dt>
+</dl>
+</div>
+<div class="list-of-tables">
+<p><b>Lijst van tabellen</b></p>
+<dl>
+<dt>2.1. <a href="zend.acl.html#id4732852">Access Controls for an Example CMS</a>
+</dt>
+<dt>4.1. <a href="zend.cache.frontends.html#id4788136">Beschikbare opties</a>
+</dt>
+<dt>4.2. <a href="zend.cache.frontends.html#id4788526">Beschikbare opties</a>
+</dt>
+<dt>4.3. <a href="zend.cache.frontends.html#id4788740">Beschikbare opties</a>
+</dt>
+<dt>4.4. <a href="zend.cache.frontends.html#id4788976">Beschikbare opties</a>
+</dt>
+<dt>4.5. <a href="zend.cache.frontends.html#id4789156">Beschikbare opties</a>
+</dt>
+<dt>4.6. <a href="zend.cache.backends.html#id4789935">Beschikbare opties</a>
+</dt>
+<dt>4.7. <a href="zend.cache.backends.html#id4790750">Beschikbare opties</a>
+</dt>
+<dt>4.8. <a href="zend.cache.backends.html#id4790844">Beschikbare opties</a>
+</dt>
+<dt>8.1. <a href="zend.date.overview.html#id4803454">Basic <code class="code">Zend_Date</code> Methods and Part Specific Methods</a>
+</dt>
+<dt>8.2. <a href="zend.date.overview.html#id4804674">Detailed functions</a>
+</dt>
+<dt>8.3. <a href="zend.date.overview.html#id4805169">Additional Functions</a>
+</dt>
+<dt>8.4. <a href="zend.date.constants.html#id4806026">Operations involving Zend_Date::HOUR</a>
+</dt>
+<dt>8.5. <a href="zend.date.constants.html#id4806851">Day Constants</a>
+</dt>
+<dt>8.6. <a href="zend.date.constants.html#id4807098">Week Constants</a>
+</dt>
+<dt>8.7. <a href="zend.date.constants.html#id4807152">Month Constants</a>
+</dt>
+<dt>8.8. <a href="zend.date.constants.html#id4807315">Year Constants</a>
+</dt>
+<dt>8.9. <a href="zend.date.constants.html#id4807461">Time Constants</a>
+</dt>
+<dt>8.10. <a href="zend.date.constants.html#id4807748">Timezone Constants</a>
+</dt>
+<dt>8.11. <a href="zend.date.constants.html#id4807921">Date Format Constants (formats include timezone)</a>
+</dt>
+<dt>8.12. <a href="zend.date.constants.html#id4808207">Date and Time Formats (format varies by locale)</a>
+</dt>
+<dt>8.13. <a href="zend.date.constants.html#id4806522">Constants for <span class="strong">ISO 8601 date output</span>
+            </a>
+</dt>
+<dt>12.1. <a href="zend.gdata.blogger.html#id4823709">Differences between current Blogger service and Blogger beta service</a>
+</dt>
+<dt>13.1. <a href="zend.http.client.adapters.html#id4829282">Zend_Http_Client configuration parameters</a>
+</dt>
+<dt>15.1. <a href="zend.locale.parsing.html#id4835596">List of supported numeral systems</a>
+</dt>
+<dt>15.2. <a href="zend.locale.date.datesandtimes.html#id4836924">Return values</a>
+</dt>
+<dt>15.3. <a href="zend.locale.date.datesandtimes.html#id4837169">Format definition</a>
+</dt>
+<dt>15.4. <a href="zend.locale.date.datesandtimes.html#id4837272">Example formats</a>
+</dt>
+<dt>15.5. <a href="zend.locale.languages.html#id4837634">List of all supported languages</a>
+</dt>
+<dt>15.6. <a href="zend.locale.regions.html#id4839911">List of all supported regions</a>
+</dt>
+<dt>17.1. <a href="zend.mail.read.html#id4844882">Mail Read Feature Overview</a>
+</dt>
+<dt>17.2. <a href="zend.mail.read.html#id4846378">Mail Folder Names</a>
+</dt>
+<dt>22.1. <a href="zend.search.html#id4864410">Zend_Search_Lucene_Field Types</a>
+</dt>
+<dt>24.1. <a href="zend.service.amazon.html#id4872683">Zend_Service_Amazon_Item Eigenschappen</a>
+</dt>
+<dt>24.2. <a href="zend.service.amazon.html#id4873053">Zend_Service_Amazon_Image Eigenschappen</a>
+</dt>
+<dt>24.3. <a href="zend.service.amazon.html#id4873277">Zend_Service_Amazon_OfferSet Eigenschappen</a>
+</dt>
+<dt>24.4. <a href="zend.service.amazon.html#id4873494">Eigenschappen</a>
+</dt>
+<dt>24.5. <a href="zend.service.amazon.html#id4873691">Zend_Service_Amazon_SimilarProduct Eigenschappen</a>
+</dt>
+<dt>24.6. <a href="zend.service.amazon.html#id4873796">Zend_Service_Amazon_Accessories Eigenschappen</a>
+</dt>
+<dt>24.7. <a href="zend.service.amazon.html#id4873899">Zend_Service_Amazon_CustomerReview Eigenschappen</a>
+</dt>
+<dt>24.8. <a href="zend.service.amazon.html#id4874072">Zend_Service_Amazon_EditorialReview Eigenschappen</a>
+</dt>
+<dt>24.9. <a href="zend.service.amazon.html#id4874176">Zend_Service_Amazon_Listmania Eigenschappen</a>
+</dt>
+<dt>24.10. <a href="zend.service.flickr.html#id4876926">Zend_Service_Flickr_ResultSet Eigenschappen</a>
+</dt>
+<dt>24.11. <a href="zend.service.flickr.html#id4877073">Zend_Service_Flickr_Result Eigenschappen</a>
+</dt>
+<dt>24.12. <a href="zend.service.flickr.html#id4877445">Zend_Service_Flickr_Image Eigenschappen</a>
+</dt>
+<dt>24.13. <a href="zend.service.yahoo.html#id4879111">Zend_Service_Yahoo_ResultSet</a>
+</dt>
+<dt>24.14. <a href="zend.service.yahoo.html#id4879320">Zend_Service_Yahoo_LocalResultSet Eigenschappen</a>
+</dt>
+<dt>24.15. <a href="zend.service.yahoo.html#id4879476">Zend_Service_Yahoo_Result Eigenschappen</a>
+</dt>
+<dt>24.16. <a href="zend.service.yahoo.html#id4879593">Zend_Service_Yahoo_WebResult Eigenschappen</a>
+</dt>
+<dt>24.17. <a href="zend.service.yahoo.html#id4879740">Zend_Service_Yahoo_ImageResult Eigenschappen</a>
+</dt>
+<dt>24.18. <a href="zend.service.yahoo.html#id4879920">Zend_Service_Yahoo_LocalResult Eigenschappen</a>
+</dt>
+<dt>24.19. <a href="zend.service.yahoo.html#id4880123">Zend_Service_Yahoo_NewsResult Eigenschappen</a>
+</dt>
+<dt>24.20. <a href="zend.service.yahoo.html#id4880304">Zend_Service_Yahoo_Image Eigenschappen</a>
+</dt>
+<dt>29.1. <a href="zend.xmlrpc.client.html#id4890661">PHP en XML-RPC type omzetting</a>
+</dt>
+<dt>29.2. <a href="zend.xmlrpc.client.html#id4890854"><code class="code">Zend_XmlRpc_Value</code> objecten die de XML-RPC types voorstelt</a>
+</dt>
+</dl>
+</div>
+<div class="list-of-examples">
+<p><b>Lijst van voorbeelden</b></p>
+<dl>
+<dt>1.1. <a href="zend.initregistry.html#id4732472">register() / offsetSet() Example</a>
+</dt>
+<dt>4.1. <a href="zend.cache.html#id4786457">Een frontend verkrijgen met <code class="code">Zend_Cache::factory()</code></a>
+</dt>
+<dt>4.2. <a href="zend.cache.html#id4787238">Output cachen met de <code class="code">Zend_Cache</code> output frontend</a>
+</dt>
+<dt>5.1. <a href="zend.config.html#id4790543">Opzettelijk Zend_Config gebruiken</a>
+</dt>
+<dt>5.2. <a href="zend.config.adapters.ini.html#id4791449">Zend_Config_Ini gebruiken</a>
+</dt>
+<dt>5.3. <a href="zend.config.adapters.xml.html#id4791361">Zend_Config_Xml gebruiken</a>
+</dt>
+<dt>6.1. <a href="zend.console.getopt.rules.html#id4793092">Using the Short Syntax</a>
+</dt>
+<dt>6.2. <a href="zend.console.getopt.rules.html#id4793220">Using the Long Syntax</a>
+</dt>
+<dt>6.3. <a href="zend.console.getopt.fetching.html#id4793626">Catching Getopt Exceptions</a>
+</dt>
+<dt>6.4. <a href="zend.console.getopt.fetching.html#id4793703">Using getOption()</a>
+</dt>
+<dt>6.5. <a href="zend.console.getopt.fetching.html#id4793732">Using __get() and __isset() magic methods</a>
+</dt>
+<dt>6.6. <a href="zend.console.getopt.fetching.html#id4793868">Using getRemainingArgs()</a>
+</dt>
+<dt>6.7. <a href="zend.console.getopt.configuration.html#id4794319">Using addRules()</a>
+</dt>
+<dt>6.8. <a href="zend.console.getopt.configuration.html#id4794378">Using setHelp()</a>
+</dt>
+<dt>6.9. <a href="zend.console.getopt.configuration.html#id4794442">Using setAliases()</a>
+</dt>
+<dt>6.10. <a href="zend.console.getopt.configuration.html#id4794525">Using addArguments() and setArguments()</a>
+</dt>
+<dt>6.11. <a href="zend.console.getopt.configuration.html#id4794691">Using setOption()</a>
+</dt>
+<dt>6.12. <a href="zend.console.getopt.configuration.html#id4794719">Using setOptions()</a>
+</dt>
+<dt>8.1. <a href="zend.date.html#id4802125">Setting a default timezone</a>
+</dt>
+<dt>8.2. <a href="zend.date.basic.html#id4802750">Creating the current date</a>
+</dt>
+<dt>8.3. <a href="zend.date.basic.html#id4803511">get() - output a date</a>
+</dt>
+<dt>8.4. <a href="zend.date.basic.html#id4803546">set() - set a date</a>
+</dt>
+<dt>8.5. <a href="zend.date.basic.html#id4803594">add() - adding dates</a>
+</dt>
+<dt>8.6. <a href="zend.date.basic.html#id4803637">compare() - compare dates</a>
+</dt>
+<dt>8.7. <a href="zend.date.basic.html#id4803664">equals() - identify a date or date part</a>
+</dt>
+<dt>8.8. <a href="zend.date.constants.html#id4806491">Example usage for self-defined formats</a>
+</dt>
+<dt>10.1. <a href="zend.feed.html#id4817982">Zend_Feed laten werken met RSS Feed Data</a>
+</dt>
+<dt>10.2. <a href="zend.feed.consuming-atom.html#id4818569">Basisgebruik van een Atom Feed</a>
+</dt>
+<dt>10.3. <a href="zend.feed.consuming-atom-single-entry.html#id4819471">Een alleenstaande entry van een Atom Feed lezen</a>
+</dt>
+<dt>10.4. <a href="zend.feed.consuming-atom-single-entry.html#id4819221">Het Entry Object Direct gebruiken voor een Single-Entry Atom Feed</a>
+</dt>
+<dt>10.5. <a href="zend.feed.modifying-feed.html#id4819384">Wijzigen van een bestaande Feed Entry</a>
+</dt>
+<dt>10.6. <a href="zend.feed.modifying-feed.html#id4820285">Een Atom Entry met elementen van een aangepaste namespace</a>
+</dt>
+<dt>10.7. <a href="zend.feed.custom-feed.html#id4820484">De Atom Entry Class uitbreiden met aangepaste Namespaces</a>
+</dt>
+<dt>13.1. <a href="zend.http.html#id4826528">Een basis GET verzoek maken</a>
+</dt>
+<dt>13.2. <a href="zend.http.html#id4826544">Een Basis Zend_Http_Client maken</a>
+</dt>
+<dt>13.3. <a href="zend.http.html#id4826421">Meerdere Headers sturen</a>
+</dt>
+<dt>13.4. <a href="zend.http.html#id4827336">Multidomein verzoek</a>
+</dt>
+<dt>13.5. <a href="zend.http.html#id4827486">POST data verzenden met Zend_Http_Client</a>
+</dt>
+<dt>13.6. <a href="zend.http.client.advanced.html#id4827101">Forcing RFC 2616 Strict Redirections on 301 and 302 Responses</a>
+</dt>
+<dt>13.7. <a href="zend.http.client.advanced.html#id4828022">Setting Cookies Using setCookie()</a>
+</dt>
+<dt>13.8. <a href="zend.http.client.advanced.html#id4828070">Enabling Cookie Stickiness</a>
+</dt>
+<dt>13.9. <a href="zend.http.client.advanced.html#id4828132">Setting A Single Custom Request Header</a>
+</dt>
+<dt>13.10. <a href="zend.http.client.advanced.html#id4828153">Setting Multiple Custom Request Headers</a>
+</dt>
+<dt>13.11. <a href="zend.http.client.advanced.html#id4828237">Using setFileUpload to Upload Files</a>
+</dt>
+<dt>13.12. <a href="zend.http.client.advanced.html#id4827879">Sending Raw POST Data</a>
+</dt>
+<dt>13.13. <a href="zend.http.client.advanced.html#id4827954">Setting HTTP Authentication User and Password</a>
+</dt>
+<dt>13.14. <a href="zend.http.client.advanced.html#id4828616">Performing consecutive requests with one client</a>
+</dt>
+<dt>13.15. <a href="zend.http.client.adapters.html#id4829214">Changing the HTTPS transport layer</a>
+</dt>
+<dt>13.16. <a href="zend.http.client.adapters.html#id4829433">Using Zend_Http_Client behind a proxy server</a>
+</dt>
+<dt>13.17. <a href="zend.http.client.adapters.html#id4829511">Testing Your Code Without Accessing The Network</a>
+</dt>
+<dt>13.18. <a href="zend.http.client.adapters.html#id4828984">Creating your own connection adapter</a>
+</dt>
+<dt>13.19. <a href="zend.http.cookies.html#id4830422">Instantiating a Zend_Http_Cookie object</a>
+</dt>
+<dt>13.20. <a href="zend.http.cookies.html#id4830470">Stringifying a Zend_Http_Cookie object</a>
+</dt>
+<dt>13.21. <a href="zend.http.cookies.html#id4830620">Using getter methods with Zend_Http_Cookie</a>
+</dt>
+<dt>13.22. <a href="zend.http.cookies.html#id4830716">Matching cookies</a>
+</dt>
+<dt>13.23. <a href="zend.http.response.html#id4832066">Met HTTP antwoorddata werken</a>
+</dt>
+<dt>15.1. <a href="zend.locale.html#id4832866">Choosing a specific locale</a>
+</dt>
+<dt>15.2. <a href="zend.locale.html#id4832958">Automatically selecting a locale</a>
+</dt>
+<dt>15.3. <a href="zend.locale.html#id4833094">Dates default to correct locale of web users</a>
+</dt>
+<dt>15.4. <a href="zend.locale.html#id4833119">Overriding default locale selection</a>
+</dt>
+<dt>15.5. <a href="zend.locale.html#id4833135">Performance optimization when using a default locale</a>
+</dt>
+<dt>15.6. <a href="zend.locale.functions.html#id4833209">clone</a>
+</dt>
+<dt>15.7. <a href="zend.locale.functions.html#id4833875">Check for equal locales</a>
+</dt>
+<dt>15.8. <a href="zend.locale.functions.html#id4833942">Get default locales</a>
+</dt>
+<dt>15.9. <a href="zend.locale.functions.html#id4834048">setLocale</a>
+</dt>
+<dt>15.10. <a href="zend.locale.functions.html#id4834122">getLanguageDisplay</a>
+</dt>
+<dt>15.11. <a href="zend.locale.functions.html#id4834171">All Languages written in thier native language</a>
+</dt>
+<dt>15.12. <a href="zend.locale.functions.html#id4833686">getScriptDisplay</a>
+</dt>
+<dt>15.13. <a href="zend.locale.functions.html#id4833731">getScriptList</a>
+</dt>
+<dt>15.14. <a href="zend.locale.functions.html#id4833779">getQuestion()</a>
+</dt>
+<dt>15.15. <a href="zend.locale.parsing.html#id4834979">Number normalization</a>
+</dt>
+<dt>15.16. <a href="zend.locale.parsing.html#id4835049">Number normalization with precision</a>
+</dt>
+<dt>15.17. <a href="zend.locale.parsing.html#id4835098">Number localization</a>
+</dt>
+<dt>15.18. <a href="zend.locale.parsing.html#id4835147">Number localization with precision</a>
+</dt>
+<dt>15.19. <a href="zend.locale.parsing.html#id4835203">Number testing</a>
+</dt>
+<dt>15.20. <a href="zend.locale.parsing.html#id4835241">Floating point value normalization</a>
+</dt>
+<dt>15.21. <a href="zend.locale.parsing.html#id4835280">Floating point value localization</a>
+</dt>
+<dt>15.22. <a href="zend.locale.parsing.html#id4835336">Floating point value testing</a>
+</dt>
+<dt>15.23. <a href="zend.locale.parsing.html#id4835375">Integer value normalization</a>
+</dt>
+<dt>15.24. <a href="zend.locale.parsing.html#id4835413">Integer value localization</a>
+</dt>
+<dt>15.25. <a href="zend.locale.parsing.html#id4835450">Integer value testing</a>
+</dt>
+<dt>15.26. <a href="zend.locale.parsing.html#id4835540">Converting numerals to Arabic/European</a>
+</dt>
+<dt>15.27. <a href="zend.locale.parsing.html#id4835564">Converting numerals from Arabic/European</a>
+</dt>
+<dt>15.28. <a href="zend.locale.date.datesandtimes.html#id4837060">Normalizing a date</a>
+</dt>
+<dt>15.29. <a href="zend.locale.date.datesandtimes.html#id4837090">Normalizing a date by locale</a>
+</dt>
+<dt>15.30. <a href="zend.locale.date.datesandtimes.html#id4837113">Normalizing a date with time</a>
+</dt>
+<dt>15.31. <a href="zend.locale.date.datesandtimes.html#id4837148">Normalizing a userdefined date</a>
+</dt>
+<dt>15.32. <a href="zend.locale.date.datesandtimes.html#id4837371">Correction for date normalizing</a>
+</dt>
+<dt>15.33. <a href="zend.locale.date.datesandtimes.html#id4837408">Date testing</a>
+</dt>
+<dt>15.34. <a href="zend.locale.date.datesandtimes.html#id4837449">Normalize an unknown time</a>
+</dt>
+<dt>15.35. <a href="zend.locale.date.datesandtimes.html#id4837487">Testing a time</a>
+</dt>
+<dt>17.1. <a href="zend.mail.html#id4843123">Eenvoudige E-mail met Zend_Mail</a>
+</dt>
+<dt>17.2. <a href="zend.mail.sending.html#id4843345">E-mail sturen via SMTP</a>
+</dt>
+<dt>17.3. <a href="zend.mail.multiple-emails.html#id4843793">Meerdere e-mails sturen via een SMTP verbinding</a>
+</dt>
+<dt>17.4. <a href="zend.mail.different-transports.html#id4843877">Verschillende Transporten gebruiken</a>
+</dt>
+<dt>17.5. <a href="zend.mail.html-mails.html#id4844076">HTML E-Mail zenden</a>
+</dt>
+<dt>17.6. <a href="zend.mail.attachments.html#id4844199">E-mails met bijlagen</a>
+</dt>
+<dt>17.7. <a href="zend.mail.boundary.html#id4844537">De MIME Boundary veranderen</a>
+</dt>
+<dt>17.8. <a href="zend.mail.additional-headers.html#id4845165">E-mailbericht Headers toevoegen</a>
+</dt>
+<dt>17.9. <a href="zend.mail.smtp-secure.html#id4844938">Enabling a secure connection within
+    Zend_Mail_Transport_Smtp</a>
+</dt>
+<dt>18.1. <a href="zend.measure.html#id4847220">Converting measurements</a>
+</dt>
+<dt>18.2. <a href="zend.measure.creation.html#id4848045">Creation using integer variables</a>
+</dt>
+<dt>18.3. <a href="zend.measure.creation.html#id4848133">Creation using strings</a>
+</dt>
+<dt>18.4. <a href="zend.measure.creation.html#id4848164">Arbitrary texts</a>
+</dt>
+<dt>18.5. <a href="zend.measure.creation.html#id4848177">Arbitrary texts</a>
+</dt>
+<dt>18.6. <a href="zend.measure.creation.html#id4848229">Localized string</a>
+</dt>
+<dt>18.7. <a href="zend.measure.output.html#id4848613">Automatic output</a>
+</dt>
+<dt>18.8. <a href="zend.measure.output.html#id4848680">Output a value</a>
+</dt>
+<dt>18.9. <a href="zend.measure.output.html#id4848717">Outputting units</a>
+</dt>
+<dt>18.10. <a href="zend.measure.edit.html#id4849172">Convert</a>
+</dt>
+<dt>18.11. <a href="zend.measure.edit.html#id4849224">Adding units</a>
+</dt>
+<dt>18.12. <a href="zend.measure.edit.html#id4849270">Subtract</a>
+</dt>
+<dt>18.13. <a href="zend.measure.edit.html#id4849322">Different measurements</a>
+</dt>
+<dt>18.14. <a href="zend.measure.edit.html#id4849336">Identical measurements</a>
+</dt>
+<dt>18.15. <a href="zend.measure.edit.html#id4849391">Difference</a>
+</dt>
+<dt>18.16. <a href="zend.measure.edit.html#id4849438">Changing a value</a>
+</dt>
+<dt>18.17. <a href="zend.measure.edit.html#id4849479">Changing the type</a>
+</dt>
+<dt>18.18. <a href="zend.measure.special.html#id4850080">Serializing</a>
+</dt>
+<dt>18.19. <a href="zend.measure.special.html#id4850093">Deserializing</a>
+</dt>
+<dt>18.20. <a href="zend.measure.special.html#id4850169">Listing all units for a given type</a>
+</dt>
+<dt>20.1. <a href="zend.pdf.create.html#id4855302">Maak een nieuw of laad een bestaand PDF document</a>
+</dt>
+<dt>20.2. <a href="zend.pdf.create.html#id4855362">Een bepaalde revisie van een document opvragen</a>
+</dt>
+<dt>20.3. <a href="zend.pdf.save.html#id4855175">Een PDF document opslaan</a>
+</dt>
+<dt>20.4. <a href="zend.pdf.pages.html#id4855104">PDF pagina management</a>
+</dt>
+<dt>20.5. <a href="zend.pdf.drawing.html#id4860580">Een standaard lettertype maken</a>
+</dt>
+<dt>20.6. <a href="zend.pdf.drawing.html#id4860764">Beelden tekenen</a>
+</dt>
+<dt>20.7. <a href="zend.pdf.usage.html#id4861914">Zend_Pdf module voorbeeld</a>
+</dt>
+<dt>21.1. <a href="zend.rest.client.html#id4862878">A basic REST request</a>
+</dt>
+<dt>21.2. <a href="zend.rest.client.html#id4862978">Response Status</a>
+</dt>
+<dt>21.3. <a href="zend.rest.client.html#id4863040">Using Technorati's Rest Service</a>
+</dt>
+<dt>21.4. <a href="zend.rest.client.html#id4863054">Example Technorati Response</a>
+</dt>
+<dt>21.5. <a href="zend.rest.client.html#id4863158">Setting Request Arguments</a>
+</dt>
+<dt>21.6. <a href="zend.rest.server.html#id4862796">Basic Zend_Rest_Server Usage - Classes</a>
+</dt>
+<dt>21.7. <a href="zend.rest.server.html#id4862816">Basic Zend_Rest_Server Usage - Functions</a>
+</dt>
+<dt>21.8. <a href="zend.rest.server.html#id4863814">Returning Custom Status</a>
+</dt>
+<dt>21.9. <a href="zend.rest.server.html#id4863865">Return Custom XML</a>
+</dt>
+<dt>22.1. <a href="zend.search.extending.html#id4868721">Custom tekst Analysator</a>
+</dt>
+<dt>24.1. <a href="zend.service.akismet.html#id4870869">isSpam() Usage</a>
+</dt>
+<dt>24.2. <a href="zend.service.akismet.html#id4870936">submitSpam() Usage</a>
+</dt>
+<dt>24.3. <a href="zend.service.akismet.html#id4871013">submitHam() Usage</a>
+</dt>
+<dt>24.4. <a href="zend.service.amazon.html#id4871926">Amazon doorzoeken met de traditionele API</a>
+</dt>
+<dt>24.5. <a href="zend.service.amazon.html#id4871943">Amazon doorzoeken met de Query API</a>
+</dt>
+<dt>24.6. <a href="zend.service.amazon.html#id4872006">Een Amazon Web Service land kiezen</a>
+</dt>
+<dt>24.7. <a href="zend.service.amazon.html#id4872072">Een specifiek Amazon item ophalen per ASIN</a>
+</dt>
+<dt>24.8. <a href="zend.service.amazon.html#id4872149">Uitvoeren van Amazon Item Zoekopdrachten</a>
+</dt>
+<dt>24.9. <a href="zend.service.amazon.html#id4871704">Doorzoek Amazon met gebruik van de Alternatieve Query API</a>
+</dt>
+<dt>24.10. <a href="zend.service.flickr.html#id4876008">Eenvoudige Flickr Photo zoekopdracht</a>
+</dt>
+<dt>24.11. <a href="zend.service.flickr.html#id4876727">Een Flickr gebruiker vinden door middel van zijn e-mailadres</a>
+</dt>
+<dt>24.12. <a href="zend.service.flickr.html#id4876785">Flickr beelddetails verkrijgen</a>
+</dt>
+<dt>24.13. <a href="zend.service.yahoo.html#id4878687">Het web doorzoeken met Yahoo!</a>
+</dt>
+<dt>24.14. <a href="zend.service.yahoo.html#id4878752">Beelden vinden met Yahoo!</a>
+</dt>
+<dt>24.15. <a href="zend.service.yahoo.html#id4878801">Plaatselijke bedrijven en diensten vinden met Yahoo!</a>
+</dt>
+<dt>24.16. <a href="zend.service.yahoo.html#id4878852">Yahoo! News zoeken</a>
+</dt>
+<dt>25.1. <a href="zend.session.basicusage.html#id4882551">Counting Page Views</a>
+</dt>
+<dt>25.2. <a href="zend.session.basicusage.html#id4882569">New Way: Namespaces Avoid Collisions</a>
+</dt>
+<dt>25.3. <a href="zend.session.basicusage.html#id4882610">Old Way: PHP Session Access</a>
+</dt>
+<dt>25.4. <a href="zend.session.basicusage.html#id4882673">Session Iteration</a>
+</dt>
+<dt>25.5. <a href="zend.session.basicusage.html#id4882715">Accessing Session Data</a>
+</dt>
+<dt>25.6. <a href="zend.session.advancedusage.html#id4881972">Starting the Global Session</a>
+</dt>
+<dt>25.7. <a href="zend.session.advancedusage.html#id4883248">Locking Session Namespaces</a>
+</dt>
+<dt>25.8. <a href="zend.session.advancedusage.html#id4883266">Locking Sessions in Views</a>
+</dt>
+<dt>25.9. <a href="zend.session.advancedusage.html#id4883334">Namespaced Sessions for Controllers with Automatic Expiration</a>
+</dt>
+<dt>25.10. <a href="zend.session.advancedusage.html#id4883406">Limiting to Single Instances</a>
+</dt>
+<dt>25.11. <a href="zend.session.globalsessionmanagement.html#id4882200">Using Zend_Config to Configure Zend_Session</a>
+</dt>
+<dt>25.12. <a href="zend.session.globalsessionmanagement.html#id4884049">myapp.ini</a>
+</dt>
+<dt>25.13. <a href="zend.session.globalsessionmanagement.html#id4884587">Anonymous Sessions and Session Fixation</a>
+</dt>
+<dt>25.14. <a href="zend.session.globalsessionmanagement.html#id4885079">Unsetting All Namespaces</a>
+</dt>
+<dt>26.1. <a href="zend.uri.html#id4886506">Creating a New URI with <code class="code">Zend_Uri::factory()</code></a>
+</dt>
+<dt>26.2. <a href="zend.uri.html#id4886573">Manipulating an Existing URI with <code class="code">Zend_Uri::factory()</code></a>
+</dt>
+<dt>26.3. <a href="zend.uri.html#id4886628">URI Validation with <code class="code">Zend_Uri::check()</code></a>
+</dt>
+<dt>26.4. <a href="zend.uri.html#id4886709">Getting the Scheme from a <code class="code">Zend_Uri_*</code> Object</a>
+</dt>
+<dt>26.5. <a href="zend.uri.html#id4886750">Getting the Entire URI from a <code class="code">Zend_Uri_*</code> Object</a>
+</dt>
+<dt>26.6. <a href="zend.uri.html#id4886811">Validating a <code class="code">Zend_Uri_*</code> Object</a>
+</dt>
+<dt>29.1. <a href="zend.xmlrpc.client.html#id4889698">Een basis XML-RPC verzoek</a>
+</dt>
+<dt>29.2. <a href="zend.xmlrpc.client.html#id4891354">Een XML-RPC service aanroepen met type hints</a>
+</dt>
+</dl>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left"> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top"> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right" valign="top"> Hoofdstuk 1. Zend</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

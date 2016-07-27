@@ -1,0 +1,230 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.3. Pesquisando em um Índice</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="prev" href="zend.search.index-creation.html" title="22.2. Construindo Índices">
+<link rel="next" href="zend.search.query-language.html" title="22.4. Query Language">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.query-parser" title="22.3.1. Construindo Consultas">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.results" title="22.3.2. Resultados da Pesquisa">
+<link rel="subsection" href="zend.search.searching.html#zend.search.searching.results-scoring" title="22.3.3. Pontuação dos Resultados">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.3. Pesquisando em um Índice</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.index-creation.html">Anterior</a> </td>
+<th width="60%" align="center">Capítulo 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.query-language.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.searching"></a>22.3. Pesquisando em um Índice</h2></div></div></div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.query-parser"></a>22.3.1. Construindo Consultas</h3></div></div></div>
+<p>Existem duas maneiras de pesquisar o índice. O primeiro método usa
+    um analisador de consultas para construir a pesquisa a partir de uma
+    string. O segundo oferece a possibilidade de criação de consultas
+    customizadas através da API do Zend_Search_Lucene.</p>
+<p>Antes de decidir utilizar o analisador de consultas considere o
+    seguinte: </p>
+<div class="orderedlist"><ol type="1">
+<li><p>
+                Se você pretende primeiro gerar programaticamente a string de consulta para depois submetê-la ao analisador então você deve considerar cuidadosamente a possibilidade a criação de suas consultas diretamente pela API. Em outras palavras, o analisador foi projetado para trabalhar com entradas de texto fornecidas por seres humanos e não com entradas geradas por software. 
+            </p></li>
+<li><p>
+                Campos não tokenizados funcionam melhor se adicionados diretamente às consultas, do que pela ação do analisador. Se o conteúdo de um campo é gerado pela aplicação, então deveria haver um cláusula de consulta para este campo. Um interpretador, que é utilizado pelo analisador de consultas, é projetado para converter entradas de texto provenientes de seres humanos para cláusulas de busca. Valores gerados por programas, tais como datas, palavras-chave, etc.,  deveriam ser consistentes o suficiente para não necessitar do interpretador. 
+            </p></li>
+<li><p>
+                Em um formulário de busca, somente os campos designados para receber texto deveriam ser submentidos ao analisador de consultas. Todo o resto (datas, tokens, etc.), pode ser submetido diretamente através da API de consulta. Um campo contendo um conjunto de valores, que pode ser exibido como um menu de persiana (pull-down), não deveria ser incluído na string de busca (e consequentemente submetido ao analisador), mas classificado como uma cláusula de busca. 
+            </p></li>
+</ol></div>
+<p>Ambas as formas empregam o mesmo método da API para pesquisar no
+    índice: </p>
+<pre class="programlisting">&lt;?php
+
+require_once('Zend/Search/Lucene.php');
+
+$index = new Zend_Search_Lucene('/data/my_index');
+
+$index-&gt;find($query);
+
+?&gt;</pre>
+<p> O método <code class="code">Zend_Search_Lucene::find()</code>
+    determina o tipo de dado de entrada automaticamente e usa o analisador de
+    consultas para construir um objeto Zend_Search_Lucene_Search_Query
+    apropriado a partir da string.</p>
+<p>It is important to note that <code class="code">find()</code> IS case sensitive.
+    By default, LuceneIndexCreation.jar normalizes all documents to lowercase.
+    This can be turned off with a command line switch (type
+    LuceneIndexCreation.jar with no arguments for help). The case of the text
+    supplied to <code class="code">find()</code> must match that of the index. If the index
+    is normalized to lowercase, then all text supplied to <code class="code">find()</code>
+    must pass through <code class="code">strtolower()</code>, or else it may not
+    match.</p>
+<p>É importante ressaltar que o método <code class="code">find()</code>é sensivel à
+    caixa. Por padrão, LuceneIndexCreation.jar normaliza todos os documentos
+    para minúsculas. Isso pode ser desativado informando um parâmetro na linha
+    de comando (tecle LuceneIndexCreation.jar sem argumentos para exibir a
+    lista de opções). A caixa do texto passado a <code class="code">find()</code>deve ser a
+    mesma usada pelo índice. Se o índice foi normalizado para minúsculas,
+    então o texto informado a <code class="code">find()</code>deverá ser submetido antes a
+    <code class="code">strtolower()</code>, caso contrário ele poderá não ser
+    comparado.</p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.results"></a>22.3.2. Resultados da Pesquisa</h3></div></div></div>
+<p>The search result is an array of Zend_Search_Lucene_Search_QueryHit
+    objects. Each of these has two properties: <code class="code">$hit-&gt;document</code>
+    is a document number within the index and <code class="code">$hit-&gt;score</code> is a
+    score of the hit in a search result. Result is ordered by score (top
+    scores come first).</p>
+<p>O resultado da pesquisa é um array de objetos da classe
+    Zend_Search_Lucene_Search_QueryHit. Cada um contendo duas propriedades:
+    <code class="code">$hit-&gt;document</code> é um número de documento no índice e
+    <code class="code">$hit-&gt;score</code> é a pontuação de acertos no resultado da
+    busca. O resultado é ordenado pela pontuação em ordem decrescente.</p>
+<p>O objeto Zend_Search_Lucene_Search_QueryHit também exibe cada campo
+    do Zend_Search_Lucene_Document encontrado pela busca como uma propriedade
+    do objeto ("hit"). No exemplo abaixo, um acerto é retornado e o documento
+    correspondente possui dois campos: título e autor.</p>
+<pre class="programlisting">&lt;?php
+
+require_once('Zend/Search/Lucene.php');
+
+$index = new Zend_Search_Lucene('/data/my_index');
+
+$hits = $index-&gt;find($query);
+
+foreach ($hits as $hit) {
+    echo $hit-&gt;id;
+    echo $hit-&gt;score;
+
+    echo $hit-&gt;title;
+    echo $hit-&gt;author;
+}
+
+?&gt;</pre>
+<p>Opcionalmente, o objeto Zend_Search_Lucene_Document original pode
+    ser retornado pelo objeto Zend_Search_Lucene_Search_QueryHit. Se você
+    consegue recuperar partes indexadas do documento usando o método
+    <code class="code">getDocument()</code> no índice, o documento pode ser obtido pelo
+    método <code class="code">getFieldValue()</code>: </p>
+<pre class="programlisting">&lt;?php
+
+require_once('Zend/Search/Lucene.php');
+
+$index = new Zend_Search_Lucene('/data/my_index');
+
+$hits = $index-&gt;find($query);
+foreach ($hits as $hit) {
+    // return Zend_Search_Lucene_Document object for this hit
+    echo $document = $hit-&gt;getDocument();
+
+    // return a Zend_Search_Lucene_Field object
+    // from the Zend_Search_Lucene_Document
+    echo $document-&gt;getField('title');
+
+    // return the string value of the Zend_Search_Lucene_Field object
+    echo $document-&gt;getFieldValue('title');
+
+    // same as getFieldValue()
+    echo $document-&gt;title;
+}
+
+?&gt;</pre>
+<p> Os campos que estão contidos no objeto
+    Zend_Search_Lucene_Document são determinados em tempo de indexação. Os
+    campos do documento ou serão indexados ou indexador e armazenados no
+    documento pela aplicação indexadora (por exemplo:
+    LuceneIndexCreation.jar). </p>
+<p>Pay attention, that document identity ('path' in our example) is
+    also stored in the index and must be retrieved from them.</p>
+<p>Note que a identidade do documento ("path" em nosso exemplo) também
+    será armazenado no índice e deverá ser recuperado a partir do
+    mesmo.</p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.searching.results-scoring"></a>22.3.3. Pontuação dos Resultados</h3></div></div></div>
+<p>O módulo Zend_Search_Lucene emprega o mesmo algoritmo de pontuação
+    adotado pelo Java Lucene. Os resultados da busca são ordenados pela
+    respectiva pontuação em ordem decrescente.</p>
+<p>Em dois documentos com pontuações distintas, o que recebeu a maior
+    pontuação contém mais termos que atendem aos requisitos da consulta do que
+    o de pontuação menor.</p>
+<p>Simplificando: Pontuações maiores indicam uma frequência maior de
+    acertos ou frases.</p>
+<p>A pontuação pode ser recuperada pela propriedade <code class="code">score</code>
+    do objeto "hit": </p>
+<pre class="programlisting">&lt;?php
+$hits = $index-&gt;find($query);
+
+foreach ($hits as $hit) {
+    echo $hit-&gt;id;
+    echo $hit-&gt;score;
+}
+
+?&gt;</pre>
+<p>A classe Zend_Search_Lucene_Search_Similarity é usada para calcular
+    a pontuação. Consulte a seção <a href="zend.search.extending.html#zend.search.extending.scoring" title="22.7.2. Algoritmos de Pontuação">Extensibilidade. Algoritmos de
+    Pontuação</a> para mais detalhes.</p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.index-creation.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.query-language.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.2. Construindo Índices </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> 22.4. Query Language</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

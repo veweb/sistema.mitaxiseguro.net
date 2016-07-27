@@ -1,0 +1,195 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.5. Zend_Db_Table_Row</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="prev" href="zend.db.table.html" title="9.4. Zend_Db_Table">
+<link rel="next" href="zend.db.tablerowset.html" title="9.6. Zend_Db_Table_Rowset">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.introduction" title="9.5.1. Introduction">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.fetch" title="9.5.2. Fetching a Row">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.modify" title="9.5.3. Modifying Values">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.5. Zend_Db_Table_Row</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.table.html">Prev</a> </td>
+<th width="60%" align="center">Chapter 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.tablerowset.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.tablerow"></a>9.5. Zend_Db_Table_Row</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.introduction"></a>9.5.1. Introduction</h3></div></div></div>
+<p>
+            Zend_Db_Table_Row is a row data gateway for the Zend Framework.  In
+            general, you do not instantiate Zend_Db_Table_Row by itself; instead,
+            you get a Zend_Db_Table_Row back as a return result from Zend_Db_Table::find()
+            or Zend_Db_Table::fetchRow().  Once you have a Zend_Db_Table_Row, you can
+            edit the record values (represented as class properties) and then
+            save() the changes back to the originating table.
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.fetch"></a>9.5.2. Fetching a Row</h3></div></div></div>
+<p>
+            The first thing to do is instantiate a Zend_Db_Table class.
+        </p>
+<pre class="programlisting">&lt;?php
+// set up an adapter
+require_once 'Zend/Db.php';
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// set the default adapter for all Zend_Db_Table objects
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+
+// connect to a table in the database
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+<p>
+            Next, retrieve one record from the database using
+            Zend_Db_Table::find() with a single key, or by using
+            Zend_Db_Table::fetchRow().  The returned result will be a
+            Zend_Db_Table_Row object where each property in the object is a
+            "camelCaps" name mapped to an "underscore_words" column name
+            from the table.  E.g., "first_name" in the table will become
+            "firstName" in the object properties.
+        </p>
+<pre class="programlisting">&lt;?php
+// fetch a record from the table as a Zend_Db_Table_Row object
+$row = $table-&gt;fetchRow('first_name = "Robin"');
+
+//
+// $row is now a Zend_Db_Table_Row object with public properties
+// that map to table columns:
+//
+// $row-&gt;id = '3'
+// $row-&gt;nobleTitle = 'Sir'
+// $row-&gt;firstName = 'Robin'
+// $row-&gt;favoriteColor = 'yellow'
+//
+
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.modify"></a>9.5.3. Modifying Values</h3></div></div></div>
+<p>
+            Modifying row values is very easy: just work with the object properties
+            the way you would with any other object.  Then you can save() the row back
+            to the table when you are done.
+        </p>
+<pre class="programlisting">&lt;?php
+// connect to a table in the database
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+
+// fetch a record from the table as a Zend_Db_Table_Row object
+$row = $table-&gt;fetchRow('first_name = "Robin"');
+
+//
+// $row is now a Zend_Db_Table_Row object() with public properties
+// that map to table columns:
+//
+// $row-&gt;id = '3'
+// $row-&gt;nobleTitle = 'Sir'
+// $row-&gt;firstName = 'Robin'
+// $row-&gt;favoriteColor = 'yellow'
+//
+// change the favorite color and save back to the table.
+$row-&gt;favoriteColor = 'blue';'
+$row-&gt;save();
+?&gt;
+        </pre>
+<p>
+            However, you are not allowed to change primary key values; if you
+            do so, Zend_Db_Table_Row will throw an exception.
+        </p>
+<pre class="programlisting">&lt;?php
+// connect to a table in the database
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+
+// fetch a record from the table as a Zend_Db_Table_Row object
+$row = $table-&gt;fetchRow('first_name = "Robin"');
+
+// can we change the primary key "id"?
+try {
+    $row-&gt;id = 5;
+    echo "We should not see this message, as an exception was thrown.";
+} catch (Zend_Db_Table_RowException $e) {
+    echo $e-&gt;getMessage();
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.table.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.tablerowset.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.4. Zend_Db_Table </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 9.6. Zend_Db_Table_Rowset</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

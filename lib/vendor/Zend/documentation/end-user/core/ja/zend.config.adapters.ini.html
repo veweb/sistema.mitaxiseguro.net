@@ -1,0 +1,142 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.3. Zend_Config_Ini</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="prev" href="zend.config.theory_of_operation.html" title="5.2. 動作原理">
+<link rel="next" href="zend.config.adapters.xml.html" title="5.4. Zend_Config_Xml">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.3. Zend_Config_Ini</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.config.theory_of_operation.html">前のページ</a> </td>
+<th width="60%" align="center">第5章 Zend_Config</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.adapters.xml.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.config.adapters.ini"></a>5.3. Zend_Config_Ini</h2></div></div></div>
+<p>
+        <code class="code">Zend_Config_Ini</code> は、おなじみの INI
+        形式のファイルに保存された設定データを、<code class="code">Zend_Config</code>
+        を通じてオブジェクトのプロパティとして扱えるようにします。
+        この INI 形式は、階層化された設定データを扱うこと、
+        そしてセクション間の継承関係を扱うことに特化されています。
+        設定データの階層構造は、キーの名前をドットあるいはピリオド
+        (<code class="code">.</code>) で区切ることによって表現します。
+        他のセクションを拡張するなどの継承関係は、
+        セクション名に続けてコロン (<code class="code">:</code>) を、
+        そしてその後に継承元のセクション名を指定することで表します。
+    </p>
+<div class="note"><table border="0" summary="Note: parse_ini_file">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">parse_ini_file</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            <code class="code">Zend_Config_Ini</code> は、PHP の
+            <a href="http://php.net/parse_ini_file" target="_top"><code class="code">parse_ini_file()</code></a>
+            関数を使用しています。このドキュメントでは、<code class="code">Zend_Config_Ini</code>
+            固有の挙動に注意しましょう。例えば、特殊な値として
+            <code class="code">true</code> や <code class="code">false</code>、
+            <code class="code">yes</code>、<code class="code">no</code> そして <code class="code">null</code>
+            を処理できることなどです。
+        </p></td></tr>
+</table></div>
+<div class="example">
+<a name="id4793818"></a><p class="title"><b>例 5.2. Zend_Config_Ini の使用法</b></p>
+<p>
+            この例は、<code class="code">Zend_Config_Ini</code> を使用して
+            INI ファイルから設定データを読み込むための基本的な方法を説明するものです。
+            この例では、運用環境の設定と開発環境の設定を両方管理しています。
+            開発環境用の設定データは運用環境用のものと非常に似ているので、
+            開発環境用のセクションは運用環境用のセクションを継承させています。
+            今回の場合なら、逆に運用環境用のセクションを開発環境用のものから継承させてもいいでしょう。
+            そうしたからといって特に状況が複雑になるわけではありません。
+            ここでは、次のような内容の設定データが
+            <code class="code">/path/to/config.ini</code> に存在するものとします。
+        </p>
+<pre class="programlisting">; 運用環境の設定データ
+[production]
+webhost           = www.example.com
+database.type     = pdo_mysql
+database.host     = db.example.com
+database.username = dbuser
+database.password = secret
+database.name     = dbname
+
+; 開発環境の設定データは、運用環境のデータを継承したうえで
+; 必要に応じて値を上書きします
+[staging : production]
+database.host     = dev.example.com
+database.username = devuser
+database.password = devsecret</pre>
+<p>
+            次に、開発者が開発環境用の設定データを INI ファイルから読み込むことを考えます。
+            これは簡単なことで、単に INI ファイルとセクションを指定するだけです。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Config/Ini.php';
+
+$config = new Zend_Config_Ini('/path/to/config.ini', 'staging');
+
+echo $config-&gt;database-&gt;host; // "dev.example.com" と出力します
+echo $config-&gt;database-&gt;name; // "dbname" と出力します</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.config.theory_of_operation.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.config.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.adapters.xml.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">5.2. 動作原理 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 5.4. Zend_Config_Xml</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

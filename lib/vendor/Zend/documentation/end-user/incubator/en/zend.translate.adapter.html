@@ -1,0 +1,161 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.2. Adapters for Zend_Translate</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="zend.translate.html" title="Chapter 4. Zend_Translate">
+<link rel="prev" href="zend.translate.html" title="Chapter 4. Zend_Translate">
+<link rel="next" href="zend.translate.using.html" title="4.3. Using translation Adapters">
+<link rel="chapter" href="zend.http.server.html" title="Chapter 1. Zend_Http_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 2. Zend_Service">
+<link rel="chapter" href="zend.timesync.html" title="Chapter 3. Zend_TimeSync">
+<link rel="chapter" href="zend.translate.html" title="Chapter 4. Zend_Translate">
+<link rel="appendix" href="appendix.codingstandard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="appendix.copyright.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.translate.adapter.html#zend.translate.adapter.decision" title="4.2.1. How to decide which translation adapter to use">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.2. Adapters for Zend_Translate</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.translate.html">Prev</a> </td>
+<th width="60%" align="center">Chapter 4. Zend_Translate</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.translate.using.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.translate.adapter"></a>4.2. Adapters for Zend_Translate</h2></div></div></div>
+<p>
+        Zend_Translate can handle different adapters for translation. Each adapter has it's own pros and cons.
+        Here you can find a comprehensive list of all supported adapters for translation source files.
+    </p>
+<div class="table">
+<a name="id4851227"></a><p class="title"><b>Table 4.1. Adapters for Zend_Translate</b></p>
+<div class="table-contents"><table summary="Adapters for Zend_Translate" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Adapter</th>
+<th>Description</th>
+<th>Useage</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Array</td>
+<td>Use php arrays</td>
+<td>Small pages, simplest useage, only for programmers</td>
+</tr>
+<tr>
+<td>Csv</td>
+<td>Use comma seperated (*.csv/*.txt) files</td>
+<td>Simple text file format, very fast, possible problems with unicode characters</td>
+</tr>
+<tr>
+<td>Gettext</td>
+<td>Use binary gettext (*.mo) files</td>
+<td>Gnu standard for linux, very fast, threadsave, needs tools for translation</td>
+</tr>
+<tr>
+<td>Tmx</td>
+<td>Use tmx (*.tmx) files</td>
+<td>Industry standard for inter application translation, xml format, human readable</td>
+</tr>
+<tr>
+<td>Others</td>
+<td>*.xliff, *.sql, *.tbx, *.qt</td>
+<td>Different other adapters are supposed to be implemented in the future but not ready for now</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.translate.adapter.decision"></a>4.2.1. How to decide which translation adapter to use</h3></div></div></div>
+<p>
+            First of all you should decide which Adapter you want to use for Zend_Translate.
+            Most times your Customer will decide for you but if you are in the Position to to this yourself,
+            we give you some hints to simplify you your decision.
+        </p>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.translate.adapter.array"></a>4.2.1.1. Zend_Translate_Adapter_Array</h4></div></div></div>
+<p>
+                The Array Adapter is the Adapter which is simplest to use for Programmers.
+                But when you have much translation strings or much languages you should think about another
+                Adapter. If you have for example 5000 translation strings the Array Adapter is posibly 
+                not the best choice for you.
+            </p>
+<p>
+                You should only use this Adapter for small sites with only a handfull languages and if you 
+                or your programmer team does translations your own.
+            </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.translate.adapter.csv"></a>4.2.1.2. Zend_Translate_Adapter_Csv</h4></div></div></div>
+<p>
+                The Csv Adapter is the Adapter which is simplest to use for Customers.
+                Csv files are readable by standard text editors but you will have problems when you
+                want to use it with utf8 charactersets.
+            </p>
+<p>
+                You should only use this Adapter if your customer want to do translations himself.
+            </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.translate.adapter.gettext"></a>4.2.1.3. Zend_Translate_Adapter_Gettext</h4></div></div></div>
+<p>
+                The Gettext Adapter is the Adapter which is used most of times. Gettext is a translation source
+                format which was introduced by Gnu and nowadays used worldwide. It is not human readable but there
+                are several freeware tools (f.e. POEdit) out there which are very helpfull. The Zend Framework
+                is not related to PHP's gettext extension. You can use the gettext adapter even if you do not have
+                the extension installed. Also the Adapter is threadsave and the extension is not for now.
+            </p>
+<p>
+                Most people will use this adapter. With the avaiable tools also professional translation is 
+                very simple. But this format is not readable without tools.
+            </p>
+</div>
+<div class="sect3" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.translate.adapter.tmx"></a>4.2.1.4. Zend_Translate_Adapter_Tmx</h4></div></div></div>
+<p>
+                The Tmx Adapter is the Adapter which will be used by most customers which have multiple systems
+                which use the same translation source or when the translation source have to be system independent.
+                Tmx is a XML file based format, which is announced to be the next industry standard. Xml files are
+                human readable but the parsing is not that fast as with gettext files.
+            </p>
+<p>
+                Most medium to big sized companys will use this adapter. The files are human readable and system
+                independent.
+            </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.translate.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.translate.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.translate.using.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 4. Zend_Translate </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 4.3. Using translation Adapters</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

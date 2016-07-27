@@ -1,0 +1,250 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.2. Теория кэширования</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="prev" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="next" href="zend.cache.frontends.html" title="4.3. Фронтэнды Zend_Cache">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.factory" title="4.2.1. Фабричный метод Zend_Cache">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.tags" title="4.2.2. Добавление тегов к записям">
+<link rel="subsection" href="zend.cache.theory.html#zend.cache.clean" title="4.2.3. Очистка кэша">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.2. Теория кэширования</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.cache.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 4. Zend_Cache</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.cache.frontends.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.theory"></a>4.2. Теория кэширования</h2></div></div></div>
+<p>
+        Есть три ключевых понятия в Zend_Cache. Первое — уникальный
+        идентификатор (строка), который служит для идентификации записей кэша.
+        Второе — это директива <code class="code">'lifeTime'</code>, которую вы могли видеть
+        в предыдущих примерах; она определяет, в течение какого времени кэшируемый
+        ресурс считается "свежим". Третье понятие — условное исполнение, используемое
+        для того, чтобы части вашего кода могли быть пропущены целиком, этим повышается
+        производительность. Основной метод фронтэнда
+        (например, <code class="code">Zend_Cache_Core::get()</code>) всегда спроектирован так, чтобы
+        должен возвращать <code class="code">false</code> при промахе кэша, если это
+        имеет смысл для данного фронэнда. Это дает конечным
+        пользователям возможность включать части кода, которые нужно
+        кэшировать (и затем пропускать) в операторы <code class="code">if(){ ... }</code>,
+        где условием является сам метод Zend_Cache. Но в конце этих блоков
+        вы должны сохранять то, что было сгенерировано (например, методом
+        <code class="code">Zend_Cache_Core::save()</code>).
+
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Замечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        Для некоторых фронтэндов включение условного исполнения в
+        код не нужно, так как вся логика уже реализована в них
+        (например, <code class="code">Function</code>).
+
+    </p></td></tr>
+</table></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Замечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        "Попадание в кэш" — термин для того состояния, когда запись кэша найдена,
+        является корректной и "свежей" (в других словах, для которой
+        не закончился срок действия). Иначе имеет место "промах кэша".
+        Когда происходит "промах кэша", вы должны сгенерировать свои данные,
+        которые помещаются в кэш. С другой стороны, если есть "попадание",
+        то бэкэнд автоматически извлечет запись из кэша.
+
+    </p></td></tr>
+</table></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.factory"></a>4.2.1. Фабричный метод <code class="code">Zend_Cache</code></h3></div></div></div>
+<p>
+            Корректным способом создания рабочего экземпляра
+            фронтэнда <code class="code">Zend_Cache</code> является код показанный в
+            следующем примере:  
+
+        </p>
+<pre class="programlisting">&lt;?php
+        
+# Загружаем фабрику Zend_Cache 
+require 'Zend/Cache.php'; 
+
+# Выбираем бэкэнд (например, 'File' или 'Sqlite'...)
+$backendName = '[...]';
+
+# Выбираем фронтэнд (например, 'Core', 'Output', 'Page'...)
+$frontendName = '[...]';
+
+# Устанавливаем массив опций для выбранного фронтэнда
+$frontendOptions = array([...]);
+
+# Устанавливаем массив опций для выбранного бэкэнда
+$backendOptions = array([...]);
+
+# Создаем экземпляр 
+# (два последних аргумента являются необязательными)
+$cache = Zend_Cache::factory($frontendName, $backendName, $frontendOptions, $backendOptions);
+
+?&gt;   </pre>
+<p>
+            В следующих примерах мы предполагаем, что переменная <code class="code">$cache</code>
+            содержит инстанцированный, как показано в примере, фронтэнд,
+            и что вы понимаете, как передавать параметры выбранному вами
+            бэкэнду. 
+
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Замечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Всегда используйте <code class="code">Zend_Cache::factory()</code> для получения
+            экземпляров фронтэнда. Непосредственно созданные экземпляры
+            фронтэндов и бэкэндов будут работать не так, как ожидается.
+
+        </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.tags"></a>4.2.2. Добавление тегов к записям</h3></div></div></div>
+<p>
+            Теги являются средством категоризации записей кэша. Когда вы производите
+            сохранение в кэш методом <code class="code">save()</code>, то можете установить массив
+            тегов к данной записи. После этого вы можете удалить все записи
+            кэша, помеченные данным тегом (тегами).   
+
+        </p>
+<pre class="programlisting">&lt;?php
+             
+$cache-&gt;save($huge_data, 'myUniqueID', array('tagA', 'tagB', 'tagC'));
+            
+?&gt;   </pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Замечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Метод <code class="code">save()</code> принимает также необязательный
+                четвертый параметр: <code class="code">$specificLifeTime</code>. Если он не
+                равен <code class="code">false</code>, то устанавливается время жизни
+                определенной записи кэша.
+
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.clean"></a>4.2.3. Очистка кэша</h3></div></div></div>
+<p>
+            Для того, чтобы удалить или сделать недействительной запись с определенным
+            идентификатором, вы можете использовать метод <code class="code">remove()</code>:
+
+        </p>
+<pre class="programlisting">&lt;?php 
+             
+$cache-&gt;remove('idToRemove');
+            
+?&gt;   </pre>
+<p>
+            Для того, чтобы за одну операцию удалить или сделать недействительными
+            несколько записей кэша, вы можете использовать
+            метод <code class="code">clean()</code>. Например, чтобы удалить все записи кэша:
+
+        </p>
+<pre class="programlisting">&lt;?php 
+
+// удаление всех записей
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_ALL);
+
+// удаление только устаревших записей
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_OLD);
+            
+?&gt;   </pre>
+<p>
+            Если вы хотите удалить записи кэша, помеченные тегами 'tagA' и 'tagC':
+
+        </p>
+<pre class="programlisting">&lt;?php 
+             
+$cache-&gt;clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array('tagA', 'tagC'));
+            
+?&gt;   </pre>
+<p>
+            Доступные режимы очищения: <code class="code">CLEANING_MODE_ALL</code> (удалить все),
+            <code class="code">CLEANING_MODE_OLD</code> (удалить устаревшие),
+            <code class="code">CLEANING_MODE_MATCHING_TAG</code> (удалить помеченные тегом)
+            и <code class="code">CLEANING_MODE_NOT_MATCHING_TAG</code> (удалить не помеченные тегом).
+            Последние два, как ясно из названий, передаются вместе с массивом
+            тегов.
+
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.cache.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.cache.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.cache.frontends.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Глава 4. Zend_Cache </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 4.3. Фронтэнды Zend_Cache</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

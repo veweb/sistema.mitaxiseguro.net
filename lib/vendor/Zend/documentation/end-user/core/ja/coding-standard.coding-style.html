@@ -1,0 +1,623 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.4. コーディングスタイル</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="prev" href="coding-standard.naming-conventions.html" title="A.3. 命名規約">
+<link rel="next" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.php-code-demarcation" title="A.4.1. PHP コードの境界">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.strings" title="A.4.2. 文字列">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.arrays" title="A.4.3. 配列">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.classes" title="A.4.4. クラス">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.functions-and-methods" title="A.4.5. 関数およびメソッド">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standard.coding-style.control-statements" title="A.4.6. 制御構造">
+<link rel="subsection" href="coding-standard.coding-style.html#coding-standards.inline-documentation" title="A.4.7. インラインドキュメント">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.4. コーディングスタイル</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="coding-standard.naming-conventions.html">前のページ</a> </td>
+<th width="60%" align="center">付録 A. Zend Framework PHP 標準コーディング規約</th>
+<td width="20%" align="right"> <a accesskey="n" href="copyrights.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="coding-standard.coding-style"></a>A.4. コーディングスタイル</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.php-code-demarcation"></a>A.4.1. PHP コードの境界</h3></div></div></div>
+<p>
+                PHP のコードの区切りには、標準 PHP タグを常に使用しなければなりません。
+
+                </p>
+<pre class="programlisting">
+&lt;?php
+
+?&gt;</pre>
+<p>
+            </p>
+<p>
+                短いタグは決して使用してはいけません。
+                PHP コードのみからなるファイルでは、終了タグ ("?&gt;") 
+                は決して含めてはいけません
+                (<a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.general" title="A.2.1. 全般">項A.2.1. 「全般」</a> を参照ください)。
+            </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.strings"></a>A.4.2. 文字列</h3></div></div></div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.literals"></a>A.4.2.1. 文字列リテラル</h4></div></div></div>
+<p>
+                    文字列がリテラルである (変数の展開などが含まれない)
+                    場合は、アポストロフィあるいは「シングルクォート」
+                    で文字列を囲まなければなりません。
+
+                    </p>
+<pre class="programlisting">
+$a = '文字列の例';</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.literals-containing-apostrophes"></a>A.4.2.2. アポストロフィを含む文字列リテラル</h4></div></div></div>
+<p>
+                    リテラル文字列自体にアポストロフィが含まれている場合は、
+                    引用符あるいは「ダブルクォート」で文字列を囲んでもかまいません。
+                    特に SQL 文などでこのような場合がよくあるでしょう。
+
+                    </p>
+<pre class="programlisting">
+$sql = "SELECT `id`, `name` from `people` WHERE `name`='Fred' OR `name`='Susan'";</pre>
+<p>
+
+                    アポストロフィをエスケープするよりも、上の構文のほうがお勧めです。
+                </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.variable-substitution"></a>A.4.2.3. 変数の展開</h4></div></div></div>
+<p>
+                    変数の展開を行うには、次の 2 とおりの方法を使用します。
+
+                    </p>
+<pre class="programlisting">
+$greeting = "こんにちは $name さん。ようこそ!";
+
+$greeting = "こんにちは {$name} さん。ようこそ!";</pre>
+<p>
+                </p>
+<p>
+                    一貫性を保つため、以下の形式は許可されません。
+
+                    </p>
+<pre class="programlisting">
+$greeting = "こんにちは ${name} さん。ようこそ!";</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.strings.string-concatenation"></a>A.4.2.4. 文字列の連結</h4></div></div></div>
+<p>
+                    文字列の連結には "." 演算子を使用します。コードを読みやすくするため、
+                    "." 演算子の前後には常にスペースを入れなければなりません。
+
+                    </p>
+<pre class="programlisting">
+$company = 'Zend' . 'Technologies';</pre>
+<p>
+                </p>
+<p>
+                    文字列を "." 演算子で連結する際には、コードを読みやすくするために
+                    ひとつの文を複数行に分けることもできます。そのような場合は、
+                    2 行目以降の行頭にスペースを入れ、各行の "." 演算子が最初の行の
+                    "=" 演算子と同じ位置にくるようにしなければなりません。
+
+                    </p>
+<pre class="programlisting">
+$sql = "SELECT `id`, `name` FROM `people` "
+     . "WHERE `name` = 'Susan' "
+     . "ORDER BY `name` ASC ";</pre>
+<p>
+                </p>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.arrays"></a>A.4.3. 配列</h3></div></div></div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.arrays.numerically-indexed"></a>A.4.3.1. 数値添字の配列</h4></div></div></div>
+<p>添字として負の数を使用してはいけません。</p>
+<p>
+                    数値添字の配列の添字は、0 以上の任意の数から始めることができます。
+                    しかし、常に 0 から始めるようにすることを推奨します。
+                </p>
+<p>
+                    <code class="code">array</code> を使用して数値添字の配列を宣言する場合は、
+                    コードを読みやすくするため、
+                    要素を区切るカンマの後にスペースを入れなければなりません。
+
+                    </p>
+<pre class="programlisting">
+$sampleArray = array(1, 2, 3, 'Zend', 'Studio');</pre>
+<p>
+                </p>
+<p>
+                    "array" を使用して、複数行にまたがる配列を宣言することも可能です。
+                    その場合は、2 行目以降の行頭にスペースを入れ、
+                    各行の開始位置が以下のようになるようにしなければなりません。
+
+                    </p>
+<pre class="programlisting">
+$sampleArray = array(1, 2, 3, 'Zend', 'Studio',
+                     $a, $b, $c,
+                     56.44, $d, 500);</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.arrays.associative"></a>A.4.3.2. 連想配列</h4></div></div></div>
+<p>
+                    連想配列を <code class="code">array</code> で宣言する場合には、
+                    適宜改行をいれて複数行で宣言するようにしましょう。その場合は、
+                    2 行目以降の行頭などにスペースを入れ、
+                    キーと値の位置がそれぞれ揃うようにしなければなりません。
+
+                    </p>
+<pre class="programlisting">
+$sampleArray = array('firstKey'  =&gt; 'firstValue',
+                     'secondKey' =&gt; 'secondValue');</pre>
+<p>
+                 </p>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.classes"></a>A.4.4. クラス</h3></div></div></div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.classes.declaration"></a>A.4.4.1. クラス宣言</h4></div></div></div>
+<p>
+                    クラス宣言は、以下の規約に従わなければなりません。
+                </p>
+<p>
+                    開始波括弧は常にクラス名の下に書かなければなりません ("one true brace" 形式)。
+                </p>
+<p>
+                    PHPDocumentor の標準形式のドキュメントブロックがなければなりません。
+                </p>
+<p>
+                    クラス内のコードは、すべて空白 4 文字で字下げします。
+                </p>
+<p>
+                    ひとつの PHP ファイルにはクラス定義をひとつだけ含めるようにします。
+                </p>
+<p>
+                    クラスファイルの中にクラス以外のコードを追加することもできますが、
+                    お勧めしません。このような場合には、クラス定義とその他のコードの間に
+                    空行を 2 行挿入しなければなりません。
+                </p>
+<p>
+                    これらの条件を満たすクラス宣言の例です。
+
+                    </p>
+<pre class="programlisting">
+/**
+ * これがドキュメントブロックです
+ */
+class SampleClass
+{
+    // クラスのすべての内容は、
+    // 空白 4 文字の字下げを使用します。
+}</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.classes.member-variables"></a>A.4.4.2. クラスのメンバ変数</h4></div></div></div>
+<p>
+                    メンバ変数は、以下の命名規約に従わなければなりません。
+                </p>
+<p>
+                    クラス内で宣言されるすべての変数は、クラスの最初、
+                    つまり関数宣言の始まる前になければなりません。
+                </p>
+<p>
+                    <code class="code">var</code> は使用してはいけません。メンバ変数は、常に
+                    <code class="code">private</code>、<code class="code">protected</code> あるいは
+                    <code class="code">public</code> を使用して宣言してください。
+                    変数を public にして直接アクセスすることも可能ですが、推奨されません。
+                    代わりにアクセサ (set/get) を使用してください。
+                </p>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.functions-and-methods"></a>A.4.5. 関数およびメソッド</h3></div></div></div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.functions-and-methods.declaration"></a>A.4.5.1. 関数およびメソッドの宣言</h4></div></div></div>
+<p>
+                    関数は、以下の命名規約に従わなければなりません。
+                </p>
+<p>
+                    クラス内の関数は、必ず
+                    <code class="code">private</code>、<code class="code">protected</code>
+                    あるいは <code class="code">public</code> のいずれかを使用して宣言しなければなりません。
+                </p>
+<p>
+                    クラスと同様、
+                    開始波括弧は常に関数名の下に書かなければなりません
+                    ("one true brace" 形式)。
+
+                    関数名と引数指定の開始括弧の間には、空白を入れません。
+                </p>
+<p>
+                    グローバルスコープの関数は、できるだけ使用しないでください。
+                </p>
+<p>
+                    これらの条件を満たす、クラス内での関数定義の例です。
+
+                    </p>
+<pre class="programlisting">
+/**
+ * これがドキュメントブロックです
+ */
+class Foo
+{
+    /**
+     * Documentation Block Here
+     */
+    public function bar()
+    {
+        // 関数のすべての内容は、
+        // 空白 4 文字の字下げを使用します。
+    }
+}</pre>
+<p>
+                </p>
+<p>
+                    <span class="emphasis"><em>注意:</em></span> 値の参照渡しは、関数宣言においてのみ可能です。
+
+                    </p>
+<pre class="programlisting">
+/**
+ * これがドキュメントブロックです
+ */
+class Foo
+{
+    /**
+     * これがドキュメントブロックです
+     */
+    public function bar(&amp;$baz)
+    {}
+{}</pre>
+<p>
+                </p>
+<p>
+                    実行時の参照渡しは禁止されています。
+                </p>
+<p>
+                    返り値は括弧で囲んではいけません。これは可読性を下げますし、
+                    将来そのメソッドが参照を返すようになった場合にコードが壊れてしまいます。
+
+                    </p>
+<pre class="programlisting">
+/**
+ * これがドキュメントブロックです
+ */
+class Foo
+{
+    /**
+     * 間違いです
+     */
+    public function bar()
+    {
+        return($this-&gt;bar);
+    }
+
+    /**
+     * 正しい形式です
+     */
+    public function bar()
+    {
+        return $this-&gt;bar;
+    }
+}</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.functions-and-methods.usage"></a>A.4.5.2. 関数およびメソッドの使用法</h4></div></div></div>
+<p>
+                    関数の引数を指定する際は、引数を区切るカンマの後に空白をひとつ入れます。
+                    例えば 3 つの引数を受け取る関数をコールする場合の例は、
+                    以下のようになります。
+
+                    </p>
+<pre class="programlisting">
+threeArguments(1, 2, 3);</pre>
+<p>
+                </p>
+<p>
+                    コール時に引数を参照渡しすることは禁じます。
+                    関数への引数を参照渡しにする方法は、
+                    関数宣言についての節を参照ください。
+                </p>
+<p>
+                    引数として配列を受け取る関数については、関数コールの中に
+                    "array" 構文を含め、それを複数行に分けることもできます。
+                    そのような場合の記述法は、以下のようになります。
+
+                    </p>
+<pre class="programlisting">
+threeArguments(array(1, 2, 3), 2, 3);
+
+threeArguments(array(1, 2, 3, 'Zend', 'Studio',
+                     $a, $b, $c,
+                     56.44, $d, 500), 2, 3);</pre>
+<p>
+                </p>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.coding-style.control-statements"></a>A.4.6. 制御構造</h3></div></div></div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standard.coding-style.control-statements.if-else-elseif"></a>A.4.6.1. If / Else / Elseif</h4></div></div></div>
+<p>
+                    <code class="code">if</code> および <code class="code">elseif</code> 系の制御構造では、
+                    条件を指定する括弧の前に空白をひとつ入れなければなりません。
+                    また、条件指定の括弧を閉じた後にも空白をひとつ入れなければなりません。
+                </p>
+<p>
+                    括弧で囲まれた条件文の中では、演算子の前後にも空白をいれなければなりません。
+                    また、条件の論理的な区切りを明確にするため、
+                    条件文の中でも積極的に括弧を使用することを推奨します。
+                </p>
+<p>
+                    開始波括弧は、条件文と同じ行に記述します。
+                    終了波括弧は、常に改行してそれのみで記述します。
+                    波括弧の中では、空白 4 文字の字下げを使用します。
+
+                    </p>
+<pre class="programlisting">
+if ($a != 2) {
+    $a = 2;
+}</pre>
+<p>
+                </p>
+<p>
+                    "elseif" あるいは "else" を含む "if" 文の場合は、
+                    以下の例のような書式になります。
+
+                    </p>
+<pre class="programlisting">
+if ($a != 2) {
+    $a = 2;
+} else {
+   $a = 7;
+}
+
+
+if ($a != 2) {
+    $a = 2;
+} elseif ($a == 3) {
+   $a = 4;
+} else {
+   $a = 7;
+}</pre>
+<p>
+                    場合によっては、これらの文で波括弧が必要ない場合もあります。
+                    しかし、このコーディング規約では、このような例外を認めません。
+                    "if"、"elseif" あるいは "else" 文では、常に波括弧を使用しなければなりません。
+                </p>
+<p>
+                    "elseif" を使用することは可能ですが、推奨されません。代わりに
+                    "else if" を使用してください。
+                </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.coding-style.control-statements.switch"></a>A.4.6.2. Switch</h4></div></div></div>
+<p>
+                    "switch" を使用した制御文では、
+                    条件を指定する括弧の前に空白をひとつ入れなければなりません。
+                    また、条件指定の括弧を閉じた後にも空白をひとつ入れなければなりません。
+                </p>
+<p>
+                    "switch" 文の中身は、空白 4 文字の字下げを使用します。
+                    各 "case" 文の中身は、さらに 4 文字ぶん字下げします。
+                </p>
+<pre class="programlisting">
+switch ($numPeople) {
+    case 1:
+        break;
+
+    case 2:
+        break;
+
+    default:
+        break;
+}</pre>
+<p>
+                    <code class="code">switch</code> 文の <code class="code">default</code> は、
+                    決して省略してはいけません。
+                </p>
+<p>
+                    <span class="emphasis"><em>注意:</em></span> 各 <code class="code">case</code> の最後に
+                    <code class="code">break</code> や <code class="code">return</code> を記述せず、意図的に
+                    次の <code class="code">case</code> に処理を流すという書き方をする場合もあるでしょう。
+                    これらの場合を単なる記述漏れと区別するために、<code class="code">case</code> 文で
+                    <code class="code">break</code> あるいは <code class="code">return</code> を指定しなかった場合は
+                    "// break intentionally omitted" (訳注:「意図的に break を省略しました」)
+                    というコメントを含めるようにします。
+                </p>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standards.inline-documentation"></a>A.4.7. インラインドキュメント</h3></div></div></div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.documentation-format"></a>A.4.7.1. ドキュメントの書式</h4></div></div></div>
+<p>
+                    ドキュメントブロック ("docblocks") は、phpDocumentor
+                    と互換性のある書式でなければなりません。
+                    phpDocumentor の書式については、このドキュメントの対象範囲外です。
+                    詳細な情報は <a href="http://phpdoc.org/" target="_top">http://phpdoc.org/</a>
+                    を参照ください。
+                </p>
+<p>
+                    Zend Framework のために書かれたコード、あるいはフレームワーク上で操作するコードは、
+                    各ファイルの最初に「ファイルレベル」の docblock、
+                    そして各クラスの直前に「クラスレベル」の docblock
+                    を含めなければなりません。以下に docblock の例を示します。
+                </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.files"></a>A.4.7.2. ファイル</h4></div></div></div>
+<p>
+                    PHP コードを含むすべてのファイルは、最低限これらの
+                    phpDocumentor タグを含むヘッダブロックを、
+                    ファイルの先頭に記述しなければなりません。
+
+                    </p>
+<pre class="programlisting">
+/**
+ * ファイルについての短い説明
+ *
+ * ファイルについての長い説明 (もしあれば)...
+ *
+ * LICENSE: ライセンスに関する情報
+ *
+ * @copyright  2005 Zend Technologies
+ * @license    http://www.zend.com/license/3_0.txt   PHP License 3.0
+ * @version    CVS: $Id:$
+ * @link       http://dev.zend.com/package/PackageName
+ * @since      File available since Release 1.2.0
+*/</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.classes"></a>A.4.7.3. クラス</h4></div></div></div>
+<p>
+                    各クラスには、最低限これらの phpDocumentor タグを含む
+                    docblock が必要です。
+
+                    </p>
+<pre class="programlisting">
+/**
+ * クラスについての短い説明
+ *
+ * クラスについての長い説明 (もしあれば)...
+ *
+ * @copyright  2005 Zend Technologies
+ * @license    http://www.zend.com/license/3_0.txt   PHP License 3.0
+ * @version    Release: @package_version@
+ * @link       http://dev.zend.com/package/PackageName
+ * @since      Class available since Release 1.2.0
+ * @deprecated Class deprecated in Release 2.0.0
+ */</pre>
+<p>
+                </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="coding-standards.inline-documentation.functions"></a>A.4.7.4. 関数</h4></div></div></div>
+<p>
+                オブジェクトのメソッドを含めたすべての関数には、
+                最低限以下の内容を含む docblock が必要です。
+
+                    </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>関数についての説明</p></li>
+<li><p>すべての引数</p></li>
+<li><p>返り値</p></li>
+</ul></div>
+<p>
+                </p>
+<p>
+                    "@access" タグは必要ありません。なぜなら、
+                    アクセスレベルについては関数宣言の際の
+                    "public"、"private" あるいは "protected" によってわかっているからです。
+                </p>
+<p>
+                    関数/メソッドが例外をスローする場合には @throws を使用します。
+
+                    </p>
+<pre class="programlisting">
+@throws exceptionclass [description]
+</pre>
+<p>
+                </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="coding-standard.naming-conventions.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="coding-standard.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="copyrights.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">A.3. 命名規約 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 付録 B. 著作権に関する情報</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

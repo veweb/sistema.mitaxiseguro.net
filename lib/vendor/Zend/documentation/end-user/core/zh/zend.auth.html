@@ -1,0 +1,277 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第 3 章 Zend_Auth</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="index.html" title="Zend Framework手册 中文版">
+<link rel="prev" href="zend.acl.advanced.html" title="2.3. 高级用法">
+<link rel="next" href="zend.auth.adapter.digest.html" title="3.2. 数字认证">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="section" href="zend.auth.html#zend.auth.introduction" title="3.1. 简介">
+<link rel="section" href="zend.auth.adapter.digest.html" title="3.2. 数字认证">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第 3 章 Zend_Auth</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.acl.advanced.html">上一页</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.auth.adapter.digest.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.auth"></a>第 3 章 Zend_Auth</h2></div></div></div>
+<div class="toc">
+<p><b>目录</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.auth.html#zend.auth.introduction">3.1. 简介</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.adapters">3.1.1. 适配器</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.results">3.1.2. 结果</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.persistence">3.1.3. 身份的持久（Persistence）</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.using">3.1.4. 使用Zend_Auth</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.auth.adapter.digest.html">3.2. 数字认证</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.introduction">3.2.1. 简介</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.specifics">3.2.2. 规范（Specifics）</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.identity">3.2.3. Identity</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.auth.introduction"></a>3.1. 简介</h2></div></div></div>
+<p>
+        Zend_Auth 为认证（authentication）提供了一个API并包括了一些通用用例情景的具体认证适配器。
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Zend_Auth 当前为设计包含了<a href="zend.auth.adapter.digest.html" title="3.2. 数字认证">数字认证适配器</a>作为一个简单的 proof-of-concept。其他的适配器正计划开发。对使用特定的适配器感兴趣？非常欢迎你的<a href="http://framework.zend.com/wiki/x/qx4" target="_top">为适配器投票</a> 和<a href="http://framework.zend.com/wiki/x/GgE" target="_top">贡献</a>！
+            
+        </p></td></tr>
+</table></div>
+<p>
+        Zend_Auth 只涉及 <span class="strong"><strong>认证</strong></span>而不是<span class="strong"><strong>授权</strong></span>。认证被宽松地定义为基于一些证书（credential）来确定一个实体（例如，身份）是否确实是它所声称的。授权是一个过程，它决定是否允许一个实体对其他实体进行访问、执行操作，它超出了Zend_Auth的范围。更多关于Zend Framework 授权和访问控制的信息，参见<a href="zend.acl.html" title="第 2 章 Zend_Acl">Zend_Acl</a>.
+    </p>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.adapters"></a>3.1.1. 适配器</h3></div></div></div>
+<p>
+            Zend_Auth适配器被用来依靠特定的认证服务（例如LDAP、RDBMS或基于文件的存储）来认证。不同的适配器可能有不同的选项和行为，但有些基本的事情是通用的。例如，接受认证证书（包括声称实体）、认证、返回一些结果在Zend_Auth适配器中是通用的。
+        </p>
+<p>
+            每个Zend_Auth 认证适配器类都实现<code class="code">Zend_Auth_Adapter_Interface</code>.这个接口定义了一个方法，<code class="code">authenticate()</code>, 适配器实现它来做认证。在调用<code class="code">authenticate()</code>之前，每个适配器必需准备就绪。这就意味着每个适配器要提供设置证书（例如，用户名和密码）的能力并为适配器规范选项定义一些值，例如数据库表适配器的连接设置。
+        </p>
+<p>
+            下面是一个认证适配器的例子，它要求为认证设置用户名和密码。为简明扼要，其它的细节（如查询认证服务）被省略了。
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Auth/Adapter/Interface.php';
+
+class MyAuthAdapter implements Zend_Auth_Adapter_Interface
+{
+    /**
+     * Sets username and password for authentication
+     *
+     * @return void
+     */
+    public function __construct($username, $password)
+    {
+        // ...
+    }
+
+    /**
+     * Performs an authentication attempt
+     *
+     * @throws Zend_Auth_Adapter_Exception If authentication cannot be performed
+     * @return Zend_Auth_Result
+     */
+    public function authenticate()
+    {
+        // ...
+    }
+}</pre>
+<p>
+
+           如上面所示，<code class="code">authenticate()</code>必需返回一个<code class="code">Zend_Auth_Result</code>的实例（或从<code class="code">Zend_Auth_Result</code>派生的一个类）。如果因为某些原因认证查询不能执行，<code class="code">authenticate()</code>应该抛出一个由<code class="code">Zend_Auth_Adapter_Exception</code>产生的异常。
+        </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.results"></a>3.1.2. 结果</h3></div></div></div>
+<p>
+            为了表示一个认证尝试的结果，Zend_Auth适配器返回一个带有<code class="code">authenticate()</code>的<code class="code">Zend_Auth_Result</code>的实例。适配器基于结构组成<code class="code">Zend_Auth_Result</code>对象，下面三个方法提供了一组基本的通用Zend_Auth适配器结果的操作：
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">isValid()</code> - 返回 true 当且仅当结果表示一个成功的认证尝试
+                    </p></li>
+<li><p>
+                        <code class="code">getIdentity()</code> - 返回认证尝试的身份
+                    </p></li>
+<li><p>
+                        <code class="code">getMessages()</code> - 返回关于认证尝试失败的数组
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.persistence"></a>3.1.3. 身份的持久（Persistence）</h3></div></div></div>
+<p>
+            实质上，认证一个包含认证证书的请求很有用，但是维护已认证的身份并在每次请求时不需要出示认证证书也同样很重要。
+        </p>
+<p>
+            HTTP是一个无连接的协议，然而，象cookie和session这样的技术已经被开发出来使在服务器端的web应用维护多请求状态变得容易。<a href="zend.session.html" title="第 25 章 Zend_Session">Zend_Session</a>被Zend_Auth缺省地使用，它用PHP session为一个成功认证尝试的身份提供持久存储空间。
+        </p>
+<p>
+            基于成功的认证尝试，<code class="code">Zend_Auth::authenticate()</code> 把身份从认证结果存储到持久存储空间。缺省地，<code class="code">Zend_Auth</code> 使用基于 <a href="zend.session.html" title="第 25 章 Zend_Session">Zend_Session</a> 的存储类。存储类可以通过 <code class="code">Zend_Auth::setStorage()</code> 提供不同的存储对象来被改变。
+        </p>
+<p>
+            如果自动的身份持久存储对特定的用例来说不合适，那么开发者可以完全地放弃使用<code class="code">Zend_Auth</code>，取而代之，直接使用适配器类。
+        </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.using"></a>3.1.4. 使用Zend_Auth</h3></div></div></div>
+<p>
+            这里提供了两种方法使用Zend_Auth适配器：
+            </p>
+<div class="orderedlist"><ol type="1">
+<li><p>
+                    非直接地，通过<code class="code">Zend_Auth::authenticate()</code>
+                </p></li>
+<li><p>
+                    直接地，通过适配器的 <code class="code">authenticate()</code> 方法
+                </p></li>
+</ol></div>
+<p>
+        </p>
+<p>
+            下面的例子通过<code class="code">Zend_Auth</code>类来示例如何非直接地使用Zend_Auth适配器：
+            </p>
+<pre class="programlisting">&lt;?php
+// Get a reference to the Singleton instance of Zend_Auth
+require_once 'Zend/Auth.php';
+$auth = Zend_Auth::getInstance();
+
+// Set up the authentication adapter
+$authAdapter = new MyAuthAdapter($username, $password);
+
+// Attempt authentication, saving the result
+$result = $auth-&gt;authenticate($authAdapter);
+
+if (!$result-&gt;isValid()) {
+    // Authentication failed; print the reasons why
+    foreach ($result-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+} else {
+    // Authentication succeeded; the identity ($username) is stored in the session
+    // $result-&gt;getIdentity() === $auth-&gt;getIdentity()
+    // $result-&gt;getIdentity() === $username
+}</pre>
+<p>
+        </p>
+<p>
+            一旦在一个请求里的认证被尝试，如上面的例子，检查一个成功的被认证的身份是否存在就是一个简单的匹配：
+            </p>
+<pre class="programlisting">&lt;?php
+$auth = Zend_Auth::getInstance();
+if ($auth-&gt;hasIdentity()) {
+    // Identity exists; get it
+    $identity = $auth-&gt;getIdentity();
+}</pre>
+<p>
+        </p>
+<p>
+            从持久存储空间出去一个身份，可简单地使用<code class="code">clearIdentity()</code>方法。这将被典型地用作“logout”操作。
+            </p>
+<pre class="programlisting">&lt;?php
+Zend_Auth::getInstance()-&gt;clearIdentity();</pre>
+<p>
+        </p>
+<p>
+            当自动使用持久存储空间对特定的用例不合适，开发者可简单地忽略<code class="code">Zend_Auth</code>类，直接使用适配器类。直接使用适配器类需要配置和准备适配器对象和调用它的<code class="code">authenticate()</code>方法。适配器规范细节将在每个适配器的文档中讨论。下面的例子直接使用 <code class="code">MyAuthAdapter</code>：  
+            </p>
+<pre class="programlisting">&lt;?php
+// Set up the authentication adapter
+$authAdapter = new MyAuthAdapter($username, $password);
+
+// Attempt authentication, saving the result
+$result = $authAdapter-&gt;authenticate();
+
+if (!$result-&gt;isValid()) {
+    // Authentication failed; print the reasons why
+    foreach ($result-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+} else {
+    // Authentication succeeded
+    // $result-&gt;getIdentity() === $username
+}</pre>
+<p>
+        </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.acl.advanced.html">上一页</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.auth.adapter.digest.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2.3. 高级用法 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 3.2. 数字认证</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

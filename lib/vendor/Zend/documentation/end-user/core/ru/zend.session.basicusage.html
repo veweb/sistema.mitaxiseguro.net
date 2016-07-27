@@ -1,0 +1,216 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>25.2. Базовое использование</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="prev" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="next" href="zend.session.advancedusage.html" title="25.3. Продвинутое использование">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.session.basicusage.html#zend.session.basicexamples" title="25.2.1. Учебные примеры">
+<link rel="subsection" href="zend.session.basicusage.html#zend.session.iteration" title="25.2.2. Итерация по пространствам имен">
+<link rel="subsection" href="zend.session.basicusage.html#zend.session.accessors" title="25.2.3. Методы доступа для пространств имен">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">25.2. Базовое использование</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.session.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 25. Zend_Session</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.session.advancedusage.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.session.basicusage"></a>25.2. Базовое использование</h2></div></div></div>
+<p>
+        <code class="code">Zend_Session_Namespace</code> создает экземпляры контейнеров,
+        предоставляющих основной API для работы с данными сессии в Zend
+        Framework. Пространства имен используются для разделения всех данных
+        сессии, несмотря на то, что есть пространство имен по умолчанию для тех,
+        кому нужно только одно пространство имен для всех данных сессии.
+        <code class="code">Zend_Session</code> использует расширение ext/session и его
+        суперглобальный массив <code class="code">$_SESSION</code> в качестве механизма
+        хранения постоянных данных сессии. Несмотря на то, что
+        <code class="code">$_SESSION</code> остается доступным в глобальном пространстве
+        имен, разработчики должны избегать прямого обращения к нему с тем, чтобы
+        можно было наиболее безопасно и эффективно использовать возможности
+        <code class="code">Zend_Session</code> и <code class="code">Zend_Session_Namespace</code> для
+        работы с сессиями.
+
+    </p>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.basicexamples"></a>25.2.1. Учебные примеры</h3></div></div></div>
+<p>
+            Если при инстанцировании Zend_Session не было указано пространство
+            имен, то все данные будут неявным образом сохранены в пространстве
+            имен "<code class="code">Default</code>". <code class="code">Zend_Session</code> не
+            предназначен для работы с содержимым контейнера пространства имен
+            сессии напрямую. Вместо этого мы используем
+            <code class="code">Zend_Session_Namespace</code>. Пример ниже демонстрирует
+            использование пространства имен по умолчанию и показывает, как
+            подсчитывать количество просмотров страниц пользователем на сайте.
+            Для тестирования этого примера добавьте следующий код в
+            файл загрузки:    
+
+        </p>
+<div class="example">
+<a name="id4919432"></a><p class="title"><b>Пример 25.1. Подсчет количества просмотров страниц</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Session.php';
+
+    $defaultNamespace = new Zend_Session_Namespace('Default');
+
+    // используется "магический" метод __isset() в Zend_Session_Namespace:
+    if (isset($defaultNamespace-&gt;numberOfPageRequests)) {
+        // будет увеличиваться на единицу при каждой загрузке страницы.
+        $defaultNamespace-&gt;numberOfPageRequests++; 
+    } else {
+        $defaultNamespace-&gt;numberOfPageRequests = 1; // начальное значение
+    }
+
+    echo "Запросов к странице за эту сессию: ", $defaultNamespace-&gt;numberOfPageRequests;
+?&gt;</pre>
+</div>
+<p>
+            Одним из многих преимуществ Zend_Session_Namespace
+            является то, что при его использовании различными модулями
+            приложения достигается инкапсуляциия принадлежащих им данных сессий.
+            Конструктору Zend_Session можно передавать необязательный аргумент
+            $namespace, который позволяет другим компонентам, модулям и
+            разрабочикам кода быть уверенным в том, что их данные
+            защищены отделением от других областей данных, используемых другими
+            компонентами, модулями и кодами разработчиков. Пространства имен
+            представляют собой эффективный и доступный способ защиты данных
+            сессий от случайных изменений. Имена пространств имен должны быть
+            непустыми строками, не начинающимися со знака подчеркивания. Только
+            основные компоненты, включенные в Zend Framework, должны
+            использовать имена пространств имен, начинающиеся с 'Zend_'.
+
+        </p>
+<div class="example">
+<a name="id4919465"></a><p class="title"><b>Пример 25.2. Новый подход: избежание конфликтов с помощью пространств имен</b></p>
+<pre class="programlisting">
+&lt;?php
+    // in the Zend_Auth component
+    require_once 'Zend/Session.php';
+    $authNamespace = new Zend_Session_Namespace('Zend_Auth');
+    $authNamespace-&gt;user = "myusername";
+
+    // in a web services component
+    $webServiceNamespace = new Zend_Session_Namespace('Some_Web_Service');
+    $webServiceNamespace-&gt;user = "mywebusername";
+?&gt;</pre>
+</div>
+<p>
+            Пример выше приводит к тому же результату, что и код ниже, за тем
+            исключением, что объекты сессий сохраняют инкапсуляцию сессионных
+            данных внутри их пространств имен.
+
+        </p>
+<div class="example">
+<a name="id4919550"></a><p class="title"><b>Пример 25.3. Старый подход: обращение к сессиям PHP</b></p>
+<pre class="programlisting">
+&lt;?php
+    $_SESSION['Zend_Auth']['user'] = "myusername";
+    $_SESSION['Some_Web_Service']['user'] = "mywebusername";
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.iteration"></a>25.2.2. Итерация по пространствам имен</h3></div></div></div>
+<p>
+            <code class="code">Zend_Session_Namespace</code> предоставляет полный интерфейс
+            <a href="http://www.php.net/~helly/php/ext/spl/interfaceIteratorAggregate.html" target="_top">IteratorAggregate</a>,
+            включая поддержку выражения <code class="code">foreach</code>:
+
+        </p>
+<div class="example">
+<a name="id4919641"></a><p class="title"><b>Пример 25.4. Итерация по сессии</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Zend_Session is iteratable
+    require_once 'Zend/Session.php';
+    $aNamespace = new Zend_Session_Namespace('some_namespace_with_data_present');
+    foreach ($aNamespace as $index =&gt; $value) {
+        echo "aNamespace-&gt;$index = '$value';\n";
+    }
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.accessors"></a>25.2.3. Методы доступа для пространств имен</h3></div></div></div>
+<p>
+            Обычные методы доступа доступны через "магические" методы (magic
+            methods) __set(), __unset(), __isset() и __get(). "Магические"
+            методы не должны использоваться напрямую, кроме как внутри
+            подклассов Zend_Session. Вместо этого используйте обычные операторы
+            для вызова этих "магических" методов, например: 
+
+        </p>
+<div class="example">
+<a name="id4919702"></a><p class="title"><b>Пример 25.5. Доступ к сессионным данным</b></p>
+<pre class="programlisting">
+&lt;?php
+            $object-&gt;property = $value;
+            echo (isset($object-&gt;property) ? 'set' : 'unset');
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.session.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.session.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.session.advancedusage.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Глава 25. Zend_Session </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 25.3. Продвинутое использование</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

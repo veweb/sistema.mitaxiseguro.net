@@ -1,0 +1,677 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>8.4. Zend_Date API Overview</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="prev" href="zend.date.definition.theory.html" title="8.3. Theory of Operation">
+<link rel="next" href="zend.date.constants.html" title="8.5. Constants for General Date Functions">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.date.overview.html#zend.date.values" title="8.4.1. Working with Date Values">
+<link rel="subsection" href="zend.date.overview.html#id.date.basic" title="8.4.2. Basic Zend_Date Operations Common to Many Date Parts">
+<link rel="subsection" href="zend.date.overview.html#zend.date.others.comparison" title="8.4.3. Comparing Dates">
+<link rel="subsection" href="zend.date.overview.html#zend.date.others.gettingparts" title="8.4.4. Getting Dates and Date Parts">
+<link rel="subsection" href="zend.date.overview.html#zend.date.others.fractions" title="8.4.5. Working with Fractions of Seconds">
+<link rel="subsection" href="zend.date.overview.html#zend.date.other.sun" title="8.4.6. Sunrise / Sunset">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">8.4. Zend_Date API Overview</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.date.definition.theory.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 8. Zend_Date</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.date.constants.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.date.overview"></a>8.4. Zend_Date API Overview</h2></div></div></div>
+<p>
+        While the <code class="code">Zend_Date</code> API remains simplistic and unitary, its design remains flexible and powerful
+        through the rich permutations of operations and operands.
+    </p>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.values"></a>8.4.1. Working with Date Values</h3></div></div></div>
+<p>
+            Once input has been normalized via the creation of a <code class="code">Zend_Date</code> object, it will have an
+            associated timezone, but an internal representation using standard
+            <a href="http://en.wikipedia.org/wiki/Unix_Time" target="_top">UNIX timestamps</a>
+            . In order for a date to be rendered in a localized manner, a timezone must be known first. The default
+            timezone is always GMT/UTC. To examine an object's timezone use <code class="code">getTimeZone())</code>. To change an
+            object's timezone, use <code class="code">setTimeZone())</code>. All manipulations of these objects are assumed to be
+            relative to this timezone.
+        </p>
+<p>
+            Beware of mixing and matching operations with date parts between date objects for different timezones, which
+            generally produce undesireable results, unless the manipulations are only related to the timestamp.
+            Operating on <code class="code">Zend_Date</code> objects having different timezones generally works, except as just
+            noted, since dates are normalized to UNIX timestamps on instantiation of <code class="code">Zend_Date</code>.
+        </p>
+<p>
+            Most methods expect a constant selecting the desired <code class="code">$part</code> of a date, such as
+            <code class="code">Zend_Date::HOUR</code>. These constants are valid for all of the functions below. A list of all
+            available constants is provided in
+            <a href="zend.date.constants.html#zend.date.constants.list" title="8.5.2. List of All Constants">Раздел 8.5.2, «List of All Constants»</a>
+            . If no <code class="code">$part</code> is specified, then <code class="code">Zend_Date::TIMESTAMP</code> is assumed. Alternatively, a
+            user-specified format may be used for <code class="code">$part</code>, using the same underlying mechanism and format
+            codes as
+            <a href="zend.locale.date.datesandtimes.html#zend.locale.date.normalize" title="15.4.1. Normalizing Dates and Times"><code class="code">Zend_Locale_Format::getDate()</code>
+            </a>
+            . If a date object is constructed using an obviously invalid date (e.g. a month number greater than 12),
+            then <code class="code">Zend_Date</code> will throw an exception, unless no specific date format has been selected -i.e.
+            <code class="code">$part</code> is either <code class="code">null</code> or <code class="code">Zend_Date::DATES</code> (a "loose" format).
+        </p>
+<div class="example">
+<a name="id4819770"></a><p class="title"><b>Пример 8.8. User-specified input date format</b></p>
+<pre class="programlisting">&lt;?php
+$date1 = Zend_Date('Feb 31, 2007');
+echo $date1, "\n";
+$date2 = Zend_Date('Feb 31, 2007', Zend_Date::DATES);
+echo $date2, "\n";
+$date3 = Zend_Date('Feb 31, 2007', 'MM.dd.YYYY'); // strictly restricts interpretation to specified format
+echo $date3, "\n";
+?&gt;</pre>
+</div>
+<p>
+            If the optional <code class="code">$locale</code> parameter is provided, then the <code class="code">$locale</code> disambiguates the
+            <code class="code">$date</code> operand by replacing month and weekday names for string <code class="code">$date</code> operands, and
+            even parsing date strings expressed according to the conventions of that locale (see <code class="code">
+            <a href="zend.locale.date.datesandtimes.html#zend.locale.date.normalize" title="15.4.1. Normalizing Dates and Times">Zend_Locale_Format::getDate()</a>
+            </code> ). The automatic normalization of localized <code class="code">$date</code> operands of a string type occurs when
+            <code class="code">$part</code> is one of the <code class="code">Zend_Date::DATE*</code> or <code class="code">Zend_Date::TIME*</code> constants.
+            The locale identifies which language should be used to parse month names and weekday names, if the
+            <code class="code">$date</code> is a string containing a date. If there is no <code class="code">$date</code> input parameter, then
+            the <code class="code">$locale</code> parameter specifies the locale to use for localizing output (e.g. the date format
+            for a string representation). Note that the <code class="code">$date</code> input parameter might actually have a type
+            name instead (e.g. <code class="code">$hour</code> for <code class="code">addHour()</code>), although that does not prevent the use of
+            <code class="code">Zend_Date</code> objects as arguments for that parameter. If no <code class="code">$locale</code> was specified,
+            then the locale of the current object is used to interpret <code class="code">$date</code>, or select the localized
+            format for output.
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id.date.basic"></a>8.4.2. Basic <code class="code">Zend_Date</code> Operations Common to Many Date Parts</h3></div></div></div>
+<p>
+            The methods <code class="code">add(), sub(), compare(), get(), and set()</code> operate generically on dates. In each
+            case, the operation is performed on the date held in the instance object. The <code class="code">$date</code> operand is
+            required for all of these methods, except <code class="code">get()</code>, and may be a <code class="code">Zend_Date</code> instance
+            object, a numeric string, or an integer. These methods assume <code class="code">$date</code> is a timestamp, if it is
+            not an object. However, the <code class="code">$part</code> operand controls which logical part of the two dates are
+            operated on, allowing operations on parts of the object's date, such as year or minute, even when
+            <code class="code">$date</code> contains a long form date string, such as, "December 31, 2007 23:59:59". The result of
+            the operation changes the date in the object, except for <code class="code">compare()</code>, and <code class="code">get()</code>.
+        </p>
+<div class="example">
+<a name="id4819932"></a><p class="title"><b>Пример 8.9. Operating on Parts of Dates</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date(); // $date's timestamp === time()
+
+// changes $date by adding 12 hours
+$date-&gt;add('12', Zend_Date::HOUR);
+print $date;
+?&gt;</pre>
+</div>
+<p>
+            Convenience methods exist for each combination of the basic operations and several common date parts as
+            shown in the tables below. These convenience methods help us lazy programmers avoid having to type out the
+            <a href="zend.date.constants.html#zend.date.constants.list" title="8.5.2. List of All Constants">date part constants</a>
+            when using the general methods above. Conveniently, they are named by combining a prefix (name of a basic
+            operation) with a suffix (type of date part), such as <code class="code">addYear()</code>. In the list below, all
+            combinations of "Date Parts" and "Basic Operations" exist. For example, the operation "add" exists for each
+            of these date parts, including <code class="code">addDay()</code>, <code class="code">addYear()</code>, etc.
+        </p>
+<p>
+            These convenience methods have the same equivalent functionality as the basic operation methods, but expect
+            string and integer <code class="code">$date</code> operands containing only the values representing the type indicated by
+            the suffix of the convenience method. Thus, the names of these methods (e.g. "Year" or "Minute") identify
+            the units of the <code class="code">$date</code> operand, when <code class="code">$date</code> is a string or integer.
+        </p>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="id.date.basic.parts"></a>8.4.2.1. List of Date Parts</h4></div></div></div>
+<div class="table">
+<a name="id4820005"></a><p class="title"><b>Таблица 8.1. Date Parts</b></p>
+<table summary="Date Parts" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Date Part</th>
+<th>Explanation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                                <a href="http://en.wikipedia.org/wiki/Unix_Time" target="_top">Timestamp</a>
+                            </td>
+<td>
+                            UNIX timestamp, expressed in seconds elapsed since January 1st, 1970 00:00:00 GMT/UTC.
+                        </td>
+</tr>
+<tr>
+<td>
+                                <a href="http://en.wikipedia.org/wiki/Gregorian_calendar" target="_top">Year</a>
+                            </td>
+<td>Gregorian calendar year (e.g. 2006)</td>
+</tr>
+<tr>
+<td>
+                                <a href="http://en.wikipedia.org/wiki/Month#Julian_and_Gregorian_calendars" target="_top">Month</a>
+                            </td>
+<td>Gregorian calendar month (1-12, localized names supported)</td>
+</tr>
+<tr>
+<td>
+                                <a href="http://en.wikipedia.org/wiki/24-hour_clock" target="_top">24 hour clock</a>
+                            </td>
+<td>Hours of the day (0-23) denote the hours elapsed, since the start of the day.</td>
+</tr>
+<tr>
+<td>
+                                <a href="http://en.wikipedia.org/wiki/Minute" target="_top">minute</a>
+                            </td>
+<td>Minutes of the hour (0-59) denote minutes elapsed, since the start of the hour.</td>
+</tr>
+<tr>
+<td>
+                                <a href="http://en.wikipedia.org/wiki/Second" target="_top">Second</a>
+                            </td>
+<td>Seconds of the minute (0-59) denote the elapsed seconds, since the start of the minute.</td>
+</tr>
+<tr>
+<td>
+                                <a href="http://en.wikipedia.org/wiki/Millisecond" target="_top">millisecond</a>
+                            </td>
+<td>Milliseconds denote thousandths of a second (0-999). <code class="code">Zend_Date</code> supports two additional methods for working with time units smaller than seconds. By default, <code class="code">Zend_Date</code> instances use a precision defaulting to milliseconds, as seen using <code class="code">getFractionalPrecision()</code>. To change the precision use <code class="code">setFractionalPrecision($precision)</code>.  However, precision is limited practically to microseconds, since <code class="code">Zend_Date</code> uses <code class="code">
+                                <a href="http://php.net/microtime" target="_top">microtime()</a></code>.</td>
+</tr>
+<tr>
+<td>
+                                <a href="http://en.wikipedia.org/wiki/Day" target="_top">Day</a>
+                            </td>
+<td>
+<code class="code">Zend_Date::DAY_SHORT</code> is extracted from <code class="code">$date</code> if the <code class="code">$date</code> operand is an instance of <code class="code">Zend_Date</code> or a numeric string.  Otherwise, an attempt is made to extract the day according to the conventions documented for these constants: <code class="code">Zend_Date::WEEKDAY_NARROW</code>, <code class="code">Zend_Date::WEEKDAY_NAME</code>, <code class="code">Zend_Date::WEEKDAY_SHORT</code>, <code class="code">Zend_Date::WEEKDAY</code> (Gregorian calendar assumed)</td>
+</tr>
+<tr>
+<td>
+                                <a href="http://en.wikipedia.org/wiki/Week" target="_top">Week</a>
+                            </td>
+<td>
+<code class="code">Zend_Date::WEEK</code> is extracted from <code class="code">$date</code> if the <code class="code">$date</code> operand is an instance of <code class="code">Zend_Date</code> or a numeric string. Otherwise an exception is raised. (Gregorian calendar assumed)</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>
+<code class="code">Zend_Date::DAY_MEDIUM</code> is extracted from <code class="code">$date</code> if the <code class="code">$date</code> operand is an instance of <code class="code">Zend_Date</code>.  Otherwise, an attempt is made to normalize the <code class="code">$date</code> string into a Zend_Date::DATE_MEDIUM formatted date. The format of <code class="code">Zend_Date::DAY_MEDIUM</code> depends on the object's locale.</td>
+</tr>
+<tr>
+<td>Weekday</td>
+<td>Weekdays are represented numerically as 0 (for Sunday) through 6 (for Saturday).  <code class="code">Zend_Date::WEEKDAY_DIGIT</code> is extracted from <code class="code">$date</code>, if the <code class="code">$date</code> operand is an instance of <code class="code">Zend_Date</code> or a numeric string.  Otherwise, an attempt is made to extract the day according to the conventions documented for these constants: <code class="code">Zend_Date::WEEKDAY_NARROW</code>, <code class="code">Zend_Date::WEEKDAY_NAME</code>, <code class="code">Zend_Date::WEEKDAY_SHORT</code>, <code class="code">Zend_Date::WEEKDAY</code> (Gregorian calendar assumed)</td>
+</tr>
+<tr>
+<td>DayOfYear</td>
+<td>In <code class="code">Zend_Date</code>, the day of the year represents the number of calendar days elapsed since the start of the year (0-365).  As with other units above, fractions are rounded down to the nearest whole number. (Gregorian calendar assumed)
+                        </td>
+</tr>
+<tr>
+<td>
+                                <a href="http://www.faqs.org/rfcs/rfc822.html" target="_top">Arpa</a>
+                            </td>
+<td>Arpa dates (i.e. RFC 822 formatted dates) are supported. Output uses either a "GMT" or "Local differential hours+min" format (see section 5 of RFC 822).  Before PHP 5.2.2, using the DATE_RFC822 constant with PHP date functions sometimes produces <a href="http://bugs.php.net/bug.php?id=40308" target="_top">incorrect results</a>.  Zend_Date's results are correct.  Example: <code class="code">Mon, 31 Dec 06 23:59:59 GMT</code>
+                            </td>
+</tr>
+<tr>
+<td>
+                                <a href="http://en.wikipedia.org/wiki/ISO_8601" target="_top">Iso</a>
+                            </td>
+<td>Only complete ISO 8601 dates are supported for output. Example: <code class="code">2009-02-14T00:31:30+01:00</code>
+                            </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="id.date.basic.operations"></a>8.4.2.2. List of Date Operations</h4></div></div></div>
+<p>
+                The basic operations below can be used instead of the convenience operations for specific date parts, if
+                the
+                <a href="zend.date.constants.html#zend.date.constants.list" title="8.5.2. List of All Constants">appropriate constant</a>
+                is used for the <code class="code">$part</code> parameter.
+            </p>
+<div class="table">
+<a name="id4820417"></a><p class="title"><b>Таблица 8.2. Basic Operations</b></p>
+<table summary="Basic Operations" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Basic Operation</th>
+<th>Explanation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>get()</td>
+<td>
+                                <p>
+                                    <span class="strong"><strong>get($part = null, $locale = null)</strong></span>
+                                </p>
+                                <p>
+                                    Use <code class="code">get($part)</code> to retrieve the date <code class="code">$part</code> of this object's
+                                    date localized to <code class="code">$locale</code> as a formatted string or integer. When using
+                                    the BCMath extension, numeric strings might be returned instead of integers for
+                                    large values. <span class="strong"><strong>NOTE:</strong></span> Unlike <code class="code">get()</code>,
+                                    the other get*() convenience methods only return instances of <code class="code">Zend_Date</code>
+                                    containing a date representing the selected or computed date/time.
+                                </p>
+                            </td>
+</tr>
+<tr>
+<td>set()</td>
+<td>
+                                <p>
+                                    <span class="strong"><strong>set($date, $part = null, $locale = null)</strong></span>
+                                </p>
+                                <p>
+                                    Sets the <code class="code">$part</code> of the current object to the corresponding value for
+                                    that part found in the input <code class="code">$date</code> having a locale
+                                    <code class="code">$locale</code>.
+                                </p>
+                            </td>
+</tr>
+<tr>
+<td>add()</td>
+<td>
+                                <p>
+                                    <span class="strong"><strong>add($date, $part = null, $locale = null)</strong></span>
+                                </p>
+                                <p>
+                                    Adds the <code class="code">$part</code> of <code class="code">$date</code> having a locale
+                                    <code class="code">$locale</code> to the current object's date.
+                                </p>
+                            </td>
+</tr>
+<tr>
+<td>sub()</td>
+<td>
+                                <p>
+                                    <span class="strong"><strong>sub($date, $part = null, $locale = null)</strong></span>
+                                </p>
+                                <p>
+                                    Subtracts the <code class="code">$part</code> of <code class="code">$date</code> having a locale
+                                    <code class="code">$locale</code> from the current object's date.
+                                </p>
+                            </td>
+</tr>
+<tr>
+<td>copyPart()</td>
+<td>
+                                <p>
+                                    <span class="strong"><strong>copyPart($part, $locale = null)</strong></span>
+                                </p>
+                                <p>
+                                    Returns a cloned object, with only <code class="code">$part</code> of the object's date copied to
+                                    the clone, with the clone have its locale arbitrarily set to <code class="code">$locale</code>
+                                    (if specified).
+                                </p>
+                            </td>
+</tr>
+<tr>
+<td>compare()</td>
+<td>
+                                <p>
+                                    <span class="strong"><strong>compare($date, $part = null, $locale = null)</strong></span>
+                                </p>
+                                <p>
+                                    compares <code class="code">$part</code> of <code class="code">$date</code> to this object's timestamp,
+                                    returning 0 if they are equal, 1 if this object's part was more recent than $date's
+                                    part, otherwise -1.
+                                </p>
+                            </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.others.comparison"></a>8.4.3. Comparing Dates</h3></div></div></div>
+<p>
+            The following basic operations do not have corresponding convenience methods for the date parts listed in
+            <a href="zend.date.overview.html" title="8.4. Zend_Date API Overview">Раздел 8.4, «Zend_Date API Overview»</a>
+            .
+        </p>
+<div class="table">
+<a name="id4820706"></a><p class="title"><b>Таблица 8.3. Date Comparison Methods</b></p>
+<table summary="Date Comparison Methods" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Method</th>
+<th>Explanation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>equals()</td>
+<td>
+                            <p>
+                                <span class="strong"><strong>equals($date, $part = null, $locale = null)</strong></span>
+                            </p>
+                            <p>
+                                returns true, if <code class="code">$part</code> of <code class="code">$date</code> having locale
+                                <code class="code">$locale</code> is the same as this object's date <code class="code">$part</code>, otherwise
+                                false
+                            </p>
+                        </td>
+</tr>
+<tr>
+<td>isEarlier()</td>
+<td>
+                            <p>
+                                <span class="strong"><strong>isEarlier($date, $part = null, $locale = null)</strong></span>
+                            </p>
+                            <p>
+                                returns true, if <code class="code">$part</code> of this object's date is earlier than
+                                <code class="code">$part</code> of <code class="code">$date</code> having a locale <code class="code">$locale</code>
+                            </p>
+                        </td>
+</tr>
+<tr>
+<td>isLater()</td>
+<td>
+                            <p>
+                                <span class="strong"><strong>isLater($date, $part = null, $locale = null)</strong></span>
+                            </p>
+                            <p>
+                                returns true, if <code class="code">$part</code> of this object's date is later than
+                                <code class="code">$part</code> of <code class="code">$date</code> having a locale <code class="code">$locale</code>
+                            </p>
+                        </td>
+</tr>
+<tr>
+<td>isToday()</td>
+<td>
+                            <p>
+                                <span class="strong"><strong>isToday()</strong></span>
+                            </p>
+                            <p>
+                                Tests if today's year, month, and day match this object's date value, using this
+                                object's timezone.
+                            </p>
+                        </td>
+</tr>
+<tr>
+<td>isTomorrow()</td>
+<td>
+                            <p>
+                                <span class="strong"><strong>isTomorrow()</strong></span>
+                            </p>
+                            <p>
+                                Tests if tomorrow's year, month, and day match this object's date value, using this
+                                object's timezone.
+                            </p>
+                        </td>
+</tr>
+<tr>
+<td>isYesterday()</td>
+<td>
+                            <p>
+                                <span class="strong"><strong>isYesterday()</strong></span>
+                            </p>
+                            <p>
+                                Tests if yesterday's year, month, and day match this object's date value, using this
+                                object's timezone.
+                            </p>
+                        </td>
+</tr>
+<tr>
+<td>isLeapYear()</td>
+<td>
+                            <p>
+                                <span class="strong"><strong>isLeapYear()</strong></span>
+                            </p>
+                            <p>
+                                Use <code class="code">isLeapYear()</code> to determine if the current object is a leap year, or use
+                                Zend_Date::checkLeapYear($year) to check $year, which can be a string, integer, or
+                                instance of <code class="code">Zend_Date</code>. Is the year a leap year?
+                            </p>
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.others.gettingparts"></a>8.4.4. Getting Dates and Date Parts</h3></div></div></div>
+<p>
+            Several methods support retrieving values related to a <code class="code">Zend_Date</code> instance.
+        </p>
+<div class="table">
+<a name="id4820986"></a><p class="title"><b>Таблица 8.4. Date Output Methods</b></p>
+<table summary="Date Output Methods" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Method</th>
+<th>Explanation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>toString()</td>
+<td>
+                            <p>
+                                <span class="strong"><strong>toString($format = null, $locale = null)</strong></span>
+                            </p>
+                            <p>
+                                Invoke directly or via the magic method <code class="code">__toString()</code>. The
+                                <code class="code">toString()</code> method automatically formats the date object's value according
+                                to the conventions of the object's locale, or an optionally specified
+                                <code class="code">$locale</code>. For a list of supported format codes, see
+                                <a href="zend.date.constants.html#zend.date.constants.selfdefinedformats" title="8.5.3. Self-Defined OUTPUT Formats">Раздел 8.5.3, «Self-Defined OUTPUT Formats»</a>
+                                .
+                            </p>
+                        </td>
+</tr>
+<tr>
+<td>toValue()</td>
+<td>
+                            <p>
+                                <span class="strong"><strong>toValue($part = null)</strong></span>
+                            </p>
+                            <p>
+                                Returns an integer representation of the selected date <code class="code">$part</code> according to
+                                the conventions of the object's locale. Returns <code class="code">false</code> when
+                                <code class="code">$part</code> selects a non-numeric value, such as
+                                <code class="code">Zend_Date::MONTH_NAME_SHORT</code>. <span class="strong"><strong>NOTE:</strong></span> This
+                                method calls
+                                <a href="zend.date.overview.html#id.date.basic.operations" title="8.4.2.2. List of Date Operations"><code class="code">get()</code>
+                                </a>
+                                and casts the result to a PHP integer, which will give unpredictable results, if
+                                <code class="code">get()</code> returns a numeric string containing a number too large for a PHP
+                                integer on your system. Use <code class="code">get()</code> instead.
+                            </p>
+                        </td>
+</tr>
+<tr>
+<td>
+                            <a href="zend.date.overview.html#id.date.basic.operations" title="8.4.2.2. List of Date Operations">get()</a>
+                        </td>
+<td>
+                            <p>
+                                <span class="strong"><strong>get($part = null, $locale = null)</strong></span>
+                            </p>
+                            <p>
+                                This method returns the <code class="code">$part</code> of object's date localized to
+                                <code class="code">$locale</code> as a formatted string or integer. See
+                                <a href="zend.date.overview.html#id.date.basic.operations" title="8.4.2.2. List of Date Operations">Раздел 8.4.2.2, «List of Date Operations»</a>
+                                for more information.
+                            </p>
+                        </td>
+</tr>
+<tr>
+<td>now()</td>
+<td>
+                            <p>
+                                <span class="strong"><strong>now($locale = null)</strong></span>
+                            </p>
+                            <p>
+                                This convenience function is equivalent to <code class="code">new Zend_Date()</code>. It returns the
+                                current date as a <code class="code">Zend_Date</code> object, having <code class="code">$locale</code>
+                            </p>
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.others.fractions"></a>8.4.5. Working with Fractions of Seconds</h3></div></div></div>
+<p>
+            Several methods support retrieving values related to a <code class="code">Zend_Date</code> instance.
+        </p>
+<div class="table">
+<a name="id4821238"></a><p class="title"><b>Таблица 8.5. Date Output Methods</b></p>
+<table summary="Date Output Methods" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Method</th>
+<th>Explanation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                            <p>
+                                <span class="strong"><strong>getFractionalPrecision()</strong></span>
+                            </p>
+                        </td>
+<td>Return the precision of the part seconds</td>
+</tr>
+<tr>
+<td>
+                            <p>
+                                <span class="strong"><strong>setFractionalPrecision()</strong></span>
+                            </p>
+                        </td>
+<td>Set the precision of the part seconds</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.other.sun"></a>8.4.6. Sunrise / Sunset</h3></div></div></div>
+<p>
+            Three methods provide access to geographically localized information about the Sun, including the time of
+            sunrise and sunset.
+        </p>
+<div class="table">
+<a name="id4821323"></a><p class="title"><b>Таблица 8.6. Miscellaneous Methods</b></p>
+<table summary="Miscellaneous Methods" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Method</th>
+<th>Explanation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                            <p>
+                                <span class="strong"><strong>getSunrise($location)</strong></span>
+                            </p>
+                        </td>
+<td>Return the date's time of sunrise</td>
+</tr>
+<tr>
+<td>
+                            <p>
+                                <span class="strong"><strong>getSunset($location)</strong></span>
+                            </p>
+                        </td>
+<td>Return the date's time of sunset</td>
+</tr>
+<tr>
+<td>
+                            <p>
+                                <span class="strong"><strong>getSunInfo($location)</strong></span>
+                            </p>
+                        </td>
+<td>Return an array with the date's sun dates</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.date.definition.theory.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.date.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.date.constants.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">8.3. Theory of Operation </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 8.5. Constants for General Date Functions</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

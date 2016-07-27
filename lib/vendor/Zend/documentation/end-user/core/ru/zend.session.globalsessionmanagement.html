@@ -1,0 +1,750 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>25.4. Общее управление сессиями</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="prev" href="zend.session.advancedusage.html" title="25.3. Продвинутое использование">
+<link rel="next" href="zend.session.theory.html" title="25.5. Теория">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.setoptions" title="25.4.1. Zend_Session::setOptions()">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.options" title="25.4.2. Опции">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.regenerateid" title="25.4.3. regenerateId()">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.rememberme" title="25.4.4. rememberMe(integer $seconds)">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.forgetme" title="25.4.5. forgetMe()">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.sessionexists" title="25.4.6. sessionExists()">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.destroy" title="25.4.7. destroy(bool $remove_cookie = true, bool $readonly = true)">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.stop" title="25.4.8. stop()">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.writeClose" title="25.4.9. writeClose($readonly = true)">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.expiresessioncookie" title="25.4.10. expireSessionCookie()">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.savehandler" title="25.4.11. setSaveHandler(Zend_Session_SaveHandler_Interface $interface)">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.namespaceisset" title="25.4.12. namespaceIsset($namespace)">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.namespaceunset" title="25.4.13. namespaceUnset($namespace)">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.namespaceget" title="25.4.14. namespaceGet($namespace)">
+<link rel="subsection" href="zend.session.globalsessionmanagement.html#zend.session.getiterator" title="25.4.15. getIterator()">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">25.4. Общее управление сессиями</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.session.advancedusage.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 25. Zend_Session</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.session.theory.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.session.globalsessionmanagement"></a>25.4. Общее управление сессиями</h2></div></div></div>
+<p>
+        Поведение сессий, принятое по умолчанию, можно изменить, используя
+        статические методы класса Zend_Session. Все управление производится
+        посредством Zend_Session, включая конфигурирование
+        <a href="http://www.php.net/session#session.configuration" target="_top">через
+        опции, предоставляемые расширением ext/session</a>, с использованием
+        метода <code class="code">Zend_Session::setOptions()</code>.
+
+    </p>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.setoptions"></a>25.4.1. Zend_Session::setOptions()</h3></div></div></div>
+<p>
+            Когда запрашивается первое пространство имен, то автоматически
+            запустится Zend_Session, если только оно не было запущено ранее
+            через метод
+            <a href="zend.session.advancedusage.html#zend.session.startingasession" title="25.3.1. Старт сессии"><code class="code">Zend_Session::start()</code></a>.
+            Встроенный в PHP механизм сессий будет использовать принятые по
+            умолчанию настройки из Zend_Session, пока они не будут изменены
+            через метод <code class="code">Zend_Session::setOptions()</code>.
+
+        </p>
+<p>
+            Для того, чтобы передать опции, просто передайте базовое имя (без
+            приставки <code class="code">session.</code>) как часть массива методу
+            <code class="code">Zend_Session::setOptions()</code>. Если опции не были
+            установлены, то Zend_Session будет сначала использовать
+            рекомендуемые опции, затем установки по умолчанию из php.ini.
+            Предложения по оптимизации работы с опциями отправляйте в список
+            рассылки
+            <a href="mailto:fw-auth@lists.zend.com" target="_top">fw-auth@lists.zend.com</a>.    
+
+        </p>
+<p>
+            "Автоматическое" конфигурипрование этой компоненты с использованием
+            Zend_Config_Ini:   
+
+            </p>
+<div class="example">
+<a name="id4923266"></a><p class="title"><b>Пример 25.16. Использование Zend_Config для конфирурирования Zend_Session</b></p>
+<pre class="programlisting">&lt;?php
+$config = new Zend_Config_Ini('myapp.ini', 'sandbox');
+require_once 'Zend/Session.php';
+Zend_Session::setOptions($config-&gt;asArray()); 
+?&gt;</pre>
+</div>
+<p>
+            Используемый файл "myapp.ini":
+
+            </p>
+<div class="example">
+<a name="id4923311"></a><p class="title"><b>Пример 25.17. myapp.ini</b></p>
+<pre class="programlisting">
+
+;  Настройки по умолчанию для производственного сервера
+[live]
+; bug_compat_42
+; bug_compat_warn
+; cache_expire
+; cache_limiter
+; cookie_domain
+; cookie_lifetime
+; cookie_path
+; cookie_secure
+; entropy_file
+; entropy_length
+; gc_divisor
+; gc_maxlifetime
+; gc_probability
+; hash_bits_per_character
+; hash_function
+; имя должно быть уникальным для всех приложений, использующих
+; одно и то же доменное имя
+name = UNIQUE_NAME
+; referer_check
+; save_handler
+; save_path
+; serialize_handler
+; use_cookies
+; use_only_cookies
+; use_trans_sid
+
+; remember_me_seconds = &lt;integer seconds&gt;
+; strict = on|off
+
+; Наш тестовый сервер использует те же настройки, что и наш
+; производственный сервер за исклочением тех, что переопределяются ниже:
+[sandbox : live]
+; Не забудьте создать эту директорию и сделать ее доступной для чтения
+; и записи через PHP
+save_path = /home/myaccount/zend_sessions/myapp
+use_only_cookies = on
+; Когда индентификатор сессии сохраняется в куках, запрашивать TTL
+; через 10 дней
+remember_me_seconds = 864000
+</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.options"></a>25.4.2. Опции</h3></div></div></div>
+<p>
+            Большинство опций, указанных ниже, не нуждается в дополнительных
+            комментариях сверх того, что написано в стандартной документации по
+            PHP.
+
+            </p>
+<div class="itemizedlist"><ul type="opencircle">
+<li style="list-style-type: circle"><p>
+                        boolean <code class="code">strict</code> - отключает автоматический
+                        запуск <code class="code">Zend_Session</code> при использовании
+                        <code class="code">new Zend_Session_Namespace()</code>.
+
+                    </p></li>
+<li style="list-style-type: circle"><p>
+                        integer <code class="code">remember_me_seconds</code> - время
+                        хранения идентификатора сессии в куках после того, как
+                        агент пользователя завершит свою работу (т.е. когда окно
+                        броузера будет закрыто).
+
+                    </p></li>
+<li style="list-style-type: circle">
+<p>
+                        string <code class="code">save_path</code> - корректное значение
+                        зависит от системы и должно указываться разработчиком с
+                        использованием <span class="strong"><strong>абсолютного
+                        пути</strong></span> к директории, доступной для чтения и
+                        записи процессом PHP.
+
+                    </p>
+<div class="note"><table border="0" summary="Note: Угроза безопасности">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Угроза безопасности</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>
+                            Если путь доступен для чтения другими приложениями,
+                            то возможен угон сессий (session hijacking). Если
+                            путь доступен для записи другими приложениями, то
+                            возможно заражение сессий
+                            (<a href="http://en.wikipedia.org/wiki/Session_poisoning" target="_top">session poisoning</a>).
+                            Если этот путь используется совместно с другими
+                            пользователями или с другими PHP-приложениями, то
+                            это создает различные угрозы безопасности,
+                            включая кражу содержимого сессий, угон сессий и
+                            коллизии при "сборке мусора" (например, работа
+                            приложения другого пользователя может вызвать
+                            удаление файлов сессий вашего приложения).
+
+                        </p>
+<p>
+                            Например, атакующий может зайти на сайт жертвы для
+                            получения сессионных куков. Затем он изменяет путь
+                            куков на собственный домен для того же сервера и
+                            заходит на собственный сайт для выполнения
+                            <code class="code">var_dump($_SESSION)</code>. Вооруженный
+                            информацией о том, как жертва использует данные в
+                            своих сессиях, атакующий может модифицировать данные
+                            сессии (заражение сессии), возвращает значение пути
+                            куков на исходный (ведущий на сайт жертвы) и делает
+                            запросы с сайта жертвы, используя зараженную сессию.
+                            Даже если оба приложения на том же сервере не имеют
+                            прав чтения/записи в директории save_path другого
+                            приложения, то в том случае, если можно заходить в
+                            директорию save_path и атакующий имеет контроль над
+                            одним из сайтов, он может изменить save_path своего
+                            сайта на save_path жертвы и таким образом выполнить
+                            заражение сессии под некоторыми общими
+                            конфигурациями PHP. Поэтому значение save_path не
+                            должно быть достоянием общественности и должно быть
+                            изменено на секретное значение, уникальное для
+                            каждого приложения.
+
+                        </p>
+</td></tr>
+</table></div>
+</li>
+<li style="list-style-type: circle">
+<p>
+                        string <code class="code">name</code> - корректное значение зависит
+                        от системы и должно устанавливаться разработчиком, с
+                        использованием короткого значения,
+                        <span class="strong"><strong>уникального</strong></span> для
+                        приложения ZF.     
+
+                    </p>
+<div class="note"><table border="0" summary="Note: Угроза безопасности">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Угроза безопасности</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                            Если настройки в <code class="code">php.ini</code> для
+                            <code class="code">session.name</code> одинаковые для
+                            приложений (например, "PHPSESSID" для настроек по
+                            умолчанию) и через одно доменное имя доступны два и
+                            более приложений (например,
+                            <code class="code">http://www.somewebhost.com/~youraccount/index.php</code>),
+                            то они будут использовать одни и те же данные
+                            сессий для посетителей, посещающих оба сайта. Это
+                            может привести к разрушению данных сессий. 
+
+                        </p></td></tr>
+</table></div>
+</li>
+<li style="list-style-type: circle">
+<p>
+                        boolean <code class="code">use_only_cookies</code> - во избежание
+                        появления дополнительных угроз безопасности не изменяйте
+                        значение, принятое по умолчанию для этой опции, на
+                        другое.
+
+                        </p>
+<div class="note"><table border="0" summary="Note: Угроза безопасности">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Угроза безопасности</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                                Если эта опция не включена, то аттакующий может
+                                легко "фиксировать" идентификаторы сессии,
+                                используя ссылки на атакуемый сайт вида
+                                <code class="code">http://www.victim-website.com/index.php?PHPSESSID=fixed_session_id</code>.
+                                Фиксация будет работать, если жертва не всегда
+                                имеет куки с идентификатором сессии для
+                                victim-website.com. Как только жертва будет
+                                использовать известный атакующему идентификатор
+                                сессии, атакующий может попытаться угнать
+                                сессию, имитируя реального пользователя и
+                                эмулируя агента жертвы.
+
+                            </p></td></tr>
+</table></div>
+<p>
+                    </p>
+</li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.regenerateid"></a>25.4.3. regenerateId()</h3></div></div></div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.session.regenerateid.intro"></a>25.4.3.1. Введение: идентификаторы сессий</h4></div></div></div>
+<p>
+                Введение: Наилучшей практикой в использовании сессий с ZF будет
+                использование куков вместо сохранения идентификатора сессии в
+                URL для отслеживания отдельных пользователей. По
+                умолчанию эта компонента использует только куки для хранения
+                идентификатора сессии. Значением, сохраняемым в куках, является
+                уникальный идентификатор сессии. Расширение ext/session
+                использует этот идентификатор для поддержки однозначно
+                определяемой связи "один-к-одному" между посетителем сайта и
+                хранилищем постоянных данных сессии, уникальным для каждого
+                посетителя. Zend_Session* является оберткой к этому механизму
+                хранения (<code class="code">$_SESSION</code>) с объектно-ориентированным
+                интерфейсом. К сожалению, если атакующий получил доступ к
+                идентификатору сессии в куках, то он может угнать сессию
+                посетителя. Эта проблема не является присущей только PHP или
+                Zend Framework. Метод <code class="code">regenerateId()</code> позволяет
+                приложению изменять идентификатор сессии (сохраненный в куках
+                посетителя) на новое случайное значение. Замечание: Несморя на
+                то, что эти термины не равнозначны, для удобочитаемости мы будем
+                попеременно использовать "агент пользователя" и "веб-броузер".
+
+            </p>
+<p>
+                Почему?: Если атакующий получил валидный идентификатор сессии,
+                то он может имитировать реального пользователя (жертву) и затем
+                получить доступ к конфиденциальной информации или манипулировать
+                данными жертвы через ваше приложение. Изменение идентификатора
+                сессии помогает защитить пользователя от угона сессии. Если
+                идентификатор сессии был изменен и атакующий не знает его новое
+                значение, то он не может использовать новый идентификатор сессии
+                в своей попытке угона сессии посетителя. Даже если атакующий
+                получил доступ к старому идентификатору сессии, то
+                <code class="code">regenerateId()</code> перемещает данные сессии со старого
+                идентификатора на новый, и поэтому данные этой сессии не будут
+                доступны через старый идентификатор.
+                
+            </p>
+<p>
+                Когда использовать regenerateId(): Добавление
+                <code class="code">Zend_Session::regenerateId()</code> в файл загрузки
+                Zend Framework является одним из самых безопасных и надежных
+                способов регенерации идентификаторов сессии в куках агента
+                пользователя. Само по себе отсутствие условной логики,
+                определяющей, когда регенерировать идентификатор сессии, не
+                является признаком плохо разработанного кода. Но, несмотря на
+                то, что регенерация при каждом запросе пересекает некоторые
+                возможные пути атак, не все хотят мириться с небольшой потерей в
+                производительности и пропускной способности, связанными с
+                регенерацией. Поэтому приложения обычно пытаются определить
+                ситуации, связанные с наибольшим риском, и только тогда
+                регенерируют идентификаторы сессий. В случаях, когда привилегии
+                сессии посетителя сайта "обостряются" (например, посетитель
+                заново проходит аутентификацию до изменения его личного
+                "профиля") или когда производятся "чувствительные" для
+                безопасности изменения параметров сессии, используется
+                <code class="code">regenerateId()</code> для регенерации идентификатора
+                сессии. Если вы вызываете функцию <code class="code">rememberMe()</code>, то
+                не используйте <code class="code">regenerateId()</code>, т.к. первая функция
+                вызывает вторую. Если пользователь успешно залогинился на вашем
+                сайте, используйте <code class="code">rememberMe()</code> вместо
+                <code class="code">regenerateId()</code>.
+
+            </p>
+</div>
+<div class="sect3" lang="ru">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.session.regenerateid.details"></a>25.4.3.2. Угон и фиксация сессии</h4></div></div></div>
+<p>
+                Отсутствие XSS-уязвимостей на сайте помогает предотвратить угон
+                сессий c него. Согласно
+                статистике <a href="http://secunia.com/" target="_top">Secunia</a>,
+                <a href="http://en.wikipedia.org/wiki/Cross_site_scripting" target="_top">
+                XSS (межсайтовый скриптинг)</a> - довольно распространенное
+                явление. Лучше минимизировать возможный ущерб от XSS, следуя
+                наилучшей практике программирования, чем предполагать, что этого
+                никогда не случится с вами. Атакующему, использующему
+                XSS, не нужно иметь прямой доступ к сетевому трафику жертвы.
+                Если жертва уже имеет сессионные куки, то XSS с внедрением кода
+                Javascript позволит атакующему прочитать куки и украсть сессию.
+                Если жертва не имеет сессионные куки, то, используя XSS с
+                внедрением кода Javascript, атакующий может создать куку с
+                заранее известным идентификатором сессии в броузере жертвы,
+                затем установить идентичную куку в своей системе, чтобы угнать
+                сессию жертвы. Если жертва посетит сайт атакующего, то
+                атакующий может также сэмулировать и другие доступные для
+                идентификации характеристики агента пользователя жертвы. Если
+                ваш сайт имеет XSS-уязвимости, то атакующий может внедрить
+                AJAX-код, который скрытно "заходит" на сайт атакующего, и
+                атакующий может узнать характеристики броузера жертвы и о
+                скомпрометированной сессии на сайте жертвы. Но несмотря на все
+                это, атакующий не может изменить данные сессии на стороне
+                сервера при условии, что разработчик корректно установил
+                значение опции <code class="code">save_path</code>.
+
+            </p>
+<p>
+                Сам по себе вызов <code class="code">Zend_Session::regenerateId()</code>
+                в то время, как сессия еще только начинает использоваться, не
+                предотвращает атаку через фиксацию сессии, за исключением
+                того случая, когда вы можете отличить сессию, созданную
+                атакующим, имитирующим личность жертвы. На первый взгляд это
+                противоречит предыдущему утверждению, но до тех пор, пока мы не
+                будем считать атакующим того, кто первый иницировал создание
+                настоящей сессии на вашем сайте. Сессия сначала используется
+                атакующим, который знает результат инициализации
+                (<code class="code">regenerateId()</code>). Атакующий затем использует новый
+                идентификатор сессии вместе с найденной XSS-уязвимостью или
+                добавляет идентификатор сессии в ссылку на сайт атакующего
+                (работает в том случае, если
+                <code class="code">use_only_cookies = off</code>).
+
+            </p>
+<p>
+                Если вы можете различать атакующего и жертву, использующих один
+                и тот же идентификатор сессии, то это может решить проблему
+                увода сессии. Тем не менее, такое распознавание обычно
+                принуждает к поиску компромисса с юзабилити, т.к. методы
+                различения нередко являются неточными. Для примера, если запрос
+                получен с IP в стране, отличающейся от IP запроса, при котором
+                была создана сессия, то это может означать, что новый запрос
+                производится уже атакующим. При выполнении следующих условий
+                приложение сайта не сможет различить жертву и атакующего:
+
+                </p>
+<div class="itemizedlist"><ul type="opencircle">
+<li style="list-style-type: circle"><p>
+                            - атакующий первый иницировал сессию на вашем сайте для получения валидного идентификатора сессии
+
+                        </p></li>
+<li style="list-style-type: circle"><p>
+                            - атакующий использует XSS-уязвимость на вашем сайте для создания куки в броузере жертвы с валидным идентификатором сессии (т.е. фиксация сессии)
+
+                        </p></li>
+<li style="list-style-type: circle"><p>
+                            - атакующий и его жертва заходят через одну и ту же группу прокси-серверов (например, оба находятся за одним и тем же файрволом в большой компании - такой, как AOL)
+
+                        </p></li>
+</ul></div>
+<p>
+                
+                Пример кода ниже намного затрудняет получение атакующим текущего идентификатора сессии жертвы, за исключением тех случаев, когда атакующий уже выполнил первые два шага из приведенных выше.
+
+            </p>
+<div class="example">
+<a name="id4924662"></a><p class="title"><b>Пример 25.18. Анонимная сессия и фиксация сессии</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Session.php';
+$defaultNamespace = new Zend_Session_Namespace();
+ 
+if (!isset($defaultNamespace-&gt;initialized))
+{ 
+    Zend_Session::regenerateId(); 
+    $defaultNamespace-&gt;initialized = true;
+} 
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.rememberme"></a>25.4.4. rememberMe(integer $seconds)</h3></div></div></div>
+<p>
+            Обычно сессия заканчивается, когда агент пользователя завершает
+            сеанс работы - например, пользователь закрыл окно броузера. Тем не
+            менее, после того как пользователь зашел в систему, может
+            понадобиться хранить его сессию 24 часа и больше. Программное
+            обеспечение форумов обычно предоставляет пользователю возможность
+            выбирать, сколько времени должна храниться сессиия.  Используйте
+            <code class="code">Zend_Session::rememberMe()</code> для отправки
+            обновленной сессионной куки агенту пользователя со временем жизни,
+            по умолчанию равному <code class="code">remember_me_seconds</code>, который равен
+            2 неделям до тех пор, пока вы не измените это значение через метод
+            <code class="code">Zend_Session::setOptions()</code>. Для того, чтобы
+            помешать угону или фиксации сессии, используйте эту функцию, когда
+            пользователь успешно прошел аутентификацию и ваше приложение
+            выполнило "регистрацию"
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.forgetme"></a>25.4.5. forgetMe()</h3></div></div></div>
+<p>
+            Эта функция является дополнением к <code class="code">rememberMe()</code>.
+            Она возвращает сессионную куку к тому состоянию, при котором ее
+            время жизни завершается в тот момент, когда агент пользователя
+            завершает сеанс работы (например, пользователь закрыл окно своего
+            броузера).
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.sessionexists"></a>25.4.6. sessionExists()</h3></div></div></div>
+<p>
+            Используйте этот метод для определения того, есть ли уже сессия для
+            текущего агента пользователя/запроса. Он может использоваться до
+            старта сессии и независимо от всех других методов Zend_Session и
+            Zend_Session_Namespace.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.destroy"></a>25.4.7. destroy(bool $remove_cookie = true, bool $readonly = true)</h3></div></div></div>
+<p>
+            <code class="code">Zend_Session::destroy()</code> уничтожает все постоянные
+            данные, связанные с текущей сессией. Это не влияет на переменные в
+            PHP, поэтому ваши сессии с пространствами имен (экземпляры
+            <code class="code">Zend_Session_Namespace</code>) остаются доступными для чтения.
+            Для выхода из системы установите необязательный параметр в
+            <code class="code">true</code> (по умолчанию он равен <code class="code">true</code>), при
+            этом будет удалена кука с идентификатором сессии в агенте
+            пользователя. Установленный в <code class="code">true</code> необязательный
+            параметр <code class="code">$readonly</code> блокирует возможность записи в
+            данные сессии (т.е. в $_SESSION) для экземпляров 
+            Zend_Session_Namespace и методов Zend_Session.
+
+        </p>
+<div class="note"><table border="0" summary="Note: Исключения">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Исключения</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                По умолчанию <code class="code">$readonly</code> установлен в
+                <code class="code">true</code> и дальнейшие действия, подразумевающие запись
+                в хранилище данных сессии, вызовут генерацию исключения.
+
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.stop"></a>25.4.8. stop()</h3></div></div></div>
+<p>
+            Этот метод не делает ничего, кроме переключения флага в
+            Zend_Session для предотвращения дальнейшей записи в хранилище
+            данных сессии (т.е.<code class="code">$_SESSION</code>). Одним из вариантов его
+            использования является временное отключение возможности записи в
+            хранилище данных сессии через экземпляры
+            <code class="code">Zend_Session_Namespace</code> или методы
+            <code class="code">Zend_Session</code> во время выполнения кода,
+            связанного с отображением вида.
+            Попытка выполнить действия, подразумевающие запись через эти
+            экземпляры или методы вызовет генерацию исключения.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.writeClose"></a>25.4.9. writeClose($readonly = true)</h3></div></div></div>
+<p>
+            Закрывает сессию, завершает запись и отсоединяет $_SESSION от
+            средства хранения на сервере. Это завершит внутреннее преобразование
+            данных для данного запроса. Необязательный параметр булевого типа
+            $readonly позволяет отключить возможность записи (т.е. генерация
+            исключения при попытке записи через любые методы
+            Zend_Session_Namespace или Zend_Session).
+
+        </p>
+<div class="note"><table border="0" summary="Note: Исключения">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Исключения</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                По умолчанию <code class="code">$readonly</code> включен и дальнейшие
+                действия, подразумевающие запись в хранилище данных сессии,
+                вызовут генерацию исключения.
+
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.expiresessioncookie"></a>25.4.10. expireSessionCookie()</h3></div></div></div>
+<p>
+            Этот метод отправляет куку с уже истекшим временем действия, что
+            вызывает удаление сессионной куки в агенте пользователя. Иногда этот
+            метод используется для выхода из системы со стороны клиента.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.savehandler"></a>25.4.11. setSaveHandler(Zend_Session_SaveHandler_Interface $interface)</h3></div></div></div>
+<p>
+            Большинство разработчиков находят достаточным использовать принятый
+            по умолчанию механизм хранения сессионных данных.
+            Этот метод предоставляет объектно-ориентированную обертку для <code class="code">
+            <a href="http://php.net/session_set_save_handler" target="_top">session_set_save_handler()</a>
+            </code>.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.namespaceisset"></a>25.4.12. namespaceIsset($namespace)</h3></div></div></div>
+<p>
+            Используйте этот метод для определения того, существует ли
+            пространство имен с данным именем или определенный индекс в данном
+            пространстве имен.
+
+        </p>
+<div class="note"><table border="0" summary="Note: Исключения">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Исключения</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Если Zend_Session не был помечен как доступный для чтения
+                (например, до того, как Zend_Session был запущен), то будет
+                сгенерировано исключение.
+
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.namespaceunset"></a>25.4.13. namespaceUnset($namespace)</h3></div></div></div>
+<p>
+            Вместо создания экземпляра Zend_Session_Namespace для пространства
+            имен и итерации по его содержимому для удаления каждой отдельной
+            записи используйте метод <code class="code">namespaceUnset($namespace)</code> для
+            быстрого удаления всего пространства имен и его содержимого. Как это
+            справедливо для всех массивов в PHP, если переменная, содержащая
+            массив, уничтожена, и этот массив содержал другие объекты, то эти
+            объекты не уничтожаются, если они были сохранены по ссылке в других
+            массивах/объектах. Это означает, что они остаются доступными через
+            другие переменные. Поэтому <code class="code">namespaceUnset()</code> не
+            производит "глубокое" удаление содержимого записей в пространстве
+            имен. За более подробной информацией обращайтесь к разделу
+            <a href="http://php.net/references" target="_top">References Explained</a>
+            в документации по PHP.
+
+        </p>
+<div class="note"><table border="0" summary="Note: Исключения">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Исключения</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Если пространство имен недоступно для записи (например, после
+                <code class="code">destroy()</code>), то будет сгенерировано исключение.
+
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.namespaceget"></a>25.4.14. namespaceGet($namespace)</h3></div></div></div>
+<p>
+            Не рекомендуется к использованию: Используйте
+            <code class="code">getIterator()</code> в Zend_Session_Namespace. Этот метод
+            возвращает массив содержимого пространства имен
+            <code class="code">$namespace</code>. Этот метод позднее может быть определен как
+            закрытый. Если вы считаете, что есть разумные причины оставить этот
+            метод открытым, то пишите в список рассылки
+            <a href="mailto:fw-auth@lists.zend.com" target="_top">fw-auth@lists.zend.com</a>.
+            Участие в связанных темах также приветствуется :)
+
+        </p>
+<div class="note"><table border="0" summary="Note: Исключения">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Исключения</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Если Zend_Session не был помечен как доступный для чтения
+                (например, до того, как Zend_Session был запущен), то будет
+                сгенерировано исключение.
+
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.session.getiterator"></a>25.4.15. getIterator()</h3></div></div></div>
+<p>
+            Используйте метод <code class="code">getIterator()</code> для получения массива,
+            содержащего имена всех пространств имен, и с которым можно
+            производить итерации.
+
+        </p>
+<div class="example">
+<a name="id4925478"></a><p class="title"><b>Пример 25.19. Уничтожение всех пространств имен</b></p>
+<pre class="programlisting">&lt;?php
+foreach(Zend_Session::getIterator() as $space) {
+    try {
+        $core-&gt;namespaceUnset($space);
+    } catch (Zend_Session_Exception $e) {
+        return; // possible if Zend_Session::stop() has been executed
+    }
+}
+
+?&gt;</pre>
+</div>
+<div class="note"><table border="0" summary="Note: Исключения">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Исключения</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Если Zend_Session не был помечен как доступный для чтения
+                (например, до того, как Zend_Session был запущен), то будет
+                сгенерировано исключение.
+
+            </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.session.advancedusage.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.session.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.session.theory.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">25.3. Продвинутое использование </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 25.5. Теория</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

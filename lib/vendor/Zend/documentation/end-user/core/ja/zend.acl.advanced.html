@@ -1,0 +1,160 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.3. 高度な使用法</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="prev" href="zend.acl.refining.html" title="2.2. アクセス制御の洗練">
+<link rel="next" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.acl.advanced.html#zend.acl.advanced.storing" title="2.3.1. ACL データの保存による永続性の確保">
+<link rel="subsection" href="zend.acl.advanced.html#zend.acl.advanced.assertions" title="2.3.2. アサーションを使用した条件付き ACL 規則の作成">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.3. 高度な使用法</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.acl.refining.html">前のページ</a> </td>
+<th width="60%" align="center">第2章 Zend_Acl</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.auth.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.acl.advanced"></a>2.3. 高度な使用法</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.advanced.storing"></a>2.3.1. ACL データの保存による永続性の確保</h3></div></div></div>
+<p>
+        Zend_Acl は、特定のバックエンド技術 (たとえばデータベースやキャッシュサーバを使用した
+        ACL データの保存など) に依存しないように作られています。
+        すべて PHP のみで実装されているので、Zend_Acl 用の管理ツールを独自に作成して
+        管理の手間を省くことも可能になっています。
+        ACL の管理を対話的に行いたいという場面も数多く発生するでしょう。そのため
+        Zend_Acl では、アプリケーションのアクセス制御を設定したり、
+        それに対して問い合わせたりするメソッドを用意しています。
+        </p>
+<p>
+        データの使用法にはさまざまなものが考えられるので、
+        ACL データの保存は、場面に応じて開発者側で考えることになります。
+        Zend_Acl はシリアライズ可能なので、ACL オブジェクトを PHP の
+        <a href="http://php.net/serialize" target="_top"><code class="code">serialize()</code></a>
+        関数でシリアライズすることができます。シリアライズした結果を、
+        ファイルやデータベースあるいはキャッシュなどのお好みの場所に保存することができます。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.advanced.assertions"></a>2.3.2. アサーションを使用した条件付き ACL 規則の作成</h3></div></div></div>
+<p>
+        あるリソースに対する特定のロールのアクセス権限が、
+        固定ではなく条件に応じて変化することもあります。
+        たとえば、アクセスを認めるのは午前 8 時から午後 5 時の間に限定するといった場合です。
+        別の例としては、ブラックリストに載っている特定の
+        IP アドレスからのアクセスのみを拒否するといったことがあります。
+        Zend_Acl は、必要に応じた任意の条件にもとづく規則を組み込みでサポートしています。
+        </p>
+<p>
+        Zend_Acl は、条件付きの規則を <code class="code">Zend_Acl_Assert_Interface</code>
+        でサポートしています。規則のアサーション用インターフェイスを使用するには、
+        これを実装したクラスで <code class="code">assert()</code> メソッドを作成します。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl/Assert/Interface.php';
+
+class CleanIPAssertion implements Zend_Acl_Assert_Interface
+{
+    public function assert(Zend_Acl $acl, Zend_Acl_Role_Interface $role = null,
+                           Zend_Acl_Resource_Interface $resource = null, $privilege = null)
+    {
+        return $this-&gt;_isCleanIP($_SERVER['REMOTE_ADDR']);
+    }
+
+    protected function _isCleanIP($ip)
+    {
+        // ...
+    }
+}</pre>
+<p>
+        アサーションクラスを作成したら、条件付きの規則を定義を割り当てる際に
+        このアサーションクラスのインスタンスを指定します。
+        アサーションつきで作成された規則は、アサーションメソッドが
+        true を返す場合にのみ適用されます。
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl.php';
+
+$acl = new Zend_Acl();
+$acl-&gt;allow(null, null, null, new CleanIPAssertion());</pre>
+<p>
+        上のコードが作成する条件付き規則は、
+        誰からのアクセスであってもすべての権限を許可しますが、リクエスト元の
+        IP アドレスが "ブラックリストに載っている" 場合にのみアクセスを拒否するというものです。
+        リクエスト元の IP が "クリーン" ではないとみなされた場合は、
+        アクセス許可規則が適用されません。この規則はすべてのロールおよびリソースの
+        すべての権限に対して適用されるので、"クリーンではない"
+        IP からのアクセスは拒否することになります。
+        しかし、これは特殊なケースです。通常は (つまり特定のロールやリソース、
+        権限を規則の対象とする場合)、アサーションに失敗して規則が適用されなかった場合には、
+        別の規則を使用してアクセスの可否を判断させるべきです。
+        </p>
+<p>
+        アサーションオブジェクトの <code class="code">assert()</code> メソッドは、認証問い合わせ
+        (すなわち <code class="code">isAllowed()</code>) が適用される ACL、ロール、リソース
+        および権限に渡されます。これを用いて、必要な場所でアサーションクラスが
+        条件を判断します。
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.acl.refining.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.acl.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.auth.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2.2. アクセス制御の洗練 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 第3章 Zend_Auth</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Capítulo 28. Zend_View</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="index.html" title="Guia de Referência do Programador">
+<link rel="prev" href="zend.validate.validating_hostnames.html" title="27.5. Validating Hostnames">
+<link rel="next" href="zend.view.controllers.html" title="28.2. Scripts Controladores">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="section" href="zend.view.html#zend.view.introduction" title="28.1. Introdução">
+<link rel="section" href="zend.view.controllers.html" title="28.2. Scripts Controladores">
+<link rel="section" href="zend.view.scripts.html" title="28.3. Scripts de Visualização">
+<link rel="section" href="zend.view.helpers.html" title="28.4. Assistentes de Visualização (Modificadores)">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Capítulo 28. Zend_View</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.validate.validating_hostnames.html">Anterior</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.view.controllers.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.view"></a>Capítulo 28. Zend_View</h2></div></div></div>
+<div class="toc">
+<p><b>Índice</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.view.html#zend.view.introduction">28.1. Introdução</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.controller">28.1.1. Script Controlador</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.view">28.1.2. Script Visualizador</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.controllers.html">28.2. Scripts Controladores</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.assign">28.2.1. Atribuindo Variáveis</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.render">28.2.2. Renderizando um Script de Visualização</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.script-paths">28.2.3. View Script Paths</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.scripts.html">28.3. Scripts de Visualização</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.escaping">28.3.1. Escapando a Saída</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.templates">28.3.2. Sistemas de Template</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.helpers.html">28.4. Assistentes de Visualização (Modificadores)</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.initial">28.4.1. Assistentes Padrão</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.paths">28.4.2. Localizando os Assistentes</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.custom">28.4.3. Escrevendo Assistentes Personalizados</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.introduction"></a>28.1. Introdução</h2></div></div></div>
+<p>
+        Zend_View é uma classe para trabalhar com a parte de visualização do padrão de projeto MVC.  Basicamente ela existe para  separar o script de visualização dos controladores e modelos.  Ela fornece um sistema de assistentes, filtros de saída e escape de variáveis.
+    </p>
+<p>
+        Zend_View é um sistema de template agnóstico; você pode usar o PHP como sua linguagem de template, ou criar instâncias de outros sistemas de template e manipulá-las dentro do seu script de visualização.
+    </p>
+<p>
+        Essencialmente, o funcionamento do Zend_View acontece em duas etapas principais:
+        
+        1.  Seu script controlador cria uma instância de Zend_View, atribuindo-lhe variáveis.
+        
+        2. O controlador instrui o Zend_View a rederizar uma determinada visualização , passando o controle ao script de visualização, responsável pela geração da saída a ser visualizada.
+    </p>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.introduction.controller"></a>28.1.1. Script Controlador</h3></div></div></div>
+<p>
+            Neste exemplo simples, suponhamos que seu controlador tenha uma listagem contendo dados sobre livros, que queremos renderizar para uma visualização. O controlador poderia ser algo como isto:
+        </p>
+<pre class="programlisting">&lt;?php
+// use um modelo para obter dados sobre autores e títulos dos livros.
+$data = array(
+    array(
+        'author' =&gt; 'Hernando de Soto',
+        'title' =&gt; 'The Mystery of Capitalism'
+    ),
+    array(
+        'author' =&gt; 'Henry Hazlitt',
+        'title' =&gt; 'Economics in One Lesson'
+    ),
+    array(
+        'author' =&gt; 'Milton Friedman',
+        'title' =&gt; 'Free to Choose'
+    )
+);
+
+// atribua os dados à instância de Zend_View
+Zend::loadClass('Zend_View');
+$view = new Zend_View();
+$view-&gt;books = $data;
+
+// renderize uma visualização chamada "booklist.php"
+echo $view-&gt;render('booklist.php');
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.introduction.view"></a>28.1.2. Script Visualizador</h3></div></div></div>
+<p>
+            Agora necessitaremos do script de visualização associado, "booklist.php". Trata-se de um script PHP como qualquer outro, com uma exceção:  ele executa dentro do escopo da instância de Zend_View instance, o que implica que as referências a $this apontam para as propriedades e métodos da instância Zend_View.  (Variáveis atribuídas à instância pelo controlador são propriedades públicas da instância de Zend_View.)  Deste modo, um script de visualição muito básico poderia se parecer com isto:
+        </p>
+<pre class="programlisting">&lt;?php if ($this-&gt;books): ?&gt;
+    
+    &lt;!-- Uma tabela contendo alguns livros. --&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Autor&lt;/th&gt;
+            &lt;th&gt;Título&lt;/th&gt;
+        &lt;/tr&gt;
+        
+        &lt;?php foreach ($this-&gt;books as $key =&gt; $val): ?&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;?php echo $this-&gt;escape($val['author']) ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?php echo $this-&gt;escape($val['title']) ?&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;?php endforeach; ?&gt;
+        
+    &lt;/table&gt;
+    
+&lt;?php else: ?&gt;
+    
+    &lt;p&gt;Não existem livros a serem exibidos.&lt;/p&gt;
+    
+&lt;?php endif; ?&gt;
+        </pre>
+<p>
+            Observe a forma como empregamos o método "escape()" para escapar o conteúdo das variáveis para a saída.
+        </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.validate.validating_hostnames.html">Anterior</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.view.controllers.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">27.5. Validating Hostnames </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> 28.2. Scripts Controladores</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

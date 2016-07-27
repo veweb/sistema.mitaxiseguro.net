@@ -1,0 +1,333 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>13.5. Zend_Http_Response</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="prev" href="zend.http.cookies.html" title="13.4. Zend_Http_Cookie および Zend_Http_CookieJar">
+<link rel="next" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.http.response.html#zend.http.response.introduction" title="13.5.1. 導入">
+<link rel="subsection" href="zend.http.response.html#zend.http.response.testers" title="13.5.2. 真偽チェック用のメソッド">
+<link rel="subsection" href="zend.http.response.html#zend.http.response.acessors" title="13.5.3. アクセス用メソッド群">
+<link rel="subsection" href="zend.http.response.html#zend.http.response.static_parsers" title="13.5.4. 静的 HTTP レスポンスパーサ">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">13.5. Zend_Http_Response</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.http.cookies.html">前のページ</a> </td>
+<th width="60%" align="center">第13章 Zend_Http</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.json.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.http.response"></a>13.5. Zend_Http_Response</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.response.introduction"></a>13.5.1. 導入</h3></div></div></div>
+<p>
+            Zend_Http_Response は、HTTP レスポンスに簡単にアクセスできるようにします。
+            また、HTTP レスポンスメッセージをパースするための静的メソッド群も提供します。
+            通常は、Zend_Http_Response は Zend_Http_Client
+            リクエストの返す結果として使用します。
+        </p>
+<p>
+            ほとんどの場合は、Zend_Http_Response オブジェクトのインスタンスを作成するには
+            factory() メソッドを使用します。これは、HTTP
+            レスポンスメッセージを含む文字列を受け取って新しい
+            Zend_Http_Response オブジェクトを返します。
+            </p>
+<div class="example">
+<a name="id4844453"></a><p class="title"><b>例 13.24. ファクトリメソッドを使用した Zend_Http_Response オブジェクトの作成</b></p>
+<pre class="programlisting">&lt;?php
+$str = '';
+$sock = fsockopen('www.example.com', 80);
+$req = 	"GET / HTTP/1.1\r\n" . 
+		"Host: www.example.com\r\n" . 
+		"Connectoin: close\r\n" . 
+		"\r\n";
+		
+fwrite($sock, $req);
+while ($buff = fread($sock, 1024)) 
+	$str .= $sock;
+	
+$response = Zend_Http_Response::factory($str);
+?&gt;</pre>
+</div>
+<p>
+        </p>
+<p>
+            コンストラクタを使用して新しいオブジェクトを作成することもできます。
+            その際には、レスポンスの全パラメータを指定します。
+        </p>
+<p>
+            <code class="code">
+                public function __construct($code, $headers, $body = null, $version = '1.1', $message = null)
+            </code>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">$code</code>: HTTP レスポンスコード (たとえば 200 や 404 など)。
+                </p></li>
+<li><p>
+                    <code class="code">$headers</code>: HTTP レスポンスヘッダの連想配列 (たとえば 'Host' =&gt; 'example.com' など)。
+                </p></li>
+<li><p>
+                    <code class="code">$body</code>: レスポンス本文の文字列。
+                </p></li>
+<li><p>
+                    <code class="code">$version</code>: HTTP レスポンスのバージョン (通常は 1.0 あるいは 1.1)。
+                </p></li>
+<li><p>
+                    <code class="code">$message</code>: HTTP レスポンスメッセージ (たとえば 'OK' や 'Internal Server Error' など)。
+                    指定しなかった場合は、レスポンスコードに応じたメッセージが設定されます。
+                </p></li>
+</ul></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.response.testers"></a>13.5.2. 真偽チェック用のメソッド</h3></div></div></div>
+<p>
+            Zend_Http_Response のインスタンスを取得すると、
+            レスポンスの種類を調べるためのメソッドが使用できるようになります。
+            これらのメソッドは、すべて true あるいは false を返します。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">Boolean isSuccessful()</code>: リクエストが成功したかどうかを調べます。
+                        HTTP レスポンスコードが 1xx か 2xx であった場合に TRUE を返します。
+                    </p></li>
+<li><p>
+                        <code class="code">Boolean isError()</code>: レスポンスコードがエラーを意味しているかどうかを調べます。
+                        HTTP レスポンスコードが 4xx (クライアントのエラー) あるいは
+                        5xx (サーバのエラー) であった場合に TRUE を返します。
+                    </p></li>
+<li><p>
+                        <code class="code">Boolean isRedirect()</code>: レスポンスがリダイレクトされているかどうかを調べます。
+                        HTTP レスポンスコードが 3xx であった場合に TRUE を返します。
+                    </p></li>
+</ul></div>
+<p>
+            </p>
+<div class="example">
+<a name="id4845440"></a><p class="title"><b>例 13.25. isError() メソッドの使用によるレスポンスの検証</b></p>
+<pre class="programlisting">&lt;?php
+if ($response-&gt;isError()) {
+  echo "データ転送エラー。\n"
+  echo "サーバからの応答: " . $response-&gt;getStatus() . " " . $response-&gt;getMessage() . "\n";
+}
+// .. ここでレスポンスを処理します...
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.response.acessors"></a>13.5.3. アクセス用メソッド群</h3></div></div></div>
+<p>
+            レスポンスオブジェクトの本来の目的は、レスポンスパラメータに簡単にアクセスすることです。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">int getStatus()</code>: HTTP レスポンスステータスコード
+                        (たとえば 200 や 504 など) を取得します。
+                    </p></li>
+<li><p>
+                        <code class="code">string getMessage()</code>: HTTP レスポンスステータスのメッセージ
+                        (たとえば "Not Found" や "Authorization Required" など) を取得します。
+                    </p></li>
+<li><p>
+                        <code class="code">string getBody()</code>: HTTP レスポンス本文をデコードしたものを取得します。
+                    </p></li>
+<li><p>
+                        <code class="code">string getRawBody()</code>: そのままの状態の、おそらくエンコードされている
+                        HTTP レスポンス本文を取得します。たとえば GZIP などでエンコードされていたとしても、
+                        それはデコードされません。
+                    </p></li>
+<li><p>
+                        <code class="code">array getHeaders()</code>: HTTP レスポンスヘッダを、連想配列形式
+                        (たとえば 'Content-type' =&gt; 'text/html' など) で取得します。
+                    </p></li>
+<li><p>
+                        <code class="code">string|array getHeader($header)</code>: $header で指定した、
+                        特定の HTTP レスポンスヘッダを取得します。
+                    </p></li>
+<li><p>
+                        <code class="code">string getHeadersAsString($status_line = true, $br = "\n")</code>:
+                        ヘッダ全体を文字列として取得します。$status_line が true の場合 (デフォルト) は、
+                        最初のステータス行 (たとえば "HTTP/1.1 200 OK" など) も返されます。
+                        改行は $br パラメータで指定します (たとえば "&lt;br /&gt;" などにもできます)。
+                    </p></li>
+<li><p>
+                        <code class="code">string asString($br = "\n")</code>: レスポンスメッセージ全体を文字列として取得します。
+                        改行は $br パラメータで指定します (たとえば "&lt;br /&gt;" などにもできます)。
+                    </p></li>
+</ul></div>
+<p>
+            </p>
+<div class="example">
+<a name="id4845616"></a><p class="title"><b>例 13.26. Zend_Http_Response へのアクセス用メソッドの使用</b></p>
+<pre class="programlisting">&lt;?php
+if ($response-&gt;getStatus() == 200) {
+  echo "リクエストの結果は次のようになりました。&lt;br /&gt;";
+  echo $response-&gt;getBody();
+} else {
+  echo "データの取得時にエラーが発生しました。&lt;br /&gt;";
+  echo $response-&gt;getStatus() . ": " . $response-&gt;getMessage();
+}
+?&gt;</pre>
+</div>
+<p>
+            </p>
+<div class="note"><table border="0" summary="Note: 常に返り値をチェックする">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">常に返り値をチェックする</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    レスポンスには同じヘッダを複数含めることができるので、
+                    getHeader() メソッドや getHeaders() メソッドの返す結果は
+                    文字列の場合もあれば文字列の配列となる場合もあります。
+                    返された値が文字列なのか配列なのかを常にチェックするようにしましょう。
+                </p></td></tr>
+</table></div>
+<p>
+            </p>
+<div class="example">
+<a name="id4845659"></a><p class="title"><b>例 13.27. レスポンスヘッダへのアクセス</b></p>
+<pre class="programlisting">&lt;?php
+$ctype = $response-&gt;getHeader('Content-type');
+if (is_array($ctype)) $ctype = $ctype[0];
+
+$body = $response-&gt;getBody();
+if ($ctype == 'text/html' || $ctype == 'text/xml') {
+  $body = htmlentities($body);
+}
+
+echo $body;
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.response.static_parsers"></a>13.5.4. 静的 HTTP レスポンスパーサ</h3></div></div></div>
+<p>
+            Zend_Http_Response クラスには、内部で使用するメソッドもいくつか含まれています。
+            これは、HTTP レスポンスメッセージを処理したりパースしたりするためのものです。
+            これらのメソッドは静的メソッドとして公開されています。
+            つまり外部からでも使用できるということです。特にインスタンスを作成しなくても、
+            レスポンスの一部を抽出したりなどといった目的で使用可能です。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">int Zend_Http_Response::extractCode($response_str)</code>:
+                        HTTP レスポンスコード (たとえば 200 や 404 など)
+                        を $response_str から抽出し、それを返します。
+                    </p></li>
+<li><p>
+                        <code class="code">string Zend_Http_Response::extractMessage($response_str)</code>:
+                        HTTP レスポンスメッセージ (たとえば "OK" や "File Not Found" など)
+                        を $response_str から抽出し、それを返します。
+                    </p></li>
+<li><p>
+                        <code class="code">string Zend_Http_Response::extractVersion($response_str)</code>:
+                        HTTP バージョン (たとえば 1.1 や 1.0 など)
+                        を $response_str から抽出し、それを返します。
+                    </p></li>
+<li><p>
+                        <code class="code">array Zend_Http_Response::extractHeaders($response_str)</code>:
+                        HTTP レスポンスヘッダを $response_str から抽出し、それを配列で返します。
+                    </p></li>
+<li><p>
+                        <code class="code">string Zend_Http_Response::extractBody($response_str)</code>:
+                        HTTP レスポンス本文を $response_str から抽出し、それを返します。
+                    </p></li>
+<li><p>
+                        <code class="code">string Zend_Http_Response::responseCodeAsText($code, $http11 = true)</code>:
+                        レスポンスコード $code に対応する、標準的な HTTP レスポンスメッセージを取得します。
+                        たとえば $code が 500 の場合は "Internal Server Error" を返します。
+                        $http11 が true の場合 (デフォルト) は HTTP/1.1 のメッセージを、
+                        そうでない場合は HTTP/1.0 のメッセージを返します。
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            パーサメソッド以外にも、このクラスには
+            一般的な HTTP レスポンスエンコーディングに対応したデコーダが含まれています。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">string Zend_Http_Response::decodeChunkedBody($body)</code>:
+                        "Content-Transfer-Encoding: Chunked" の本文をデコードします。
+                    </p></li>
+<li><p>
+                        <code class="code">string Zend_Http_Response::decodeGzip($body)</code>:
+                        "Content-Encoding: gzip" の本文をデコードします。
+                    </p></li>
+<li><p>
+                        <code class="code">string Zend_Http_Response::decodeDeflate($body)</code>:
+                        "Content-Encoding: deflate" の本文をデコードします。
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.http.cookies.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.http.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.json.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">13.4. Zend_Http_Cookie および Zend_Http_CookieJar </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 第14章 Zend_Json</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

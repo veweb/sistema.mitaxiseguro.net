@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1.8. Zend::registry()</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.html" title="第 1 章 Zend">
+<link rel="prev" href="zend.register.html" title="1.7. Zend::register()">
+<link rel="next" href="zend.initregistry.html" title="1.9. Zend::initRegistry($registry = 'Zend_Registry')">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">1.8. Zend::registry()</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.register.html">上一页</a> </td>
+<th width="60%" align="center">第 1 章 Zend</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.initregistry.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.registry"></a>1.8. Zend::registry()</h2></div></div></div>
+<p>    
+	从对象仓库中取出一个对象，或者列出所有已经注册的对象。
+    </p>
+<pre class="programlisting">&lt;?php
+
+Zend::registry($index=null)
+
+?&gt;</pre>
+<p>    
+	如果<code class="code">$index</code>参数为NULL，会返回一个对象数组，键名为对象名称，键值为对象的类名称。
+    </p>
+<p>    
+	如果<code class="code">$index</code>参数为字符串，将返回相应的对象。如果对象不存在，抛出<code class="code">Zend_Exception</code>异常。
+    </p>
+<p>
+   想快速确定一个对象是否已经注册，可以使用Zend::isRegistered()。
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.register.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.initregistry.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">1.7. Zend::register() </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 1.9. Zend::initRegistry($registry = 'Zend_Registry')</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

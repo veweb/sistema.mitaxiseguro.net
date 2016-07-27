@@ -1,0 +1,428 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.4. Zend_Db_Table</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="prev" href="zend.db.select.html" title="9.3. Zend_Db_Select">
+<link rel="next" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.introduction" title="9.4.1. 導入">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.getting-started" title="9.4.2. さあ、はじめましょう">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.name-and-key" title="9.4.3. テーブル名および主キー">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.insert" title="9.4.4. 行の挿入">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.udpate" title="9.4.5. 行の更新">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.delete" title="9.4.6. 行の削除">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.findbykey" title="9.4.7. 主キーによる行の検索">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchonerow" title="9.4.8. 単一の行の取得">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchmultiple" title="9.4.9. 複数の行の取得">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.domain-logic" title="9.4.10. ドメインロジックの追加">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.4. Zend_Db_Table</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.select.html">前のページ</a> </td>
+<th width="60%" align="center">第9章 Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.table"></a>9.4. Zend_Db_Table</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.introduction"></a>9.4.1. 導入</h3></div></div></div>
+<p>
+            Zend_Db_Table は、Zend Framework のテーブルモジュールです。
+            Zend_Db_Adapter を使用してデータベースに接続し、
+            テーブルのスキーマを調べ、テーブルを操作したりデータを取得したりするのを助けます。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.getting-started"></a>9.4.2. さあ、はじめましょう</h3></div></div></div>
+<p>
+            まず最初に、デフォルトのデータベースアダプタを抽象クラス
+            Zend_Db_Table に指定します。ほかのものを指定しない限り、
+            すべての Zend_Db_Table インスタンスはこのデフォルトアダプタを使用します。
+        </p>
+<pre class="programlisting">&lt;?php
+// アダプタを設定します
+require_once 'Zend/Db.php';
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// すべての Zend_Db_Table オブジェクトに対するデフォルトアダプタを設定します
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+?&gt;
+        </pre>
+<p>
+            次に、データベース内に "round_table" というテーブルがあると仮定しましょう。
+            このテーブルに対して Zend_Db_Table を使用するには、
+            Zend_Db_Table を継承したクラス RoundTable を新しく作成します
+            (テーブル名 round_table を "camelize" したことに注意しましょう)。
+            それから、このクラスを使用して、データベース内の "round_table"
+            テーブルを調べたり行を操作したり結果を取得したりします。
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.name-and-key"></a>9.4.3. テーブル名および主キー</h3></div></div></div>
+<p>
+            デフォルトでは、Zend_Db_Table は、
+            データベース内のテーブル名と自分自身のクラス名
+            (を CamelCaps 形式から underscore_words 形式に変換したもの)
+            が等しいと想定しています。すなわち、SomeTableName
+            という名前の Zend_Db_Table クラスは、'some_table_name'
+            という名前の SQL テーブルに対応するわけです。
+            クラス名をアンダースコア形式に変換したものではなく、
+            別のテーブルに関連付けたい場合には、クラス定義の際に
+            $_name プロパティをオーバーライドします。
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    // デフォルトのテーブル名は 'class_name' ですが、
+    // ここではそれを別のものに変更します。
+    protected $_name = 'another_table_name';
+}
+?&gt;
+        </pre>
+<p>
+            デフォルトでは、Zend_Db_Table は、
+            'id' という名前の主キーが存在することを想定しています
+            (このカラムは自動インクリメントであることが望ましいのですが、
+            それは必須ではありません)。もし主キーの名前が 'id'
+            以外の場合は、クラス定義の際に $_primary
+            プロパティをオーバーライドします。
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    // デフォルトの主キーは 'id' ですが、
+    // ここではそれを別のものに変更します。
+    protected $_primary = 'another_column_name';
+}
+?&gt;
+        </pre>
+<p>
+            別の方法として、クラスの _setup() メソッドでこれらを設定することもできます。
+            この場合は、すべての処理が終わった後に the parent::_setup()
+            をコールすることを忘れないようにしましょう。
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    protected function _setup()
+    {
+        $this-&gt;_name = 'another_table_name';
+        $this-&gt;_primary = 'another_column_name';
+        parent::_setup();
+    }
+}
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.insert"></a>9.4.4. 行の挿入</h3></div></div></div>
+<p>
+            テーブルに行を挿入するには、カラム名:値 形式の連想配列を用意して
+            insert() をコールします。データは自動的にクォートされ、
+            挿入された行の ID が返されます (Zend_Db_Adapter::insert()
+            が変更された行の数を返すのとは異なることに注意しましょう)。
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// INSERT INTO round_table
+//     (noble_title, first_name, favorite_color)
+//     VALUES ("King", "Arthur", "blue")
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+
+$data = array(
+    'noble_title' =&gt; 'King',
+    'first_name'  =&gt; 'Arthur',
+    'favorite_color' =&gt; 'blue',
+)
+
+$id = $table-&gt;insert($data);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.udpate"></a>9.4.5. 行の更新</h3></div></div></div>
+<p>
+            テーブルの行を更新するには update() をコールします。
+            設定する内容は カラム名:値 形式の連想配列で指定し、
+            更新する行を指定するために WHERE 句を設定します。
+            このメソッドは、テーブルを更新して更新された行の数を返します。
+        </p>
+<p>
+            更新するデータは自動的にクォートされますが、WHERE 句はクォートされません。
+            そのため、テーブルの Zend_Db_Adapter
+            オブジェクトを用いて手動で設定しなければなりません。
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// UPDATE round_table
+//     SET favorite_color = "yellow"
+//     WHERE first_name = "Robin"
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$set = array(
+    'favorite_color' =&gt; 'yellow',
+)
+
+$where = $db-&gt;quoteInto('first_name = ?', 'Robin');
+
+$rows_affected = $table-&gt;update($set, $where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.delete"></a>9.4.6. 行の削除</h3></div></div></div>
+<p>
+            テーブルの行を削除するには、削除する行を指定した
+            WHERE 句を指定して delete() をコールします。
+            削除された行の数が返されます。
+        </p>
+<p>
+            WHERE 句のクォート処理は行われませんので、テーブルの
+            Zend_Db_Adapter オブジェクトを使用して手動でクォートする必要があります。
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// DELETE FROM round_table
+//     WHERE first_name = "Patsy"
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('first_name = ?', 'Patsy');
+
+$rows_affected = $table-&gt;delete($where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.findbykey"></a>9.4.7. 主キーによる行の検索</h3></div></div></div>
+<p>
+            テーブルから主キーの値に対応する行を取得するには、
+            find() メソッドを使用します。このメソッドは、find()
+            に単一のキーを指定した場合には Zend_Db_Table_Row オブジェクト、
+            複数のキーを指定した場合には Zend_Db_Table_Rowset オブジェクトを返します。
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+
+// SELECT * FROM round_table WHERE id = "1"
+$row = $table-&gt;find(1);
+
+// SELECT * FROM round_table WHERE id IN("1", "2", 3")
+$rowset = $table-&gt;find(array(1, 2, 3));
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchonerow"></a>9.4.8. 単一の行の取得</h3></div></div></div>
+<p>
+            主キーによる検索の場合は find() を使用するのが簡単ですが、
+            さまざまな条件を指定して行を取得したい場合もあるでしょう。
+            Zend_Db_Table では、そのような場合のために fetchRow() を用意しています。
+            fetchRow() に WHERE 句 (およびオプションで ORDER 句) を指定してコールすると、
+            Zend_Db_Table は条件に一致した最初のレコードを
+            Zend_Db_Table_Row で返します。
+        </p>
+<p>
+            WHERE 句のクォート処理は行われませんので、テーブルの
+            Zend_Db_Adapter オブジェクトを使用して手動でクォートする必要があります。
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// SELECT * FROM round_table
+//     WHERE noble_title = "Sir"
+//     AND first_name = "Robin"
+//     ORDER BY favorite_color
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('noble_title = ?', 'Sir')
+       . $db-&gt;quoteInto('AND first_name = ?', 'Robin');
+
+$order = 'favorite_color';
+
+$row = $table-&gt;fetchRow($where, $order);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchmultiple"></a>9.4.9. 複数の行の取得</h3></div></div></div>
+<p>
+            複数の行を一度に取得するには fetchAll() メソッドを使用します。
+            fetchRow() と同様に WHERE 句および ORDER 句を指定できるほか、
+            件数とオフセットを指定して結果の行数を制限することができます。
+            このメソッドは、選択されたレコードを Zend_Db_Table_Rowset で返します。
+        </p>
+<p>
+            WHERE 句のクォート処理は行われませんので、テーブルの
+            Zend_Db_Adapter オブジェクトを使用して手動でクォートする必要があります。
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+// SELECT * FROM round_table
+//     WHERE noble_title = "Sir"
+//     ORDER BY first_name
+//     LIMIT 10 OFFSET 20
+
+$where = $db-&gt;quoteInto('noble_title = ?', 'Sir');
+$order = 'first_name';
+$count = 10;
+$offset = 20;
+
+$rowset = $table-&gt;fetchAll($where, $order, $count, $offset);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.domain-logic"></a>9.4.10. ドメインロジックの追加</h3></div></div></div>
+<p>
+            テーブルモジュールとして、Zend_Db_Table
+            には特定のドメインロジックを含めることもできます。例えば、
+            insert() メソッドや update() メソッドをオーバーライドし、
+            実際のデータベース操作の前にデータの操作や検証を行うことができます。
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table
+{
+    public function insert($data)
+    {
+        // タイムスタンプを追加します
+        if (empty($data['created_on'])) {
+            $data['created_on'] = time();
+        }
+        return parent::insert($data);
+    }
+
+    public function update($data)
+    {
+        // タイムスタンプを追加します
+        if (empty($data['updated_on'])) {
+            $data['updated_on'] = time();
+        }
+        return parent::update($data);
+    }
+}
+?&gt;
+        </pre>
+<p>
+            同様に、独自の find() メソッドを作成し、
+            主キー以外による検索を行うこともできます。
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table
+{
+    public function findAllWithName($name)
+    {
+        $db = $this-&gt;getAdapter();
+        $where = $db-&gt;quoteInto("name = ?", $name);
+        $order = "first_name";
+        return $this-&gt;fetchAll($where, $order);
+    }
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.select.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.3. Zend_Db_Select </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 9.5. Zend_Db_Table_Row</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

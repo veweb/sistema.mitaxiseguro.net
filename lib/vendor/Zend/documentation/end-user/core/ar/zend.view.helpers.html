@@ -1,0 +1,380 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>28.4. مساعدات الـ View</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="prev" href="zend.view.scripts.html" title="28.3. جزء الـ View">
+<link rel="next" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+<link rel="subsection" href="zend.view.helpers.html#zend.view.helpers.initial" title="28.4.1. المساعدات الأساسية">
+<link rel="subsection" href="zend.view.helpers.html#zend.view.helpers.paths" title="28.4.2. مسارات المساعدات">
+<link rel="subsection" href="zend.view.helpers.html#zend.view.helpers.custom" title="28.4.3. كتابة مساعداتك الخاصة">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">28.4. مساعدات الـ View</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.view.scripts.html">السابق</a> </td>
+<th width="60%" align="center">فصل 28. Zend_View</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.xmlrpc.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.helpers"></a>28.4. مساعدات الـ View</h2></div></div></div>
+<p>
+        داحل أكواد الـ view خاصتك, أحياناً تحتاج إلى تنفيذ بعض العمليات المعقدة بشكل متكرر, 
+        مثل : ضبط هيئة التواريخ أو إنشاء عناصر الـ forms أو عرض وصلات تنفيذية, 
+        فى مثل هذه الحالات يمكنك أن تستخدم الـ helper classes أو "الـ classes المساعدة" 
+        لتنفيذ مثل هذه الأشياء.
+    </p>
+<p>
+        لتستخدم مساعد "helper" داخل كود الـ view , إستدعيه بإستخدام 
+        ()this-&gt;helperName$ (بحيث helperName هو إسم المساعد) , 
+        خلف الكواليس سيقوم Zend_View بتحميل الـ class المسمى 
+        Zend_View_Helper_HelperName و ينشئ نسخة منه, 
+        ثم يقوم بإستدعاء الـ method المسمى ()helperName الخاص به , 
+        و ستكون نسخة هذا الكائن مثابرة داخل نسخة الـ Zend_View , 
+        و سيتم إعادة إستخدامها فى كل الأستدعائات المستقبلية لـ ()this-&gt;helperName$ .
+    </p>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.helpers.initial"></a>28.4.1. المساعدات الأساسية</h3></div></div></div>
+<p>
+            يأتى Zend_View مع مجموعة أساسية من الـ classes المساعدة , 
+            كلهم لهم علاقة بعملية إنشاء عناصر الـ forms , و كل منهم يقوم بعملية تجاهل المخرجات 
+            تلقائياً, و هم :
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formButton($name, $value, $attribs)
+                </pre>
+<p>
+                 ينشئ input من النوع button.
+            </p>
+</li>
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formCheckbox($name, $value, $attribs, $options)
+                </pre>
+<p>
+                ينشئ عنصر input من النوع checkbox , و البراميتر options$ هو عبارة عن 
+                مصفوفة بحيث أن أول قيمة فيها هى التى سيتم وضع علامة الأختيار عندها "checked", 
+                و الثانية هى القيمة التى لم يتم اختيارها "unchecked" (القيم الأساسية هى '1' و '0' ) , 
+                إن كانت value$ تتطابق مع القيمة الـ checked , سيتم وضع علامة الأختيار لك.
+            </p>
+</li>
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formFile($name, $value, $attribs)
+                </pre>
+<p>
+                
+                ينشى عنصر input من النوع file .
+            </p>
+</li>
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formHidden($name, $value, $attribs)
+                </pre>
+<p>
+                
+                ينشى عنصر input من النوع hidden .
+            </p>
+</li>
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formPassword($name, $value, $attribs)
+                </pre>
+<p>
+                ينشى عنصر input من النوع password .
+            </p>
+</li>
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formRadio($name, $value, $attribs, $options)
+                </pre>
+<p>
+                ينشئ سلسلة من عناصر input من النوع radio , 
+                واحد لكل عنصر فى options$, فى المصفوفة options$ , 
+                الـ key لكل عنصر سيكون قيمة عنصر الـ radio , 
+                و الـ value للعنصر ستكون الـ 
+                label (الأسم الذى سيظهر للمستخدم) الخاص بالـ radio.
+            </p>
+</li>
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formReset($name, $value, $attribs)
+                </pre>
+<p>
+                ينشى عنصر input من النوع reset .
+            </p>
+</li>
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formSelect($name, $value, $attribs, $options)
+                </pre>
+<p>
+                ينشئ بلوك من العنصر select , مع إنشاء عنصر option واحد 
+                لكل عنصر فى البراميتر options$ , فى المصفوفة options$ , 
+                الـ key الخاص بالعنصر هو قيمة عنصر الـ option , 
+                أما الـ value ستكون الـ 
+                label (الأسم الذى سيظهر للمستخدم) الخاص بعنصر الـ option .
+            </p>
+</li>
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formSubmit($name, $value, $attribs)
+                </pre>
+<p>
+                ينشى عنصر input من النوع submit .
+            </p>
+</li>
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formText($name, $value, $attribs)
+                </pre>
+<p>
+                
+                ينشى عنصر input من النوع text .
+            </p>
+</li>
+<li>
+<p>
+                </p>
+<pre class="programlisting">
+                    formTextarea($name, $value, $attribs)
+                </pre>
+<p>
+                ينشئ عنصر textarea .
+            </p>
+</li>
+</ul></div>
+<p>
+            إستخدام هذه الأشياء داخل كود الـ view خاصتك سهل جداً, و هنا مثال على ذلك, 
+            لاحظ أن كل ما تحتاج أن تقوم به هو أن تستدعيهم, و هم سيتم تحميلهم 
+            و سيقوموا بإنشاء نسخ من انفسهم كلما ظهرت حاجة إليهم.
+        </p>
+<pre class="programlisting">&lt;?php
+// inside your view script, $this refers to the Zend_View instance.
+// 
+// say that you have already assigned a series of select options under
+// the name $countries as array('us' =&gt; 'United States', 'eg' =&gt;
+// 'Egypt', 'de' =&gt; 'Germany').
+?&gt;
+&lt;form action="action.php" method="post"&gt;
+    &lt;p&gt;&lt;label&gt;Your Email:
+        &lt;?php echo $this-&gt;formText('email', 'you@example.com', array('size' =&gt; 32)) ?&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Your Country:
+        &lt;?php echo $this-&gt;formSelect('country', 'eg', null, $this-&gt;countries) ?&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Would you like to opt in?
+        &lt;?php echo $this-&gt;formCheckbox('opt_in', 'yes', null, array('yes', 'no')) ?&gt;
+    &lt;/label&gt;&lt;/p&gt;
+&lt;/form&gt;
+        </pre>
+<p>
+            الخرج الذى سينتج من كود الـ view هذا , ربما سيبدوا بهذا الشكل:
+        </p>
+<pre class="programlisting">&lt;form action="action.php" method="post"&gt;
+    &lt;p&gt;&lt;label&gt;Your Email:
+        &lt;input type="text" name="email" value="you@example.com" size="32" /&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Your Country:
+        &lt;select name="country"&gt;
+            &lt;option value="us" selected="selected"&gt;United States&lt;/option&gt;
+            &lt;option value="eg"&gt;Egypt&lt;/option&gt;
+            &lt;option value="de"&gt;Germany&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/label&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;label&gt;Would you like to opt in?
+        &lt;input type="hidden" name="opt_in" value="no" /&gt;
+        &lt;input type="checkbox" name="opt_in" value="yes" checked="checked" /&gt;
+    &lt;/label&gt;&lt;/p&gt;
+&lt;/form&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.helpers.paths"></a>28.4.2. مسارات المساعدات</h3></div></div></div>
+<p>
+            مثل ملفات الـ view , يمكن للـ controller أن يحدد مرصوصة من المسارات 
+            لـ Zend_View لتبحث فيها عن الـ helper classes , 
+            الأعدادات الأساسية لـ Zend_View تبحث فى "*/Zend/View/Helper" عن 
+            الـ helper classes , يمكنك إخبار Zend_View أن تبحث فى أماكن أخرى بإستخدام 
+            ()setHelperPath أو ()addHelperPath .
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;setHelperPath('/path/to/more/helpers');
+?&gt;
+        </pre>
+<p>
+            فى الحقيقة, يمكنك عمل مرصوصة من المسارات بإستخدام الـ method المسمى ()addScriptPath ,
+            كلما قمت بإضافة مسار جديد إلى المرصوصة , سيقوم Zend_View بالبحث فى المسارات التى تم إضافتها 
+            إلى المرصوصة من أخر واحد تم إضافته إلى المرصوصة صعوداً إلى أول من تم إضافته 
+             لجلب الـ helper classes .
+            هذا يسمح لك بأن تضيف (أو حتى أن تقوم بالتغطية ) على مجموعة المساعدات الأساسية 
+            بـ helpers جديدة.
+        </p>
+<pre class="programlisting">&lt;?php
+$view = new Zend_View();
+$view-&gt;addHelperPath('/path/to/some/helpers');
+$view-&gt;addHelperPath('/other/path/to/helpers');
+
+// now when you call $this-&gt;helperName(), Zend_View will look first for
+// "/other/path/to/helpers/HelperName.php", then for
+// "/path/to/some/helpers/HelperName", and finally for
+// "Zend/View/Helpers/HelperName.php".
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.helpers.custom"></a>28.4.3. كتابة مساعداتك الخاصة</h3></div></div></div>
+<p>
+            عملية كتابة مساعد خاص تعتبر سهلة جدا, فقط أتبع هذه القواعد:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                أسم الـ class يجب أن يكون *_Zend_View_Helper , بحيث أن * 
+                هى أسم الـ helper نفسه, على سبيل المثال : إن كنت تكتب helper 
+                يسمى "specialPurpose" , أسم الـ class يجب أن يكون 
+                Zend_View_Helper_SpecialPurpose .
+                (لاحظ عملية تكبير الحروف "capitalization")
+            </p></li>
+<li><p>
+                هذا الـ class يجب أن يملك public method يتطابق مع أسم الـ helper , 
+                هذا الـ method سيتم إستدعائه عندما سيقوم الـ view بإستدعاء 
+                ()this-&gt;specialPurpose$ , فى مثالنا هذا لإنشاء المساعد "specialPurpose", 
+                الـ method الذى نحتاج إلى التصريح به سيكون 
+                "()public function specialPurpose".
+            </p></li>
+<li><p>
+                عامتاً , الـ class يجب ألا يقوم بطباعة أو إخراج أى شئ إلى المتصفح , 
+                بل يجب أن يعيد "return" البيانات التى بحاجة إلى الطباعة , 
+                و هذه البيانات المرجعة يجب أن يكون قد تم تنفيذ تجاهل "escaping" 
+                للقيم الأتية من متغيرات بها .
+            </p></li>
+<li><p>
+                الـ class يجب أن يكون فى ملف مسمى تبعاً لأسم الـ method , 
+                أى كما فى مثالنا السابق , المساعد "specialPurpose" يجب أن يكون 
+                فى ملف يسمى "SpecialPurpose.php".
+            </p></li>
+</ul></div>
+<p>
+            ضع ملف الـ helper class تحت أى من المسارات الموجودة 
+            فى مرصوصة المسارات خاصتك, و سيقوم Zend_View تلقائياً 
+            بتحميله و إنشاء نسخة منه و مثابرته و تنفيذه لك.
+        </p>
+<p>
+            هنا مثال على كود المساعد SpecialPurpose خاصتنا :
+        </p>
+<pre class="programlisting">&lt;?php
+class Zend_View_Helper_SpecialPurpose {
+    protected $_count = 0;
+    public function specialPurpose()
+    {
+        $this-&gt;_count++;
+        $output = "I have seen 'The Jerk' {$this-&gt;_count} time(s).";
+        return htmlspecialchars($output);
+    }
+}
+?&gt;
+        </pre>
+<p>
+            بعدها فى كود الـ view , يمكنك أن تستدعى المساعد SpecialPurpose 
+            أى عدد من المرات تريده, حيث سيتم إنشاء نسخة منه مرة واحدة فقط , 
+            و بعدها سيثابر طوال فترة حياة هذه النسخة من Zend_View.
+        </p>
+<pre class="programlisting">&lt;?php
+// remember, in a view script, $this refers to the Zend_View instance.
+echo $this-&gt;specialPurpose();
+echo $this-&gt;specialPurpose();
+echo $this-&gt;specialPurpose();
+?&gt;
+        </pre>
+<p>
+            الخرج سيكون مثل هذا :
+        </p>
+<pre class="programlisting">I have seen 'The Jerk' 1 time(s).
+I have seen 'The Jerk' 2 time(s).
+I have seen 'The Jerk' 3 time(s).
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.view.scripts.html">السابق</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.view.html">أعلى</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.xmlrpc.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">28.3. جزء الـ View </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> فصل 29. Zend_XmlRpc</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

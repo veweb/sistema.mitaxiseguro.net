@@ -1,0 +1,456 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.4. Zend_Db_Table</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="prev" href="zend.db.select.html" title="9.3. Zend_Db_Select">
+<link rel="next" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.introduction" title="9.4.1. Введение">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.getting-started" title="9.4.2. Начало работы">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.name-and-key" title="9.4.3. Имя таблицы и первичные ключи">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.insert" title="9.4.4. Вставка строк">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.udpate" title="9.4.5. Обновление строк">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.delete" title="9.4.6. Удаление строк">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.findbykey" title="9.4.7. Поиск строк по первичному ключу">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchonerow" title="9.4.8. Извлечение одной строки">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchmultiple" title="9.4.9. Извлечение множества строк">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.domain-logic" title="9.4.10. 
+            Добавление логики предметной области
+            
+        ">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.4. Zend_Db_Table</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.select.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.table"></a>9.4. Zend_Db_Table</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.introduction"></a>9.4.1. Введение</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Table</code> является модулем Zend Framework для таблиц. Он
+            устанавливает соединение с вашей базой данных посредством
+            <code class="code">Zend_Db_Adapter</code>, исследует структуру таблицы,
+            далее помогает вам в манипулировании и извлечении строк из этой таблицы.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.getting-started"></a>9.4.2. Начало работы</h3></div></div></div>
+<p>
+            Первое, что нужно сделать — установить для абстрактного класса
+            <code class="code">Zend_Db_Table</code> адаптер БД по умолчанию. Все
+            экземпляры класса <code class="code">Zend_Db_Table</code> будут использовать
+            этот адаптер по умолчанию, пока вы не укажете другое.
+ 
+        </p>
+<pre class="programlisting">&lt;?php
+// создание адаптера
+require_once 'Zend/Db.php';
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// установка адаптера по умолчанию для всех объектов Zend_Db_Table
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+?&gt;
+        </pre>
+<p>
+            Теперь предположим, что вы имеете в своей БД таблицу, которая называется
+            "round_table". Чтобы использовать <code class="code">Zend_Db_Table</code> с этой таблицей,
+            просто унаследуйте класс <code class="code">Zend_Db_Table</code>, чтобы создать дочерний класс под
+            именем <code class="code">RoundTable</code> (обратите внимание, что имя класса копирует имя таблицы).
+            Далее мы можем изучать, манипулировать строками и извлекать результаты из таблицы
+            'round_table' в БД с помощью этого класса.
+
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.name-and-key"></a>9.4.3. Имя таблицы и первичные ключи</h3></div></div></div>
+<p>
+            По умолчанию <code class="code">Zend_Db_Table</code> ожидает, что имя данной таблицы в БД будет
+            таким же, как и имя ее собственного класса (в котором разделение слов
+            ЗаглавнымиБуквами заменено разделением знаками_подчеркивания). Таким образом,
+            класс <code class="code">Zend_Db_Table</code> с именем SomeTableName соответствует SQL таблице
+            с именем 'some_table_name'. Если вы желаете, чтобы ваш класс соответствовал чему-либо
+            иному, чем имя класса в форме со знаком подчеркивания, переопределите свойство
+            <code class="code">$_name</code>, когда описываете свой класс.
+
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    // имя таблицы по умолчанию - 'class_name',
+    // но мы хотим установить соответствие с чем-то другим
+    protected $_name = 'another_table_name';
+}
+?&gt;
+        </pre>
+<p>
+            По умолчанию <code class="code">Zend_Db_Table</code> ожидает, что ваша таблица имеет первичный
+            ключ с именем 'id'. (Лучше, если этот столбец является автоинкрементным, но это
+            не обязательно.) Если ваш первичный ключ назван по-другому, вы можете
+            переопределить свойство <code class="code">$_primary</code>, когда описываете свой класс.
+
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    // первичный ключ по умолчанию - 'id',
+    // но мы хотим использовать другой
+    protected $_primary = 'another_column_name';
+}
+?&gt;
+        </pre>
+<p>
+            Также вы можете установить их в методе <code class="code">_setup()</code>
+            вашего унаследованного класса — только убедитесь, что после
+            этого вызывается <code class="code">parent::_setup()</code>.
+
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    protected function _setup()
+    {
+        $this-&gt;_name = 'another_table_name';
+        $this-&gt;_primary = 'another_column_name';
+        parent::_setup();
+    }
+}
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.insert"></a>9.4.4. Вставка строк</h3></div></div></div>
+<p>
+            Для того, чтобы вставить новую строку в свою таблицу, просто вызывайте
+            <code class="code">insert()</code> с ассоциативным массивом из пар "имя столбца": "значение". В данные
+            будут автоматически добавлены кавычки; метод возвращает последний добавленный ID.
+            (Обратите внимание на то, что этим он отличается от <code class="code">Zend_Db_Adapter::insert()</code>,
+            который возвращает количество затронутых строк.)
+
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// INSERT INTO round_table
+//     (noble_title, first_name, favorite_color)
+//     VALUES ("King", "Arthur", "blue")
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+
+$data = array(
+    'noble_title' =&gt; 'King',
+    'first_name'  =&gt; 'Arthur',
+    'favorite_color' =&gt; 'blue',
+)
+
+$id = $table-&gt;insert($data);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.udpate"></a>9.4.5. Обновление строк</h3></div></div></div>
+<p>
+            Для того, чтобы обновить любое количество строк в своей таблице, вызывайте
+            <code class="code">update()</code> с ассоциативным массивом  из пар "имя столбца": "значение
+            для установки",  наряду с этим передается условие WHERE для определения, какие
+            строки дожны быть обновлены. Метод обновит таблицу и вернет количество затронутых
+            строк.
+
+        </p>
+<p>
+            В данные для установки будут автоматически добавлены кавычки, но это не относится
+            к условию WHERE, поэтому вам нужно самим добавить кавычки с помощью принадлежащего
+            таблице объекта <code class="code">Zend_Db_Adapter</code>.
+
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// UPDATE round_table
+//     SET favorite_color = "yellow"
+//     WHERE first_name = "Robin"
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$set = array(
+    'favorite_color' =&gt; 'yellow',
+)
+
+$where = $db-&gt;quoteInto('first_name = ?', 'Robin');
+
+$rows_affected = $table-&gt;update($set, $where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.delete"></a>9.4.6. Удаление строк</h3></div></div></div>
+<p>
+            Для того, чтобы удалить любое количество строк в своей таблице, вызывайте
+            <code class="code">delete()</code> с условием WHERE для определения, какие строки должны
+            быть удалены. Метод будет возвращать количество удаленных строк.
+
+        </p>
+<p>
+            В условие WHERE не добавляются кавычки за вас, поэтому вам нужно самим добавить
+            кавычки с помощью объекта <code class="code">Zend_Db_Adapter</code> таблицы.
+
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// DELETE FROM round_table
+//     WHERE first_name = "Patsy"
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('first_name = ?', 'Patsy');
+
+$rows_affected = $table-&gt;delete($where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.findbykey"></a>9.4.7. Поиск строк по первичному ключу</h3></div></div></div>
+<p>
+            Вы можете легко извлекать строки из таблицы, используя значения первичного
+            ключа через метод <code class="code">find()</code>. Этот метод возвращает объект 
+            <code class="code">Zend_Db_Table_Row</code>, если вы пытаетесь найти только один ключ, или
+            <code class="code">Zend_Db_Table_Rowset</code>, если вы пытаетесь найти несколько ключей.
+
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+
+// SELECT * FROM round_table WHERE id = "1"
+$row = $table-&gt;find(1);
+
+// SELECT * FROM round_table WHERE id IN("1", "2", 3")
+$rowset = $table-&gt;find(array(1, 2, 3));
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchonerow"></a>9.4.8. Извлечение одной строки</h3></div></div></div>
+<p>
+            Несмотря на то, что вы можете использовать метод <code class="code">find()</code> для поиска
+            строк по их первичным ключам, часто вам нужно добавлять различные условия,
+            когда извлекаете строки. <code class="code">Zend_Db_Table</code> предоставляет
+            <code class="code">fetchRow()</code> только для этой цели. Вызывайте <code class="code">fetchRow()</code> с
+            условием WHERE (и необязательно условием ORDER),
+            и <code class="code">Zend_Db_Table</code> вернет <code class="code">Zend_Db_Table_Row</code>, который
+            будет с первой строкой, удовлетворяющей вашим условиям.
+
+        </p>
+<p>
+            Заметьте, что в условие WHERE не добавляются кавычки за вас, поэтому вам
+            нужно самим добавить кавычки с помощью объекта <code class="code">Zend_Db_Adapter</code> таблицы.
+
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// SELECT * FROM round_table
+//     WHERE noble_title = "Sir"
+//     AND first_name = "Robin"
+//     ORDER BY favorite_color
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('noble_title = ?', 'Sir')
+       . $db-&gt;quoteInto('AND first_name = ?', 'Robin');
+
+$order = 'favorite_color';
+
+$row = $table-&gt;fetchRow($where, $order);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchmultiple"></a>9.4.9. Извлечение множества строк</h3></div></div></div>
+<p>
+            Если вам нужно получить больше одной строки за раз, используйте метод
+            <code class="code">fetchAll()</code>. Как и <code class="code">fetchRow()</code>, он принимает условия
+            WHERE и ORDER, но, кроме этого, принимает еще количество строк и 
+            смещение для ограничения количества возвращаемых строк. Метод будет
+            возвращать объект <code class="code">Zend_Db_Table_Rowset</code> с выбранными строками.
+
+        </p>
+<p>
+            Заметьте, что в условие WHERE не добавляются кавычки, поэтому вам
+            нужно самим добавить кавычки с помощью объекта <code class="code">Zend_Db_Adapter</code>
+            таблицы.
+
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+// SELECT * FROM round_table
+//     WHERE noble_title = "Sir"
+//     ORDER BY first_name
+//     LIMIT 10 OFFSET 20
+
+$where = $db-&gt;quoteInto('noble_title = ?', 'Sir');
+$order = 'first_name';
+$count = 10;
+$offset = 20;
+
+$rowset = $table-&gt;fetchAll($where, $order, $count, $offset);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.domain-logic"></a>9.4.10. 
+            Добавление логики предметной области
+            
+        </h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Table</code> дает возможность инкапсулировать
+            свою собственную логику предметной области. Например,
+            вы можете переопределить методы <code class="code">insert()</code> и
+            <code class="code">update()</code> для проверки отправляемых данных
+            или манипуляций с ними перед тем, как они будут отправлены БД.
+
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table
+{
+    public function insert($data)
+    {
+        // add a timestamp
+        if (empty($data['created_on'])) {
+            $data['created_on'] = time();
+        }
+        return parent::insert($data);
+    }
+
+    public function update($data)
+    {
+        // add a timestamp
+        if (empty($data['updated_on'])) {
+            $data['updated_on'] = time();
+        }
+        return parent::update($data);
+    }
+}
+?&gt;
+        </pre>
+<p>
+            Аналогичным образом вы можете добавить свои собственные методы для поиска
+            записей по чему-либо иному, чем первичные ключи.
+
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table
+{
+    public function findAllWithName($name)
+    {
+        $db = $this-&gt;getAdapter();
+        $where = $db-&gt;quoteInto("name = ?", $name);
+        $order = "first_name";
+        return $this-&gt;fetchAll($where, $order);
+    }
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.select.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.3. Zend_Db_Select </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 9.5. Zend_Db_Table_Row</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

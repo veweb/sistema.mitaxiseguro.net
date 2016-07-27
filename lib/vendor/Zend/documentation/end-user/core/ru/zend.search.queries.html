@@ -1,0 +1,411 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.5. Типы запросов </title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="prev" href="zend.search.query-language.html" title="22.4. Язык запросов">
+<link rel="next" href="zend.search.charset.html" title="22.6. Кодировки">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.search.queries.html#zend.search.queries.term-query" title="22.5.1. Простой запрос (запрос по одному ключевому слову)">
+<link rel="subsection" href="zend.search.queries.html#zend.search.queries.multiterm-query" title="22.5.2. Составной запрос (запрос по нескольким ключевым словам)">
+<link rel="subsection" href="zend.search.queries.html#zend.search.queries.phrase-query" title="22.5.3. Фразовый запрос">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.5. Типы запросов </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.query-language.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.charset.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.queries"></a>22.5. Типы запросов </h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.queries.term-query"></a>22.5.1. Простой запрос (запрос по одному ключевому слову)</h3></div></div></div>
+<p>
+        Простые запросы предназначены для поиска по одному элементу.
+
+        </p>
+<p>
+        Для простых запросов могут использоваться оба метода поиска.
+
+        </p>
+<p>
+        Запрос в виде строки:
+
+        </p>
+<pre class="programlisting">
+    $hits = $index-&gt;find('word1');
+        </pre>
+<p>или</p>
+<p>
+        Построение запроса через программный интерфейс:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+    $term  = new Zend_Search_Lucene_Index_Term('word1');
+    $query = new Zend_Search_Lucene_Search_Query_Term($term);
+    $hits  = $index-&gt;find($query);
+
+?&gt;   </pre>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.queries.multiterm-query"></a>22.5.2. Составной запрос (запрос по нескольким ключевым словам)</h3></div></div></div>
+<p>
+            Составные запросы предназначаются для поиска по набору элементов.
+
+        </p>
+<p>
+            Каждый элемент в наборе может быть определен как "обязательный",
+            "необязательный" или "запрещенный".
+
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        "обязательный" элемент означает, что документы, которые не соответствуют
+                        данному элементу, не соответствуют всему запросу;
+
+                    </p></li>
+<li><p>
+                        "запрещенный" элемент означает, что документы, соответствующие
+                        данному элементу, не соответствуют всему запросу;
+
+                    </p></li>
+<li><p>
+                         в случае "необязательного" элемента
+                         документы не обязательно должны соответствовать
+                         (или не иметь соответствия) элементу. Тем не менее,
+                         документ должен соответствовать хотя бы одному элементу, чтобы
+                         соответствовать запросу. 
+
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            Это значит, что если необязательные элементы добавлены в запрос с
+            обязательными, то они будут иметь одинаковый набор
+            результатов, но в случае второго запроса хиты, соответствующие
+            необязательным элементам, будут перемещены в верх списка
+            результатов запроса.
+
+        </p>
+<p>
+            Для составных запросов могут использоваться оба метода поиска.
+            
+
+        </p>
+<p>
+            Запрос в виде строки:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+$hits = $index-&gt;find('+word1 author:word2 -word3');
+
+?&gt;   </pre>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    '+' используется для определения обязательного элемента
+                    
+                </p></li>
+<li><p>
+                    '-' используется для определения запрещенного элемента
+                    
+                </p></li>
+<li><p>
+                    Приставка 'field:' используется, чтобы указать поле документа
+                    для поиска. Если она опущена, то используется поле 'contents'.  
+
+                </p></li>
+</ul></div>
+<p>или</p>
+<p>
+            Построение запроса через программный интерфейс:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+    $query = new Zend_Search_Lucene_Search_Query_MultiTerm();
+
+    $query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word1'), true);
+    $query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word2'), null);
+    $query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word3'), false);
+
+    $hits  = $index-&gt;find($query);
+
+?&gt;   </pre>
+<p>
+            Массив <code class="code">$signs</code> содержит информацию о типах элементов:
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">true</code> используется для определения обязательных элементов.
+
+                    </p></li>
+<li><p>
+                        <code class="code">false</code> используется для определения запрещенных элементов.
+
+                    </p></li>
+<li><p>
+                        <code class="code">null</code> используется для определения необязательных
+                        элементов.
+
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.queries.phrase-query"></a>22.5.3. Фразовый запрос</h3></div></div></div>
+<p>
+            Фразовые запросы предназначены для поиска по фразам.
+
+        </p>
+<p>
+            Фразовые запросы являются очень гибкими и позволяют искать как точные
+            фразы, так и неточные.
+
+        </p>
+<p>
+            Фразы могут содержать пропуски или несколько
+            слов в одной и той же позиции. (Это может быть сгенерировано анализатором
+            для различных целей. Например, элементы могут повторяться для
+            повышения "веса" или в одной позиции могут быть размещены несколько
+            синонимов). В соответствии с этим фразовые запросы
+            могут строиться только через программный интерфейс:
+
+        </p>
+<pre class="programlisting">&lt;?php
+$query1 = new Zend_Search_Lucene_Search_Query_Phrase();
+
+// Добавление 'word1' в относительную позицию 0.
+$query1-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word1'));
+
+// Добавление 'word2' в относительную позицию 1.
+$query1-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word2'));
+
+// Добавление 'word3' в относительную позицию 3.
+$query1-&gt;addTerm(new Zend_Search_Lucene_Index_Term('word3'), 3);
+
+...
+
+$query2 = new Zend_Search_Lucene_Search_Query_Phrase(
+                array('word1', 'word2', 'word3'), array(0,1,3));
+
+...
+
+// Запрос без промежутков.
+$query3 = new Zend_Search_Lucene_Search_Query_Phrase(
+                array('word1', 'word2', 'word3'));
+
+...
+
+$query4 = new Zend_Search_Lucene_Search_Query_Phrase(
+                array('word1', 'word2'), array(0,1), 'annotation');
+
+?&gt;   </pre>
+<p>
+            Фразовый запрос может строиться сразу с помощью конструктора класса
+            или пошагово с помощью метода
+            <code class="code">Zend_Search_Lucene_Search_Query_Phrase::addTerm()</code>. 
+
+        </p>
+<p>
+            Конструктор класса <code class="code">Zend_Search_Lucene_Search_Query_Phrase</code>
+            принимает три необязательных параметра: 
+
+        </p>
+<pre class="programlisting">Zend_Search_Lucene_Search_Query_Phrase([array $terms[, array $offsets[, string $field]]]);</pre>
+<p>
+            <code class="code">$terms</code> является массивом строк, который содержит набор
+            элементов фразы. Если он опущен или равен <code class="code">null</code>,
+            то строится пустой запрос.
+
+        </p>
+<p>
+            <code class="code">$offsets</code> является массивом целочисленных значений,
+            который содержит смещения элементов во фразе. Если он опущен или равен
+            <code class="code">null</code>, то позиции элементов предполагаются как
+            <code class="code">array(0, 1, 2, 3, ...)</code>.
+
+        </p>
+<p>
+            <code class="code">$field</code> является строкой, которая указывает поле
+            документа, в котором производится поиск. Если он опущен или равен
+            <code class="code">null</code>, то поиск производится в поле по умолчанию.
+            Данная версия Zend_Search_Lucene трактует поле 'contents'
+            как поле, выбираемое по умолчанию, но в следующих версиях
+            планируется добавить возможность указания любого поля,
+            как выбираемого по умолчанию.
+
+        </p>
+<p>
+            Таким образом:
+
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase(array('zend', 'framework'));</pre>
+<p>
+            будет искать фразу 'zend framework'.
+
+        </p>
+<pre class="programlisting">&lt;$query = new Zend_Search_Lucene_Search_Query_Phrase(array('zend', 'download'), array(0, 2));</pre>
+<p>
+            будет искать фразу 'zend ????? download', такой запрос соответствует фразам
+            'zend platform download', 'zend studio download',
+            'zend core download', 'zend framework download' и т.д.
+
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase(array('zend', 'framework'), null, 'title');</pre>
+<p>
+            будет искать фразу 'zend framework' в поле 'title'.
+
+        </p>
+<p>
+            Метод <code class="code">Zend_Search_Lucene_Search_Query_Phrase::addTerm()</code>
+            принимает два аргумента — объект элемента
+            <code class="code">Zend_Search_Lucene_Index_Term</code> в качестве обязательного
+            параметра и позицию элемента в качестве необязательного.  
+
+        </p>
+<pre class="programlisting">Zend_Search_Lucene_Search_Query_Phrase::addTerm(Zend_Search_Lucene_Index_Term $term[, integer $position]);</pre>
+<p>
+            <code class="code">$term</code> описывает следующий элемент во фразе. Он должен
+            указывать на то же самое поле, что и предыдущие элементы,
+            иначе будет сгенерировано исключение.
+
+        </p>
+<p>
+            <code class="code">$position</code> указывает позицию элемента.
+
+        </p>
+<p>
+
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase();
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('zend'));
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('framework'));</pre>
+<p>
+            будет искать фразу 'zend framework'.
+
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase();
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('zend'), 0);
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('framework'), 2);</pre>
+<p>
+            будет искать фразу 'zend ????? download', такой запрос соответствует фразам
+            'zend platform download', 'zend studio download',
+            'zend core download', 'zend framework download' и т.д.
+
+        </p>
+<pre class="programlisting">$query = new Zend_Search_Lucene_Search_Query_Phrase();
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('zend', 'title'));
+$query-&gt;addTerm(new Zend_Search_Lucene_Index_Term('framework', 'title'));</pre>
+<p>
+            будет искать фразу 'zend framework' в поле 'title'.
+
+        </p>
+<p>
+            Коэффициент расстояния устанавливает допустимое количество других слов,
+            находящихся между словами во фразе запроса. Если он равен нулю, то
+            ищется точная фраза. При бОльших значениях это будет работать как
+            оператор WITHIN или NEAR
+
+        </p>
+<p>
+            По сути, это управляемое расстояние, где единицы соответствуют
+            перемене мест элементов относительно их позиции во фразе поиска.
+            Например, для переключения порядка двух слов требуются две перемены мест
+            (первое перемещение помещает слова друг над другом). Поэтому
+            для того, чтобы разрешить изменение порядка фраз, коэффициент
+            расстояния должен быть равен, как минимум, двум. 
+
+        </p>
+<p>
+            Более точные соответствия имеют бОльшую релевантность, чем менее точные,
+            таким образом, результаты сортируются по точности. По умолчанию
+            коэффициент расстояния равен нулю, что означает точное соответствие.
+
+        </p>
+<p>
+            Коэффициент расстояния может быть указан после создания запроса:
+
+        </p>
+<pre class="programlisting">&lt;?php
+
+// Запрос без пропусков.
+$query = new Zend_Search_Lucene_Search_Query_Phrase(array('word1', 'word2'));
+
+// Поиск 'word1 word2', 'word1 ... word2'
+$query-&gt;setSlop(1);
+$hits1 = $index-&gt;find($query);
+
+// Поиск 'word1 word2', 'word1 ... word2',
+// 'word1 ... ... word2', 'word2 word1'
+$query-&gt;setSlop(2);
+$hits2 = $index-&gt;find($query);
+
+?&gt;   </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.query-language.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.charset.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.4. Язык запросов </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 22.6. Кодировки</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>6.3. オプションおよび引数の取得</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="prev" href="zend.console.getopt.rules.html" title="6.2. Getopt の規則の宣言">
+<link rel="next" href="zend.console.getopt.configuration.html" title="6.4. Zend_Console_Getopt の設定">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.exceptions" title="6.3.1. Getopt の例外処理">
+<link rel="subsection" href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.byname" title="6.3.2. 名前によるオプションの取得">
+<link rel="subsection" href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.reporting" title="6.3.3. オプションの取得">
+<link rel="subsection" href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.remainingargs" title="6.3.4. 非オプション引数の取得">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">6.3. オプションおよび引数の取得</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.console.getopt.rules.html">前のページ</a> </td>
+<th width="60%" align="center">第6章 Zend_Console_Getopt</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.console.getopt.configuration.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.console.getopt.fetching"></a>6.3. オプションおよび引数の取得</h2></div></div></div>
+<p>
+	<code class="code">Zend_Console_Getopt</code> オブジェクトでオプションを宣言し、
+	コマンドラインあるいは配列から引数を受け取ったら、
+	このオブジェクトを使用して、ユーザがプログラムを起動した際に
+	指定したオプションを取得することができます。
+	このクラスはマジックメソッドを実装しているので、
+	オプションの名前を指定して問い合わせることができます。
+    </p>
+<p>
+        実際にデータをパースするのは、<code class="code">Zend_Console_Getopt</code>
+        に対する最初の問い合わせを行ったときです。
+        つまり、パースを行う前にいくつかのメソッドで
+        オプションや引数、ヘルプ文字列や設定項目を変更することができるということです。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.fetching.exceptions"></a>6.3.1. Getopt の例外処理</h3></div></div></div>
+<p>
+            ユーザがコマンドラインで無効な引数を指定すると、
+            パース関数は <code class="code">Zend_Console_Getopt_Exception</code>
+            をスローします。この例外を、アプリケーションのコードで処理する必要があります。
+            <code class="code">parse()</code> メソッドを使用して、オブジェクトに引数をパースさせます。
+            <code class="code">try</code> ブロック内で <code class="code">parse()</code>
+            を実行できるので、便利です。
+            パースに成功すると、それ以降で再度例外がスローされることはありません。
+            スローされた例外オブジェクトで、独自のメソッド <code class="code">getUsageMessage()</code>
+            が使用できます。これは、宣言されているすべてのオプションについての
+            使用法を説明した文字列を返します。
+        </p>
+<div class="example">
+<a name="id4795841"></a><p class="title"><b>例 6.3. Getopt の例外処理</b></p>
+<pre class="programlisting">&lt;?php
+try {
+    $opts = new Zend_Console_Getopt('abp:');
+    $opts-&gt;parse();
+} catch (Zend_Console_Getopt_Exception $e) {
+    echo $e-&gt;getUsageMessage();
+    exit;
+}
+?&gt;</pre>
+</div>
+<p>
+            例外が発生するのは、次のような場合です。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    指定したオプションが認識できない場合。
+                </p></li>
+<li><p>
+                    パラメータが必要なオプションで、パラメータが指定されていない場合。
+                </p></li>
+<li><p>
+                    オプションのパラメータの型が不正な場合。
+                    たとえば整数型を要求するオプションで
+                    非数値文字列が渡された場合など。
+                </p></li>
+</ul></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.fetching.byname"></a>6.3.2. 名前によるオプションの取得</h3></div></div></div>
+<p>
+	    <code class="code">getOption()</code> メソッドを使用すると、
+	    オプションの値を問い合わせることができます。
+	    そのオプションがパラメータを持っている場合は、
+	    このメソッドはパラメータの値を返します。
+	    パラメータを持っていないオプションでユーザがパラメータを指定した場合は、
+	    このメソッドは <code class="code">true</code> を返します。
+	    それ以外の場合は、このメソッドは <code class="code">null</code> を返します。
+	</p>
+<div class="example">
+<a name="id4796837"></a><p class="title"><b>例 6.4. getOption() の使用法</b></p>
+<pre class="programlisting">&lt;?php
+$opts = new Zend_Console_Getopt('abp:');
+$b = $opts-&gt;getOption('b');
+$p_parameter = $opts-&gt;getOption('p');
+?&gt;</pre>
+</div>
+<p>
+            あるいは、マジックメソッド <code class="code">__get()</code> を使用して、
+            まるでクラスのメンバ変数であるかのようにオプションの値を取得することもできます。
+	    また、マジックメソッド <code class="code">__isset()</code> も実装しています。
+	</p>
+<div class="example">
+<a name="id4796873"></a><p class="title"><b>例 6.5. マジックメソッド __get() および __isset() の使用例</b></p>
+<pre class="programlisting">&lt;?php
+$opts = new Zend_Console_Getopt('abp:');
+if (isset($opts-&gt;b)) {
+    echo "オプション b を取得しました。\n";
+}
+$p_parameter = $opts-&gt;p; // 設定されていない場合は null となります
+?&gt;</pre>
+</div>
+<p>
+	    オプションにエイリアスが指定されている場合は、
+	    上の方法でそのエイリアスを使用することもできます。
+	</p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.fetching.reporting"></a>6.3.3. オプションの取得</h3></div></div></div>
+<p>
+            ユーザがコマンドラインで入力したオプションの全一覧を取得するには、
+            いくつかの方法があります。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    文字列で取得: <code class="code">toString()</code> メソッドを使用します。
+                    オプションの内容が、空白で区切られた "<code class="code">flag=value</code>"
+                    形式の文字列で返されます。パラメータを持たないオプションの場合、
+                    value の部分はリテラル文字列 "<code class="code">true</code>" となります。
+                </p></li>
+<li><p>
+                    配列で取得: <code class="code">toArray()</code> メソッドを使用します。
+                    オプションは、数値インデックスの配列で返されます。
+                    配列の各要素の値は文字列で、フラグの後に
+                    (もしあれば) パラメータが続きます。
+                </p></li>
+<li><p>
+                    JSON データを含む文字列として取得: <code class="code">toJson()</code> メソッドを使用します。
+                </p></li>
+<li><p>
+                    XML データを含む文字列として取得: <code class="code">toXml()</code> メソッドを使用します。
+                </p></li>
+</ul></div>
+<p>
+	    これらのすべての出力メソッドで、フラグ文字列として使用するのは
+	    エイリアスリストの先頭にあるものです。たとえば
+	    あるオプションのエイリアスが "<code class="code">verbose|v</code>"
+	    のように宣言されていたとすると、最初の文字列である "<code class="code">verbose</code>"
+            をオプション名として使用します。
+            オプションフラグ名には、先頭のダッシュは含みません。
+	</p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.console.getopt.fetching.remainingargs"></a>6.3.4. 非オプション引数の取得</h3></div></div></div>
+<p>
+	    オプション引数およびそのパラメータをコマンドラインからパースした後も、
+	    まだ追加の引数が残っているかも知れません。これらの引数を取得するには
+	    <code class="code">geRemainingArgs()</code> メソッドを使用します。このメソッドは、
+	    どのオプションにも属さない文字列の配列を返します。
+	</p>
+<div class="example">
+<a name="id4797056"></a><p class="title"><b>例 6.6. getRemainingArgs() の使用法</b></p>
+<pre class="programlisting">&lt;?php
+$opts = new Zend_Console_Getopt('abp:');
+$opts-&gt;setArguments(array('-p', 'p_parameter', 'filename'));
+$args = $opts-&gt;getRemainingArgs(); // array('filename') を返します
+?&gt;</pre>
+</div>
+<p>
+            <code class="code">Zend_Console_Getopt</code> は、GNU
+            の慣習である「ダッシュふたつだけの引数があったら、
+            オプションはそこで終わりとみなす」をサポートしています。
+            その後に続く引数は、非オプション引数として扱わなければなりません。
+            これは、オプションではない引数がダッシュで始まる場合などに有用です。
+            たとえば "<span><strong class="command">rm -- -filename-with-dash</strong></span>"
+            のような場合です。
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.console.getopt.rules.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.console.getopt.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.console.getopt.configuration.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.2. Getopt の規則の宣言 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 6.4. Zend_Console_Getopt の設定</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

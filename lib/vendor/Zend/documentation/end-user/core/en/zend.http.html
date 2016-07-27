@@ -1,0 +1,357 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 13. Zend_Http</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="index.html" title="Programmer's Reference Guide">
+<link rel="prev" href="zend.gdata.exception.html" title="12.9. Catching Gdata Exceptions">
+<link rel="next" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - Advanced Usage">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="section" href="zend.http.html#zend.http.client" title="13.1. Zend_Http_Client - Introduction">
+<link rel="section" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - Advanced Usage">
+<link rel="section" href="zend.http.client.adapters.html" title="13.3. Zend_Http_Client - Connection Adapters">
+<link rel="section" href="zend.http.cookies.html" title="13.4. Zend_Http_Cookie and Zend_Http_CookieJar">
+<link rel="section" href="zend.http.response.html" title="13.5. Zend_Http_Response">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 13. Zend_Http</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.gdata.exception.html">Prev</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.http.client.advanced.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.http"></a>Chapter 13. Zend_Http</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.http.html#zend.http.client">13.1. Zend_Http_Client - Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.introduction">13.1.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.configuration">13.1.2. Configuration Parameters</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.basic-requests">13.1.3. Performing Basic HTTP Requests</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.parameters">13.1.4. Adding GET and POST parameters </a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.advanced.html">13.2. Zend_Http_Client - Advanced Usage</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.redirections">13.2.1. HTTP Redirections</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.cookies">13.2.2. Adding Cookies and Using Cookie Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.custom_headers">13.2.3. Setting Custom Request Headers</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.file_uploads">13.2.4. File Uploads</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.raw_post_data">13.2.5. Sending Raw POST Data</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.http_authentication">13.2.6. HTTP Authentication</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.multiple_requests">13.2.7. Sending Multiple Requests With the Same Client</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.adapters.html">13.3. Zend_Http_Client - Connection Adapters</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapters.overview">13.3.1. Overview</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#id4834115">13.3.2. The Socket Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.proxy">13.3.3. The Proxy Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.test">13.3.4. The Test Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.extending">13.3.5. Creating your own connection adapters</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.cookies.html">13.4. Zend_Http_Cookie and Zend_Http_CookieJar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.introduction">13.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.instantiating">13.4.2. Instantiating Zend_Http_Cookie Objects</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.accessors">13.4.3. Zend_Http_Cookie getter methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.matching">13.4.4. Zend_Http_Cookie: Matching against a scenario</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar">13.4.5. The Zend_Http_CookieJar Class: Instantiation</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.adding_cookies">13.4.6. Adding Cookies to a Zend_Http_CookieJar object</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.getting_cookies">13.4.7. Retrieving Cookies From a Zend_Http_CookieJar object</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.response.html">13.5. Zend_Http_Response</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.introduction">13.5.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.testers">13.5.2. Boolean Tester Methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.acessors">13.5.3. Accessor Methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.static_parsers">13.5.4. Static HTTP Response Parsers</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.http.client"></a>13.1. Zend_Http_Client - Introduction</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.introduction"></a>13.1.1. Introduction</h3></div></div></div>
+<p>
+            Zend_Http_Client provides an easy interface for preforming Hyper-Text 
+            Transfer Protocol (HTTP) requests. Zend_Http_Client supports most simple 
+            features expected from an HTTP client, as well as some more complex 
+            features such as HTTP authentication and file uploads. Successful 
+            requests (and most unsuccessful ones too) return a Zend_Http_Response 
+            object, which provides access to the response's headers and body (see 
+            <a href="zend.http.response.html" title="13.5. Zend_Http_Response">Section 13.5, “Zend_Http_Response”</a>).
+        </p>
+<p>
+            The class constructor optionally accepts a URL as it's first parameter
+            (can be either a string or a Zend_Uri_Http object), and an optional 
+            array of configuration parameters. Both can be left out, 
+            and set later using the setUri() and setConfig() methods.
+            </p>
+<div class="example">
+<a name="id4831307"></a><p class="title"><b>Example 13.1. Instantiating a Zend_Http_Client object</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    $client = new Zend_Http_Client('http://example.org', array(
+        'maxredirects' =&gt; 0,
+        'timeout'      =&gt; 30));
+        
+    // This is actually exactly the same:
+    $client = new Zend_Http_Client();
+    $client-&gt;setUri('http://example.org');
+    $client-&gt;setConfig(array(
+        'maxredirects' =&gt; 0,
+        'timeout'      =&gt; 30));
+
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.configuration"></a>13.1.2. Configuration Parameters</h3></div></div></div>
+<p>
+            The constructor and setConfig() method accept an associative array 
+            of configuration parameters. Setting these parameters is optional, 
+            as they all have default values.
+            </p>
+<div class="table">
+<a name="id4831377"></a><p class="title"><b>Table 13.1. Zend_Http_Client configuration parameters</b></p>
+<table summary="Zend_Http_Client configuration parameters" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Expected Values</th>
+<th>Default Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>maxredirects</td>
+<td>Maximum number of redirections to follow (0 = none)</td>
+<td>integer</td>
+<td>5</td>
+</tr>
+<tr>
+<td>strictredirects</td>
+<td>Whether to strictly follow the RFC when redirecting (see <a href="zend.http.client.advanced.html#zend.http.client.redirections" title="13.2.1. HTTP Redirections">Section 13.2.1, “HTTP Redirections”</a>)</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>useragent</td>
+<td>User agent identifier string (sent in request headers)</td>
+<td>string</td>
+<td>'Zend_Http_Client'</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>Connection timeout (seconds)</td>
+<td>integer</td>
+<td>10</td>
+</tr>
+<tr>
+<td>httpversion</td>
+<td>HTTP protocol version</td>
+<td>float (1.1 or 1.0)</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>adapter</td>
+<td>Connection adapter class to use (see <a href="zend.http.client.adapters.html" title="13.3. Zend_Http_Client - Connection Adapters">Section 13.3, “Zend_Http_Client - Connection Adapters”</a>)</td>
+<td>mixed</td>
+<td>'Zend_Http_Client_Adapter_Socket'</td>
+</tr>
+<tr>
+<td>keepalive</td>
+<td>Whether to enable keep-alive connections with the server. Useful and might improve performance if several
+                            consecutive requests to the same server are performned.</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.basic-requests"></a>13.1.3. Performing Basic HTTP Requests</h3></div></div></div>
+<p>
+            Performing simple HTTP requests is very easily done using the 
+            request() method, and rarely needs more than three lines of code:
+            </p>
+<div class="example">
+<a name="id4832247"></a><p class="title"><b>Example 13.2. Preforming a Simple GET Request</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    $client = new Zend_Http_Client('http://example.org');
+    $response = $client-&gt;request();
+?&gt;</pre>
+</div>
+<p>
+            The request() method takes one optional parameter - the request method.
+            This can be either GET, POST, PUT, HEAD, DELETE, TRACE, OPTIONS or 
+            CONNECT as defined by the HTTP protocol
+            <sup>[<a name="id4832262" href="#ftn.id4832262">1</a>]</sup>. 
+            For convenience, these are all defined as class constants:
+            Zend_Http_Request::GET, Zend_Http_Request::POST and so on.
+        </p>
+<p>
+            If no method is specified, the method set by the last setMethod()
+            call is used. If setMethod() was never called, the default request
+            method is GET (see the above example).
+            </p>
+<div class="example">
+<a name="id4832293"></a><p class="title"><b>Example 13.3. Using Request Methods Other Than GET</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Preforming a POST request
+    $response = $client-&gt;request('POST');
+    
+    // Yet another way of preforming a POST request
+    $client-&gt;setMethod(Zend_Http_Client::POST);
+    $response = $client-&gt;request();
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.parameters"></a>13.1.4. Adding GET and POST parameters </h3></div></div></div>
+<p>
+            Adding GET parameters to an HTTP request is quite simple, and can 
+            be done either by specifying them as part of the URL, or by using
+            the setParameterGet() method. 
+            This method takes the GET parameter's name as it's first parameter,
+            and the GET parameter's value as it's second parameter. 
+            For convenience, the setParameterGet() method can also accept a
+            single associative array of name =&gt; value GET variables - which may
+            be more comfortable when several GET parameters need to be set.
+            </p>
+<div class="example">
+<a name="id4832341"></a><p class="title"><b>Example 13.4. Setting GET Parameters</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Setting a get parameter using the setParameterGet method
+    $client-&gt;setParameterGet('knight', 'lancelot');
+
+    // This is equivalent to setting such URL:
+    $client-&gt;setUri('http://example.com/index.php?knight=lancelot');
+    
+    // Adding several parameters with one call
+    $client-&gt;setParameterGet(array(
+        'first_name'  =&gt; 'Bender',
+        'middle_name' =&gt; 'Bending'
+        'made_in'     =&gt; 'Mexico',
+    ));
+?&gt;</pre>
+</div>
+<p>
+        </p>
+<p>
+            While GET parameters can be sent with every request method, POST
+            parameters are only sent in the body of POST requests. Adding POST
+            parameters to a request is very similar to adding GET parameters, 
+            and can be done with the setParameterPost() method, which is
+            similar to the setParameterGet() method in structure.
+            </p>
+<div class="example">
+<a name="id4832365"></a><p class="title"><b>Example 13.5. Setting POST Parameters</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Setting a POST parameter
+    $client-&gt;setParameterPost('language', 'fr');
+    
+    // Setting several POST parameters, one of them with several values
+    $client-&gt;setParameterPost(array(
+        'language'  =&gt; 'es',
+        'country'   =&gt; 'ar',
+        'selection' =&gt; array(45, 32, 80)
+    ));
+?&gt;</pre>
+</div>
+<p>
+            Note that when sending POST requests, you can set both GET and 
+            POST parameters. On the other hand, while setting POST parameters
+            for a non-POST request will not trigger and error, it is useless. 
+            Unless the request is a POST request, POST parameters are simply 
+            ignored.
+        </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4832262" href="#id4832262">1</a>] </sup>
+                See RFC 2616 - <a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_top">http://www.w3.org/Protocols/rfc2616/rfc2616.html</a>.
+              </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.gdata.exception.html">Prev</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.http.client.advanced.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">12.9. Catching Gdata Exceptions </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 13.2. Zend_Http_Client - Advanced Usage</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>16.4. Enregistrements avancés : plusieurs Loggers</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="prev" href="zend.log.log-levels.html" title="16.3. Niveau de log">
+<link rel="next" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">16.4. Enregistrements avancés : plusieurs Loggers</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.log.log-levels.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 16. Zend_Log</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.mail.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.log.advanced-logging"></a>16.4. Enregistrements avancés : plusieurs Loggers</h2></div></div></div>
+<p>
+        <code class="code">Zend_Log</code> supporte l'enregistrement via plusieurs adapteurs de log.
+        Il peut soit envoyer un message à tous les logs, ou cibler un log particulier.
+   </p>
+<p>
+        Lors de la création de plusieurs loggueurs, chaque log doit avoir un nom unique. Les loggueurs sont enregistrés avec
+        la méthode <code class="code">registerLogger()</code>, avec le nom du log passé dans le second argument.
+   </p>
+<p>
+        Dans l'exemple ci-dessous, deux loggueurs sont créés : un pour la console, et un pour un fichier.
+        Ils sont appelés respectivement <code class="code">Console</code> et <code class="code">File</code>.
+        </p>
+<pre class="programlisting">
+require_once 'Zend/Log.php';                 // classe de base Zend_Log
+require_once 'Zend/Log/Adapter/File.php';    // adapteur de log File
+require_once 'Zend/Log/Adapter/Console.php'; // adapteur de log Console
+
+Zend_Log::registerLogger(new Zend_Log_Adapter_File('/logs/framework.txt'), 'File');
+Zend_Log::registerLogger(new Zend_Log_Adapter_Console(), 'Console');
+</pre>
+<p>
+   </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.log.log-levels.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.log.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.mail.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">16.3. Niveau de log </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> Chapitre 17. Zend_Mail</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

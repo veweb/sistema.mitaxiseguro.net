@@ -1,0 +1,150 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10.5. Consuming an Atom Feed</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="prev" href="zend.feed.consuming-rss.html" title="10.4. Consuming an RSS Feed">
+<link rel="next" href="zend.feed.consuming-atom-single-entry.html" title="10.6. Consuming a Single Atom Entry">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.5. Consuming an Atom Feed</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.consuming-rss.html">上一页</a> </td>
+<th width="60%" align="center">第 10 章 Zend_Feed</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom-single-entry.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.consuming-atom"></a>10.5. Consuming an Atom Feed</h2></div></div></div>
+<p>
+        <code class="code">Zend_Feed_Atom</code> is used in much the same way as <code class="code">Zend_Feed_Rss</code>. It provides
+        the same access to feed-level properties and iteration over entries in the feed. The main
+        difference is in the structure of the Atom protocol itself. Atom is a successor to RSS; it is more
+        generalized protocol and it is designed to deal more easily with feeds that provide their full
+        content inside the feed, splitting RSS' <code class="code">description</code> tag into two elements,
+        <code class="code">summary</code> and <code class="code">content</code>, for that purpose.
+    </p>
+<div class="example">
+<a name="id4766069"></a><p class="title"><b>例 10.2. Basic Use of an Atom Feed</b></p>
+<p>
+            Read an Atom feed and print the <code class="code">title</code> and <code class="code">summary</code> of each entry:
+        </p>
+<pre class="programlisting">
+&lt;?php
+
+$feed = new Zend_Feed_Atom('http://atom.example.com/feed/');
+echo 'The feed contains ' . $feed-&gt;count() . ' entries.' . "\n\n";
+foreach ($feed as $entry) {
+    echo 'Title: ' . $entry-&gt;title() . "\n";
+    echo 'Summary: ' . $entry-&gt;summary() . "\n\n";
+}
+
+?&gt;   </pre>
+</div>
+<p>
+        In an Atom feed you can expect to find the following feed properties:
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">title</code> - The feed's title, same as RSS's channel title</p></li>
+<li><p><code class="code">id</code> - Every feed and entry in Atom has a unique identifier</p></li>
+<li>
+<p><code class="code">link</code> - Feeds can have multiple links, which are distinguished by a
+                <code class="code">type</code> attribute</p>
+<p>
+                    The equivalent to RSS's channel link would be <code class="code">type="text/html"</code>. If the link
+                    is to an alternate version of the same content that's in the feed, it would have a
+                    <code class="code">rel="alternate"</code> attribute.
+                </p>
+</li>
+<li>
+<p><code class="code">subtitle</code> - The feed's description, equivalent to RSS' channel description
+                </p>
+<p><code class="code">author-&gt;name()</code> - The feed author's name</p>
+<p><code class="code">author-&gt;email()</code> - The feed author's email address</p>
+</li>
+</ul></div>
+<p>
+    </p>
+<p>
+        Atom entries commonly have the following properties:
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><code class="code">id</code> - The entry's unique identifier</p></li>
+<li><p><code class="code">title</code> - The entry's title, same as RSS item titles</p></li>
+<li><p><code class="code">link</code> - A link to another format or an alternate view of this entry</p></li>
+<li><p><code class="code">summary</code> - A summary of this entry's content</p></li>
+<li><p><code class="code">content</code> - The full content of the entry; can be skipped if the feed just
+                contains summaries</p></li>
+<li><p><code class="code">author</code> - with <code class="code">name</code> and <code class="code">email</code> sub-tags like
+                feeds have</p></li>
+<li><p><code class="code">published</code> - the date the entry was published, in RFC 3339 format</p></li>
+<li><p><code class="code">updated</code> - the date the entry was last updated, in RFC 3339 format</p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        For more information on Atom and plenty of resources, see
+        <a href="http://www.atomenabled.org/" target="_top">http://www.atomenabled.org/</a>.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.consuming-rss.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.feed.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom-single-entry.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.4. Consuming an RSS Feed </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 10.6. Consuming a Single Atom Entry</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

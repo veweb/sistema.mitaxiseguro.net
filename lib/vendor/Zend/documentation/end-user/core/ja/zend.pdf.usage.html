@@ -1,0 +1,210 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>20.6. Zend_Pdf モジュールの使用例</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="prev" href="zend.pdf.drawing.html" title="20.5. 描画">
+<link rel="next" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">20.6. Zend_Pdf モジュールの使用例</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.pdf.drawing.html">前のページ</a> </td>
+<th width="60%" align="center">第20章 Zend_Pdf</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.rest.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.pdf.usage"></a>20.6. Zend_Pdf モジュールの使用例</h2></div></div></div>
+<p>
+    この節では、モジュールの使用例を示します。
+    </p>
+<p>
+    この例は、<code class="filename">demos/Zend/Pdf/demo.php</code> にあります。
+    </p>
+<p>
+    また <code class="filename">test.pdf</code> というファイルも含まれており、
+    このデモのテスト用に使用します。
+    </p>
+<div class="example">
+<a name="id4873744"></a><p class="title"><b>例 20.14. Zend_Pdf モジュールの使用例</b></p>
+<pre class="programlisting">&lt;?php
+/**
+ * @package Zend_Pdf
+ * @subpackage demo
+ */
+
+/** Zend_Pdf */
+require_once 'Zend/Pdf.php';
+
+if (!isset($argv[1])) {
+    echo "USAGE: php demo.php &lt;pdf_file&gt; [&lt;output_pdf_file&gt;]\n";
+    exit;
+}
+
+if (file_exists($argv[1])) {
+    $pdf = Zend_Pdf::load($argv[1]);
+} else {
+    $pdf = new Zend_Pdf();
+}
+
+//------------------------------------------------------------------------------------
+// ページの並び順を反転します。
+$pdf-&gt;pages = array_reverse($pdf-&gt;pages);
+
+// 新しいスタイルを作成します。
+$style = new Zend_Pdf_Style();
+$style-&gt;setFillColor(new Zend_Pdf_Color_RGB(0, 0, 0.9));
+$style-&gt;setLineColor(new Zend_Pdf_Color_GrayScale(0.2));
+$style-&gt;setLineWidth(3);
+$style-&gt;setLineDashingPattern(array(3, 2, 3, 4), 1.6);
+$style-&gt;setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD), 32);
+
+// 新しい画像オブジェクトを作成します。
+$stampImage = Zend_Pdf_ImageFactory::factory(dirname(__FILE__) . '/stamp.jpg');
+
+// ページに修正マークをつけます。
+foreach ($pdf-&gt;pages as $page){
+    $page-&gt;saveGS();
+    $page-&gt;setStyle($style);
+    $page-&gt;rotate(0, 0, M_PI_2/3);
+
+    $page-&gt;saveGS();
+    $page-&gt;clipCircle(550, -10, 50);
+    $page-&gt;drawImage($stampImage, 500, -60, 600, 40);
+    $page-&gt;restoreGS();
+
+    $page-&gt;drawText('Modified by Zend Framework!', 150, 0);
+    $page-&gt;restoreGS();
+}
+
+// Zend_Pdf オブジェクトが作成した新しいページを追加します。
+// (ページは、指定したドキュメントにアタッチされます)
+$pdf-&gt;pages[] = ($page1 = $pdf-&gt;newPage('A4'));
+
+// Zend_Pdf_Page オブジェクトが作成した新しいページを追加します。
+// (ページは、ドキュメントにアタッチされません)
+$pdf-&gt;pages[] = ($page2 = new Zend_Pdf_Page(Zend_Pdf_Const::PAGESIZE_LETTER_LANDSCAPE));
+
+// 新しいフォントを作成します。
+$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+
+// フォントを適用してテキストを描画します。
+$page1-&gt;setFont($font, 36);
+$page1-&gt;drawText('Helvetica 36 text string', 60, 500);
+
+// 別のページでフォントオブジェクトを使用します。
+$page2-&gt;setFont($font, 24);
+$page2-&gt;drawText('Helvetica 24 text string', 60, 500);
+
+// 別のフォントを使用します。
+$page2-&gt;setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_ROMAN), 32);
+$page2-&gt;drawText('Times-Roman 32 text string', 60, 450);
+
+// 矩形を描画します。
+$page2-&gt;setFillColor(new Zend_Pdf_Color_GrayScale(0.8));
+$page2-&gt;setLineColor(new Zend_Pdf_Color_GrayScale(0.2));
+$page2-&gt;setLineDashingPattern(array(3, 2, 3, 4), 1.6);
+$page2-&gt;drawRectangle(60, 400, 400, 350);
+
+// 円を描画します。
+$page2-&gt;setLineDashingPattern(Zend_Pdf_Page::LINE_DASHING_SOLID);
+$page2-&gt;setFillColor(new Zend_Pdf_Color_RGB(1, 0, 0));
+$page2-&gt;drawCircle(85, 375, 25);
+
+// 扇形を描画します。
+$page2-&gt;drawCircle(200, 375, 25, 2*M_PI/3, -M_PI/6);
+$page2-&gt;setFillColor(new Zend_Pdf_Color_CMYK(1, 0, 0, 0));
+$page2-&gt;drawCircle(200, 375, 25, M_PI/6, 2*M_PI/3);
+$page2-&gt;setFillColor(new Zend_Pdf_Color_RGB(1, 1, 0));
+$page2-&gt;drawCircle(200, 375, 25, -M_PI/6, M_PI/6);
+
+// 楕円を描画します。
+$page2-&gt;setFillColor(new Zend_Pdf_Color_RGB(1, 0, 0));
+$page2-&gt;drawEllipse(250, 400, 400, 350);
+$page2-&gt;setFillColor(new Zend_Pdf_Color_CMYK(1, 0, 0, 0));
+$page2-&gt;drawEllipse(250, 400, 400, 350, M_PI/6, 2*M_PI/3);
+$page2-&gt;setFillColor(new Zend_Pdf_Color_RGB(1, 1, 0));
+$page2-&gt;drawEllipse(250, 400, 400, 350, -M_PI/6, M_PI/6);
+
+// 多角形を描画して塗りつぶします。
+$page2-&gt;setFillColor(new Zend_Pdf_Color_RGB(1, 0, 1));
+$x = array();
+$y = array();
+for ($count = 0; $count &lt; 8; $count++) {
+    $x[] = 140 + 25*cos(3*M_PI_4*$count);
+    $y[] = 375 + 25*sin(3*M_PI_4*$count);
+}
+$page2-&gt;drawPolygon($x, $y,
+                    Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE,
+                    Zend_Pdf_Page::FILL_METHOD_EVEN_ODD);
+
+// 直線を描画します。
+$page2-&gt;setLineWidth(0.5);
+$page2-&gt;drawLine(60, 375, 400, 375);
+//------------------------------------------------------------------------------------
+
+if (isset($argv[2])) {
+    $pdf-&gt;save($argv[2]);
+} else {
+    $pdf-&gt;save($argv[1], true /* 更新 */);
+}
+</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.pdf.drawing.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.pdf.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.rest.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">20.5. 描画 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 第21章 Zend_Rest</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

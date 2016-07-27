@@ -1,0 +1,236 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.3. Convenções de Nomes</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="prev" href="coding-standard.php-file-formatting.html" title="A.2. Formato do Arquivo PHP">
+<link rel="next" href="coding-standard.coding-style.html" title="A.4. Estilo de Código">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes" title="A.3.1. Classes">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces" title="A.3.2. Interfaces">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames" title="A.3.3. Nomes de Arquivos">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.functions-and-methods" title="A.3.4. Funções e Métodos">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.variables" title="A.3.5. Variáveis">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.constants" title="A.3.6. Constantes">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.3. Convenções de Nomes</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="coding-standard.php-file-formatting.html">Anterior</a> </td>
+<th width="60%" align="center">Apêndice A. Padrões de Codificação do Framework Zend para PHP</th>
+<td width="20%" align="right"> <a accesskey="n" href="coding-standard.coding-style.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="coding-standard.naming-conventions"></a>A.3. Convenções de Nomes</h2></div></div></div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.classes"></a>A.3.1. Classes</h3></div></div></div>
+<p>
+		O Framework Zend emprega uma convenção por meio dos nomes das
+		classes, diretamente mapeados aos diretórios nos quais estão arquivados.
+    O diretório raiz do Framework Zend é o diretório "Zend/", abaixo do qual
+		todas as classes são arquivadas hierarquicamente.
+            </p>
+<p>
+		Nomes de classes podem conter somente caracteres alfanuméricos. Números em nomes de classes são permitidos, 
+		mas desencorajados. Sublinhados são permitidos somente no lugar do separador de caminho -- o nome do arquivo 
+		"Zend/Db/Table.php" deve ser mapeado para o nome de classe  "Zend_Db_Table".
+            </p>
+<p>
+		Se o nome de uma classe é composto por mais de uma palavra, a primeira letra de cada nova
+		palavra deve ser maiúscula. Letras maiúsculas sucessivas não são permitidas, por exemplo
+    a classe "Zend_PDF" não é permitida enquanto "Zend_Pdf" é aceita.
+            </p>
+<p>
+		As classes do Framework Zend de autoria da Zend ou de uma das companhias parceiras
+		participantes e distribuídas com o Framework devem sempre iniciar com "Zend_" e 
+		devem estar arquivadas sob a hierarquia do diretório "Zend/".
+            </p>
+<p>
+                São exemplos de nomes aceitáveis para classes:
+
+                </p>
+<pre class="programlisting">
+Zend_Db
+
+Zend_View
+
+Zend_View_Helper
+</pre>
+<p>
+
+                <span class="emphasis"><em>IMPORTANTE:</em></span> Código que opera com o framework mas que não é parte dele, 
+		por exemplo, código escrito por um usuário final e não pela Zend ou uma das companhias parceiras, 
+		não pode começar com "Zend_".
+            </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.interfaces"></a>A.3.2. Interfaces</h3></div></div></div>
+<p>
+		Classes de interface devem seguir as mesmas convenções como outras classes (veja acima),
+		porém deve acabar com a palavra "Interface", como nestes exemplos:
+                
+                </p>
+<pre class="programlisting">
+Zend_Log_Adapter_Interface
+Zend_Controller_Dispatcher_Interface</pre>
+<p>
+            </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.filenames"></a>A.3.3. Nomes de Arquivos</h3></div></div></div>
+<p>
+		Para todos os outros arquivos, somente caracteres alfanuméricos, sublinhado, e traço "-"
+		são permitidos. Espaços e ponto são proibidos.
+            </p>
+<p>
+                Qualquer arquivo que contenha qualquer código PHP deve acabar com a extensão ".php".
+		Estes exemplos mostram nomes de arquivo aceitáveis para as classes que estes contenham,
+		baseados nos exemplos da seção acima:
+                </p>
+<pre class="programlisting">
+Zend/Db.php
+
+Zend/Controller/Front.php
+
+Zend/View/Helper/FormRadio.php</pre>
+<p>
+
+		Nomes de arquivos devem seguir o mapeamento para nomes de classes descrito acima.
+            </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.functions-and-methods"></a>A.3.4. Funções e Métodos</h3></div></div></div>
+<p>
+		Nomes de funções devem conter somente caracteres alfanuméricos. Sublinhados não são permitidos.
+                Números são permitidos nos nomes, mas são desencorajados.
+            </p>
+<p>
+		Nomes de funções devem sempre começar com letra minúscula. Quando um nome consistir em mais de 
+		uma palavra, a primeira letra de cada nova palavra deve ser maiúscula. Isto é comumente chamado o 
+		método "studlyCaps" ou "camelCaps".
+            </p>
+<p>
+		Verbalização é encorajada. Nomes de funções devem ser tão longos quanto práticos para melhorar
+		o entendimento do código.
+            </p>
+<p>
+		Estes são exemplos de nomes aceitáveis para funções:
+                
+                </p>
+<pre class="programlisting">
+filterInput()
+
+getElementById()
+
+widgetFactory()</pre>
+<p>
+            </p>
+<p>
+		Para programação orientada ao objeto, acessores para objetos devem sempre ser prefixados com
+		"get" ou "set". Quando usando padrões de projeto, como o Singleton ou Factory Patterns,
+		o nome do método deve conter o nome do padrão, como prática para que o padrão seja reconhecido na 
+		leitura.
+            </p>
+<p>
+		Funções no escopo global ("funções soltas") são permitidas mas desencorajadas.
+		É recomendável que estas funções sejam empacotadas numa classe estática.
+            </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.variables"></a>A.3.5. Variáveis</h3></div></div></div>
+<p>
+		Nomes de variáveis devem conter somente caracteres alfanuméricos. Sublinhados não são permitidos.
+		Números são permitidos nos nomes, mas desencorajados.
+            </p>
+<p>
+		Para variáveis membros de classes que são declaradas com o construtor "private" ou "protected",
+		o primeiro caractere do nome da variável deve ser um único sublinhado. Este é o único uso aceitável
+		de sublinhado no nome. Variáveis membros declaradas "public" não podem começar com sublinhado.
+            </p>
+<p>
+		Como nos nomes de funções (veja a seção 3.3 acima) nomes de variáveis devem iniciar com uma letra
+		minúscula e seguir a convenção "camelCaps".
+            </p>
+<p>
+		Verbalização é encorajada. Nomes de variáveis devem ser tão longos quanto práticos. Nomes como
+		"$i" e "$n" são desencorajados para qualquer coisa que não esteja num contexto de loop pequeno.
+		Se um loop contém mais de 20 linhas de código, as variáveis para os indices precisam ter um nome mais
+		descritivo.
+            </p>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.constants"></a>A.3.6. Constantes</h3></div></div></div>
+<p>
+		            Constantes podem conter caracteres alfanuméricos e sublinhado. Números são permitidos nos nomes.
+            </p>
+<p>
+                Constantes devem ter sempre todas suas letras em maiúsculo.
+            </p>
+<p>
+		Constantes devem ser definidas como membros de classe usando o construtor "const".
+		Definir constantes no escopo global com "define" é permitido, mas desencorajado.
+            </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="coding-standard.php-file-formatting.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="coding-standard.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="coding-standard.coding-style.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">A.2. Formato do Arquivo PHP </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> A.4. Estilo de Código</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

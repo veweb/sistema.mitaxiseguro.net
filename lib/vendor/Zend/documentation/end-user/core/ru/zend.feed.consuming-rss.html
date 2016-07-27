@@ -1,0 +1,284 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10.4. 
+        Работа с лентой RSS
+        
+    </title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="prev" href="zend.feed.findFeeds.html" title="10.3. 
+        Получение лент из веб-страниц
+        
+    ">
+<link rel="next" href="zend.feed.consuming-atom.html" title="10.5. 
+    Работа с лентой Atom
+    
+">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.4. 
+        Работа с лентой RSS
+        
+    </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.findFeeds.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 10. Zend_Feed</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.consuming-rss"></a>10.4. 
+        Работа с лентой RSS
+        
+    </h2></div></div></div>
+<p>
+        Чтение ленты такое же простое, как создание объекта <code class="code">Zend_Feed_Rss</code>
+        с URI ленты:
+
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+$channel = new Zend_Feed_Rss('http://rss.example.com/channelName');
+
+?&gt;</pre>
+<p>
+        Если при извлечении ленты произошла ошибка, то будет сгенерировано исключение
+        <code class="code">Zend_Feed_Exception</code>.
+
+    </p>
+<p>
+        Создав объект ленты, вы можете получить доступ к любым стандартным
+        свойствам канала RSS (channel) непосредственно в объекте.
+
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+echo $channel-&gt;title();
+
+?&gt;</pre>
+<p>
+        Обратите внимание на синтаксис функции. <code class="code">Zend_Feed</code> использует соглашение
+        об интерпретации свойств как объекта XML, если они запрошены в синтаксисе
+        получения переменной (<code class="code">$obj-&gt;property</code> и как строки, если они запрошены
+        в синтаксисе метода (<code class="code">$obj-&gt;property()</code>). Это позволяет получить доступ
+        к полному тексту любого отдельного узла, что одновременно дает полный доступ
+        и ко всем дочерним элементам.
+
+    </p>
+<p>
+        Если свойства канала имеют атрибуты, то к ним можно получить доступ, используя
+        синтаксис массива PHP:
+
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+echo $channel-&gt;category['domain'];
+
+?&gt;</pre>
+<p>
+        Поскольку атрибуты не могут иметь дочерние записи, то нет необходимости в синтаксисе
+        метода для получения значений атрибутов.
+
+    </p>
+<p>
+        Весьма возможно, что вы хотите произвести обход ленты и произвести
+        какие-либо операции с ее публикациями. <code class="code">Zend_Feed_Abstract</code> реализует
+        интерфейс PHP <code class="code">Iterator</code>, поэтому вывод заголовков всех статей в канале будет
+        выглядеть следующим образом:
+
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+foreach ($channel as $item) {
+    echo $item-&gt;title() . "\n";
+}
+
+?&gt;</pre>
+<p>
+        Если вы не знакомы с RSS, то здесь приведены стандартные элементы, которые должны
+        присутствовать в канале (элемент <code class="code">&lt;channel&gt;</code>) и отдельных публикациях
+        (элемент <code class="code">&lt;item&gt;</code>) RSS.
+
+    </p>
+<p>
+        Обязательные элементы канала:
+
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">title</code> -- имя канала
+                    
+                </p></li>
+<li><p>
+                    <code class="code">link</code> -- URL веб-сайта, соответствующего каналу
+                    
+                </p></li>
+<li><p>
+                    <code class="code">description</code> -- одно или несколько предложений, составляющих
+                    описание канала
+                    
+                </p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        Обычно используемые необязательные элементы канала:
+
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">pubDate</code> -- дата публикации канала в формате RFC 822
+                    
+                </p></li>
+<li><p>
+                    <code class="code">language</code> -- язык, на котором написано содержимое канала
+                    
+                </p></li>
+<li><p>
+                    <code class="code">category</code> -- одна или несколько (задается несколькими тегами) категорий,
+                    к которым принадлежит канал
+                    
+                </p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        Элементы <code class="code">&lt;item&gt;</code> не имеют обязательных вложенных элементов.
+        Тем не менее, должны быть представлены <code class="code">&lt;title&gt;</code> (заголовок) или
+        <code class="code">&lt;description&gt;</code> (описание).
+
+    </p>
+<p>
+        Обычно используемые элементы публикации
+
+    </p>
+<p>
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">title</code> -- заголовок публикации
+                    
+                </p></li>
+<li><p>
+                    <code class="code">link</code> -- URL публикации
+                    
+                </p></li>
+<li><p>
+                    <code class="code">description</code> -- краткое описание публикации
+                    
+                </p></li>
+<li><p>
+                    <code class="code">author</code> -- e-mail автора
+                    
+                </p></li>
+<li><p>
+                    <code class="code">category</code> -- одна или несколько категорий, к которым принадлежит
+                    публикация
+                    
+                </p></li>
+<li><p>
+                    <code class="code">comments</code> -- URL комментариев к данной публикации
+                    
+                </p></li>
+<li><p>
+                    <code class="code">pubDate</code> --  дата публикации в формате RFC 822
+                    
+                </p></li>
+</ul></div>
+<p>
+    </p>
+<p>
+        В своем коде вы можете проверить, имеет ли элемент непустое значение, следующим образом:
+
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+if ($item-&gt;propname()) {
+    // ... продолжение работы
+}
+
+?&gt;</pre>
+<p>
+        Если вместо этого использовать <code class="code">$item-&gt;propname</code>, то всегда будете
+        получать объект, который расценивается как <code class="code">TRUE</code>, поэтому такая проверка
+        будет ошибочной.
+
+    </p>
+<p>
+        За дополнительной информацией см. официальное описание
+        спецификации RSS 2.0:
+        <a href="http://blogs.law.harvard.edu/tech/rss" target="_top">http://blogs.law.harvard.edu/tech/rss</a>
+
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.findFeeds.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.feed.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.consuming-atom.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.3. 
+        Получение лент из веб-страниц
+        
+     </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 10.5. 
+    Работа с лентой Atom
+    
+</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

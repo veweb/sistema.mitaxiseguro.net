@@ -1,0 +1,295 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第26章 Zend_Uri</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.session.theory.html" title="25.5. 動作原理">
+<link rel="next" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.uri.html#zend.uri.chapter" title="26.1. Zend_Uri">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第26章 Zend_Uri</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.session.theory.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.validate.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.uri"></a>第26章 Zend_Uri</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.uri.html#zend.uri.chapter">26.1. Zend_Uri</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.overview">26.1.1. 概要</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.creation">26.1.2. 新しい URI の作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.manipulation">26.1.3. 既存の URI の操作</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.validation">26.1.4. URI の検証</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.instance-methods">26.1.5. 共通のインスタンスメソッド</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.uri.chapter"></a>26.1. Zend_Uri</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.overview"></a>26.1.1. 概要</h3></div></div></div>
+<p>
+      <code class="code">Zend_Uri</code> は、
+      <a href="http://www.w3.org/Addressing/" target="_top">Uniform Resource
+      Identifiers</a> (URIs) の操作および検証を行うためのコンポーネントです。
+      <code class="code">Zend_Uri</code> の本来の目的は
+      <code class="code">Zend_Http_Client</code> のような他のコンポーネントを支援することですが、
+      単体で使用しても便利です。
+    </p>
+<p>
+      URI の最初は常にスキームから始まり、その後にコロンが続きます。
+      スキームにはさまざまなものがあります。
+      <code class="code">Zend_Uri</code> クラスは、
+      各スキームに特化した自身のサブクラスを返すファクトリメソッドを提供しています。
+      サブクラスの名前は <code class="code">Zend_Uri_&lt;scheme&gt;</code>
+      となり、<code class="code">&lt;scheme&gt;</code> の部分には
+      スキーム名の最初の文字だけを大文字にしたものがあてはまります。
+      この規則にはひとつ例外があり、HTTPS スキームについては
+      <code class="code">Zend_Uri_Http</code> で扱われます。
+    </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.creation"></a>26.1.2. 新しい URI の作成</h3></div></div></div>
+<p>
+      スキームのみを <code class="code">Zend_Uri::factory()</code> に渡すと、
+      <code class="code">Zend_Uri</code> は新しい URI をゼロから作成します。
+    </p>
+<div class="example">
+<a name="id4909274"></a><p class="title"><b>例 26.1. <code class="code">Zend_Uri::factory()</code> による新しい URI の作成</b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+// 何もないところから新しい URI を作成するには、スキームのみを渡します
+$uri = Zend_Uri::factory('http');
+
+// $uri は Zend_Uri_Http のインスタンスとなります
+ 
+?&gt;</pre>
+</div>
+<p>
+      新しい URI を作成するには、スキームのみを
+      <code class="code">Zend_Uri::factory()</code> に渡します
+      <sup>[<a name="id4909306" href="#ftn.id4909306">11</a>]</sup>。
+      サポートしていないスキームが渡された場合は、
+      <code class="code">Zend_Uri_Exception</code> がスローされます。
+    </p>
+<p>
+      渡されたスキームあるいは URI をサポートしている場合は、
+      <code class="code">Zend_Uri::factory()</code> は自分自身のサブクラスを返します。
+      これは、指定したスキームに特化したものとなります。
+    </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.manipulation"></a>26.1.3. 既存の URI の操作</h3></div></div></div>
+<p>
+      既存の URI を操作するには、完全な URI を
+      <code class="code">Zend_Uri::factory()</code> に渡します。
+    </p>
+<div class="example">
+<a name="id4909356"></a><p class="title"><b>例 26.2. <code class="code">Zend_Uri::factory()</code> による既存の URI の操作</b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+// 既存の URI を操作するには、それを渡します
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+// $uri は Zend_Uri_Http のインスタンスです
+ 
+?&gt;</pre>
+</div>
+<p>
+      このとき、URI のパースと検証が行われます。
+      もし妥当な形式でなかった場合は、そこで
+      <code class="code">Zend_Uri_Exception</code> がスローされます。それ以外の場合は
+      <code class="code">Zend_Uri::factory()</code> は自分自身のサブクラスを返します。
+      これは、操作するスキームに特化したものとなります。
+    </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.validation"></a>26.1.4. URI の検証</h3></div></div></div>
+<p>
+      <code class="code">Zend_Uri::check()</code> 関数を使用すると、
+      既存の URI の検証のみを行うことができます。
+    </p>
+<div class="example">
+<a name="id4909421"></a><p class="title"><b>例 26.3. <code class="code">Zend_Uri::check()</code> による URI の検証</b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+// 指定した URI が正しい形式かどうかを調べます
+$valid = Zend_Uri::check('http://uri.in.question');
+
+// $valid は、正しければ TRUE、そうでなければ FALSE となります
+ 
+?&gt;</pre>
+</div>
+<p>
+      <code class="code">Zend_Uri::check()</code> は boolean 値を返します。
+      これは <code class="code">Zend_Uri::factory()</code>
+      を使用して例外を処理するよりも便利です。
+    </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.uri.instance-methods"></a>26.1.5. 共通のインスタンスメソッド</h3></div></div></div>
+<p>
+      すべての <code class="code">Zend_Uri</code> のサブクラス (例
+      <code class="code">Zend_Uri_Http</code>) のインスタンスには、
+      URI 操作のために便利なインスタンスメソッドがいくつか提供されています。
+    </p>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.uri.instance-methods.getscheme"></a>26.1.5.1. URI のスキームの取得</h4></div></div></div>
+<p>
+        URI のスキームとは、URI でカンマの前にくる部分のことです。
+        たとえば <code class="code">http://www.zend.com</code> のスキームは
+        <code class="code">http</code> となります。
+      </p>
+<div class="example">
+<a name="id4909515"></a><p class="title"><b>例 26.4. <code class="code">Zend_Uri_*</code> オブジェクトからのスキームの取得</b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+$scheme = $uri-&gt;getScheme();  // "http"
+ 
+?&gt;</pre>
+</div>
+<p>
+        インスタンスメソッド <code class="code">getScheme()</code> は、
+        URI オブジェクトからスキームの部分のみを返します。
+      </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.uri.instance-methods.geturi"></a>26.1.5.2. URI 全体の取得</h4></div></div></div>
+<div class="example">
+<a name="id4909559"></a><p class="title"><b>例 26.5. <code class="code">Zend_Uri_*</code> オブジェクトからの URI 全体の取得</b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+echo $uri-&gt;getUri();  // "http://www.zend.com"
+ 
+?&gt;</pre>
+</div>
+<p>
+        <code class="code">getUri()</code> メソッドは、URI 全体を文字列として返します。
+      </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.uri.instance-methods.valid"></a>26.1.5.3. URI の検証</h4></div></div></div>
+<p>
+        <code class="code">Zend_Uri::factory()</code> は渡された URI を常に検証しており、
+        渡された URI が無効な場合は <code class="code">Zend_Uri</code>
+        のサブクラスのインスタンスを作成しません。しかし、いったん
+        <code class="code">Zend_Uri</code> のサブクラスのインスタンスを
+        (新規に、あるいは既存のものから) 作成し、
+        それを操作した後でもまだ妥当な形式であるかどうかを調べることもできます。
+      </p>
+<div class="example">
+<a name="id4909629"></a><p class="title"><b>例 26.6. <code class="code">Zend_Uri_*</code> オブジェクトの検証</b></p>
+<pre class="programlisting">
+&lt;?php
+
+require_once 'Zend/Uri.php';
+
+$uri = Zend_Uri::factory('http://www.zend.com');
+
+$isValid = $uri-&gt;valid();  // TRUE
+ 
+?&gt;</pre>
+</div>
+<p>
+        インスタンスメソッド <code class="code">valid()</code> により、
+        URI オブジェクトが妥当なものかどうかを調べることができます。
+      </p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4909306" href="#id4909306">11</a>] </sup>現時点では、
+      Zend_Uri がサポートしているスキームは HTTP および HTTPS だけです。</p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.session.theory.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.validate.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">25.5. 動作原理 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 第27章 Zend_Validate</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

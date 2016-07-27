@@ -1,0 +1,330 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Глава 3. Zend_Auth</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="index.html" title="Руководство разработчика">
+<link rel="prev" href="zend.acl.advanced.html" title="2.3. Advanced Use">
+<link rel="next" href="zend.auth.adapter.digest.html" title="3.2. Digest Authentication">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="section" href="zend.auth.html#zend.auth.introduction" title="3.1. Introduction">
+<link rel="section" href="zend.auth.adapter.digest.html" title="3.2. Digest Authentication">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Глава 3. Zend_Auth</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.acl.advanced.html">Пред.</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.auth.adapter.digest.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ru">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.auth"></a>Глава 3. Zend_Auth</h2></div></div></div>
+<div class="toc">
+<p><b>Содержание</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.auth.html#zend.auth.introduction">3.1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.adapters">3.1.1. Adapters</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.results">3.1.2. Results</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.persistence">3.1.3. Identity Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.using">3.1.4. Using Zend_Auth</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.auth.adapter.digest.html">3.2. Digest Authentication</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.introduction">3.2.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.specifics">3.2.2. Specifics</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.identity">3.2.3. Identity</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.auth.introduction"></a>3.1. Introduction</h2></div></div></div>
+<p>
+        Zend_Auth provides an API for authentication and includes concrete authentication adapters for
+        common use case scenarios.
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Замечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Zend_Auth currently includes a
+            <a href="zend.auth.adapter.digest.html" title="3.2. Digest Authentication">digest authentication adapter</a>
+            as a simple proof-of-concept for the design. Additional adapters are planned for development.
+            Interested in using a particular adapter? Your
+            <a href="http://framework.zend.com/wiki/x/qx4" target="_top">voting for an adapter</a> and
+            <a href="http://framework.zend.com/wiki/x/GgE" target="_top">contributions</a> are most welcome!
+        </p></td></tr>
+</table></div>
+<p>
+        Zend_Auth is concerned only with <span class="strong"><strong>authentication</strong></span> and not with
+        <span class="strong"><strong>authorization</strong></span>. Authentication is loosely defined as determining
+        whether an entity actually is what it purports to be (i.e., identification), based on some set of
+        credentials. Authorization, the process of deciding whether to allow an entity access to, or to
+        perform operations upon, other entities is outside the scope of Zend_Auth. For more information about
+        authorization and access control with the Zend Framework, please see
+        <a href="zend.acl.html" title="Глава 2. Zend_Acl">Zend_Acl</a>.
+    </p>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.adapters"></a>3.1.1. Adapters</h3></div></div></div>
+<p>
+            A Zend_Auth adapter is used to authenticate against a particular type of authentication service,
+            such as LDAP, RDBMS, or file-based storage. Different adapters are likely to have vastly different
+            options and behaviors, but some basic things are common among adapters. For example, accepting
+            authentication credentials (including a purported identity), authenticating, and returning some
+            result are common to Zend_Auth adapter.
+        </p>
+<p>
+            Each Zend_Auth authentication adapter class implements <code class="code">Zend_Auth_Adapter_Interface</code>.
+            This interface defines one method, <code class="code">authenticate()</code>, that an adapter class implements
+            for authentication purposes. Each adapter class must be prepared prior to calling
+            <code class="code">authenticate()</code>. This means that each adapter provides the ability to set up
+            credentials (e.g., username and password) and to define values for adapter-specific options, such
+            as database connection settings for a database table adapter.
+        </p>
+<p>
+            The following is an example authentication adapter that requires a username and password to be set
+            for authentication. Other details, such as how the authentication service is queried, have been
+            omitted for brevity:
+
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Auth/Adapter/Interface.php';
+
+class MyAuthAdapter implements Zend_Auth_Adapter_Interface
+{
+    /**
+     * Sets username and password for authentication
+     *
+     * @return void
+     */
+    public function __construct($username, $password)
+    {
+        // ...
+    }
+
+    /**
+     * Performs an authentication attempt
+     *
+     * @throws Zend_Auth_Adapter_Exception If authentication cannot be performed
+     * @return Zend_Auth_Result
+     */
+    public function authenticate()
+    {
+        // ...
+    }
+}</pre>
+<p>
+
+            As indicated in its docblock, <code class="code">authenticate()</code> must return an instance of
+            <code class="code">Zend_Auth_Result</code> (or a class derived from <code class="code">Zend_Auth_Result</code>). If for some
+            reason performing an authentication query is impossible, <code class="code">authenticate()</code> should throw
+            an exception that derives from <code class="code">Zend_Auth_Adapter_Exception</code>.
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.results"></a>3.1.2. Results</h3></div></div></div>
+<p>
+            Zend_Auth adapters return an instance of <code class="code">Zend_Auth_Result</code> with
+            <code class="code">authenticate()</code> in order to represent the results of an authentication attempt.
+            Adapters populate the <code class="code">Zend_Auth_Result</code> object upon construction, so that the
+            following three methods provide a basic set of operations common to the results of Zend_Auth
+            adapters:
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">isValid()</code> - returns true if and only if the result represents a
+                        successful authentication attempt
+                    </p></li>
+<li><p>
+                        <code class="code">getIdentity()</code> - returns the identity of the authentication attempt
+                    </p></li>
+<li><p>
+                        <code class="code">getMessages()</code> - returns an array of messages regarding a failed
+                        authentication attempt
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.persistence"></a>3.1.3. Identity Persistence</h3></div></div></div>
+<p>
+            Authenticating a request that includes authentication credentials is useful per se, but it is also
+            important to support maintaining the authenticated identity without having to present the
+            authentication credentials with each request.
+        </p>
+<p>
+            HTTP is a stateless protocol, however, and techniques such as cookies and sessions have been
+            developed in order to facilitate maintaining state across multiple requests in server-side web
+            applications. <a href="zend.session.html" title="Глава 25. Zend_Session">Zend_Session</a> is used by default within Zend_Auth
+            to provide persistent storage of the identity from a successful authentication attempt using the
+            PHP session.
+        </p>
+<p>
+            Upon a successful authentication attempt, <code class="code">Zend_Auth::authenticate()</code> stores the
+            identity from the authentication result into persistent storage. By default,
+            <code class="code">Zend_Auth</code> uses a storage class based on
+            <a href="zend.session.html" title="Глава 25. Zend_Session">Zend_Session</a>. The storage class may be changed by providing a
+            different storage object to <code class="code">Zend_Auth::setStorage()</code>.
+        </p>
+<p>
+            If automatic persistent storage of the identity is not appropriate for a particular use case, then
+            developers may forgo using the <code class="code">Zend_Auth</code> class altogether, instead using an adapter
+            class directly.
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.auth.introduction.using"></a>3.1.4. Using Zend_Auth</h3></div></div></div>
+<p>
+            There are two provided ways to use Zend_Auth adapters:
+            </p>
+<div class="orderedlist"><ol type="1">
+<li><p>
+                    indirectly, through <code class="code">Zend_Auth::authenticate()</code>
+                </p></li>
+<li><p>
+                    directly, through the adapter's <code class="code">authenticate()</code> method
+                </p></li>
+</ol></div>
+<p>
+        </p>
+<p>
+            The following example illustrates how to use a Zend_Auth adapter indirectly, through the use of
+            the <code class="code">Zend_Auth</code> class:
+
+            </p>
+<pre class="programlisting">&lt;?php
+// Get a reference to the Singleton instance of Zend_Auth
+require_once 'Zend/Auth.php';
+$auth = Zend_Auth::getInstance();
+
+// Set up the authentication adapter
+$authAdapter = new MyAuthAdapter($username, $password);
+
+// Attempt authentication, saving the result
+$result = $auth-&gt;authenticate($authAdapter);
+
+if (!$result-&gt;isValid()) {
+    // Authentication failed; print the reasons why
+    foreach ($result-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+} else {
+    // Authentication succeeded; the identity ($username) is stored in the session
+    // $result-&gt;getIdentity() === $auth-&gt;getIdentity()
+    // $result-&gt;getIdentity() === $username
+}</pre>
+<p>
+        </p>
+<p>
+            Once authentication has been attempted in a request, as in the above example, it is a simple
+            matter to check whether a successfully authenticated identity exists:
+            </p>
+<pre class="programlisting">&lt;?php
+$auth = Zend_Auth::getInstance();
+if ($auth-&gt;hasIdentity()) {
+    // Identity exists; get it
+    $identity = $auth-&gt;getIdentity();
+}</pre>
+<p>
+        </p>
+<p>
+            To remove an identity from persistent storage, simply use the <code class="code">clearIdentity()</code> method.
+            This typically would be used for implementing an application "logout" operation:
+            </p>
+<pre class="programlisting">&lt;?php
+Zend_Auth::getInstance()-&gt;clearIdentity();</pre>
+<p>
+        </p>
+<p>
+            When the automatic use of persistent storage is inappropriate for a particular use case, a
+            developer may simply bypass the use of the <code class="code">Zend_Auth</code> class, using an adapter class
+            directly. Direct use of an adapter class involves configuring and preparing an adapter object and
+            then calling its <code class="code">authenticate()</code> method. Adapter-specific details are discussed in the
+            documentation for each adapter. The following example directly utilizes
+            <code class="code">MyAuthAdapter</code>:
+
+            </p>
+<pre class="programlisting">&lt;?php
+// Set up the authentication adapter
+$authAdapter = new MyAuthAdapter($username, $password);
+
+// Attempt authentication, saving the result
+$result = $authAdapter-&gt;authenticate();
+
+if (!$result-&gt;isValid()) {
+    // Authentication failed; print the reasons why
+    foreach ($result-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+} else {
+    // Authentication succeeded
+    // $result-&gt;getIdentity() === $username
+}</pre>
+<p>
+        </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.acl.advanced.html">Пред.</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.auth.adapter.digest.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2.3. Advanced Use </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 3.2. Digest Authentication</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

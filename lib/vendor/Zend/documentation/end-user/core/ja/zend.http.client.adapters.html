@@ -1,0 +1,489 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>13.3. Zend_Http_Client - 接続アダプタ</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="prev" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - 高度な使用法">
+<link rel="next" href="zend.http.cookies.html" title="13.4. Zend_Http_Cookie および Zend_Http_CookieJar">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.http.client.adapters.html#zend.http.client.adapters.overview" title="13.3.1. 概要">
+<link rel="subsection" href="zend.http.client.adapters.html#id4840021" title="13.3.2. ソケットアダプタ">
+<link rel="subsection" href="zend.http.client.adapters.html#zend.http.client.adapter.proxy" title="13.3.3. プロキシアダプタ">
+<link rel="subsection" href="zend.http.client.adapters.html#zend.http.client.adapter.test" title="13.3.4. テストアダプタ">
+<link rel="subsection" href="zend.http.client.adapters.html#zend.http.client.adapter.extending" title="13.3.5. 独自の接続アダプタの作成">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">13.3. Zend_Http_Client - 接続アダプタ</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.http.client.advanced.html">前のページ</a> </td>
+<th width="60%" align="center">第13章 Zend_Http</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.http.cookies.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.http.client.adapters"></a>13.3. Zend_Http_Client - 接続アダプタ</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.adapters.overview"></a>13.3.1. 概要</h3></div></div></div>
+<p>
+            Zend_Http_Client は、接続アダプタとして設計されています。
+            接続アダプタは実際にサーバへの接続を行うオブジェクトで、
+            リクエストやレスポンスの処理も行います。
+            この接続アダプタは置き換えることができます。
+            つまり、デフォルトの接続アダプタを継承して自分の好みにあうように変更することができます。
+            HTTP クライアントクラス全体を書き換える必要はありません。
+            同じインターフェイスを実装しているだけでいいのです。
+        </p>
+<p>
+            現在、Zend_Http_Client クラスは三つの組み込み接続アダプタを提供しています。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">Zend_Http_Client_Adapter_Socket</code> (デフォルト)
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Http_Client_Adapter_Proxy</code>
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_Http_Client_Adapter_Test</code>
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            Zend_Http_Client オブジェクトの接続アダプタを指定するには、
+            設定オプション 'adapter' を使用します。
+            クライアントオブジェクトのインスタンスを作成する際に、オプション
+            'adapter' にアダプタの名前 (たとえば 'Zend_Http_Client_Adapter_Socket' など)
+            を指定することができます。あるいは、アダプタオブジェクトの変数
+            (たとえば <code class="code">new Zend_Http_Client_Adapter_test</code> など) を指定することもできます。
+            Zend_Http_Client-&gt;setConfig() メソッドを使用し、
+            アダプタを後で設定することも可能です。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id4840021"></a>13.3.2. ソケットアダプタ</h3></div></div></div>
+<p>
+            デフォルトの接続アダプタは Zend_Http_Client_Adapter_Socket
+            です。明示的に接続アダプタを指定しない場合は、これが使用されます。
+            Socket アダプタは PHP の組み込み関数 fsockopen()
+            を使用しており、特別な拡張モジュールやコンパイルオプションは必要ありません。
+        </p>
+<p>
+            ソケットアダプタでは、独自の設定オプション <code class="code">'ssltransport'</code>
+            が指定できます (<code class="code">Zend_Http_Client-&gt;setConfig()</code>
+            に渡すか、あるいはコンストラクタで設定します)。
+            このパラメータは文字列で、デフォルトは 'sslv2' となります。
+            これを変更すると、HTTPS 接続に使用するストリームトランスポート層が変更されます。
+            よく使用する値は 'ssl'、'sslv2'、'sslv3' および 'tls' です。これ以外にも、
+            PHP がサポートしているストリームトランスポート層ならどれでも使用できます。
+            しかし、結果が予期せぬものになるかもしれません。これ以外の値を使用する場合には、
+            それが何を意味するのかをしっかり把握した上で使用するようにしましょう。
+            <sup>[<a name="id4841753" href="#ftn.id4841753">2</a>]</sup>. 
+        </p>
+<div class="example">
+<a name="id4841771"></a><p class="title"><b>例 13.15. HTTPS トランスポート層の変更</b></p>
+<pre class="programlisting">
+&lt;?php
+    // 設定パラメータを指定します
+    $config = array(
+        'adapter'      =&gt; 'Zend_Http_Client_Adapter_Socket',
+        'ssltransport' =&gt; 'tls'
+    );
+    
+    // クライアントオブジェクトのインスタンスを作成します
+    $client = Zend_Http_Client('https://www.example.com', $config);
+    
+    // これ以降のリクエストは、TLS セキュア接続上で行われます
+    $response = $client-&gt;request();
+?&gt;</pre>
+</div>
+<p>
+            上の例の結果は、次の PHP コマンドで TCP
+            接続をオープンした場合と同じになります。
+        </p>
+<p>
+            <code class="code">fsockopen('tls://www.example.com', 443)</code>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.adapter.proxy"></a>13.3.3. プロキシアダプタ</h3></div></div></div>
+<p>
+            Zend_Http_Client_Adapter_Proxy アダプタはデフォルトのソケットアダプタとほぼ同じです。
+            ただし、対象となるサーバに直接接続するのではなく
+            HTTP プロキシサーバを経由して接続するという点が異なります。
+            これにより、Zend_Http_Client をプロキシサーバの中から使用できるようになります。
+            セキュリティやパフォーマンス上の理由により、これが必要となる場合もあるでしょう。
+        </p>
+<p>
+            プロキシアダプタを使用するには、
+            デフォルトの 'adapter' オプション以外に
+            いくつか追加のパラメータを設定する必要があります。
+            </p>
+<div class="table">
+<a name="id4841854"></a><p class="title"><b>表 13.2. Zend_Http_Client の設定パラメータ</b></p>
+<table summary="Zend_Http_Client の設定パラメータ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>パラメータ</th>
+<th>説明</th>
+<th>想定している型</th>
+<th>値の例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>proxy_host</td>
+<td>プロキシサーバのアドレス</td>
+<td>string</td>
+<td>'proxy.myhost.com' あるいは '10.1.2.3'</td>
+</tr>
+<tr>
+<td>proxy_port</td>
+<td>プロキシサーバの TCP ポート</td>
+<td>integer</td>
+<td>8080 (デフォルト) あるいは 81</td>
+</tr>
+<tr>
+<td>proxy_user</td>
+<td>必要に応じて、プロキシのユーザ名</td>
+<td>string</td>
+<td>'shahar' あるいは指定しない場合は '' (デフォルト)</td>
+</tr>
+<tr>
+<td>proxy_pass</td>
+<td>必要に応じて、プロキシのパスワード</td>
+<td>string</td>
+<td>'secret' あるいは指定しない場合は '' (デフォルト)</td>
+</tr>
+<tr>
+<td>proxy_auth</td>
+<td>プロキシの HTTP 認証形式</td>
+<td>string</td>
+<td>Zend_Http_Client::AUTH_BASIC (デフォルト)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+        </p>
+<p>
+            proxy_host は常に設定しなければなりません。指定しなかった場合は、
+            自動的に Zend_Http_Client_Adapter_Socket による直接接続に切り替わります。
+            proxy_port のデフォルトは '8080' です。もし別のポートをプロキシで使用している場合は、
+            適切に設定する必要があります。
+        </p>
+<p>
+            proxy_user および proxy_pass は、
+            プロキシサーバが認証を必要とする場合にのみ設定します。
+            これらを指定すると、'Proxy-Authentication'
+            ヘッダがリクエストに追加されます。プロキシで認証を必要としない場合は、
+            このふたつのオプションはそのままにしておきます。
+        </p>
+<p>
+            proxy_auth は、プロキシが認証を必要としている場合に、
+            その認証形式を指定します。設定できる値は
+            Zend_Http_Client::setAuth() メソッドと同じです。現在はベーシック認証
+            (Zend_Http_Client::AUTH_BASIC) のみをサポートしています。
+        </p>
+<div class="example">
+<a name="id4842030"></a><p class="title"><b>例 13.16. プロキシサーバを使用した Zend_Http_Client の使用法</b></p>
+<pre class="programlisting">
+&lt;?php
+    // 接続パラメータを設定します
+    $config = array(
+        'adapter'    =&gt; 'Zend_Http_Client_Adapter_Proxy',
+        'proxy_host' =&gt; 'proxy.int.zend.com',
+        'proxy_port' =&gt; 8000,
+        'proxy_user' =&gt; 'shahar.e',
+        'proxy_pass' =&gt; 'bananashaped'
+    );
+    
+    // クライアントオブジェクトのインスタンスを作成します
+    $client = Zend_Http_Client('http://www.example.com', $config);
+    
+    // 作業を続けます...
+?&gt;</pre>
+</div>
+<p>
+            説明したとおり、もし proxy_host を省略したり空文字列を設定したりすると、
+            自動的に直接接続に切り替わります。これにより、設定パラメータによって
+            オプションでプロキシを使用できるようなアプリケーションを書くことが可能となります。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.adapter.test"></a>13.3.4. テストアダプタ</h3></div></div></div>
+<p>
+            HTTP 接続に依存するテストコードを書くのは非常に難しいものです。
+            たとえば、リモートサーバから RSS を取得するアプリケーションをテストするには、
+            ネットワークにつながっている必要があります。常にネットワークが使用できるとは限りません。
+        </p>
+<p>
+            このようなときのためにあるのが Zend_Http_Client_Adapter_Test アダプタです。
+            Zend_Http_Client を使用するアプリケーションを作成し、それをテストしたい場合には、
+            デフォルトのアダプタを Test アダプタ (モックオブジェクト) に変更します。
+            これで、サーバに接続せずにテストを行えるようになります。
+        </p>
+<p>
+            Zend_Http_Client_Adapter_Test には setResponse() というメソッドがあります。
+            このメソッドのパラメータには、HTTP レスポンスをテキストか
+            Zend_Http_Response オブジェクトで指定することができます。
+            レスポンスを設定すると、Test アダプタは常にこのレスポンスを返すようになります。
+            実際の HTTP リクエストは行いません。
+        </p>
+<div class="example">
+<a name="id4842131"></a><p class="title"><b>例 13.17. HTTP レスポンススタブを使用したテスト</b></p>
+<pre class="programlisting">
+&lt;?php
+    // 新しいアダプタとクライアントのインスタンスを作成します
+    $adapter = new Zend_Http_Client_Adapter_Test();
+    $client = Zend_Http_Client('http://www.example.com', array(
+        'adapter' =&gt; $adapter
+    ));
+    
+    // 想定するレスポンスを設定します
+    $adapter-&gt;setResponse(
+        "HTTP/1.1 200 OK"        . "\r\n" .
+        "Content-type: text/xml" . "\r\n" .
+                                   "\r\n" . 
+        '&lt;?xml version="1.0" encoding="UTF-8"?&gt;' . 
+        '&lt;rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"' . 
+        '     xmlns:wfw="http://wellformedweb.org/CommentAPI/"' . 
+        '     xmlns:dc="http://purl.org/dc/elements/1.1/"&gt;' . 
+        '  &lt;channel&gt;' . 
+        '    &lt;title&gt;Premature Optimization&lt;/title&gt;' . 
+        // などなど...
+        '&lt;/rss&gt;');
+    
+    $response = $client-&gt;request('GET');
+    // .. $response の処理を続けます...
+?&gt;</pre>
+</div>
+<p>
+            上の例のようにすると、HTTP クライアントにお望みのレスポンスを返させることができます。
+            その際にネットワーク接続は使用しません。また、実際のサーバからのレスポンスも使用しません。
+            この場合、このテストでテストするのは、
+            レスポンス本文の XML をアプリケーションが正しくパースできるかどうかということです。
+        </p>
+<p>
+            時には、オブジェクトに対するひとつのメソッド呼び出しの中で複数の
+            HTTP トランザクションを行うこともあるでしょう。そのような場合は
+            setResponse() を単独で使うことはできません。なぜなら、
+            結果が呼び出し元に返ってくるまで次のレスポンスを設定できないからです。
+        </p>
+<div class="example">
+<a name="id4842163"></a><p class="title"><b>例 13.18. 複数の HTTP レスポンススタブを使用したテスト</b></p>
+<pre class="programlisting">
+&lt;?php
+    // 新しいアダプタおよびクライアントのインスタンスを作成します
+    $adapter = new Zend_Http_Client_Adapter_Test();
+    $client = Zend_Http_Client('http://www.example.com', array(
+        'adapter' =&gt; $adapter
+    ));
+    
+    // 最初の応答として期待する値を設定します
+    $adapter-&gt;setResponse(
+        "HTTP/1.1 302 Found"      . "\r\n" .
+        "Location: /"             . "\r\n" .
+        "Content-Type: text/html" . "\r\n" .
+                                    "\r\n" . 
+        '&lt;html&gt;' . 
+        '  &lt;head&gt;&lt;title&gt;Moved&lt;/title&gt;&lt;/head&gt;' .
+        '  &lt;body&gt;&lt;p&gt;This page has moved.&lt;/p&gt;&lt;/body&gt;' . 
+        '&lt;/html&gt;');
+
+    // それに続くレスポンスを設定します
+    $adapter-&gt;addResponse(
+        "HTTP/1.1 200 OK"         . "\r\n" .
+        "Content-Type: text/html" . "\r\n" .
+                                    "\r\n" . 
+        '&lt;html&gt;' . 
+        '  &lt;head&gt;&lt;title&gt;My Pet Store Home Page&lt;/title&gt;&lt;/head&gt;' . 
+        '  &lt;body&gt;&lt;p&gt;...&lt;/p&gt;&lt;/body&gt;' . 
+        '&lt;/html&gt;');
+
+    // HTTP クライアントオブジェクト ($client) をテスト対象の
+    // オブジェクトに注入し、オブジェクトの動きを以下でテストします
+?&gt;</pre>
+</div>
+<p>
+            setResponse() メソッドは、
+            Zend_Http_Client_Adapter_Test のバッファにあるレスポンスをすべて削除し、
+            最初に返されるレスポンスを設定します。addResponse()
+            メソッドは、それに続くレスポンスを追加します。
+        </p>
+<p>
+            レスポンスは、それを追加した順に再生されます。
+            登録したよりも多くのリクエストが発生した場合は、
+            返されるレスポンスは最初のものに戻り、そこからまた順に返されるようになります。
+        </p>
+<p>
+            上の例で、このアダプタがテストするように設定されているのは、
+            302 リダイレクトが発生した場合のオブジェクトの挙動です。
+            アプリケーションの内容によって、リダイレクトさせるべきなのかそうでないのかは異なるでしょう。
+            この例ではリダイレクトさせることを想定しているので、
+            テストアダプタもそれにあわせて設定しています。
+            最初の 302 レスポンスを setResponse() メソッドで設定し、
+            次に返される 200 レスポンスを addResponse() メソッドで設定します。
+            テストアダプタを設定し終えたら、そのアダプタを含む HTTP
+            クライアントをテスト対象オブジェクトに注入し、その挙動をテストします。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.adapter.extending"></a>13.3.5. 独自の接続アダプタの作成</h3></div></div></div>
+<p>
+            独自の接続アダプタを作成し、それを使用することもできます。
+            たとえば持続的なソケットを使用するアダプタを作成したり、
+            キャッシュ機能を追加したアダプタを作成したりなど、
+            作成するアプリケーションの要件にあわせたものを作成することが可能です。
+        </p>
+<p>
+            そのためには、Zend_Http_Client_Adapter_Interface
+            を実装したクラスを作成する必要があります。
+            以下の例は、ユーザ定義のアダプタクラスの雛形となります。
+            この例で定義されているすべてのパブリック関数を、
+            アダプタで定義する必要があります。
+        </p>
+<div class="example">
+<a name="id4841648"></a><p class="title"><b>例 13.19. 独自の接続アダプタの作成</b></p>
+<pre class="programlisting">
+&lt;?php
+class MyApp_Http_Client_Adapter_BananaProtocol implements Zend_Http_Client_Adapter_Interface
+{    
+    /**
+     * アダプタの設定配列を設定する
+     *
+     * @param array $config
+     */
+    public function setConfig($config = array())
+    {
+        // ここはほとんど変更することはありません -
+        // 通常は Zend_Http_Client_Adapter_Socket の実装をコピーします
+    }
+    
+    /**
+     * リモートサーバに接続する
+     *
+     * @param string  $host
+     * @param int     $port
+     * @param boolean $secure
+     */
+    public function connect($host, $port = 80, $secure = false)
+    {
+        // リモートサーバとの接続を確立します
+    }
+    
+    /**
+     * リクエストをリモートサーバに送信する
+     *
+     * @param string        $method
+     * @param Zend_Uri_Http $url
+     * @param string        $http_ver
+     * @param array         $headers
+     * @param string        $body
+     * @return string Request as text
+     */
+    public function write($method, $url, $http_ver = '1.1', $headers = array(), $body = '')
+    {
+        // リクエストをリモートサーバに送信します。
+        // この関数は、リクエスト全体 (ヘッダおよび本文) を文字列で返します。
+    }
+    
+    /**
+     * サーバからのレスポンスを読み込む
+     *
+     * @return string
+     */
+    public function read()
+    {
+        // リモートサーバからのレスポンスを読み込み、それを文字列で返します。
+    }
+    
+    /**
+     * サーバとの接続を閉じる
+     *
+     */
+    public function close()
+    {
+        // リモートサーバとの接続を閉じます。最後にコールされます。
+    }
+}    
+
+// そして、このアダプタを使用します
+$client = new Zend_Http_Client(array(
+    'adapter' =&gt; 'MyApp_Http_Client_Adapter_BananaProtocol'
+));
+</pre>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4841753" href="#id4841753">2</a>] </sup>
+                    PHP マニュアルの付録 O に、サポートされるソケットトランスポートの一覧があります。
+                    <a href="http://www.php.net/manual/en/transports.php" target="_top">http://www.php.net/manual/en/transports.php</a>
+                </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.http.client.advanced.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.http.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.http.cookies.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">13.2. Zend_Http_Client - 高度な使用法 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 13.4. Zend_Http_Cookie および Zend_Http_CookieJar</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

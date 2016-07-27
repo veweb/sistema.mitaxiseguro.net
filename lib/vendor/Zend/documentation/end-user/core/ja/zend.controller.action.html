@@ -1,0 +1,266 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.5. アクションコントローラ</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="prev" href="zend.controller.providedsubclasses.html" title="7.4. 提供されるサブクラス群">
+<link rel="next" href="zend.controller.plugins.html" title="7.6. プラグイン">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.introduction" title="7.5.1. 導入">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.initialization" title="7.5.2. オブジェクトの初期化">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.prepostdispatch" title="7.5.3. ディスパッチ前後のフック">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.accessors" title="7.5.4. アクセス用メソッド">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.utilmethods" title="7.5.5. ユーティリティメソッド">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.5. アクションコントローラ</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.providedsubclasses.html">前のページ</a> </td>
+<th width="60%" align="center">第7章 Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.plugins.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.action"></a>7.5. アクションコントローラ</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.introduction"></a>7.5.1. 導入</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller_Action</code> は、
+            モデル - ビュー - コントローラ (MVC)
+            パターンにもとづいたウェブアプリケーションを作成する際に、
+            フロントコントローラで使用するアクションコントローラを実装するための抽象クラスです。
+        </p>
+<p>
+            Zend_Controller_Action を使用するには、
+            実際のアクションコントローラ内でこのクラスのサブクラスを作成する必要があります
+            (あるいは、作成したサブクラスをもとにしてアクションコントローラを作成します)。
+            基本的な使い方としては、まずサブクラスを作成し、
+            そしてあなたのサイト上で処理したいさまざまなアクションに対応する
+            アクションメソッドを作成するという流れになります。
+            Zend_Controller は、このクラス内のメソッドで 'Action'
+            という名前で終わるものを見つけると、
+            ルーティングやディスパッチの際にそれらを自動的にアクションとして扱います。
+        </p>
+<p>
+            たとえば、次のようなクラスを見てみましょう。
+        </p>
+<pre class="programlisting">
+class FooController extends Zend_Controller_Action
+{
+    public function barAction()
+    {
+        // 何かをします
+    }
+
+    public function bazAction()
+    {
+        // 何かをします
+    }
+}
+</pre>
+<p>
+            この FooController クラス ('foo' コントローラ)
+            では、ふたつのアクション 'bar' および 'baz'
+            が定義されています。
+        </p>
+<p>
+            もちろんこれ以外にもたくさんの機能があります。
+            たとえば初期化アクションを独自に作成したり、
+            アクションを指定しなかった (あるいは無効なアクションを指定した)
+            際にコールされるデフォルトのアクションを指定したり、
+            ディスパッチの前後に実行されるフックを指定したり、
+            さまざまなヘルパーメソッドを使用したりといったことができます。
+            この章では、アクションコントローラの機能の概要を説明します。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.initialization"></a>7.5.2. オブジェクトの初期化</h3></div></div></div>
+<p>
+            アクションコントローラのコンストラクタをオーバーライドすることもできますが、
+            お勧めしません。Zend_Controller_Action::__construct()
+            は、リクエストオブジェクトやレスポンスオブジェクトを登録するなどの重要な作業を行います。
+            また、フロントコントローラから渡された起動時引数の処理も行います。
+            コンストラクタをオーバーライドする場合は、必ずその中で
+            parent::__construct($request, $response, $invokeArgs)
+            をコールするようにしましょう。
+        </p>
+<p>
+            初期化作業をカスタマイズするには、コンストラクタをオーバーライドするよりも
+            init() メソッドを使うほうがお勧めです。これは、__construct()
+            の中で最後にコールされます。たとえば、
+            初期化時にデータベースに接続したいなら次のようにします。
+        </p>
+<pre class="programlisting">
+class FooController extends Zend_Controller_Action
+{
+    public function init()
+    {
+        $this-&gt;db = Zend_Db::factory('Pdo_Mysql', array(
+            'host'     =&gt; 'myhost',
+            'username' =&gt; 'user',
+            'password' =&gt; 'XXXXXXX',
+            'dbname'   =&gt; 'website'
+        ));
+    }
+}
+</pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.prepostdispatch"></a>7.5.3. ディスパッチ前後のフック</h3></div></div></div>
+<p>
+            Zend_Controller_Action には、
+            リクエストされたアクションの前後にコールされるふたつのメソッドがあります。それが
+            preDispatch() と postDispatch() です。
+            これらはさまざまな場面で活用できます。
+            たとえばアクションを実行する前に認証情報や ACL
+            を調べたり (preDispatch() の中で _forward() をコールすると、
+            そのアクションの処理は飛ばされます)、
+            作成したコンテンツを (postDispatch() で)
+            全サイト共通のテンプレートに配置したりといったことが考えられます。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.accessors"></a>7.5.4. アクセス用メソッド</h3></div></div></div>
+<p>
+            さまざまなオブジェクトや変数がオブジェクトに登録されており、
+            それぞれにアクセス用メソッドが用意されています。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                <span class="emphasis"><em>リクエストオブジェクト</em></span>:
+                getRequest() を使用してリクエストオブジェクトを取得し、
+                それを用いてアクションをコールします。
+            </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>レスポンスオブジェクト</em></span>:
+                    getResponse() を使用して、最終的なレスポンスの内容を取得します。
+                    典型的な使用法は、このようになります。
+                </p>
+<pre class="programlisting">
+$this-&gt;getResponse()-&gt;setHeader('Content-Type', 'text/xml');
+$this-&gt;getResponse()-&gt;appendBody($content);
+</pre>
+</li>
+<li><p>
+                    <span class="emphasis"><em>起動時引数</em></span>:
+                    フロントコントローラは、パラメータを
+                    ルータやディスパッチャそしてアクションコントローラに送ります。
+                    これらのパラメータを取得するには、
+                    getInvokeArg($key) を使用します。あるいは、
+                    すべてのパラメータを取得するには
+                    getInvokeArgs() を使用します。
+                </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>リクエストパラメータ</em></span>:
+                    リクエストオブジェクトは、_GET や _POST
+                    のようなリクエストパラメータのほかに
+                    URL のパスで指定したパラメータも収集します。
+                    これらを取得するには、_getParam($key) あるいは
+                    _getAllParams() を使用します。
+                    _setParam() を使用して、リクエストパラメータを設定することもできます。
+                    これは、さらに別のアクションに転送する際などに有用です。
+                </p>
+<p>
+                    パラメータが存在するかどうかを調べる
+                    (条件分岐の際に使用します) には、
+                    _hasParam($key) を使用します。
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.utilmethods"></a>7.5.5. ユーティリティメソッド</h3></div></div></div>
+<p>
+            アクセス用メソッド以外にも、Zend_Controller_Action
+            にはいくつかのユーティリティメソッドが用意されています。
+            これらを使用して、アクションメソッド
+            (あるいはディスパッチ前後のフックメソッド)
+            でのさまざまな作業を行います。
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <span class="emphasis"><em>_forward($action, $controller = null, $module =
+                        null, array $params = null)</em></span>: 
+                    別のアクションを実行します。preDispatch() の中でコールすると、
+                    リクエストされていたアクションは飛ばされ、
+                    新しいアクションを実行します。それ以外の場合は、
+                    現在のアクションの処理を済ませた後で
+                    _forward() で指定したアクションを実行します。
+                </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>_redirect($url, $code = 302)</em></span>:
+                    別の場所にリダイレクトします。このメソッドには、URL
+                    のほかにオプションで HTTP 状態コードを指定します。
+                    リダイレクトはその場ですぐ行われ、プログラムの実行はそこで停止します。
+                </p>
+<p>
+                    状態コードを指定した場合は、リダイレクト時に
+                    PHP の header() コマンドでコードが使用されます。
+                </p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.providedsubclasses.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.plugins.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.4. 提供されるサブクラス群 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 7.6. プラグイン</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

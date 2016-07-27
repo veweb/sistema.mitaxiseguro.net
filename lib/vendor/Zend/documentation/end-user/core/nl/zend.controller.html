@@ -1,0 +1,625 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Hoofdstuk 7. Zend_Controller</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="prev" href="zend.console.getopt.configuration.html" title="6.4. Configuring Zend_Console_Getopt">
+<link rel="next" href="zend.controller.getting-started.html" title="7.2. Om te beginnen">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="section" href="zend.controller.html#zend.controller.overview" title="7.1. Overview">
+<link rel="section" href="zend.controller.getting-started.html" title="7.2. Om te beginnen">
+<link rel="section" href="zend.controller.subclassing.html" title="7.3. Onderklassen">
+<link rel="section" href="zend.controller.providedsubclasses.html" title="7.4. Provided Subclasses">
+<link rel="section" href="zend.controller.action.html" title="7.5. Action Controllers">
+<link rel="section" href="zend.controller.plugins.html" title="7.6. Plugins">
+<link rel="section" href="zend.controller.modular.html" title="7.7. Using a Conventional Modular Directory Structure">
+<link rel="section" href="zend.controller.exceptions.html" title="7.8. MVC Exceptions">
+<link rel="section" href="zend.controller.migration.html" title="7.9. Migrating from Previous Versions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Hoofdstuk 7. Zend_Controller</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.console.getopt.configuration.html">Terug</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.getting-started.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="nl">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.controller"></a>Hoofdstuk 7. Zend_Controller</h2></div></div></div>
+<div class="toc">
+<p><b>Inhoudsopgave</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.controller.html#zend.controller.overview">7.1. Overview</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.introduction">7.1.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.request">7.1.2. Request Object</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.routing-process">7.1.3. Route Process</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.dispatching">7.1.4. Dispatch Process</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.response">7.1.5. Response Object</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.getting-started.html">7.2. Om te beginnen</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.introduction">7.2.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration">7.2.2. Server Configuratie</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap">7.2.3. Bootstrap Bestand</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure">7.2.4. Mappenstructuur</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.overview.indexcontroller">7.2.5. IndexController</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.subclassing.html">7.3. Onderklassen</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.introduction">7.3.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.conventions">7.3.2. Overeenkomsten</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.router.interface">7.3.3. Router Interface</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.dispatcher.interface">7.3.4. Dispatcher Interface</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.providedsubclasses.html">7.4. Provided Subclasses</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.introduction">7.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.request.http">7.4.2. Zend_Controller_Request_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter">7.4.3. Zend_Controller_RewriteRouter</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.http">7.4.4. Zend_Controller_Response_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.cli">7.4.5. Zend_Controller_Response_Cli</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.action.html">7.5. Action Controllers</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.introduction">7.5.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.initialization">7.5.2. Object initialization</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.prepostdispatch">7.5.3. Pre- and Post-Dispatch Hooks</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.accessors">7.5.4. Accessors</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.utilmethods">7.5.5. Utility Methods</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.plugins.html">7.6. Plugins</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.introduction">7.6.1. Inleiding</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.controller.modular.html">7.7. Using a Conventional Modular Directory Structure</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.introduction">7.7.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.directories">7.7.2. Specifying Module Controller Directories</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.router">7.7.3. Routing to modules</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.defaultcontroller">7.7.4. Module or Global Default Controller</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.exceptions.html">7.8. MVC Exceptions</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.introduction">7.8.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.handling">7.8.2. How can you handle exceptions?</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.internal">7.8.3. MVC Exceptions You May Encounter</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.migration.html">7.9. Migrating from Previous Versions</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerotwo">7.9.1. Migrating from 0.2.0 or before to 0.6.0</a></span></dt></dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.overview"></a>7.1. Overview</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.introduction"></a>7.1.1. Introduction</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller</code> provides the foundation for building a
+            website based on the Model-View-Controller (MVC) pattern.
+		</p>
+<p>
+            The <code class="code">Zend_Controller</code> system is designed to be
+            lightweight, modular, and extensible.  It is a minimalist design to
+            permit flexibility and some freedom to users while providing enough
+            structure so that systems built around <code class="code">Zend_Controller</code>
+            share some common conventions and similar code layout.
+		</p>
+<p>
+            The <code class="code">Zend_Controller</code> workflow is implemented by several
+            components.  While it is not necessary to completely understand the
+            underpinnings of all of these components to use the system, having a
+            working knowledge of the process is helpful.
+
+			</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+						<code class="code">Zend_Controller_Front</code>
+                        orchestrates the entire workflow of the
+                        <code class="code">Zend_Controller</code> system.  It is an
+                        interpretation of the FrontController pattern.
+                        <code class="code">Zend_Controller_Front</code> processes all
+                        requests received by the server and is ultimately
+                        responsible for delegating requests to ActionControllers
+                        (<code class="code">Zend_Controller_Action</code>).
+					</p></li>
+<li>
+<p>
+                        <code class="code">Zend_Controller_Request_Abstract</code> represents
+                        the request environment and provides methods for setting
+                        and retrieving the controller and action names and any
+                        request parameters. Additionally it keeps track of
+                        whether or not the action it contains has been
+                        dispatched by <code class="code">Zend_Controller_Dispatcher</code>.
+                        Extensions to the abstract request object can be used to
+                        encapsulate the entire request environment, allowing
+                        routers to pull information from the request environment
+                        in order to set the controller and action names.
+					</p>
+<p>
+                        By default, <code class="code">Zend_Controller_Request_Http</code> is
+                        used, which provides access to the entire HTTP request
+                        environment.
+                    </p>
+</li>
+<li>
+<p>
+                        <code class="code">Zend_Controller_Router_Interface</code> is used to
+                        define routers.  Routing is the process of examining the
+                        request environment to determine which  to determine
+                        which controller, and action of that controller, should
+                        receive the request.  This controller, action, and
+                        optional parameters are then set in the request object
+                        to be processed by <code class="code">Zend_Controller_Dispatcher</code>.  
+                        Routing occurs only once: when the request is initially
+                        received and before the first controller is dispatched.
+                    </p>
+<p>
+                        The default router, <code class="code">Zend_Controller_Router</code>,
+                        takes a URI endpoint as specified in
+                        <code class="code">Zend_Controller_Request_Http</code> and decomposes
+                        it into a controller, action, and parameters based on
+                        the path information in the url. As an example, the URL
+                        <code class="code">http://localhost/foo/bar/key/value</code> would be
+                        decoded to use the <code class="code">foo</code> controller,
+                        <code class="code">bar</code> action, and specify a parameter
+                        <code class="code">key</code> with a value of <code class="code">value</code>.
+					</p>
+</li>
+<li>
+<p>
+                        <code class="code">Zend_Controller_Dispatcher_Interface</code> is
+                        used to define dispatchers.
+                        Dispatching is the process of pulling the controller and
+                        action from the request object and mapping them to a
+                        controller file/class and action method in the controller
+                        class. If the controller or action do not exist, it
+                        handles determining default controllers and actions to
+                        dispatch.
+                    </p>
+<p>
+                        The actual dispatching process consists of instantiating
+                        the controller class and calling the action method in
+                        that class. Unlike routing, which occurs only once,
+                        dispatching occurs in a loop. If the request object's
+                        dispatched status is reset at any point, the loop will
+                        be repeated, calling whatever action is currently set
+                        in the request object. The first time the loop finishes
+                        with the request object's dispatched status set (boolean
+                        true), it will finish processing.
+                    </p>
+<p>
+                        The default dispatcher is
+                        <code class="code">Zend_Controller_Dispatcher</code>. It defines
+                        controllers as CamelCasedClasses ending in the word
+                        Controller, and action methods as camelCasedMethods
+                        ending in the word Action:
+                        <code class="code">SomeFooController::barAction</code>. In this case,
+                        the controller would be referred to as
+                        <code class="code">somefoo</code> and the action as <code class="code">bar</code>.
+					</p>
+<p>
+                        Additionally, you can specify a <code class="code">module</code> to
+                        use when loading a controller. A module is merely used
+                        to specify a subdirectory and/or class prefix to use
+                        when loading the controller. Most simply, you specify
+                        the module when setting the controller directories:
+                    </p>
+<pre class="programlisting">
+$front-&gt;setControllerDirectory(array(
+    'default' =&gt; '/path/to/controllers',
+    'user'    =&gt; '/path/to/controllers/user',
+    'admin'   =&gt; '/path/to/controllers/admin'
+));
+</pre>
+<p>
+                        In the above example, if the module 'user' is specified
+                        with the controller 'news', it will look for 
+                        <code class="code">NewsController.php</code> in
+                        <code class="code">/path/to/controllers/user</code> first, before
+                        looking in the other paths. Additionally, it will first
+                        assume that the class is called
+                        <code class="code">User_NewsController</code>, and then
+                        <code class="code">NewsController</code>. A request for such a
+                        resource would look like
+                        <code class="code">http://localhost/news/action/module/user</code>
+                        using the default router, and
+                        <code class="code">http://localhost/module/news/action</code> using
+                        the RewriteRouter.
+                    </p>
+<p>
+                        Modules are useful when you wish to segregate code into
+                        related subdirectories, use third party code, or re-use
+                        the same controller library in different applications.
+                    </p>
+</li>
+<li><p>
+                        <code class="code">Zend_Controller_Action</code> is the base
+                        controller component.  Each controller is a single class
+                        that extends the <code class="code">Zend_Controller_Action
+                        class</code>, and this class has action methods.
+					</p></li>
+<li>
+<p>
+                        <code class="code">Zend_Controller_Response_Abstract</code> defines a
+                        base response class used to collect and return responses
+                        from the action controllers. It collects both headers
+                        and body content, and, because it implements
+                        <code class="code">__toString()</code>, can be directly echoed in
+                        order to send all headers and content at once.
+                    </p>
+<p>
+                        The default response class is
+                        <code class="code">Zend_Controller_Response_Http</code>, which is
+                        suitable for use in an HTTP environment.
+                    </p>
+</li>
+</ul></div>
+<p>
+
+            The workflow of <code class="code">Zend_Controller</code> is relatively simple.
+            A request is received by <code class="code">Zend_Controller_Front</code>, which
+            in turn calls <code class="code">Zend_Controller_Router</code> to determine which
+            controller (and action in that controller) to dispatch.
+            <code class="code">Zend_Controller_Router</code> decomposes the URI in order to
+            set the controller and action names in the request.
+            <code class="code">Zend_Controller_Front</code> then enters a dispatch loop.  It
+            calls <code class="code">Zend_Controller_Dispatcher</code>, passing it the
+            request, to dispatch to the controller and action specified in the
+            request (or use defaults).  After the controller has finished,
+            control returns to <code class="code">Zend_Controller_Front</code>.  If the
+            controller has indicated that another controller should be
+            dispatched by resetting the dispatched status of the request, the
+            loop continues and another dispatch is performed.  Otherwise, the
+            process ends.
+		</p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.request"></a>7.1.2. Request Object</h3></div></div></div>
+<p>
+            The request object is a simple value object that is passed between
+            <code class="code">Zend_Controller_Front</code> and the router, dispatcher, and
+            controller classes.  It packages a definition of a controller, an
+            action, and parameters to be passed to the action, as well as the
+            rest of the request environment, be it HTTP, the CLI, or PHP-GTK.
+		</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                The controller name is accessed by
+                <code class="code">getControllerName()</code> and
+                <code class="code">setControllerName()</code>.
+			</p></li>
+<li><p>
+                The name of the action to call within that controller is
+                accessed by <code class="code">getActionName()</code> and
+                <code class="code">setActionName()</code>.
+			</p></li>
+<li><p>
+                Parameters to be passed to that action are an associative array
+                of key/value pairs that are accessed by <code class="code">getParams()</code>
+                and <code class="code">setParams()</code>, or individually by
+                <code class="code">getParam()</code> and <code class="code">setParam()</code>.
+			</p></li>
+</ul></div>
+<p>
+            Based on the type of request, there may be more methods available.
+            The default request used, <code class="code">Zend_Controller_Request_Http</code>,
+            for instance, has methods for retrieving the request URI, path
+            information, $_GET and $_POST parameters, etc.
+        </p>
+<p>
+            The request object is passed to the front controller, or if none is
+            provided, instantiated at the beginning of the dispatch process,
+            before routing occurs. It is passed through to every object in the
+            dispatch chain.
+        </p>
+<p>
+            Additionally, the request object is particularly useful in testing.
+            The developer may craft the request environment, including
+            controller, action, parameters, URI, etc, and pass the request
+            object to the front controller to test application flow. When paired
+            with the response object, elaborate and precise unit testing of
+            MVC applications becomes possible.
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.routing-process"></a>7.1.3. Route Process</h3></div></div></div>
+<p>
+            Before your first controller can be built, you need to understand
+            how the routing process works as it is implemented in
+            <code class="code">Zend_Controller_Router</code>.  Remember that the workflow is
+            divided into routing, which occurs only once, and dispatching, which
+            occurs thereafter in a loop.
+		</p>
+<p>
+            <code class="code">Zend_Controller_Front</code> calls
+            <code class="code">Zend_Controller_Router</code> (or another registered router)
+            to map a URI to a controller -- and an action within that
+            controller.  <code class="code">Zend_Controller_Router</code> retrieves the URI
+            from the request object and decomposes it to determine the
+            controller, action, and any other URL parameters passed in the path
+            and sets these in the request object. 
+		</p>
+<p>
+            <code class="code">Zend_Controller_Router</code> uses a very simple mapping to
+            determine the name of the controller and the name of the action
+            within that controller:
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/controller/action/
+        </pre>
+<p>
+            Notice above that the first segment is always the name of the
+            controller and the second segment is always the name of the action.
+		</p>
+<p>
+            Optionally, parameters may be defined in the URI that will be passed
+            to the controller.  These take the form of key/value pairs:
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/controller/action/key1/value1/
+        </pre>
+<p>
+            If either the controller or action are missing from the URI path,
+            <code class="code">Zend_Controller_Dispatcher</code> will try and grab the value
+            from the request object's parameters, and, if not found, use default
+            values. In both cases, the default values are "<code class="code">index</code>".
+            These examples illustrate:
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/roadmap/future/
+Controller: roadmap
+Action    : future
+
+http://framework.zend.com/roadmap/
+Controller: roadmap
+Action    : index
+
+http://framework.zend.com/
+Controller: index
+Action    : index
+        </pre>
+<p>
+            Additionally, you can specify controllers in subdirectories or
+            modules through several means:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    Controller names that have a hyphen (-) or underscore (_)
+                    can be used. As an example,
+                    <code class="code">http://framework.zend.com/admin-roadmap/future</code>
+                    would map to the Admin_RoadmapController controller class.
+                </p></li>
+<li>
+<p>
+                    By setting the <code class="code">useModules</code> parameter in the front
+                    controller, you can map to subdirectories using clean URIs.
+                    The previous example URL would read
+                    <code class="code">http://framework.zend.com/admin/roadmap/future</code>.
+                    To do so, set the <code class="code">useModules</code> parameter in the
+                    front controller or the router:
+                </p>
+<pre class="programlisting">
+$front-&gt;setParam('useModules', true);
+// or
+$router-&gt;setParam('useModules', true);
+</pre>
+<p>
+                    This will work for both the basic router as well as the
+                    RewriteRouter.
+                </p>
+</li>
+</ul></div>
+<div class="note"><table border="0" summary="Note: Flexibility">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Flexibility</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                If you want more flexible capabilities, you may want to check out
+                <a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter" title="7.4.3. Zend_Controller_RewriteRouter">Paragraaf 7.4.3, “Zend_Controller_RewriteRouter”</a>.
+            </p></td></tr>
+</table></div>
+<p>
+            The controller name, the action name within that controller, and any
+            optional parameters (including the module) are set in the request
+            object.  When <code class="code">Zend_Controller_Front</code> enters the dispatch
+            loop, the request object will be passed to
+            <code class="code">Zend_Controller_Dispatcher</code>.
+		</p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.dispatching"></a>7.1.4. Dispatch Process</h3></div></div></div>
+<p>
+            Dispatching is the process of taking the request object,
+            <code class="code">Zend_Controller_Request_Abstract</code>, extracting the
+            controller name, action name, and optional parameters contained in it,
+            and then instantiating a controller and calling an action of that
+            controller. If no controller or action are found, it will use
+            default values for them. <code class="code">Zend_Controller_Dispatcher</code>
+            specifies <code class="code">index</code> for each of these defaults, but allows
+            the developer to change them using the
+            <code class="code">setDefaultController()</code> and
+            <code class="code">setDefaultAction()</code> methods.
+		</p>
+<p>
+            Dispatching happens in a loop in the front controller. Before
+            dispatching occurs, the front controller routes the request to find
+            user specified values for the controller, action, and optional
+            parameters. It then enters a dispatch loop, dispatching the request.
+        </p>
+<p>
+            At the beginning of each iteration, it sets a flag in the request
+            object indicating that the action has been dispatched. If an action
+            or pre/postDispatch plugin resets that flag, the dispatch loop will
+            continue and attempt to dispatch the request again. By changing the
+            controller and/or action in the request and resetting the dispatched
+            flag, the developer may define a chain of requests to perform.
+        </p>
+<p>
+            The action controller method that controlls such dispatching is
+            <code class="code">_forward()</code>; call this method from any of the
+            pre/postDispatch() or action methods, providing a controller,
+            action, and optionally any additional parameters you may wish to
+            send to the new action:
+        </p>
+<pre class="programlisting">
+public function myAction()
+{
+    // do some processing...
+    // forward to another action, FooController::barAction():
+    $this-&gt;_forward('foo', 'bar', array('baz' =&gt; 'bogus'));
+}
+</pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.response"></a>7.1.5. Response Object</h3></div></div></div>
+<p>
+            The response object is the logical pair to the request object. Its
+            purpose is to collate content and/or headers so that they may be
+            returned en masse. Additionally, the front controller will pass any
+            caught exceptions to the response object, allowing the developer to
+            gracefully handle exceptions. This functionality may be overridden
+            by setting
+            <code class="code">Zend_Controller_Front::throwExceptions(true)</code>:
+        </p>
+<pre class="programlisting">
+$front-&gt;throwExceptions(true);
+</pre>
+<p>
+            Since the response object implements <code class="code">__toString()</code>, it
+            may be safely echoed. This allows for the following usage:
+        </p>
+<pre class="programlisting">
+echo $controller-&gt;getResponse();
+
+// or
+$response = $controller-&gt;getResponse();
+echo $response;
+</pre>
+<p>
+            Developers should make use of the response object in their action
+            controllers. Instead of directly rendering output and sending
+            headers, push them to the response object:
+        </p>
+<pre class="programlisting">
+// Within an action controller action:
+// Set a header
+$this-&gt;getResponse()
+    -&gt;setHeader('Content-Type', 'text/html')
+    -&gt;appendBody($content);
+</pre>
+<p>
+            By doing this, all headers get sent at once, just prior to
+            displaying the content.
+        </p>
+<p>
+            Should an exception occur in an application, check the
+            response object's <code class="code">isException()</code> flag, and retrieve the
+            exception using <code class="code">getException()</code>. Additionally, one
+            may create custom response objects that redirect to error pages, log
+            exception messages, do pretty formatting of exception messages (for
+            development environments), etc.
+        </p>
+<p>
+            You may retrieve the response object following the front controller
+            dispatch(), or request the front controller to return the response
+            object instead of rendering output.
+        </p>
+<pre class="programlisting">
+// retrieve post-dispatch:
+$front-&gt;dispatch();
+$response = $front-&gt;getResponse();
+if ($response-&gt;isException()) {
+    // log, mail, etc...
+}
+
+// Or, have the front controller dispatch() process return it
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+
+// do some processing...
+
+// finally, echo the response
+echo $response;
+</pre>
+<p>
+            By default, exception messages are not displayed. This behaviour may
+            be overridden by calling <code class="code">renderExceptions()</code>, or enabling
+            the front controller to throwExceptions(), as shown above:
+        </p>
+<pre class="programlisting">
+$response-&gt;renderExceptions(true);
+$front-&gt;dispatch($request, $response);
+
+// or:
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+$response-&gt;renderExceptions();
+echo $response;
+
+// or:
+$front-&gt;throwExceptions(true);
+$front-&gt;dispatch();
+</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.console.getopt.configuration.html">Terug</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.getting-started.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">6.4. Configuring Zend_Console_Getopt </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 7.2. Om te beginnen</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

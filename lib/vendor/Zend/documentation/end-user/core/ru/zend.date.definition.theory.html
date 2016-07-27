@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>8.3. Theory of Operation</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="prev" href="zend.date.basic.html" title="8.2. Basic Methods">
+<link rel="next" href="zend.date.overview.html" title="8.4. Zend_Date API Overview">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.date.definition.theory.html#zend.date.theory.internals" title="8.3.1. Internals">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">8.3. Theory of Operation</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.date.basic.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 8. Zend_Date</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.date.overview.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.date.definition.theory"></a>8.3. Theory of Operation</h2></div></div></div>
+<p>
+        Why is there only one class <code class="code">Zend_Date</code> for handling dates and times in the Zend Framework?
+    </p>
+<p>
+        Many languages split the handling of times and calendar dates into two classes. However, the Zend Framework
+        strives for extreme simplicity, and forcing the developer to manage different objects with different methods for
+        times and dates becomes a burden in many situations. Since <code class="code">Zend_Date</code> methods support working with
+        ambiguous dates that might not include all parts (era, year, month, day, hour, minute, second, timezone),
+        developers enjoy the flexibility and ease of using the same class and the same methods to perform the same
+        manipulations (e.g. addition, subtraction, comparision, merging of date parts, etc.). Splitting the handling of
+        these date fragments into multiple classes would create complications when smooth interoperation is desired with
+        a small learning curve. A single class reduces code duplication for similar operations, without the need for a
+        complex inheritance hierarchy.
+    </p>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.theory.internals"></a>8.3.1. Internals</h3></div></div></div>
+<p>
+            </p>
+<div class="itemizedlist"><ul type="opencircle">
+<li style="list-style-type: circle">
+<p>
+                        UNIX Timestamp
+                    </p>
+<p>
+                        All dates and times, even ambiguous ones (e.g. no year), are represented internally as absolute
+                        moments in time, represented as a UNIX timestamp expressing the difference between the desired
+                        time and January 1st, 1970 00:00:00 GMT/UTC. This was only possible, because
+                        <code class="code">Zend_Date</code> is not limited to UNIX timestamps nor integer values. The BCMath
+                        extension is required to support extremely large dates outside of the range Fri, 13 Dec 1901
+                        20:45:54 GMT to Tue, 19 Jan 2038 03:14:07 GMT.
+                    </p>
+</li>
+<li style="list-style-type: circle">
+<p>
+                        Date parts as timestamp offsets
+                    </p>
+<p>
+                        Thus, an instance object representing three hours would be expressed as three hours after
+                        January 1st, 1970 00:00:00 GMT/UTC -i.e. 0 + 3 * 60 * 60 = 10800.
+                    </p>
+</li>
+<li style="list-style-type: circle">
+<p>
+                        PHP functions
+                    </p>
+<p>
+                        Where possible, <code class="code">Zend_Date</code> usually uses PHP functions to improve performance.
+                    </p>
+</li>
+</ul></div>
+<p>
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.date.basic.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.date.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.date.overview.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">8.2. Basic Methods </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 8.4. Zend_Date API Overview</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

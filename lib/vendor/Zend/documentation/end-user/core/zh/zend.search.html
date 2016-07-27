@@ -1,0 +1,296 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第 22 章 Zend_Search</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="index.html" title="Zend Framework手册 中文版">
+<link rel="prev" href="zend.rest.server.html" title="21.3. Zend_Rest_Server">
+<link rel="next" href="zend.search.index-creation.html" title="22.2. 建立索引">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="section" href="zend.search.html#zend.search.overview" title="22.1. 概述">
+<link rel="section" href="zend.search.index-creation.html" title="22.2. 建立索引">
+<link rel="section" href="zend.search.searching.html" title="22.3. 搜索索引">
+<link rel="section" href="zend.search.query-language.html" title="22.4. Query Language">
+<link rel="section" href="zend.search.queries.html" title="22.5. 查询类型">
+<link rel="section" href="zend.search.charset.html" title="22.6. 字符集">
+<link rel="section" href="zend.search.extending.html" title="22.7. 扩展性">
+<link rel="section" href="zend.search.java-lucene.html" title="22.8. 与 Java Lucene 的互操作性">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第 22 章 Zend_Search</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.rest.server.html">上一页</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.index-creation.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.search"></a>第 22 章 Zend_Search</h2></div></div></div>
+<div class="toc">
+<p><b>目录</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.search.html#zend.search.overview">22.1. 概述</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.introduction">22.1.1. 简介</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.documents-and-fields">22.1.2. 文档和字段对象</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.understanding-field-types">22.1.3. 理解字段类型</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.index-creation.html">22.2. 建立索引</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.creating">22.2.1. 创建新索引</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.updating">22.2.2. 更新索引</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.searching.html">22.3. 搜索索引</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.query-parser">22.3.1. 建立查询</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results">22.3.2. 搜索结果</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results-scoring">22.3.3. 结果评分</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.query-language.html">22.4. Query Language</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.terms">22.4.1. Terms</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.fields">22.4.2. Fields</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.modifiers">22.4.3. Term Modifiers</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.proximity-search">22.4.4. Proximity Searches</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boosting">22.4.5. Boosting a Term</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boolean">22.4.6. Boolean Operators</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.grouping">22.4.7. Grouping</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.field-grouping">22.4.8. Field Grouping</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.escaping">22.4.9. Escaping Special Characters</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.queries.html">22.5. 查询类型</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.term-query">22.5.1. 单项查询</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.multiterm-query">22.5.2. 多项查询</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.phrase-query">22.5.3. 短语查询</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.charset.html">22.6. 字符集</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.description">22.6.1.  UTF-8 和单字节字符集支持</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.search.extending.html">22.7. 扩展性</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.analysis">22.7.1. 文本分析</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.scoring">22.7.2.  评分算法</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.storage">22.7.3. 存储容器</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.java-lucene.html">22.8. 与 Java Lucene 的互操作性</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.file-formats">22.8.1. 文件格式</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.index-directory">22.8.2. 索引目录</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.source-code">22.8.3. Java 源代码</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.jar">22.8.4. 使用 LuceneIndexCreation.jar</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.overview"></a>22.1. 概述</h2></div></div></div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.introduction"></a>22.1.1. 简介</h3></div></div></div>
+<p>
+            Zend_Search_Lucene 是一个完全由 PHP 5 编写的通用文本搜索引擎。由于其将索引保存在文件系统中而不需要数据库支持，因此它几乎可以为任何由 PHP 驱动的网站增加搜索能力。Zend_Search_Lucene 支持下列特性：
+            
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>具有排名功能的搜索——最符合要求的结果出现在最前面</p></li>
+<li><p>
+                       许多强大的查询类型：短语查询、通配符查询、近似查询、范围查询等
+                        <sup>[<a name="id4805780" href="#ftn.id4805780">6</a>]</sup>
+                    </p></li>
+<li><p>搜索特定的字段，如标题、作者、内容，等等</p></li>
+</ul></div>
+<p>
+        
+            Zend_Search_Lucene 来源于 Apache Lucene project。要了解关于 Lucene 的更多详情，请访问
+            <a href="http://lucene.apache.org/java/docs/" target="_top">http://lucene.apache.org/java/docs/</a>。
+        </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.documents-and-fields"></a>22.1.2. 文档和字段对象</h3></div></div></div>
+<p>
+                Zend_Search_Lucene 把文档最为基本的索引主题。而文档(document)又分为若干被命名的字段(field)，字段中包含可供搜索的内容。
+            </p>
+<p>
+                一个文档被表现为 Zend_Search_Lucene_Document 对象，这个对象包含了若干 Zend_Search_Lucene_Field 对象，用以表现相应的字段。
+            </p>
+<p>
+                需要特别说明的是任意类型的信息都可以被加入索引中。应用程序描述信息或者元信息(metadata)可以被保存在文档字段中，并在搜索过程中与文档一起被检索。
+            </p>
+<p>
+                控制这些索引是你的应用程序的责任。这意味着任意你的应用程序可以访问的数据来源都可以进行索引。例如，这些数据可以来自于文件系统、数据库或者是 HTML 表单，等等。
+            </p>
+<p>
+                <code class="code">Zend_Search_Lucene_Field</code> 类提供了一些静态方法用以创建具有不同特点的字段：
+            </p>
+<pre class="programlisting">&lt;?php
+$doc = new Zend_Search_Lucene_Document();
+
+// Field is not tokenized, but is indexed and stored within the index.
+// Stored fields can be retrived from the index.
+$doc-&gt;addField(Zend_Search_Lucene_Field::Keyword('doctype', 
+                                                 'autogenerated'));
+
+// Field is not tokenized nor indexed, but is stored in the index.
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnIndexed('created', 
+                                                   time()));
+
+// Binary String valued Field that is not tokenized nor indexed,
+// but is stored in the index.
+$doc-&gt;addField(Zend_Search_Lucene_Field::Binary('icon', 
+                                                $iconData));
+
+// Field is tokenized and indexed, and is stored in the index.
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('annotation', 
+                                              'Document annotation text'));
+
+// Field is tokenized and indexed, but that is not stored in the index.
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', 
+                                                  'My document content'));
+
+?&gt;</pre>
+<p>
+                你可以按照自己的需要给字段命名。名为“contents”的字段缺省的用于搜索。因此，将主要的文档内容放在这个字段中会是个好主意。
+            </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.understanding-field-types"></a>22.1.3. 理解字段类型</h3></div></div></div>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">Keyword</code> 关键词字段是被保存和被索引的，意思是它们既可以被搜索，也可以在搜索结果中被显示。它们并没有以记号化的方式拆分为多个不同的词。在 Zend_Search_Lucene 中，枚举形的数据库字段通常可以很好的转化为关键词字段。
+                </p></li>
+<li><p>
+                    <code class="code">UnIndexed</code> 不索引字段是不可搜索的，但是它们会在搜索结果中返回用于生成点击信息。数据库的时间戳、主键、文件系统的路径、以及其它标识是不索引字段的好的候选人。
+                </p></li>
+<li><p>
+                    <code class="code">Binary</code> 二进制字段是不记号化和不被索引的，但是被保存以供生成点击信息。它们可以用于保存任何以二进制方式编码的信息，例如图标等等。
+                </p></li>
+<li><p>
+                    <code class="code">Text</code> 文本字段是被保存的、被索引的和记号化的。文本字段适合用于保存像是主题、标题这样既能被搜索又能作为搜索结果返回的信息。
+                </p></li>
+<li>
+<p>
+                    <code class="code">UnStored</code> 不保存字段是记号化和被索引的，但并不保存在索引中。大量的文本信息最好使用这种字段类型。保存的数据在硬盘上创建了大量的索引，如果你需要搜索而不需要在搜索结果中显示这些数据，就使用不保存字段。当结合使用 Zend_Search_Lucene 索引和关系数据库时最适合使用不保存字段。你通过不保存字段索引大量数据用于搜索，并通过作为标识的特定字段从你的关系数据库中获取它们。
+    		   </p>
+<div class="table">
+<a name="id4806840"></a><p class="title"><b>表 22.1. Zend_Search_Lucene_Field 类型</b></p>
+<table summary="Zend_Search_Lucene_Field 类型" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>字段类型</th>
+<th>保存</th>
+<th>索引</th>
+<th>记号化</th>
+<th>二进制</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Keyword</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+<td>否</td>
+</tr>
+<tr>
+<td>UnIndexed</td>
+<td>是</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+</tr>
+<tr>
+<td>Binary</td>
+<td>是</td>
+<td>否</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>UnStored</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4805780" href="#id4805780">6</a>] </sup>
+                             目前只支持单项和多项查询。
+                           </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.rest.server.html">上一页</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.index-creation.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">21.3. Zend_Rest_Server </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 22.2. 建立索引</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,1448 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>プログラマ向けリファレンスガイド</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="next" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">プログラマ向けリファレンスガイド</th></tr>
+<tr>
+<td width="20%" align="left"> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="book" lang="ja">
+<div class="titlepage">
+<div>
+<div><h1 class="title">
+<a name="manual"></a>プログラマ向けリファレンスガイド</h1></div>
+<div><h2 class="subtitle">Zend Framework</h2></div>
+<div><p class="copyright">製作著作 © 2005-2007 
+                Zend Technologies Inc.
+                (<a href="http://www.zend.com" target="_top">http://www.zend.com</a>)
+            </p></div>
+<div><p class="pubdate">2007-02-21</p></div>
+</div>
+<hr>
+</div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="chapter"><a href="zend.html">1. Zend</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.html#zend.introduction">1.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.loadfile.html">1.2. Zend::loadFile()</a></span></dt>
+<dt><span class="sect1"><a href="zend.loadclass.html">1.3. Zend::loadClass()</a></span></dt>
+<dt><span class="sect1"><a href="zend.isreadable.html">1.4. Zend::isReadable()</a></span></dt>
+<dt><span class="sect1"><a href="zend.exception.html">1.5. Zend::exception()</a></span></dt>
+<dt><span class="sect1"><a href="zend.dump.html">1.6. Zend::dump()</a></span></dt>
+<dt><span class="sect1"><a href="zend.register.html">1.7. Zend::register($index, $newval)</a></span></dt>
+<dt><span class="sect1"><a href="zend.registry.html">1.8. Zend::registry($index = null)</a></span></dt>
+<dt><span class="sect1"><a href="zend.initregistry.html">1.9. Zend::initRegistry($registry = 'Zend_Registry')</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.acl.html">2. Zend_Acl</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.acl.html#zend.acl.introduction">2.1. 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.resources">2.1.1. リソースについて</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.roles">2.1.2. ロールについて</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.creating">2.1.3. アクセス制御リスト (ACL) の作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.role_registry">2.1.4. ロールの登録</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.defining">2.1.5. アクセス制御の定義</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.html#zend.acl.introduction.querying">2.1.6. ACL への問い合わせ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.acl.refining.html">2.2. アクセス制御の洗練</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.refining.html#zend.acl.refining.precise">2.2.1. 的確なアクセス制御</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.refining.html#zend.acl.refining.removing">2.2.2. アクセス制御の削除</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.acl.advanced.html">2.3. 高度な使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.acl.advanced.html#zend.acl.advanced.storing">2.3.1. ACL データの保存による永続性の確保</a></span></dt>
+<dt><span class="sect2"><a href="zend.acl.advanced.html#zend.acl.advanced.assertions">2.3.2. アサーションを使用した条件付き ACL 規則の作成</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.auth.html">3. Zend_Auth</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.auth.html#zend.auth.introduction">3.1. 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.adapters">3.1.1. アダプタ</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.results">3.1.2. 結果</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.persistence">3.1.3. ID の永続性</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.html#zend.auth.introduction.using">3.1.4. Zend_Auth の使用法</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.auth.adapter.digest.html">3.2. ダイジェスト認証</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.introduction">3.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.specifics">3.2.2. 使用</a></span></dt>
+<dt><span class="sect2"><a href="zend.auth.adapter.digest.html#zend.auth.adapter.digest.identity">3.2.3. ID</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.cache.html">4. Zend_Cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.cache.html#zend.cache.introduction">4.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.cache.theory.html">4.2. キャッシュの仕組み</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.factory">4.2.1. <code class="code">Zend_Cache</code> ファクトリメソッド</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.tags">4.2.2. レコードのタグ付け</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.clean">4.2.3. キャッシュの削除</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.frontends.html">4.3. Zend_Cache のフロントエンド</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.core">4.3.1. Zend_Cache_Core</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.output">4.3.2. Zend_Cache_Frontend_Output</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.function">4.3.3. Zend_Cache_Frontend_Function</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.class">4.3.4. Zend_Cache_Frontend_Class</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.file">4.3.5. Zend_Cache_Frontend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.page">4.3.6. Zend_Cache_Frontend_Page</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.backends.html">4.4. Zend_Cache のバックエンド</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.file">4.4.1. Zend_Cache_Backend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.sqlite">4.4.2. Zend_Cache_Backend_Sqlite</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.memcached">4.4.3. Zend_Cache_Backend_Memcached</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.apc">4.4.4. Zend_Cache_Backend_APC</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.platform">4.4.5. Zend_Cache_Backend_ZendPlatform</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.config.html">5. Zend_Config</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.config.html#zend.config.introduction">5.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.theory_of_operation.html">5.2. 動作原理</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.adapters.ini.html">5.3. Zend_Config_Ini</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.adapters.xml.html">5.4. Zend_Config_Xml</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.console.getopt.html">6. Zend_Console_Getopt</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.console.getopt.html#zend.console.getopt.introduction">6.1. Getopt について</a></span></dt>
+<dt><span class="sect1"><a href="zend.console.getopt.rules.html">6.2. Getopt の規則の宣言</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.rules.html#zend.console.getopt.rules.short">6.2.1. 短い形式のオプションの宣言</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.rules.html#zend.console.getopt.rules.long">6.2.2. 長い形式のオプションの宣言</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.console.getopt.fetching.html">6.3. オプションおよび引数の取得</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.exceptions">6.3.1. Getopt の例外処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.byname">6.3.2. 名前によるオプションの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.reporting">6.3.3. オプションの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.remainingargs">6.3.4. 非オプション引数の取得</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.console.getopt.configuration.html">6.4. Zend_Console_Getopt の設定</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addrules">6.4.1. オプションの規則の追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addhelp">6.4.2. ヘルプメッセージの追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addaliases">6.4.3. オプションのエイリアスの追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addargs">6.4.4. 引数リストの追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.config">6.4.5. 設定の追加</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.controller.html">7. Zend_Controller</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.controller.html#zend.controller.overview">7.1. 概要</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.introduction">7.1.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.request">7.1.2. リクエストオブジェクト</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.routing-process">7.1.3. ルーティング処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.dispatching">7.1.4. ディスパッチ処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.html#zend.controller.overview.response">7.1.5. レスポンスオブジェクト</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.getting-started.html">7.2. さあ、はじめましょう</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.introduction">7.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration">7.2.2. サーバの設定</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap">7.2.3. 起動用ファイル</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure">7.2.4. ディレクトリ構造</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.getting-started.html#zend.controller.overview.defaultcontroller">7.2.5. デフォルトのコントローラ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.subclassing.html">7.3. サブクラス化</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.introduction">7.3.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.subclassing.conventions">7.3.2. 規約</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.front">7.3.3. フロントコントローラ</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.request.abstract">7.3.4. リクエストの抽象化</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.router.interface">7.3.5. ルータのインターフェイス</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.dispatcher.interface">7.3.6. ディスパッチャのインターフェイス</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.action">7.3.7. アクションコントローラ</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.subclassing.html#zend.controller.response.abstract">7.3.8. レスポンスオブジェクト</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.providedsubclasses.html">7.4. 提供されるサブクラス群</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.introduction">7.4.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.request.http">7.4.2. Zend_Controller_Request_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter">7.4.3. Zend_Controller_Router_Rewrite</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.http">7.4.4. Zend_Controller_Response_Http</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.cli">7.4.5. Zend_Controller_Response_Cli</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.action.html">7.5. アクションコントローラ</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.introduction">7.5.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.initialization">7.5.2. オブジェクトの初期化</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.prepostdispatch">7.5.3. ディスパッチ前後のフック</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.accessors">7.5.4. アクセス用メソッド</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.action.html#zend.controller.action.utilmethods">7.5.5. ユーティリティメソッド</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.plugins.html">7.6. プラグイン</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.introduction">7.6.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.writing">7.6.2. プラグインの書き方</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.plugins.html#zend.controller.plugins.using">7.6.3. プラグインの使用法</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.modular.html">7.7. モジュラーディレクトリ構造の規約の使用</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.introduction">7.7.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.directories">7.7.2. モジュールコントローラディレクトリの指定</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.router">7.7.3. モジュールへのルーティング</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.modular.html#zend.controller.modular.defaultcontroller">7.7.4. モジュールあるいはグローバルのデフォルトコントローラ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.exceptions.html">7.8. MVC での例外</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.introduction">7.8.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.handling">7.8.2. 例外を処理する方法は?</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.exceptions.html#zend.controller.exceptions.internal">7.8.3. MVC で遭遇するであろう例外</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.controller.migration.html">7.9. 以前のバージョンからの移行</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerosix">7.9.1. 0.6.0 から 0.8.0 への移行</a></span></dt>
+<dt><span class="sect2"><a href="zend.controller.migration.html#zend.controller.migration.fromzerotwo">7.9.2. 0.2.0 以前のバージョンから 0.6.0 への移行</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.date.html">8. Zend_Date</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.date.html#zend.date.introduction">8.1. 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.html#zend.date.setdefaulttimezone">8.1.1. デフォルトタイムゾーンの設定</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.html#zend.date.why">8.1.2. なぜ Zend_Date なのか?</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.date.basic.html">8.2. 基本メソッド</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.basic.html#zend.date.basic.creation">8.2.1. 現在の日付</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.basic.html#zend.date.basic.functions">8.2.2. Zend_Date の使用例</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.date.definition.theory.html">8.3. 動作原理</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.date.definition.theory.html#zend.date.theory.internals">8.3.1. 内部構造</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.date.overview.html">8.4. Zend_Date API の概要</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.values">8.4.1. 日付の値の操作</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#id.date.basic">8.4.2. 多くの日付要素で共通に使用できる、<code class="code">Zend_Date</code> の基本操作</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.others.comparison">8.4.3. 日付の比較</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.others.gettingparts">8.4.4. 日付および日付要素の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.others.fractions">8.4.5. 一秒未満の単位の扱い</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.overview.html#zend.date.other.sun">8.4.6. 日の出 / 日の入り</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.date.constants.html">8.5. 日付関数全般用の定数</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.date.constants.html#zend.date.constants.using">8.5.1. 定数の使用</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.constants.html#zend.date.constants.list">8.5.2. 全定数の一覧</a></span></dt>
+<dt><span class="sect2"><a href="zend.date.constants.html#zend.date.constants.selfdefinedformats">8.5.3. 自分で定義する出力フォーマット</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.db.html">9. Zend_Db</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.db.html#zend.db.adapter">9.1. Zend_Db_Adapter</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.introduction">9.1.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.quoting">9.1.2. SQL インジェクション対策のクォート処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.queries">9.1.3. クエリを直接実行する</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.transactions">9.1.4. トランザクション</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.insert">9.1.5. 行の挿入</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.update">9.1.6. 行の更新</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.delete">9.1.7. 行の削除</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.html#zend.db.adapter.fetch">9.1.8. 行の取得</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.profiler.html">9.2. Zend_Db_Profiler</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.introduction">9.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.using">9.2.2. プロファイラの使用</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.profiler.html#zend.db.profiler.advanced">9.2.3. プロファイラの高度な使用法</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.select.html">9.3. Zend_Db_Select</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.introduction">9.3.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.fromcols">9.3.2. テーブルからのカラムの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.joincols">9.3.3. JOIN されたテーブルからのカラムの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.where">9.3.4. WHERE 条件</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.group">9.3.5. GROUP BY 句</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.having">9.3.6. HAVING 条件</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.order">9.3.7. ORDER BY 句</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.limit">9.3.8. 件数やオフセットによる制限</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#zend.db.select.paging">9.3.9. ページ数や件数による制限</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.select.html#id4825926">9.3.10. その他のメソッド</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.table.html">9.4. Zend_Db_Table</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.introduction">9.4.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.getting-started">9.4.2. さあ、はじめましょう</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.name-and-key">9.4.3. テーブル名および主キー</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.insert">9.4.4. 行の挿入</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.udpate">9.4.5. 行の更新</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.delete">9.4.6. 行の削除</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.findbykey">9.4.7. 主キーによる行の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.fetchonerow">9.4.8. 単一の行の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.fetchmultiple">9.4.9. 複数の行の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.table.html#zend.db.table.domain-logic">9.4.10. ドメインロジックの追加</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.tablerow.html">9.5. Zend_Db_Table_Row</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.introduction">9.5.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.fetch">9.5.2. 行の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerow.html#zend.db.table.row.modify">9.5.3. 値の変更</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.db.tablerowset.html">9.6. Zend_Db_Table_Rowset</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.introduction">9.6.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.fetch">9.6.2. 行セットの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.db.tablerowset.html#zend.db.table.rowset.iterate">9.6.3. 行セットの順次処理</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.feed.html">10. Zend_Feed</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.feed.html#zend.feed.introduction">10.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.importing.html">10.2. Zend_Feed によるフィードの読み込み</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.findFeeds.html">10.3. ウェブページからのフィードの取得</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-rss.html">10.4. RSS フィードの使用</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-atom.html">10.5. Atom フィードの使用</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.consuming-atom-single-entry.html">10.6. 単一の Atom エントリの処理</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.modifying-feed.html">10.7. フィードおよびエントリの構造の変更</a></span></dt>
+<dt><span class="sect1"><a href="zend.feed.custom-feed.html">10.8. 独自のフィードクラスおよびエントリクラス</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.filter.html">11. Zend_Filter</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.filter.html#zend.filter.introduction">11.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.filter_chains.html">11.2. フィルタチェイン</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.writing_filters.html">11.3. フィルタの書き方</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.input.html">11.4. Zend_Filter_Input</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction">11.4.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.theory_of_operation">11.4.2. 動作の原理</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.gdata.html">12. Zend_Gdata</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.gdata.html#zend.gdata.introduction">12.1. Gdata について</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.authentication">12.1.1. Google Data クライアント認証</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.dependencies">12.1.2. 依存性</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.creation">12.1.3. 新しい Gdata クライアントの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.parameters">12.1.4. 共通のクエリパラメータ</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.getfeed">12.1.5. フィードの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.post">12.1.6. Google サーバへのエントリの送信</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.html#zend.gdata.introduction.delete">12.1.7. Google サーバからのデータの削除</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.authsub.html">12.2. AuthSub による認証</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.authsub.html#zend.gdata.authsub.login">12.2.1. AuthSub 認証済みの Http クライアントの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.authsub.html#zend.gdata.authsub.logout">12.2.2. AuthSub 認証の解除</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.clientlogin.html">12.3. ClientLogin による認証</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.login">12.3.1. ClientLogin 認証済みの Http クライアントの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.clientlogin.html#zend.gdata.clientlogin.terminating">12.3.2. Http クライアントの ClientLogin 認証の解除</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.base.html">12.4. Google Base の使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.query">12.4.1. データの問い合わせ</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.post">12.4.2. Base のデータの更新</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.base.html#zend.gdata.base.metadata">12.4.3. Base のメタデータの問い合わせ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.blogger.html">12.5. Google Blogger の使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.compatibility">12.5.1. Blogger のバージョン間の互換性について理解する</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.query">12.5.2. blog の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.blogger.html#zend.gdata.blogger.post">12.5.3. 自分の blog への投稿</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.calendar.html">12.6. Google Calendar の使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.gdata.calendar.html#zend.gdata.calendar.query">12.6.1. Google Calendar への問い合わせ</a></span></dt>
+<dt><span class="sect2"><a href="zend.gdata.calendar.html#zend.gdata.calendar.post">12.6.2. Google Calendar への投稿</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.gdata.codesearch.html">12.7. Google CodeSearch の使用法</a></span></dt>
+<dt><span class="sect1"><a href="zend.gdata.data.html">12.8. Gdata Data Helper の使用法</a></span></dt>
+<dt><span class="sect1"><a href="zend.gdata.exception.html">12.9. Gdata の例外の捕捉</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.http.html">13. Zend_Http</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.http.html#zend.http.client">13.1. Zend_Http_Client - 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.introduction">13.1.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.configuration">13.1.2. 設定パラメータ</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.basic-requests">13.1.3. 基本的な HTTP リクエストの処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.parameters">13.1.4. GET や POST へのパラメータの追加</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.advanced.html">13.2. Zend_Http_Client - 高度な使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.redirections">13.2.1. HTTP リダイレクト</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.cookies">13.2.2. クッキーの追加および持続的なクッキーの使用</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.custom_headers">13.2.3. 独自のリクエストヘッダの設定</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.file_uploads">13.2.4. ファイルのアップロード</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.raw_post_data">13.2.5. 生の POST データの送信</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.http_authentication">13.2.6. HTTP 認証</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.multiple_requests">13.2.7. 同一クライアントでの複数リクエストの送信</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.adapters.html">13.3. Zend_Http_Client - 接続アダプタ</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapters.overview">13.3.1. 概要</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#id4840021">13.3.2. ソケットアダプタ</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.proxy">13.3.3. プロキシアダプタ</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.test">13.3.4. テストアダプタ</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.extending">13.3.5. 独自の接続アダプタの作成</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.cookies.html">13.4. Zend_Http_Cookie および Zend_Http_CookieJar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.introduction">13.4.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.instantiating">13.4.2. Zend_Http_Cookie のインスタンスの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.accessors">13.4.3. Zend_Http_Cookie のゲッターメソッド</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.matching">13.4.4. Zend_Http_Cookie が条件に一致するものかどうかを調べる</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar">13.4.5. Zend_Http_CookieJar のインスタンスの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.adding_cookies">13.4.6. Zend_Http_CookieJar オブジェクトへのクッキーの追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.getting_cookies">13.4.7. Zend_Http_CookieJar オブジェクトからのクッキーの取得</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.response.html">13.5. Zend_Http_Response</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.introduction">13.5.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.testers">13.5.2. 真偽チェック用のメソッド</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.acessors">13.5.3. アクセス用メソッド群</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.static_parsers">13.5.4. 静的 HTTP レスポンスパーサ</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.json.html">14. Zend_Json</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.json.html#zend.json.introduction">14.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.json.basics.html">14.2. 基本的な使用法</a></span></dt>
+<dt><span class="sect1"><a href="zend.json.objects.html">14.3. JSON オブジェクト</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.locale.html">15. Zend_Locale</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.locale.html#zend.locale.introduction">15.1. 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.whatislocalization">15.1.1. 地域化とは</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.whatis">15.1.2. 
+            ロケールとは?
+        </a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.representation">15.1.3. ロケールの表現方法は?</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.selection">15.1.4. 正しいロケールの選択</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.html#zend.locale.interoperate">15.1.5. ZF のロケール対応のクラス</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.functions.html">15.2. Zend_Locale の使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.copying">15.2.1. ロケールオブジェクトのコピー、クローン作成およびシリアライズ</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.equals">15.2.2. isEqual() - 同等</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getdefault">15.2.3. デフォルトのロケール</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.setlocale">15.2.4. 新しいロケールの設定</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getlocale">15.2.5. 言語および地域の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getlanguage">15.2.6. 各地域での言語、地域、カレンダーの名前の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getscriptdisplay">15.2.7. 翻訳された文字名の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getscriptlist">15.2.8. 文字一覧の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.functions.html#zend.locale.getquestion">15.2.9. "yes" および "no" に対応する翻訳の取得</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.parsing.html">15.3. 正規化および地域化</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.normalize">15.3.1. 数値の正規化: getNumber($input, $precision = false, $locale = false)</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.localize">15.3.2. 数値の地域化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.number.test">15.3.3. 数値かどうかの確認</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.normalize">15.3.4. 浮動小数点値の正規化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.localize">15.3.5. 浮動小数点値の地域化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.float.test">15.3.6. 浮動小数点値かどうかの確認</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.normalize">15.3.7. 整数値の正規化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.localize">15.3.8. 整数値の地域化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.integer.test">15.3.9. 整数値かどうかの確認</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.parsing.html#zend.locale.numbersystems">15.3.10. 数値系の変換</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.date.datesandtimes.html">15.4. 日付および時刻の扱い</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.date.normalize">15.4.1. 日付および時刻の正規化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.date.test">15.4.2. 日付かどうかの確認</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.time.normalizing">15.4.3. 時刻の正規化</a></span></dt>
+<dt><span class="sect2"><a href="zend.locale.date.datesandtimes.html#zend.locale.time.test">15.4.4. 時刻かどうかの確認</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.locale.languages.html">15.5. ロケールがサポートする言語</a></span></dt>
+<dt><span class="sect1"><a href="zend.locale.regions.html">15.6. ロケールがサポートする地域</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.log.html">16. Zend_Log</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.log.html#zend.log.introduction">16.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.log.simple-logging.html">16.2. 単一のログへの記録</a></span></dt>
+<dt><span class="sect1"><a href="zend.log.log-levels.html">16.3. ログのレベル</a></span></dt>
+<dt><span class="sect1"><a href="zend.log.advanced-logging.html">16.4. より高度なログの記録: 複数のロガーの使用</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.mail.html">17. Zend_Mail</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.mail.html#zend.mail.introduction">17.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.sending.html">17.2. SMTP 経由での送信</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.multiple-emails.html">17.3. SMTP 接続による複数のメールの送信</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.different-transports.html">17.4. 異なる転送手段の使用</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.html-mails.html">17.5. HTML メール</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.attachments.html">17.6. ファイルの添付</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.adding-recipients.html">17.7. 受信者の追加</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.boundary.html">17.8. MIME バウンダリの制御</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.additional-headers.html">17.9. 追加のヘッダ</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.character-sets.html">17.10. 文字セット</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.encoding.html">17.11. エンコーディング</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.smtp-authentication.html">17.12. SMTP 認証</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.smtp-secure.html">17.13. セキュアな SMTP トランスポート</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.read.html">17.14. メールメッセージの読み込み</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-example">17.14.1. Pop3 によるシンプルな読み込み例</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-open-local">17.14.2. ローカルに保存されたメールのオープン</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-open-remote">17.14.3. リモートに保存されたメールのオープン</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-fetching">17.14.4. メッセージの取得およびシンプルなメソッド</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-message">17.14.5. メッセージの操作</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-folders">17.14.6. フォルダの使用法</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-advanced">17.14.7. 高度な使用法</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.measure.html">18. Zend_Measure</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.measure.html#zend.measure.introduction">18.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.measure.creation.html">18.2. 計測値の作成</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.number">18.2.1. 整数および浮動小数点数からの計測値の作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.string">18.2.2. 文字列からの計測値の作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.creation.html#zend.measure.creation.localized">18.2.3. ローカライズされた文字列をもとにした計測値</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.output.html">18.3. 計測値の出力</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.auto">18.3.1. 自動的な出力</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.value">18.3.2. 値の出力</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.unit">18.3.3. 単位つきの出力</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.output.html#zend.measure.output.localized">18.3.4. ローカライズされた文字列での出力</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.edit.html">18.4. 計測値の操作</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.convert">18.4.1. 変換</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.add">18.4.2. 加減算</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.equal">18.4.3. 比較</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.compare">18.4.4. 比較</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.changevalue">18.4.5. 値の変更</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.edit.html#zend.measure.edit.changetype">18.4.6. 型の変更</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.special.html">18.5. 特別な関数</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.typelist">18.5.1. すべての型の一覧</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.special.html#zend.measure.special.unitlist">18.5.2. すべての単位の一覧</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.measure.types.html">18.6. 計測値の型</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.binary">18.6.1. Zend_Measure_Binary のヒント</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.decimal">18.6.2. Zend_Measure_Number のヒント</a></span></dt>
+<dt><span class="sect2"><a href="zend.measure.types.html#zend.measure.types.roman">18.6.3. ローマ数字</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.mime.html">19. Zend_Mime</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.mime.html#zend.mime.mime">19.1. Zend_Mime</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.html#zend.mime.mime.introduction">19.1.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.html#zend.mime.mime.static">19.1.2. 静的メソッドおよび定数</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.html#zend.mime.mime.instatiation">19.1.3. Zend_Mime インスタンスの作成</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.mime.message.html">19.2. Zend_Mime_Message</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.introduction">19.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.instantiation">19.2.2. インスタンスの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.addparts">19.2.3. MIME パートの追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.bondary">19.2.4. バウンダリの扱い</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.message.html#zend.mime.message.parse">19.2.5. 文字列をパースすることによる Zend_Mime_Message
+		オブジェクトの作成 (実験段階)</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.mime.part.html">19.3. Zend_Mime_Part</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.introduction">19.3.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.instantiation">19.3.2. インスタンスの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.mime.part.html#zend.mime.part.methods">19.3.3. メッセージパートを文字列にレンダリングするためのメソッド</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.pdf.html">20. Zend_Pdf</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.pdf.html#zend.pdf.introduction">20.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.create.html">20.2. PDF ドキュメントの作成および読み込み</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.save.html">20.3. PDF ドキュメントへの変更内容の保存</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.pages.html">20.4. ドキュメントのページ</a></span></dt>
+<dt><span class="sect1"><a href="zend.pdf.drawing.html">20.5. 描画</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.geometry">20.5.1. ジオメトリ</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.color">20.5.2. 色</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.shape-drawing">20.5.3. 図形の描画</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.text-drawing">20.5.4. テキストの描画</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.using-fonts">20.5.5. フォントの使用</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.image-drawing">20.5.6. 画像の描画</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.line-drawing-style">20.5.7. 直線の描画スタイル</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.fill-style">20.5.8. 塗りつぶしのスタイル</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.rotations">20.5.9. 回転</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.save-restore">20.5.10. グラフィックの状態の保存/復元</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.clipping">20.5.11. 描画領域のクリッピング</a></span></dt>
+<dt><span class="sect2"><a href="zend.pdf.drawing.html#zend.pdf.drawing.styles">20.5.12. スタイル</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.pdf.usage.html">20.6. Zend_Pdf モジュールの使用例</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.rest.html">21. Zend_Rest</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.rest.html#zend.rest.introduction">21.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.rest.client.html">21.2. Zend_Rest_Client</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.introduction">21.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.return">21.2.2. レスポンス</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.args">21.2.3. リクエストの引数</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.rest.server.html">21.3. Zend_Rest_Server</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.introduction">21.3.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.usage">21.3.2. REST サーバの使用法</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.args">21.3.3. Zend_Rest_Server サービスのコール</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.customstatus">21.3.4. 独自のステータスの送信</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.customxml">21.3.5. 独自の XML レスポンスを返す</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.search.html">22. Zend_Search</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.search.html#zend.search.overview">22.1. 概要</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.introduction">22.1.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.documents-and-fields">22.1.2. Document および Field オブジェクト</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.understanding-field-types">22.1.3. フィールド型について理解する</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.index-creation.html">22.2. インデックスの構築</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.creating">22.2.1. 新しいインデックスの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.updating">22.2.2. インデックスの更新</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.document-updating">22.2.3. ドキュメントの更新</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.counting">22.2.4. インデックスの大きさの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.optimization">22.2.5. インデックスの最適化</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.limitations">22.2.6. 制限</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.searching.html">22.3. インデックスの検索</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.query_building">22.3.1. クエリの作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results">22.3.2. 検索結果</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results-scoring">22.3.3. 結果の重み付け</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.sorting">22.3.4. 検索結果の並べ替え</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.query-language.html">22.4. クエリ言語</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.terms">22.4.1. 用語</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.fields">22.4.2. フィールド</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.modifiers">22.4.3. 単語の修正子</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.proximity-search">22.4.4. 近接検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boosting">22.4.5. 単語の強調</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boolean">22.4.6. 論理演算子</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.grouping">22.4.7. グループ化</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.field-grouping">22.4.8. フィールドのグループ化</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.escaping">22.4.9. 特殊文字のエスケープ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.query-api.html">22.5. クエリ作成用の API</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.query-api.html#zend.search.queries.exceptions">22.5.1. クエリパーサの例外</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-api.html#zend.search.queries.term-query">22.5.2. 単一の単語のクエリ</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-api.html#zend.search.queries.multiterm-query">22.5.3. 複数の単語のクエリ</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-api.html#zend.search.queries.phrase-query">22.5.4. フレーズクエリ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.charset.html">22.6. 文字セット</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.description">22.6.1. UTF-8 およびシングルバイト文字セットのサポート</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.default_analyzer">22.6.2. デフォルトのテキスト解析器</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.utf_analyzer">22.6.3. UTF-8 互換のテキスト解析器</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.extending.html">22.7. 拡張性</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.analysis">22.7.1. テキスト解析</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.filters">22.7.2. トークンのフィルタリング</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.scoring">22.7.3. 重み付けのアルゴリズム</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.storage">22.7.4. 保存先</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.java-lucene.html">22.8. Java Lucene との相互運用</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.file-formats">22.8.1. ファイルフォーマット</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.index-directory">22.8.2. インデックスディレクトリ</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.source-code">22.8.3. Java のソースコード</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.jar">22.8.4. LuceneIndexCreation.jar の使用法</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.server.html">23. Zend_Server</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.server.html#zend.server.introduction">23.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.server.reflection.html">23.2. Zend_Server_Reflection</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.server.reflection.html#zend.server.reflection.introduction">23.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.server.reflection.html#zend.server.reflection.usage">23.2.2. 使用法</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.service.html">24. Zend_Service</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.service.html#zend.service.introduction">24.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.service.akismet.html">24.2. Zend_Service_Akismet</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.introduction">24.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.verifykey">24.2.2. API キーの検証</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.isspam">24.2.3. スパムのチェック</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.submitspam">24.2.4. 既知のスパムの送信</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.submitham">24.2.5. 無実のデータ (ハム) の送信</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.akismet.html#zend.service.akismet.accessors">24.2.6. Zend 固有のアクセス用メソッド</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.amazon.html">24.3. Zend_Service_Amazon</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.introduction">24.3.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.countrycodes">24.3.2. 国コード</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.itemlookup">24.3.3. ASIN を使用した商品の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.itemsearch">24.3.4. Amazon の商品検索の実行</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.query">24.3.5. もうひとつのクエリ API の使用法</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.amazon.html#zend.service.amazon.classes">24.3.6. Zend_Service_Amazon クラス群</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.flickr.html">24.4. Zend_Service_Flickr</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.introduction">24.4.1. Flickr 検索の導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.finding-users">24.4.2. Flickr ユーザの検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.getimagedetails">24.4.3. Flickr 画像の詳細の取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.flickr.html#zend.service.flickr.classes">24.4.4. Zend_Service_Flickr クラス群</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.service.yahoo.html">24.5. Zend_Service_Yahoo</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.introduction">24.5.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.websearch">24.5.2. Yahoo! を使用したウェブの検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.imagesearch">24.5.3. Yahoo! を使用した画像の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.localsearch">24.5.4. Yahoo! を使用した Local Businesses and Services の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.newssearch">24.5.5. Yahoo! News の検索</a></span></dt>
+<dt><span class="sect2"><a href="zend.service.yahoo.html#zend.service.yahoo.classes">24.5.6. Zend_Service_Yahoo クラス群</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.session.html">25. Zend_Session</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.session.html#zend.session.introduction">25.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.session.basicusage.html">25.2. 基本的な使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.basicexamples">25.2.1. チュートリアル</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.iteration">25.2.2. セッション名前空間の順次処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.basicusage.html#zend.session.accessors">25.2.3. セッション名前空間へのアクセス方法</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.advancedusage.html">25.3. 高度な使用法</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.startingasession">25.3.1. セッションの開始</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.locking">25.3.2. セッション名前空間のロック</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.controllers">25.3.3. コントローラでのセッションのカプセル化</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.limitinginstances">25.3.4. 名前空間内での Zend_Session_Namespace のインスタンスをひとつに制限する</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.modifyingarray">25.3.5. 名前空間での配列の使用</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.auth">25.3.6. セッションと認証の共用</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.advancedusage.html#zend.session.testing">25.3.7. ユニットテストでのセッションの使用</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.globalsessionmanagement.html">25.4. グローバルセッションの管理</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.setoptions">25.4.1. Zend_Session::setOptions()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.options">25.4.2. オプション</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.regenerateid">25.4.3. regenerateId()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.rememberme">25.4.4. rememberMe(integer $seconds)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.forgetme">25.4.5. forgetMe()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.sessionexists">25.4.6. sessionExists()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.destroy">25.4.7. destroy(bool $remove_cookie = true, bool $readonly = true)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.stop">25.4.8. stop()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.writeClose">25.4.9. writeClose($readonly = true)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.expiresessioncookie">25.4.10. expireSessionCookie()</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.savehandler">25.4.11. setSaveHandler(Zend_Session_SaveHandler_Interface $interface)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceisset">25.4.12. namespaceIsset($namespace)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceunset">25.4.13. namespaceUnset($namespace)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.namespaceget">25.4.14. namespaceGet($namespace, $name = null)</a></span></dt>
+<dt><span class="sect2"><a href="zend.session.globalsessionmanagement.html#zend.session.getiterator">25.4.15. getIterator()</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.session.theory.html">25.5. 動作原理</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.uri.html">26. Zend_Uri</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.uri.html#zend.uri.chapter">26.1. Zend_Uri</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.overview">26.1.1. 概要</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.creation">26.1.2. 新しい URI の作成</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.manipulation">26.1.3. 既存の URI の操作</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.validation">26.1.4. URI の検証</a></span></dt>
+<dt><span class="sect2"><a href="zend.uri.html#zend.uri.instance-methods">26.1.5. 共通のインスタンスメソッド</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.validate.html">27. Zend_Validate</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.validate.html#zend.validate.introduction">27.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validator_chains.html">27.2. バリデータチェイン</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.writing_validators.html">27.3. バリデータの書き方</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_email_addresses.html">27.4. メールアドレスの検証</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_hostnames.html">27.5. ホスト名の検証</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.view.html">28. Zend_View</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.view.html#zend.view.introduction">28.1. 導入</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.controller">28.1.1. コントローラスクリプト</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.view">28.1.2. ビュースクリプト</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.controllers.html">28.2. コントローラスクリプト</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.assign">28.2.1. 変数の代入</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.render">28.2.2. ビュースクリプトのレンダリング</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.script-paths">28.2.3. ビュースクリプトのパス</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.scripts.html">28.3. ビュースクリプト</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.escaping">28.3.1. 出力のエスケープ</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.templates">28.3.2. 別のテンプレートシステムの使用</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.helpers.html">28.4. ビューヘルパー</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.initial">28.4.1. 付属のヘルパー</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.paths">28.4.2. ヘルパーのパス</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.custom">28.4.3. 独自のヘルパーを書く</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="zend.xmlrpc.html">29. Zend_XmlRpc</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="zend.xmlrpc.html#zend.xmlrpc.introduction">29.1. 導入</a></span></dt>
+<dt><span class="sect1"><a href="zend.xmlrpc.client.html">29.2. Zend_XmlRpc_Client</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.introduction">29.2.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.method-calls">29.2.2. メソッドのコール</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.value.parameters">29.2.3. 型およびその変換</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.requests-and-responses">29.2.4. サーバプロキシオブジェクト</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.error-handling">29.2.5. エラー処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.introspection">29.2.6. サーバのイントロスペクション</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.request-to-response">29.2.7. リクエストからレスポンスへ</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.client.html#zend.xmlrpc.client.http-client">29.2.8. HTTP クライアントのテスト</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.xmlrpc.server.html">29.3. Zend_XmlRpc_Server</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.introduction">29.3.1. 導入</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.usage">29.3.2. 基本的な使用法</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.structure">29.3.3. サーバの構造</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.conventions">29.3.4. 規約</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.namespaces">29.3.5. 名前空間の活用</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.request">29.3.6. 独自のリクエストオブジェクト</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.response">29.3.7. 独自のレスポンス</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.fault">29.3.8. Fault による例外の処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.caching">29.3.9. リクエスト間でのサーバ定義のキャッシュ</a></span></dt>
+<dt><span class="sect2"><a href="zend.xmlrpc.server.html#zend.xmlrpc.server.use">29.3.10. 使用例</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="appendix"><a href="coding-standard.html">A. Zend Framework PHP 標準コーディング規約</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="coding-standard.html#coding-standard.overview">A.1. 概要</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.html#coding-standard.overview.scope">A.1.1. 対象範囲</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.html#coding-standard.overview.goals">A.1.2. 目標</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.php-file-formatting.html">A.2. PHP ファイルの書式</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.general">A.2.1. 全般</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation">A.2.2. 字下げ</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.max-line-length">A.2.3. 1 行の長さ</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.line-termination">A.2.4. 行末</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.naming-conventions.html">A.3. 命名規約</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes">A.3.1. クラス</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces">A.3.2. インターフェイス</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames">A.3.3. ファイル名</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.functions-and-methods">A.3.4. 関数およびメソッド</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.variables">A.3.5. 変数</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.constants">A.3.6. 定数</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="coding-standard.coding-style.html">A.4. コーディングスタイル</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.php-code-demarcation">A.4.1. PHP コードの境界</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.strings">A.4.2. 文字列</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.arrays">A.4.3. 配列</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.classes">A.4.4. クラス</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.functions-and-methods">A.4.5. 関数およびメソッド</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standard.coding-style.control-statements">A.4.6. 制御構造</a></span></dt>
+<dt><span class="sect2"><a href="coding-standard.coding-style.html#coding-standards.inline-documentation">A.4.7. インラインドキュメント</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="appendix"><a href="copyrights.html">B. 著作権に関する情報</a></span></dt>
+<dt><span class="index"><a href="the.index.html">目次</a></span></dt>
+</dl>
+</div>
+<div class="list-of-tables">
+<p><b>表目次</b></p>
+<dl>
+<dt>2.1. <a href="zend.acl.html#id4733412">サンプル CMS 用のアクセス制御</a>
+</dt>
+<dt>4.1. <a href="zend.cache.frontends.html#id4788809">使用可能なオプション</a>
+</dt>
+<dt>4.2. <a href="zend.cache.frontends.html#id4790143">使用可能なオプション</a>
+</dt>
+<dt>4.3. <a href="zend.cache.frontends.html#id4790378">使用可能なオプション</a>
+</dt>
+<dt>4.4. <a href="zend.cache.frontends.html#id4790650">使用可能なオプション</a>
+</dt>
+<dt>4.5. <a href="zend.cache.frontends.html#id4790862">使用可能なオプション</a>
+</dt>
+<dt>4.6. <a href="zend.cache.backends.html#id4792257">使用可能なオプション</a>
+</dt>
+<dt>4.7. <a href="zend.cache.backends.html#id4793145">使用可能なオプション</a>
+</dt>
+<dt>4.8. <a href="zend.cache.backends.html#id4792818">使用可能なオプション</a>
+</dt>
+<dt>8.1. <a href="zend.date.overview.html#id4812670">日付要素</a>
+</dt>
+<dt>8.2. <a href="zend.date.overview.html#id4813201">基本操作</a>
+</dt>
+<dt>8.3. <a href="zend.date.overview.html#id4813525">日付の比較用メソッド</a>
+</dt>
+<dt>8.4. <a href="zend.date.overview.html#id4813841">日付出力用のメソッド</a>
+</dt>
+<dt>8.5. <a href="zend.date.overview.html#id4814127">日付の出力用メソッド</a>
+</dt>
+<dt>8.6. <a href="zend.date.overview.html#id4814212">雑多なメソッド</a>
+</dt>
+<dt>8.7. <a href="zend.date.constants.html#id4815692">Zend_Date::HOUR を使用した操作</a>
+</dt>
+<dt>8.8. <a href="zend.date.constants.html#id4816564">日に関する定数</a>
+</dt>
+<dt>8.9. <a href="zend.date.constants.html#id4816834">週に関する定数</a>
+</dt>
+<dt>8.10. <a href="zend.date.constants.html#id4816892">月に関する定数</a>
+</dt>
+<dt>8.11. <a href="zend.date.constants.html#id4817066">年に関する定数</a>
+</dt>
+<dt>8.12. <a href="zend.date.constants.html#id4817216">時間に関する定数</a>
+</dt>
+<dt>8.13. <a href="zend.date.constants.html#id4817504">タイムゾーンに関する定数</a>
+</dt>
+<dt>8.14. <a href="zend.date.constants.html#id4817678">日付フォーマットに関する定数 (タイムゾーンを含むフォーマット)</a>
+</dt>
+<dt>8.15. <a href="zend.date.constants.html#id4816160">日付および時刻フォーマットに関する定数 (ロケールによって変化する書式)</a>
+</dt>
+<dt>8.16. <a href="zend.date.constants.html#id4818510">
+              <span class="strong">ISO 8601 日付出力</span>
+              に関する定数
+            </a>
+</dt>
+<dt>12.1. <a href="zend.gdata.blogger.html#id4836041">現在の Blogger サービスとベータ版の Blogger サービスの違い</a>
+</dt>
+<dt>13.1. <a href="zend.http.html#id4838573">Zend_Http_Client の設定パラメータ</a>
+</dt>
+<dt>13.2. <a href="zend.http.client.adapters.html#id4841854">Zend_Http_Client の設定パラメータ</a>
+</dt>
+<dt>15.1. <a href="zend.locale.parsing.html#id4850439">サポートしている数値系の一覧</a>
+</dt>
+<dt>15.2. <a href="zend.locale.date.datesandtimes.html#id4851874">getCorrectableDate() の 'fixed' キーの値</a>
+</dt>
+<dt>15.3. <a href="zend.locale.date.datesandtimes.html#id4851962">返り値</a>
+</dt>
+<dt>15.4. <a href="zend.locale.date.datesandtimes.html#id4852268">書式定義</a>
+</dt>
+<dt>15.5. <a href="zend.locale.date.datesandtimes.html#id4852378">書式の例</a>
+</dt>
+<dt>15.6. <a href="zend.locale.languages.html#id4853028">サポートする言語の全一覧</a>
+</dt>
+<dt>15.7. <a href="zend.locale.regions.html#id4855337">サポートする地域の全一覧</a>
+</dt>
+<dt>17.1. <a href="zend.mail.read.html#id4860858">メール読み込み機能の概要</a>
+</dt>
+<dt>17.2. <a href="zend.mail.read.html#id4862526">Mail フォルダの名前</a>
+</dt>
+<dt>18.1. <a href="zend.measure.types.html#id4865971">計測値の型の一覧</a>
+</dt>
+<dt>22.1. <a href="zend.search.html#id4880914">Zend_Search_Lucene_Field の型</a>
+</dt>
+<dt>24.1. <a href="zend.service.amazon.html#id4892653">Zend_Service_Amazon_Item のプロパティ</a>
+</dt>
+<dt>24.2. <a href="zend.service.amazon.html#id4893037">Zend_Service_Amazon_Image のプロパティ</a>
+</dt>
+<dt>24.3. <a href="zend.service.amazon.html#id4893281">Zend_Service_Amazon_OfferSet のプロパティ</a>
+</dt>
+<dt>24.4. <a href="zend.service.amazon.html#id4893505">プロパティ</a>
+</dt>
+<dt>24.5. <a href="zend.service.amazon.html#id4893709">Zend_Service_Amazon_SimilarProduct のプロパティ</a>
+</dt>
+<dt>24.6. <a href="zend.service.amazon.html#id4893819">Zend_Service_Amazon_Accessories のプロパティ</a>
+</dt>
+<dt>24.7. <a href="zend.service.amazon.html#id4893926">Zend_Service_Amazon_CustomerReview のプロパティ</a>
+</dt>
+<dt>24.8. <a href="zend.service.amazon.html#id4894104">Zend_Service_Amazon_EditorialReview のプロパティ</a>
+</dt>
+<dt>24.9. <a href="zend.service.amazon.html#id4894213">Zend_Service_Amazon_Listmania のプロパティ</a>
+</dt>
+<dt>24.10. <a href="zend.service.flickr.html#id4897237">Zend_Service_Flickr_ResultSet のプロパティ</a>
+</dt>
+<dt>24.11. <a href="zend.service.flickr.html#id4897389">Zend_Service_Flickr_Result のプロパティ</a>
+</dt>
+<dt>24.12. <a href="zend.service.flickr.html#id4897766">Zend_Service_Flickr_Image のプロパティ</a>
+</dt>
+<dt>24.13. <a href="zend.service.yahoo.html#id4899520">Zend_Service_Yahoo_ResultSet</a>
+</dt>
+<dt>24.14. <a href="zend.service.yahoo.html#id4899741">Zend_Service_Yahoo_LocalResultSet のプロパティ</a>
+</dt>
+<dt>24.15. <a href="zend.service.yahoo.html#id4899907">Zend_Service_Yahoo_Result のプロパティ</a>
+</dt>
+<dt>24.16. <a href="zend.service.yahoo.html#id4900028">Zend_Service_Yahoo_WebResult のプロパティ</a>
+</dt>
+<dt>24.17. <a href="zend.service.yahoo.html#id4900179">Zend_Service_Yahoo_ImageResult のプロパティ</a>
+</dt>
+<dt>24.18. <a href="zend.service.yahoo.html#id4900362">Zend_Service_Yahoo_LocalResult のプロパティ</a>
+</dt>
+<dt>24.19. <a href="zend.service.yahoo.html#id4900567">Zend_Service_Yahoo_NewsResult のプロパティ</a>
+</dt>
+<dt>24.20. <a href="zend.service.yahoo.html#id4900754">Zend_Service_Yahoo_Image のプロパティ</a>
+</dt>
+<dt>29.1. <a href="zend.xmlrpc.client.html#id4914590">PHP と XML-RPC の間の型変換</a>
+</dt>
+<dt>29.2. <a href="zend.xmlrpc.client.html#id4914807"><code class="code">Zend_XmlRpc_Value</code> オブジェクトと対応する XML-RPC 型</a>
+</dt>
+</dl>
+</div>
+<div class="list-of-examples">
+<p><b>例目次</b></p>
+<dl>
+<dt>1.1. <a href="zend.register.html#id4732628">register() / offsetSet() の例</a>
+</dt>
+<dt>1.2. <a href="zend.registry.html#id4732792">registry() / offsetGet() の例</a>
+</dt>
+<dt>1.3. <a href="zend.registry.html#id4732850">isRegistered() / offsetExists() の例</a>
+</dt>
+<dt>1.4. <a href="zend.registry.html#id4732879">レジストリの順次処理</a>
+</dt>
+<dt>1.5. <a href="zend.initregistry.html#id4733045">register() / offsetSet() の例</a>
+</dt>
+<dt>1.6. <a href="zend.initregistry.html#id4733077">値へのアクセスの際に、配列アクセス記法ではなくオブジェクト指向方式を使用する</a>
+</dt>
+<dt>4.1. <a href="zend.cache.html#id4788339"><code class="code">Zend_Cache::factory()</code> によるフロントエンドの取得</a>
+</dt>
+<dt>4.2. <a href="zend.cache.html#id4788406"><code class="code">Zend_Cache</code> 出力フロントエンドによる出力のキャッシュ</a>
+</dt>
+<dt>5.1. <a href="zend.config.html#id4792709">Zend_Config の使用例</a>
+</dt>
+<dt>5.2. <a href="zend.config.adapters.ini.html#id4793818">Zend_Config_Ini の使用法</a>
+</dt>
+<dt>5.3. <a href="zend.config.adapters.xml.html#id4794765">Zend_Config_Xml の使用法</a>
+</dt>
+<dt>6.1. <a href="zend.console.getopt.rules.html#id4795245">短い形式の構文の使用</a>
+</dt>
+<dt>6.2. <a href="zend.console.getopt.rules.html#id4796267">長い形式の構文の使用</a>
+</dt>
+<dt>6.3. <a href="zend.console.getopt.fetching.html#id4795841">Getopt の例外処理</a>
+</dt>
+<dt>6.4. <a href="zend.console.getopt.fetching.html#id4796837">getOption() の使用法</a>
+</dt>
+<dt>6.5. <a href="zend.console.getopt.fetching.html#id4796873">マジックメソッド __get() および __isset() の使用例</a>
+</dt>
+<dt>6.6. <a href="zend.console.getopt.fetching.html#id4797056">getRemainingArgs() の使用法</a>
+</dt>
+<dt>6.7. <a href="zend.console.getopt.configuration.html#id4797553">addRules() の使用法</a>
+</dt>
+<dt>6.8. <a href="zend.console.getopt.configuration.html#id4797626">setHelp() の使用法</a>
+</dt>
+<dt>6.9. <a href="zend.console.getopt.configuration.html#id4797711">setAliases() の使用法</a>
+</dt>
+<dt>6.10. <a href="zend.console.getopt.configuration.html#id4797823">addArguments() および setArguments() の使用法</a>
+</dt>
+<dt>6.11. <a href="zend.console.getopt.configuration.html#id4798046">setOption() の使用法</a>
+</dt>
+<dt>6.12. <a href="zend.console.getopt.configuration.html#id4798079">setOptions() の使用法</a>
+</dt>
+<dt>8.1. <a href="zend.date.html#id4810606">デフォルトタイムゾーンの設定</a>
+</dt>
+<dt>8.2. <a href="zend.date.basic.html#id4810233">現在の日付の作成</a>
+</dt>
+<dt>8.3. <a href="zend.date.basic.html#id4811315">get() - 日付の出力</a>
+</dt>
+<dt>8.4. <a href="zend.date.basic.html#id4811358">set() - 日付の設定</a>
+</dt>
+<dt>8.5. <a href="zend.date.basic.html#id4811418">add() - 日付の加算</a>
+</dt>
+<dt>8.6. <a href="zend.date.basic.html#id4811471">compare() - 日付の比較</a>
+</dt>
+<dt>8.7. <a href="zend.date.basic.html#id4811502">equals() - 日付あるいはその一部の同一性</a>
+</dt>
+<dt>8.8. <a href="zend.date.overview.html#id4812342">ユーザ定義の入力日付書式</a>
+</dt>
+<dt>8.9. <a href="zend.date.overview.html#id4812564">日付要素の操作</a>
+</dt>
+<dt>8.10. <a href="zend.date.constants.html#id4818496">自分で定義するフォーマットの例</a>
+</dt>
+<dt>10.1. <a href="zend.feed.html#id4828847">Zend_Feed による RSS フィードデータの使用</a>
+</dt>
+<dt>10.2. <a href="zend.feed.consuming-atom.html#id4831070">Atom フィードの基本的な使用法</a>
+</dt>
+<dt>10.3. <a href="zend.feed.consuming-atom-single-entry.html#id4831056">Atom フィードからの単一のエントリの読み込み</a>
+</dt>
+<dt>10.4. <a href="zend.feed.consuming-atom-single-entry.html#id4830996">単一エントリの Atom フィードに対する、エントリオブジェクトを直接使用したアクセス</a>
+</dt>
+<dt>10.5. <a href="zend.feed.modifying-feed.html#id4830957">既存のフィードエントリの変更</a>
+</dt>
+<dt>10.6. <a href="zend.feed.modifying-feed.html#id4831962">独自の名前空間の要素としての Atom エントリの作成</a>
+</dt>
+<dt>10.7. <a href="zend.feed.custom-feed.html#id4832181">独自の名前空間を使用しての Atom エントリクラスの拡張</a>
+</dt>
+<dt>13.1. <a href="zend.http.html#id4838504">Zend_Http_Client のインスタンスの作成</a>
+</dt>
+<dt>13.2. <a href="zend.http.html#id4839494">シンプルな GET リクエストの処理</a>
+</dt>
+<dt>13.3. <a href="zend.http.html#id4839561">GET 以外のリクエストメソッドの使用</a>
+</dt>
+<dt>13.4. <a href="zend.http.html#id4839626">GET パラメータの設定</a>
+</dt>
+<dt>13.5. <a href="zend.http.html#id4839644">POST パラメータの設定</a>
+</dt>
+<dt>13.6. <a href="zend.http.client.advanced.html#id4839225">301 や 302 のレスポンスに対する RFC 2616 準拠のリダイレクト</a>
+</dt>
+<dt>13.7. <a href="zend.http.client.advanced.html#id4840339">setCookie() によるクッキーの設定</a>
+</dt>
+<dt>13.8. <a href="zend.http.client.advanced.html#id4840399">クッキーの持続化</a>
+</dt>
+<dt>13.9. <a href="zend.http.client.advanced.html#id4840474">独自のリクエストヘッダの設定</a>
+</dt>
+<dt>13.10. <a href="zend.http.client.advanced.html#id4840517">複数の独自リクエストヘッダの設定</a>
+</dt>
+<dt>13.11. <a href="zend.http.client.advanced.html#id4840563">setFileUpload によるファイルのアップロード</a>
+</dt>
+<dt>13.12. <a href="zend.http.client.advanced.html#id4840203">生の POST データの送信</a>
+</dt>
+<dt>13.13. <a href="zend.http.client.advanced.html#id4840912">HTTP 認証用のユーザとパスワードの設定</a>
+</dt>
+<dt>13.14. <a href="zend.http.client.advanced.html#id4841053">単一のクライアントによる連続したリクエストの実行</a>
+</dt>
+<dt>13.15. <a href="zend.http.client.adapters.html#id4841771">HTTPS トランスポート層の変更</a>
+</dt>
+<dt>13.16. <a href="zend.http.client.adapters.html#id4842030">プロキシサーバを使用した Zend_Http_Client の使用法</a>
+</dt>
+<dt>13.17. <a href="zend.http.client.adapters.html#id4842131">HTTP レスポンススタブを使用したテスト</a>
+</dt>
+<dt>13.18. <a href="zend.http.client.adapters.html#id4842163">複数の HTTP レスポンススタブを使用したテスト</a>
+</dt>
+<dt>13.19. <a href="zend.http.client.adapters.html#id4841648">独自の接続アダプタの作成</a>
+</dt>
+<dt>13.20. <a href="zend.http.cookies.html#id4843372">Zend_Http_Cookie のインスタンスの作成</a>
+</dt>
+<dt>13.21. <a href="zend.http.cookies.html#id4843396">Zend_Http_Cookie オブジェクトの文字列化</a>
+</dt>
+<dt>13.22. <a href="zend.http.cookies.html#id4843757">Zend_Http_Cookie のゲッターメソッドの使用法</a>
+</dt>
+<dt>13.23. <a href="zend.http.cookies.html#id4843880">クッキーがマッチするかどうかの確認</a>
+</dt>
+<dt>13.24. <a href="zend.http.response.html#id4844453">ファクトリメソッドを使用した Zend_Http_Response オブジェクトの作成</a>
+</dt>
+<dt>13.25. <a href="zend.http.response.html#id4845440">isError() メソッドの使用によるレスポンスの検証</a>
+</dt>
+<dt>13.26. <a href="zend.http.response.html#id4845616">Zend_Http_Response へのアクセス用メソッドの使用</a>
+</dt>
+<dt>13.27. <a href="zend.http.response.html#id4845659">レスポンスヘッダへのアクセス</a>
+</dt>
+<dt>15.1. <a href="zend.locale.html#id4847325">特定のロケールの選択</a>
+</dt>
+<dt>15.2. <a href="zend.locale.html#id4847452">ロケールの自動選択</a>
+</dt>
+<dt>15.3. <a href="zend.locale.html#id4847630">日付のデフォルトが、ウェブのユーザのロケールになる例</a>
+</dt>
+<dt>15.4. <a href="zend.locale.html#id4847661">デフォルトのロケール選択のオーバーライド</a>
+</dt>
+<dt>15.5. <a href="zend.locale.html#id4847678">デフォルトのロケールを使用する際のパフォーマンスの最適化</a>
+</dt>
+<dt>15.6. <a href="zend.locale.functions.html#id4848441">clone</a>
+</dt>
+<dt>15.7. <a href="zend.locale.functions.html#id4848493">ロケールが同一かどうかの調査</a>
+</dt>
+<dt>15.8. <a href="zend.locale.functions.html#id4848577">デフォルトロケールの取得</a>
+</dt>
+<dt>15.9. <a href="zend.locale.functions.html#id4848698">setLocale</a>
+</dt>
+<dt>15.10. <a href="zend.locale.functions.html#id4848785">getLanguageDisplay</a>
+</dt>
+<dt>15.11. <a href="zend.locale.functions.html#id4848851">すべての言語を、その国のネイティブ言語で書き出す</a>
+</dt>
+<dt>15.12. <a href="zend.locale.functions.html#id4848903">getScriptDisplay</a>
+</dt>
+<dt>15.13. <a href="zend.locale.functions.html#id4848948">getScriptList</a>
+</dt>
+<dt>15.14. <a href="zend.locale.functions.html#id4848277">getQuestion()</a>
+</dt>
+<dt>15.15. <a href="zend.locale.parsing.html#id4849744">数値の正規化</a>
+</dt>
+<dt>15.16. <a href="zend.locale.parsing.html#id4849832">精度を指定した数値の正規化</a>
+</dt>
+<dt>15.17. <a href="zend.locale.parsing.html#id4849886">数値の地域化</a>
+</dt>
+<dt>15.18. <a href="zend.locale.parsing.html#id4849943">精度を指定した数値の地域化</a>
+</dt>
+<dt>15.19. <a href="zend.locale.parsing.html#id4850005">数値かどうかの確認</a>
+</dt>
+<dt>15.20. <a href="zend.locale.parsing.html#id4850047">浮動小数点値の正規化</a>
+</dt>
+<dt>15.21. <a href="zend.locale.parsing.html#id4850089">浮動小数点値の地域化</a>
+</dt>
+<dt>15.22. <a href="zend.locale.parsing.html#id4850153">浮動小数点値かどうかの確認</a>
+</dt>
+<dt>15.23. <a href="zend.locale.parsing.html#id4850194">整数値の正規化</a>
+</dt>
+<dt>15.24. <a href="zend.locale.parsing.html#id4850235">整数値の地域化</a>
+</dt>
+<dt>15.25. <a href="zend.locale.parsing.html#id4850276">整数値かどうかの確認</a>
+</dt>
+<dt>15.26. <a href="zend.locale.parsing.html#id4850378">アラビア文字から European/Latin への変換</a>
+</dt>
+<dt>15.27. <a href="zend.locale.parsing.html#id4850396">European/Latin からアラビア文字への変換</a>
+</dt>
+<dt>15.28. <a href="zend.locale.date.datesandtimes.html#id4852125">日付の正規化</a>
+</dt>
+<dt>15.29. <a href="zend.locale.date.datesandtimes.html#id4852178">ロケールを指定した日付の正規化</a>
+</dt>
+<dt>15.30. <a href="zend.locale.date.datesandtimes.html#id4852204">日付と時刻の正規化</a>
+</dt>
+<dt>15.31. <a href="zend.locale.date.datesandtimes.html#id4852244">ユーザ定義の日付書式への正規化</a>
+</dt>
+<dt>15.32. <a href="zend.locale.date.datesandtimes.html#id4852497">入力された日付の訂正処理</a>
+</dt>
+<dt>15.33. <a href="zend.locale.date.datesandtimes.html#id4852567">日付かどうかの確認</a>
+</dt>
+<dt>15.34. <a href="zend.locale.date.datesandtimes.html#id4852618">未知の時刻の正規化</a>
+</dt>
+<dt>15.35. <a href="zend.locale.date.datesandtimes.html#id4852658">時刻かどうかの確認</a>
+</dt>
+<dt>17.1. <a href="zend.mail.html#id4858874">Zend_Mail を使用したシンプルなメール</a>
+</dt>
+<dt>17.2. <a href="zend.mail.sending.html#id4859883">SMTP によるメールの送信</a>
+</dt>
+<dt>17.3. <a href="zend.mail.multiple-emails.html#id4859856">SMTP 雪像による複数のメールの送信</a>
+</dt>
+<dt>17.4. <a href="zend.mail.different-transports.html#id4859636">異なる転送手段の使用</a>
+</dt>
+<dt>17.5. <a href="zend.mail.html-mails.html#id4860019">HTML メールの送信</a>
+</dt>
+<dt>17.6. <a href="zend.mail.attachments.html#id4860349">ファイルを添付したメール</a>
+</dt>
+<dt>17.7. <a href="zend.mail.boundary.html#id4860676">MIME バウンダリの変更</a>
+</dt>
+<dt>17.8. <a href="zend.mail.additional-headers.html#id4860176">メールヘッダの追加</a>
+</dt>
+<dt>17.9. <a href="zend.mail.smtp-authentication.html#id4859533">Zend_Mail_Transport_Smtp での認証の有効化</a>
+</dt>
+<dt>17.10. <a href="zend.mail.smtp-secure.html#id4860738">Zend_Mail_Transport_Smtp によるセキュアな接続の有効化</a>
+</dt>
+<dt>18.1. <a href="zend.measure.html#id4863389">計測値の変換</a>
+</dt>
+<dt>18.2. <a href="zend.measure.html#id4864081"><code class="code">メートル</code> の計測</a>
+</dt>
+<dt>18.3. <a href="zend.measure.creation.html#id4863998">整数および浮動小数点数を使用しての作成</a>
+</dt>
+<dt>18.4. <a href="zend.measure.creation.html#id4864466">文字列を使用しての作成</a>
+</dt>
+<dt>18.5. <a href="zend.measure.creation.html#id4864505">計測値を含む任意の入力テキスト</a>
+</dt>
+<dt>18.6. <a href="zend.measure.creation.html#id4864566">ローカライズされた文字列</a>
+</dt>
+<dt>18.7. <a href="zend.measure.output.html#id4864957">自動的な出力</a>
+</dt>
+<dt>18.8. <a href="zend.measure.output.html#id4865029">値の出力</a>
+</dt>
+<dt>18.9. <a href="zend.measure.output.html#id4865068">単位の出力</a>
+</dt>
+<dt>18.10. <a href="zend.measure.edit.html#id4865524">変換</a>
+</dt>
+<dt>18.11. <a href="zend.measure.edit.html#id4865580">単位の加算</a>
+</dt>
+<dt>18.12. <a href="zend.measure.edit.html#id4865632">減算</a>
+</dt>
+<dt>18.13. <a href="zend.measure.edit.html#id4865690">異なる計測値</a>
+</dt>
+<dt>18.14. <a href="zend.measure.edit.html#id4865704">同一の計測値</a>
+</dt>
+<dt>18.15. <a href="zend.measure.edit.html#id4865765">差</a>
+</dt>
+<dt>18.16. <a href="zend.measure.edit.html#id4865814">値の変更</a>
+</dt>
+<dt>18.17. <a href="zend.measure.edit.html#id4865857">型の変更</a>
+</dt>
+<dt>18.18. <a href="zend.measure.special.html#id4866496">指定した型のすべての単位の一覧</a>
+</dt>
+<dt>20.1. <a href="zend.pdf.create.html#id4870233">新しい PDF ドキュメントの作成あるいは既存の PDF ドキュメントの読み込み</a>
+</dt>
+<dt>20.2. <a href="zend.pdf.create.html#id4870282">指定した版の PDF ドキュメントの取得</a>
+</dt>
+<dt>20.3. <a href="zend.pdf.save.html#id4869774">PDF ドキュメントの保存</a>
+</dt>
+<dt>20.4. <a href="zend.pdf.pages.html#id4871070">PDF ドキュメントのページの操作</a>
+</dt>
+<dt>20.5. <a href="zend.pdf.drawing.html#id4871587">ページ上への文字列の描画</a>
+</dt>
+<dt>20.6. <a href="zend.pdf.drawing.html#id4871646">UTF-8 でエンコードされた文字列をページに描画する</a>
+</dt>
+<dt>20.7. <a href="zend.pdf.drawing.html#id4871750">標準フォントの作成</a>
+</dt>
+<dt>20.8. <a href="zend.pdf.drawing.html#id4871912">TrueType フォントの作成</a>
+</dt>
+<dt>20.9. <a href="zend.pdf.drawing.html#id4871930">TrueType を作成するが、PDF ドキュメントには埋め込まない</a>
+</dt>
+<dt>20.10. <a href="zend.pdf.drawing.html#id4872015">埋め込みが禁止されているフォントで、例外をスローさせないようにする</a>
+</dt>
+<dt>20.11. <a href="zend.pdf.drawing.html#id4872064">埋め込みフォントを圧縮しない</a>
+</dt>
+<dt>20.12. <a href="zend.pdf.drawing.html#id4872094">フォントの埋め込みオプションを組み合わせる</a>
+</dt>
+<dt>20.13. <a href="zend.pdf.drawing.html#id4872174">画像の描画</a>
+</dt>
+<dt>20.14. <a href="zend.pdf.usage.html#id4873744">Zend_Pdf モジュールの使用例</a>
+</dt>
+<dt>21.1. <a href="zend.rest.client.html#id4873905">基本的な REST リクエスト</a>
+</dt>
+<dt>21.2. <a href="zend.rest.client.html#id4874878">レスポンスステータス</a>
+</dt>
+<dt>21.3. <a href="zend.rest.client.html#id4874963">Technorati の Rest サービスの使用</a>
+</dt>
+<dt>21.4. <a href="zend.rest.client.html#id4874977">Technorati からのレスポンスの例</a>
+</dt>
+<dt>21.5. <a href="zend.rest.client.html#id4875088">リクエストの引数の設定</a>
+</dt>
+<dt>21.6. <a href="zend.rest.server.html#id4875677">基本的な Zend_Rest_Server の使用法 - クラス</a>
+</dt>
+<dt>21.7. <a href="zend.rest.server.html#id4875690">基本的な Zend_Rest_Server の使用法 - 関数</a>
+</dt>
+<dt>21.8. <a href="zend.rest.server.html#id4875824">独自のステータスを返す</a>
+</dt>
+<dt>21.9. <a href="zend.rest.server.html#id4875879">独自の XML を返す</a>
+</dt>
+<dt>22.1. <a href="zend.search.extending.html#id4887845">独自のテキスト解析器</a>
+</dt>
+<dt>24.1. <a href="zend.service.akismet.html#id4890765">isSpam() の使用法</a>
+</dt>
+<dt>24.2. <a href="zend.service.akismet.html#id4890846">submitSpam() の使用法</a>
+</dt>
+<dt>24.3. <a href="zend.service.akismet.html#id4890934">submitHam() の使用法</a>
+</dt>
+<dt>24.4. <a href="zend.service.amazon.html#id4891944">伝統的な API を使用した Amazon 検索</a>
+</dt>
+<dt>24.5. <a href="zend.service.amazon.html#id4891964">クエリ API を使用した Amazon 検索</a>
+</dt>
+<dt>24.6. <a href="zend.service.amazon.html#id4892040">Amazon Web Service の国の選択</a>
+</dt>
+<dt>24.7. <a href="zend.service.amazon.html#id4892116">ASIN を使用した Amazon の商品検索</a>
+</dt>
+<dt>24.8. <a href="zend.service.amazon.html#id4892210">Amazon の商品検索の実行</a>
+</dt>
+<dt>24.9. <a href="zend.service.amazon.html#id4892339">もうひとつのクエリ API を使用した Amazon の検索</a>
+</dt>
+<dt>24.10. <a href="zend.service.flickr.html#id4896902">単純な Flickr 検索</a>
+</dt>
+<dt>24.11. <a href="zend.service.flickr.html#id4897021">メールアドレスからの Flickr ユーザの検索</a>
+</dt>
+<dt>24.12. <a href="zend.service.flickr.html#id4897089">Flickr 画像の詳細の取得</a>
+</dt>
+<dt>24.13. <a href="zend.service.yahoo.html#id4899055">Yahoo! を使用したウェブの検索</a>
+</dt>
+<dt>24.14. <a href="zend.service.yahoo.html#id4899131">Yahoo! を使用した画像の検索</a>
+</dt>
+<dt>24.15. <a href="zend.service.yahoo.html#id4899186">Yahoo! を使用した Local Businesses and Services の検索</a>
+</dt>
+<dt>24.16. <a href="zend.service.yahoo.html#id4899243">Yahoo! News の検索</a>
+</dt>
+<dt>25.1. <a href="zend.session.basicusage.html#id4903360">ページビューの数え方</a>
+</dt>
+<dt>25.2. <a href="zend.session.basicusage.html#id4903376">新しい方法: 名前空間の衝突を避ける</a>
+</dt>
+<dt>25.3. <a href="zend.session.basicusage.html#id4903446">古い方法: PHP のセッションへのアクセス</a>
+</dt>
+<dt>25.4. <a href="zend.session.basicusage.html#id4903519">セッションの順次処理</a>
+</dt>
+<dt>25.5. <a href="zend.session.basicusage.html#id4903570">セッションデータへのアクセス</a>
+</dt>
+<dt>25.6. <a href="zend.session.advancedusage.html#id4902698">グローバルセッションの開始</a>
+</dt>
+<dt>25.7. <a href="zend.session.advancedusage.html#id4903953">セッション名前空間のロック</a>
+</dt>
+<dt>25.8. <a href="zend.session.advancedusage.html#id4904512">ビューにおけるセッションのロック</a>
+</dt>
+<dt>25.9. <a href="zend.session.advancedusage.html#id4904608">コントローラでの名前空間つきセッションによる有効期限の管理</a>
+</dt>
+<dt>25.10. <a href="zend.session.advancedusage.html#id4904713">単一のインスタンスへの制限</a>
+</dt>
+<dt>25.11. <a href="zend.session.advancedusage.html#id4904820">配列に関する既知の問題</a>
+</dt>
+<dt>25.12. <a href="zend.session.advancedusage.html#id4904837">回避策: 取得して変更し、そして保存する</a>
+</dt>
+<dt>25.13. <a href="zend.session.advancedusage.html#id4904869">回避策: 参照を含む配列を保存する</a>
+</dt>
+<dt>25.14. <a href="zend.session.advancedusage.html#id4904967">例: 単純化した認証 ID へのアクセス</a>
+</dt>
+<dt>25.15. <a href="zend.session.advancedusage.html#id4905136">PHPUnit による、Zend_Session* を使用したコードのテスト</a>
+</dt>
+<dt>25.16. <a href="zend.session.globalsessionmanagement.html#id4906205">Zend_Config による Zend_Session の設定</a>
+</dt>
+<dt>25.17. <a href="zend.session.globalsessionmanagement.html#id4906230">myapp.ini</a>
+</dt>
+<dt>25.18. <a href="zend.session.globalsessionmanagement.html#id4907205">匿名セッションおよびセッション固定化</a>
+</dt>
+<dt>25.19. <a href="zend.session.globalsessionmanagement.html#id4907771">すべての名前空間の初期化</a>
+</dt>
+<dt>26.1. <a href="zend.uri.html#id4909274"><code class="code">Zend_Uri::factory()</code> による新しい URI の作成</a>
+</dt>
+<dt>26.2. <a href="zend.uri.html#id4909356"><code class="code">Zend_Uri::factory()</code> による既存の URI の操作</a>
+</dt>
+<dt>26.3. <a href="zend.uri.html#id4909421"><code class="code">Zend_Uri::check()</code> による URI の検証</a>
+</dt>
+<dt>26.4. <a href="zend.uri.html#id4909515"><code class="code">Zend_Uri_*</code> オブジェクトからのスキームの取得</a>
+</dt>
+<dt>26.5. <a href="zend.uri.html#id4909559"><code class="code">Zend_Uri_*</code> オブジェクトからの URI 全体の取得</a>
+</dt>
+<dt>26.6. <a href="zend.uri.html#id4909629"><code class="code">Zend_Uri_*</code> オブジェクトの検証</a>
+</dt>
+<dt>29.1. <a href="zend.xmlrpc.client.html#id4914363">XML-RPC メソッドのコール</a>
+</dt>
+<dt>29.2. <a href="zend.xmlrpc.client.html#id4914423">パラメータを指定した XML-RPC メソッドのコール</a>
+</dt>
+<dt>29.3. <a href="zend.xmlrpc.client.html#id4915078">デフォルト名前空間のプロキシ</a>
+</dt>
+<dt>29.4. <a href="zend.xmlrpc.client.html#id4915127">任意の名前空間のプロキシ</a>
+</dt>
+<dt>29.5. <a href="zend.xmlrpc.client.html#id4915228">HTTP エラーの処理</a>
+</dt>
+<dt>29.6. <a href="zend.xmlrpc.client.html#id4915317">XML-RPC Fault の処理</a>
+</dt>
+<dt>29.7. <a href="zend.xmlrpc.client.html#id4915642">リクエストからレスポンスへの処理</a>
+</dt>
+</dl>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left"> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top"> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right" valign="top"> 第1章 Zend</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

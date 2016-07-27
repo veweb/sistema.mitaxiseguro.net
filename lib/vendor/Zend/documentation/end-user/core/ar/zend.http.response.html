@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>13.5. Zend_Http_Response</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="prev" href="zend.http.cookies.html" title="13.4. Zend_Http_Cookie and Zend_Http_CookieJar">
+<link rel="next" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+<link rel="subsection" href="zend.http.response.html#zend.http.response.introduction" title="13.5.1. Introduction">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">13.5. Zend_Http_Response</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.http.cookies.html">السابق</a> </td>
+<th width="60%" align="center">فصل 13. Zend_Http</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.json.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.http.response"></a>13.5. Zend_Http_Response</h2></div></div></div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.response.introduction"></a>13.5.1. Introduction</h3></div></div></div>
+<p>
+            <code class="code">Zend_Http_Response</code> provides easy access to the responses returned by
+            <a href="zend.http.html#zend.http.client" title="13.1. Zend_Http_Client">قسم 13.1, “Zend_Http_Client”</a>. It provides an intuitive set of methods for working
+            with the HTTP response data received from a request:
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">isError()</code>: Returns TRUE if an HTTP error code was received; FALSE otherwise.
+                    </p></li>
+<li><p>
+                        <code class="code">isSuccessful()</code>: Returns TRUE if an HTTP success code was received; FALSE otherwise.
+                    </p></li>
+<li><p>
+                        <code class="code">isRedirect()</code>: Returns TRUE if an HTTP redirect code was received; FALSE otherwise.
+                    </p></li>
+<li><p>
+                        <code class="code">getStatus()</code>: Returns the HTTP status code.
+                    </p></li>
+<li><p>
+                        <code class="code">getHeaders()</code>: Returns an array of HTTP response header strings.
+                    </p></li>
+<li><p>
+                        <code class="code">getBody()</code>: Returns the HTTP response body as a string.
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<div class="example">
+<a name="id4835204"></a><p class="title"><b>مثال 13.23. Working with HTTP Response Data</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Http/Client.php';
+try {
+    $http = new Zend_Http_Client('http://example.org');
+    $response = $http-&gt;get();
+    if ($response-&gt;isSuccessful()) {
+        echo $response-&gt;getBody();
+    } else {
+        echo "&lt;p&gt;An error occurred&lt;/p&gt;\n";
+        echo "HTTP Status: " . $response-&gt;getStatus() . "\n";
+        echo "HTTP Headers:\n";
+        $responseHeaders = $response-&gt;getHeaders();
+        foreach ($responseHeaders as $responseHeaderName =&gt; $responseHeaderValue) {
+            echo "$responseHeaderName: $responseHeaderValue\n";
+        }
+    }
+} catch (Zend_Http_Client_Exception $e) {
+    echo '&lt;p&gt;An error occurred (' .$e-&gt;getMessage(). ')&lt;/p&gt;';
+}
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.http.cookies.html">السابق</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.http.html">أعلى</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.json.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">13.4. Zend_Http_Cookie and Zend_Http_CookieJar </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> فصل 14. Zend_Json</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

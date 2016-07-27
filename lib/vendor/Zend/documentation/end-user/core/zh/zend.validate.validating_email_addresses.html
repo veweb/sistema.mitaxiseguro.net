@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>29.4. 校验 Email 地址</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="prev" href="zend.validate.writing_validators.html" title="29.3. 写校验器">
+<link rel="next" href="zend.validate.validating_hostnames.html" title="29.5. 校验主机名">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">29.4. 校验 Email 地址</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.validate.writing_validators.html">上一页</a> </td>
+<th width="60%" align="center">第 29 章 Zend_Validate</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.validate.validating_hostnames.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.validate.validating_email_addresses"></a>29.4. 校验 Email 地址</h2></div></div></div>
+<p>
+        Zend_Validate_Email允许你校验一个email地址。首先校验器把email地址分成local-part和@hostname并试图按照email地址和主机名的规范来匹配它。
+    </p>
+<p>
+        <span class="strong"><strong>基本用法</strong></span>
+    </p>
+<p>
+        一个基本用法的例子如下：
+        
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/EmailAddress.php';
+$validator = new Zend_Validate_EmailAddress();
+if ($validator-&gt;isValid($email)) {
+    // email appears to be valid
+} else {
+    // email is invalid; print the reasons
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+        这个例子匹配email地址<code class="code">$email</code>并在匹配失败的时候用<code class="code">$validator-&gt;getMessages()</code>来获得有用的错误信息。
+                
+    </p>
+<p>
+        <span class="strong"><strong>复杂的local parts</strong></span>
+    </p>
+<p>
+        Zend_Validate_Email根据RFC2822l来匹配任何有效的email地址。例如，有效的email地址包括<code class="code">bob@domain.com</code>, <code class="code">bob+jones@domain.us</code>, <code class="code">"bob@jones"@domain.com</code> 和 <code class="code">"bob jones"@domain.com</code>。一些过时的email格式目前不再校验（例如email地址中的回车符或"\"符）。
+    </p>
+<p>
+        <span class="strong"><strong>校验不同类型的主机名</strong></span>
+    </p>
+<p>
+        Email地址中的主机名部分依靠Zend_Validate_Hostname来校验。尽管你希望IP地址和本地主机名也被接受，但缺省地只有像<code class="code">domain.com</code>格式的DNS主机名被接受。
+        当然如果你想如愿，需要实例化Zend_Validate_EmailAddress并传递一个参数来指明哪种主机名你想接受。更多的细节包含在Zend_Validate_Hostname中。
+        下面的例子显示如何同时接受DNS和本地主机名：
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/EmailAddress.php';
+$validator = new Zend_Validate_EmailAddress(Zend_Validate_Hostname::ALLOW_DNS | Zend_Validate_Hostname::ALLOW_LOCAL);
+if ($validator-&gt;isValid($email)) {
+    // email appears to be valid
+} else {
+    // email is invalid; print the reasons
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.validate.writing_validators.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.validate.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.validate.validating_hostnames.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">29.3. 写校验器 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 29.5. 校验主机名</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.4. 提供されるサブクラス群</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="prev" href="zend.controller.subclassing.html" title="7.3. サブクラス化">
+<link rel="next" href="zend.controller.action.html" title="7.5. アクションコントローラ">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.introduction" title="7.4.1. 導入">
+<link rel="subsection" href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.request.http" title="7.4.2. Zend_Controller_Request_Http">
+<link rel="subsection" href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.rewriterouter" title="7.4.3. Zend_Controller_Router_Rewrite">
+<link rel="subsection" href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.http" title="7.4.4. Zend_Controller_Response_Http">
+<link rel="subsection" href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.response.cli" title="7.4.5. Zend_Controller_Response_Cli">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.4. 提供されるサブクラス群</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.subclassing.html">前のページ</a> </td>
+<th width="60%" align="center">第7章 Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.action.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.providedsubclasses"></a>7.4. 提供されるサブクラス群</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.providedsubclasses.introduction"></a>7.4.1. 導入</h3></div></div></div>
+<p>
+            Zend Framework では、デフォルトで提供されるクラス以外の選択肢も用意しています。
+            たとえばリクエストオブジェクト、ルータ、
+            そしてレスポンスオブジェクトなどについて別の選択肢があります。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.providedsubclasses.request.http"></a>7.4.2. Zend_Controller_Request_Http</h3></div></div></div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.request.http.introduction"></a>7.4.2.1. 導入</h4></div></div></div>
+<p>
+                <code class="code">Zend_Controller_Request_Http</code> は、HTTP
+                環境で使用するリクエストオブジェクトです
+                <code class="code">Zend_Controller_Request_Http</code> はデフォルトのリクエストクラスであり、
+                <code class="code">Zend_Controller_Dispatcher</code> で用いられます。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.request.http.dataaccess"></a>7.4.2.2. リクエストデータへのアクセス</h4></div></div></div>
+<p>
+                <code class="code">Zend_Controller_Request_Http</code> は、関連する値へのアクセスをカプセル化します。
+                たとえばコントローラやアクションルータの変数のキー名や値、
+                URI からパースした追加のパラメータの値などにアクセスできます。
+                <code class="code">Zend_Controller_Request_Http</code> のプロキシとして動作することで、
+                スーパーグローバルの値にパブリックメンバとしてアクセスしたり、
+                現在のベース URL やリクエスト URI を管理することもできます。
+                スーパーグローバルの値はリクエストオブジェクトに設定することはできません。
+                そのかわりに setParam/getParam メソッドを使用して、
+                パラメータを設定あるいは取得します。
+            </p>
+<div class="note"><table border="0" summary="Note: スーバーグローバルデータ">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">スーバーグローバルデータ</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    <code class="code">Zend_Controller_Request_Http</code> のパブリックプロパティを使用して
+                    スーパーグローバルデータにアクセスする際に注意すべき点は、
+                    プロパティ名 (スーバーグローバル配列のキー)
+                    は以下の優先順位でマッチするということです。
+                    1. GET, 2. POST, 3. COOKIE, 4. SERVER, 5. ENV.
+                </p></td></tr>
+</table></div>
+<p>
+                特定のスーパーグローバルにアクセスするには、
+                パブリックメソッドを使用する方法もあります。たとえば、
+                <code class="code">$_POST['user']</code> の値を取得するには、リクエストオブジェクト上で
+                <code class="code">getPost('user')</code> をコールします。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.request.http.baseurl"></a>7.4.2.3. ベース URL およびサブディレクトリ</h4></div></div></div>
+<p>
+                <code class="code">Zend_Controller_Request_Http</code> は、
+                サブディレクトリで Zend_Controller_Router_Rewrite を使用することができます。
+                Zend_Controller_Request_Http は自動的にベース URL を検出し、
+                それを適切に設定します。
+            </p>
+<p>
+                たとえば、<code class="code">index.php</code> をウェブサーバのサブディレクトリ
+                <code class="code">/projects/myapp/index.php</code> においた場合は、ベース URL
+                (rewrite base) は <code class="code">/projects/myapp</code> にしなければなりません。
+                マッチするルートを見つける前に、この文字列がパスの先頭から取り除かれます。
+                これにより、すべてのルートに余計な文字を追加する必要がなくなります。
+                ルート <code class="code">'user/:username'</code> は、
+                <code class="code">http://localhost/projects/myapp/user/martel</code> および
+                <code class="code">http://example.com/user/martel</code> の両方にマッチするようになります。
+            </p>
+<div class="note"><table border="0" summary="Note: URL の検出は大文字小文字を区別します">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">URL の検出は大文字小文字を区別します</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    自動的なベース URL の検出処理は大文字小文字を区別します。そのため、
+                    URL とファイルシステムのサブディレクトリ名が確実に一致する必要があります
+                    (たとえ Windows マシンであっても同様です)。大文字小文字が一致しなかった場合は
+                    noRoute アクションがコールされます。
+                </p></td></tr>
+</table></div>
+<p>
+                ベース URL の検出に失敗する場合は、
+                <code class="code">Zend_Controller_Request_Http</code> クラス、あるいは
+                <code class="code">Zend_Controller_Front</code> クラスの
+                <code class="code">setBaseUrl()</code> メソッドを使用して
+                ベースパスを上書き指定することができます。
+                一番簡単な方法は <code class="code">Zend_Controller_Front</code> で設定することです。
+                この設定はリクエストオブジェクトに引き継がれます。
+                独自のベース URL を設定する例を示します。
+            </p>
+<pre class="programlisting">
+/** 
+ * Zend_Controller_Front で独自のベース URL を指定することによるリクエストのディスパッチ
+ */
+$router     = new Zend_Controller_Router_Rewrite();
+$controller = Zend_Controller_Front::getInstance();
+$controller-&gt;setControllerDirectory('./application/controllers')
+           -&gt;setRouter($router)
+           -&gt;setBaseUrl('/projects/myapp'); // ベース URL を指定します!
+$response   = $controller-&gt;dispatch();</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.providedsubclasses.rewriterouter"></a>7.4.3. Zend_Controller_Router_Rewrite</h3></div></div></div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.rewriterouter.introduction"></a>7.4.3.1. 導入</h4></div></div></div>
+<p>
+                <code class="code">Zend_Controller_Router_Rewrite</code> は、標準のルータです。
+                ルーティングとは、URI (ベース URL から取得した URI の一部)
+                を展開し、どのコントローラのどのアクションが
+                リクエストを処理するのかを決める処理のことです。
+                コントローラの値やアクション、そしてその他のパラメータが
+                <code class="code">Zend_Controller_Request_Http</code> オブジェクトにまとめられます。
+                このオブジェクトを処理するのが <code class="code">Zend_Controller_Dispatcher_Standard</code> です。
+                ルーティングが行われるのは一度だけ、すなわちリクエストを最初に受け取ってから
+                最初のコントローラに処理が渡される際だけです。
+            </p>
+<p>
+                <code class="code">Zend_Controller_Router_Rewrite</code> は、mod_rewrite 風の機能を
+                PHP だけで実現できるように設計されています。
+                この処理は Ruby on Rails のルーティングを多少参考にしており、
+                ウェブサーバの URL 書き換えに関する前提知識を必要としません。
+                以下の単純な mod_rewrite ルール (のいずれか) で動作するように設計されています。
+            </p>
+<pre class="programlisting">
+RewriteEngine on
+RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php</pre>
+<p>
+            あるいは
+            </p>
+<pre class="programlisting">
+RewriteEngine on
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 </pre>
+<p>
+                Rewrite ルータを IIS ウェブサーバで使用するには
+                <a href="http://www.isapirewrite.com" target="_top">Isapi_Rewrite</a>
+                を Isapi 拡張モジュールとしてインストールします。そして次のようなルールを記述します。
+            </p>
+<pre class="programlisting">
+RewriteRule ^[\w/\%]*(?:\.(?!(?:js|ico|gif|jpg|png|css)$)[\w\%]*$)? /index.php [I]</pre>
+<div class="note"><table border="0" summary="Note: IIS Isapi_Rewrite">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">IIS Isapi_Rewrite</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    IIS を使用すると、<code class="code">$_SERVER['REQUEST_URI']</code>
+                    が存在しないか空の文字列に設定されます。このような場合、
+                    <code class="code">Zend_Controller_Request_Http</code> は
+                    <code class="code">$_SERVER['HTTP_X_REWRITE_URL']</code> の値を使用します。これは
+                    Isapi_Rewrite 拡張モジュールが設定します。
+                </p></td></tr>
+</table></div>
+<p>Lighttpd の場合は、次のようなルールを使用します。</p>
+<pre class="programlisting">
+url.rewrite-once = ( ".*\.(js|ico|gif|jpg|png|css)$" =&gt; "$0", "" =&gt; "/index.php")</pre>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.rewriterouter.usage"></a>7.4.3.2. ルータの使用法</h4></div></div></div>
+<p>
+                Rewrite ルータを適切に使用するには、まずそのインスタンスを作成し、
+                次にユーザ定義のルーティングを追加し、それをコントローラに注入しなければなりません。
+                以下にコードの例を示します。
+            </p>
+<pre class="programlisting">
+/* ルータを作成します */
+
+$router = $ctrl-&gt;getRouter(); // デフォルトで rewrite ルータを返します
+$router-&gt;addRoute(
+	'user',
+	new Zend_Controller_Router_Route('user/:username', array('controller' =&gt; 'user', 'action' =&gt; 'info'))
+);
+</pre>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.rewriterouter.basic"></a>7.4.3.3. 基本的なルーティング</h4></div></div></div>
+<p>
+                RewriteRouter で最も重要なのが、ユーザ定義のルーティングです。
+                これは、RewriteRouter の addRoute メソッドをコールして作成します。
+                このメソッドに、<code class="code">Zend_Controller_Router_Route</code>
+                の新しいインスタンスを渡します。
+            </p>
+<pre class="programlisting">
+$router-&gt;addRoute('user', new Zend_Controller_Router_Route('user/:username'));</pre>
+<p>
+                最初のパラメータがこのルートの名前です。現在は多少冗長性が残ってしまっていますが、
+                将来は、URL ビューヘルパーの中でこれを使用し、ビュー内で簡単に
+                URL を生成できるようになる予定です。
+                ここで定義したルートを使用する方法も知っておく必要があるでしょう。
+                事前に定義したルートを取得するには、RewriteRouter の getRoute
+                メソッドを使用します。二番目のパラメータは、
+                <code class="code">Zend_Controller_Router_Route</code> のインスタンスです。
+            </p>
+<p>
+                <code class="code">Zend_Controller_Router_Route</code> のコンストラクタの最初のパラメータは、
+                その URL に関連付けるルートです。
+                例えば、上の例で示したルートは <code class="code">http://example.com/user/martel</code>
+                に対応します。ルート内のコロンは URL 変数を意味します。ルーティングに成功すると、
+                これらの変数は Zend_Controller_Request に注入されます。
+                その後は Zend_Controller_Request::getParam や
+                Zend_Controller_Action::_getParam メソッドでアクセスできるようになります。
+                今回の例では、username という名前のパラメータに
+                'martel' という値が設定されます。
+            </p>
+<div class="note"><table border="0" summary="Note: 定義の順番">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">定義の順番</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    一番最後にマッチしたルートが適用されるので、
+                    汎用的なルートは最初に定義するようにしましょう。
+                </p></td></tr>
+</table></div>
+<div class="note"><table border="0" summary="Note: 許可される文字">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">許可される文字</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    現在の実装では、変数の識別子としてスラッシュ (/)
+                    以外のあらゆる文字を使用可能ですが、できるだけ PHP
+                    の変数で使用可能な範囲の文字のみを使用することを強く推奨します。
+                    この実装は将来変更される予定ですので、(PHP
+                    の変数で使用できない文字を用いていると)
+                    バグを引き起こす可能性があります。
+                </p></td></tr>
+</table></div>
+<p>
+                ルートで使用される変数のうち、':controller' および ':action'
+                のふたつは特別な扱いとなります。これらの特殊変数は、URL から
+                コントローラとアクションを決定するために使用されます。
+                ':action' 変数は、そのルートあるいはデフォルトパラメータとして
+                常に定義されていなければなりません。
+                ':controller' 変数がもし定義されていない場合は、デフォルト値として
+                IndexController が使用されます。
+            </p>
+<div class="note"><table border="0" summary="Note: 特殊変数">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">特殊変数</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    これらの特殊変数の名前を変更することもできます。その場合は
+                    <code class="code">Zend_Controller_Request_Http</code> の
+                    setControllerKey メソッドや setActionKey メソッドを使用します。
+                </p></td></tr>
+</table></div>
+<pre class="programlisting">
+$router-&gt;addRoute(
+    'user', new Zend_Controller_Router_Route(':controller/:action')
+);</pre>
+<p>
+                このルートが定義されているときにブラウザで
+                'http://example.com/news/latest' を選択すると、
+                <code class="code">Zend_Controller_Dispatcher</code> は NewsController クラスの
+                latestAction を起動します。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.rewriterouter.variable-defaults"></a>7.4.3.4. 変数のデフォルト値</h4></div></div></div>
+<p>
+                ルートの中の変数には、すべてデフォルト値を設定することができます。
+                デフォルト値を設定するには、<code class="code">Zend_Controller_Router_Route</code>
+                のコンストラクタの二番目のパラメータを使用します。
+                このパラメータは配列形式となります。配列のキーに変数名、
+                そのキーに対応する値としてデフォルト値を設定します。
+            </p>
+<pre class="programlisting">
+$router-&gt;addRoute(
+    'archive', new Zend_Controller_Router_Route('archive/:year', array('year' =&gt; 2006))
+);</pre>
+<p>
+                ちょっとわかりにくいかもしれませんが、このルートは例えば
+                'http://example.com/archive/2005' および
+                'http://example.com/archive' にマッチします。後者の場合、変数 year
+                の値は 2006 となります。
+            </p>
+<p>
+                上の例は、単に year 変数の内容をリクエストに注入するだけのものです。
+                コントローラやアクションを設定していないので、ルーティングは行われません。
+                この例が使い物になるようにするには、
+                コントローラとアクションのデフォルト値を設定しなければなりません。
+            </p>
+<pre class="programlisting">
+$router-&gt;addRoute(
+    'archive',
+    new Zend_Controller_Router_Route('archive/:year', array('year' =&gt; 2006, 'controller' =&gt; 'archive', 'action' =&gt; 'show')
+);</pre>
+<p>
+                このルートは、ArchiveController の showAction を実行します。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.rewriterouter.variable-requirements"></a>7.4.3.5. 変数の制限</h4></div></div></div>
+<p>
+                <code class="code">Zend_Controller_Router_Route</code> に三番目のパラメータを追加し、
+                変数に関する制限事項を設定することができます。
+                この制限は、正規表現で設定します。
+            </p>
+<pre class="programlisting">
+$router-&gt;addRoute(
+    'archive',
+    new Zend_Controller_Router_Route('archive/:year', array('year' =&gt; 2006), array('year' =&gt; '\d+'))
+);</pre>
+<div class="note"><table border="0" summary="Note: ルートのマッチング">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">ルートのマッチング</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    Ruby on Rails とは異なり、ZF の RewriteRouter は
+                    三番目のパラメータの制限を満たさない場合にもルートにマッチし、
+                    デフォルト値を使用するようになっています。
+                    そのため、URL 'http://example.com/archive/test' は上のルートにマッチし、
+                    year は 2006 に設定されます。この機能は将来変更される予定で、
+                    このマニュアルを書いている時点ではまだ議論中です。
+                </p></td></tr>
+</table></div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.rewriterouter.rewritebase"></a>7.4.3.6. ベース URL およびサブディレクトリ</h4></div></div></div>
+<p>
+                Rewrite ルータはサブディレクトリ内でも使用可能です。
+                ベース URL の自動検出が <code class="code">Zend_Controller_Request_Http</code>
+                によって行われます。
+            </p>
+<p>
+                ベース URL の検出に失敗する場合は、
+                <code class="code">Zend_Controller_Request_Http</code> のメソッド <code class="code">setBaseUrl()</code>
+                を使用してベースパスを上書き指定することができます
+                (<a href="zend.controller.providedsubclasses.html#zend.controller.providedsubclasses.request.http.baseurl" title="7.4.2.3. ベース URL およびサブディレクトリ">項7.4.2.3. 「ベース URL およびサブディレクトリ」</a> を参照ください)。
+            </p>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.rewriterouter.default-routes"></a>7.4.3.7. デフォルトのルート</h4></div></div></div>
+<p>
+                Zend_Controller_Router_Rewrite では、デフォルトのルートがひとつ事前に定義されています。
+                これは <code class="code">'controller/action'</code> 形式の URI にマッチします。
+                さらに、モジュール名を最初のパス要素として指定することができます。これにより、
+                <code class="code">'module/controller/action</code> 形式の URI が使用できます。
+                また、URI に追加されたパラメータにもデフォルトでマッチします。
+            </p>
+<p>
+                ルートがどのようにマッチするのか、例を見てみましょう。
+            </p>
+<pre class="programlisting">
+// 以下のようになっているものとします
+// $ctrl-&gt;setControllerDirectory(array(
+//     'default' =&gt; '/path/to/default/controllers',
+//     'news'    =&gt; '/path/to/blog/controllers',
+//     'blog'    =&gt; '/path/to/blog/controllers'
+// ));
+
+モジュールのみ:
+http://example/news
+    module == news
+
+無効なモジュールとコントローラとの対応:
+http://example/foo
+    controller == foo
+
+モジュール + コントローラ:
+http://example/blog/archive
+    module     == blog
+    controller == archive
+
+モジュール + コントローラ + アクション:
+http://example/blog/archive/list
+    module     == blog
+    controller == archive
+    action     == list
+
+モジュール + コントローラ + アクション + パラメータ:
+http://example/blog/archive/list/sort/alpha/date/desc
+    module     == blog
+    controller == archive
+    action     == list
+    sort       == alpha
+    date       == desc
+</pre>
+<p>
+                デフォルトのルータは、
+                <code class="code">Zend_Controller_Router_Route_Module</code>
+                オブジェクトに何も設定せずに作成したインスタンスです。
+            </p>
+<pre class="programlisting">
+// ルータ v1 との互換性のためのルート
+$compat = new Zend_Controller_Router_Route_Module();
+$this-&gt;addRoute('default', $compat);</pre>
+<div class="note"><table border="0" summary="Note: マッチする URI">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">マッチする URI</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    <code class="code">Zend_Controller_Router_Rewrite</code> は、過去との互換性を考慮して設定されています。
+                    <code class="code">controller/action</code> 形式の URI
+                    にパラメータが付加されたパターンにも自動的にマッチします。
+                    デフォルト値や必須値を持っている限り、
+                    パラメータを付加したからといって新しいルートを追加する必要はありません。
+                    これらの追加パラメータにアクセスするには
+                    <code class="code">Zend_Controller_Action::_getParam()</code> メソッドを使用します。
+                </p></td></tr>
+</table></div>
+<p>
+                デフォルトのルートを使用したくない場合は、
+                <code class="code">removeDefaultRoutes()</code> で削除します。
+            </p>
+<pre class="programlisting">
+// 互換性のためのデフォルトルートを削除します
+$router-&gt;removeDefaultRoutes();</pre>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.rewriterouter.static-routes"></a>7.4.3.8. 静的なルート</h4></div></div></div>
+<p>
+                これまでの例では、すべて動的なルートを使用していました。
+                つまり、特定のパターンにマッチするものについてのルートです。
+                しかし、時には特定のルートを固定してしまい、
+                わざわざ正規表現エンジンを動かしたくない場合もあるでしょう。
+                そんなときには静的なルートを使用します。
+            </p>
+<pre class="programlisting">
+$loginRoute = new Zend_Controller_Router_Route_Static('login', array('controller' =&gt; 'login', 'action' =&gt; 'form'));
+$router-&gt;addRoute('login', $static);
+</pre>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.providedsubclasses.rewriterouter.add-config"></a>7.4.3.9. RewriteRouter での Zend_Config の使用法</h4></div></div></div>
+<p>
+                新しいルートを追加する際に、
+                いちいちコードを書き換えるのではなく設定ファイルの変更で対応できると便利でしょう。
+                そんなときには <code class="code">addConfig()</code> メソッドを使用します。基本的な使用法は、
+                まず Zend_Config 互換の設定を作成し、それをコードに読み込み、
+                そして RewriteRouter に渡すことです。
+            </p>
+<pre class="programlisting">
+/**
+ * サンプルの INI ファイル
+ * routes.archive.route = "archive/:year/*"
+ * routes.archive.defaults.controller = archive
+ * routes.archive.defaults.action = show
+ * routes.archive.defaults.year = 2000
+ * routes.archive.reqs.year = "\d+"
+ * 
+ * routes.news.type = "Zend_Controller_Router_Route_Static"
+ * routes.news.route = "news"
+ * routes.news.defaults.controller = "news"
+ * routes.news.defaults.action = "list"
+ */
+$config = new Zend_Config_Ini($file);
+$router = new Zend_Controller_Router_Rewrite();
+$router-&gt;addConfig($config, 'routes');
+</pre>
+<p>
+                上の例では、INI ファイルの 'routes' セクションを使用してルートを決めるよう、
+                ルータに指定しています。このセクションの第一レベルのキーがルート名に対応します。
+                上の例だと 'archive' と 'news' がこれにあたります。
+                ルートの各エントリには、最低限 'route' エントリとひとつ以上の 'defaults'
+                エントリが必要となります。また、オプションでひとつ以上の 'reqs'
+                ('required' の略) も指定できます。ここで指定したものが、それぞれ
+                <code class="code">Zend_Controller_Router_Route_Interface</code>
+                オブジェクトに対する引数となります。オプションのキー 'type' を使用すると、
+                特定のルートで使用するルートクラスの型を指定できます。デフォルトでは、これは
+                <code class="code">Zend_Controller_Router_Route</code> となります。上の例では、
+                'news' ルートで
+                <code class="code">Zend_Controller_Router_Route_Static</code>
+                を使用するようにしています。
+            </p>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.providedsubclasses.response.http"></a>7.4.4. Zend_Controller_Response_Http</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller_Response_Http</code> は、
+            HTTP 環境での使用に適したレスポンスオブジェクトです。
+            ヘッダの設定/取得/消去の機能があります。また、
+            <code class="code">__toString()</code> メソッドを使用して、
+            レスポンス本体の前に全ヘッダを一括送信することもできます。
+        </p>
+<p>
+            <code class="code">setHeader()</code> は、二つの引数を受け取ります。
+            最初がヘッダの型で、次がヘッダの値です。三番目のオプションのパラメータを
+            true にすると、同じ型の既存のヘッダを強制的に上書きします。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.providedsubclasses.response.cli"></a>7.4.5. Zend_Controller_Response_Cli</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller_Response_Cli</code> は、
+            CLI 環境での使用に適したレスポンスオブジェクトです。
+            ヘッダの処理などの機能は持たず、
+            <code class="code">__toString()</code> が起動された際には単純に本文のみを返します。
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.subclassing.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.action.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.3. サブクラス化 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 7.5. アクションコントローラ</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

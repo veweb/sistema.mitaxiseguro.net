@@ -1,0 +1,128 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.2. نظرية العمل</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="prev" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="next" href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.2. نظرية العمل</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.config.html">السابق</a> </td>
+<th width="60%" align="center">فصل 5. Zend_Config</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.adapters.ini.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.config.theory_of_operation"></a>5.2. نظرية العمل</h2></div></div></div>
+<p>
+        يتم تمرير بيانات الأعدادات إلى <code class="code">Zend_Config</code> على شكل associative array 
+        و التى من الممكن ان تكون متعددة الأبعاد, و من أجل دعم تنظيم البيانات من الشكل العام إلى المحدد, 
+        تم توفير adapter classes أو "classes توفيقية" وظيفتها توفيق البيانات المقرؤة من مصادر حفظ البيانات المتعددة
+        و تحويلها إلى associative array من أجل <code class="code">Zend_Config</code>, و يمكن للمبرمج أن يوفر 
+        هذه المصفوفة "array" مباشرة إلى <code class="code">Zend_Config</code> بدون استخدام adapter class,
+        و هذا من الممكن ان يحدث فى بعض الحالات الخاصة.
+    </p>
+<p>
+        يطبق <code class="code">Zend_Config</code> كل من الـ interfaces المسمى 
+        <code class="code">Countable</code> و <code class="code">Iterator</code> ليوفر وسائل سهلة للوصل إلى البيانات, 
+        حيث سيمكنك إستخدام دالة الـ PHP المسمى 
+        <a href="http://php.net/count" target="_top"><code class="code">()count</code></a> 
+        أو إستخدام <a href="http://php.net/foreach" target="_top"><code class="code">foreach</code></a> 
+        على كائنات <code class="code">Zend_Config</code> .
+    </p>
+<p>
+        السلوك الطبيعى لـ <code class="code">Zend_Config</code> يسمح بالقرائة فقط للبيانات , و عملية تعديل لأحد 
+        قيم البيانات المحفوظة به مثل 
+        ( <code class="code">$config-&gt;database-&gt;host = 'example.com'</code>) 
+        يتسبب فى إلقاء exception , و يمكن تغيير هذا السلوك من خلال الـ constuctor و ذلك 
+        للسماح بتعديل قيم البيانات.
+        </p>
+<div class="note"><table border="0" summary="Note: لاحظ أن">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[ملاحظة]" src="images/note.png"></td>
+<th align="left">لاحظ أن</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                تسمح <code class="code">Zend_Config</code> بعمل تغييرات فى بيانات الـ configuration التى تم تحميلها الى الذاكرة , 
+                و لكنها لا توفر امكانية حفظ هذه البيانات فى اى من وسائط حفظ البيانات , الأدوات التى تقوم بإنشاء و تعديل بيانات الـ 
+                configuration	 و حفظها فى وسائط حفظ بيانات هى خارج نطاق  Zend_Config , لكن يوجد العديد من الحلول مفتوحة 
+                المصدر لإنشاء و تعديل بيانات الـ configuration و حفظها فى وسائط حفظ بيانات مختلفة و يمكنك الأستعانة بأى منها.
+            </p></td></tr>
+</table></div>
+<p>
+    </p>
+<p>
+        الـ adapter classes يرثون من <code class="code">Zend_Config</code> حيث أنهم فقط يعدلون على كيفية أدائه.
+    </p>
+<p>
+        عائلة <code class="code">Zend_Config</code>  توفر أمكانية أن تكون البيانات مرتبة فى أقسام بيانات. 
+        و من الممكن أن يتم تحميل الـ adapter objects مع تحديد قسم بيانات واحد, أو أكثر من قسم , 
+        أو كل الأقسام (إن لم يتم تحديد قسم).
+    </p>
+<p>
+        توفر الـ adapter classes فى <code class="code">Zend_Config</code> امكانية الوراثة الأحادية بين أقسام البيانات 
+        , حيث يمكن أن يرث قسم بيانات من قسم بيانات أخر.
+        
+        هذا تم توفيره للتقليل من الحاجة لتكرار بيانات الأعدادات فى الأقسام لأسباب متعددة, 
+        و القسم الذى يرث من الممكن أن يغير القيم الموروثة من القسم الأب, و الذى من الممكن أن يكون ورث من 
+        قسم جد (أب الأب) و هكذا , لكن الوراثة المتعددة (مثل القسم C يرث مباشرة من الأقسام A و B ) غير مدعومة.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.config.html">السابق</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.config.html">أعلى</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.adapters.ini.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">فصل 5. Zend_Config </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> 5.3. Zend_Config_Ini</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

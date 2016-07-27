@@ -1,0 +1,244 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>8.2. 基本メソッド</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="prev" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="next" href="zend.date.definition.theory.html" title="8.3. 動作原理">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.date.basic.html#zend.date.basic.creation" title="8.2.1. 現在の日付">
+<link rel="subsection" href="zend.date.basic.html#zend.date.basic.functions" title="8.2.2. Zend_Date の使用例">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">8.2. 基本メソッド</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.date.html">前のページ</a> </td>
+<th width="60%" align="center">第8章 Zend_Date</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.date.definition.theory.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.date.basic"></a>8.2. 基本メソッド</h2></div></div></div>
+<p>
+        この章では、<code class="code">Zend_Date</code> の基本的な使用法を、
+        例をもとに説明します。このマニュアルで "日付"
+        というときは、常に時刻も含んでいるものとします。
+        これは、明示的に説明していなくても同様です。
+        指定していない部分のデフォルトは "ゼロ" になります。
+        つまり、日付情報をもたず 12 時間という時刻情報だけを持つ値と
+        日付情報だけを持つ値を足すと、その日付の "正午" を表すようになります。
+    </p>
+<p>
+        日付のみを指定して時刻部を省略すると、時刻は 00:00:00 になります。
+        逆に時刻のみを指定した場合は、日付の内部表現は
+        01.01.1970 からの経過秒数と等しくなります。
+        通常、人間が時間を計算する場合は西暦ゼロ年を基準とします。
+        しかし、多くのソフトウェアは 1970 年を基準として時間を計算します。
+        そして、ここからの経過秒数をタイムスタンプとして表します。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.basic.creation"></a>8.2.1. 現在の日付</h3></div></div></div>
+<p>
+            引数を指定せずにインスタンスを作成すると、
+            デフォルトのロケールでの現在時刻を表すオブジェクトを返します。
+            PHP の <code class="code">time()</code> 関数で、このオブジェクトが使用する
+            <a href="http://en.wikipedia.org/wiki/Unix_Time" target="_top">UNIX タイムスタンプ</a>
+            を取得します。PHP の環境で、
+            <a href="zend.date.html#zend.date.setdefaulttimezone" title="8.1.1. デフォルトタイムゾーンの設定">デフォルトのタイムゾーン</a>
+            が正しく設定されていることを確認しておきましょう。
+        </p>
+<div class="example">
+<a name="id4810233"></a><p class="title"><b>例 8.2. 現在の日付の作成</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// 現在のタイムスタンプを出力します
+print $date;
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.basic.functions"></a>8.2.2. Zend_Date の使用例</h3></div></div></div>
+<p>
+            <code class="code">Zend_Date</code> の基本的なメソッドを見ていきましょう。
+            他の言語やフレームワークの日付オブジェクトではあまり見かけないメソッドもあります。
+            以下の各メソッドについて、簡単な例を示しています。
+        </p>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.date.simple.functions.get"></a>8.2.2.1. 日付の出力</h4></div></div></div>
+<p>
+                <code class="code">Zend_Date</code> オブジェクトの日付を
+                地域化された形式の整数あるいは文字列で取得する際に、
+                <code class="code">get()</code> メソッドを使用します。このメソッドには、
+                さまざまなオプションが使用可能です。これらのオプションについてはあとで説明します。
+            </p>
+<div class="example">
+<a name="id4811315"></a><p class="title"><b>例 8.3. get() - 日付の出力</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// 指定した日付を出力します
+print $date-&gt;get();
+?&gt;</pre>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.date.simple.functions.set"></a>8.2.2.2. 日付の設定</h4></div></div></div>
+<p>
+                <code class="code">set()</code> メソッドは、オブジェクトに格納されている日付を変更し、
+                変更後の値をタイムスタンプ (オブジェクトではありません) で返します。
+                このメソッドでもさまざまなオプションが使用可能です。
+                これらのオプションについてはあとで説明します。
+            </p>
+<div class="example">
+<a name="id4811358"></a><p class="title"><b>例 8.4. set() - 日付の設定</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// 新しい時刻を設定します
+$date-&gt;set('13:00:00',Zend_Date::TIMES);
+print $date-&gt;get(Zend_Date::W3C);
+?&gt;</pre>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.date.simple.functions.add"></a>8.2.2.3. 日付の加減算</h4></div></div></div>
+<p>
+                二つの日付を <code class="code">add()</code> で加算するという場合、
+                通常は実際の日付データにそうでない日付データの一部 ("12 時間" など)
+                を加算することになります。たとえば以下の例のようなものです。
+                <code class="code">add()</code> および <code class="code">sub()</code> は、どちらも
+                <code class="code">set()</code> と同様のオプションを使用します。
+                これについてはあとで説明します。
+            </p>
+<div class="example">
+<a name="id4811418"></a><p class="title"><b>例 8.5. add() - 日付の加算</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// $date に 12 時間加算します
+$date-&gt;add('12:00:00', Zend_Date::TIMES);
+
+print "Date via get() = ", $date-&gt;get(Zend_Date::W3C), "\n";
+
+// マジックメソッド __toString() から、Zend_Date の toString() をコールします
+print "Date via toString() = ", $date, "\n";
+?&gt;</pre>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.date.simple.functions.compare"></a>8.2.2.4. 日付の比較</h4></div></div></div>
+<p>
+                <code class="code">Zend_Date</code> の基本メソッド群はすべて、
+                オブジェクトに含まれる日付データ全体に対して操作することができます。
+                また、日付の一部に対して操作する (日付の "分"
+                の部分だけをある値と比較するなど) こともできます。
+                たとえば、現在時刻の "分" の部分を指定した値と比較するには
+                <code class="code">compare()</code> を使用します。以下に例を示します。
+            </p>
+<div class="example">
+<a name="id4811471"></a><p class="title"><b>例 8.6. compare() - 日付の比較</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// 二つの時刻を比較します
+if ($date-&gt;compare(10, Zend_Date::MINUTE) == -1) {
+    print "This hour is less than 10 minutes old";
+} else {
+    print "This hour is at least 10 minutes old";
+}
+?&gt;</pre>
+</div>
+<p>
+                単純に等しいかどうかを比較するには <code class="code">equals()</code>
+                を使用します。これは boolean 値を返します。
+            </p>
+<div class="example">
+<a name="id4811502"></a><p class="title"><b>例 8.7. equals() - 日付あるいはその一部の同一性</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Date.php';
+
+$date = new Zend_Date();
+
+// 二つの日付を比較します
+if ($date-&gt;equals(10, Zend_Date::HOUR)) {
+    print "十時です。仕事を始める時間です。";
+} else {
+    print "十時ではありません。もうちょっと寝ていましょう。";
+}
+?&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.date.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.date.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.date.definition.theory.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第8章 Zend_Date </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 8.3. 動作原理</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

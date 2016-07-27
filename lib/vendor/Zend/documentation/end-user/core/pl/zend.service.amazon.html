@@ -1,0 +1,950 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>24.3. Zend_Service_Amazon</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="prev" href="zend.service.akismet.html" title="24.2. Zend_Service_Akismet">
+<link rel="next" href="zend.service.flickr.html" title="24.4. Zend_Service_Flickr">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.introduction" title="24.3.1. Wprowadzenie">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.countrycodes" title="24.3.2. Kody państw">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. Szukanie specyficznego przedmiotu w Amazon na podstawie ASIN">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Wykonywanie wyszukiwań przedmiotów Amazon">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.query" title="24.3.5. Użycie alternatywnego API zapytań">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">24.3. Zend_Service_Amazon</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.service.akismet.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 24. Zend_Service</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.service.flickr.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.service.amazon"></a>24.3. Zend_Service_Amazon</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.introduction"></a>24.3.1. Wprowadzenie</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Amazon</code> jest prostym API do użycia z web serwisami 
+            Amazon. <code class="code">Zend_Service_Amazon</code> ma dwa API: bardziej tradycyjne,
+            które jest oparte na własnym API serwisu Amazon, oraz prostsze API zapytań do 
+            łatwego tworzenia nawet skomplikowanych zapytań wyszukiwania.
+        </p>
+<p>
+            <code class="code">Zend_Service_Amazon</code> pozwala programistom odbierać 
+            informacje dostępne na stronach Amazon.com bezpośrednio za pomocą
+            API web serwisów Amazon. Przykłady zawierają:
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        Informacje o przedmiotach, takie jak obrazki, opisy, cenniki i inne
+                    </p></li>
+<li><p>
+                        Recenzje klientów i redaktorów
+                    </p></li>
+<li><p>
+                        Podobne produkty i akcesoria
+                    </p></li>
+<li><p>
+                        Oferty Amazon.com
+                    </p></li>
+<li><p>
+                        Listy ListMania
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            Aby użyć <code class="code">Zend_Service_Amazon</code>, musisz posiadać klucz API programisty
+            Amazon. Aby otrzymać klucz i zdobyć więcej informacji odwiedź stronę
+            <a href="http://www.amazon.com/gp/aws/landing.html" target="_top">Amazon Web Services</a>.
+        </p>
+<div class="note"><table border="0" summary="Note: Uwaga">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Uwaga</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Twój klucz do API serwisu Amazon jest połączony z twoją tożsamością 
+                w Amazon, więc staraj się przechowywać twój klucz API bezpiecznie.
+            </p></td></tr>
+</table></div>
+<div class="example">
+<a name="id4882866"></a><p class="title"><b>Przykład 24.4. Przeszukiwanie Amazon używając tradycyjnego API</b></p>
+<p>
+                W tym przykładzie, szukamy książek o PHP w Amazon i przechodzimy przez nie w pętli, wyświetlając je.
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY&amp;');
+$response = $amazon-&gt;itemSearch(array('SearchIndex' =&gt; 'Books', 'Keywords' =&gt; 'php'));
+foreach ($response as $r) {
+    echo $r-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+<div class="example">
+<a name="id4882886"></a><p class="title"><b>Przykład 24.5. Przeszukiwanie Amazon używając API zapytań</b></p>
+<p>
+                Tutaj także szukamy książek o PHP w Amazon, ale zamiast
+                tradycyjnego API używamy API zapytań, które jest stworzone
+                w oparciu o projektowy wzorzec płynnych interfejsów.
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon/Query.php';
+$query = new Zend_Service_Amazon_Query('AMAZON_API_KEY');
+$query-&gt;category('Books')-&gt;Keywords('PHP');
+$results = $query-&gt;search();
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.countrycodes"></a>24.3.2. Kody państw</h3></div></div></div>
+<p>
+            Domyślnie, <code class="code">Zend_Service_Amazon</code> łączy się z web serwisem 
+            Amazon w Stanach Zjednoczonych ("<code class="code">US</code>"). Aby połączyć się 
+            z innym krajem, w prosty sposób podaj kod odpowiedniego państwa jako 
+            drugi parametr konstruktora:
+        </p>
+<div class="example">
+<a name="id4882961"></a><p class="title"><b>Przykład 24.6. Wybierania państwa web serwisu Amazon</b></p>
+<pre class="programlisting">&lt;?php
+// Łączenie się z Amazon w Japonii
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY', 'JP');
+?&gt;       </pre>
+</div>
+<div class="note"><table border="0" summary="Note: Kody państw">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Kody państw</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Poprawne kody państw: <code class="code">CA</code>, <code class="code">DE</code>, <code class="code">FR</code>, <code class="code">JP</code>,
+                <code class="code">UK</code>, oraz <code class="code">US</code>.
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.itemlookup"></a>24.3.3. Szukanie specyficznego przedmiotu w Amazon na podstawie ASIN</h3></div></div></div>
+<p>
+            Metoda <code class="code">itemLookup()</code> zapewnia możliwość pobrania informacji
+            o konkretnym przedmiocie, którego ASIN jest znany.
+        </p>
+<div class="example">
+<a name="id4883035"></a><p class="title"><b>Przykład 24.7. Szukanie specyficznego przedmiotu w Amazon na podstawie ASIN</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY');
+$item = $amazon-&gt;itemLookup('B0000A432X');
+?&gt;       </pre>
+</div>
+<p>
+            Metoda <code class="code">itemLookup()</code> także akceptuje opcjonalny drugi parametr
+            do obsługi opcji wyszukiwania. Aby poznać pełne informacje, włączając
+            w to listę dostępnych opcji odwiedź
+            <a href="http://www.amazon.com/gp/aws/sdk/main.html/103-9285448-4703844?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemLookupOperation" target="_top">dokumentację Amazon</a>.
+        </p>
+<div class="note"><table border="0" summary="Note: Informacje o zdjęciach">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Informacje o zdjęciach</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            	Aby odebrać informacje o zdjęciach dla twoich wyników wyszukiwania, musisz ustawić
+            	opcję <code class="code">ResponseGroup</code> na <code class="code">Medium</code> lub <code class="code">Large</code>.
+        	</p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.itemsearch"></a>24.3.4. Wykonywanie wyszukiwań przedmiotów Amazon</h3></div></div></div>
+<p>
+            Wyszukiwanie przedmiotów oparte na różnych dostępnych kryteriach 
+            jest przeprowadzane za pomocą metody <code class="code">itemSearch()</code>, tak 
+            jak w poniższym przykładzie:
+        </p>
+<div class="example">
+<a name="id4883127"></a><p class="title"><b>Przykład 24.8. Wykonywanie wyszukiwań przedmiotów Amazon</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY');
+$response = $amazon-&gt;itemSearch(array('SearchIndex' =&gt; 'Books', 'Keywords' =&gt; 'php'));
+foreach($response as $r) {
+    echo $r-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+<p>
+            Metoda <code class="code">itemSearch()</code> akceptuje jeden parametr w postaci 
+            tablicy do obsługi opcji wyszukiwania. Aby poznać wszystkie 
+            szczegóły włączając w to listę dostępnych opcji, proszę zobacz
+            <a href="http://www.amazon.com/gp/aws/sdk/main.html/103-9285448-4703844?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemSearchOperation" target="_top">dokumentację Amazon</a>
+        </p>
+<div class="tip"><table border="0" summary="Tip">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Podpowiedź]" src="images/tip.png"></td>
+<th align="left">Podpowiedź</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Klasa <a href="zend.service.amazon.html#zend.service.amazon.query" title="24.3.5. Użycie alternatywnego API zapytań"><code class="code">Zend_Service_Amazon_Query</code></a> 
+                jest nakładką na tę metodę ułatwiającą tworzenie zapytań wyszukiwania.
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.query"></a>24.3.5. Użycie alternatywnego API zapytań</h3></div></div></div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.query.introduction"></a>24.3.5.1. Wprowadzenie</h4></div></div></div>
+<p>
+                <code class="code">Zend_Service_Amazon_Query</code> zapewnia alternatywne API
+                do użycia z web serwisami Amazon. Alternatywne API używa wzorca
+                projektowego płynnych interfejsów. Oznacza to, że wszystkie 
+                wywołania mogą być przeprowadzone przez łańcuchowe wywołania 
+                metod. (np. <code class="code">$obj-&gt;method()-&gt;method2($arg)</code>)
+            </p>
+<p>
+                API <code class="code">Zend_Service_Amazon_Query</code> używa przeładowania
+                w celu łatwego ustawiania wyszukiwania przedmiotów i pozwala na
+                wyszukiwanie na podstawie określonych kryteriów. Każda z opcji 
+                jest udostępniana jako wywołanie metody, a każdy argument metody 
+                odpowiada wartości opcji o tej nazwie:
+            </p>
+<div class="example">
+<a name="id4883254"></a><p class="title"><b>Przykład 24.9. Przeszukiwanie serwisu Amazon używając alternatywnego API zapytań</b></p>
+<p>
+                    W tym przykładzie alternatywne API zapytań używane jest jako 
+                    płynny interfejs służący do określania opcji i odpowiadającym
+                    im wartościom:
+                </p>
+<pre class="programlisting">&lt;?php
+    require_once 'Zend/Service/Amazon/Query.php';
+    $query = new Zend_Service_Amazon_Query('MY_API_KEY');
+    $query-&gt;Category('Books')-&gt;Keywords('PHP');
+    $results = $query-&gt;search();
+    foreach ($results as $result) {
+        echo $result-&gt;Title .'&lt;br /&gt;';
+    }
+    ?&gt;       </pre>
+<p>
+                    To ustawia opcję <code class="code">Category</code> na "Books" oraz <code class="code">Keywords</code> na "PHP".
+                </p>
+<p>
+                    Aby uzyskać więcej informacji o dostępnych opcjach, proszę odwiedź
+                    <a href="http://www.amazon.com/gp/aws/sdk/main.html/102-9041115-9057709?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemSearchOperation" target="_top">dokumentację Amazon</a>.
+                </p>
+</div>
+</div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.classes"></a>24.3.6. Klasy Zend_Service_Amazon</h3></div></div></div>
+<p>
+            Poniższe klasy są zwracane przez metody
+            <a href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. Szukanie specyficznego przedmiotu w Amazon na podstawie ASIN"><code class="code">Zend_Service_Amazon::itemLookup()</code></a>
+            oraz
+            <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Wykonywanie wyszukiwań przedmiotów Amazon"><code class="code">Zend_Service_Amazon::itemSearch()</code></a>:
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.item" title="24.3.6.1. Zend_Service_Amazon_Item"><code class="code">Zend_Service_Amazon_Item</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.image" title="24.3.6.2. Zend_Service_Amazon_Image"><code class="code">Zend_Service_Amazon_Image</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.resultset" title="24.3.6.3. Zend_Service_Amazon_ResultSet"><code class="code">Zend_Service_Amazon_ResultSet</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.offerset" title="24.3.6.4. Zend_Service_Amazon_OfferSet"><code class="code">Zend_Service_Amazon_OfferSet</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.offer" title="24.3.6.5. Zend_Service_Amazon_Offer"><code class="code">Zend_Service_Amazon_Offer</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.similarproduct" title="24.3.6.6. Zend_Service_Amazon_SimilarProduct"><code class="code">Zend_Service_Amazon_SimilarProduct</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.accessories" title="24.3.6.7. Zend_Service_Amazon_Accessories"><code class="code">Zend_Service_Amazon_Accessories</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.customerreview" title="24.3.6.8. Zend_Service_Amazon_CustomerReview"><code class="code">Zend_Service_Amazon_CustomerReview</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.editorialreview" title="24.3.6.9. Zend_Service_Amazon_EditorialReview"><code class="code">Zend_Service_Amazon_EditorialReview</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.listmania" title="24.3.6.10. Zend_Service_Amazon_Listmania"><code class="code">Zend_Service_Amazon_ListMania</code></a></p></li>
+</ul></div>
+<p>
+        </p>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.item"></a>24.3.6.1. Zend_Service_Amazon_Item</h4></div></div></div>
+<p>
+                <code class="code">Zend_Service_Amazon_Item</code> jest typem klasy używanej
+                dp reprezentowania przedmiotu Amazon zwracanego przez web serwis.
+                Zawiera ona wszystkie atrybuty przedmiotu, włączając w to tytuł,
+                opis, recenzje itd.
+            </p>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.item.asxml"></a>24.3.6.1.1. Zend_Service_Amazon_Item::asXML()</h5></div></div></div>
+<p>
+                    <code class="methodsynopsis"><span class="type">string </span><span class="methodname">asXML</span>();</code>
+                </p>
+<p>Zwraca oryginalną treść XML dla przedmiotu</p>
+</div>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.item.properties"></a>24.3.6.1.2. Właściwości</h5></div></div></div>
+<p>
+                    <code class="code">Zend_Service_Amazon_Item</code> posiada właściwości
+                    bezpośrednio związane ze standardowymi częściami Amazon API.
+                </p>
+<div class="table">
+<a name="id4883562"></a><p class="title"><b>Tabela 24.1. Właściwości Zend_Service_Amazon_Item</b></p>
+<table summary="Właściwości Zend_Service_Amazon_Item" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nazwa</th>
+<th>Typ</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>ID przedmiotu w Amazon</td>
+</tr>
+<tr>
+<td>DetailPageURL</td>
+<td>string</td>
+<td>Adres URL strony ze szczegółowymi informacjami o przedmiocie</td>
+</tr>
+<tr>
+<td>SalesRank</td>
+<td>string</td>
+<td>Ranking sprzedaży dla przedmiotu</td>
+</tr>
+<tr>
+<td>SmallImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>Małe zdjęcie przedmiotu</td>
+</tr>
+<tr>
+<td>MediumImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>Średnie zdjęcie przedmiotu</td>
+</tr>
+<tr>
+<td>LargeImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>Duże zdjęcie przedmiotu</td>
+</tr>
+<tr>
+<td>Subjects</td>
+<td>array</td>
+<td>Tematy przedmiotów</td>
+</tr>
+<tr>
+<td>Offers</td>
+<td>
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.offerset" title="24.3.6.4. Zend_Service_Amazon_OfferSet">Zend_Service_Amazon_OfferSet</a>
+                                    </code>
+                                </td>
+<td>Podsumowanie ofert oraz oferty dla przedmiotu</td>
+</tr>
+<tr>
+<td>CustomerReviews</td>
+<td>array</td>
+<td>
+                                    Recenzje klientów reprezentowane jako tablica obiektów
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.customerreview" title="24.3.6.8. Zend_Service_Amazon_CustomerReview">Zend_Service_Amazon_CustomerReview</a>
+                                    </code>
+                                </td>
+</tr>
+<tr>
+<td>EditorialReviews</td>
+<td>array</td>
+<td>
+                                    Recenzje redaktorów reprezentowane jako tablica obiektów
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.editorialreview" title="24.3.6.9. Zend_Service_Amazon_EditorialReview">Zend_Service_Amazon_EditorialReview</a>
+                                    </code>
+                                </td>
+</tr>
+<tr>
+<td>SimilarProducts</td>
+<td>array</td>
+<td>
+                                    Podobne produkty reprezentowane jako tablica obiektów
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.similarproduct" title="24.3.6.6. Zend_Service_Amazon_SimilarProduct">Zend_Service_Amazon_SimilarProduct</a>
+                                    </code>
+                                </td>
+</tr>
+<tr>
+<td>Accessories</td>
+<td>array</td>
+<td>
+                                    Akcesoria dla przedmiotu reprezentowane jako tablica obiektów
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.accessories" title="24.3.6.7. Zend_Service_Amazon_Accessories">Zend_Service_Amazon_Accessories</a>
+                                    </code>
+                                </td>
+</tr>
+<tr>
+<td>Tracks</td>
+<td>array</td>
+<td>Tablica numerów i nazw utworów dla muzycznych płyt CD oraz DVD</td>
+</tr>
+<tr>
+<td>ListmaniaLists</td>
+<td>array</td>
+<td>
+                                    Listy Listmania powiązane z przedmiotem jako tablica obiektó∑
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.listmania" title="24.3.6.10. Zend_Service_Amazon_Listmania">Zend_Service_Amazon_ListmainList</a>
+                                    </code>
+                                </td>
+</tr>
+<tr>
+<td>PromotionalTag</td>
+<td>string</td>
+<td>Etykieta promocyjna przedmiotu</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">Powrót do listy klas</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.image"></a>24.3.6.2. Zend_Service_Amazon_Image</h4></div></div></div>
+<p><code class="code">Zend_Service_Amazon_Image</code> reprezentuje zdalny obraz dla produktu.</p>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.image.properties"></a>24.3.6.2.1. Właściwości</h5></div></div></div>
+<div class="table">
+<a name="id4883944"></a><p class="title"><b>Tabela 24.2. Właściwości Zend_Service_Amazon_Image</b></p>
+<table summary="Właściwości Zend_Service_Amazon_Image" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nazwa</th>
+<th>Typ</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Url</td>
+<td>Zend_Uri</td>
+<td>Zdalny adres URL obrazka</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>int</td>
+<td>Wysokość obrazka w pikselach</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>int</td>
+<td>Szerokość obrazka w pikselach</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">Powrót do listy klas</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.resultset"></a>24.3.6.3. Zend_Service_Amazon_ResultSet</h4></div></div></div>
+<p>
+                Obiekty <code class="code">Zend_Service_Amazon_ResultSet</code> są zwracane przez metodę
+                <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Wykonywanie wyszukiwań przedmiotów Amazon">Zend_Service_Amazon::itemSearch()</a>
+                i pozwalają ci na łatwą obsługę wielu zwróconych wyników wyszukiwania.
+            </p>
+<div class="note"><table border="0" summary="Note: SeekableIterator">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">SeekableIterator</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    Implementuje interfejs <code class="code">SeekableIterator</code> dla łatwej iteracji 
+                    (np. używając <code class="code">foreach</code>), tak samo jak i dla bezpośredniego 
+                    dostępu do specyficznego wyniku używając metody <code class="code">seek()</code>.
+                </p></td></tr>
+</table></div>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.resultset.totalresults"></a>24.3.6.3.1. Zend_Service_Amazon_ResultSet::totalResults()</h5></div></div></div>
+<code class="methodsynopsis"><span class="type">int </span><span class="methodname">totalResults</span>();</code><p>Zwraca całkowitą ilość wyników zwróconych przez wyszukiwanie</p>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">Powrót do listy klas</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.offerset"></a>24.3.6.4. Zend_Service_Amazon_OfferSet</h4></div></div></div>
+<p>
+                Każdy wynik zwracany przez metody
+                <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Wykonywanie wyszukiwań przedmiotów Amazon">Zend_Service_Amazon::itemSearch()</a>
+                oraz
+                <a href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. Szukanie specyficznego przedmiotu w Amazon na podstawie ASIN">Zend_Service_Amazon::itemLookup()</a>
+                zawiera obiekt
+                <code class="code">Zend_Service_Amazon_OfferSet</code> poprzez który dostępne są
+                informacje o cenach dla przedmiotu.
+            </p>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.offerset.parameters"></a>24.3.6.4.1. Właściwości</h5></div></div></div>
+<div class="table">
+<a name="id4884187"></a><p class="title"><b>Tabela 24.3. Właściwości Zend_Service_Amazon_OfferSet</b></p>
+<table summary="Właściwości Zend_Service_Amazon_OfferSet" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nazwa</th>
+<th>Typ</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>LowestNewPrice</td>
+<td>int</td>
+<td>Najniższa cena dla nowego przedmiotu (stan "New")</td>
+</tr>
+<tr>
+<td>LowestNewPriceCurrency</td>
+<td>string</td>
+<td>
+                                    Waluta dla <code class="code">LowestNewPrice</code>
+                                </td>
+</tr>
+<tr>
+<td>LowestOldPrice</td>
+<td>int</td>
+<td>Najniższa cena dla używanego przedmiotu (stan "Used")</td>
+</tr>
+<tr>
+<td>LowestOldPriceCurrency</td>
+<td>string</td>
+<td>
+                                    Waluta dla <code class="code">LowestOldPrice</code>
+                                </td>
+</tr>
+<tr>
+<td>TotalNew</td>
+<td>int</td>
+<td>Całkowita ilość przedmiotów o stanie "new"</td>
+</tr>
+<tr>
+<td>TotalUsed</td>
+<td>int</td>
+<td>Całkowita ilość przedmiotów o stanie "used"</td>
+</tr>
+<tr>
+<td>TotalCollectible</td>
+<td>int</td>
+<td>Całkowita ilość przedmiotów o stanie "collectible"</td>
+</tr>
+<tr>
+<td>TotalRefurbished</td>
+<td>int</td>
+<td>Całkowita ilość przedmiotów o stanie "refurbished"</td>
+</tr>
+<tr>
+<td>Offers</td>
+<td>array</td>
+<td>
+                                    Tablica obiektów
+                                    <code class="code">Zend_Service_Amazon_Offer</code>.
+                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">Powrót do listy klas</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.offer"></a>24.3.6.5. Zend_Service_Amazon_Offer</h4></div></div></div>
+<p>
+                Każda oferta dla przedmiotu jest zwracana jako obiekt
+                <code class="code">Zend_Service_Amazon_Offer</code>.
+            </p>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.offer.properties"></a>24.3.6.5.1. Właściwości Zend_Service_Amazon_Offer</h5></div></div></div>
+<div class="table">
+<a name="id4884411"></a><p class="title"><b>Tabela 24.4. Właściwości</b></p>
+<table summary="Właściwości" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nazwa</th>
+<th>Typ</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>MerchantId</td>
+<td>string</td>
+<td>ID handlowca Amazon</td>
+</tr>
+<tr>
+<td>GlancePage</td>
+<td>string</td>
+<td>Adres URL strony z podsumowaniem handlowca</td>
+</tr>
+<tr>
+<td>Condition</td>
+<td>string</td>
+<td>Stan przedmiotu</td>
+</tr>
+<tr>
+<td>OfferListingId</td>
+<td>string</td>
+<td>ID listy ofert</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>int</td>
+<td>Cena za przedmiot</td>
+</tr>
+<tr>
+<td>CurrencyCode</td>
+<td>string</td>
+<td>Kod waluty dla ceny przedmiotu</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>string</td>
+<td>Dostępność przedmiotu</td>
+</tr>
+<tr>
+<td>IsEligibleForSuperSaverShipping</td>
+<td>boolean</td>
+<td>Czy przedmiot jest dostępny w Super Saver Shipping czy nie</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">Powrót do listy klas</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.similarproduct"></a>24.3.6.6. Zend_Service_Amazon_SimilarProduct</h4></div></div></div>
+<p>
+                Kiedy wyszukujemy przedmiotów, Amazon także zwraca listę 
+                podobnych produktów, które także mogą odpowiadać szukającemu.
+                Każdy z nich jest zwracany jako obiekt
+                <code class="code">Zend_Service_Amazon_SimilarProduct</code>.
+            </p>
+<p>
+                Każdy obiekt zawiera informacje pozwalające ci na 
+                przeprowadzenie kolejnego żądania w celu pobrania pełnych
+                informacji o przedmiocie.
+            </p>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.similarproduct.properties"></a>24.3.6.6.1. Właściwości</h5></div></div></div>
+<div class="table">
+<a name="id4884616"></a><p class="title"><b>Tabela 24.5. Właściwości Zend_Service_Amazon_SimilarProduct</b></p>
+<table summary="Właściwości Zend_Service_Amazon_SimilarProduct" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nazwa</th>
+<th>Typ</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>Unikalny ID produktu (ASIN)</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>string</td>
+<td>Tytuł produktu</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">Powrót do listy klas</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.accessories"></a>24.3.6.7. Zend_Service_Amazon_Accessories</h4></div></div></div>
+<p>
+                Akcesoria dla zwróconego przedmiotu są reprezentowane jako obiekty <code class="code">Zend_Service_Amazon_Accessories</code>
+            </p>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.accessories.properties"></a>24.3.6.7.1. Właściwości</h5></div></div></div>
+<div class="table">
+<a name="id4884722"></a><p class="title"><b>Tabela 24.6. Właściwości Zend_Service_Amazon_Accessories</b></p>
+<table summary="Właściwości Zend_Service_Amazon_Accessories" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nazwa</th>
+<th>Typ</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>Unikalny ID produktu Amazon (ASIN)</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>string</td>
+<td>Tytuł produktu</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">Powrót do listy klas</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.customerreview"></a>24.3.6.8. Zend_Service_Amazon_CustomerReview</h4></div></div></div>
+<p>
+                Każda recenzja klienta jest zwracana jako obiekt <code class="code">Zend_Service_Amazon_CustomerReview</code>.
+            </p>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.customerreview.properties"></a>24.3.6.8.1. Właściwości</h5></div></div></div>
+<div class="table">
+<a name="id4884829"></a><p class="title"><b>Tabela 24.7. Właściwości Zend_Service_Amazon_CustomerReview</b></p>
+<table summary="Właściwości Zend_Service_Amazon_CustomerReview" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nazwa</th>
+<th>Typ</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Rating</td>
+<td>string</td>
+<td>Ocena przedmiotu</td>
+</tr>
+<tr>
+<td>HelpfulVotes</td>
+<td>string</td>
+<td>Głosy mówiące o tym jak pomocna jest recenzja</td>
+</tr>
+<tr>
+<td>CustomerId</td>
+<td>string</td>
+<td>ID klienta</td>
+</tr>
+<tr>
+<td>TotalVotes</td>
+<td>string</td>
+<td>Całkowiita ilość głosów</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>string</td>
+<td>Data oceny</td>
+</tr>
+<tr>
+<td>Summary</td>
+<td>string</td>
+<td>Podsumowanie oceny</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>string</td>
+<td>Zawartość oceny</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">Powrót do listy klas</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.editorialreview"></a>24.3.6.9. Zend_Service_Amazon_EditorialReview</h4></div></div></div>
+<p>
+                Każda recenzja redaktora jest zwracana jako obiekt 
+                <code class="code">Zend_Service_Amazon_EditorialReview</code>
+            </p>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.editorialreview.properties"></a>24.3.6.9.1. Właściwości</h5></div></div></div>
+<div class="table">
+<a name="id4885006"></a><p class="title"><b>Tabela 24.8. Właściwości Zend_Service_Amazon_EditorialReview</b></p>
+<table summary="Właściwości Zend_Service_Amazon_EditorialReview" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nazwa</th>
+<th>Typ</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Source</td>
+<td>string</td>
+<td>Źródło recenzji redaktora</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>string</td>
+<td>Zawartość oceny</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">Powrót do listy klas</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.listmania"></a>24.3.6.10. Zend_Service_Amazon_Listmania</h4></div></div></div>
+<p>
+                Wyniki wyszukiwania elementów List Mania są zwracane jako 
+                obiekty <code class="code">Zend_Service_Amazon_Listmania</code>.
+            </p>
+<div class="sect4" lang="pl">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.listmania.properties"></a>24.3.6.10.1. Właściwości</h5></div></div></div>
+<div class="table">
+<a name="id4885113"></a><p class="title"><b>Tabela 24.9. Właściwości Zend_Service_Amazon_Listmania</b></p>
+<table summary="Właściwości Zend_Service_Amazon_Listmania" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Nazwa</th>
+<th>Typ</th>
+<th>Opis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ListId</td>
+<td>string</td>
+<td>ID listy</td>
+</tr>
+<tr>
+<td>ListName</td>
+<td>string</td>
+<td>Nazwa listy</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Klasy Zend_Service_Amazon">Powrót do listy klas</a>
+                </p>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.service.akismet.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.service.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.service.flickr.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">24.2. Zend_Service_Akismet </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 24.4. Zend_Service_Flickr</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

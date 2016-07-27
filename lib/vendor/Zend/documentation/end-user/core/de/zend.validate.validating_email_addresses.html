@@ -1,0 +1,142 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>27.4. Validating Email Addresses</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="prev" href="zend.validate.writing_validators.html" title="27.3. Writing Validators">
+<link rel="next" href="zend.validate.validating_hostnames.html" title="27.5. Validating Hostnames">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">27.4. Validating Email Addresses</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.validate.writing_validators.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 27. Zend_Validate</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.validate.validating_hostnames.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.validate.validating_email_addresses"></a>27.4. Validating Email Addresses</h2></div></div></div>
+<p>
+        Zend_Validate_Email allows you to validate an email address. The validator first splits the email 
+        address on local-part @ hostname and attempts to match these against known specifications for 
+        email addresses and hostnames.
+    </p>
+<p>
+        <span class="strong"><strong>Basic usage</strong></span>
+    </p>
+<p>
+        A basic example of usage is below:
+        
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/EmailAddress.php';
+$validator = new Zend_Validate_EmailAddress();
+if ($validator-&gt;isValid($email)) {
+    // email appears to be valid
+} else {
+    // email is invalid; print the reasons
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+        This will match the email address <code class="code">$email</code> and on failure populate 
+        <code class="code">$validator-&gt;getMessages()</code> with useful error messages.
+        
+    </p>
+<p>
+        <span class="strong"><strong>Complex local parts</strong></span>
+    </p>
+<p>
+        Zend_Validate_Email will match any valid email address according to RFC2822. For example, 
+        valid emails include <code class="code">bob@domain.com</code>, <code class="code">bob+jones@domain.us</code>, 
+        <code class="code">"bob@jones"@domain.com</code> and <code class="code">"bob jones"@domain.com</code>
+        
+        Some obsolete email formats will not currently validate (i.e. carriage returns or a 
+        "\" character in an email address).
+    </p>
+<p>
+        <span class="strong"><strong>Validating different types of hostnames</strong></span>
+    </p>
+<p>
+        The hostname part of an email address is validated against Zend_Validate_Hostname. By default 
+        only DNS hostnames of the form <code class="code">domain.com</code> are accepted, though if you wish you 
+        can accept IP addresses and Local hostnames too. 
+        
+        To do this you need to instantiate Zend_Validate_EmailAddress passing a parameter to indicate
+        the type of hostnames you want to accept. More details are included in Zend_Validate_Hostname 
+        though an example of how to accept both DNS and Local hostnames appears below:
+        
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/EmailAddress.php';
+$validator = new Zend_Validate_EmailAddress(Zend_Validate_Hostname::ALLOW_DNS | Zend_Validate_Hostname::ALLOW_LOCAL);
+if ($validator-&gt;isValid($email)) {
+    // email appears to be valid
+} else {
+    // email is invalid; print the reasons
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.validate.writing_validators.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.validate.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.validate.validating_hostnames.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">27.3. Writing Validators </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 27.5. Validating Hostnames</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

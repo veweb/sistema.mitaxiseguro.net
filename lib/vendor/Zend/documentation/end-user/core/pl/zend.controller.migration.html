@@ -1,0 +1,359 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.9. Migracja z poprzednich wersji</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="prev" href="zend.controller.exceptions.html" title="7.8. Wyjątki MVC">
+<link rel="next" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.controller.migration.html#zend.controller.migration.fromzerosix" title="7.9.1. Migracja z wersji 0.6.0 do 0.8.0">
+<link rel="subsection" href="zend.controller.migration.html#zend.controller.migration.fromzerotwo" title="7.9.2. Migracja z wersji 0.2.0 lub z poprzednich do 0.6.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.9. Migracja z poprzednich wersji</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.exceptions.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.date.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.migration"></a>7.9. Migracja z poprzednich wersji</h2></div></div></div>
+<p>
+        API komponentów MVC zmieniało się z biegiem czasu. Jeśli zacząłeś używać 
+        Zend Framework we wczesnej wersji, postępuj według poniższych wskazówek 
+        aby przeprowadzić migrację swoich skryptów aby używały nowej architektury.
+    </p>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.migration.fromzerosix"></a>7.9.1. Migracja z wersji 0.6.0 do 0.8.0</h3></div></div></div>
+<p>
+            Od czasu poprzednich zmian, najbardziej podstawowe użycie 
+            komponentów MVC pozostaje takie same:
+        </p>
+<pre class="programlisting">
+require_once 'Zend/Controller/Front.php';
+Zend_Controller_Front::run('/path/to/controllers');
+</pre>
+<p>
+            Jakkolwiek, struktura katalogów została przebudowana, kilka
+            komponentów usunięto, kilku innym zmieniono nazwy, a także kilka
+            dodano. Zmiany to:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    Klasa <code class="code">Zend_Controller_Router</code> została usunięta
+                    na rzecz rewrite routera.
+                </p></li>
+<li><p>
+                    Nazwa klasy <code class="code">Zend_Controller_RewriteRouter</code> 
+                    została zmieniona na <code class="code">Zend_Controller_Router_Rewrite</code>
+                    i awansowała ona na standardowy router dostarczany z frameworkiem;
+                    <code class="code">Zend_Controller_Front</code> użyje go domyślnie, jeśli 
+                    żaden inny router nie zostanie ustawiony.
+                </p></li>
+<li><p>
+                    Nowa klasa trasy doa użycia z rewrite routerem została 
+                    przedstawiona, jest to
+                    <code class="code">Zend_Controller_Router_Route_Module</code>; kryje
+                    ona w sobie domyślną trasę używaną przez MVC i wspiera <a href="zend.controller.modular.html" title="7.7. Użycie konwencjonalnej modularnej struktury katalogów">Sekcja 7.7, „Użycie konwencjonalnej modularnej struktury katalogów”</a>.
+                </p></li>
+<li><p>
+                    Nazwa klasy <code class="code">Zend_Controller_Router_StaticRoute</code> 
+                    została zmieniona na 
+                    <code class="code">Zend_Controller_Router_Route_Static</code>.
+                </p></li>
+<li><p>
+                    Nazwa klasy <code class="code">Zend_Controller_Dispatcher</code> została
+                    zmieniona na <code class="code">Zend_Controller_Dispatcher_Standard</code>.
+                </p></li>
+<li>
+<p>
+                    Zmieniły się argumenty metody
+                    <code class="code">Zend_Controller_Action::_forward()</code>. Sygnatura
+                    wygląda teraz następująco:
+                </p>
+<pre class="programlisting">
+final protected function _forward($action, $controller = null, $module = null, array $params = null);
+</pre>
+<p>
+                    Parametr <code class="code">$action</code> jest zawsze wymagany; jeśli
+                    kontroler nie jest określony, to brana pod uwagę jest akcja
+                    z obecnego kontrolera. Parametr <code class="code">$module</code> jest
+                    zawsze ignorowany, o ile parametr <code class="code">$controller</code> 
+                    nie jest określony. Ostatecznie każdy z parametrów w
+                    tablicy <code class="code">$params</code> będzie dołączony do obiektu
+                    żądania. Jeśli nie potrzebujesz określić kontrolera lub 
+                    modułu, ale potrzebujesz przekazać parametry, po prostu
+                    określ te wartości jako null.
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.migration.fromzerotwo"></a>7.9.2. Migracja z wersji 0.2.0 lub z poprzednich do 0.6.0</h3></div></div></div>
+<p>
+            Podstawowy sposób korzystania z komponentów MVC nie zmienił się; 
+            nadal możesz użyć poniższego kodu:
+        </p>
+<pre class="programlisting">
+require_once 'Zend/Controller/Front.php';
+Zend_Controller_Front::run('/path/to/controllers');
+</pre>
+<pre class="programlisting">
+/* -- utwórz router -- */
+$router = new Zend_Controller_RewriteRouter();
+$router-&gt;addRoute('user', 'user/:username', array('controller' =&gt; 'user',
+'action' =&gt; 'info'));
+
+/* -- ustawić go w kontrolerze -- */
+$ctrl = Zend_Controller_Front::getInstance();
+$ctrl-&gt;setRouter($router);
+
+/* -- ustawić katalog kontrolerów i uruchomić -- */
+$ctrl-&gt;setControllerDirectory('/path/to/controllers');
+$ctrl-&gt;dispatch();
+</pre>
+<p>
+            Jakkolwiek, po dodaniu obiektu <a href="zend.controller.html#zend.controller.overview.response" title="7.1.5. Obiekt odpowiedzi">Sekcja 7.1.5, „Obiekt odpowiedzi”</a>, 
+            będziesz potrzebował zmienić ostatnią linię z tego przykładu na:
+        </p>
+<pre class="programlisting">
+echo $ctrl-&gt;dispatch();
+</pre>
+<p>
+            Zalecamy użycie obiektu odpowiedzi (Response) do łączenia zawartości 
+            i nagłówków. To pozwala na bardziej elastyczne zmiany formatu danych
+            wyjściowych (na przykład JSON lub XML zamiast XHTML) w twoich
+            aplikacjach. Domyślnie metoda <code class="code">dispatch()</code> zrenderuje
+            całą odpowiedź, wyśle nagłówki i całą zawartość. Możesz także
+            użyć kontrolera frontowego aby zwrócił zawartość za pomocą metody
+            <code class="code">returnResponse()</code>, a potem zrenderować odpowiedź używając
+            twojej własnej logiki. Przyszłe wersje kontrolera frontowego mogą 
+            forsować użycie obiektu odpowiedzi przez wyświetlenie danych 
+            wyjściowych.
+        </p>
+<p>
+            Jest wiele dodatkowych funkcjonalności, które rozszerzają istniejące 
+            API i są one opisane w dokumentacji.
+        </p>
+<p>
+            Główne zmiany, na które musisz uważać, nastąpiły przy tworzeniu klas 
+            pochodnych komponentów. Te zmiany to:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    <code class="code">Zend_Controller_Front::dispatch()</code> domyślnie
+                    łapie wyjątki w obiekcie odpowiedzi i nie renderuje ich
+                    aby zapobiec wyświetlaniu ważnych informacji systemowych.
+                    Możesz zmienić to zachowanie na kilka sposobów:
+                </p>
+<div class="itemizedlist"><ul type="circle">
+<li>
+<p>
+                            Ustaw <code class="code">throwExceptions()</code> w kontrolerze
+                            frontowym:
+                        </p>
+<pre class="programlisting">
+$front-&gt;throwExceptions(true);
+</pre>
+</li>
+<li>
+<p>
+                            Ustaw <code class="code">renderExceptions()</code> w obiekcie
+                            odpowiedzi:
+                        </p>
+<pre class="programlisting">
+$response-&gt;renderExceptions(true);
+$front-&gt;setResponse($response);
+$front-&gt;dispatch();
+
+// lub:
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+$response-&gt;renderExceptions(true);
+echo $response;
+</pre>
+</li>
+</ul></div>
+</li>
+<li><p>
+                <code class="code">Zend_Controller_Dispatcher_Interface::dispatch()</code>
+                zamiast tokena dispatchera przyjmuje i zwraca teraz 
+                obiekt <a href="zend.controller.html#zend.controller.overview.request" title="7.1.2. Obiekt żądania">Sekcja 7.1.2, „Obiekt żądania”</a>.
+            </p></li>
+<li><p>
+                <code class="code">Zend_Controller_Router_Interface::route()</code>
+                przyjmuje i zwraca obiekt <a href="zend.controller.html#zend.controller.overview.request" title="7.1.2. Obiekt żądania">Sekcja 7.1.2, „Obiekt żądania”</a>
+                zamiast tokena dispatchera.
+            </p></li>
+<li>
+<p>Zmiany w <code class="code">Zend_Controller_Action</code> to:</p>
+<div class="itemizedlist"><ul type="circle">
+<li><p>
+                        Kontruktor teraz przyjmuje dokładnie trzy argumenty,
+                        <code class="code">Zend_Controller_Request_Abstract $request</code>, 
+                        <code class="code">Zend_Controller_Response_Abstract $response</code>, 
+                        oraz <code class="code">array $params (opcjonalny)</code>.
+                        <code class="code">Zend_Controller_Action::__construct()</code> używa
+                        ich aby ustawić żądanie, odpowiedź, i właściwości 
+                        invokeArgs obiektu i jeśli nadpisujesz konstruktor,
+                        powinieneś je także ustawić. Lepiej jednak użyj
+                        metody <code class="code">init()</code> aby skonfigurować instancję,
+                        ponieważ ta metoda jest wywoływana jako ostatnia akcja
+                        konstruktora.
+                    </p></li>
+<li><p>
+                        Metoda <code class="code">run()</code> nie jest już zdefiniowana jako finalna, 
+                        ale nie jest też już używana przez kontroler frontowy; 
+                        Jej jedynym celem jest użycie klasy jako kontrolera strony.
+                        Przyjmuje ona teraz dwa opcjonalne argumenty, 
+                        <code class="code">Zend_Controller_Request_Abstract $request</code> 
+                        oraz <code class="code">Zend_Controller_Response_Abstract $response</code>.
+                    </p></li>
+<li><p>
+                        Akcja <code class="code">indexAction()</code> nie musi być już
+                        zdefiniowana, ale jest zalecana jako domyślna akcja. 
+                        To pozwala routerowi RewriteRouter oraz kontrolerom akcji
+                        na określenie innych domyślnych metod akcji.
+                    </p></li>
+<li><p>
+                        Metoda <code class="code">__call()</code> powinna być nadpisana aby
+                        obsłużyć automatycznie niezdefiniowane akcje.
+                    </p></li>
+<li><p>
+                        Metoda <code class="code">_redirect()</code> przyjmuje teraz opcjonalny
+                        drugi argument, kod HTTP, który ma być zwrócony z 
+                        przekierowaniem oraz opcjonalny trzeci argument, 
+                        <code class="code">$prependBase</code>, który może zdecydować czy
+                        bazowy adres URL zarejestrowany w obiekcie żądania ma być
+                        dodany do adresu URL.
+                    </p></li>
+<li>
+<p>
+                            Właściwość <code class="code">_action</code> nie jest już
+                            zdefiniowana. Ta właściwość była obiektem 
+                            <code class="code">Zend_Controller_Dispatcher_Token</code>, który
+                            nie istnieje już w aktualnej wersji. Jedynym 
+                            zastosowaniem tokena było przechowanie informacji o
+                            zażądanym kontrolerze, akcji i parametrach URL. Te
+                            informacje są teraz dostępne w obiekcie żądania w 
+                            taki sposób:
+                        </p>
+<pre class="programlisting">
+// Pobierz nazwę kontrolera z żądania
+// Dotychczas dostęp do niej był za pomocą: $this-&gt;_action-&gt;getControllerName().
+// Poniższy przykład używa metody getRequest(), ale możesz także bezpośrednio
+// użyć właściwości $_request; użycie getRequest() jest zalecane ponieważ klasa 
+// rodzica może nadpisać dostęp do obiektu żądania.
+$controller = $this-&gt;getRequest()-&gt;getControllerName();
+
+// Pobierz nazwę akcji z żądania
+// Dotychczas dostęp do niej był za pomocą: $this-&gt;_action-&gt;getActionName().
+$action = $this-&gt;getRequest()-&gt;getActionName();
+
+// Pobierz parametry z żądania
+// To się nie zmieniło; metody _getParams() oraz _getParam() teraz w prosty 
+// sposób wskazują na obiekt żądania.
+$params = $this-&gt;_getParams();
+$foo = $this-&gt;_getParam('foo', 'default'); // pobierz parametr 'foo', używając
+                                           // wartości 'default' jako domyślnej
+
+</pre>
+</li>
+<li>
+<p>
+                            Metoda <code class="code">noRouteAction()</code> została usunięta. 
+                            Aby w poprawny sposób obsługiwać nieistniejące 
+                            metody akcji powinieneś przekierować je do domyślnej
+                            akcji używając metody <code class="code">__call()</code>:
+                        </p>
+<pre class="programlisting">
+public function __call($method, $args)
+{
+    // Jeśli została zażądania nieistniejąca metoda 'Action', żądanie zostanie
+    // przekazane do domyślnej metody akcji:
+    if ('Action' == substr($method, -6)) {
+        return $this-&gt;defaultAction();
+    }
+    
+    throw new Zend_Controller_Exception('Nieprawdiłowa metoda');
+}
+</pre>
+</li>
+</ul></div>
+</li>
+<li><p>
+                Akcja <code class="code">Zend_Controller_RewriteRouter::setRewriteBase()</code>
+                została usunięta. W zamian użyj 
+                <code class="code">Zend_Controller_Front::setBaseUrl()</code> 
+                (lub Zend_Controller_Request_Http::setBaseUrl(), jeśli używasz
+                tej klasy).
+            </p></li>
+<li><p>
+                Interfejs <code class="code">Zend_Controller_Plugin_Interface</code> został
+                zamieniony na <code class="code">Zend_Controller_Plugin_Abstract</code>. 
+                Wszystkie metody przyjmują i zwracają obiekt 
+                <a href="zend.controller.html#zend.controller.overview.request" title="7.1.2. Obiekt żądania">Sekcja 7.1.2, „Obiekt żądania”</a>
+                zamiast tokena dispatchera.
+            </p></li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.exceptions.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.date.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.8. Wyjątki MVC </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> Rozdział 8. Zend_Date</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

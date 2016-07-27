@@ -1,0 +1,271 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.3. Onderklassen</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="prev" href="zend.controller.getting-started.html" title="7.2. Om te beginnen">
+<link rel="next" href="zend.controller.providedsubclasses.html" title="7.4. Provided Subclasses">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.subclassing.introduction" title="7.3.1. Inleiding">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.subclassing.conventions" title="7.3.2. Overeenkomsten">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.router.interface" title="7.3.3. Router Interface">
+<link rel="subsection" href="zend.controller.subclassing.html#zend.controller.dispatcher.interface" title="7.3.4. Dispatcher Interface">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.3. Onderklassen</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.getting-started.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.providedsubclasses.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.subclassing"></a>7.3. Onderklassen</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.subclassing.introduction"></a>7.3.1. Inleiding</h3></div></div></div>
+<p>
+			Het <code class="code">Zend_Controller</code> systeem werd gebouwd met uitbreiding
+			in het hoofd, ofwel door het onderklassen van de bestaande
+			klassen of door het schrijven van nieuwe klassen die de interfaces
+			van <code class="code">Zend_Controller_Router_Interface</code> en <code class="code">Zend_Controller_Dispatcher_Interface</code>
+			implementeren.
+		</p>
+<p>
+			Mogelijke redenen om een nieuwe router of dispatcher te implementeren kunnen zijn:
+			
+			</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+						Het bestaande URI routing systeem is niet toepasbaar om één of andere reden, zoals
+						de integratie in een bestaande website die zijn eigen conventies voor routing
+						heeft en die niet overeenkomen met het routing systeem van het Zend Framework.
+					</p></li>
+<li><p>
+						Je moet een routing systeem implementeren voor iets volledig anders. De <code class="code">Zend_Controller_Router</code>
+						klasse kan alleen URIs afhandelen. Het is mogelijk --en waarschijnlijk-- dat je het MVC patroon
+						wil gebruiken om een ander type programma te ontwikkelen, zoals een console toepassing. In het
+						geval van een console toepassing zou een aangepaste router argumenten van de commandoregel moeten kunnen 
+						verwerken om de route te determineren.
+					</p></li>
+<li><p>
+						Het mechanisme dat door <code class="code">Zend_Controller_Dispatcher</code> wordt verstrekt is niet toepasbaar. De
+						standaard configuratie neemt een overeenkomst aan die zegt dat controllers klassen zijn en acties
+						methodes van die klassen. Er zijn evenwel vele andere strategiën om dit te doen. Eén voorbeeld zou
+						zijn waar de controllers mappen zijn en de acties bestanden in die mappen.
+					</p></li>
+<li><p>
+						Je wil bijkomende mogelijkheden verstrekken die door al je controllers worden geërfd. Bijvoorbeeld,
+						<code class="code">Zend_Controller_Action</code> kan niet standaard geïntegreerd worden met <code class="code">Zend_View</code>.
+						Wat je evenwel wèl kan doen is je eigen controller aanpassen zodat die kan integreren met
+						<code class="code">Zend_View</code>. Die gebruiken vermijdt het wijzigen van de verstrekte 
+						<code class="code">Zend_Controller_Router</code> of <code class="code">Zend_Controller_Dispatcher</code>.
+					</p></li>
+</ul></div>
+<p>
+
+			Wees voorzichtig met het wijzigen van belangrijke delen van het systeem, en in het bijzonder de dispatcher. Een van
+			de voordelen van <code class="code">Zend_Controller</code> is dat het algemene overeenkomsten vestigt voor het bouwen van 
+			toepassingen. Indien teveel van dit standaard gedrag wordt gewijzigd, zal een deel van deze voordelen verloren
+			gaan. Er zijn evenwel vele verschillende benodigdheden en één enkele oplossing is niet ideaal voor alle situaties. De
+			vrijheid om te wijzigen is dus verstrekt indien nodig.
+		</p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.subclassing.conventions"></a>7.3.2. Overeenkomsten</h3></div></div></div>
+<p>
+			Bij het onderklassen van een Zend_Controller klasse is het sterk aangeraden de volgende overeenkomsten
+			te respecteren bij de benaming en het opslaan van bestanden. Door dit te doen verzeker je ervan dat
+			een andere programmeur die het Zend Framework kent gemakkelijk je project kan begrijpen.
+		</p>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.subclassing.prefix"></a>7.3.2.1. Prefix</h4></div></div></div>
+<p>
+				Klassen die inbegrepen zijn in het Zend Framework volgen een overeenkomst waarbij elke klasse
+				geprefixed wordt door "Zend_". Dat is de prefix. We raden sterk aan dat jij al jouw klassen
+				op een gelijkaardige wijze benoemd, bv: als je bedrijf Widget NV noemt, zou de prefix "Widget_" 
+				kunnen zijn.
+			</p>
+</div>
+<div class="sect3" lang="nl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.controller.directory.layout"></a>7.3.2.2. Mappen Lay-out</h4></div></div></div>
+<p>
+				<code class="code">Zend_Controller</code> klassen worden als volgt in de bibliotheekmap opgeslaan:
+            </p>
+<pre class="programlisting">
+/library
+  /Zend
+    /Controller
+      Action.php
+      Dispatcher.php
+      Router.php
+</pre>
+<p>
+				Bij het onderklassen van <code class="code">Zend_Controller</code> klassen is het aangeraden dat de nieuwe 
+				klassen opgeslagen worden in een gelijkaardige structuur onder jouw prefix. Dat maakt het
+				gemakkelijk om ze te vinden voor iemand gedurende dat leerprocess dat het nakijken van de
+				code van jouw project is.
+			</p>
+<p>
+				Bijvoorbeeld, een project Widget NV dat alleen een aangepaste router implementeerd zou op
+				het volgende kunnen lijken:
+            </p>
+<pre class="programlisting">
+/library
+  /Zend
+  /Widget
+    /Controller
+      Router.php
+      README.txt
+</pre>
+<p>
+				Merk in dit voorbeeld op dat de <code class="code">Widget/Controller/</code> map de <code class="code">Zend/Controller/</code> weerspiegelt
+				waar dat ook maar enigzins mogelijk is. In dit geval verstrekt het een <code class="code">Widget_Controller_Router</code>
+				klasse die een onderklasse of een vervanging is voor <code class="code">Zend_Controller_Router</code> en die de
+				<code class="code">Widget_Controller_Router_Interface</code> implementeert.
+			</p>
+<p>
+				Merk ook op in het voorbeeld hierboven dat een <code class="code">README.txt</code> bestand is opgeslaan in
+				<code class="code">Widget/Controller</code>. Zend moedigt je sterk aan je projecten te documenteren door
+				afzonderlijke tests en documentatie te verstrekken voor je klanten. We moedigen je ook sterk aan
+				een eenvoudig <code class="code">README.txt</code> bestand te plaatsen in de map om kort je veranderingen
+				uit te leggen en hoe ze werken.
+			</p>
+</div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.router.interface"></a>7.3.3. Router Interface</h3></div></div></div>
+<p>
+			De interface <code class="code">Zend_Controller_Router_Interface</code> verstrekt een definitie voor één enkele methode:
+        </p>
+<pre class="programlisting">&lt;?php
+				
+  /**				
+   * @param  Zend_Controller_Dispatcher_Interface
+   * @throws Zend_Controller_Router_Exception
+   * @return Zend_Controller_Dispatcher_Token|boolean
+   */
+  public function route(Zend_Controller_Dispatcher_Interface $dispatcher);
+
+?&gt;</pre>
+<p>
+			Routing gebeurt slecht één enkele keer: wanneer het verzoek voor het eerst door het systeem wordt ontvangen.
+			Het doel van de router is een <code class="code">Zend_Controller_Dispatch_Token</code> aan te maken dat een controller
+			en een actie van die controller definieert. Dit wordt dan doorgegeven aan de dispatcher. Indien het niet
+			mogelijk is een route naar een dispatch token te mappen (nonsensical route) dan moet er een boolean,
+			<code class="code">FALSE</code> worden teruggestuurd.
+		</p>
+<p>
+			Sommige routers kunnen dynamische elementen verwerken en hebben een manier nodig om de determineren of het
+			aldus gegenereerde token inderdaad dispatchbaar is voordat het wordt teruggestuurd. Om deze reden ontvangt
+			de router de object handle van de dispatcher als enig argument voor zijn <code class="code">route()</code> methode.
+			De dispatcher verstrekt een methode, <code class="code">isDispatchable()</code> om dit te testen.
+		</p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.dispatcher.interface"></a>7.3.4. Dispatcher Interface</h3></div></div></div>
+<p>
+			<code class="code">Zend_Controller_Front</code> zal eerst de router benaderen om een eerste dispatch token te ontvangen en
+			zal dit doorgeven aan de dispatcher. De dispatcher zal de actie (de controller instantiëren, zijn actie 
+			oproepen) dispatchen en dan ofwel een boolean, FALSE, teruggeven, of een ander dispatch token.
+		</p>
+<p>
+			<code class="code">Zend_Controller_Front</code> roept herhaaldelijk de dispatcher op tot deze geen dispatch token meer terug
+			stuurt. Dit staat bekend als de dispatch loop. Het laat toe acties opeenvolgend te verwerken tot al het werk 
+			gedaan is.
+		</p>
+<p>
+			De <code class="code">Zend_Controller_Dispatcher_Interface</code> interface verstrekt definities voor twee methodes:
+        </p>
+<pre class="programlisting">&lt;?php
+				
+/**
+ * @param  Zend_Controller_Dispatcher_Token $route
+ * @return boolean
+ */
+public function isDispatchable(Zend_Controller_Dispatcher_Token $route);
+
+?&gt;</pre>
+<p>
+				<code class="code">isDispatchable()</code> gaat na of een dispatch token gedispatched kan worden. Indien dat zo is geeft het
+		<code class="code">TRUE</code> terug. Anders geeft het <code class="code">FALSE</code> terug. In het geval van de standaard implementatie,
+		<code class="code">Zend_Controller_Dispatcher</code>, betekent dit dat het controller bestand bestaat, dat de klasse in het 
+		bestand bestaat en dat de actiemethode in de klasse bestaat.
+	    </p>
+<pre class="programlisting">&lt;?php
+			
+/**
+ * @param  Zend_Controller_Dispatcher_Token $route
+ * @return Zend_Controller_Dispatcher_Token|boolean
+ */
+public function dispatch(Zend_Controller_Dispatcher_Token $route);
+
+?&gt;</pre>
+<p>
+		<code class="code">dispatch()</code> is waar het echte werk wordt gedaan. Deze methode moet de actie van de controller 
+		uitvoeren. Het moet ofwel een dispatch token teruggeven of een boolean, FALSE, om aan te geven dat er geen
+		werk meer te doen is.
+		
+		</p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.getting-started.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.providedsubclasses.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.2. Om te beginnen </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 7.4. Provided Subclasses</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

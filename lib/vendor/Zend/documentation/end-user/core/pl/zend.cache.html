@@ -1,0 +1,248 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Rozdział 4. Zend_Cache</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="index.html" title="Przewodnik Programisty">
+<link rel="prev" href="zend.auth.adapter.digest.html" title="3.2. Digest Authentication">
+<link rel="next" href="zend.cache.theory.html" title="4.2. Teoria buforowania">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="section" href="zend.cache.html#zend.cache.introduction" title="4.1. Wprowadzenie">
+<link rel="section" href="zend.cache.theory.html" title="4.2. Teoria buforowania">
+<link rel="section" href="zend.cache.frontends.html" title="4.3. Frontendy Zend_Cache">
+<link rel="section" href="zend.cache.backends.html" title="4.4. Backendy Zend_Cache">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Rozdział 4. Zend_Cache</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.auth.adapter.digest.html">Poprzedni</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.cache.theory.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="pl">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.cache"></a>Rozdział 4. Zend_Cache</h2></div></div></div>
+<div class="toc">
+<p><b>Spis treści</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.cache.html#zend.cache.introduction">4.1. Wprowadzenie</a></span></dt>
+<dt><span class="sect1"><a href="zend.cache.theory.html">4.2. Teoria buforowania</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.factory">4.2.1. Metoda fabryki <code class="code">Zend_Cache</code></a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.tags">4.2.2. Nadawanie etykiet rekordom</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.theory.html#zend.cache.clean">4.2.3. Czyszczenie bufora</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.frontends.html">4.3. Frontendy Zend_Cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.core">4.3.1. Zend_Cache_Core</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.output">4.3.2. Zend_Cache_Frontend_Output</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.function">4.3.3. Zend_Cache_Frontend_Function</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontend.class">4.3.4. Zend_Cache_Frontend_Class</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.file">4.3.5. Zend_Cache_Frontend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.frontends.html#zend.cache.frontends.page">4.3.6. Zend_Cache_Frontend_Page</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.cache.backends.html">4.4. Backendy Zend_Cache</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.file">4.4.1. Zend_Cache_Backend_File</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.sqlite">4.4.2. Zend_Cache_Backend_Sqlite</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.memcached">4.4.3. Zend_Cache_Backend_Memcached</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.apc">4.4.4. Zend_Cache_Backend_APC</a></span></dt>
+<dt><span class="sect2"><a href="zend.cache.backends.html#zend.cache.backends.platform">4.4.5. Zend_Cache_Backend_ZendPlatform</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.introduction"></a>4.1. Wprowadzenie</h2></div></div></div>
+<p>
+        <code class="code">Zend_Cache</code> zapewnia ogólny sposób buforowania danych.
+    </p>
+<p>
+      Buforowanie w Zend Framework jest przeprowadzane przez frontendy, a
+      rekordy bufora są przechowywane za pomocą backendów (<code class="code">File</code>, 
+      <code class="code">Sqlite</code>, <code class="code">Memcache</code>...) przy użyciu uniwersalnego
+      systemu identyfikatorów ID oraz etykiet. Używając ich, łatwe jest
+      kasowanie specyficznych typów rekordów (na przykład: "usuń wszystkie 
+      rekordy bufora oznaczone podaną etykietą").
+    </p>
+<p>
+        Jądro modułu (<code class="code">Zend_Cache_Core</code>) jest proste, uniwersalne i
+        konfigurowalne. Obecnie, dla twoich specyficznych potrzeb dostępne są
+        frontendy rozszerzające <code class="code">Zend_Cache_Core</code> na przykład:
+        <code class="code">Output</code>, <code class="code">File</code>, <code class="code">Function</code> oraz <code class="code">Class</code>.
+    </p>
+<div class="example">
+<a name="id4787205"></a><p class="title"><b>Przykład 4.1. Pobieranie frontendu za pomocą <code class="code">Zend_Cache::factory()</code></b></p>
+<p>
+            <code class="code">Zend_Cache::factory()</code> tworzy instancję odpowiedniego
+            obiektu łączy je razem. W tym pierwszym przykładzie użyjemy
+            frontendu <code class="code">Core</code> wraz z backendem <code class="code">File</code>.
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Cache.php';
+
+$frontendOptions = array(
+   'lifeTime' =&gt; 7200, // okres ważności bufora 2 godziny
+   'automaticSerialization' =&gt; true
+);
+
+$backendOptions = array(
+    'cacheDir' =&gt; './tmp/' // Katalog w którym mają być składowane pliku bufora
+);
+
+// pobieranie obiektu Zend_Cache_Core
+$cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+
+?&gt;</pre>
+<p>
+            Teraz gdy mamy frontend, możemy buforować dowolny typ danych 
+            (włączyliśmy serializację). Na przykład, możemy buforować rezultat 
+            bardzo obciążającego zapytania do bazy danych. Kiedy jest buforowane, 
+            nie ma nawet potrzeby aby łączyć się z bazą; rekordy są pobierane z
+            bufora, a następnie odserializowane.
+        </p>
+<pre class="programlisting">&lt;?php
+
+// obiekt $cache zainicjalizowany jak w poprzednim przykładzie
+
+// sprawdzamy czy bufor istnieje:
+if(!$result = $cache-&gt;load('myresult')) {
+
+    // bufor nie istnieje; łączymy się z bazą
+    
+    $db = Zend_Db::factory( [...] );
+    
+    $result = $db-&gt;fetchAll('SELECT * FROM huge_table');
+    
+    $cache-&gt;save($result, 'myresult');
+    
+} else {
+
+    // bufor istnieje! dajmy o tym znać
+    echo "To pochodzi z bufora!\n\n";
+    
+}
+
+print_r($result);
+
+?&gt;</pre>
+</div>
+<div class="example">
+<a name="id4787996"></a><p class="title"><b>Przykład 4.2. Buforowanie danych wyjściowych przy użyciu frontendu <code class="code">Zend_Cache</code></b></p>
+<p>
+            Sekcje w których chcemy buforować dane wyjściowe oznaczamy dodając
+            pewną warunkową logikę, ograniczającą sekcję za pomocą metod 
+            <code class="code">start()</code> oraz <code class="code">end()</code> (to odpowiada 
+            pierwszemu przykładowi i jest główną strategią buforowania).
+        </p>
+<p>
+            Wewnątrz wyświetlaj dane jak zawsze - wszystkie dane wyjściowe będą
+            buforowane aż do napotkania metody <code class="code">end()</code>. Podczas 
+            następnego wywołania, cała sekcja będzie ominięta, a użyte zostaną
+            dane z bufora. (tak długo jak rekord bufora jest prawidłowy).
+        </p>
+<pre class="programlisting">&lt;?php
+
+$frontendOptions = array(
+   'lifeTime' =&gt; 30,                  // okres ważności bufora pół minuty
+   'automaticSerialization' =&gt; false  // to i tak jest domyślna wartość
+);
+
+$backendOptions = array('cacheDir' =&gt; './tmp/');
+
+$cache = Zend_Cache::factory('Output', 'File', $frontendOptions, $backendOptions);
+
+// przekazujemy unikalny identyfikator do metody start()
+if(!$cache-&gt;start('mypage')) {
+    // wyświetlamy jak zawsze:
+    
+    echo 'Witajcie! ';
+    echo 'To jest buforowane ('.time().') ';
+    
+    $cache-&gt;end(); // dane wyjściowe są zapisywane i wysyłane do przeglądarki
+}
+
+echo 'To nie jest nigdy buforowane ('.time().').';
+
+?&gt;       </pre>
+<p>
+           Zauważ, że wyświetlamy rezultat funkcji <code class="code">time()</code> dwa razy; 
+           jest to coś dynamicznego, aby zademenstrować przeznaczenie. Spróbuj
+           uruchomić to i odświeżyć kilka razy; zauważysz, że pierwsza liczba
+           się nie zmienia, a druga za każdym razem jest inna. Tak jest ponieważ
+           pierwsza liczba była wyświetlona w sekcji buforowanej więc została
+           zapisana. Po upływie pół minuty (ustawiliśmy okres ważności bufora na 
+           30 sekund) powinny ponownie się zgadzać ponieważ bufor wygasł -- i
+           został zapisany ponownie. Powinieneś to sprawdzić w swojej 
+           przeglądarce lub w konsoli.
+       </p>
+</div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notatka]" src="images/note.png"></td>
+<th align="left">Notatka</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        Kiedy używasz Zend_Cache, zwracaj uwagę na ważny identyfikator bufora
+        (przekazany do metod <code class="code">save()</code> oraz <code class="code">start()</code>). 
+        Musi być unikalny dla każdego zasobum, który buforujesz, inaczej nie
+        powiązane buforowane rekordy mogą się nawzajem ścierać, lub gorzej, 
+        jeden może wyświetlić się w miejscu drugiego.
+    </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.auth.adapter.digest.html">Poprzedni</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.cache.theory.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.2. Digest Authentication </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 4.2. Teoria buforowania</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

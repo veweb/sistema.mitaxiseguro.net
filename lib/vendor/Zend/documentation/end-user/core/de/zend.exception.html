@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1.5. Zend::exception()</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.html" title="Kapitel 1. Zend">
+<link rel="prev" href="zend.isreadable.html" title="1.4. Zend::isReadable()">
+<link rel="next" href="zend.dump.html" title="1.6. Zend::dump()">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">1.5. Zend::exception()</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.isreadable.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 1. Zend</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.dump.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.exception"></a>1.5. Zend::exception()</h2></div></div></div>
+<p>
+        Faules Laden ("lazy load") einer Ausnahmeklasse, instantiiert die Ausnahme und gibt sie 
+        zurück.
+    </p>
+<div class="note"><table border="0" summary="Note: Veraltet:">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Veraltet:</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        	Diese Methode wirde im Zend Framework 0.6.0 eingeführt. Es wurde vor kurzem entschieden,
+        	dass es besser sei, die traditionellen Methoden zu verwenden, um Ausnahmen zu 
+        	instanzieren, werfen und fangen. Die <code class="code">Zend::exception()</code> method ist ab Zend
+        	Framework 0.6.1 veraltet und wird in einem späteren Release aus dem Zend Framework
+        	entfernt.
+        </p></td></tr>
+</table></div>
+<pre class="programlisting">&lt;?php
+
+Zend::exception($class, $message, $code);
+
+?&gt;</pre>
+<p>
+        Das <code class="code">$class</code> Argumente gibt die Ausnahmeklasse an, die geladen und instantiiert
+        werden soll und durch <a href="zend.loadclass.html" title="1.3. Zend::loadClass()">Abschnitt 1.3, „Zend::loadClass()“</a> geladen wird;
+        deshalb muss die Klasse den Framework Konventionen zur Benennung von Klassen folgen und sich
+        irgendwo im <code class="code">include_path</code> befinden.
+    </p>
+<p>
+        Die <code class="code">$message</code> und <code class="code">$code</code> Parameter sind beide optional und werden
+        als Argumente an den Konstruktur der Ausnahmeklasse übergeben. 
+    </p>
+<p>
+        Bei Erfolg wird die Ausnahmeklasse geladen, eine Instanz unter Verwendung der übergebenen 
+        <code class="code">$message</code> und <code class="code">$code</code> Parameter erstellt und die neu erstellte
+        Ausnahmeinstanz zurückgegeben. Wenn die Klasse nicht geladen werden kann oder die Klasse
+        nicht <code class="code">Exception</code> erweitert, wird eine Ausnahme geworfen.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.isreadable.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.dump.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">1.4. Zend::isReadable() </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 1.6. Zend::dump()</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

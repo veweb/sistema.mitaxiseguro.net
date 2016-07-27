@@ -1,0 +1,453 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>28.3. Skrypty widoków</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="prev" href="zend.view.controllers.html" title="28.2. Skrypt kontrolera">
+<link rel="next" href="zend.view.helpers.html" title="28.4. Klasy pomocników">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.view.scripts.html#zend.view.scripts.escaping" title="28.3.1. Filtrowanie danych wyjściowych">
+<link rel="subsection" href="zend.view.scripts.html#zend.view.scripts.templates" title="28.3.2. Użycie alternatywnych systemów szablonów">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">28.3. Skrypty widoków</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.view.controllers.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 28. Zend_View</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.view.helpers.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.scripts"></a>28.3. Skrypty widoków</h2></div></div></div>
+<p>
+        Kiedy już kontroler przypisze zmienne i wywoła metodę render(),
+        Zend_View dołącza wymagany skrypt widoku i wykonuje go "wewnątrz"
+        instancji Zend_View. Dlatego w skrypcie widoku, odwołania do zmiennych
+        i metod obsługiwane są za pomocą $this.
+    </p>
+<p>
+        Zmienne przypisane do widoku przez kontroler odnoszszą się do właściwości
+        tej instancji. Na przykład, jeśli kontroler przypisał zmienną 'cos', w
+        skrypcie widoku możesz odwołać się do niej za pomocą $this-&gt;cos.
+        (To pozwala Ci na śledzenie zmiennych które zostały przypisane do skryptu 
+        i tych które są zmiennymi wewnętrznymi skryptu).
+    </p>
+<p>
+        W celu przypomnienia, oto przykład skryptu widoku pokazanego we wprowadzeniu
+        do Zend_View.
+    </p>
+<pre class="programlisting">&lt;?php if ($this-&gt;books): ?&gt;
+    
+    &lt;!-- Tabela z książkami. --&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Autor&lt;/th&gt;
+            &lt;th&gt;Tytuł&lt;/th&gt;
+        &lt;/tr&gt;
+        
+        &lt;?php foreach ($this-&gt;books as $key =&gt; $val): ?&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;?php echo $this-&gt;escape($val['author']) ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?php echo $this-&gt;escape($val['title']) ?&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;?php endforeach; ?&gt;
+        
+    &lt;/table&gt;
+    
+&lt;?php else: ?&gt;
+    
+    &lt;p&gt;Nie ma żadnych książek do wyświetlenia.&lt;/p&gt;
+    
+&lt;?php endif; ?&gt;
+    </pre>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.scripts.escaping"></a>28.3.1. Filtrowanie danych wyjściowych</h3></div></div></div>
+<p>
+            Jedną z najważniejszych rzeczy do zrobienia w skrypcie widoku
+            jest uzyskanie pewności, że dane wyjściowe zostały prawidłowo
+            przefiltrowane. Pomaga to w przeciwdziałaniu atakom XSS. Jeśli
+            nie używasz funkcji, metody lub pomocnika (helper) w celu 
+            filtrowania danych wyjściowych, powinieneś zawsze je filtrować 
+            wtedy gdy chcesz je wyświetlić.
+        </p>
+<p>
+            Zend_View dostarcza metodę zwaną escape() która filtruje dane 
+            wyjściowe.
+        </p>
+<pre class="programlisting">&lt;?php
+// zły zwyczaj wyświetlania zmiennej:
+echo $this-&gt;variable;
+
+// dobryy zwyczaj wyświetlania zmiennej:
+echo $this-&gt;escape($this-&gt;variable);
+?&gt;
+        </pre>
+<p>
+            Domyślnie metoda escape() używa funkcji PHP htmlspecialchars() do
+            filtrowania danych wyjściowych. Jakkolwiek, zależenie od Twojego
+            środowiska możesz chciec filtrować dane wyjściowe w inny sposób.
+            Użyj metody setEscape() na poziomie kontrolera by przekazać istancji
+            Zend_View informację o tym, jakiej metody filtrowania ma używać.
+        </p>
+<pre class="programlisting">&lt;?php
+// utwórz instancje Zend_View
+$view = new Zend_View();
+
+// wybierz funkcję htmlentities() jako metodę filtrowania 
+$view-&gt;setEscape('htmlentities');
+
+// lub wybierz statyczną klasę jako metodę filtrowania
+$view-&gt;setEscape(array('SomeClass', 'methodName'));
+
+// lub instancję
+$obj = new SomeClass();
+$view-&gt;setEscape(array($obj, 'methodName'));
+
+// a teraz wygeneruj skrypt widoku
+echo $view-&gt;render(...);
+?&gt;
+        </pre>
+<p>
+            Metoda lub funkcja filtrująca powinna przyjmować wartość do 
+            przefiltrowania jako pierwszy parametr, a wszystkie inne parametry 
+            powinny być opcjonalne.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.scripts.templates"></a>28.3.2. Użycie alternatywnych systemów szablonów</h3></div></div></div>
+<p>
+            Chociaż PHP jest sam w sobie potężnym systemem szablonów, wielu
+            programistów czuje, że jest on jednak zbyt potężny lub skomplikowany
+            dla projektantów szablonów i mogą chcieć użyć alternatywnego systemu
+            szablonów. Zend_View zapewnia do tego dwa mechanizmy, pierwszy przez
+            skrypty widoku, drugi przez zaimplementowanie interfejsu
+            Zend_View_Interface.
+        </p>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.view.scripts.templates.scripts"></a>28.3.2.1. Systemy szablonów używające skryptów widoku</h4></div></div></div>
+<p>
+                Skrypt widoku może być użyty w celu utworzenia instancji
+                i manipulowania osobnym obiektem szablonu, takim jak np. 
+                szablon PHPLIB. Skrypt widoku w takim przypadku mógłby wyglądać
+                mniej więcej tak:
+            </p>
+<pre class="programlisting">&lt;?php
+include_once 'template.inc';
+$tpl = new Template();
+
+if ($this-&gt;books) {
+    $tpl-&gt;setFile(array(
+        "booklist" =&gt; "booklist.tpl",
+        "eachbook" =&gt; "eachbook.tpl",
+    ));
+    
+    foreach ($this-&gt;books as $key =&gt; $val) {
+        $tpl-&gt;set_var('author', $this-&gt;escape($val['author']);
+        $tpl-&gt;set_var('title', $this-&gt;escape($val['title']);
+        $tpl-&gt;parse("books", "eachbook", true);
+    }
+    
+    $tpl-&gt;pparse("output", "booklist");
+} else {
+    $tpl-&gt;setFile("nobooks", "nobooks.tpl")
+    $tpl-&gt;pparse("output", "nobooks");
+}
+?&gt;</pre>
+<p>
+                I mogłoby to być powiązane z takim plikiem szablonu:
+            </p>
+<pre class="programlisting">
+
+&lt;!-- booklist.tpl --&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Autor&lt;/th&gt;
+        &lt;th&gt;Tytuł&lt;/th&gt;
+    &lt;/tr&gt;
+    {books}
+&lt;/table&gt;
+
+&lt;!-- eachbook.tpl --&gt;
+    &lt;tr&gt;
+        &lt;td&gt;{author}&lt;/td&gt;
+        &lt;td&gt;{title}&lt;/td&gt;
+    &lt;/tr&gt;
+
+&lt;!-- nobooks.tpl --&gt;
+&lt;p&gt;Nie ma żadnych książek do wyświetlenia.&lt;/p&gt;
+</pre>
+</div>
+<div class="sect3" lang="pl">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.view.scripts.templates.interface"></a>28.3.2.2. Systemy szablonów używające interfejsu Zend_View_Interface</h4></div></div></div>
+<p>
+                Niektórzy mogą zrobić to łatwiej zapewniając w prosty sposób system 
+                szablonów kompatybilny z Zend_View. <code class="code">Zend_View_Interface</code> 
+                definiuje minimalny interfejs potrzebny dla kompatybilności.
+            </p>
+<pre class="programlisting">
+/**
+ * Zwraca aktualny obiekt systemu szablonów
+ */
+public function getEngine();
+
+/**
+ * Ustawia ścieżkę do skryptów/szablonów widoku
+ */
+public function setScriptPath($path);
+
+/**
+ * Nadpisanie metod do przypisywania zmiennych szablonów jako właściwości obiektu
+ */
+public function __set($key, $value);
+public function __get($key);
+public function __isset($key);
+public function __unset($key);
+
+/**
+ * Ręczne przypisywanie zmiennych szablonu, lub możliwość przypisania wielu
+ * zmiennych na raz.
+ */
+public function assign($spec, $value = null);
+
+/**
+ * Czyści wszystkie przypisane zmienne.
+ */
+public function clearVars();
+
+/**
+ * Renderowanie szablonu o nazwie $name
+ */
+public function render($name);
+</pre>
+<p>
+                Używając tego interfejsu, relatywnie proste staje się podpięcie 
+                zewnętrznego systemu szablonów jako klasy kompatybilnej z 
+                Zend_View. Przykładowo, poniższy przyklad to podpięcie systemu Smarty:
+            </p>
+<pre class="programlisting">
+require_once 'Zend/View/Interface.php';
+require_once 'Smarty.class.php';
+
+class Zend_View_Smarty implements Zend_View_Interface
+{
+    /**
+     * Obiekt Smarty
+     * @var Smarty
+     */
+    protected $_smarty;
+
+    /**
+     * Konstruktor
+     *
+     * @param string $tmplPath
+     * @param array $extraParams
+     * @return void
+     */
+    public function __construct($tmplPath = null, $extraParams = array())
+    {
+        $this-&gt;_smarty = new Smarty;
+
+        if (null !== $tmplPath) {
+            $this-&gt;setScriptPath($tmplPath);
+        }
+
+        foreach ($extraParams as $key =&gt; $value) {
+            $this-&gt;_smarty-&gt;$key = $value;
+        }
+    }
+
+    /**
+     * Zwraca aktualny obiekt systemu szablonów
+     *
+     * @return Smarty
+     */
+    public function getEngine()
+    {
+        return $this-&gt;_smarty;
+    }
+
+    /**
+     * Ustawia ścieżkę do szablonów
+     *
+     * @param string $path Ścieżka.
+     * @return void
+     */
+    public function setScriptPath($path)
+    {
+        if (is_readable($path)) {
+            $this-&gt;_smarty-&gt;template_dir = $path;
+            return;
+        }
+
+        throw new Exception('Nieprawidłowa ścieżka');
+    }
+
+    /**
+     * Przypisanie zmiennej do szablonu
+     *
+     * @param string $key Nazwa zmiennej.
+     * @param mixed $val Wartość zmiennej.
+     * @return void
+     */
+    public function __set($key, $val)
+    {
+        $this-&gt;_smarty-&gt;assign($key, $val);
+    }
+
+    /**
+     * Pobiera przypisaną zmienną
+     *
+     * @param string $key Nazwa zmiennej
+     * @return mixed Wartość zmiennej.
+     */
+    public function __get($key)
+    {
+        return $this-&gt;_smarty-&gt;get_template_vars($key);
+    }
+
+    /**
+     * Pozwala działać funkcjom empty() oraz isset() na właściwościach obiektu
+     *
+     * @param string $key
+     * @return boolean
+     */
+    public function __isset($key)
+    {
+        $value = $this-&gt;_smarty-&gt;get_template_vars($key);
+        return null === $value;
+    }
+
+    /**
+     * Pozwala działać funkcji unset() na właściwości obiektu
+     *
+     * @param string $key
+     * @return void
+     */
+    public function __unset($key)
+    {
+        $this-&gt;_smarty-&gt;clear_assign($key);
+    }
+
+    /**
+     * Przypisywanie zmiennych do szablonu
+     *
+     * Pozwala przypisać określoną wartość do określonego klucza, LUB przekazać
+     * tablicę par klucz =&gt; wartość aby przypisać je wszystkie na raz.
+     *
+     * @see __set()
+     * @param string|array $spec Strategia przypisania (klucz lub tablica
+     * par klucz=&gt; wartość)
+     * @param mixed $value (Opcjonalny) Gdy przypisujesz nazwaną zmienną, użyj
+     * go jako wartości.
+     * @return void
+     */
+    public function assign($spec, $value = null)
+    {
+        if (is_array($spec)) {
+            $this-&gt;_smarty-&gt;assign($spec);
+            return;
+        }
+
+        $this-&gt;_smarty-&gt;assign($spec, $value);
+    }
+
+    /**
+     * Czyści wszystkie przypisane zmienne.
+     *
+     * Czyści wszystkie zmienne przypisane do Zend_View za pomocą {@link assign()} lub
+     * przeładowania właściwości ({@link __get()}/{@link __set()}).
+     *
+     * @return void
+     */
+    public function clearVars()
+    {
+        $this-&gt;_smarty-&gt;clear_all_assign();
+    }
+
+    /**
+     * Renderuje szablon i zwraca dane wyjściowe.
+     *
+     * @param string $name Nazwa szablonu do renderowania.
+     * @return string Dane wyjściowe.
+     */
+    public function render($name)
+    {
+        return $this-&gt;_smarty-&gt;fetch($name);
+    }
+}
+</pre>
+<p>
+                W tym przykładzie powinieneś utworzyć instancję klasy
+                <code class="code">Zend_View_Smarty</code> zamiast <code class="code">Zend_View</code>, 
+                a następnie używać jej w dokładnie w ten sam sposób jak 
+                <code class="code">Zend_View</code>:
+            </p>
+<pre class="programlisting">
+$view = new Zend_View_Smarty();
+$view-&gt;setScriptPath('/path/to/templates');
+$view-&gt;book = 'Zend PHP 5 Certification Study Guide';
+$view-&gt;author = 'Davey Shafik and Ben Ramsey'
+$rendered = $view-&gt;render('bookinfo.tpl');
+</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.view.controllers.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.view.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.view.helpers.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">28.2. Skrypt kontrolera </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 28.4. Klasy pomocników</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

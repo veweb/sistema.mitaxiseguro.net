@@ -1,0 +1,203 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>فصل 28. Zend_View</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="index.html" title="دليل المبرمج">
+<link rel="prev" href="zend.validate.validating_hostnames.html" title="27.5. Validating Hostnames">
+<link rel="next" href="zend.view.controllers.html" title="28.2. جزء الـ Controller">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+<link rel="section" href="zend.view.html#zend.view.introduction" title="28.1. مقدمة">
+<link rel="section" href="zend.view.controllers.html" title="28.2. جزء الـ Controller">
+<link rel="section" href="zend.view.scripts.html" title="28.3. جزء الـ View">
+<link rel="section" href="zend.view.helpers.html" title="28.4. مساعدات الـ View">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">فصل 28. Zend_View</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.validate.validating_hostnames.html">السابق</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.view.controllers.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ar">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.view"></a>فصل 28. Zend_View</h2></div></div></div>
+<div class="toc">
+<p><b>قائمة المحتويات</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.view.html#zend.view.introduction">28.1. مقدمة</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.controller">28.1.1. كود الـ Controller</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.html#zend.view.introduction.view">28.1.2. كود الـ View</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.controllers.html">28.2. جزء الـ Controller</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.assign">28.2.1. إنشاء متغيرات و إعطائها قيم</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.render">28.2.2. معالجة(تصيير) جزء الـ View</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.controllers.html#zend.view.controllers.script-paths">28.2.3. مسارات أجزاء الـ View</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.scripts.html">28.3. جزء الـ View</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.escaping">28.3.1. تجاهل "escaping" المخرجات</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.scripts.html#zend.view.scripts.templates">28.3.2. أنظمة القوالب</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.view.helpers.html">28.4. مساعدات الـ View</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.initial">28.4.1. المساعدات الأساسية</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.paths">28.4.2. مسارات المساعدات</a></span></dt>
+<dt><span class="sect2"><a href="zend.view.helpers.html#zend.view.helpers.custom">28.4.3. كتابة مساعداتك الخاصة</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.view.introduction"></a>28.1. مقدمة</h2></div></div></div>
+<p>
+        Zend_View عبارة عن class للعمل مع جزء الـ "view" الخاص بالنمط model-view-controller , 
+        أى أنه يتواجد ليفصل عملية العرض "view" عن كل من جزء الـ model و جزء الـ controller , 
+        حيث يوفر نظام من المساعدات "helpers" و فلاتر للخرج "output filters" و وسائل لتجاهل قيم المتغيرات.
+    </p>
+<p>
+        Zend_View عبارة عن نظام قوالب (مجهول) ; يمكنك أن تستخدم لغة PHP نفسها كنظام قوالب, 
+        أو يمكنك إنشاء نسخة "instance" من أى نظام قوالب و دمجه مع أكواد جزء الـ view خاصتك.
+    </p>
+<p>
+        فى الأساس, إستخدام Zend_View يحدث فى خطوتان هامتان :
+        
+        1. الـ controller خاصتك يقوم بإنشاء نسخة من Zend_View و يقوم بتمرير 
+        متغيرات إلى هذه النسخة .
+        
+        2. الـ controller يأمر Zend_View بأن يقوم بمعالجة view محدد, 
+        بذلك يتم نقل التحكم إلى أكواد الـ view التى تقوم بإنتاج خرج الـ view.
+    </p>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.introduction.controller"></a>28.1.1. كود الـ Controller</h3></div></div></div>
+<p>
+            كمثال بسيط, دعونا نفترض أن الـ controller خاصتك لديه قائمة ببيانات كتب 
+            و التى نريد أن يتم عرضها (عمل render "تصيير" لها) من خلال view , 
+            جزء الـ controller من الممكن أن يكون بهذا الشكل :
+        </p>
+<pre class="programlisting">&lt;?php
+// use a model to get the data for book authors and titles.
+$data = array(
+    array(
+        'author' =&gt; 'Hernando de Soto',
+        'title' =&gt; 'The Mystery of Capitalism'
+    ),
+    array(
+        'author' =&gt; 'Henry Hazlitt',
+        'title' =&gt; 'Economics in One Lesson'
+    ),
+    array(
+        'author' =&gt; 'Milton Friedman',
+        'title' =&gt; 'Free to Choose'
+    )
+);
+
+// now assign the book data to a Zend_View instance
+Zend::loadClass('Zend_View');
+$view = new Zend_View();
+$view-&gt;books = $data;
+
+// and render a view script called "booklist.php"
+echo $view-&gt;render('booklist.php');
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.view.introduction.view"></a>28.1.2. كود الـ View</h3></div></div></div>
+<p>
+            الأن نحن نحتاج كود الـ view المرافق لـ "booklist.php", و هو عبارة عن كود PHP عادى 
+            مع وجود إختلاف واحد: أنه يتم تنفيذه داخل مدى "scope" نسخة الـ  Zend_View , 
+            و الذى يعنى أن المتغير this$ فى هذا الكود سيشير إلى الـ properties و الـ methods 
+            الخاصة بهذه النسخة من Zend_View .
+            (المتغيرات التى سيتم تمريرها إلى هذه النسخة من خلال الـ controller ستكون عبارة عن 
+            public properties تابعة لنسخة الـ Zend_View ) , 
+            إذاً كود view بسيط من الممكن أن يكون مثل هذا :
+        </p>
+<pre class="programlisting">&lt;?php if ($this-&gt;books): ?&gt;
+    
+    &lt;!-- A table of some books. --&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Author&lt;/th&gt;
+            &lt;th&gt;Title&lt;/th&gt;
+        &lt;/tr&gt;
+        
+        &lt;?php foreach ($this-&gt;books as $key =&gt; $val): ?&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;?php echo $this-&gt;escape($val['author']) ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?php echo $this-&gt;escape($val['title']) ?&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;?php endforeach; ?&gt;
+        
+    &lt;/table&gt;
+    
+&lt;?php else: ?&gt;
+    
+    &lt;p&gt;There are no books to display.&lt;/p&gt;
+    
+&lt;?php endif; ?&gt;
+        </pre>
+<p>
+            لاحظ كيف نستخدم الـ method المسمى "()escape" لنقوم بعمل تجاهل لقيم المتغيرات.
+        </p>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.validate.validating_hostnames.html">السابق</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.view.controllers.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">27.5. Validating Hostnames </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> 28.2. جزء الـ Controller</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Hoofdstuk 22. Zend_Search</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="prev" href="zend.rest.server.html" title="21.3. Zend_Rest_Server">
+<link rel="next" href="zend.search.index-creation.html" title="22.2. Indexes Bouwen">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="section" href="zend.search.html#zend.search.overview" title="22.1. Overzicht">
+<link rel="section" href="zend.search.index-creation.html" title="22.2. Indexes Bouwen">
+<link rel="section" href="zend.search.searching.html" title="22.3. Het doorzoeken van een index">
+<link rel="section" href="zend.search.query-language.html" title="22.4. Query Language">
+<link rel="section" href="zend.search.queries.html" title="22.5. Query Types">
+<link rel="section" href="zend.search.charset.html" title="22.6. Karakterset.">
+<link rel="section" href="zend.search.extending.html" title="22.7. Uitbreidbaarheid">
+<link rel="section" href="zend.search.java-lucene.html" title="22.8. Interoperatie met Java Lucene">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Hoofdstuk 22. Zend_Search</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.rest.server.html">Terug</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.index-creation.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="nl">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.search"></a>Hoofdstuk 22. Zend_Search</h2></div></div></div>
+<div class="toc">
+<p><b>Inhoudsopgave</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.search.html#zend.search.overview">22.1. Overzicht</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.introduction">22.1.1. Inleiding</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.documents-and-fields">22.1.2. Document en Veld Objecten</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.understanding-field-types">22.1.3. Veld Types Begrijpen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.index-creation.html">22.2. Indexes Bouwen</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.creating">22.2.1. Een Nieuwe Index Maken</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.updating">22.2.2. Index Updaten</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.document-updating">22.2.3. Documenten updaten</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.searching.html">22.3. Het doorzoeken van een index</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.query-parser">22.3.1. Opbouwen van Queries</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results">22.3.2. Zoek resultaten</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results-scoring">22.3.3. Resultaten Scoring</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.query-language.html">22.4. Query Language</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.terms">22.4.1. Terms</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.fields">22.4.2. Fields</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.modifiers">22.4.3. Term Modifiers</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.proximity-search">22.4.4. Proximity Searches</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boosting">22.4.5. Boosting a Term</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boolean">22.4.6. Boolean Operators</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.grouping">22.4.7. Grouping</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.field-grouping">22.4.8. Field Grouping</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.escaping">22.4.9. Escaping Special Characters</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.queries.html">22.5. Query Types</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.term-query">22.5.1. Term Query</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.multiterm-query">22.5.2. Multi-Term Query</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.phrase-query">22.5.3. Phrase Query</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.charset.html">22.6. Karakterset.</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.description">22.6.1. Support voor UTF-8 en single-byte karaktersets.</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.search.extending.html">22.7. Uitbreidbaarheid</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.analysis">22.7.1. Tekst analysator</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.scoring">22.7.2. Score Algorithmes</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.storage">22.7.3. Opslag containers</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.java-lucene.html">22.8. Interoperatie met Java Lucene</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.file-formats">22.8.1. Bestandsformaten</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.index-directory">22.8.2. Index Map</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.source-code">22.8.3. Java Broncode</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.jar">22.8.4. LuceneIndexCreation.jar gebruiken</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.overview"></a>22.1. Overzicht</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.introduction"></a>22.1.1. Inleiding</h3></div></div></div>
+<p>
+			Zend Search_Lucene is een algemene tekst search engine die volledig in PHP 5 is geschreven.
+			Omdat het zijn indexbestanden op het bestandssysteem schrijft en geen database server nodig
+			heeft, kan het zoekmogelijkheden aanbieden aan vrijwel elke door PHP gestuurde websites.
+			Zend_Search_Lucene biedt de volgende mogelijkheden:
+            
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Geordend zoeken - betere resultaten eerst</p></li>
+<li><p>
+					   Veel krachtige querytypes: ##VERT. phrase queries, wildcard queries,
+					   proximity queries, range queries## en meer
+                        <sup>[<a name="id4864205" href="#ftn.id4864205">6</a>]</sup>
+                    </p></li>
+<li><p>Zoeken op een bepaald veld (bv: titel, auteur, inhoud)</p></li>
+</ul></div>
+<p>
+        
+			Zend_Search_Lucene werd afgeleid van het Apache Lucene project. Voor meer informatie over Lucene kan
+			je terecht op:
+            <a href="http://lucene.apache.org/java/docs/" target="_top">http://lucene.apache.org/java/docs/</a>.
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.documents-and-fields"></a>22.1.2. Document en Veld Objecten</h3></div></div></div>
+<p>
+				Zend_Search_Lucene beschouwt documenten als eenheden voor de indexering. Een document wordt dan
+				opgedeeld in benoemde velden en velden hebben inhoud waarop kan gezocht worden.
+            </p>
+<p>
+				Een document wordt voorgesteld als een Zend_Search_Lucene_Document object, en dit object bevat
+				Zend_Search_Lucene_Field objecten die de velden voorstellen.
+            </p>
+<p>
+				Belangrijk: eender welke informatie kan aan de index worden toegevoegd. 
+                Applicatie-specifieke informatie of metadata kan worden opgeslaan in
+				de documentvelden en later worden opgevraagd met het document tijdens het zoeken.
+            </p>
+<p>
+                Het is de verantwoordelijkheid van je applicatie om de indexer aan te sturen.
+                Dit betekent dat data vanuit elke bron die toegankelijk is door je applicatie kan worden geindexeerd. Bijvoorbeeld de harde schijf, een database, een HTML formulier, etc.
+            </p>
+<p>
+                De <code class="code">Zend_Search_Lucene_Field</code> klasse bied verschillende statische methodes om velden met verschillende eigenschappen aan te maken:
+            </p>
+<pre class="programlisting">&lt;?php
+$doc = new Zend_Search_Lucene_Document();
+
+// Het veld worde niet tokenized, maar wordt geindexeerd en opgeslagen in de index
+// Opgeslagen velden kunnen uit de index worden opgevraagd
+$doc-&gt;addField(Zend_Search_Lucene_Field::Keyword('doctype', 
+                                                 'autogenerated'));
+
+// Veld wordt niet tokenized en niet geindexeerd, maar wordt wel in de index opgeslagen
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnIndexed('created', 
+                                                   time()));
+
+// Binaire string veld wordt niet tokenized en niet geindexeerd, 
+// maar wordt wel in de index opgeslagen
+$doc-&gt;addField(Zend_Search_Lucene_Field::Binary('icon', 
+                                                $iconData));
+
+// Veld is tokenized en geindexeerd, en opgeslagen in de index
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('annotation', 
+                                              'Document annotation text'));
+
+// Veld is tokenized en geindexeerd, maar niet opgeslagen in de index
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', 
+                                                  'My document content'));
+
+?&gt;</pre>
+<p>
+            Je kan velden je eigen naam geven. Een "contents" veld naam wordt standaard tijdens het zoeken gebruikt. Het is een goed idee om de belangrijke informatie uit documenten in een veld met deze naam te plaatsen.
+            </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.understanding-field-types"></a>22.1.3. Veld Types Begrijpen</h3></div></div></div>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">Keyword</code> velden worden opgeslagen en geindexeerd, wat betekent dat ze doorzocht kunnen worden en ook in de zoekresultaten getoond kunnen worden. Ze worden niet opgesplitst in aparte woorden door 'tokenization'. 'Enumerated' database velden lenen zich over het algemeen goed voor Keyword velden in Zend_Search_Lucene.
+                </p></li>
+<li><p>
+                    <code class="code">UnIndexed</code> velden zijn niet doorzoekbaar, maar worden wel teruggegeven bij zoek resultaten. Database timestamps, primaire sleutels, paden op het bestandssysteem en andere externe identifiers zijn goede kandidaten voor UnIndexed velden.
+                </p></li>
+<li><p>
+                    <code class="code">Binary</code> velden worden niet tokenized of geindexeerd, maar worden wel opgeslagen om bij zoekresultaten te gebruiken. 
+                    Ze kunnen gebruikt worden om data op te slaan als binaire string, zoals een icoontje.
+                </p></li>
+<li><p>
+                    <code class="code">Text</code> velden worden opgeslagen, geindexeerd en tokenized. Tekst velden zijn zeer toepasselijk voor het opslaan van informatie zoals onderwerpen en titels die doorzoekbaar moeten zijn en ook bij de zoekresultaten beschikbaar moeten zijn.
+                </p></li>
+<li>
+<p>
+                    <code class="code">UnStored</code> velden worden tokenized en geindexeerd, maar niet opgeslagen in de index. Grote hoeveelheden tekst worden het best geindexeerd in dit type velden. Data opslaan zorgt voor een grotere index op de harde schijf, dus als je het moet doorzoeken maar niet hoeft weer te geven, kan je het beste een UnStored veld gebruiken.
+                    UnStored velden zijn praktisch wanneer ze worden gebruikt met een Zend_Search_Lucene index in combinatie met een relationele database. Je kan grote data velden met UnStored velden indexeren om te doorzoeken, en om ze yut de relationele database te halen met aparte velden als identifier.
+    		   </p>
+<div class="table">
+<a name="id4864410"></a><p class="title"><b>Tabel 22.1. Zend_Search_Lucene_Field Types</b></p>
+<table summary="Zend_Search_Lucene_Field Types" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Field Type</th>
+<th>Stored</th>
+<th>Indexed</th>
+<th>Tokenized</th>
+<th>Binary</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Keyword</td>
+<td>Ja</td>
+<td>Ja</td>
+<td>Nee</td>
+<td>Nee</td>
+</tr>
+<tr>
+<td>UnIndexed</td>
+<td>Ja</td>
+<td>Nee</td>
+<td>Nee</td>
+<td>Nee</td>
+</tr>
+<tr>
+<td>Binary</td>
+<td>Ja</td>
+<td>Nee</td>
+<td>Nee</td>
+<td>Ja</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>Ja</td>
+<td>Ja</td>
+<td>Ja</td>
+<td>Nee</td>
+</tr>
+<tr>
+<td>UnStored</td>
+<td>Nee</td>
+<td>Ja</td>
+<td>Ja</td>
+<td>Nee</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4864205" href="#id4864205">6</a>] </sup>
+						     Alleen term en multi-term queries worden op dit moment ondersteund.
+                           </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.rest.server.html">Terug</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.index-creation.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">21.3. Zend_Rest_Server </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 22.2. Indexes Bouwen</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

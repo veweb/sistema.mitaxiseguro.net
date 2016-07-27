@@ -1,0 +1,451 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>29.2. Zend_XmlRpc_Client</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="prev" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="next" href="zend.xmlrpc.server.html" title="29.3. Zend_XmlRpc_Server">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.introduction" title="29.2.1. Introdução">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.parameters" title="29.2.2. Usando parâmetros">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.wsdl" title="29.2.3. Indicando o tipo dos parâmetros">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.response" title="29.2.4. Obtendo a resposta">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">29.2. Zend_XmlRpc_Client</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.xmlrpc.html">Anterior</a> </td>
+<th width="60%" align="center">Capítulo 29. Zend_XmlRpc</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.xmlrpc.server.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.xmlrpc.client"></a>29.2. Zend_XmlRpc_Client</h2></div></div></div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.introduction"></a>29.2.1. Introdução</h3></div></div></div>
+<p>A forma de utilização do <code class="code">Zend_XmlRpc_Client</code> é muito
+    similar a dos objetos <code class="code">SoapClient</code> (<a href="http://www.php.net/soap" target="_top">extensão SOAP web service</a>). Você
+    pode simplesmente chamar os procedimentos de serviço do XML-RPC como
+    métodos de <code class="code">Zend_XmlRpc_Client</code> . Especifique o endereço
+    completo do serviço para o construtor do
+    <code class="code">Zend_XmlRpc_Client</code>.</p>
+<div class="example">
+<a name="id4890473"></a><p class="title"><b>Exemplo 29.1. Uma requisição XML-RPC básica</b></p>
+<pre class="programlisting">&lt;?php
+/**
+ * Connect to framework.zend.com server and an array describing
+ * the methods available.
+ */
+require_once 'Zend/XmlRpc/Client.php';
+
+$server = new Zend_XmlRpc_Client('http://framework.zend.com/xmlrpc');
+
+print_r( $server-&gt;system-&gt;listMethods() );
+
+?&gt;
+            </pre>
+</div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+<code class="code">Zend_XmlRpc_Client</code>
+
+         tenta, na medida do possível, utilizar métodos remotos como se fossem nativos. Se um método remoto contiver namespaces, como por exemplo 
+
+        <code class="code">system.listMethods()</code>
+
+         , a chamada é feita usando encadeamento de objetos em PHP: 
+
+        <code class="code">$server-&gt;system-&gt;listMethods()</code>
+
+         . 
+      </td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.parameters"></a>29.2.2. Usando parâmetros</h3></div></div></div>
+<p>Alguns procedimentos de serviço XML-RPC requerem parâmetros, os
+    parâmetros necessários são passados, como parâmetros, para o método
+    <code class="code">Zend_XmlRpc_Client</code>. Os parâmetros do procedimento XML-RPC
+    devem ser de tipos de dados específicos ao XML-RPC. Os parâmetros podem
+    ser passsados de duas maneiras: tipos nativos do PHP e objetos
+    <code class="code">Zend_XmlRpc_Value</code> que representam os tipos XML-RPC.</p>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.client.parameters.php_native"></a>29.2.2.1. Passando variáveis nativas como parâmetros em PHP</h4></div></div></div>
+<p>Um parâmetro passado como variável nativa do PHP, pode ser uma
+      string, um inteiro, um flutuante, um boleano, um array ou um objeto.
+      Neste caso, cada tipo PHP nativo irá ser automaticamente detectado e
+      convertido em um tipo XML-RPC, de acordo com a tabela abaixo:</p>
+<div class="table">
+<a name="id4891467"></a><p class="title"><b>Tabela 29.1. Conversão de valores nativos do PHP para tipos XML-RPC</b></p>
+<table summary="Conversão de valores nativos do PHP para tipos XML-RPC" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tipos nativos do PHP</th>
+<th>Tipos XML-RPC</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>inteiro</td>
+<td>int</td>
+</tr>
+<tr>
+<td>double</td>
+<td>double</td>
+</tr>
+<tr>
+<td>boleano</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+</tr>
+<tr>
+<td>array</td>
+<td>array</td>
+</tr>
+<tr>
+<td>array associativo</td>
+<td>struct</td>
+</tr>
+<tr>
+<td>objeto</td>
+<td>array</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="programlisting">...
+/** 2 parameters are passed in this procedure
+ *  The first parameter is a string that will be auto-converted into an XML-RPC string type
+ *  The second parameter is an assosiative array that will be converted into an XML-RPC struct 
+ */
+
+$p1 = 'parameter 1';
+$p2 = array('name' =&gt; 'Joe', 'age' =&gt; 30);
+
+$service-&gt;serviceProcedure($p1, $p2);
+...
+            </pre>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.client.parameters.xmlrpc_value"></a>29.2.2.2. Passando objetos <code class="code">Zend_XmlRpc_Value</code> como
+      parâmetros</h4></div></div></div>
+<p>Parameters passados como objetos <code class="code">Zend_XmlRpc_Value</code>.
+      Você pode criar uma das instâncias de <code class="code">Zend_XmlRpc_Value</code>
+      para especificar o tipo XML-RPC exato dos seus parâmetros. As razões
+      principais para especificar explicitamente os tipos XML-RPC são:
+      </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                 Quando você quer assegurar que o tipo correto do parâmetro seja passado ao procedimento (ex: o procedimento exige um inteiro e você pode receber o parâmetro do array $_GET como string) 
+            </p></li>
+<li><p>
+                 Quando o procedimento exige um tipo datetime ou um base64 (que não são tipos nativos do PHP). 
+            </p></li>
+<li><p>
+                 Quando a existe a possibilidade da conversão automática falhar (ex: você quer passar uma estrutura XML-RPC vazia como parâmetro. Estruturas vazias são representadas como arrays vazios em PHP, mas, se você fornecer um array vazio como parãmetro ele irá ser automaticamente convertido para um array XML-RPC, desde que não seja um array associativo) 
+            </p></li>
+</ul></div>
+<p>Existem duas maneiras de criar um objeto
+      <code class="code">Zend_XmlRpc_Value</code> object: a maneira explícita (chamando o
+      construtor do objeto) ou usando a função estática
+      <code class="code">Zend_XmlRpc_Value::getXmlRpcValue()</code> que irá requerer uma
+      constante XML-RPC.</p>
+<div class="table">
+<a name="id4891681"></a><p class="title"><b>Tabela 29.2. <code class="code">Objeto Zend_XmlRpc_Value</code> representando os tipos
+        XML-RPC</b></p>
+<table summary="Objeto Zend_XmlRpc_Value representando os tipos
+        XML-RPC" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tipo XML-RPC</th>
+<th>Constante de comparação
+              <code class="code">Zend_XmlRpc_Value</code>
+</th>
+<th>Objeto <code class="code">Zend_XmlRpc_Value</code>
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>int</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_INTEGER</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Integer</code></td>
+</tr>
+<tr>
+<td>double</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_DOUBLE</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Double</code></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_BOOLEAN</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Boolean</code></td>
+</tr>
+<tr>
+<td>string</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_STRING</code></td>
+<td><code class="code">Zend_XmlRpc_Value_String</code></td>
+</tr>
+<tr>
+<td>base64</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_BASE64</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Base64</code></td>
+</tr>
+<tr>
+<td>dateTime.iso8601</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_DATETIME</code></td>
+<td><code class="code">Zend_XmlRpc_Value_DateTime</code></td>
+</tr>
+<tr>
+<td>array</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_ARRAY</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Array</code></td>
+</tr>
+<tr>
+<td>struct</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_STRUCT</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Struct</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="programlisting">...
+/** 2 parameters are passed to this procedure
+ *  The first parameter is an XML-RPC base64 type that is created using the static Zend_XmlRpc_Value::getXmlRpcValue() function
+ *  The second parameter is an XML-RPC strcture that is created explictly
+ */
+
+$p1 = ZXmlRpcValue::getXmlRpcValue('encoded string', Zend_XmlRpc_Value::XMLRPC_TYPE_BASE64);
+$p2 = new Zend_XmlRpc_Value_Struct(array('name' =&gt; 'Joe', 'age' =&gt; 30));
+
+$service-&gt;serviceProcedure($p1, $p2);
+...
+            </pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+           O valor do parâmetro é cedido por uma variável PHP mas irá ser convertido para o tipo específico usando as técnicas de conversão do PHP (ex: se uma string é informada como um valor para o objeto 
+
+          <code class="code">Zend_XmlRpc_Value_Integer</code>
+
+          , ele irá ser convertido usando 
+
+          <code class="code">(int)$value</code>
+
+          ). 
+        </td></tr>
+</table></div>
+</div>
+<div class="sect3" lang="pt-br">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.client.parameters.as_xml"></a>29.2.2.3. Analisando uma string XML contida em um parâmetro XML-RPC</h4></div></div></div>
+<p>Este método de passagem por parâmetros é usado internamente no
+      pacote <code class="code">Zend_XmlRpc</code> e seu uso não é recomendado.</p>
+<p>Se você tiver necessidade de usar este método, você deve usar a
+      função estática <code class="code">Zend_XmlRpc_Value::getXmlRpcValue()</code> para
+      analisar uma string XML em um objeto <code class="code">Zend_XmlRpc_Value</code> que
+      representa o tipo XML-RPC correspondente. A função
+      <code class="code">Zend_XmlRpc_Value::getXmlRpcValue()</code> deve receber dois
+      parâmetros: a string XML e a constante
+      <code class="code">Zend_XmlRpc_Value::XML_STRING</code>.</p>
+</div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.wsdl"></a>29.2.3. Indicando o tipo dos parâmetros</h3></div></div></div>
+<p>A principal diferença entre XML-RPC e web services SOAP é o arquivo
+    WSDL. O protocolo SOAP usualmente possui um arquivo WSDL que descreve a
+    interface para o web service. De acordo com esta interface, o cliente SOAP
+    conhece os tipos de parâmetros que devem ser enviados ao servidor e quais
+    são os tipos dos valores de retorno. Sem o arquivo WSDL, o usuário pode
+    enfrentar problemas para descobrir quais são os tipos.</p>
+<p>O solução do protocolo XML-RPC usa um procedimento de serviço
+    especial chamado <code class="code">system.methodSignature</code>. Este procedimento
+    toma o nome do procedimento como um parâmetro e retorna a assinatura de um
+    dado procedimento. A assinatura contém os respectivos tipos do parâmetro
+    requerido e do valor de retorno do procedimento.</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+       Nem todos os servidores XML-RPC suportam o procedimento especial 
+
+      <code class="code">system.methodSignature</code>
+
+      , e consequentemente, não suportam também a indicação de tipo. 
+    </td></tr>
+</table></div>
+<p>O <code class="code">Zend_XmlRpc_Client</code> implementa uma gama de tipos de
+    arquivos WSDL para servidores XML-RPC usando o procedimento
+    <code class="code">system.methodSignature</code>. Se solicitado,
+    <code class="code">Zend_XmlRpc_Client</code> irá requisitar uma lista de todos os
+    procedimentos de um servidor XML-RPC, incluindo todas as assinaturas
+    destes procedimentos. Todos esses dados serão gravados em um arquivo XML
+    (similar ao arquivo SOAP WSDL). Quando o mesmo servidor XML-RPC for
+    utilizado novamente, o usuário pode fornecer o arquivo XML e o
+    <code class="code">Zend_XmlRpc_Client</code> irá indicar o tipo de todos os parâmetros
+    para os procedimentos requisitados, de acordo com suas assinaturas.</p>
+<p>O arquivo XML contendo as assinaturas dos procedimentos é criado
+    chamando-se a função<code class="code"> Zend_XmlRpc_Client::__getMethodsXml()</code> (a
+    função retorna uma string XML contendo todos os dados das assinaturas).
+    Para selecionar um arquivo XML de assinaturas, o usuário pode passar os
+    dados XML como um parâmetro para o construtor
+    <code class="code">Zend_XmlRpc_Client</code> ou chamar a função
+    <code class="code">Zend_XmlRpc_Client::__setMethodsXml()</code>.</p>
+<div class="example">
+<a name="id4892067"></a><p class="title"><b>Exemplo 29.2. Chamando um serviço XML-RPC com indicação de tipo</b></p>
+<pre class="programlisting">&lt;?php
+/**
+ * Connect to an XML-RPC server, and save it's signatures file (the XML-RPC eqvivilant to a SOAP WSDL file)
+ */
+require_once 'Zend/XmlRpc/Client.php';
+
+$service = new Zend_XmlRpc_Client('http://www.example.org/xmlrpc');
+
+file_put_contents('/tmp/xmlrpc-signatures/example.xml', $service-&gt;__getMethodsXml());
+
+/* The $service object contains all the signatures of the XML-RPC server,
+    when the serviceProcedure is called, its parameter ($param) is converted
+    to the necessary type according to the procedure's signature.
+ */
+$service-&gt;serviceProcedure($param);
+?&gt;
+            </pre>
+<pre class="programlisting">&lt;?php
+/**
+ * Connect to an XML-RPC server, using an existing signature file, we make sure
+ * that the type of the parameters passed to the procedures are of the necessary type
+ */
+require_once 'Zend/XmlRpc/Client.php';
+
+$signature_file_xml = file_get_contents('/tmp/xmlrpc-signatures/example.xml');
+$service = new Zend_XmlRpc_Client('http://www.example.org/xmlrpc', 'namespace', $signature_file_xml);
+
+/* The $service object contains all the signatures of the XML-RPC server,
+    when the serviceProcedure is called, its parameter ($param) is converted
+    to the necessary type according to the procedure's signature.
+ */
+$service-&gt;serviceProcedure($param);
+?&gt;
+            </pre>
+</div>
+</div>
+<div class="sect2" lang="pt-br">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.response"></a>29.2.4. Obtendo a resposta</h3></div></div></div>
+<p>O procedimento retorna um valor de um tipo XML-RPC. O método
+    <code class="code">Zend_XmlRpc_Client</code> que chama o procedimento XML-RPC retorna
+    um tipo nativo do PHP que foi convertido a partir de um tipo XML-RPC
+    retornado.</p>
+<p>Você pode usar a função
+    <code class="code">Zend_XmlRpc_Client::__getResponse()</code> para recuperar o valor de
+    retorno do procedimento requisitado. A função <code class="code">__getResponse()</code>
+    recebe um parâmetro que indica o tipo do valor de retorno. As opções de
+    resposta são: </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                <code class="code">Zend_XmlRpc_Client::RESPONSE_PHP_NATIVE</code>
+                - Devolve o valor de retorno do procedimento convertido para um tipo nativo do PHP (converte o tipo XML-RPC em um tipo PHP). 
+            </p></li>
+<li><p>
+                <code class="code">Zend_XmlRpc_Client::RESPONSE_XML_STRING</code>
+                - Retorna a string XML representando a resposta XML-RPC. 
+            </p></li>
+<li><p>
+´               <code class="code">Zend_XmlRpc_Client::RESPONSE_ZXMLRPC_OBJECT</code>
+                - Retorna um objeto 
+                <code class="code">Zend_XmlRpc_Value</code>
+                object que representa o tipo XML-RPC retornado. 
+            </p></li>
+</ul></div>
+<pre class="programlisting">...
+$service-&gt;serviceProcedure();
+
+$response = $service-&gt;__getResponse();
+// $response is the PHP variable converted from the XML-RPC type return value
+  
+$response = $service-&gt;__getResponse(ZXmlRpcClient::RESPONSE_XML_STRING);
+// $response is a string containing the XML representing the procedure return value
+
+$response = $service-&gt;__getResponse(ZXmlRpcClient::RESPONSE_ZXMLRPC_OBJECT);
+// $response is a Zend_XmlRpc_Value instance representing the XML-RPC type return value
+...
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.xmlrpc.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.xmlrpc.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.xmlrpc.server.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Capítulo 29. Zend_XmlRpc </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> 29.3. Zend_XmlRpc_Server</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

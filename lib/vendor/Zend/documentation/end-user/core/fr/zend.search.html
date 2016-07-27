@@ -1,0 +1,336 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapitre 22. Zend_Search</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="index.html" title="Guide de référence du programmeur">
+<link rel="prev" href="zend.rest.server.html" title="21.3. Zend_Rest_Server">
+<link rel="next" href="zend.search.index-creation.html" title="22.2. Créer des indexes">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="section" href="zend.search.html#zend.search.overview" title="22.1. Vue d'ensemble">
+<link rel="section" href="zend.search.index-creation.html" title="22.2. Créer des indexes">
+<link rel="section" href="zend.search.searching.html" title="22.3. Rechercher dans l'index">
+<link rel="section" href="zend.search.query-language.html" title="22.4. Query Language">
+<link rel="section" href="zend.search.queries.html" title="22.5. Types de requêtes">
+<link rel="section" href="zend.search.charset.html" title="22.6. Jeux de caractères.">
+<link rel="section" href="zend.search.extending.html" title="22.7. Extensibilité">
+<link rel="section" href="zend.search.java-lucene.html" title="22.8. Interopération avec Java Lucene">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapitre 22. Zend_Search</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.rest.server.html">Précédent</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.index-creation.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="fr">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.search"></a>Chapitre 22. Zend_Search</h2></div></div></div>
+<div class="toc">
+<p><b>Table des matières</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.search.html#zend.search.overview">22.1. Vue d'ensemble</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.introduction">22.1.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.documents-and-fields">22.1.2. Objets document et champ</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.understanding-field-types">22.1.3. Comprendre les types de champs</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.index-creation.html">22.2. Créer des indexes</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.creating">22.2.1. Créer un nouvel index</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.updating">22.2.2. Mettre à jour l'index</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.document-updating">22.2.3. Mise à jour de documents</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.searching.html">22.3. Rechercher dans l'index</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.query-parser">22.3.1. Créer des requêtes</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results">22.3.2. Résultats de recherche</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results-scoring">22.3.3. Score de résultats</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.query-language.html">22.4. Query Language</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.terms">22.4.1. Terms</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.fields">22.4.2. Fields</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.modifiers">22.4.3. Term Modifiers</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.proximity-search">22.4.4. Proximity Searches</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boosting">22.4.5. Boosting a Term</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boolean">22.4.6. Boolean Operators</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.grouping">22.4.7. Grouping</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.field-grouping">22.4.8. Field Grouping</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.escaping">22.4.9. Escaping Special Characters</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.queries.html">22.5. Types de requêtes</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.term-query">22.5.1. Recherche avec un seul terme</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.multiterm-query">22.5.2. Recherche avec plusieurs termes</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.phrase-query">22.5.3. Requêtes de phrases</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.charset.html">22.6. Jeux de caractères.</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.description">22.6.1. Support d'UTF-8 et de jeux de caractères sur un octet.</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="zend.search.extending.html">22.7. Extensibilité</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.analysis">22.7.1. Analyse textuelle</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.scoring">22.7.2. Algorithme de scoring</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.storage">22.7.3. API de Stockage</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.java-lucene.html">22.8. Interopération avec Java Lucene</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.file-formats">22.8.1. Formats de fichier</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.index-directory">22.8.2. Répertoire d'index</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.source-code">22.8.3. Code source Java</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.jar">22.8.4. Utiliser LuceneIndexCreation.jar</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.overview"></a>22.1. Vue d'ensemble</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.introduction"></a>22.1.1. Introduction</h3></div></div></div>
+<p>
+            Zend_Search_Lucene est un moteur de recherche textuel général totalement écrit en PHP 5.
+            Bien qu'il stocke ses index dans le système de fichiers, et ne nécessite pas de base de données, 
+            il peut ajouter des capacités de recherche sur presque tous les sites PHP utilisant une base de données.
+            
+            Zend_Search_Lucene supporte les fonctionnalités suivantes :
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Recherche par pertinence - les meilleurs résultats sont retournés en premier</p></li>
+<li><p>
+                       Beaucoup de type de puissantes recherche : 
+                         recherche sur des phrases, 
+                         recherche joker, 
+                         recherche de proximité, 
+                         recherche par intervalle  
+                         et bien plus
+                        <sup>[<a name="id4869707" href="#ftn.id4869707">7</a>]</sup>
+                    </p></li>
+<li><p>Recherche par champs spécifiques (e.i., titre, auteur, contenu)</p></li>
+</ul></div>
+<p>
+        
+            Zend_Search_Lucene est dérivé du projet Apache Lucene.
+            Pour plus d'informations vous pouvez visiter <a href="http://lucene.apache.org/java/docs/" target="_top">http://lucene.apache.org/java/docs/</a>.
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.documents-and-fields"></a>22.1.2. Objets document et champ</h3></div></div></div>
+<p>
+                ZSearch considère les documents comme des sujets atomiques pour l'indexation.
+                Un document est divisé en champs nommés, et les champs ont du contenu dans lequel on peut rechercher.
+            </p>
+<p>
+                Un document est representé par l'objet Zend_Search_Lucene_Document, 
+                et cet objet contient des objets Zend_Search_Lucene_Field qui représentent les champs.
+            </p>
+<p>
+                Il est important de noter qu'aucune sorte d'information peut être ajoutée à l'index.
+                Les informations spécifiques à l'application, ou les métadonnées peuvent être stockées
+                dans les champs du document, et retrouvées ensuite pendant la recherche.
+            </p>
+<p>
+                Il est de votre responsabilité de contrôler l'indexeur.
+                Cela signifie que les données peuvent-être indexées à partir de n'importe
+                quelle source accessible par votre application. 
+                Cela peut-être aussi bien le système de fichiers, qu'une base de données, 
+                qu'un formulaire HTML, etc.
+            </p>
+<p>
+                La classe <code class="code">Zend_Search_Lucene_Field</code> fournit plusieurs méthodes statiques pour créer
+                des champs de différentes caractéristiques : 
+            </p>
+<pre class="programlisting">
+            &lt;?php
+            $doc = new Zend_Search_Lucene_Document();
+            
+            // Field is not tokenized, but is indexed and stored within the index.
+            // Stored fields can be retrived from the index.
+            $doc-&gt;addField(Zend_Search_Lucene_Field::Keyword('doctype', 
+                                                             'autogenerated'));
+            
+            // Field is not tokenized nor indexed, but is stored in the index.
+            $doc-&gt;addField(Zend_Search_Lucene_Field::UnIndexed('created', 
+                                                               time()));
+            
+            // Binary String valued Field that is not tokenized nor indexed,
+            // but is stored in the index.
+            $doc-&gt;addField(Zend_Search_Lucene_Field::Binary('icon', 
+                                                            $iconData));
+            
+            // Field is tokenized and indexed, and is stored in the index.
+            $doc-&gt;addField(Zend_Search_Lucene_Field::Text('annotation', 
+                                                          'Document annotation text'));
+            
+            // Field is tokenized and indexed, but that is not stored in the index.
+            $doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', 
+                                                              'My document content'));
+
+            ?&gt;
+            </pre>
+<p>
+                Vous pouvez donner le nom que vous voulez aux champs. 
+                Le nom "contents" est utilisé par défaut. 
+                C'est une bonne idée de placer les principales données de votre document dans le champ ainsi nommé.
+            </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.understanding-field-types"></a>22.1.3. Comprendre les types de champs</h3></div></div></div>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    Les champs <code class="code">Keyword</code> sont stockés et indexés, c'est à dire qu'il est possible de rechercher
+                    dedans, aussi bien que les afficher dans les résultats de recherche. 
+                    Ils ne sont pas séparés en mots par un processus de tokenization.
+                    Les champs énumérés d'une base de données se traduisent bien en champs <code class="code">Keyword</code>
+                    pour Zend_Search_Lucene.
+                </p></li>
+<li><p>
+                    Les champs <code class="code">UnIndexed</code> n'offrent pas de possibilité de recherche, mais sont retournés
+                    avec les résultats de recherche.
+                    Les timestamps et clés primaires de base de données, chemins du système de fichiers, et tout autre
+                    identifiant externe sont de bons candidats pour des champs <code class="code">UnIndexed</code>.
+                </p></li>
+<li><p>
+                    Les champs <code class="code">Binary</code> ne sont ni tokenizés, ni indexés, mais sont stockés pour être récupérés
+                    avec les résultats de recherche.
+                    Ils peuvent être utilisés pour stocker toute donnée encodée comme chaine binaire, comme par exemple
+                    des icônes.
+                </p></li>
+<li><p>
+                    Les champs <code class="code">Text</code> sont stockés, indexés et tokenizés. Les champs <code class="code">Text</code> sont
+                    bien appropriés pour stocker des informations comme des sujets et titres qui doivent être recherchables
+                    aussi bien que retournés avec les résultats de recherche.
+                </p></li>
+<li>
+<p>
+                    Les champs <code class="code">UnStored</code> sont tokenizés et indexés, mais pas stockés dans l'index.
+                    Les grandes quantités de texte sont mieux indexées en utilisant ce type de champ. Stocker
+                    de données crée un index plus grand sur le disque, donc si vous avez besoin d'effectuer une
+                    recherche, mais de ne pas ré-afficher les données, utiliser le champ <code class="code">UnStored</code>.
+                    Les champs <code class="code">UnStored</code> sont pratiques lorsque l'on souhaite utiliser un index Zend_Search_Lucene
+                    en combinaison avec une base de données relationnelle. Vous pouvez indexer de gros champs de fichiers dédiés
+                    à la recherche avec les champs <code class="code">UnStored</code>, et les récupérer depuis votre base de données en utilisant
+                    un champ séparé comme identifiant.
+    		   </p>
+<div class="table">
+<a name="id4869577"></a><p class="title"><b>Tableau 22.1. Types de Zend_Search_Lucene_Field</b></p>
+<table summary="Types de Zend_Search_Lucene_Field" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Type de champ</th>
+<th>Stocké</th>
+<th>Indexé</th>
+<th>Tokenizé</th>
+<th>Binaire</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Keyword</td>
+<td>Oui</td>
+<td>Oui</td>
+<td>Non</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>UnIndexed</td>
+<td>Oui</td>
+<td>Non</td>
+<td>Non</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>Binary</td>
+<td>Oui</td>
+<td>Non</td>
+<td>Non</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>Oui</td>
+<td>Oui</td>
+<td>Oui</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>UnStored</td>
+<td>Non</td>
+<td>Oui</td>
+<td>Oui</td>
+<td>Non</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4869707" href="#id4869707">7</a>] </sup>
+                             Seules les recherches par mots ou groupes de mots sont supportées pour le moment.
+                           </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.rest.server.html">Précédent</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.index-creation.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">21.3. Zend_Rest_Server </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 22.2. Créer des indexes</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

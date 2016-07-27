@@ -1,0 +1,256 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.5. Action Controllers</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="prev" href="zend.controller.providedsubclasses.html" title="7.4. Dostępne podklasy">
+<link rel="next" href="zend.controller.plugins.html" title="7.6. Wtyczki">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.introduction" title="7.5.1. Wprowadzenie">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.initialization" title="7.5.2. Inicjalizacja obiektu">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.prepostdispatch" title="7.5.3. Metody Pre-Dispatch oraz Post-Dispatch">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.accessors" title="7.5.4. Metody dostępowe">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.utilmethods" title="7.5.5. Metody narzędziowe">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.5. Action Controllers</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.providedsubclasses.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.plugins.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.action"></a>7.5. Action Controllers</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.introduction"></a>7.5.1. Wprowadzenie</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller_Action</code> jest klasą abstrakcyjną, której
+            możesz użyć do implementacji kontrolerów akcji, których wraz z
+            kontrolerem frontowym użyjesz do budowania aplikacji opartej na 
+            wzorcu Model-View-Controller (MVC).
+		</p>
+<p>
+            Aby użyć klasy Zend_Controller_Action, powinieneś ją rozszerzyć
+            w swoich kontrolerach akcji (lub rozszerzyć ją aby utworzyć swoją
+            własną bazową klasę dla kontrolerów akcji). Najbardziej podstawową
+            operacją jest rozszerzenie tej klasy oraz utworzenie metod akcji,
+            które odpowiadają różnym akcjom jakie ma obsługiwać kontroler na
+            twojej stronie. Obsługa routingu i uruchamiania w Zend_Controller
+            automatycznie przeszuka wszystkie metody twojej klasy, których 
+            nazwa zakończona jest wyrazem 'Action', aby znaleźć odpowiednią 
+            akcję kontrolera.
+        </p>
+<p>
+            Na przykład, załóżmy, że twoja klasa jest zdefiniowana w ten sposób:
+        </p>
+<pre class="programlisting">
+class FooController extends Zend_Controller_Action
+{
+    public function barAction()
+    {
+        // zrób coś
+    }
+
+    public function bazAction()
+    {
+        // zrób coś
+    }
+}
+</pre>
+<p>
+            Powyższa klasa FooController (kontroler 'foo') definiuje dwie akcje,
+            'bar' oraz 'baz'.
+        </p>
+<p>
+            Można tu osiągnąć dużo więcej, na przykład: utworzyć własne akcje
+            inicjalizacyjne, utworzyć domyślne akcje do wywołania gdy nie ma
+            określonej akcji (lub określona jest nieprawidłowa), użyć metod 
+            pre- oraz post-dispatch oraz użyć wielu różnych metod pomocników.
+            Ten rozdział jest rozeznaniem w funkcjonalnościach kontrolera akcji.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.initialization"></a>7.5.2. Inicjalizacja obiektu</h3></div></div></div>
+<p>
+            O ile zawsze możesz nadpisać konstruktor kontrolera akcji, nie 
+            zalecamy tego. Zend_Controller_Action::__construct() przeprowadza
+            kilka ważnych zadań, takich jak zarejestrowanie obiektów żądania i
+            odpowiedzi, oraz przekazanie argumentów wywołania przez kontroler 
+            frontowy. Jeśli musisz nadpisać konstruktor, upewnij się że 
+            wywołasz parent::__construct($request, $response, $invokeArgs).
+        </p>
+<p>
+            Bardziej odpowiednim sposobem skonfigurowania instancji jest użycie
+            metody init(), która jest wywoływana jako ostatnie zadanie konstruktora
+            __construct(). Na przykład jeśli chcesz połączyć się z bazą danych:
+        </p>
+<pre class="programlisting">
+class FooController extends Zend_Controller_Action
+{
+    public function init()
+    {
+        $this-&gt;db = Zend_Db::factory('Pdo_Mysql', array(
+            'host'     =&gt; 'myhost',
+            'username' =&gt; 'user',
+            'password' =&gt; 'XXXXXXX',
+            'dbname'   =&gt; 'website'
+        ));
+    }
+}
+</pre>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.prepostdispatch"></a>7.5.3. Metody Pre-Dispatch oraz Post-Dispatch</h3></div></div></div>
+<p>
+            Klasa Zend_Controller_Action definiuje dwie metody, preDispatch() 
+            oraz postDispatch(), które mogą być wywołane przed i po wywołaniu 
+            akcji. Mogą one być użyteczne w wielu sytuacjach: weryfikowanie
+            autentykacji oraz kontroli dostępu ACL odnośnie uruchamianej akcji,
+            (przez wywołanie metody _forward() w metodzie preDispatch(), dzięki 
+            czemu akcja może być pominięta), lub na przykład umieszczenie
+            wygenerowanej zawartości w głównym szablonie (postDispatch()).
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.accessors"></a>7.5.4. Metody dostępowe</h3></div></div></div>
+<p>
+            W obiekcie zarejestrowanych jest wiele obiektów oraz zmiennych i 
+            wszystkie mają metody dostępowe..
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                <span class="emphasis"><em>Obiekt żądania</em></span>: metoda getRequest() może
+                być użyta do odebrania obiektu żądania używanego do wywoływania 
+                akcji.
+            </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>Obiekt odpowiedzi</em></span>: metoda getResponse() 
+                    może być użyta do odebrania obiektu odpowiedzi 
+                    przechowującego finalną odpowiedź. Niektóre typowe wywołania 
+                    mogą wyglądać tak:
+                </p>
+<pre class="programlisting">
+$this-&gt;getResponse()-&gt;setHeader('Content-Type', 'text/xml');
+$this-&gt;getResponse()-&gt;appendBody($content);
+</pre>
+</li>
+<li><p>
+                    <span class="emphasis"><em>Argumenty wywołania</em></span>: kontroler frontowy
+                    może przekazać parametry do routera, obiektu uruchamiającego
+                    oraz do kontrolera akcji. Aby je odebrać użyj metody
+                    getInvokeArg($key); alternatywnie pobierz całą listę 
+                    używając metody getInvokeArgs().
+                </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>Parametry żądania</em></span>: Obiekt żądania 
+                    przechowuje parametry żądania takie jak dowolne parametry z
+                    tablic _GET lub _POST oraz parametry użytkownika zdefiniowane
+                    w ścieżce adresu URL. Aby je odebrać, użyj metody 
+                    _getParam($key) lub _getAllParams(). Możesz także ustawić
+                    parametry żądania używając metody _setParam(); jest to 
+                    użyteczne gdy przenosimy do innych akcji.
+                </p>
+<p>
+                    Aby sprawdzić czy parametr istnieje czy nie (co jest 
+                    użyteczne przy wywołaniach logicznych), użyj _hasParam($key).
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.utilmethods"></a>7.5.5. Metody narzędziowe</h3></div></div></div>
+<p>
+            Oprócz metod dostępowych, klasa Zend_Controller_Action posiada kilka 
+            metod narzędziowych używanych do przeprowadzania ważnych zadań 
+            wewnątrz twoich metod akcji (lub wewnątrz metod pre-/post-dispatch).
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <span class="emphasis"><em>_forward($action, $controller = null, $module =
+                        null, array $params = null)</em></span>: 
+                    wykonuje inną akcję. Jeśli zostanie wywołana w metodzie 
+                    preDispatch(), obecnie zażądana akcja zostanie pominięta,
+                    na rzecz nowej akcji. W przeciwnym wypadku, po wykonaniu 
+                    obecnej akcji, będzie wywołana akcja zażądana w metodzie 
+                    _forward().
+                </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>_redirect($url, $code = 302)</em></span>: 
+                    przekierowuje do innej lokacji. Ta metoda pobiera URL oraz 
+                    opcjonalny kod stanu HTTP. Przekierowanie jest 
+                    przeprowadzane natychmiast, a wykonywanie aplikacji jest
+                    wstrzymywane.
+                </p>
+<p>
+                    Jeśli podany jest kod stanu, będzie on przekazany 
+                    do komendy PHP header() gdy przekierowanie będzie 
+                    przeprowadzane.
+                </p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.providedsubclasses.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.plugins.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.4. Dostępne podklasy </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 7.6. Wtyczki</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

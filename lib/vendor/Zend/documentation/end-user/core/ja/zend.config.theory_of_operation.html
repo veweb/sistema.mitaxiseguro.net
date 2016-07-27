@@ -1,0 +1,143 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.2. 動作原理</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="prev" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="next" href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.2. 動作原理</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.config.html">前のページ</a> </td>
+<th width="60%" align="center">第5章 Zend_Config</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.adapters.ini.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.config.theory_of_operation"></a>5.2. 動作原理</h2></div></div></div>
+<p>
+        <code class="code">Zend_Config</code> のコンストラクタを通じて、
+        設定データに連想配列形式でアクセスできるようになります。
+        多次元の連想配列となる可能性もあり、
+        これによって汎用的なデータから何かに固有のデータまで扱えるようになります。
+        具象アダプタクラスの機能は、
+        どこかに保存されているデータを読み込んでこの連想配列形式を作成し、
+        し、<code class="code">Zend_Config</code> のコンストラクタに渡すことです。
+        スクリプト内で直接配列を作成し、それを
+        <code class="code">Zend_Config</code> のコンストラクタに渡すことも可能です。
+        この場合はアダプタクラスは使用しません。
+        場合によってはこのような方式のほうが適切なこともあるでしょう。
+    </p>
+<p>
+        <code class="code">Zend_Config</code> は内部で <code class="code">Countable</code>
+        インターフェイスおよび <code class="code">Iterator</code>
+        インターフェイスを実装しており、
+        これを使用して設定データに容易にアクセスできるようになっています。
+        つまり、<code class="code">Zend_Config</code> オブジェクトに対して
+        <a href="http://php.net/count" target="_top"><code class="code">count()</code></a>
+        関数や <a href="http://php.net/foreach" target="_top"><code class="code">foreach</code></a>
+        などを使用できるということです。
+    </p>
+<p>
+        デフォルトでは、<code class="code">Zend_Config</code>
+        で利用できる設定データは読み込み専用です。代入
+        (<code class="code">$config-&gt;database-&gt;host = 'example.com'</code> など)
+        を行おうとすると例外がスローされます。しかし、
+        コンストラクタでこの振る舞いを変更し、データの変更を許可することも可能です。
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                メモリ上で変更したデータを何らかのメディアに保存しようとする際に、
+                ちょっと戸惑うかもしれません。
+                作成したり変更したりした設定データをメディアに保存する機能は、今のとこる
+                Zend Framework の対象範囲外です。
+                設定データを作成・編集してメディアに保存するには、
+                サードパーティからオープンソースのソリューションが提供されています。
+            </p></td></tr>
+</table></div>
+<p>
+    </p>
+<p>
+        <code class="code">Zend_Config</code> クラスを継承したアダプタクラスが、
+        それぞれの内容に応じて機能を拡張します。
+    </p>
+<p>
+        <code class="code">Zend_Config</code> ファミリーのクラスを使用すると、
+        設定データをセクション単位でまとめることができます。
+        <code class="code">Zend_Config</code> オブジェクトの特定のセクションだけを読み込んだり、
+        複数のセクションを指定して読み込んだり、あるいは
+        (何も指定しなければ) 全セクションを読み込んだりといったことが可能です。
+    </p>
+<p>
+        <code class="code">Zend_Config</code> は単一継承モデルをサポートしており、
+        設定データの特定のセクションを別のセクションに継承させることができます。
+        この機能が提供されている理由は、
+        さまざまな目的のために設定データを二重管理する必要をなくすためです。
+        継承したセクションでは、親セクションから継承した値を上書きすることができます。
+        PHP のクラス継承と同様に、あるセクションが親セクションを継承し、
+        そのセクションがまた上位セクションを継承し、といったことが可能です。
+        しかし多重継承 (例えば、セクション C がセクション A およびセクション B
+        のふたつを直接継承するなど) はサポートされていません。
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.config.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.config.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.adapters.ini.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第5章 Zend_Config </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 5.3. Zend_Config_Ini</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>20.6. Пример использования модуля Zend_Pdf </title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="prev" href="zend.pdf.drawing.html" title="20.5. Рисование">
+<link rel="next" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">20.6. Пример использования модуля Zend_Pdf </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.pdf.drawing.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 20. Zend_Pdf</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.rest.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.pdf.usage"></a>20.6. Пример использования модуля Zend_Pdf </h2></div></div></div>
+<p>
+    Этот раздел дает пример использования модуля.
+
+    </p>
+<p>
+    Этот пример может быть найден в файле <code class="filename">demos/Zend/Pdf/demo.php</code>.
+
+    </p>
+<p>
+    Там же есть файл <code class="filename">test.pdf</code>, который может использоваться
+    с этим примером для тестирования.
+
+    </p>
+<div class="example">
+<a name="id4889122"></a><p class="title"><b>Пример 20.7. Демонстрация использования модуля Zend_Pdf</b></p>
+<pre class="programlisting">&lt;?php
+/**
+ * @package Zend_Pdf
+ * @subpackage demo
+ */
+
+/** Zend_Pdf */
+require_once 'Zend/Pdf.php';
+
+if (!isset($argv[1])) {
+    echo "USAGE: php demo.php &lt;pdf_file&gt; [&lt;output_pdf_file&gt;]\n";
+    exit;
+}
+
+if (file_exists($argv[1])) {
+    $pdf = Zend_Pdf::load($argv[1]);
+} else {
+    $pdf = new Zend_Pdf();
+}
+
+//------------------------------------------------------------------------------------
+// Изменить порядок страниц на обратный
+$pdf-&gt;pages = array_reverse($pdf-&gt;pages);
+
+// Создание нового стиля
+$style = new Zend_Pdf_Style();
+$style-&gt;setFillColor(new Zend_Pdf_Color_RGB(0, 0, 0.9));
+$style-&gt;setLineColor(new Zend_Pdf_Color_GrayScale(0.2));
+$style-&gt;setLineWidth(3);
+$style-&gt;setLineDashingPattern(array(3, 2, 3, 4), 1.6);
+$style-&gt;setFont(new Zend_Pdf_Font_Standard(Zend_Pdf_Const::FONT_HELVETICA_BOLD), 32);
+
+// Создание нового объекта изображения
+$stampImage = Zend_Pdf_ImageFactory::factory(dirname(__FILE__) . '/stamp.jpg');
+
+// Обозначение страницы как измененной
+foreach ($pdf-&gt;pages as $page){
+    $page-&gt;saveGS();
+    $page-&gt;setStyle($style);
+    $page-&gt;rotate(0, 0, M_PI_2/3);
+
+    $page-&gt;saveGS();
+    $page-&gt;clipCircle(550, -10, 50);
+    $page-&gt;drawImage($stampImage, 500, -60, 600, 40);
+    $page-&gt;restoreGS();
+
+    $page-&gt;drawText('Modified by Zend Framework!', 150, 0);
+    $page-&gt;restoreGS();
+}
+
+// Добавление новой страницы, сгенерированной объектом Zend_Pdf
+// (страница прикреплена к определенному документу)  
+$pdf-&gt;pages[] = ($page1 = $pdf-&gt;newPage('A4'));
+
+// Добавление новой страницы, сгенерированной объектом Zend_Pdf_Page
+// (страница не прикреплена к документу)
+$pdf-&gt;pages[] = ($page2 = new Zend_Pdf_Page(Zend_Pdf_Const::PAGESIZE_LETTER_LANDSCAPE));
+
+// Создание нового шрифта
+$font = new Zend_Pdf_Font_Standard(Zend_Pdf_Const::FONT_HELVETICA);
+
+// Применение шрифта и написание текста
+$page1-&gt;setFont($font, 36);
+$page1-&gt;drawText('Helvetica 36 text string', 60, 500);
+
+// Использование объекта шрифта для других страниц
+$page2-&gt;setFont($font, 24);
+$page2-&gt;drawText('Helvetica 24 text string', 60, 500);
+
+// Использование другого шрифта
+$page2-&gt;setFont(new Zend_Pdf_Font_Standard(Zend_Pdf_Const::FONT_TIMES_ROMAN), 32);
+$page2-&gt;drawText('Times-Roman 32 text string', 60, 450);
+
+// Рисование прямоугольника
+$page2-&gt;setFillColor(new Zend_Pdf_Color_GrayScale(0.8));
+$page2-&gt;setLineColor(new Zend_Pdf_Color_GrayScale(0.2));
+$page2-&gt;setLineDashingPattern(array(3, 2, 3, 4), 1.6);
+$page2-&gt;drawRectangle(60, 400, 400, 350);
+
+// Рисование круга
+$page2-&gt;setLineDashingPattern(Zend_Pdf_Const::LINEDASHING_SOLID);
+$page2-&gt;setFillColor(new Zend_Pdf_Color_RGB(1, 0, 0));
+$page2-&gt;drawCircle(85, 375, 25);
+
+// Рисование секторов
+$page2-&gt;drawCircle(200, 375, 25, 2*M_PI/3, -M_PI/6);
+$page2-&gt;setFillColor(new Zend_Pdf_Color_CMYK(1, 0, 0, 0));
+$page2-&gt;drawCircle(200, 375, 25, M_PI/6, 2*M_PI/3);
+$page2-&gt;setFillColor(new Zend_Pdf_Color_RGB(1, 1, 0));
+$page2-&gt;drawCircle(200, 375, 25, -M_PI/6, M_PI/6);
+
+// Рисование элипса
+$page2-&gt;setFillColor(new Zend_Pdf_Color_RGB(1, 0, 0));
+$page2-&gt;drawEllipse(250, 400, 400, 350);
+$page2-&gt;setFillColor(new Zend_Pdf_Color_CMYK(1, 0, 0, 0));
+$page2-&gt;drawEllipse(250, 400, 400, 350, M_PI/6, 2*M_PI/3);
+$page2-&gt;setFillColor(new Zend_Pdf_Color_RGB(1, 1, 0));
+$page2-&gt;drawEllipse(250, 400, 400, 350, -M_PI/6, M_PI/6);
+
+// Рисование и заполнение многоугольника
+$page2-&gt;setFillColor(new Zend_Pdf_Color_RGB(1, 0, 1));
+$x = array();
+$y = array();
+for ($count = 0; $count &lt; 8; $count++) {
+    $x[] = 140 + 25*cos(3*M_PI_4*$count);
+    $y[] = 375 + 25*sin(3*M_PI_4*$count);
+}
+$page2-&gt;drawPolygon($x, $y,
+                    Zend_Pdf_Const::SHAPEDRAW_FILLNSTROKE,
+                    Zend_Pdf_Const::FILLMETHOD_EVENODD);
+
+// Рисование линии
+$page2-&gt;setLineWidth(0.5);
+$page2-&gt;drawLine(60, 375, 400, 375);
+//------------------------------------------------------------------------------------
+
+if (isset($argv[2])) {
+    $pdf-&gt;save($argv[2]);
+} else {
+    $pdf-&gt;save($argv[1], true /* update */);
+}
+</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.pdf.drawing.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.pdf.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.rest.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">20.5. Рисование </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> Глава 21. Zend_Rest</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

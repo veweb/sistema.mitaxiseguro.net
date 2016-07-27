@@ -1,0 +1,696 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>20.5. Tekenen</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="prev" href="zend.pdf.pages.html" title="20.4. Document pagina's">
+<link rel="next" href="zend.pdf.usage.html" title="20.6. Een gebruiksvoorbeeld voor de Zend_Pdf module">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.geometry" title="20.5.1. Geometrie">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.color" title="20.5.2. Kleur">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.shape-drawing" title="20.5.3. Vormen tekenen">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.text-drawing" title="20.5.4. Tekst schrijven">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.using-fonts" title="20.5.5. Lettertypes gebruiken">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.image-drawing" title="20.5.6. Beelden tekenen">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.line-drawing-style" title="20.5.7. Lijnstijl tekenen">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.fill-style" title="20.5.8. Vulstijl">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.rotations" title="20.5.9. Rotaties">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.save-restore" title="20.5.10. Opslaan/herstellen van een grafische staat">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.clipping" title="20.5.11. Clipping draw area">
+<link rel="subsection" href="zend.pdf.drawing.html#zend.pdf.drawing.styles" title="20.5.12. Stijlen">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">20.5. Tekenen</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.pdf.pages.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 20. Zend_Pdf</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.pdf.usage.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.pdf.drawing"></a>20.5. Tekenen</h2></div></div></div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.geometry"></a>20.5.1. Geometrie</h3></div></div></div>
+<p>
+		PDF gebruikt dezelfde geometrie als PostScript. Het begint van de beneden-linkse
+		hoek van de pagina en is standaard afgemeten in points (1/72 van een duim).
+        </p>
+<p>
+		De grootte van een pagina kan worden verkregen van het pagina object:
+        </p>
+<pre class="programlisting">
+$width  = $pdfPage-&gt;getWidth();
+$height = $pdfPage-&gt;getHeight();
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.color"></a>20.5.2. Kleur</h3></div></div></div>
+<p>
+		PDF heeft geweldig goede kleurweergavemogelijkheden. Zend_Pdf ondersteunt grijsschalen, RGB en CMYK
+		kleuren. Elk van deze notaties kan worden gebruikt daar waar een <code class="code">Zend_Pdf_Color</code> object
+		nodig is. De <code class="code">Zend_Pdf_Color_GrayScale</code>, <code class="code">Zend_Pdf_Color_RGB</code> en
+        <code class="code">Zend_Pdf_Color_CMYK</code> klassen verstrekken deze functionaliteit:
+        </p>
+<pre class="programlisting">
+// $grayLevel (float number). 0.0 (zwart) - 1.0 (wit)
+$color1 = new Zend_Pdf_Color_GrayScale($grayLevel);
+
+// $r, $g, $b (float numbers). 0.0 (minimum intensiteit) - 1.0 (maximum intensiteit)
+$color2 = new Zend_Pdf_Color_RGB($r, $g, $b);
+
+// $c, $m, $y, $k (float numbers). 0.0 (minimum intensiteit) - 1.0 (maximum intensiteit)
+$color3 = new Zend_Pdf_Color_CMYK($c, $m, $y, $k);
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.shape-drawing"></a>20.5.3. Vormen tekenen</h3></div></div></div>
+<p>
+		Alle tekenoperaties kunnen worden uitgevoerd in de context van een PDF pagina.
+        </p>
+<p>
+        De <code class="code">Zend_Pdf_Page</code> klasse verstrekt een set van teken methodes:
+        </p>
+<pre class="programlisting">
+/**
+ * Een lijn trekken van x1,y1 naar x2,y2.
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ */
+public function drawLine($x1, $y1, $x2, $y2);
+        </pre>
+<pre class="programlisting">
+/**
+ * Teken een rechthoek.
+ *
+ * Vultypes:
+ * Zend_Pdf_Const::SHAPEDRAW_FILLNSTROKE - vul rechthoek en streep door (standaard)
+ * Zend_Pdf_Const::SHAPEDRAW_STROKE      - streep rechthoek door
+ * Zend_Pdf_Const::SHAPEDRAW_FILL        - vul rechthoek op
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ * @param integer $fillType
+ */
+public function drawRectangle($x1, $y1, $x2, $y2, $fillType = Zend_Pdf_Const::SHAPEDRAW_FILLNSTROKE);
+        </pre>
+<pre class="programlisting">
+/**
+ * Een polygoon tekenen.
+ *
+ * Als $fillType een Zend_Pdf_Const::SHAPEDRAW_FILLNSTROKE of Zend_Pdf_Const::SHAPEDRAW_FILL is,
+ * zal de polygoon automatisch gesloten zijn.
+ * Zie een gedetailleerde beschrijving van deze methodes in een PDF documentatie
+ * (sectie 4.4.2 Path painting Operators, Opvulling)
+ *
+ * @param array $x  - array of float (de X coordinaten van de toppen)
+ * @param array $y  - array of float (de Y coordinaten van de toppen)
+ * @param integer $fillType
+ * @param integer $fillMethod
+ */
+public function drawPolygon($x, $y,
+                            $fillType = Zend_Pdf_Const::SHAPEDRAW_FILLNSTROKE,
+                            $fillMethod = Zend_Pdf_Const::FILLMETHOD_NONZEROWINDING);
+        </pre>
+<pre class="programlisting">
+/**
+ * Teken een cirkel gecentreerd op x, y met een radius van radius.
+ *
+ * Hoeken zijn aangeduid in radianten
+ *
+ * Method signatures:
+ * drawCircle($x, $y, $radius);
+ * drawCircle($x, $y, $radius, $fillType);
+ * drawCircle($x, $y, $radius, $startAngle, $endAngle);
+ * drawCircle($x, $y, $radius, $startAngle, $endAngle, $fillType);
+ *
+ *
+ * Het is niet echt een cirkel want PDF ondersteunt alleen Bezier krommen.
+ * Maar het komt er héél dichtbij.
+ * Het verschilt maximaal 0.00026 radianten van een cirkel
+ * (op PI/8, 3*PI/8, 5*PI/8, 7*PI/8, 9*PI/8, 11*PI/8, 13*PI/8 and 15*PI/8 hoeken).
+ * Op 0, PI/4, PI/2, 3*PI/4, PI, 5*PI/4, 3*PI/2 en 7*PI/4 zijn het exacte tangenten van cirkels.
+ *
+ * @param float $x
+ * @param float $y
+ * @param float $radius
+ * @param mixed $param4
+ * @param mixed $param5
+ * @param mixed $param6
+ */
+public function  drawCircle($x, $y, $radius, $param4 = null, $param5 = null, $param6 = null);
+        </pre>
+<pre class="programlisting">
+/**
+ * Teken een ellips in een bepaalde rechthoek.
+ *
+ * Method signatures:
+ * drawEllipse($x1, $y1, $x2, $y2);
+ * drawEllipse($x1, $y1, $x2, $y2, $fillType);
+ * drawEllipse($x1, $y1, $x2, $y2, $startAngle, $endAngle);
+ * drawEllipse($x1, $y1, $x2, $y2, $startAngle, $endAngle, $fillType);
+ *
+ * Hoeken zijn aangeduid in radianten
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ * @param mixed $param5
+ * @param mixed $param6
+ * @param mixed $param7
+ */
+public function drawEllipse($x1, $y1, $x2, $y2, $param5 = null, $param6 = null, $param7 = null);
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.text-drawing"></a>20.5.4. Tekst schrijven</h3></div></div></div>
+<p>
+		Ook tekst wordt geschreven in de paginacontext:
+        </p>
+<pre class="programlisting">
+/**
+ * Teken een regel tekst op de bepaalde plaats.
+ *
+ * @param string $text
+ * @param float $x
+ * @param float $y
+ * @throws Zend_Pdf_Exception
+ */
+public function drawText($text, $x, $y );
+        </pre>
+<p>
+		Het huidige lettertype en de lettertypegrootte worden gebruikt om tekst te schrijven. Zie de gedetailleerde beschrijving
+		hieronder.
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.using-fonts"></a>20.5.5. Lettertypes gebruiken</h3></div></div></div>
+<p>
+        De <code class="code">Zend_Pdf_Page::drawText()</code> methode gebruikt het actieve lettertype die kan gezet worden door
+        de <code class="code">Zend_Pdf_Page::drawText()</code> methode:
+        </p>
+<pre class="programlisting">
+/**
+ * Actief lettertype zetten.
+ *
+ * @param Zend_Pdf_Font $font
+ * @param float $fontSize
+ */
+public function setFont(Zend_Pdf_Font $font, $fontSize);
+        </pre>
+<p>
+		PDF ondersteunt Type1, TrueType, Type3 and composite lettertypes. Er zijn ook 14 standaard Type1 lettertypes
+        voorzien in PDF. De Zend_Pdf module verstrekt op dit moment alleen de 14 standaard lettertypes. Die kunnen
+		verkregen worden door de <code class="code">Zend_Pdf_Font_Standard</code> klasse te gebruiken. Een bepaalde lettertype
+		moet worden gebruikt als argument:
+        </p>
+<div class="example">
+<a name="id4860580"></a><p class="title"><b>Voorbeeld 20.5. Een standaard lettertype maken</b></p>
+<pre class="programlisting">&lt;?php
+...
+// Een nieuw lettertype maken
+$font = new Zend_Pdf_Font_Standard(Zend_Pdf_Const::FONT_HELVETICA);
+
+// lettertype actief maken
+$pdfPage-&gt;setFont($font, 36);
+...
+?&gt;
+            </pre>
+</div>
+<p>
+		De <code class="code">Zend_Pdf_Const</code> verstrekt constanten voor de 14 standaard lettertypes:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Zend_Pdf_Const::FONT_TIMES_ROMAN</p></li>
+<li><p>Zend_Pdf_Const::FONT_TIMES_BOLD</p></li>
+<li><p>Zend_Pdf_Const::FONT_TIMES_ITALIC</p></li>
+<li><p>Zend_Pdf_Const::FONT_TIMES_BOLDITALIC</p></li>
+<li><p>Zend_Pdf_Const::FONT_HELVETICA</p></li>
+<li><p>Zend_Pdf_Const::FONT_HELVETICA_BOLD</p></li>
+<li><p>Zend_Pdf_Const::FONT_HELVETICA_ITALIC</p></li>
+<li><p>Zend_Pdf_Const::FONT_HELVETICA_BOLDITALIC</p></li>
+<li><p>Zend_Pdf_Const::FONT_COURIER</p></li>
+<li><p>Zend_Pdf_Const::FONT_COURIER_BOLD</p></li>
+<li><p>Zend_Pdf_Const::FONT_COURIER_ITALIC</p></li>
+<li><p>Zend_Pdf_Const::FONT_COURIER_BOLDITALIC</p></li>
+<li><p>Zend_Pdf_Const::FONT_SYMBOL</p></li>
+<li><p>Zend_Pdf_Const::FONT_ZAPFDINGBATS</p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.image-drawing"></a>20.5.6. Beelden tekenen</h3></div></div></div>
+<p>
+        De <code class="code">Zend_Pdf_Page</code> klasse voorziet de <code class="code">drawImage()</code> methode om beelden te tekenen:
+        </p>
+<pre class="programlisting">
+/**
+ * Teken een beeld op de bepaalde positie.
+ *
+ * @param Zend_Pdf_Image $image
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ */
+public function drawImage(Zend_Pdf_Image $image, $x1, $y1, $x2, $y2);
+        </pre>
+<p>
+		Beeldobjecten worden door afstammelingen van de <code class="code">Zend_Pdf_Image</code> klasse voorgesteld.
+        </p>
+<p>
+		Alleen JPG beelden zijn momenteel ondersteund:
+        </p>
+<div class="example">
+<a name="id4860764"></a><p class="title"><b>Voorbeeld 20.6. Beelden tekenen</b></p>
+<pre class="programlisting">&lt;?php
+...
+$image = new Zend_Pdf_Image_JPEG('my_image.jpg');
+$pdfPage-&gt;drawImage($image, 100, 100, 400, 300);;
+...
+?&gt;
+            </pre>
+</div>
+<p>
+            <span class="emphasis"><em>Belangrijk! De <code class="code">Zend_Pdf_Image_JPEG</code> klasse heeft de PHP GD extensie nodig.</em></span>
+        </p>
+<p>
+			Zie de PHP documentatie voor meer informatie
+            (<a href="http://www.php.net/manual/nl/ref.image.php" target="_top">http://www.php.net/manual/nl/ref.image.php</a>).
+        </p>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.line-drawing-style"></a>20.5.7. Lijnstijl tekenen</h3></div></div></div>
+<p>
+		De lijnstijl wordt gedefinieerd door lijndikte, lijnkleur en lijnstippenpatroon. Al deze parameters kunnen door de <code class="code">Zend_Pdf_Page</code> klasse methodes worden aangegeven:
+        </p>
+<pre class="programlisting">
+/** Zet lijnkleur. */
+public function setLineColor(Zend_Pdf_Color $color);
+
+/** Zet lijndikte. */
+public function setLineWidth(float $width);
+
+/**
+ * Zet lijnstippenpatroon.
+ *
+ * Het patroon ($pattern) is een Array van floats: array(on_length, off_length, on_length, off_length, ...)
+ * Fase ($phase) is shift vanaf het begin van de lijn.
+ *
+ * @param array $pattern
+ * @param array $phase
+ */
+public function setLineDashingPattern($pattern, $phase = 0);
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.fill-style"></a>20.5.8. Vulstijl</h3></div></div></div>
+<p>
+        De <code class="code">Zend_Pdf_Page::drawRectangle()</code>, <code class="code">Zend_Pdf_Page::drawPoligon()</code>,
+        <code class="code">Zend_Pdf_Page::drawCircle()</code> en <code class="code">Zend_Pdf_Page::drawEllipse()</code> methodes aanvaarden
+        het optionele argument <code class="code">$fillType</code>. Dit kan het volgende zijn:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Zend_Pdf_Const::SHAPEDRAW_STROKE - streep</p></li>
+<li><p>Zend_Pdf_Const::SHAPEDRAW_FILL - alleen opvullen</p></li>
+<li><p>Zend_Pdf_Const::SHAPEDRAW_FILLNSTROKE - opvullen en doorstrepen (standaard)</p></li>
+</ul></div>
+<p>
+        De <code class="code">Zend_Pdf_Page::drawPoligon()</code> methode accepteert ook een optionele parameter
+        <code class="code">$fillMethod</code>:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>Zend_Pdf_Const::FILLMETHOD_NONZEROWINDING (standaard)</p>
+<p>
+                <em class="citetitle">De PDF referentie</em> beschrijft deze regel als volgt (originele tekst):
+                </p>
+<div class="blockquote"><blockquote class="blockquote">
+<p>
+                The nonzero winding number rule determines whether a given point is inside a
+                path by conceptually drawing a ray from that point to infinity in any direction
+                and then examining the places where a segment of the path crosses the ray. Starting
+                with a count of 0, the rule adds 1 each time a path segment crosses the ray
+                from left to right and subtracts 1 each time a segment crosses from right to left.
+                After counting all the crossings, if the result is 0 then the point is outside the path;
+                otherwise it is inside.
+                </p>
+<p>
+                Note: The method just described does not specify what to do if a path segment coincides
+                with or is tangent to the chosen ray. Since the direction of the ray is arbitrary,
+                the rule simply chooses a ray that does not encounter such problem intersections.
+                For simple convex paths, the nonzero winding number rule defines the inside
+                and outside as one would intuitively expect. The more interesting cases are those
+                involving complex or self-intersecting paths like the ones shown in Figure 4.10
+                (in a PDF Reference).
+                </p>
+<p>
+                For a path consisting of a five-pointed star, drawn with five connected straight
+                line segments intersecting each other, the rule considers the inside to be the entire
+                area enclosed by the star, including the pentagon in the center. For a path composed
+                of two concentric circles, the areas enclosed by both circles are considered
+                to be inside, provided that both are drawn in the same direction. If the circles are
+                drawn in opposite directions, only the "doughnut" shape between them is inside,
+                according to the rule; the "doughnut hole" is outside.
+              </p>
+</blockquote></div>
+<p>
+            </p>
+</li>
+<li>
+<p>Zend_Pdf_Const::FILLMETHOD_EVENODD</p>
+<p>
+                <em class="citetitle">De PDF referentie</em> beschrijft deze regel als volgt (originele tekst):
+                </p>
+<div class="blockquote"><blockquote class="blockquote"><p>
+An alternative to the nonzero winding number rule is the even-odd rule. This rule
+determines the "insideness" of a point by drawing a ray from that point in any
+direction and simply counting the number of path segments that cross the ray,
+regardless of direction. If this number is odd, the point is inside; if even, the point
+is outside. This yields the same results as the nonzero winding number rule for
+paths with simple shapes, but produces different results for more complex
+shapes.
+
+Figure 4.11 (in a PDF Reference) shows the effects of applying the even-odd rule
+to complex paths. For the five-pointed star, the rule considers the triangular
+points to be inside the path, but not the pentagon in the center. For the two
+concentric circles, only the "doughnut" shape between the two circles is considered inside,
+regardless of the directions in which the circles are drawn.
+                    </p></blockquote></div>
+<p>
+            </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.rotations"></a>20.5.9. Rotaties</h3></div></div></div>
+<p>
+		Een PDF pagina kan geroteerd worden zo lang er nog niets op werd geschreven of getekend.
+		Het wordt gedaan door de <code class="code">Zend_Pdf_Page::rotate()</code> methode:
+        </p>
+<pre class="programlisting">
+/**
+ * De pagina rond het punt ($x, $y) roteren met de aangeduide hoek (in radianten).
+ *
+ * @param float $angle
+ */
+public function rotate($x, $y, $angle);
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.save-restore"></a>20.5.10. Opslaan/herstellen van een grafische staat</h3></div></div></div>
+<p>
+		Op eender welk moment kan een grafische staat van een pagina (huidig lettertype, lettertype
+		grootte, lijnkleur, vulkleur, lijnstijl, paginarotatie, clip area) worden opgeslagen
+		en worden hersteld. De opsla-operatie slaat de data in een grafische staatstapel op,
+		de hersteloperatie haalt ze er weer uit.
+        </p>
+<p>
+		Dit zijn de <code class="code">Zend_Pdf_Page</code> klassemethodes om deze operaties uit te voeren:
+        </p>
+<pre class="programlisting">
+/**
+ * De grafische staat van deze pagina opslaan.
+ * Dit neemt een "foto" van de huidige stijl, positie en clipping area en
+ * enige aangebrachte rotatie/vertaling/schaling.
+ */
+public function saveGS();
+
+/**
+ * De laatst opgeslagen grafische staat herstellen.
+ */
+public function restoreGS();
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.clipping"></a>20.5.11. Clipping draw area</h3></div></div></div>
+<p>
+		PDF en de Zend_Pdf module ondersteunen clippen van een teken area.
+		De actieve clip area begrenst de regios van de pagina die door tekenoperaties worden beïnvloed.
+		Initieel is het de volledige pagina.
+        </p>
+<p>
+        De <code class="code">Zend_Pdf_Page</code> klasse verstrekt een set methodes voor clipoperaties.
+        </p>
+<pre class="programlisting">
+/**
+ * Rechthoekig clippen.
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ */
+public function clipRectangle($x1, $y1, $x2, $y2);
+        </pre>
+<pre class="programlisting">
+/**
+ * Polygoon clippen.
+ *
+ * @param array $x  - array of float (the X co-ordinates of the vertices)
+ * @param array $y  - array of float (the Y co-ordinates of the vertices)
+ * @param integer $fillMethod
+ */
+public function clipPolygon($x, $y, $fillMethod = Zend_Pdf_Const::FILLMETHOD_NONZEROWINDING);
+        </pre>
+<pre class="programlisting">
+/**
+ * Cirkel clippen.
+ *
+ * @param float $x
+ * @param float $y
+ * @param float $radius
+ * @param float $startAngle
+ * @param float $endAngle
+ */
+public function clipCircle($x, $y, $radius, $startAngle = null, $endAngle = null);
+        </pre>
+<pre class="programlisting">
+/**
+ * Ellips clippen.
+ *
+ * Method signatures:
+ * drawEllipse($x1, $y1, $x2, $y2);
+ * drawEllipse($x1, $y1, $x2, $y2, $startAngle, $endAngle);
+ *
+ * @todo process special cases with $x2-$x1 == 0 or $y2-$y1 == 0
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ * @param float $startAngle
+ * @param float $endAngle
+ */
+public function clipEllipse($x1, $y1, $x2, $y2, $startAngle = null, $endAngle = null);
+        </pre>
+</div>
+<div class="sect2" lang="nl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.pdf.drawing.styles"></a>20.5.12. Stijlen</h3></div></div></div>
+<p>
+        De <code class="code">Zend_Pdf_Style</code> klasse voorziet in stijlen
+        </p>
+<p>
+		Stijlen kunnen gebruikt worden om een set grafische parameters op te slaan en ze toe te brengen op een
+		PDF pagina in één operatie:
+        </p>
+<pre class="programlisting">
+/**
+ * Zet de stijl voor de komende tekenoperaties voor deze pagina
+ *
+ * @param Zend_Pdf_Style $style
+ */
+public function setStyle(Zend_Pdf_Style $style);
+
+/**
+ * Geef de stijl terug en breng ze op de pagina aan.
+ *
+ * @return Zend_Pdf_Style|null
+ */
+public function getStyle();
+        </pre>
+<p>
+        De <code class="code">Zend_Pdf_Style</code> klasse voorziet in een set methodes om verschillende grafische
+		staat parameters te zetten of te verkrijgen:
+        </p>
+<pre class="programlisting">
+/**
+ * Zet de lijnkleur.
+ *
+ * @param Zend_Pdf_Color $color
+ */
+public function setLineColor(Zend_Pdf_Color $color);
+        </pre>
+<pre class="programlisting">
+/**
+ * verkrijg de lijnkleur.
+ *
+ * @return Zend_Pdf_Color|null
+ */
+public function getLineColor();
+        </pre>
+<pre class="programlisting">
+/**
+ * Zet de lijndikte.
+ *
+ * @param float $width
+ */
+public function setLineWidth($width);
+        </pre>
+<pre class="programlisting">
+/**
+ * Verkrijg de lijndikte.
+ *
+ * @return float
+ */
+public function getLineWidth($width);
+        </pre>
+<pre class="programlisting">
+/**
+ * Zet het lijnstippenpatroon
+ *
+ * @param array $pattern
+ * @param float $phase
+ */
+public function setLineDashingPattern($pattern, $phase = 0);
+        </pre>
+<pre class="programlisting">
+/**
+ * Verkrijg het lijnstippenpatroon
+ *
+ * @return array
+ */
+public function getLineDashingPattern();
+        </pre>
+<pre class="programlisting">
+/**
+ * Verkrijg de lijnstippenfase
+ *
+ * @return float
+ */
+public function getLineDashingPhase();
+        </pre>
+<pre class="programlisting">
+/**
+ * Zet de vulkleur
+ *
+ * @param Zend_Pdf_Color $color
+ */
+public function setFillColor(Zend_Pdf_Color $color);
+        </pre>
+<pre class="programlisting">
+/**
+ * Verkrijg de vulkleur
+ *
+ * @return Zend_Pdf_Color|null
+ */
+public function getFillColor();
+        </pre>
+<pre class="programlisting">
+/**
+ * Zet actief lettertype
+ *
+ * @param Zend_Pdf_Font $font
+ * @param float $fontSize
+ */
+public function setFont(Zend_Pdf_Font $font, $fontSize);
+        </pre>
+<pre class="programlisting">
+/**
+ * Wijzig huidige lettertype grootte
+ *
+ * @param float $fontSize
+ */
+public function setFontSize($fontSize);
+        </pre>
+<pre class="programlisting">
+/**
+ * Verkrijg huidig lettertype
+ *
+ * @return Zend_Pdf_Font $font
+ */
+public function getFont();
+        </pre>
+<pre class="programlisting">
+/**
+ * Verkrijg huidige lettertype grootte
+ *
+ * @return float $fontSize
+ */
+public function getFontSize();
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.pdf.pages.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.pdf.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.pdf.usage.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">20.4. Document pagina's </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> 20.6. Een gebruiksvoorbeeld voor de Zend_Pdf module</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

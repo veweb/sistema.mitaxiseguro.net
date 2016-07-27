@@ -1,0 +1,135 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>23.2. Zend_Server_Reflection</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="prev" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="next" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.server.reflection.html#zend.server.reflection.introduction" title="23.2.1. Введение">
+<link rel="subsection" href="zend.server.reflection.html#zend.server.reflection.usage" title="23.2.2. Использование">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">23.2. Zend_Server_Reflection</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.server.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 23. Zend_Server</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.service.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.server.reflection"></a>23.2. Zend_Server_Reflection</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.server.reflection.introduction"></a>23.2.1. Введение</h3></div></div></div>
+<p>
+            <code class="code">Zend_Server_Reflection</code> предоставляет стандарный
+            механизм для выполнения интроспекции функций и классов для
+            использования с серверными классами. Он основан на Reflection API
+            в PHP 5 и расширяет его для предоставления методов
+            получения типов и описаний параметров и возвращаемых значений,
+            полного списка прототипов функций и методов (т.е. комбинации всех
+            возможных валидных вызовов), описаний функций/методов.   
+
+        </p>
+<p>
+            Обычно этот функционал будет использоваться только разработчиками
+            серверных классов для данного фреймворка.
+
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.server.reflection.usage"></a>23.2.2. Использование</h3></div></div></div>
+<p>
+            Основное использование простое:
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Server/Reflection.php';
+$class    = Zend_Server_Reflection::reflectClass('My_Class');
+$function = Zend_Server_Reflection::reflectFunction('my_function');
+
+// Получение прототипов
+$prototypes = $reflection-&gt;getPrototypes();
+
+// Получение типа возвращаемого прототипом значения
+$prototype-&gt;getReturnType();
+
+// Получение параметров прототипа
+$prototype-&gt;getParameters();
+
+// Получение типа параметра
+$parameter-&gt;getType();
+
+// Получение пространства имен для класса, функции или метода
+// Пространства имен могут быть установлены во время инстанцирования (второй аргумент),
+// или с помощью метода setNamespace()
+$reflection-&gt;getNamespace();
+</pre>
+<p>
+            <code class="code">reflectFunction()</code> возвращает объект
+            <code class="code">Zend_Server_Reflection_Function</code>,
+            <code class="code">reflectClass</code> возвращает объект
+            <code class="code">Zend_Server_Reflection_Class</code>. Обратитесь к
+            документации API чтобы узнать, какие методы доступны в
+            этих объектах.
+
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.server.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.server.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.service.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Глава 23. Zend_Server </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> Глава 24. Zend_Service</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

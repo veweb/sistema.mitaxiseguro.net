@@ -1,0 +1,142 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>فصل 5. Zend_Config</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="index.html" title="دليل المبرمج">
+<link rel="prev" href="zend.cache.backends.html" title="4.4. Zend_Cache backends">
+<link rel="next" href="zend.config.theory_of_operation.html" title="5.2. نظرية العمل">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+<link rel="section" href="zend.config.html#zend.config.introduction" title="5.1. مقدمة">
+<link rel="section" href="zend.config.theory_of_operation.html" title="5.2. نظرية العمل">
+<link rel="section" href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini">
+<link rel="section" href="zend.config.adapters.xml.html" title="5.4. Zend_Config_Xml">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">فصل 5. Zend_Config</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.cache.backends.html">السابق</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.theory_of_operation.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ar">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.config"></a>فصل 5. Zend_Config</h2></div></div></div>
+<div class="toc">
+<p><b>قائمة المحتويات</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.config.html#zend.config.introduction">5.1. مقدمة</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.theory_of_operation.html">5.2. نظرية العمل</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.adapters.ini.html">5.3. Zend_Config_Ini</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.adapters.xml.html">5.4. Zend_Config_Xml</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.config.introduction"></a>5.1. مقدمة</h2></div></div></div>
+<p>
+        تم تصميم <code class="code">Zend_Config</code> لتُبسّط عملية الوصول و أستخدام بيانات الأعدادات "configuration data" 
+        داخل التطبيقات , حيث توفرالوصول إلى هذه البيانات بنفس الطريقة المتبعة لقرائة قيمة 
+        property فى أى كائن PHP عادى, 
+        و يمكن أن تأتى هذه البيانات من عدّة وسائط حفظ بيانات  تدعم جفظ البيانات بهيكلة هرمية, 
+        فحالياً توفر <code class="code">Zend_Config</code> ادوات لقرائة انواع من البيانات المحفوظة فى ملفات نصية و هى 
+        <a href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini"><code class="code">Zend_Config_Ini</code></a> و 
+        <a href="zend.config.adapters.xml.html" title="5.4. Zend_Config_Xml"><code class="code">Zend_Config_Xml</code></a>.
+    </p>
+<div class="example">
+<a name="id4792068"></a><p class="title"><b>مثال 5.1. إستخدام Zend_Config Per Se</b></p>
+<p>
+            من الطبيعى توقع أن المبرمجين سيستخدمون أحد الـ adapter classes أو الـ "classes التوفيقية" مثل 
+            <a href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini"><code class="code">Zend_Config_Ini</code></a> أو 
+            <a href="zend.config.adapters.xml.html" title="5.4. Zend_Config_Xml"><code class="code">Zend_Config_Xml</code></a>, 
+            لكن إن كانت بيانات الأعدادات متوفرة فى مصفوفة PHP عادية, يمكن تمرير هذه البيانات إلى 
+            <code class="code">Zend_Config</code> فى الـ constructor , و ذلك يفضل لتغليف البيانات داخل 
+            واجهة كأنية.
+        </p>
+<pre class="programlisting">&lt;?php
+// Given an array of configuration data
+$configArray = array(
+    'webhost' =&gt; 'www.example.com',
+    'database' =&gt; array(
+        'type'     =&gt; 'pdo_mysql',
+        'host'     =&gt; 'db.example.com',
+        'username' =&gt; 'dbuser',
+        'password' =&gt; 'secret',
+        'name'     =&gt; 'dbname'
+    )
+);
+
+// Create the object-oriented wrapper upon the configuration data
+require_once 'Zend/Config.php';
+$config = new Zend_Config($configArray);
+
+// Print a configuration datum (results in 'www.example.com')
+echo $config-&gt;webhost;
+
+// Use the configuration data to connect to the database
+$myApplicationObject-&gt;databaseConnect($config-&gt;database-&gt;type,
+                                      $config-&gt;database-&gt;host,
+                                      $config-&gt;database-&gt;username,
+                                      $config-&gt;database-&gt;password,
+                                      $config-&gt;database-&gt;name);</pre>
+</div>
+<p>
+        كما هو موضح فى المثال السابق , <code class="code">Zend_Config</code> توفر امكانية الوصول إلى البيانات 
+        الممرة إليه بنفس الطريقة المتبعة لقرائة قيم property من أى كائن PHP عادى.
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.cache.backends.html">السابق</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.theory_of_operation.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.4. Zend_Cache backends </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> 5.2. نظرية العمل</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

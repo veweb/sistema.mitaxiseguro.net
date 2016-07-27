@@ -1,0 +1,411 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>30.2. Zend_XmlRpc_Client</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="prev" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="next" href="zend.xmlrpc.server.html" title="30.3. Zend_XmlRpc_Server">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.introduction" title="30.2.1. 介绍">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.parameters" title="30.2.2. 带参数">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.wsdl" title="30.2.3. 参数类型提示">
+<link rel="subsection" href="zend.xmlrpc.client.html#zend.xmlrpc.client.response" title="30.2.4. 获取响应">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">30.2. Zend_XmlRpc_Client</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.xmlrpc.html">上一页</a> </td>
+<th width="60%" align="center">第 30 章 Zend_XmlRpc</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.xmlrpc.server.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.xmlrpc.client"></a>30.2. Zend_XmlRpc_Client</h2></div></div></div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.introduction"></a>30.2.1. 介绍</h3></div></div></div>
+<p>
+            <code class="code">Zend_XmlRpc_Client</code>的用法和<code class="code">SoapClient</code> 对象 (<a href="http://www.php.net/soap" target="_top">SOAP web service extension</a>)是非常相似的。
+            你只需在<code class="code">Zend_XmlRpc_Client</code>构造函数中指定服务端的完整地址，即可以用<code class="code">Zend_XmlRpc_Client</code>的方法简单的调用XML-RPC 服务端的过程。
+        </p>
+<div class="example">
+<a name="id4833639"></a><p class="title"><b>例 30.1. 一个基本的XML-RPC请求</b></p>
+<pre class="programlisting">&lt;?php
+/**
+ * 连接到framework.zend.com服务器并获得
+ * 一个描述服务端可用方法的数组。
+ */
+require_once 'Zend/XmlRpc/Client.php';
+
+$server = new Zend_XmlRpc_Client('http://framework.zend.com/xmlrpc');
+
+print_r( $server-&gt;system-&gt;listMethods() );
+
+?&gt;
+            </pre>
+</div>
+<p>
+            </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top">
+                用<code class="code">Zend_XmlRpc_Client</code>尝试调用一个远程服务器的方法看起来就像调用本地方法那样简单。如果一个远程方法包含一个命名空间，就像前面的<code class="code">system.listMethods()</code>那样，那么调用的时候可以用PHP的对象链的形式：<code class="code">$server-&gt;system-&gt;listMethods()</code>。
+            </td></tr>
+</table></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.parameters"></a>30.2.2. 带参数</h3></div></div></div>
+<p>
+            一些XML-RPC服务过程要求一些参数，那么必要的参数将被作为<code class="code">Zend_XmlRpc_Client</code>方法的参数进行传递。
+            XML-RPC过程的参数必须指定XML-RPC类型。
+            参数能通过两种方法进行传递：PHP本地变量或是指定XML-RPC类型的<code class="code">Zend_XmlRpc_Value</code>对象。
+        </p>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.client.parameters.php_native"></a>30.2.2.1. 以PHP本地变量的形式传递参数</h4></div></div></div>
+<p>
+                用本地PHP变量传递参数，意味着参数将是一个字符串、整数、浮点数、布尔值、数组或者是一个对象。
+                在这种情况下，PHP本地变量将被自动检测类型并根据下表转换成一个XML-RPC类型：
+            </p>
+<div class="table">
+<a name="id4833894"></a><p class="title"><b>表 30.1. PHP本地变量类型转化为XML-RPC类型</b></p>
+<table summary="PHP本地变量类型转化为XML-RPC类型" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>PHP变量类型</th>
+<th>XML-RPC类型</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>integer</td>
+<td>int</td>
+</tr>
+<tr>
+<td>double</td>
+<td>double</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+</tr>
+<tr>
+<td>array</td>
+<td>array</td>
+</tr>
+<tr>
+<td>associative array(关联数组)</td>
+<td>struct</td>
+</tr>
+<tr>
+<td>object</td>
+<td>array</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="programlisting">...
+/** 在这个过程中两个参数被传递
+ *  第一个参数是一个字符串类型它将被自动转换成XML-RPC的字符串类型
+ *  第二个参数是一个关联数组它将被转化成一个XML-RCP结构类型
+ */
+
+$p1 = 'parameter 1';
+$p2 = array('name' =&gt; 'Joe', 'age' =&gt; 30);
+
+$service-&gt;serviceProcedure($p1, $p2);
+...
+            </pre>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.client.parameters.xmlrpc_value"></a>30.2.2.2.  以<code class="code">Zend_XmlRpc_Value</code> 对象的形式传递参数</h4></div></div></div>
+<p>
+                传递<code class="code">Zend_XmlRpc_Value</code>对象作为参数。你可以创建一个<code class="code">Zend_XmlRpc_Value</code>实例精确的说明你传递参数的XML-RPC类型。
+                精确说明XML-RPC类型的主要原因是：
+                </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                       当你想确保你传递给远程过程的参数是正确的类型时（也就是说，当远程过程要求的是一个整形而你传递的参数是从$_GET数组获得的字符串类型）。
+                        </p></li>
+<li><p>
+                        当远程过程要求一个base64或dateTime.iso8601类型时（PHP本地变量则不存在这种类型）。
+                        </p></li>
+<li><p>
+                        当自动转换变量失败时（也就是说你想传递一个空的XML-RPC结构类型作为参数时。除了将一个空的PHP数组精确说明为一个空的XML-RPC结构之外，如果获得一个空的数组作为参数那么它将被自动转化为XML-RPC数组，而不是将其作为关联数组转化为一个XML-RPC结构。）
+                        </p></li>
+</ul></div>
+<p>
+            </p>
+<p>
+                有两种方法用于创建<code class="code">Zend_XmlRpc_Value</code>对象：直接调用对象的构造函数或者用对象的<code class="code">Zend_XmlRpc_Value::getXmlRpcValue()</code>静态方法带上必要的XML-RPC类型常量。
+            </p>
+<div class="table">
+<a name="id4834103"></a><p class="title"><b>表 30.2. <code class="code">Zend_XmlRpc_Value</code> 对象声明的XML-RPC类型</b></p>
+<table summary="Zend_XmlRpc_Value 对象声明的XML-RPC类型" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>XML-RPC 变量类型</th>
+<th>相匹配的 <code class="code">Zend_XmlRpc_Value</code> 常量</th>
+<th>
+<code class="code">Zend_XmlRpc_Value</code> 对象</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>int</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_INTEGER</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Integer</code></td>
+</tr>
+<tr>
+<td>double</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_DOUBLE</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Double</code></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_BOOLEAN</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Boolean</code></td>
+</tr>
+<tr>
+<td>string</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_STRING</code></td>
+<td><code class="code">Zend_XmlRpc_Value_String</code></td>
+</tr>
+<tr>
+<td>base64</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_BASE64</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Base64</code></td>
+</tr>
+<tr>
+<td>dateTime.iso8601</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_DATETIME</code></td>
+<td><code class="code">Zend_XmlRpc_Value_DateTime</code></td>
+</tr>
+<tr>
+<td>array</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_ARRAY</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Array</code></td>
+</tr>
+<tr>
+<td>struct</td>
+<td><code class="code">Zend_XmlRpc_Value::XMLRPC_TYPE_STRUCT</code></td>
+<td><code class="code">Zend_XmlRpc_Value_Struct</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="programlisting">...
+/** 传递两个参数给远程过程
+ *  第一个参数是用静态的Zend_XmlRpc_Value::getXmlRpcValue()方法创建的XML-RPC base64类型
+ *  第二个参数是用类型对象精确说明的XML-RPC结构
+ */
+
+$p1 = ZXmlRpcValue::getXmlRpcValue('encoded string', Zend_XmlRpc_Value::XMLRPC_TYPE_BASE64);
+$p2 = new Zend_XmlRpc_Value_Struct(array('name' =&gt; 'Joe', 'age' =&gt; 30));
+
+$service-&gt;serviceProcedure($p1, $p2);
+...
+            </pre>
+<p>
+                </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top">
+                    传递的参数值仍是PHP变量的值，只不过用PHP转换技术转换成指定的类型（也就是说一个字符串的值传给<code class="code">Zend_XmlRpc_Value_Integer</code>对象时，将会被转换成整形以<code class="code">(int)$value</code>的形式）。
+                </td></tr>
+</table></div>
+<p>
+            </p>
+</div>
+<div class="sect3" lang="zh-cn">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.xmlrpc.client.parameters.as_xml"></a>30.2.2.3. 将一个XML字符串解析为XML-RPC参数</h4></div></div></div>
+<p>
+                这种方法传递参数仅在<code class="code">Zend_XmlRpc</code>内部使用，因此不推荐使用这种方法传递参数。
+            </p>
+<p>
+                如果你坚持要使用该方法，那么你应该用<code class="code">Zend_XmlRpc_Value::getXmlRpcValue()</code>静态方法将一个XML字符串解析为一个 <code class="code">Zend_XmlRpc_Value</code>对象指定的相应的XML-RPC类型。
+                <code class="code">Zend_XmlRpc_Value::getXmlRpcValue()</code>方法需要两个参数：XML字符串和<code class="code">Zend_XmlRpc_Value::XML_STRING</code>常量。
+            </p>
+</div>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.wsdl"></a>30.2.3. 参数类型提示</h3></div></div></div>
+<p>
+            XML-RPC和SOAP web服务的最主要不同就是WSDL文件。SOAP协议通常用WSDL文件描述web服务接口。根据这个接口SOPA客户端懂得需要传递给服务端的参数类型并且知道返回的值是什么类型。
+            如果没有WSDL文件，那么用户可能在对变量类型的判断上会有些问题。
+        </p>
+<p>
+            XML-RPC协议解决这个问题的办法是调用一个特殊的远程过程<code class="code">system.methodSignature</code>。这个过程得到一个过程名作为参数并返回一个该过程的签名。这个签名中包含这个过程需要传递的参数类型和返回值的类型。 
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top">
+            不是所有的XML-RPC服务器都支持这个特殊的<code class="code">system.methodSignature</code>过程，不支持这个过程的服务器则无法支持参数类型提醒。
+        </td></tr>
+</table></div>
+<p>
+            <code class="code">Zend_XmlRpc_Client</code>实现了一个对XML-RPC服务器<code class="code">system.methodSignature</code>过程返回的'WSDL'类型文件的排序。
+            如果发出请求的话，<code class="code">Zend_XmlRpc_Client</code>将可以请求获得一份XML-RPC服务器的所有过程的列表，可以请求获得所有这些过程的签名，并将它们保存在XML文件中（就像SOAP的WSDL文件一样）。
+            当再次用到相同的XML-RPC服务器时，用户就能提供一个XML签名文件并且<code class="code">Zend_XmlRpc_Client</code>将可以根据XML文件中过程的签名获得请求过程所有相关的变量类型提示。
+        </p>
+<p>
+            过程的签名XML文件是通过调用<code class="code">Zend_XmlRpc_Client::__getMethodsXml()</code>(这个方法返回一个包含所有签名数据的XML格式字符串)来生成的。
+            用户可以将XML数据作为<code class="code">Zend_XmlRpc_Client</code>构造方法或者调用<code class="code">Zend_XmlRpc_Client::__setMethodsXml()</code>方法时的参数来使用一个存在的签名XML文件。
+        </p>
+<div class="example">
+<a name="id4834460"></a><p class="title"><b>例 30.2. 用类型提示来调用一个XML-RPC服务</b></p>
+<pre class="programlisting">&lt;?php
+/**
+ * 连接一个XML-RPC服务器，并保存它的签名文件(相当于SOAP的WSDL文件)
+ */
+require_once 'Zend/XmlRpc/Client.php';
+
+$service = new Zend_XmlRpc_Client('http://www.example.org/xmlrpc');
+
+file_put_contents('/tmp/xmlrpc-signatures/example.xml', $service-&gt;__getMethodsXml());
+
+/**
+ * $service 对象包含了所有XML-RPC服务器的签名，当serviceProcedure被调用时，它的参数将根据过程签名被转换成需要的类型。
+ */
+$service-&gt;serviceProcedure($param);
+?&gt;
+            </pre>
+<pre class="programlisting">&lt;?php
+/**
+ * 连接XML-RPC服务器，使用一个存在的签名文件确保
+ * 我们传递的参数被转化为过程需要的类型。
+ */
+require_once 'Zend/XmlRpc/Client.php';
+
+$signature_file_xml = file_get_contents('/tmp/xmlrpc-signatures/example.xml');
+$service = new Zend_XmlRpc_Client('http://www.example.org/xmlrpc', 'namespace', $signature_file_xml);
+
+/* $service 对象包含所有XML-RPC服务器的签名，
+   当serviceProcedur被调用时，它的参数($param)将根据过程的签名被
+   自动转化为过程需要的类型。
+ */
+$service-&gt;serviceProcedure($param);
+?&gt;
+            </pre>
+</div>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.xmlrpc.client.response"></a>30.2.4. 获取响应</h3></div></div></div>
+<p>
+            调用XML-RPC的过程将返回一个XML-RPC类型的值。
+             <code class="code">Zend_XmlRpc_Client</code>方法调用XML-RPC过程返回一个从XML-RPC类型转化而来的PHP本地类型。
+        </p>
+<p>
+            你可以用<code class="code">Zend_XmlRpc_Client::__getResponse()</code>方法来获得被请求过程的返回值。
+            <code class="code">__getResponse()</code>方法需要一个参数用于说明返回值的类型。
+            响应选项是：
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">Zend_XmlRpc_Client::RESPONSE_PHP_NATIVE</code> - 以PHP本地类型的形式返回过程的返回值（将XML-RPC类型转化为PHP类型）。
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_XmlRpc_Client::RESPONSE_XML_STRING</code> - 返回描述XML-RPC服务器端响应的XML字符串。
+                    </p></li>
+<li><p>
+                        <code class="code">Zend_XmlRpc_Client::RESPONSE_ZXMLRPC_OBJECT</code> - 返回一个用于描述返回的XML-RPC类型的<code class="code">Zend_XmlRpc_Value</code>对象。
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<pre class="programlisting">...
+$service-&gt;serviceProcedure();
+
+$response = $service-&gt;__getResponse();
+// $response 是一个从XML-RPC类型返回值转化而来的PHP变量
+  
+$response = $service-&gt;__getResponse(ZXmlRpcClient::RESPONSE_XML_STRING);
+// $response 是一个描述过程返回值的XML字符串
+
+$response = $service-&gt;__getResponse(ZXmlRpcClient::RESPONSE_ZXMLRPC_OBJECT);
+// $response 是一个描述XML-RPC类型返回值的Zend_XmlRpc_Value实例
+...
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.xmlrpc.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.xmlrpc.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.xmlrpc.server.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第 30 章 Zend_XmlRpc </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 30.3. Zend_XmlRpc_Server</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

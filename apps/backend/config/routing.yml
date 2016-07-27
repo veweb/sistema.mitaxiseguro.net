@@ -1,0 +1,162 @@
+empleado_empresa:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                empleadoEmpresa
+    module:               colaborador
+    prefix_path:          /colaborador
+    column:               id
+    with_wildcard_routes: true
+
+hora_pico:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                horaPico
+    module:               hora_pico
+    prefix_path:          /hora_pico
+    column:               id
+    with_wildcard_routes: true
+
+empresa:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                empresa
+    module:               empresa
+    prefix_path:          /empresa
+    column:               empresa
+    with_wildcard_routes: true
+
+unidad_mensaje:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                unidadMensaje
+    module:               mensaje
+    prefix_path:          /mensaje
+    column:               id
+    with_wildcard_routes: true
+
+asignacion_unidad_piloto:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                asignacionUnidadPiloto
+    module:               asignacion
+    prefix_path:          /asignacion
+    column:               id
+    with_wildcard_routes: true
+
+reservacion:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                reservacion
+    module:               reservacion
+    prefix_path:          /reservacion
+    column:               id
+    with_wildcard_routes: true
+
+unidad:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                unidad
+    module:               unidad
+    prefix_path:          /unidad
+    column:               id
+    with_wildcard_routes: true
+
+tarifa:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                tarifa
+    module:               tarifa
+    prefix_path:          /tarifa
+    column:               id
+    with_wildcard_routes: true
+
+tipo:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                tipo
+    module:               tipo
+    prefix_path:          /tipo
+    column:               id
+    with_wildcard_routes: true
+
+piloto:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                piloto
+    module:               piloto
+    prefix_path:          /piloto
+    column:               id
+    with_wildcard_routes: true
+
+marca:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                marca
+    module:               marca
+    prefix_path:          /marca
+    column:               id
+    with_wildcard_routes: true
+
+anio:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                anio
+    module:               modelo
+    prefix_path:          /modelo
+    column:               id
+    with_wildcard_routes: true
+
+cliente:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                cliente
+    module:               client
+    prefix_path:          /client
+    column:               id
+    with_wildcard_routes: true
+noreportadas:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                unidad
+    module:               unidad_no_reportada
+    prefix_path:          /unidad_no_reportada
+    column:               id
+    with_wildcard_routes: true  
+
+  
+        
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: dashboarddev, action: index }
+
+
+servicio:
+  url: /
+  param: { module: dashboarddev, action: llenaservicio}
+# generic rules
+#sfGuardAuth
+sf_guard_signin:
+  url:   /ingresar
+  param: { module: sfGuardAuth, action: signin }
+
+sf_guard_signout:
+  url:   /salir
+  param: { module: sfGuardAuth, action: signout }
+
+sf_guard_password:
+  url:   /recuperar-password
+  param: { module: sfGuardAuth, action: password }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

@@ -1,0 +1,322 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.9. Переход с предыдущих версий</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="prev" href="zend.controller.exceptions.html" title="7.8. Исключения">
+<link rel="next" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.controller.migration.html#zend.controller.migration.fromzerosix" title="7.9.1. Переход с 0.6.0 на 0.8.0">
+<link rel="subsection" href="zend.controller.migration.html#zend.controller.migration.fromzerotwo" title="7.9.2. Переход с 0.2.0 или более ранних версий на 0.6.0">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.9. Переход с предыдущих версий</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.exceptions.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.date.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.migration"></a>7.9. Переход с предыдущих версий</h2></div></div></div>
+<p>
+        API компонент системы MVC изменялся от версии к версии. Если вы начали
+        использование Zend Framework с его ранних версий, то следуйте
+        рекомендациям по переводу вашего кода на новую архитектуру, приведенным
+        ниже.
+
+    </p>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.migration.fromzerosix"></a>7.9.1. Переход с 0.6.0 на 0.8.0</h3></div></div></div>
+<p>
+            Базовое использование компонент MVC не изменилось:
+
+        </p>
+<pre class="programlisting">
+require_once 'Zend/Controller/Front.php';
+Zend_Controller_Front::run('/path/to/controllers');
+</pre>
+<p>
+            Тем не менее, структура директорий подверглась пересмотру, некоторые
+            компоненты были удалены, другие добавлены или переименованы.
+            Изменения включают в себя следующее:
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <code class="code">Zend_Controller_Router</code> удален в пользу 
+                    использования Rewrite Router.
+
+                </p></li>
+<li><p>
+                    <code class="code">Zend_Controller_RewriteRouter</code> переименован в
+                    <code class="code">Zend_Controller_Router_Rewrite</code>, теперь это
+                    стандартный маршрутизатор, поставляемый с фреймворком.
+                    <code class="code">Zend_Controller_Front</code> будет использовать его по
+                    умолчанию, если не был установлен другой маршрутизатор.
+
+                </p></li>
+<li><p>
+                    Внедрен новый класс маршрута для использования с Rewrite
+                    Router - <code class="code">Zend_Controller_Router_Route_Module</code>.
+                    Он предусматривает маршрут по умолчанию, используемый
+                    компонентами MVC, и поддерживает <a href="zend.controller.modular.html" title="7.7. Модульная структуры директорий">Раздел 7.7, «Модульная структуры директорий»</a>.
+
+                </p></li>
+<li><p>
+                    <code class="code">Zend_Controller_Router_StaticRoute</code> переименован
+                    в <code class="code">Zend_Controller_Router_Route_Static</code>.
+
+                </p></li>
+<li><p>
+                    <code class="code">Zend_Controller_Dispatcher</code> переименован в <code class="code">Zend_Controller_Dispatcher_Standard</code>.
+
+                </p></li>
+<li>
+<p>
+                    Аргументы метода <code class="code">Zend_Controller_Action::_forward()</code> изменились. Его сигнатура теперь:
+
+                </p>
+<pre class="programlisting">
+final protected function _forward($action, $controller = null, $module = null, array $params = null);
+</pre>
+<p>
+                    <code class="code">$action</code> - обязательный аргумент. Если не был определен контроллер, то предполагается, что вызывается действие в текущем контроллере. <code class="code">$module</code> всегда игнорируется, если не определен контроллер. Все переданные в аргументе <code class="code">$params</code> параметры будут добавлены в объект запроса. Если вам не нужно передавать контроллер или модуль, но нужно передать параметры, то просто укажите null на месте соответствующих аргументов.
+
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.migration.fromzerotwo"></a>7.9.2. Переход с 0.2.0 или более ранних версий на 0.6.0</h3></div></div></div>
+<p>
+            Самые основы использования компонент системы MVC не изменились,
+            следующий код будет корректно выполняться и в версии 0.6.0:  
+
+        </p>
+<pre class="programlisting">
+require_once 'Zend/Controller/Front.php';
+Zend_Controller_Front::run('/path/to/controllers');
+</pre>
+<pre class="programlisting">
+/* -- create a router -- */
+$router = new Zend_Controller_RewriteRouter();
+$router-&gt;addRoute('user', 'user/:username', array('controller' =&gt; 'user',
+'action' =&gt; 'info'));
+
+/* -- set it in a controller -- */
+$ctrl = Zend_Controller_Front::getInstance();
+$ctrl-&gt;setRouter($router);
+
+/* -- set controller directory and dispatch -- */
+$ctrl-&gt;setControllerDirectory('/path/to/controllers');
+$ctrl-&gt;dispatch();
+</pre>
+<p>
+            Рекомендуется использовать объект ответа для сбора содержимого и
+            заголовков. Это предоставляет большую гибкость при переключении
+            между разными форматами вывода (например, JSON или XML вместо XHTML)
+            в приложениях. По умолчанию <code class="code">dispatch()</code> будет выводить
+            ответ, отправляя заголовки и выводя весь контент. Можно также
+            сделать так, чтобы фронт-контроллер возвращал ответ, используя метод
+            <code class="code">returnResponse()</code>, и затем выводить ответ так, как нужно
+            вам. Будущая версия фронт-контроллер может принуждать к
+            использованию объекта ответа посредством буферизации вывода.
+
+        </p>
+<p>
+            Есть также много дополнительных инструментов, расширяющих
+            существующий API, они описаны в этой документации. 
+
+        </p>
+<p>
+            Основные изменения, о которых следует знать, касаются расширения
+            существующих компонент. Наиболее важные из них следующие:
+
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    <code class="code">Zend_Controller_Front::dispatch()</code> по умолчанию
+                    отлавливает все исключения в объекте ответа и не отображает
+                    их для предотвращения раскрытия данных о системе. Вы
+                    можете переопределить это поведение несколькими способами:
+
+                </p>
+<div class="itemizedlist"><ul type="circle">
+<li>
+<p>
+                            Установка <code class="code">throwExceptions()</code> во
+                            фронт-контроллере:
+
+                        </p>
+<pre class="programlisting">
+$front-&gt;throwExceptions(true);
+</pre>
+</li>
+<li>
+<p>
+                            Установка <code class="code">renderExceptions()</code> в объекте
+                            ответа:
+
+                        </p>
+<pre class="programlisting">
+$response-&gt;renderExceptions(true);
+$front-&gt;setResponse($response);
+$front-&gt;dispatch();
+
+// или:
+$front-&gt;returnResponse(true);
+$response = $front-&gt;dispatch();
+$response-&gt;renderExceptions(true);
+echo $response;
+</pre>
+</li>
+</ul></div>
+</li>
+<li><p>
+                <code class="code">Zend_Controller_Dispatcher_Interface::dispatch()</code>
+                теперь принимает и возвращает объект запроса
+                <a href="zend.controller.html#zend.controller.overview.request" title="7.1.2. Объект запроса">Раздел 7.1.2, «Объект запроса»</a>
+                вместо метки <code class="code">Zend_Controller_Dispatcher_Token</code>.
+
+            </p></li>
+<li><p>
+                <code class="code">Zend_Controller_Router_Interface::route()</code>
+                теперь принимает и возвращает объект ответа
+                <a href="zend.controller.html#zend.controller.overview.request" title="7.1.2. Объект запроса">Раздел 7.1.2, «Объект запроса»</a>
+                вместо метки <code class="code">Zend_Controller_Dispatcher_Token</code>
+
+            </p></li>
+<li>
+<p>
+                    Среди изменений <code class="code">Zend_Controller_Action</code> есть
+                    следующие:
+
+                </p>
+<div class="itemizedlist"><ul type="circle">
+<li><p>
+                        Его конструктор теперь включает в себя три аргумента,
+                        <code class="code">Zend_Controller_Request_Abstract $request</code>, 
+                        <code class="code">Zend_Controller_Response_Abstract $response</code>,
+                        и <code class="code">array $params</code> (необязательный).
+                        <code class="code">Zend_Controller_Action::__construct()</code>
+                        использует их для установки запроса, ответа и свойств
+                        объекта
+                        Еще лучше использовать метод <code class="code">init()</code> для
+                        выполнения любого начального конфигурирования, так
+                        как этот метод вызывается в конце конструктора.
+
+                    </p></li>
+<li><p>
+                        Метод <code class="code">run()</code> теперь не определен с ключевым
+                        словом final, но он также и не используется во
+                        фронт-контроллере; единственным его назначением
+                        является использование класса как контроллера страниц.
+                        Теперь он принимает два необязательных аргумента –
+                        <code class="code">Zend_Controller_Request_Abstract $request</code> 
+                        и <code class="code">Zend_Controller_Response_Abstract $response</code>.
+
+                    </p></li>
+<li><p>
+                        <code class="code">indexAction()</code> уже не обязателен для
+                        определения, но рекомендуется определять его в качестве
+                        действия по умолчанию. Это позволяет использовать
+                        RewriteRouter и контроллеры для указания различных
+                        методов действий, используемых по умолчанию. 
+
+                    </p></li>
+<li><p>
+                        <code class="code">__call()</code> должен замещаться для обработки
+                        вызовов не определенных в классе действий.  
+
+                    </p></li>
+<li><p>
+                        Метод <code class="code">_redirect()</code> теперь принимает второй
+                        необязательный аргумент, HTTP-код для возвращения при
+                        перенаправлении, и третий необязательный аргумент,
+                        <code class="code">$prependBase</code>, который указывает, что
+                        базовый URL, зарегистрированный в объекте запроса,
+                        должен предшествовать URL, указанному в первом
+                        аргументе.
+
+                    </p></li>
+</ul></div>
+</li>
+<li><p>
+                Метод
+                <code class="code">Zend_Controller_RewriteRouter::setRewriteBase()</code> был
+                удален. Вместо него используйте
+                <code class="code">Zend_Controller_Front::setBaseUrl()</code> (или
+                Zend_Controller_Request_Http::setBaseUrl(), если используется
+                объект запроса). 
+
+            </p></li>
+<li><p>
+                Интерфейс <code class="code">Zend_Controller_Plugin_Interface</code> заменен
+                классом <code class="code">Zend_Controller_Plugin_Abstract</code>. Все его
+                методы теперь принимают и возвращают
+                <a href="zend.controller.html#zend.controller.overview.request" title="7.1.2. Объект запроса">Раздел 7.1.2, «Объект запроса»</a>
+                вместо метки диспетчеризации.
+
+            </p></li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.exceptions.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.date.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.8. Исключения </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> Глава 8. Zend_Date</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

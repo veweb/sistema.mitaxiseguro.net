@@ -1,0 +1,185 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>18.3. 計測値の出力</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="prev" href="zend.measure.creation.html" title="18.2. 計測値の作成">
+<link rel="next" href="zend.measure.edit.html" title="18.4. 計測値の操作">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.measure.output.html#zend.measure.output.auto" title="18.3.1. 自動的な出力">
+<link rel="subsection" href="zend.measure.output.html#zend.measure.output.value" title="18.3.2. 値の出力">
+<link rel="subsection" href="zend.measure.output.html#zend.measure.output.unit" title="18.3.3. 単位つきの出力">
+<link rel="subsection" href="zend.measure.output.html#zend.measure.output.localized" title="18.3.4. ローカライズされた文字列での出力">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">18.3. 計測値の出力</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.measure.creation.html">前のページ</a> </td>
+<th width="60%" align="center">第18章 Zend_Measure</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.measure.edit.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.measure.output"></a>18.3. 計測値の出力</h2></div></div></div>
+<p>
+        計測値は、さまざまな方法で出力することができます。
+    </p>
+<p>
+        <a href="zend.measure.output.html#zend.measure.output.auto" title="18.3.1. 自動的な出力"><code class="code">自動的な出力</code>
+        </a>
+    </p>
+<p>
+        <a href="zend.measure.output.html#zend.measure.output.value" title="18.3.2. 値の出力"><code class="code">値の出力</code>
+        </a>
+    </p>
+<p>
+        <a href="zend.measure.output.html#zend.measure.output.unit" title="18.3.3. 単位つきの出力"><code class="code">単位つきの出力</code>
+        </a>
+    </p>
+<p>
+        <a href="zend.measure.output.html#zend.measure.output.unit" title="18.3.3. 単位つきの出力"><code class="code">ローカライズされた文字列での出力</code>
+        </a>
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.output.auto"></a>18.3.1. 自動的な出力</h3></div></div></div>
+<p>
+            <code class="code">Zend_Measure</code> は、文字列の自動的な出力をサポートしています。
+            </p>
+<div class="example">
+<a name="id4864957"></a><p class="title"><b>例 18.7. 自動的な出力</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+$locale = new Zend_Locale('de');
+$mystring = "1.234.567,89 Meter";
+$unit = new Zend_Measure_Length($mystring,Zend_Measure_Length::STANDARD, $locale);
+
+echo $unit;
+?&gt;</pre>
+</div>
+<p>
+        </p>
+<div class="note"><table border="0" summary="Note: 計測値の出力">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">計測値の出力</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                出力を行うには、単に
+                <a href="http://php.net/echo" target="_top"><code class="code">echo</code>
+                </a>
+                あるいは
+                <a href="http://php.net/print" target="_top"><code class="code">print</code>
+                </a>
+                を使用するだけです。
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.output.value"></a>18.3.2. 値の出力</h3></div></div></div>
+<p>
+            計測値の値だけを出力するには <code class="code">getValue()</code> を使用します。
+            </p>
+<div class="example">
+<a name="id4865029"></a><p class="title"><b>例 18.8. 値の出力</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+$locale = new Zend_Locale('de');
+$mystring = "1.234.567,89 Meter";
+$unit = new Zend_Measure_Length($mystring,Zend_Measure_Length::STANDARD, $locale);
+
+echo $unit-&gt;getValue();
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.output.unit"></a>18.3.3. 単位つきの出力</h3></div></div></div>
+<p>
+            関数 <code class="code">getType()</code> は、現在の単位を返します。
+            </p>
+<div class="example">
+<a name="id4865068"></a><p class="title"><b>例 18.9. 単位の出力</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Weight.php';
+
+$locale = new Zend_Locale('de');
+$mystring = "1.234.567,89";
+$unit = new Zend_Measure_Weight($mystring,Zend_Measure_Weight::POUND, $locale);
+
+echo $unit-&gt;getType();
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.output.localized"></a>18.3.4. ローカライズされた文字列での出力</h3></div></div></div>
+<p>
+            文字列を出力する際は、通常はユーザの国にあわせた書式にしたくなることでしょう。
+            たとえば、"1234567.8" という値はドイツでは "1.234.567,8" と表します。
+            この機能は、将来のリリースでサポートされる予定です。
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.measure.creation.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.measure.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.measure.edit.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">18.2. 計測値の作成 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 18.4. 計測値の操作</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

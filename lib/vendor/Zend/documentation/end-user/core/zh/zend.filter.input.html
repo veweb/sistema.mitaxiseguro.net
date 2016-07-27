@@ -1,0 +1,161 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>11.4. Zend_Filter_Input</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="prev" href="zend.filter.writing_filters.html" title="11.3. 编写过滤器">
+<link rel="next" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="subsection" href="zend.filter.input.html#zend.filter.input.introduction" title="11.4.1. 简介">
+<link rel="subsection" href="zend.filter.input.html#zend.filter.input.theory_of_operation" title="11.4.2. 运转原理">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">11.4. Zend_Filter_Input</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.filter.writing_filters.html">上一页</a> </td>
+<th width="60%" align="center">第 11 章 Zend_Filter</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.filter.input"></a>11.4. Zend_Filter_Input</h2></div></div></div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.introduction"></a>11.4.1. 简介</h3></div></div></div>
+<p>
+            <code class="literal">Zend_Filter_Input</code>为输入数据过滤提供了便捷的结构化方法。其目的是多方面的，主要是为了满足三类不同人群的需求：
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    开发者
+                </p>
+<p>
+                    虽然，过滤输入数据不像什么都不做那样简单，但是开发人员必须确保数据的完整性，同时又不添加复杂的代码。
+                </p>
+</li>
+<li>
+<p>
+                    管理者
+                </p>
+<p>
+                    那些需要维持对一个庞大的开发小组的控制的管理者，能够通过限制或者禁止直接访问原始数据，来强制执行一种结构化的方法，对输入数据进行过滤。
+                </p>
+</li>
+<li>
+<p>
+                    审核员
+                </p>
+<p>
+                    审核员，需要快速且正确地确定开发者何时何地使用了原始数据。 Zend_Filter_Input使代码变得更加的清晰的同时，帮助了审核员明确区分了不同的输入数据过滤方法。
+                </p>
+</li>
+</ul></div>
+<p>
+            有多种方法来过滤输入数据，同样PHP开发者也可使用多种方法。白名单过滤，黑名单过滤，正则表达式，条件语句，PHP函数，这些只仅仅是输入数据过滤的一部分例子。
+        </p>
+</div>
+<div class="sect2" lang="zh-cn">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.input.theory_of_operation"></a>11.4.2. 运转原理</h3></div></div></div>
+<p>
+		    为了为输入数据的过滤提供一个结构化的方法，<code class="literal">Zend_Filter_Input</code>默认地设置源数据数组为<code class="code">null</code>，试图对输入数据的访问加强控制。
+        </p>
+<p>
+            在默认的（严格的）方法中，只有一个参数－需要过滤的数据的数组，被传递给构造器。未过滤的数据只能通过<code class="code">getRaw()</code>方法来访问。
+        </p>
+<pre class="programlisting">&lt;?php
+// $_POST['email'] === 'webmaster@example.com'
+
+// Filter the $_POST data array
+require_once 'Zend/Filter/Input.php';
+$filterPost = new Zend_Filter_Input($_POST);
+
+// $_POST is now null
+echo null === $_POST ? 'yes' : 'no'; // prints 'yes'
+
+// Get the raw e-mail value
+echo $filterPost-&gt;getRaw('email'); // prints 'webmaster@example.com'</pre>
+<p>
+		    <code class="literal">Zend_Filter_Input</code>设置被传递的<code class="literal">$_POST</code>数组为<code class="literal">null</code>，也就不可能再直接访问它了。（原始的数据只能通过<code class="literal">getRaw()</code>方法访问）
+        </p>
+<p>
+		    在可选的方法（不严格的）中，<code class="literal">false</code>被当作第二个参数传递给构造器：
+        </p>
+<pre class="programlisting">&lt;?php
+// $_POST['email'] === 'webmaster@example.com'
+
+// Filter the $_POST data array
+require_once 'Zend/Filter/Input.php';
+$filterPost = new Zend_Filter_Input($_POST, false);
+
+// $_POST remains not null
+echo null === $_POST ? 'yes' : 'no'; // prints 'no'
+
+// Get the raw e-mail value
+echo $filterPost-&gt;getRaw('email'); // prints 'webmaster@example.com'</pre>
+<p>
+		    过滤器的使用还是相同的，但<code class="literal">Zend_Filter_Input</code>不设置原始数组$_POST的值为 <code class="literal">null</code>，所以开发人员还可以直接访问<code class="literal">$_POST</code>。这个方法是不赞成的，我们应该使用默认的（严格的）方法。
+        </p>
+<p>
+		    <code class="literal">Zend_Filter_Input</code>被设计成主要用来过滤数组的。许多源数据也都是藏在PHP超级数组下的（<code class="literal">$_GET</code>,
+            <code class="literal">$_POST</code>, <code class="literal">$_COOKIE</code>等等），同时数组也通常被用来储存来自其他源的输入数据。如果你要过滤一个标量，参见<a href="zend.filter.html" title="第 11 章 Zend_Filter">第 11 章 <i>Zend_Filter</i></a>。
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.filter.writing_filters.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.filter.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">11.3. 编写过滤器 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 第 12 章 Zend_Gdata</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

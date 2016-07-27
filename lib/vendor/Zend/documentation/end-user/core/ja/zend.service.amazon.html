@@ -1,0 +1,958 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>24.3. Zend_Service_Amazon</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="prev" href="zend.service.akismet.html" title="24.2. Zend_Service_Akismet">
+<link rel="next" href="zend.service.flickr.html" title="24.4. Zend_Service_Flickr">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.introduction" title="24.3.1. 導入">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.countrycodes" title="24.3.2. 国コード">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. ASIN を使用した商品の検索">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Amazon の商品検索の実行">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.query" title="24.3.5. もうひとつのクエリ API の使用法">
+<link rel="subsection" href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">24.3. Zend_Service_Amazon</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.service.akismet.html">前のページ</a> </td>
+<th width="60%" align="center">第24章 Zend_Service</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.service.flickr.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.service.amazon"></a>24.3. Zend_Service_Amazon</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.introduction"></a>24.3.1. 導入</h3></div></div></div>
+<p>
+            <code class="code">Zend_Service_Amazon</code> は Amazon ウェブサービスを使用するためのシンプルな
+            API です。
+            <code class="code">Zend_Service_Amazon</code> は 2 つの API を実装しています。
+            Amazon 自身の API に従った伝統的な API と、
+            複雑な検索クエリを簡単に作成するためのシンプルな「クエリ API」です。
+        </p>
+<p>
+            <code class="code">Zend_Service_Amazon</code> を使用すると、開発者が
+            Amazon Web Services API を直接使用して、Amazon.com
+            の情報を取得できるようになります。
+            取得できる情報には以下のようなものがあります。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        商品の情報、例えば画像や説明や価格など
+                    </p></li>
+<li><p>
+                        カスタマーレビュー
+                    </p></li>
+<li><p>
+                        似た製品やアクセサリの情報
+                    </p></li>
+<li><p>
+                        Amazon.com のおすすめ
+                    </p></li>
+<li><p>
+                        リストマニアのリスト
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            <code class="code">Zend_Service_Amazon</code> を使用するには、
+            Amazon デベロッパ API キーが必要です。このキーを取得するには、
+            <a href="http://www.amazon.com/gp/aws/landing.html" target="_top">Amazon Web Services</a>
+            のウェブサイトを参照ください。
+        </p>
+<div class="note"><table border="0" summary="Note: 注意">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Amazon デベロッパ API キーは Amazon のアカウントと関連付けられます。
+                取得した API キーは自分自身でのみ使用するようにしましょう。
+            </p></td></tr>
+</table></div>
+<div class="example">
+<a name="id4891944"></a><p class="title"><b>例 24.4. 伝統的な API を使用した Amazon 検索</b></p>
+<p>
+                この例では、Amazon で PHP に関する書籍を検索し、
+                結果の一覧を表示します。
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY&amp;');
+$response = $amazon-&gt;itemSearch(array('SearchIndex' =&gt; 'Books', 'Keywords' =&gt; 'php'));
+foreach ($response as $r) {
+    echo $r-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+<div class="example">
+<a name="id4891964"></a><p class="title"><b>例 24.5. クエリ API を使用した Amazon 検索</b></p>
+<p>
+                ここでも Amazon で PHP に関する書籍を検索します。
+                しかし、ここではクエリ API を使用します。この API
+                は、Fluent Interface パターンと似た形式です。
+            </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon/Query.php';
+$query = new Zend_Service_Amazon_Query('AMAZON_API_KEY');
+$query-&gt;category('Books')-&gt;Keywords('PHP');
+$results = $query-&gt;search();
+foreach ($results as $result) {
+    echo $result-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.countrycodes"></a>24.3.2. 国コード</h3></div></div></div>
+<p>
+            デフォルトでは、<code class="code">Zend_Service_Amazon</code> は米国 ("<code class="code">US</code>")
+            の Amazon Web Service に接続します。他の国のサービスに接続するには、
+            コンストラクタの 2 番目のパラメータとして、適切な国コード文字列を指定するだけです。
+        </p>
+<div class="example">
+<a name="id4892040"></a><p class="title"><b>例 24.6. Amazon Web Service の国の選択</b></p>
+<pre class="programlisting">&lt;?php
+// 日本の Amazon に接続します
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY', 'JP');
+?&gt;       </pre>
+</div>
+<div class="note"><table border="0" summary="Note: 国コード">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">国コード</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                使用できる国コードは <code class="code">CA</code>、<code class="code">DE</code>、<code class="code">FR</code>、<code class="code">JP</code>、
+                <code class="code">UK</code> および <code class="code">US</code> です。
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.itemlookup"></a>24.3.3. ASIN を使用した商品の検索</h3></div></div></div>
+<p>
+            ASIN がわかっている場合は、<code class="code">itemLookup()</code>
+            メソッドを使用すると Amazon の商品を検索できます。
+        </p>
+<div class="example">
+<a name="id4892116"></a><p class="title"><b>例 24.7. ASIN を使用した Amazon の商品検索</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY');
+$item = $amazon-&gt;itemLookup('B0000A432X');
+?&gt;       </pre>
+</div>
+<p>
+            <code class="code">itemLookup()</code> メソッドにオプションの第 2 パラメータを渡すことで、
+            検索オプションを指定できます。使用可能なオプションを含む詳細は、
+            <a href="http://www.amazon.com/gp/aws/sdk/main.html/103-9285448-4703844?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemLookupOperation" target="_top">関連する Amazon の文書</a>
+            を参照ください。
+        </p>
+<div class="note"><table border="0" summary="Note: 画像の情報">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">画像の情報</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                検索結果の画像情報を取得するには、オプション <code class="code">ResponseGroup</code>
+                を <code class="code">Medium</code> あるいは <code class="code">Large</code> に設定しなければなりません。
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.itemsearch"></a>24.3.4. Amazon の商品検索の実行</h3></div></div></div>
+<p>
+            さまざまな条件指定による商品検索を行うには
+            <code class="code">itemSearch()</code> メソッドを使用します。
+            以下に例を示します。
+        </p>
+<div class="example">
+<a name="id4892210"></a><p class="title"><b>例 24.8. Amazon の商品検索の実行</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Service/Amazon.php';
+$amazon = new Zend_Service_Amazon('AMAZON_API_KEY');
+$response = $amazon-&gt;itemSearch(array('SearchIndex' =&gt; 'Books', 'Keywords' =&gt; 'php'));
+foreach($response as $r) {
+    echo $r-&gt;Title .'&lt;br /&gt;';
+}
+?&gt;       </pre>
+</div>
+<p>
+            <code class="code">itemSearch()</code> は配列のパラメータをひとつ受け取り、
+            このパラメータで検索オプションを指定します。使用可能なオプションを含む詳細は、
+            <a href="http://www.amazon.com/gp/aws/sdk/main.html/103-9285448-4703844?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemSearchOperation" target="_top">関連する Amazon の文書</a>
+            を参照ください。
+        </p>
+<div class="tip"><table border="0" summary="Tip">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[ティップ]" src="images/tip.png"></td>
+<th align="left">ティップ</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                <a href="zend.service.amazon.html#zend.service.amazon.query" title="24.3.5. もうひとつのクエリ API の使用法"><code class="code">Zend_Service_Amazon_Query</code></a>
+                クラスを使用すると、これらのメソッドをより簡単に使用できるようになります。
+            </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.query"></a>24.3.5. もうひとつのクエリ API の使用法</h3></div></div></div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.query.introduction"></a>24.3.5.1. 導入</h4></div></div></div>
+<p>
+                <code class="code">Zend_Service_Amazon_Query</code> は、Amazon Web Service
+                を使用するためのもうひとつの API を提供します。
+                この API では Fluent Interface パターンを使用します。
+                つまり、すべてのコールはメソッド呼び出しを連結した形式になります
+                (例: <code class="code">$obj-&gt;method()-&gt;method2($arg)</code>)。
+            </p>
+<p>
+                商品検索の設定を行いやすく、また条件に基づく検索をしやすくするために、
+                <code class="code">Zend_Service_Amazon_Query</code> API ではオーバーロードを使用しています。
+                各オプションの設定はメソッドのコールで行い、メソッドの引数がオプションの値に対応します。
+            </p>
+<div class="example">
+<a name="id4892339"></a><p class="title"><b>例 24.9. もうひとつのクエリ API を使用した Amazon の検索</b></p>
+<p>
+                    この例では、もうひとつのクエリ API のインターフェイスを使用して、
+                    オプションとその値を設定します。
+                </p>
+<pre class="programlisting">&lt;?php
+    require_once 'Zend/Service/Amazon/Query.php';
+    $query = new Zend_Service_Amazon_Query('MY_API_KEY');
+    $query-&gt;Category('Books')-&gt;Keywords('PHP');
+    $results = $query-&gt;search();
+    foreach ($results as $result) {
+        echo $result-&gt;Title .'&lt;br /&gt;';
+    }
+    ?&gt;       </pre>
+<p>
+                    これは、オプション <code class="code">Category</code> の値を "Books"、
+                    そして <code class="code">Keywords</code> の値を "PHP" に設定します。
+                </p>
+<p>
+                    使用可能なオプションについての詳細な情報は、
+                    <a href="http://www.amazon.com/gp/aws/sdk/main.html/102-9041115-9057709?s=AWSEcommerceService&amp;v=2005-10-05&amp;p=ApiReference/ItemSearchOperation" target="_top">関連する Amazon の文書</a>
+                    を参照ください。
+                </p>
+</div>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.service.amazon.classes"></a>24.3.6. Zend_Service_Amazon クラス群</h3></div></div></div>
+<p>
+            以下のクラスは、すべて
+            <a href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. ASIN を使用した商品の検索"><code class="code">Zend_Service_Amazon::itemLookup()</code></a>
+            および
+            <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Amazon の商品検索の実行"><code class="code">Zend_Service_Amazon::itemSearch()</code></a>
+            から返されるものです。
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.item" title="24.3.6.1. Zend_Service_Amazon_Item"><code class="code">Zend_Service_Amazon_Item</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.image" title="24.3.6.2. Zend_Service_Amazon_Image"><code class="code">Zend_Service_Amazon_Image</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.resultset" title="24.3.6.3. Zend_Service_Amazon_ResultSet"><code class="code">Zend_Service_Amazon_ResultSet</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.offerset" title="24.3.6.4. Zend_Service_Amazon_OfferSet"><code class="code">Zend_Service_Amazon_OfferSet</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.offer" title="24.3.6.5. Zend_Service_Amazon_Offer"><code class="code">Zend_Service_Amazon_Offer</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.similarproduct" title="24.3.6.6. Zend_Service_Amazon_SimilarProduct"><code class="code">Zend_Service_Amazon_SimilarProduct</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.accessories" title="24.3.6.7. Zend_Service_Amazon_Accessories"><code class="code">Zend_Service_Amazon_Accessories</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.customerreview" title="24.3.6.8. Zend_Service_Amazon_CustomerReview"><code class="code">Zend_Service_Amazon_CustomerReview</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.editorialreview" title="24.3.6.9. Zend_Service_Amazon_EditorialReview"><code class="code">Zend_Service_Amazon_EditorialReview</code></a></p></li>
+<li><p><a href="zend.service.amazon.html#zend.service.amazon.classes.listmania" title="24.3.6.10. Zend_Service_Amazon_Listmania"><code class="code">Zend_Service_Amazon_ListMania</code></a></p></li>
+</ul></div>
+<p>
+        </p>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.item"></a>24.3.6.1. Zend_Service_Amazon_Item</h4></div></div></div>
+<p>
+                <code class="code">Zend_Service_Amazon_Item</code> は、ウェブサービスから返される
+                Amazon の商品を表すために使用されるクラスです。
+                商品のタイトル、説明、レビューなどを含むすべての属性を包含します。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.item.asxml"></a>24.3.6.1.1. Zend_Service_Amazon_Item::asXML()</h5></div></div></div>
+<p>
+                    <code class="methodsynopsis"><span class="type">string </span><span class="methodname">asXML</span>();</code>
+                </p>
+<p>商品情報を、元の XML で返します。</p>
+</div>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.item.properties"></a>24.3.6.1.2. プロパティ</h5></div></div></div>
+<p>
+                    <code class="code">Zend_Service_Amazon_Item</code> が持つプロパティは、
+                    それぞれが標準の Amazon API に直接対応しています。
+                </p>
+<div class="table">
+<a name="id4892653"></a><p class="title"><b>表 24.1. Zend_Service_Amazon_Item のプロパティ</b></p>
+<table summary="Zend_Service_Amazon_Item のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>Amazon の商品 ID</td>
+</tr>
+<tr>
+<td>DetailPageURL</td>
+<td>string</td>
+<td>商品の詳細情報ページの URL</td>
+</tr>
+<tr>
+<td>SalesRank</td>
+<td>string</td>
+<td>商品の売上ランキング</td>
+</tr>
+<tr>
+<td>SmallImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>商品の画像 (小)</td>
+</tr>
+<tr>
+<td>MediumImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>商品の画像 (中)</td>
+</tr>
+<tr>
+<td>LargeImage</td>
+<td>Zend_Service_Amazon_Image</td>
+<td>商品の画像 (大)</td>
+</tr>
+<tr>
+<td>Subjects</td>
+<td>array</td>
+<td>商品のテーマ</td>
+</tr>
+<tr>
+<td>Offers</td>
+<td>
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.offerset" title="24.3.6.4. Zend_Service_Amazon_OfferSet">Zend_Service_Amazon_OfferSet</a>
+                                    </code>
+                                </td>
+<td>提供内容の概要および商品の提供情報</td>
+</tr>
+<tr>
+<td>CustomerReviews</td>
+<td>array</td>
+<td>
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.customerreview" title="24.3.6.8. Zend_Service_Amazon_CustomerReview">Zend_Service_Amazon_CustomerReview</a>
+                                    </code>
+                                    オブジェクトの配列で表されるカスタマーレビュー
+                                </td>
+</tr>
+<tr>
+<td>EditorialReviews</td>
+<td>array</td>
+<td>
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.editorialreview" title="24.3.6.9. Zend_Service_Amazon_EditorialReview">Zend_Service_Amazon_EditorialReview</a>
+                                    </code>
+                                    オブジェクトの配列で表される、出版社/著者からの内容紹介
+                                </td>
+</tr>
+<tr>
+<td>SimilarProducts</td>
+<td>array</td>
+<td>
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.similarproduct" title="24.3.6.6. Zend_Service_Amazon_SimilarProduct">Zend_Service_Amazon_SimilarProduct</a>
+                                    </code>
+                                    オブジェクトの配列で表される、似た商品の情報
+                                </td>
+</tr>
+<tr>
+<td>Accessories</td>
+<td>array</td>
+<td>
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.accessories" title="24.3.6.7. Zend_Service_Amazon_Accessories">Zend_Service_Amazon_Accessories</a>
+                                    </code>
+                                    オブジェクトの配列で表される、関連アクセサリの情報
+                                </td>
+</tr>
+<tr>
+<td>Tracks</td>
+<td>array</td>
+<td>音楽 CD や DVD の、トラック番号と曲名の配列</td>
+</tr>
+<tr>
+<td>ListmaniaLists</td>
+<td>array</td>
+<td>
+                                    Item related Listmania Lists as an array of
+                                    <code class="code">
+                                        <a href="zend.service.amazon.html#zend.service.amazon.classes.listmania" title="24.3.6.10. Zend_Service_Amazon_Listmania">Zend_Service_Amazon_ListmainList</a>
+                                    </code>
+                                    オブジェクトの配列で表される、この商品に関連するリストマニアのリスト
+                                </td>
+</tr>
+<tr>
+<td>PromotionalTag</td>
+<td>string</td>
+<td>商品の販売促進用のタグ</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.image"></a>24.3.6.2. Zend_Service_Amazon_Image</h4></div></div></div>
+<p><code class="code">Zend_Service_Amazon_Image</code> は、商品の画像を表します。</p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.image.properties"></a>24.3.6.2.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4893037"></a><p class="title"><b>表 24.2. Zend_Service_Amazon_Image のプロパティ</b></p>
+<table summary="Zend_Service_Amazon_Image のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Url</td>
+<td>Zend_Uri</td>
+<td>画像のリモート URL</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>int</td>
+<td>画像の高さ (ピクセル単位)</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>int</td>
+<td>画像の幅 (ピクセル単位)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.resultset"></a>24.3.6.3. Zend_Service_Amazon_ResultSet</h4></div></div></div>
+<p>
+                <code class="code">Zend_Service_Amazon_ResultSet</code> オブジェクトは
+                <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Amazon の商品検索の実行">Zend_Service_Amazon::itemSearch()</a>
+                から返され、結果が複数返された場合に簡単に処理できるようにします。
+            </p>
+<div class="note"><table border="0" summary="Note: SeekableIterator">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">SeekableIterator</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    操作性を高めるため、<code class="code">SeekableIterator</code> を実装しています。
+                    これにより、一般的な順次処理 (例えば <code class="code">foreach</code> など)
+                    だけでなく <code class="code">seek()</code> を使用した特定の結果への直接アクセスも可能です。
+                </p></td></tr>
+</table></div>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.resultset.totalresults"></a>24.3.6.3.1. Zend_Service_Amazon_ResultSet::totalResults()</h5></div></div></div>
+<code class="methodsynopsis"><span class="type">int </span><span class="methodname">totalResults</span>();</code><p>検索結果の総数を返します。</p>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.offerset"></a>24.3.6.4. Zend_Service_Amazon_OfferSet</h4></div></div></div>
+<p>
+                Each result returned by
+                <a href="zend.service.amazon.html#zend.service.amazon.itemsearch" title="24.3.4. Amazon の商品検索の実行">Zend_Service_Amazon::itemSearch()</a>
+                および
+                <a href="zend.service.amazon.html#zend.service.amazon.itemlookup" title="24.3.3. ASIN を使用した商品の検索">Zend_Service_Amazon::itemLookup()</a>
+                から返される各結果には
+                <code class="code">Zend_Service_Amazon_OfferSet</code> オブジェクトが含まれており、
+                ここから商品の販売情報が取得できます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.offerset.parameters"></a>24.3.6.4.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4893281"></a><p class="title"><b>表 24.3. Zend_Service_Amazon_OfferSet のプロパティ</b></p>
+<table summary="Zend_Service_Amazon_OfferSet のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>LowestNewPrice</td>
+<td>int</td>
+<td>"新品" の最低価格</td>
+</tr>
+<tr>
+<td>LowestNewPriceCurrency</td>
+<td>string</td>
+<td>
+                                    <code class="code">LowestNewPrice</code> の通貨単位
+                                </td>
+</tr>
+<tr>
+<td>LowestOldPrice</td>
+<td>int</td>
+<td>"ユーズド商品" の最低価格</td>
+</tr>
+<tr>
+<td>LowestOldPriceCurrency</td>
+<td>string</td>
+<td>
+                                    <code class="code">LowestOldPrice</code> の通貨単位
+                                </td>
+</tr>
+<tr>
+<td>TotalNew</td>
+<td>int</td>
+<td>"新品" の在庫数</td>
+</tr>
+<tr>
+<td>TotalUsed</td>
+<td>int</td>
+<td>"ユーズド商品" の在庫数</td>
+</tr>
+<tr>
+<td>TotalCollectible</td>
+<td>int</td>
+<td>"コレクター商品" の在庫数</td>
+</tr>
+<tr>
+<td>TotalRefurbished</td>
+<td>int</td>
+<td>"refurbished" の在庫数</td>
+</tr>
+<tr>
+<td>Offers</td>
+<td>array</td>
+<td>
+                                    <code class="code">Zend_Service_Amazon_Offer</code>
+                                    オブジェクトの配列
+                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.offer"></a>24.3.6.5. Zend_Service_Amazon_Offer</h4></div></div></div>
+<p>
+                商品の個々の販売情報が
+                <code class="code">Zend_Service_Amazon_Offer</code>
+                オブジェクトとして返されます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.offer.properties"></a>24.3.6.5.1. Zend_Service_Amazon_Offer のプロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4893505"></a><p class="title"><b>表 24.4. プロパティ</b></p>
+<table summary="プロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>MerchantId</td>
+<td>string</td>
+<td>出品者の Amazon ID</td>
+</tr>
+<tr>
+<td>GlancePage</td>
+<td>string</td>
+<td>出品者の概要が掲載されているページの URL</td>
+</tr>
+<tr>
+<td>Condition</td>
+<td>string</td>
+<td>商品のコンディション</td>
+</tr>
+<tr>
+<td>OfferListingId</td>
+<td>string</td>
+<td>販売情報リストの ID</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>int</td>
+<td>商品の価格</td>
+</tr>
+<tr>
+<td>CurrencyCode</td>
+<td>string</td>
+<td>商品価格の通貨コード</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>string</td>
+<td>商品の在庫状況</td>
+</tr>
+<tr>
+<td>IsEligibleForSuperSaverShipping</td>
+<td>boolean</td>
+<td>Super Saver Shipping に対応しているか否か</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.similarproduct"></a>24.3.6.6. Zend_Service_Amazon_SimilarProduct</h4></div></div></div>
+<p>
+                商品を検索した際に、Amazon は検索結果の商品と似た商品の一覧も返します。
+                個々のデータは <code class="code">Zend_Service_Amazon_SimilarProduct</code>
+                オブジェクトとして返されます。
+            </p>
+<p>
+                各オブジェクトに含まれる情報を元にして、
+                その商品の完全な情報を取得するリクエストを行うことができます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.similarproduct.properties"></a>24.3.6.6.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4893709"></a><p class="title"><b>表 24.5. Zend_Service_Amazon_SimilarProduct のプロパティ</b></p>
+<table summary="Zend_Service_Amazon_SimilarProduct のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>Amazon 商品 ID (ASIN)</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>string</td>
+<td>商品名</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.accessories"></a>24.3.6.7. Zend_Service_Amazon_Accessories</h4></div></div></div>
+<p>
+                返される結果の中の「アクセサリ」については
+                <code class="code">Zend_Service_Amazon_Accessories</code>
+                オブジェクトで表されます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.accessories.properties"></a>24.3.6.7.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4893819"></a><p class="title"><b>表 24.6. Zend_Service_Amazon_Accessories のプロパティ</b></p>
+<table summary="Zend_Service_Amazon_Accessories のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ASIN</td>
+<td>string</td>
+<td>Amazon 商品 ID (ASIN)</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>string</td>
+<td>商品名</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.customerreview"></a>24.3.6.8. Zend_Service_Amazon_CustomerReview</h4></div></div></div>
+<p>
+                カスタマーレビューのデータは
+                <code class="code">Zend_Service_Amazon_CustomerReview</code>
+                オブジェクトで返されます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.customerreview.properties"></a>24.3.6.8.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4893926"></a><p class="title"><b>表 24.7. Zend_Service_Amazon_CustomerReview のプロパティ</b></p>
+<table summary="Zend_Service_Amazon_CustomerReview のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Rating</td>
+<td>string</td>
+<td>商品のおすすめ度</td>
+</tr>
+<tr>
+<td>HelpfulVotes</td>
+<td>string</td>
+<td>「このレビューが参考になった」の投票</td>
+</tr>
+<tr>
+<td>CustomerId</td>
+<td>string</td>
+<td>カスタマー ID</td>
+</tr>
+<tr>
+<td>TotalVotes</td>
+<td>string</td>
+<td>全投票数</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>string</td>
+<td>レビューされた日付</td>
+</tr>
+<tr>
+<td>Summary</td>
+<td>string</td>
+<td>レビューの概要</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>string</td>
+<td>レビューの内容</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.editorialreview"></a>24.3.6.9. Zend_Service_Amazon_EditorialReview</h4></div></div></div>
+<p>
+                出版社/著者からの内容紹介は
+                <code class="code">Zend_Service_Amazon_EditorialReview</code>
+                オブジェクトで返されます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.editorialreview.properties"></a>24.3.6.9.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4894104"></a><p class="title"><b>表 24.8. Zend_Service_Amazon_EditorialReview のプロパティ</b></p>
+<table summary="Zend_Service_Amazon_EditorialReview のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Source</td>
+<td>string</td>
+<td>レビュー元</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>string</td>
+<td>レビューの内容</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+<div class="sect3" lang="ja">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.service.amazon.classes.listmania"></a>24.3.6.10. Zend_Service_Amazon_Listmania</h4></div></div></div>
+<p>
+                リストマニアのリストデータは
+                <code class="code">Zend_Service_Amazon_Listmania</code>
+                オブジェクトで返されます。
+            </p>
+<div class="sect4" lang="ja">
+<div class="titlepage"><div><div><h5 class="title">
+<a name="zend.service.amazon.classes.listmania.properties"></a>24.3.6.10.1. プロパティ</h5></div></div></div>
+<div class="table">
+<a name="id4894213"></a><p class="title"><b>表 24.9. Zend_Service_Amazon_Listmania のプロパティ</b></p>
+<table summary="Zend_Service_Amazon_Listmania のプロパティ" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>名前</th>
+<th>型</th>
+<th>説明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ListId</td>
+<td>string</td>
+<td>リスト ID</td>
+</tr>
+<tr>
+<td>ListName</td>
+<td>string</td>
+<td>リスト名</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                    <a href="zend.service.amazon.html#zend.service.amazon.classes" title="24.3.6. Zend_Service_Amazon クラス群">クラス一覧に戻る</a>
+                </p>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.service.akismet.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.service.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.service.flickr.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">24.2. Zend_Service_Akismet </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 24.4. Zend_Service_Flickr</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

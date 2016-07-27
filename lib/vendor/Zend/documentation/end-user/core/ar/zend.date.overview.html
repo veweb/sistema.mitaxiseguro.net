@@ -1,0 +1,693 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>8.4. Zend_Date API Overview</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="prev" href="zend.date.definition.theory.html" title="8.3. Theory of Operation">
+<link rel="next" href="zend.date.constants.html" title="8.5. Constants for General Date Functions">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+<link rel="subsection" href="zend.date.overview.html#zend.date.values" title="8.4.1. Working with Date Values">
+<link rel="subsection" href="zend.date.overview.html#zend.date.overview.detail" title="8.4.2. Date Part Specific Methods">
+<link rel="subsection" href="zend.date.overview.html#zend.date.overview.others" title="8.4.3. Additional Functions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">8.4. Zend_Date API Overview</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.date.definition.theory.html">السابق</a> </td>
+<th width="60%" align="center">فصل 8. Zend_Date</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.date.constants.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.date.overview"></a>8.4. Zend_Date API Overview</h2></div></div></div>
+<p>
+        While the <code class="code">Zend_Date</code> API remains simplistic and unitary, its design remains flexible and powerful
+        through the rich permutations of operations and operands.
+    </p>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.values"></a>8.4.1. Working with Date Values</h3></div></div></div>
+<p>
+            Once input has been normalized via the creation of a <code class="code">Zend_Date</code> object, it will have an
+            associated timezone. All manipulations of the object are assumed to be relative to this timezone. Beware of
+            mixing and matching operations with date parts between date objects for different timezones, which generally
+            produces undesireable results, unless the manipulations are only related to the timestamp.
+        </p>
+<p>
+            The general functions expect a constant providing the date's desired <code class="code">$part</code>, such as
+            <code class="code">Zend_Date::HOUR</code>. These constants are valid for all of the functions below. A list of all
+            available constants is provided in
+            <a href="zend.date.constants.html#zend.date.constants.list" title="8.5.2. List of All Constants">قسم 8.5.2, “List of All Constants”</a>
+            . If no <code class="code">$part</code> is specified, then <code class="code">Zend_Date::TIMESTAMP</code> is assumed.
+        </p>
+<p>
+            If there is a <code class="code">$date</code> input parameter, then the <code class="code">$locale</code> parameter disambiguates the
+            <code class="code">$date</code> by explicitly specifying the locale it belongs to (e.g. what language should be used to
+            parse month names). If there is no <code class="code">$date</code> input parameter, then the <code class="code">$locale</code>
+            parameter specifies the locale to use for localizing output (e.g. the date format for a string
+            representation). If no <code class="code">$locale</code> was specified, then the locale of the current object is used to
+            interpret <code class="code">$date</code>.
+        </p>
+<p>
+            In the table below, nearly all combinations of "Date Parts" and "Basic Method Types" exist (e.g.
+            <code class="code">addYear()</code>), as well as "Special Types of Date 'Parts'" and the "Basic Method Types" (e.g.
+            <code class="code">subWeek()</code>).
+        </p>
+<div class="table">
+<a name="id4806545"></a><p class="title"><b>جدول 8.1. Basic <code class="code">Zend_Date</code> Methods and Part Specific Methods</b></p>
+<table summary="Basic Zend_Date Methods and Part Specific Methods" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Basic Method Types</th>
+<th>Date Parts</th>
+<th>Special Types of Date "Parts"</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>add*()</td>
+<td>Year</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>sub*()</td>
+<td>Month</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>compare*()</td>
+<td>Day</td>
+<td>Week</td>
+</tr>
+<tr>
+<td>get*()</td>
+<td>Hour</td>
+<td>Weekday</td>
+</tr>
+<tr>
+<td>set*()</td>
+<td>Minute</td>
+<td>DayOfYear</td>
+</tr>
+<tr>
+<td> </td>
+<td>Second</td>
+<td>Arpa</td>
+</tr>
+<tr>
+<td> </td>
+<td>Millisecond</td>
+<td>Iso</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+            Each of the basic methods has the same equivalent functionality for each of the data parts supported, as
+            explained below.
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+                    get($part = null, $locale = null)
+                </p>
+<p>
+                    returns the <code class="code">$part</code> of object's date localized to <code class="code">$locale</code> as a formatted string or integer
+                </p>
+</li>
+<li>
+<p>
+                    set($date, $part = null, $locale = null)
+                </p>
+<p>
+                    sets the <code class="code">$part</code> of the current object to the corresponding value for that part found in
+                    the input <code class="code">$date</code> having a locale <code class="code">$locale</code>
+                </p>
+</li>
+<li>
+<p>
+                    add($date, $part = null, $locale = null)
+                </p>
+<p>
+                    adds the <code class="code">$part</code> of <code class="code">$date</code> having a locale <code class="code">$locale</code> to t the
+                    current object's date
+                </p>
+</li>
+<li>
+<p>
+                    sub($date, $part = null, $locale = null)
+                </p>
+<p>
+                    subtracts the <code class="code">$part</code> of <code class="code">$date</code> having a locale <code class="code">$locale</code> to t the
+                    current object's date
+                </p>
+</li>
+<li>
+<p>
+                    copyPart($part, $locale = null)
+                </p>
+<p>
+                    returns a cloned object, with only <code class="code">$part</code> of the object's date copied to the clone, with
+                    the clone have its locale arbitrarily set to <code class="code">$locale</code> (if specified)
+                </p>
+</li>
+<li>
+<p>
+                    compare($date, $part = null, $locale = null)
+                </p>
+<p>
+                    compares <code class="code">$part</code> of <code class="code">$date</code> to this object's timestamp, returning 0 if they
+                    are equal, 1 if this object's part was more recent than $date's part, otherwise -1.
+                </p>
+</li>
+<li>
+<p>
+                    equals($date, $part = null, $locale = null)
+                </p>
+<p>
+                    returns true, if <code class="code">$part</code> of <code class="code">$date</code> having locale <code class="code">$locale</code> is the
+                    same as this object's date <code class="code">$part</code>, otherwise false
+                </p>
+</li>
+<li>
+<p>
+                    isEarlier($date, $part = null, $locale = null)
+                </p>
+<p>
+                    returns true, if <code class="code">$part</code> of this object's date is earlier than <code class="code">$part</code> of
+                    <code class="code">$date</code> having a locale <code class="code">$locale</code>
+                </p>
+</li>
+<li>
+<p>
+                    isLater($date, $part = null, $locale = null)
+                </p>
+<p>
+                    returns true, if <code class="code">$part</code> of this object's date is later than <code class="code">$part</code> of
+                    <code class="code">$date</code> having a locale <code class="code">$locale</code>
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.overview.detail"></a>8.4.2. Date Part Specific Methods</h3></div></div></div>
+<p>
+            These convenience methods help us lazy programmers avoid having to type out the
+            <a href="zend.date.constants.html#zend.date.constants.list" title="8.5.2. List of All Constants">date part constants</a>
+            when using the general methods above. The following date-part-specific methods are available:
+        </p>
+<div class="table">
+<a name="id4807765"></a><p class="title"><b>جدول 8.2. Detailed functions</b></p>
+<table summary="Detailed functions" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Related</th>
+<th>Output</th>
+<th>Seting</th>
+<th>Addition</th>
+<th>Subtraction</th>
+<th>Comparation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                            Unix Timestamp
+                        </td>
+<td>
+                            getTimestamp()
+                        </td>
+<td>
+                            setTimestamp()
+                        </td>
+<td>
+                            addTimestamp()
+                        </td>
+<td>
+                            subTimestamp()
+                        </td>
+<td>
+                            compareTimestamp()
+                        </td>
+</tr>
+<tr>
+<td>
+                            Date
+                        </td>
+<td>
+                            getDate()
+                        </td>
+<td>
+                            setDate()
+                        </td>
+<td>
+                            addDate()
+                        </td>
+<td>
+                            subDate()
+                        </td>
+<td>
+                            compareDate()
+                        </td>
+</tr>
+<tr>
+<td>
+                            Time
+                        </td>
+<td>
+                            getTime()
+                        </td>
+<td>
+                            setTime()
+                        </td>
+<td>
+                            addTime()
+                        </td>
+<td>
+                            subTime()
+                        </td>
+<td>
+                            compareTime()
+                        </td>
+</tr>
+<tr>
+<td>
+                            Year
+                        </td>
+<td>
+                            getYear()
+                        </td>
+<td>
+                            setYear()
+                        </td>
+<td>
+                            addYear()
+                        </td>
+<td>
+                            subYear()
+                        </td>
+<td>
+                            compareYear()
+                        </td>
+</tr>
+<tr>
+<td>
+Month
+                        </td>
+<td>
+getMonth()
+                        </td>
+<td>
+setMonth()
+                        </td>
+<td>
+addMonth()
+                        </td>
+<td>
+subMonth()
+                        </td>
+<td>
+compareMonth()
+                        </td>
+</tr>
+<tr>
+<td>
+Day
+                        </td>
+<td>
+getDay()
+                        </td>
+<td>
+setDay()
+                        </td>
+<td>
+addDay()
+                        </td>
+<td>
+subDay()
+                        </td>
+<td>
+compareDay()
+                        </td>
+</tr>
+<tr>
+<td>
+Weekday
+                        </td>
+<td>
+getWeekday()
+                        </td>
+<td>
+setWeekday()
+                        </td>
+<td>
+addWeekday()
+                        </td>
+<td>
+subWeekday()
+                        </td>
+<td>
+compareWeekday()
+                        </td>
+</tr>
+<tr>
+<td>
+Day of Year
+                        </td>
+<td>
+getDayOfYear()
+                        </td>
+<td>
+setDayOfYear()
+                        </td>
+<td>
+addDayOfYear()
+                        </td>
+<td>
+subDayOfYear()
+                        </td>
+<td>
+compareDayOfYear()
+                        </td>
+</tr>
+<tr>
+<td>
+Hour
+                        </td>
+<td>
+getHour()
+                        </td>
+<td>
+setHour()
+                        </td>
+<td>
+addHour()
+                        </td>
+<td>
+subHour()
+                        </td>
+<td>
+compareHour()
+                        </td>
+</tr>
+<tr>
+<td>
+Minute
+                        </td>
+<td>
+getMinute()
+                        </td>
+<td>
+setMinute()
+                        </td>
+<td>
+addMinute()
+                        </td>
+<td>
+subMinute()
+                        </td>
+<td>
+compareMinute()
+                        </td>
+</tr>
+<tr>
+<td>
+Second
+                        </td>
+<td>
+getSecond()
+                        </td>
+<td>
+setSecond()
+                        </td>
+<td>
+addSecond()
+                        </td>
+<td>
+subSecond()
+                        </td>
+<td>
+compareSecond()
+                        </td>
+</tr>
+<tr>
+<td>
+Millisecond
+                        </td>
+<td>
+getMilliSecond()
+                        </td>
+<td>
+setMilliSecond()
+                        </td>
+<td>
+addMilliSecond()
+                        </td>
+<td>
+subMilliSecond()
+                        </td>
+<td>
+compareMilliSecond()
+                        </td>
+</tr>
+<tr>
+<td>
+Week
+                        </td>
+<td>
+getWeek()
+                        </td>
+<td>
+setWeek()
+                        </td>
+<td>
+addWeek()
+                        </td>
+<td>
+subWeek()
+                        </td>
+<td>
+compareWeek()
+                        </td>
+</tr>
+<tr>
+<td>
+ISO 8601 date
+                        </td>
+<td>
+getIso()
+                        </td>
+<td>
+setIso()
+                        </td>
+<td>
+addIso()
+                        </td>
+<td>
+subIso()
+                        </td>
+<td>
+compareIso()
+                        </td>
+</tr>
+<tr>
+<td>
+Arpa date
+                        </td>
+<td>
+getArpa()
+                        </td>
+<td>
+setArpa()
+                        </td>
+<td>
+addArpa()
+                        </td>
+<td>
+subArpa()
+                        </td>
+<td>
+compareArpa()
+                        </td>
+</tr>
+<tr>
+<td>
+TimeZone
+                        </td>
+<td>
+getTimeZone()
+                        </td>
+<td>
+setTimeZone()
+                        </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.date.overview.others"></a>8.4.3. Additional Functions</h3></div></div></div>
+<p>
+            Certainly there are some additional functions not fitting into the above scheme while being helpful.
+        </p>
+<p>
+            The following additional functions are available:
+        </p>
+<div class="table">
+<a name="id4808260"></a><p class="title"><b>جدول 8.3. Additional Functions</b></p>
+<table summary="Additional Functions" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Function</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                            <a href="">toString()</a>
+                        </td>
+<td>Is able to return a user-defined string</td>
+</tr>
+<tr>
+<td>
+                            <a href="">toValue()</a>
+                        </td>
+<td>Converts a date to a digit</td>
+</tr>
+<tr>
+<td>
+                            <a href="">now()</a>
+                        </td>
+<td>Returns the current date</td>
+</tr>
+<tr>
+<td>
+                            <a href="">isLeapYear()</a>
+                        </td>
+<td>Is the year a leap year?</td>
+</tr>
+<tr>
+<td>
+                            <a href="">isToday()</a>
+                        </td>
+<td>Is the date today?</td>
+</tr>
+<tr>
+<td>
+                            <a href="">isTomorrow()</a>
+                        </td>
+<td>Is the date tomorrow?</td>
+</tr>
+<tr>
+<td>
+                            <a href="">isYesterday()</a>
+                        </td>
+<td>is the date yesterday?</td>
+</tr>
+<tr>
+<td>
+                            <a href="">getSunRise()</a>
+                        </td>
+<td>Return the date's time of sunrise</td>
+</tr>
+<tr>
+<td>
+                            <a href="">getSunSet()</a>
+                        </td>
+<td>Return the date's time of sunset</td>
+</tr>
+<tr>
+<td>
+                            <a href="">getSunInfo()</a>
+                        </td>
+<td>Return an array with the date's sun dates</td>
+</tr>
+<tr>
+<td>
+                            <a href="">getFractionalPrecision()</a>
+                        </td>
+<td>Return the precision of the part seconds</td>
+</tr>
+<tr>
+<td>
+                            <a href="">setFractionalPrecision()</a>
+                        </td>
+<td>Set the precision of the part seconds</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.date.definition.theory.html">السابق</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.date.html">أعلى</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.date.constants.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">8.3. Theory of Operation </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> 8.5. Constants for General Date Functions</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

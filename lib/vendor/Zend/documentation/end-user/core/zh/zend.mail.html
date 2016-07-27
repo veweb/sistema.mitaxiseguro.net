@@ -1,0 +1,159 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第 17 章 Zend_Mail</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="index.html" title="Zend Framework手册 中文版">
+<link rel="prev" href="zend.log.advanced-logging.html" title="16.4. Advanced Logging: Multiple Loggers">
+<link rel="next" href="zend.mail.sending.html" title="17.2. 通过SMTP发送邮件">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="section" href="zend.mail.html#zend.mail.introduction" title="17.1. 简介">
+<link rel="section" href="zend.mail.sending.html" title="17.2. 通过SMTP发送邮件">
+<link rel="section" href="zend.mail.multiple-emails.html" title="17.3. 通过一个SMTP连接发送多个邮件">
+<link rel="section" href="zend.mail.different-transports.html" title="17.4. 使用不同的Transport对象">
+<link rel="section" href="zend.mail.html-mails.html" title="17.5. HTML邮件">
+<link rel="section" href="zend.mail.attachments.html" title="17.6. 附件">
+<link rel="section" href="zend.mail.adding-recipients.html" title="17.7. 增加收件人">
+<link rel="section" href="zend.mail.boundary.html" title="17.8. 控制MIME分界线">
+<link rel="section" href="zend.mail.additional-headers.html" title="17.9. 外加邮件头信息">
+<link rel="section" href="zend.mail.character-sets.html" title="17.10. 字符集">
+<link rel="section" href="zend.mail.encoding.html" title="17.11. 编码">
+<link rel="section" href="zend.mail.smtp-authentication.html" title="17.12. SMTP验证">
+<link rel="section" href="zend.mail.smtp-secure.html" title="17.13. Securing SMTP Transport">
+<link rel="section" href="zend.mail.read.html" title="17.14. Reading Mail Messages">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第 17 章 Zend_Mail</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.log.advanced-logging.html">上一页</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.mail.sending.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.mail"></a>第 17 章 Zend_Mail</h2></div></div></div>
+<div class="toc">
+<p><b>目录</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.mail.html#zend.mail.introduction">17.1. 简介</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.sending.html">17.2. 通过SMTP发送邮件</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.multiple-emails.html">17.3. 通过一个SMTP连接发送多个邮件</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.different-transports.html">17.4. 使用不同的Transport对象</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.html-mails.html">17.5. HTML邮件</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.attachments.html">17.6. 附件</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.adding-recipients.html">17.7. 增加收件人</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.boundary.html">17.8. 控制MIME分界线</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.additional-headers.html">17.9. 外加邮件头信息</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.character-sets.html">17.10. 字符集</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.encoding.html">17.11. 编码</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.smtp-authentication.html">17.12. SMTP验证</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.smtp-secure.html">17.13. Securing SMTP Transport</a></span></dt>
+<dt><span class="sect1"><a href="zend.mail.read.html">17.14. Reading Mail Messages</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-example">17.14.1. Simple example using Pop3</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-open-local">17.14.2. Opening a local storage</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-open-remote">17.14.3. Opening a remote storage</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-fetching">17.14.4. Fetching messages and simple methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-message">17.14.5. Working with messages</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-folders">17.14.6. Using folders</a></span></dt>
+<dt><span class="sect2"><a href="zend.mail.read.html#zend.mail.read-advanced">17.14.7. Advanced Use</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mail.introduction"></a>17.1. 简介</h2></div></div></div>
+<p>
+        <code class="code">Zend_Mail</code>提供了通用化的功能来创作和发送文本以及兼容MIME标准的含有多个段的邮件消息。
+        <code class="code">Zend_Mail</code>通过php内建的<a href="http://php.net/mail" target="_top"><code class="code">mail()</code></a>函数或者直接通过SMTP连接来发送邮件。
+    </p>
+<div class="example">
+<a name="id4791032"></a><p class="title"><b>例 17.1. 使用Zend_Mail发送简单邮件</b></p>
+<p>
+            一个简单邮件由一个或者几个收件人，一个主题，一个邮件主体和一个发件人组成。
+            下面的步骤，使用了PHP的<a href="http://php.net/mail" target="_top"><code class="code">mail()</code></a>函数来发送邮件：
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Mail.php';
+$mail = new Zend_Mail();
+$mail-&gt;setBodyText('This is the text of the mail.');
+$mail-&gt;setFrom('somebody@example.com', 'Some Sender');
+$mail-&gt;addTo('somebody_else@example.com', 'Some Recipient');
+$mail-&gt;setSubject('TestSubject');
+$mail-&gt;send();
+?&gt;   </pre>
+</div>
+<div class="note"><table border="0" summary="Note: Minimum definitions">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">Minimum definitions</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            使用<code class="code">Zend_Mail</code>来发送邮件，你至少得指定一个收件人, 一个发件人(例如通过<code class="code">setFrom()</code>方法)和一个邮件消息主体(文本 和/或者 HTML)。
+        </p></td></tr>
+</table></div>
+<p>
+         通过“get”方法可以读取绝大多数储存在“mail”对象中的邮件属性，更进一步的细节请参阅API文档。
+        <code class="code">getRecipients()</code>是一个特例，它返回一个含有所有先前被加入的收件人地址的数组。
+    </p>
+<p>
+        出于安全原因，<code class="code">Zend_Mail</code>了过滤邮件头中所有字段，
+        以防止基于换行符(<code class="code">\n</code>)邮件头注入(header injection)漏洞攻击。
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.log.advanced-logging.html">上一页</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.mail.sending.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">16.4. Advanced Logging: Multiple Loggers </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 17.2. 通过SMTP发送邮件</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

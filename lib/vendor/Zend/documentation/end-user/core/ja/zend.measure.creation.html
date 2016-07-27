@@ -1,0 +1,202 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>18.2. 計測値の作成</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="prev" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="next" href="zend.measure.output.html" title="18.3. 計測値の出力">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.measure.creation.html#zend.measure.creation.number" title="18.2.1. 整数および浮動小数点数からの計測値の作成">
+<link rel="subsection" href="zend.measure.creation.html#zend.measure.creation.string" title="18.2.2. 文字列からの計測値の作成">
+<link rel="subsection" href="zend.measure.creation.html#zend.measure.creation.localized" title="18.2.3. ローカライズされた文字列をもとにした計測値">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">18.2. 計測値の作成</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.measure.html">前のページ</a> </td>
+<th width="60%" align="center">第18章 Zend_Measure</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.measure.output.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.measure.creation"></a>18.2. 計測値の作成</h2></div></div></div>
+<p>
+        計測値を表すオブジェクトを作成する際には、
+        <code class="code">Zend_Measure_*</code> のメソッドの最初のパラメータに
+        入力値あるいは元の値を指定します。これは、
+        <a href="zend.measure.creation.html#zend.measure.creation.number" title="18.2.1. 整数および浮動小数点数からの計測値の作成"><code class="code">数値の引数</code>
+        </a>
+        あるいは単位を含まない
+        <a href="zend.measure.creation.html#zend.measure.creation.string" title="18.2.2. 文字列からの計測値の作成"><code class="code">文字列</code>
+        </a>、
+        あるいは単位を指定した
+        <a href="zend.measure.creation.html#zend.measure.creation.localized" title="18.2.3. ローカライズされた文字列をもとにした計測値"><code class="code">各国固有の文字列</code>
+        </a>
+        のいずれかとなります。
+        二番目の引数には、計測値の型を指定します。どちらのパラメータも必須です。
+        言語は、任意で三番目のパラメータとして指定します。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.creation.number"></a>18.2.1. 整数および浮動小数点数からの計測値の作成</h3></div></div></div>
+<p>
+            整数に加えて、浮動小数点数を使用することもできます。しかし、
+            <a href="http://www.php.net/float" target="_top">"0.1 や 0.7 のようなシンプルな小数であっても、
+            それを内部的な二進数表現に変換する際には、どうしても多少精度が落ちてしまいます。"</a>
+            そのため、予期せぬ結果を引き起こすことがあります。
+            また、ふたつの "浮動小数点数" が等しいかどうかを調べないようにしましょう。
+        </p>
+<div class="example">
+<a name="id4863998"></a><p class="title"><b>例 18.3. 整数および浮動小数点数を使用しての作成</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+$measurement = 1234.7;
+$unit = new Zend_Measure_Length((integer)$measurement, Zend_Measure_Length::STANDARD);
+echo $unit;
+// 出力は '1234 m' (メートル) となります
+
+$unit = new Zend_Measure_Length($measurement, Zend_Measure_Length::STANDARD);
+echo $unit;
+// 出力は '1234.7 m' (メートル) となります
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.creation.string"></a>18.2.2. 文字列からの計測値の作成</h3></div></div></div>
+<p>
+            ZF アプリケーションが入力として受け取って <code class="code">Zend_Measure_*</code>
+            クラスに渡す値の多くは、文字列としてしか渡せません。
+            たとえば
+            <a href="http://en.wikipedia.org/wiki/Roman_numerals" target="_top">ローマ数字</a>
+            の値は、PHP の整数型・浮動小数点型の制限を越える値などがこれにあたります。
+            整数値は文字列として表すことも可能です。
+            PHP の数値処理用関数の制限によって値の精度が損なわれる可能性がある場合は、
+            代わりに文字列を使用するようにしましょう。
+            <code class="code">Zend_Measure_Number</code> は、BCMath 拡張モジュールを使用して
+            任意の精度をサポートしています。以下の例に示すとおり、
+            <a href="http://php.net/bin2dec" target="_top"><code class="code">bin2dec()</code>
+            </a>
+            のような多くの PHP 関数の制限を避けるようになっています。
+        </p>
+<div class="example">
+<a name="id4864466"></a><p class="title"><b>例 18.4. 文字列を使用しての作成</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Number.php';
+
+$mystring = "10010100111010111010100001011011101010001";
+$unit = new Zend_Measure_Number($mystring, Zend_Measure_Number::BINARY);
+
+echo $unit;
+?&gt;</pre>
+</div>
+<p>
+            通常は、任意の文字列に埋め込まれた計測値を
+            <code class="code">Zend_Measure_*</code> が自動的に抽出します。
+            標準の European/Latin 数値 (0,1,2,3,4,5,6,7,8,9)
+            として認識可能な値が最初に見つかった時点で、それを用いて値を作成します。
+            文字列内に数値が複数あった場合は、それ以降のものは無視されます。
+        </p>
+<div class="example">
+<a name="id4864505"></a><p class="title"><b>例 18.5. 計測値を含む任意の入力テキスト</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Area.php';
+
+$mystring = "My house is 125m² in size";
+$unit = new Zend_Measure_Area($mystring, Zend_Measure_Area::STANDARD);
+echo $unit; // 出力は "125 m² in size" となります
+
+$mystring = "My house is 125m² in size, it has 5 rooms of 25m² each.";
+$unit = new Zend_Measure_Area($mystring, Zend_Measure_Area::STANDARD);
+echo $unit; // 出力は "125 m² in size" となります
+?&gt;</pre>
+</div>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.measure.creation.localized"></a>18.2.3. ローカライズされた文字列をもとにした計測値</h3></div></div></div>
+<p>
+            各国固有の記法で文字列を入力した場合は、
+            正しいロケールを知らない限りそれを正確に解釈できません。
+            小数点に "." を用い、三桁ごとの桁区切り文字に ","
+            を用いるのは英語では一般的です。しかし、その他の言語でもそうだとは限りません。
+            例えば、英語の "1,234.50" は、ドイツ語では "1.2345" という意味になります。
+            このような問題に対処するために、ロケールを考慮した
+            <code class="code">Zend_Measure_*</code> 系のクラスが用意されています。
+            これは、言語や地域を指定することによって入力内容の曖昧さをなくし、
+            意図した値として適切に解釈されるようにします。
+        </p>
+<div class="example">
+<a name="id4864566"></a><p class="title"><b>例 18.6. ローカライズされた文字列</b></p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Measure/Length.php';
+
+$locale = new Zend_Locale('de');
+$mystring = "The boat is 1,234.50 long.";
+$unit = new Zend_Measure_Length($mystring, Zend_Measure_Length::STANDARD, $locale);
+echo $unit; // 出力は "1.234 m" となります
+
+
+$mystring = "The boat is 1,234.50 long.";
+$unit = new Zend_Measure_Length($mystring, Zend_Measure_Length::STANDARD, 'en_US');
+echo $unit; // 出力は "1234.50 m" となります
+?&gt;</pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.measure.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.measure.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.measure.output.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第18章 Zend_Measure </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 18.3. 計測値の出力</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

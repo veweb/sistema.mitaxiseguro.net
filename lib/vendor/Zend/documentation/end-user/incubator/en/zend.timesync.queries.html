@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.2. Querying timeservers</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="zend.timesync.html" title="Chapter 3. Zend_TimeSync">
+<link rel="prev" href="zend.timesync.html" title="Chapter 3. Zend_TimeSync">
+<link rel="next" href="zend.translate.html" title="Chapter 4. Zend_Translate">
+<link rel="chapter" href="zend.http.server.html" title="Chapter 1. Zend_Http_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 2. Zend_Service">
+<link rel="chapter" href="zend.timesync.html" title="Chapter 3. Zend_TimeSync">
+<link rel="chapter" href="zend.translate.html" title="Chapter 4. Zend_Translate">
+<link rel="appendix" href="appendix.codingstandard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="appendix.copyright.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.timesync.queries.html#zend.timesync.queries.ntp" title="3.2.1. Basic NTP query">
+<link rel="subsection" href="zend.timesync.queries.html#zend.timesync.queries.sntp" title="3.2.2. Basic SNTP query">
+<link rel="subsection" href="zend.timesync.queries.html#zend.timesync.queries.fallback" title="3.2.3. Using the fallback mechanism">
+<link rel="subsection" href="zend.timesync.queries.html#zend.timesync.queries.exceptions" title="3.2.4. Taking care of exceptions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.2. Querying timeservers</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.timesync.html">Prev</a> </td>
+<th width="60%" align="center">Chapter 3. Zend_TimeSync</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.translate.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.timesync.queries"></a>3.2. Querying timeservers</h2></div></div></div>
+<p>
+        General information about querying timeservers goes here.
+    </p>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.timesync.queries.ntp"></a>3.2.1. Basic NTP query</h3></div></div></div>
+<p>
+            Querying the time from a NTP server with a standard port
+        </p>
+<pre class="programlisting">&lt;?php
+$server = new Zend_TimeSync('ntp://serveraddress', 'alias'); 
+$result = $server-&gt;getDate(); 
+ 
+echo $result-&gt;getIso();
+    
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.timesync.queries.sntp"></a>3.2.2. Basic SNTP query</h3></div></div></div>
+<p>
+            Querying the time from a SNTP server with a standard port
+        </p>
+<pre class="programlisting">&lt;?php
+$server = new Zend_TimeSync('sntp://serveraddress', 'alias'); 
+$result = $server-&gt;getDate(); 
+ 
+echo $result-&gt;getIso();
+        
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.timesync.queries.fallback"></a>3.2.3. Using the fallback mechanism</h3></div></div></div>
+<p>
+            Querying the time from an NTP server with a standard port, and a list of NTP/SNTP 
+            fallback servers provided:
+        </p>
+<pre class="programlisting">&lt;?php
+$serverlist = array('alias_a' =&gt; 'ntp://address', 
+                    'alias_b' =&gt; 'ntp://address', 
+                    'alias_c' =&gt; 'sntp://address'); 
+ 
+$server = new Zend_TimeSync($serverlist); 
+$result = $server-&gt;getDate(); 
+ 
+echo $result-&gt;getIso(); 
+    
+        </pre>
+<p>
+            Querying the time from an NTP server with a non standard port, and with a 
+            list of NTP/SNTP fallback servers that run on a non standard port:
+        </p>
+<pre class="programlisting">&lt;?php
+$serverlist = array('alias_a' =&gt; 'ntp://address:2222', 
+                    'alias_b' =&gt; 'ntp://address:2222', 
+                    'alias_c' =&gt; 'sntp://address:3333'); 
+ 
+$server = new Zend_TimeSync($serverlist); 
+$result = $server-&gt;getDate(); 
+ 
+echo $result-&gt;getIso(); 
+    
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.timesync.queries.exceptions"></a>3.2.4. Taking care of exceptions</h3></div></div></div>
+<p>
+            Taking care of exceptions:
+        </p>
+<pre class="programlisting">&lt;?php
+$serverlist = array(
+        // invalid servers
+        'server_a'  =&gt; 'ntp://be.foo.bar.org',
+        'server_b'  =&gt; 'sntp://be.foo.bar.org',
+); 
+
+$server = new Zend_TimeSync($serverlist);
+
+try {
+    $result = $server-&gt;getDate();
+    echo $result-&gt;getIso();
+} catch (Zend_TimeSync_Exception $e) {
+    
+    $exceptions = $e-&gt;get();
+    
+    foreach ($exceptions as $key =&gt; $myException) {
+        echo $myException-&gt;getMessage();
+        echo '&lt;br /&gt;';
+    }
+}
+    
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.timesync.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.timesync.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.translate.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 3. Zend_TimeSync </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 4. Zend_Translate</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

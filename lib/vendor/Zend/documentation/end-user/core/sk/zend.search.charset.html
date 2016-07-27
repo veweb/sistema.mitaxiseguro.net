@@ -1,0 +1,200 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>22.6. Character set.</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="prev" href="zend.search.query-api.html" title="22.5. Query Construction API">
+<link rel="next" href="zend.search.extending.html" title="22.7. Extensibility">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.description" title="22.6.1. UTF-8 and single-byte character sets support.">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.default_analyzer" title="22.6.2. Default text analyzer.">
+<link rel="subsection" href="zend.search.charset.html#zend.search.charset.utf_analyzer" title="22.6.3. UTF-8 compatible text analyzer.">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">22.6. Character set.</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.search.query-api.html">Prev</a> </td>
+<th width="60%" align="center">Chapter 22. Zend_Search</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.extending.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.charset"></a>22.6. Character set.</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.description"></a>22.6.1. UTF-8 and single-byte character sets support.</h3></div></div></div>
+<p>
+            Zend_Search_Lucene works with UTF-8 charset internally. Index files store
+            unicode data in Java's "modified UTF-8 encoding". Zend_Search_Lucene core
+            completely supports it with one exception.
+            <sup>[<a name="id4874059" href="#ftn.id4874059">9</a>]</sup>
+        </p>
+<p>
+            Actual input data encoding may be specified through Zend_Search_Lucene API. Data will
+            be automatically converted into UTF-8 encoding.
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.default_analyzer"></a>22.6.2. Default text analyzer.</h3></div></div></div>
+<p>
+            However, default text analyzer (which is also used within query parser) uses
+            ctype_alpha() for tokenizing text and queries.
+        </p>
+<p>
+            ctype_alpha() is not UTF-8 compatible, so analyzer converts text to 'ASCII//TRANSLIT' encoding before
+            indexing. The same processing is performed during query parsing, so it's done
+            transparently.
+            <sup>[<a name="id4874735" href="#ftn.id4874735">10</a>]</sup>
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.charset.utf_analyzer"></a>22.6.3. UTF-8 compatible text analyzer.</h3></div></div></div>
+<p>
+            Zend_Search_Lucene also contains limited functionaliy utf-8 analyzer. It can be turned on with the following code:
+
+            </p>
+<pre class="programlisting">&lt;?php
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8());
+?&gt;</pre>
+<p>
+        </p>
+<p>
+            It tokenizes data for indexing in UTF-8 mode and has no problems with any UTF-8 compatible character.
+        </p>
+<p>
+            It has two limitations:
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>treats all non-ascii characters as letters (it's not always true);</p></li>
+<li><p>is case-sensitive;</p></li>
+</ul></div>
+<p>
+        </p>
+<p>
+            Because of these limitations it's not set as default, but may be helpful for someone.
+        </p>
+<p>
+            Case insensitivity my be emulated with <code class="code">strtolower()</code> conversion:
+            </p>
+<pre class="programlisting">&lt;?php
+setlocale(LC_CTYPE, 'de_DE.iso-8859-1');
+
+...
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8());
+
+...
+
+$doc = new Zend_Search_Lucene_Document();
+
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', strtolower($contents)));
+
+// Title field for search through (indexed, unstored)
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('title', strtolower($title)));
+
+// Title field for retrieving (unindexed, stored)
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnIndexed('_title', $title));
+
+?&gt;</pre>
+<p>
+        </p>
+<p>
+            The same conversion has to be performed with query string:
+            </p>
+<pre class="programlisting">&lt;?php
+setlocale(LC_CTYPE, 'de_DE.iso-8859-1');
+
+...
+
+Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+    new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8());
+
+...
+
+$hits = $index-&gt;find(strtolower($query));
+?&gt;</pre>
+<p>
+        </p>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote">
+<p><sup>[<a name="ftn.id4874059" href="#id4874059">9</a>] </sup>
+                   Zend_Search_Lucene supports only Basic Multilingual Plane
+                   (BMP) characters (from 0x0000 to 0xFFFF) and doesn't support
+                   "supplementary characters" (characters whose code points are
+                   greater than 0xFFFF)
+               </p>
+<p>
+                   Java 2 represents these characters as a pair of char (16-bit)
+                   values, the first from the high-surrogates range (0xD800-0xDBFF),
+                   the second from the low-surrogates range (0xDC00-0xDFFF). Then
+                   they are encoded as usual UTF-8 characters in six bytes.
+                   Standard UTF-8 representation uses four bytes for supplementary
+                   characters.
+               </p>
+</div>
+<div class="footnote"><p><sup>[<a name="ftn.id4874735" href="#id4874735">10</a>] </sup>
+                   Conversion to 'ASCII//TRANSLIT' may depend on current locale and OS.
+               </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.search.query-api.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.search.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.extending.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">22.5. Query Construction API </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 22.7. Extensibility</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

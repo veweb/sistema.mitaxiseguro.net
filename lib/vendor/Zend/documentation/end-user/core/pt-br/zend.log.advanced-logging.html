@@ -1,0 +1,98 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>16.4. Registro avançado: Múltiplos Agentes de Registro</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="prev" href="zend.log.log-levels.html" title="16.3. Níveis de registro">
+<link rel="next" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">16.4. Registro avançado: Múltiplos Agentes de Registro</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.log.log-levels.html">Anterior</a> </td>
+<th width="60%" align="center">Capítulo 16. Zend_Log</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.mail.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.log.advanced-logging"></a>16.4. Registro avançado: Múltiplos Agentes de Registro</h2></div></div></div>
+<p>
+        <code class="code">Zend_Log</code> oferece suporte de registro para diversos adaptadores de registro. Que podem enviar uma mensagem
+		para todos os registros, ou uma mensagem para um registro específico.
+   </p>
+<p>
+		Quando são criados multiplos agentes de registro, cada registro deve receber um nome único. Agentes de registro 
+		são registrados com o método <code class="code">registerLogger()</code>, com o nome do registro fornecido como o segundo argumento opcional.
+   </p>
+<p>
+        No exemplo abaixo, dois agentes de registro são criados: um para o console, e outro para um arquivo. Eles irão 
+		receber os nomes <code class="code">Console</code> e <code class="code">File</code>, respectivamente.
+
+        </p>
+<pre class="programlisting">
+require_once 'Zend/Log.php';                 // Classe base do Zend_Log
+require_once 'Zend/Log/Adapter/File.php';    // Adaptador de log File
+require_once 'Zend/Log/Adapter/Console.php'; // Adaptador de log Console
+
+Zend_Log::registerLogger(new Zend_Log_Adapter_File('/logs/framework.txt'), 'File');
+Zend_Log::registerLogger(new Zend_Log_Adapter_Console(), 'Console');
+</pre>
+<p>
+   </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.log.log-levels.html">Anterior</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.log.html">Acima</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.mail.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">16.3. Níveis de registro </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> Capítulo 17. Zend_Mail</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

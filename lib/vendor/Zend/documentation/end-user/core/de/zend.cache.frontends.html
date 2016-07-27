@@ -1,0 +1,795 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.3. Zend_Cache Frontends</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="prev" href="zend.cache.theory.html" title="4.2. Die Theorie des Cachens">
+<link rel="next" href="zend.cache.backends.html" title="4.4. Zend_Cache Backends">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.core" title="4.3.1. Zend_Cache_Core">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.frontend.output" title="4.3.2. Zend_Cache_Frontend_Output">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.frontend.function" title="4.3.3. Zend_Cache_Frontend_Function">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.frontend.class" title="4.3.4. Zend_Cache_Frontend_Class">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.frontends.file" title="4.3.5. Zend_Cache_Frontend_File">
+<link rel="subsection" href="zend.cache.frontends.html#zend.cache.frontends.page" title="4.3.6. Zend_Cache_Frontend_Page">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.3. Zend_Cache Frontends</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.cache.theory.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 4. Zend_Cache</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.cache.backends.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.cache.frontends"></a>4.3. Zend_Cache Frontends</h2></div></div></div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.core"></a>4.3.1. Zend_Cache_Core</h3></div></div></div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.core.introduction"></a>4.3.1.1. Einführung</h4></div></div></div>
+<p>
+                <code class="code">Zend_Cache_Core</code> ist ein spezielles Frontend, da es der Kern dieses Moduls ist.
+                Es ist ein generelles Cache Frontend und durch andere Klassen erweiterbar.
+            </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                    Alle Frontends sind von <code class="code">Zend_Cache_Core</code> abgeleitet, so dass deren Methoden und
+                    Optionen (wie folgt beschrieben) auch in anderen Frontends vorhanden sind. Deswegen werden
+                    sie dort nicht dokumentiert.
+                </p></td></tr>
+</table></div>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.core.options"></a>4.3.1.2. Mögliche Optionen</h4></div></div></div>
+<p>
+                Diese Optionen werden der Factory Methode übergeben wie im nachfolgenden Beispiel demonstriert.
+            </p>
+<div class="table">
+<a name="id4788907"></a><p class="title"><b>Tabelle 4.1. Mögliche Optionen</b></p>
+<table summary="Mögliche Optionen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Option</th>
+<th>Daten Typ</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">caching</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                                  Ein- / Ausschalten vom Caching (kann sehr nützlich für das 
+                                  Debuggen von gecachten Skripten sein)
+                              </td>
+</tr>
+<tr>
+<td><code class="code">lifeTime</code></td>
+<td><code class="code">int</code></td>
+<td><code class="code">3600</code></td>
+<td>
+                                Cache Lebensdauer (in Sekunden), wenn auf <code class="code">null</code> gesetzt, ist
+                                der Cache für immer gültig.
+                              </td>
+</tr>
+<tr>
+<td><code class="code">logging</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">false</code></td>
+<td>
+                                Wenn auf true gesetzt, wird das Logging durch <code class="code">Zend_Log</code> aktiviert
+                                (aber das System wird langsamer)
+                              </td>
+</tr>
+<tr>
+<td><code class="code">writeControl</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                                Ein- / Ausschalten der Schreibkontrolle (der Cace wird gleich gelesen, nachdem
+                                er geschrieben wurde, um fehlerhafte Einträge zu finden); das Einschalten der
+                                Schreibkontrolle wird das Schreiben des Caches etwas verlangsamen, aber nicht das
+                                Lesen des Caches (es können defekte Cache Dateien entdeckt werden, aber es ist 
+                                keine perfekte Kontrolle)
+                              </td>
+</tr>
+<tr>
+<td><code class="code">automaticSerialization</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">false</code></td>
+<td>
+                                Ein- / Ausschalten der automatischen Serialisierung, kann dafür benutzt werden, um
+                                Daten direkt zu speichern, welche keine Strings sind (aber es ist langsamer)
+                              </td>
+</tr>
+<tr>
+<td><code class="code">automaticCleaningFactor</code></td>
+<td><code class="code">int</code></td>
+<td><code class="code">10</code></td>
+<td>
+                                Ausschalten / Abgleichen des automatischen Löschprozesses (Garbage Collector):
+                                0 heißt keine automatische Löschung des Caches, 1 heißt Systematische Cache
+                                Löschung und x &gt; 1 heißt automatisches zufälliges Löschen 1 mal nach 
+                                x Schreiboperationen.
+                              </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.core.examples"></a>4.3.1.3. Beispiele</h4></div></div></div>
+<p>
+                Ein Beispiel wird ganz am Anfang des Handbuches gegeben.
+            </p>
+<p>
+                Wenn nur Strings in den Cache gespeichert werden (denn mit der "automaticSerialization" Option
+                wäre es möglich Booleans zu speichern), kann ein kompakterer Weg wie folgt gewählt werden:
+            </p>
+<pre class="programlisting">&lt;?php  
+             
+// Es wird angenommen das $cache existiert
+
+$id = 'myBigLoop'; // Die Cache ID von dem "das gecached werden soll"
+
+if (!($data = $cache-&gt;load($id))) {
+    // Cache miss
+    
+    $data = '';
+    for ($i = 0; $i &lt; 10000; $i++) {
+        $data = $data . $i;
+    }
+    
+    $cache-&gt;save($data);
+    
+} 
+
+// [...] Irgendwas mit $data machen (ausgeben, verarbeiten, usw.)
+             
+?&gt;       </pre>
+<p>
+                Wenn mehrere Blöcke von Daten oder Daten Instanzen gecached werden sollen, ist die 
+                Idee dahinter die gleiche:
+            </p>
+<pre class="programlisting">&lt;?php  
+             
+// Sicherstellen, dass eindeutige Identifizierer verwendet werden:
+$id1 = 'foo';
+$id2 = 'bar';
+
+// Block 1
+if (!($data = $cache-&gt;load($id1))) {
+    // Cache miss
+    
+    $data = '';
+    for ($i=0;$i&lt;10000;$i++) {
+        $data = $data . $i;
+    }
+    
+    $cache-&gt;save($data);
+    
+} 
+echo($data);
+
+// Hier wird NIE gecached
+echo('NIE GECACHED! ');
+
+// Block 2
+if (!($data = $cache-&gt;load($id2))) {
+    // Cache miss
+    
+    $data = '';
+    for ($i=0;$i&lt;10000;$i++) {
+        $data = $data . '!';
+    }
+    
+    $cache-&gt;save($data);
+    
+} 
+echo($data);
+
+?&gt;       </pre>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.frontend.output"></a>4.3.2. Zend_Cache_Frontend_Output</h3></div></div></div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.output.introduction"></a>4.3.2.1. Einführung</h4></div></div></div>
+<p>
+                <code class="code">Zend_Cache_Frontend_Output</code> ist ein Ausgabe-Empfangendes Frontend. Es verwendet den
+                Ausgabe Puffer in PHP, um alles zwischen der <code class="code">start()</code> und der <code class="code">end()</code> Methode
+                zu fangen.
+            </p>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.output.options"></a>4.3.2.2. Mögliche Optionen</h4></div></div></div>
+<p>
+                Dieses Frontend hat keine bestimmten Optionen zusätzlich zu denen von
+                <code class="code">Zend_Cache_Core</code>.
+            </p>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.output.examples"></a>4.3.2.3. Beispiele</h4></div></div></div>
+<p>
+                Ein Beispiel wird ganz am Anfang des Handbuches gegeben. Hier ist es mit kleinen Änderungen:
+            </p>
+<pre class="programlisting">&lt;?php
+
+// Wenn es ein Cache Miss ist, wird das puffern der Ausgabe ausgelöst
+if(!$cache-&gt;start('mypage')):
+
+// Alle wie gewohnt ausgeben
+echo 'Hallo Welt! ';
+echo 'Das wird gecached ('.time().') ';
+
+$cache-&gt;end(); // Ausgabepufferung beenden
+endif;
+
+echo 'Hier wird nie gecached ('.time().').';
+
+?&gt;       </pre>
+<p>
+                Die Verwendung dieser Form ist ziemlich einfach, um Ausgabe caching in einem bereits bestehenden
+                Projekt, mit nur wenig oder gar keinen Codeänderungen, zu erhalten.
+            </p>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.frontend.function"></a>4.3.3. Zend_Cache_Frontend_Function</h3></div></div></div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.function.introduction"></a>4.3.3.1. Einführung</h4></div></div></div>
+<p>
+                <code class="code">Zend_Cache_Frontend_Function</code> cached das Ergebnis von Funktionsaufrufen. Es hat
+                eine einzelne Hauptmethode genannt <code class="code">call()</code>, welche den Funktionsnamen und Parameter
+                für den Aufruf in einem Array entgegennimmt.
+            </p>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.function.options"></a>4.3.3.2. Mögliche Optionen</h4></div></div></div>
+<div class="table">
+<a name="id4789343"></a><p class="title"><b>Tabelle 4.2. Mögliche Optionen</b></p>
+<table summary="Mögliche Optionen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Option</th>
+<th>Daten Typ</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">cacheByDefault</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                                  Wenn true, wird der Funktionsaufruf standardmäßig gecached
+                              </td>
+</tr>
+<tr>
+<td><code class="code">cachedFunctions</code></td>
+<td><code class="code">array</code></td>
+<td> </td>
+<td>
+                                  Funktionsnamen, die immer gecached werden sollen
+                              </td>
+</tr>
+<tr>
+<td><code class="code">nonCachedFunctions</code></td>
+<td><code class="code">array</code></td>
+<td> </td>
+<td>
+                                  Funktionsnamen, die nie gecached werden sollen
+                              </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.function.examples"></a>4.3.3.3. Beispiele</h4></div></div></div>
+<p>
+                Die Verwendung der <code class="code">call()</code> Funktion ist die gleiche, wie die von
+                <code class="code">call_user_func_array()</code> in PHP:
+            </p>
+<pre class="programlisting">&lt;?php
+
+$cache-&gt;call('veryExpensiveFunc', $params);
+
+# $params ist ein Array
+# Zum Beispiel fürs Aufrufen (mit cachen) von veryExpensiveFunc(1, 'foo', 'bar'), wird
+# $cache-&gt;call('veryExpensiveFunc', array(1, 'foo', 'bar')) benutzt
+
+?&gt;       </pre>
+<p>
+                <code class="code">Zend_Cache_Frontend_Function</code> ist elegant genug, um beides zu cachen, den
+                Rückgabewert der Funktion und deren interne Ausgabe.
+            </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Man kann jede eingebaute oder benutzerdefinierte Funktion übergeben, mit ausnahme von
+                <code class="code">array()</code>, <code class="code">echo()</code>, <code class="code">empty()</code>, <code class="code">eval()</code>,
+                <code class="code">exit()</code>, <code class="code">isset()</code>, <code class="code">list()</code>, <code class="code">print()</code>
+                und <code class="code">unset()</code>. 
+            </p></td></tr>
+</table></div>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.frontend.class"></a>4.3.4. Zend_Cache_Frontend_Class</h3></div></div></div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.class.introduction"></a>4.3.4.1. Einführung</h4></div></div></div>
+<p>
+                <code class="code">Zend_Cache_Frontend_Class</code> ist unterschiedlich zu <code class="code">Zend_Cache_Frontend_Function</code>,
+                weil es das Cachen von Objekten und statischen Methodenaufrufen erlaubt.
+            </p>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.class.options"></a>4.3.4.2. Mögliche Optionen</h4></div></div></div>
+<div class="table">
+<a name="id4789568"></a><p class="title"><b>Tabelle 4.3. Mögliche Optionen</b></p>
+<table summary="Mögliche Optionen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Option</th>
+<th>Datentyp</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+<code class="code">cachedEntity</code> (Notwendig)</td>
+<td><code class="code">mixed</code></td>
+<td> </td>
+<td>
+                                  Wenn auf einen Klassennamen gesetzt, wird eine abstrakte Klasse gecached und
+                                  es werden statische Aufrufe verwendet; wenn auf ein Objekt gesetzt, wird deren
+                                  Objektmethoden gecached
+                              </td>
+</tr>
+<tr>
+<td><code class="code">cacheByDefault</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">true</code></td>
+<td>
+                                  Wenn true, wird der Aufruf standardmäßig gecached
+                              </td>
+</tr>
+<tr>
+<td><code class="code">cachedMethods</code></td>
+<td><code class="code">array</code></td>
+<td> </td>
+<td>
+                                  Methodennamen, die immer gecached werden sollen
+                              </td>
+</tr>
+<tr>
+<td><code class="code">nonCachedMethods</code></td>
+<td><code class="code">array</code></td>
+<td> </td>
+<td>
+                                  Methodennamen, die nie gecached werden sollen
+                              </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontend.class.examples"></a>4.3.4.3. Beispiele</h4></div></div></div>
+<p>
+                zum Beispiel, um einen statischen Aufruf zu cachen:
+            </p>
+<pre class="programlisting">&lt;?php
+
+class test {
+   
+    # Statische Methode
+    public static function foobar($param1, $param2) {
+        echo "foobar_output($param1, $param2)";
+        return "foobar_return($param1, $param2)";   
+    }
+
+}
+
+// [...]
+$frontendOptions = array(
+    'cachedEntity' =&gt; 'test' // Der Name der Klasse
+);
+// [...]
+
+# Der gecachte Aufruf
+$res = $cache-&gt;foobar('1', '2');
+
+?&gt;           </pre>
+<p>
+                Um klassische Methodenaufrufe zu cachen :
+            </p>
+<pre class="programlisting">&lt;?php
+
+class test {
+   
+    private $_string = 'Hallo !';
+      
+    public function foobar2($param1, $param2) {
+        echo($this-&gt;_string);
+        echo "foobar2_output($param1, $param2)";
+        return "foobar2_return($param1, $param2)";   
+    }
+
+}
+
+// [...]
+$frontendOptions = array(
+    'cachedEntity' =&gt; new test() // Eine Instanz der Klasse
+);
+// [...]
+
+# Der gecachte Aufruf
+$res = $cache-&gt;foobar2('1', '2');
+
+?&gt;           </pre>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.frontends.file"></a>4.3.5. Zend_Cache_Frontend_File</h3></div></div></div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.file.introduction"></a>4.3.5.1. Einführung</h4></div></div></div>
+<p>
+                <code class="code">Zend_Cache_Frontend_File</code> ist ein Frontend angetrieben durch den
+                Änderungszeitpunkt einer "Masterdatei". Es ist wirklich interessant für Beispiele
+                in Konfigurations- oder Templateanwendungen.
+            </p>
+<p>
+                Zum Beispiel eine XML Konfigurationsdatei, welche von einer Funktion geparsed wird
+                und die ein "Config Objekt" zurückgibt (wie durch <code class="code">Zend_Config</code>). Mit
+                <code class="code">Zend_Cache_Frontend_File</code> kann das "Config Objekt" im Cache gespeichert
+                werden (um zu Verhindern, das die XML Konfiguration jedes mal geparsed wird), aber mit
+                einer strengen Abhängigkeit zur "Masterdatei". Wenn also die XML Konfigurationsdatei
+                geändert wird, wird der Cache sofort ungültig.
+            </p>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.file.options"></a>4.3.5.2. Mögliche Optionen</h4></div></div></div>
+<div class="table">
+<a name="id4789817"></a><p class="title"><b>Tabelle 4.4. Mögliche Optionen</b></p>
+<table summary="Mögliche Optionen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Option</th>
+<th>Daten Typ</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+</tr></thead>
+<tbody><tr>
+<td><code class="code">masterFile (mandatory)</code></td>
+<td><code class="code">string</code></td>
+<td><code class="code"></code></td>
+<td>
+                                  Der komplette Pfad und Name der Master Datei                 
+                              </td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.file.examples"></a>4.3.5.3. Beispiele</h4></div></div></div>
+<p>
+                Die Verwendung dieses Frontends ist die gleiche wie die von <code class="code">Zend_Cache_Core</code>. 
+                Es gibt kein eigenes Beispiel - was als einziges gemacht werden muß, ist das <code class="code">masterFile</code>
+                zu definieren, wenn die Factory verwendet wird.
+            </p>
+</div>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.cache.frontends.page"></a>4.3.6. Zend_Cache_Frontend_Page</h3></div></div></div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.page.introduction"></a>4.3.6.1. Einführung</h4></div></div></div>
+<p>
+	            <code class="code">Zend_Cache_Frontend_Page</code> ist wie <code class="code">Zend_Cache_Frontend_Output</code>
+	            aber entwickelt für eine komplette Seite. Es ist unmöglich <code class="code">Zend_Cache_Frontend_Page</code>
+	            nur für das Cachen eines einzelnen Blockes zu verwenden.
+	        </p>
+<p>
+	        	Andererseits wird die "Cache ID" automatisch berechnet mit <code class="code">$_SERVER['REQUEST_URI']</code> und
+	        	(abhängig von den Optionen) mit
+	        	<code class="code">$_GET</code>, <code class="code">$_POST</code>, <code class="code">$_SESSION</code>, <code class="code">$_COOKIE</code>, <code class="code">$_FILES</code>.
+                Trotzdem muß nur eine Methode aufgerufen werden (<code class="code">start()</code>), weil der Aufruf von 
+                <code class="code">end()</code> immer vollautomatisch ist, wenn die Seite endet.
+	        </p>
+<p>
+	        	Zur Zeit ist es nicht eingebaut, aber es ist ein HTTP abhängiges System geplant, um Bandbreiten zu
+	        	sparen (das System wird ein "HTTP 304 nicht geändert" schicken, wenn der Cache gefunden wurde und wenn
+	        	der Browser bereits eine gültige Version hat).
+	        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Zend_Cache_Frontend_Page ist wirklich eine "Alpha Version" und ist zukünftig für Verbesserungen vorgesehen.
+	        </p></td></tr>
+</table></div>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.page.options"></a>4.3.6.2. Mögliche Optionen (Für dieses Frontend in der Zend_Cache Factory)</h4></div></div></div>
+<div class="table">
+<a name="id4790006"></a><p class="title"><b>Tabelle 4.5. Mögliche Optionen</b></p>
+<table summary="Mögliche Optionen" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Option</th>
+<th>Daten Typ</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code class="code">httpConditional</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">false</code></td>
+<td>
+	                              Verwendung des httpConditional Systems (zur Zeit nicht implementiert)
+	                          </td>
+</tr>
+<tr>
+<td><code class="code">debugHeader</code></td>
+<td><code class="code">boolean</code></td>
+<td><code class="code">false</code></td>
+<td>
+	                                Wenn true, wird eine Debugging Text for jeder gecacheten Seite hinzugefügt
+	                          </td>
+</tr>
+<tr>
+<td><code class="code">defaultOptions</code></td>
+<td><code class="code">array</code></td>
+<td><code class="code">array(...siehe unten...)</code></td>
+<td>
+	                              Ein assoziatives Array mit Default Optionen: 
+	                              <div class="itemizedlist"><ul type="disc">
+<li><p>
+	                                          <code class="code">(boolean, true per Default) cache</code> : 
+	                                          Cache ist aktiviert wenn true
+        	                              </p></li>
+<li><p>
+	                                          <code class="code">(boolean, false per Default) cacheWithGetVariables</code> : 
+	                                          wenn true, ist der Cache weiterhin aktiviert, selbst wenn es 
+	                                          einige Variables im <code class="code">$_GET</code> Array gibt
+        	                              </p></li>
+<li><p>
+	                                          <code class="code">(boolean, false per Default) cacheWithPostVariables</code> : 
+	                                          wenn true, ist der Cache weiterhin aktiviert, selbst wenn es 
+	                                          einige Variables im <code class="code">$_POST</code> Array gibt
+        	                              </p></li>
+<li><p>
+	                                          <code class="code">(boolean, false per Default) cacheWithSessionVariables</code> :
+	                                          wenn true, ist der Cache weiterhin aktiviert, selbst wenn es
+	                                          einige Variables im <code class="code">$_SESSION</code> Array gibt
+        	                              </p></li>
+<li><p>
+        	                                  <code class="code">(boolean, false per Default) cacheWithFilesVariables</code> : 
+        	                                  wenn true, ist der Cache weiterhin aktiviert, selbst wenn es 
+        	                                  einige Variables im <code class="code">$_FILES</code> Array gibt
+        	                              </p></li>
+<li><p>
+	                                          <code class="code">(boolean, false per Default) cacheWithCookieVariables</code> : 
+	                                          wenn true, ist der Cache weiterhin aktiviert, selbst wenn es 
+	                                          einige Variables im <code class="code">$_COOKIE</code> Array gibt
+        	                              </p></li>
+<li><p>
+						        			  <code class="code">(boolean, true per Default) makeIdWithGetVariables</code> : 
+						        			  wenn true, wird die Cache ID vom Inhalt des <code class="code">$_GET</code> 
+						        			  Arrays abhängig sein
+        	                              </p></li>
+<li><p>
+	                                          <code class="code">(boolean, true per Default) makeIdWithPostVariables</code> : 
+	                                          wenn true, wird die Cache ID vom Inhalt des <code class="code">$_POST</code> 
+	                                          Arrays abhängig sein
+        	                              </p></li>
+<li><p>
+	                                          <code class="code">(boolean, true per Default) makeIdWithSessionVariables</code> : 
+	                                          wenn true, wird die Cache ID vom Inhalt des <code class="code">$_SESSION</code> 
+	                                          Arrays abhängig sein
+        	                              </p></li>
+<li><p>
+        	                                  <code class="code">(boolean, true per Default) makeIdWithFilesVariables</code> : 
+        	                                  wenn true, wird die Cache ID vom Inhalt des <code class="code">$_FILES</code> 
+        	                                  Arrays abhängig sein
+        	                              </p></li>
+<li><p>
+        	                                  <code class="code">(boolean, true per Default) makeIdWithCookieVariables</code> : 
+        	                                  wenn true, wird die Cache ID vom Inhalt des <code class="code">$_COOKIE</code> 
+        	                                  Arrays abhängig sein
+        	                              </p></li>
+</ul></div>              
+	                          </td>
+</tr>
+<tr>
+<td><code class="code">regexps</code></td>
+<td><code class="code">array</code></td>
+<td><code class="code">array()</code></td>
+<td>
+	                          	  Ein assoziatives Array, um Optionen nur für einige REQUEST_URI zu setzen. Die Schlüssel
+	                          	  sind reguläre Ausdrücke (PCRE), die Werte sind ein assoziatives Array mit spezifischen
+	                          	  Optionen, die gesetzt werden sollen, wenn der reguläre Ausdruck auf $_SERVER['REQUEST_URI']
+	                          	  passt (siehe die defaultOptions für eine Liste der verfügbaren Optionen); wenn verschiedene
+	                          	  reguläre Ausdrücke auf $_SERVER['REQUEST_URI'] passen, wird nur der letzte verwendet.
+	                          </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3" lang="de">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="zend.cache.frontends.page.examples"></a>4.3.6.3. Beispiele</h4></div></div></div>
+<p>
+	            Die Verwendung von Zend_Cache_Frontend_Page ist wirklich trivial :
+	        </p>
+<pre class="programlisting">&lt;?php
+	           
+// [...] // Benötigt, Konfiguration und Factory
+	
+$cache-&gt;start();
+// Wenn der Cache gefunden wurde, wird das Ergebnis zum Browser geschickt, und das Skript stoppt hier
+	
+// Rest der Seite ...
+	
+?&gt;           </pre>
+<p>
+	        	Ein etwas komplexeres Beispiel, welches einen Weg zeigt, um ein zentralisiertes
+	        	Cache Management in einer Bootstrap Datei zu erhalten (um es z.B. mit Zend_Controller´
+	        	zu verwenden)
+	        </p>
+<pre class="programlisting">&lt;?php
+
+// [...] du solltest es vermeiden, zu viele Zeilen vor dem Cache Bereich zu setzen
+// [...] zum Beispiel sollten für optimale Performanz "require_once" oder "Zend::loadClass" 
+// [...] nach dem Cache Bereich stehen
+
+require_once 'Zend/Cache.php';
+
+$frontendOptions = array(
+   'lifeTime' =&gt; 7200,
+   'debugHeader' =&gt; true, // für das Debugging 
+   'regexps' =&gt; array(
+       '^/$' =&gt; array('cache' =&gt; true),         // cache den gesamten IndexController         
+       '^/index/' =&gt; array('cache' =&gt; true),    // cache den gesamten IndexController
+       '^/article/' =&gt; array('cache' =&gt; false), // wir cachen nicht den ArticleController...
+       '^/article/view/' =&gt; array(              // ...aber wir cachen die "View" Aktion von 
+           'cache' =&gt; true,                     // diesem ArticleController
+           'cacheWithPostVariables' =&gt; true,    // und wir cachen sogar wenn es einige Variablen in $_POST gibt
+           'makeIdWithPostVariables' =&gt; true,   // (aber die Cache Id wird vom $_POST Array abhängig sein)
+       )
+   )	  
+);
+$backendOptions = array(
+    'cacheDir' =&gt; '/tmp/' 
+);
+
+// erhalte ein Zend_Cache_Frontend_Page Objekt
+$cache = Zend_Cache::factory('Page', 'File', $frontendOptions, $backendOptions);
+
+$cache-&gt;start();
+
+// Wenn der Cache gefunden wurde, wird das Ergebnis zum Browser geschickt, und das Skript stoppt hier
+
+// [...] das Ende der Bootstrap Datei (diese Zeilen werden nicht ausgeführt, wenn der Cache ausgegeben wurde)
+	        	
+?&gt;           </pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.cache.theory.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.cache.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.cache.backends.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.2. Die Theorie des Cachens </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 4.4. Zend_Cache Backends</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

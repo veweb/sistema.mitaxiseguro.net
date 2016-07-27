@@ -1,0 +1,204 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.2. Verfeinern der Zugriffskontrolle</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="prev" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="next" href="zend.acl.advanced.html" title="2.3. Advanced Use">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="subsection" href="zend.acl.refining.html#zend.acl.refining.precise" title="2.2.1. Präzise Zugangsbeschränkung">
+<link rel="subsection" href="zend.acl.refining.html#zend.acl.refining.removing" title="2.2.2. Zugangsbeschränkungen entfernen">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.2. Verfeinern der Zugriffskontrolle</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.acl.html">Zurück</a> </td>
+<th width="60%" align="center">Kapitel 2. Zend_Acl</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.acl.advanced.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.acl.refining"></a>2.2. Verfeinern der Zugriffskontrolle</h2></div></div></div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.refining.precise"></a>2.2.1. Präzise Zugangsbeschränkung</h3></div></div></div>
+<p>
+            Die grundlegende ACL, wie sie im <a href="zend.acl.html#zend.acl.introduction" title="2.1. Einführung">vorherigen 
+            Kapitel</a> definiert ist, zeigt wie verschiedene Rechte für die gesamte ACL (alle
+            Ressourcen) vergeben werden können. In der Praxis tendieren Zugangsbeschränkungen jedoch
+            eher dahin, Ausnahmen und verschiedene Stufen von Komplexität zu haben. Zend_Acl erlaubt
+            einem, diese Verfeinerungen auf einfache und flexible Weise zu bewerkstelligen.
+        </p>
+<p>
+            Für das Beispiel CMS wurde ermittelt, dass, während die 'staff' Gruppe die Bedürfnisse
+            der überwiegenden Mehrheit der Benutzer abdeckt, es den Bedarf für eine neue 'marketing' 
+            Gruppe gibt, die Zugriff auf den Newsletter und die neuesten Nachrichten im CMS 
+            benötigen. Die Gruppe ist ziemlich unabhängig und wird die Möglichkeit haben, sowohl
+            Newsletter als auch die neuesten Nachrichten zu veröffentlichen und zu archivieren.
+        </p>
+<p>
+            Zusätzlich wurde angefordert, dass es der 'staff' Gruppe erlaubt sein soll, die Nachrichten
+            ansehen, aber nicht die neuesten Nachrichen überarbeiten zu können. Zuguterletzt soll
+            es für jeden (Administratoren eingeschlossen) unmöglich sein, irgend eine 
+            Bekanntmachung zu archivieren, da diese sowieso nur eine Lebensdauer von 1 bis 2
+            Tagen haben.
+        </p>
+<p>
+            Zuerst überarbeiten wir die Rollenregistrierung, um die Änderungen wider zu spiegeln. 
+            Wir haben ermittelt, dass die 'marketing' Gruppe die selben grundlegenden Rechte wie
+            'staff' hat, also definieren wir 'marketing' so, dass die Genehmigungen von 'staff'
+            geerbt werden:
+        </p>
+<pre class="programlisting">
+// Die neue Marketing Gruppe erbt Genehmigungen der Mitarbeiter
+$acl-&gt;addRole(new Zend_Acl_Role('marketing'), 'staff');</pre>
+<p>
+            Als nächstes ist zu beachten, dass sich die obige Zugangsbeschränkung auf bestimmte
+            Ressourcen bezieht (z.B. "newsletter", "lastest news", "announcement news"). Nun fügen
+            wir die Ressourcen hinzu:
+        </p>
+<pre class="programlisting">
+// Ressourcen für die Regeln erstellen
+require_once 'Zend/Acl/Resource.php';
+$acl-&gt;add(new Zend_Acl_Resource('newsletter'));           // Newsletter
+$acl-&gt;add(new Zend_Acl_Resource('news'));                 // Nachrichten
+$acl-&gt;add(new Zend_Acl_Resource('latest'), 'news');       // Neueste Nachrichten
+$acl-&gt;add(new Zend_Acl_Resource('announcement'), 'news'); // Bekanntmachung</pre>
+<p>
+            Nun ist es nur eine Frage der Definition für diese spezifischeren Regeln auf die 
+            Zielbereiche der ACL:
+        </p>
+<pre class="programlisting">
+// Marketing muss Newsletter und die neuesten Nachrichten veröffentlichen und archivieren können
+$acl-&gt;allow('marketing', array('newsletter', 'latest'), array('publish', 'archive'));
+
+// Staff (und Marketing durch die Vererbung), wird die Erlaubnis verweigert, die neuesten Nachrichten überarbeiten zu können
+$acl-&gt;deny('staff', 'latest', 'revise');
+
+// Jedem (inklusive der Administratoren) wird die Erlaubnis verweigert, Bekanntmachungsnachricht zu archivieren
+$acl-&gt;deny(null, 'announcement', 'archive');</pre>
+<p>
+            Wir können nun die ACL abfragen hinsichtlich der letzten Änderungen
+        </p>
+<pre class="programlisting">
+echo $acl-&gt;isAllowed('staff', 'newsletter', 'publish') ?
+     "allowed" : "denied"; // verweigert
+
+echo $acl-&gt;isAllowed('marketing', 'newsletter', 'publish') ?
+     "allowed" : "denied"; // erlaubt
+
+echo $acl-&gt;isAllowed('staff', 'latest', 'publish') ?
+     "allowed" : "denied"; // verweigert
+
+echo $acl-&gt;isAllowed('marketing', 'latest', 'publish') ?
+     "allowed" : "denied"; // erlaubt
+
+echo $acl-&gt;isAllowed('marketing', 'latest', 'archive') ?
+     "allowed" : "denied"; // erlaubt
+
+echo $acl-&gt;isAllowed('marketing', 'latest', 'revise') ?
+     "allowed" : "denied"; // verweigert
+
+echo $acl-&gt;isAllowed('editor', 'announcement', 'archive') ?
+     "allowed" : "denied"; // verweigert
+
+echo $acl-&gt;isAllowed('administrator', 'announcement', 'archive') ?
+     "allowed" : "denied"; // verweigert</pre>
+</div>
+<div class="sect2" lang="de">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.refining.removing"></a>2.2.2. Zugangsbeschränkungen entfernen</h3></div></div></div>
+<p>
+            Um eine oder mehrere Zugangsregel von der ACL zu entfernen, verwendet man einfach die
+            vorhandenen <code class="code">removeAllow()</code> oder <code class="code">removeDeny()</code> Methoden. Wie bei
+            <code class="code">allow()</code> und <code class="code">deny()</code> kann man den <code class="code">null</code> Wert 
+            übergeben, um die Anwendung auf alle Rollen, Ressourcen und / oder Rechte anzuzeigen:
+        </p>
+<pre class="programlisting">
+// Entferne die Verweigerung, die letzten Nachrichten zu überarbeiten für die Mitarbeiter (und Marketing durch die Vererbung)
+$acl-&gt;removeDeny('staff', 'latest', 'revise');
+
+echo $acl-&gt;isAllowed('marketing', 'latest', 'revise') ?
+     "allowed" : "denied"; // erlaubt
+
+// Entferne die Erlaubnis für das Marketing, Newsletter veröffentlichen und archivieren zu können
+$acl-&gt;removeAllow('marketing', 'newsletter', array('publish', 'archive'));
+
+echo $acl-&gt;isAllowed('marketing', 'newsletter', 'publish') ?
+     "allowed" : "denied"; // verweigert
+
+echo $acl-&gt;isAllowed('marketing', 'newsletter', 'archive') ?
+     "allowed" : "denied"; // verweigert</pre>
+<p>
+            Rechte können schrittweise wie oben angezeigt verändert werden, aber ein 
+            <code class="code">null</code> Wert für die Rechte überschreibt solche schrittweisen Änderungen:
+        </p>
+<pre class="programlisting">
+// Erlaube dem Marketing alle Rechte für die neuesten Nachrichten
+$acl-&gt;allow('marketing', 'latest');
+
+echo $acl-&gt;isAllowed('marketing', 'latest', 'publish') ?
+     "allowed" : "denied"; // erlaubt
+
+echo $acl-&gt;isAllowed('marketing', 'latest', 'archive') ?
+     "allowed" : "denied"; // erlaubt
+
+echo $acl-&gt;isAllowed('marketing', 'latest', 'anything') ?
+     "allowed" : "denied"; // erlaubt</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.acl.html">Zurück</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.acl.html">Nach oben</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.acl.advanced.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitel 2. Zend_Acl </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 2.3. Advanced Use</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Глава 22. Zend_Search</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="index.html" title="Руководство разработчика">
+<link rel="prev" href="zend.rest.server.html" title="21.3. Zend_Rest_Server">
+<link rel="next" href="zend.search.index-creation.html" title="22.2. Индексация">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="section" href="zend.search.html#zend.search.overview" title="22.1. Обзор">
+<link rel="section" href="zend.search.index-creation.html" title="22.2. Индексация">
+<link rel="section" href="zend.search.searching.html" title="22.3. Поиск по индексу">
+<link rel="section" href="zend.search.query-language.html" title="22.4. Язык запросов">
+<link rel="section" href="zend.search.queries.html" title="22.5. Типы запросов ">
+<link rel="section" href="zend.search.charset.html" title="22.6. Кодировки">
+<link rel="section" href="zend.search.extending.html" title="22.7. Расширяемость">
+<link rel="section" href="zend.search.java-lucene.html" title="22.8. Взаимодействие с Java Lucene">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Глава 22. Zend_Search</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.rest.server.html">Пред.</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.search.index-creation.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ru">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.search"></a>Глава 22. Zend_Search</h2></div></div></div>
+<div class="toc">
+<p><b>Содержание</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.search.html#zend.search.overview">22.1. Обзор</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.introduction">22.1.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.documents-and-fields">22.1.2. Объекты документа и поля</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.html#zend.search.index-creation.understanding-field-types">22.1.3. Значение типов полей</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.index-creation.html">22.2. Индексация</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.creating">22.2.1. Создание нового индекса</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.updating">22.2.2. Обновление индекса</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.document-updating">22.2.3. Обновление документов</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.counting">22.2.4. Получение размера индекса</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.optimization">22.2.5. Оптимизация индекса</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.index-creation.html#zend.search.index-creation.limitations">22.2.6. Ограничения</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.searching.html">22.3. Поиск по индексу</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.query_building">22.3.1. Построение запросов</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results">22.3.2. Результаты поиска</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.results-scoring">22.3.3. Ранжирование результата</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.searching.html#zend.search.searching.sorting">22.3.4. Сортировка результатов поиска</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.query-language.html">22.4. Язык запросов</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.terms">22.4.1. Элементы</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.fields">22.4.2. Поля</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.modifiers">22.4.3. Модификаторы элементов</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.proximity-search">22.4.4. Поиск по критерию близости</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boosting">22.4.5. Усиление элемента</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.boolean">22.4.6. Булевы операторы</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.grouping">22.4.7. Групирование</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.field-grouping">22.4.8. Группирование полей</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.query-language.html#zend.search.query-language.escaping">22.4.9. Экранирование специальных символов</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.queries.html">22.5. Типы запросов </a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.term-query">22.5.1. Простой запрос (запрос по одному ключевому слову)</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.multiterm-query">22.5.2. Составной запрос (запрос по нескольким ключевым словам)</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.queries.html#zend.search.queries.phrase-query">22.5.3. Фразовый запрос</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.charset.html">22.6. Кодировки</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.description">22.6.1. Поддержка UTF-8 и однобайтных наборов символов</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.default_analyzer">22.6.2. Используемый по умолчанию анализатор текста</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.charset.html#zend.search.charset.utf_analyzer">22.6.3. Совместимый с UTF-8 анализатор текста</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.extending.html">22.7. Расширяемость</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.analysis">22.7.1. Анализ текста</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.filters">22.7.2. Фильтрация лексем</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.scoring">22.7.3. Алгоритмы ранжирования</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.extending.html#zend.search.extending.storage">22.7.4. Контейнеры хранения</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.search.java-lucene.html">22.8. Взаимодействие с Java Lucene</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.file-formats">22.8.1. Форматы файлов</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.index-creation.index-directory">22.8.2. Директория для индекса</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.source-code">22.8.3. Исходный код Java</a></span></dt>
+<dt><span class="sect2"><a href="zend.search.java-lucene.html#zend.search.java-lucene.jar">22.8.4. Использование LuceneIndexCreation.jar</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.search.overview"></a>22.1. Обзор</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.introduction"></a>22.1.1. Введение</h3></div></div></div>
+<p>
+            Zend_Search_Lucene является поисковым движком общего
+            назначения для полнотекстового поиска, написанным полностью на PHP 5.
+            Так как он хранит индекс в файловой системе и не требует наличия
+            сервера баз данных, то дает
+            возможность реализовать поиск практически для всех веб-сайтов, работающих
+            под управлением PHP. Zend_Search_Lucene поддерживает следующие
+            возможности:  
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        Ранжированный поиск — более подходящие результаты возвращаются первыми
+
+                    </p></li>
+<li><p>
+                       Множество типов запросов: поиск фраз, поиск с шаблонами,
+                       поиск по критерию близости, поиск по диапазону значений
+                       и т.д.
+
+                        <sup>[<a name="id4890880" href="#ftn.id4890880">7</a>]</sup>
+                    </p></li>
+<li><p>
+                        Поиск по определенному полю (например: заголовок, автор,
+                        содержимое)
+
+                    </p></li>
+</ul></div>
+<p>
+            Zend_Search_Lucene произошел от проекта Apache Lucene.
+            За более подробной информацией см.
+
+            <a href="http://lucene.apache.org/java/docs/" target="_top">http://lucene.apache.org/java/docs/</a>.
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.documents-and-fields"></a>22.1.2. Объекты документа и поля</h3></div></div></div>
+<p>
+                Zend_Search_Lucene оперирует с документами как с элементарными
+                объектами для индексации. Документ делится на именованные поля,
+                содержащие контент, по которому может производиться поиск.
+
+            </p>
+<p>
+                Документ представлен объектом Zend_Search_Lucene_Document,
+                этот объект содержит объекты Zend_Search_Lucene_Field, 
+                представляющие собой поля документа.
+
+            </p>
+<p>
+                Важно отметить, что в индекс может быть добавлена любая информация.
+                Данные вашего приложения или метаданные могут сохраняться в
+                полях документа и после извлекаться вместе с документом в процессе
+                поиска.
+
+            </p>
+<p>
+                Приложение отвественно за процесс индексации.
+                Как следствие, проиндексированы могут быть данные из любых
+                источников, доступных приложению. Например, это
+                могут быть файловая система, база данных, форма HTML и т.д.   
+
+            </p>
+<p>
+                Класс <code class="code">Zend_Search_Lucene_Field</code> предоставляет
+                несколько статических методов для создания полей с различными
+                характеристиками.
+
+            </p>
+<pre class="programlisting">&lt;?php
+$doc = new Zend_Search_Lucene_Document();
+
+// Данные поля не разбиваются на лексемы,
+// но индексируются и полностью сохраняются в индексе.
+// Сохраненные данные поля могут быть получены из индекса.
+$doc-&gt;addField(Zend_Search_Lucene_Field::Keyword('doctype',
+                                                 'autogenerated'));
+
+// Данные поля не разбиваются на лексемы и не индексируются,
+// но полностью сохраняются в индексе. 
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnIndexed('created',
+                                                   time()));
+
+// Бинарное поле, данные которого не разбиваются на лексемы и не индексируются,
+// но сохраняются в индексе.
+$doc-&gt;addField(Zend_Search_Lucene_Field::Binary('icon',
+                                                $iconData));
+
+// Данные поля разбиваются на лексемы, индексируются
+// и полностью сохраняются в индексе. 
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('annotation',
+                                              'Document annotation text'));
+
+// Данные поля разбиваются на лексемы и индексируются,
+// но не сохраняются в индексе.
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents',
+                                                  'My document content'));
+
+?&gt;</pre>
+<p>
+                Каждый из этх методов (исключая метод <code class="code">Zend_Search_Lucene_Field::Binary()</code>)
+                имеет необязательный параметр <code class="code">$encoding</code>. Через него
+                указывается кодировка для входных данных. 
+
+            </p>
+<p>
+                Кодировка может различаться как для документов, так и для
+                полей в одном документе.
+
+
+                </p>
+<pre class="programlisting">&lt;?php
+$doc = new Zend_Search_Lucene_Document();
+$doc-&gt;addField(Zend_Search_Lucene_Field::Text('title', $title, 'iso-8859-1'));
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', $contents, 'utf-8'));
+?&gt;</pre>
+<p>
+            </p>
+<p>
+                Если этот параметр опущен, то используется текущая локаль.
+                Например: 
+
+                </p>
+<pre class="programlisting">&lt;?php
+setlocale(LC_ALL, 'de_DE.iso-8859-1');
+...
+$doc-&gt;addField(Zend_Search_Lucene_Field::UnStored('contents', $contents));
+?&gt;</pre>
+<p>
+            </p>
+<p>
+                Поля всегда сохраняются и возвращаются из индекса в кодировке
+                UTF-8. Преобразование в UTF-8 производится автоматически.   
+
+            </p>
+<p>
+                Анализатор текста (<a href="zend.search.extending.html#zend.search.extending.analysis" title="22.7.1. Анализ текста">см. далее</a>)
+                может также преобразовывать текст в другие кодировки. В
+                настоящее время используемый по умолчанию анализатор преобразует
+                текст в кодировку 'ASCII//TRANSLIT'. Имейте в виду, что такое
+                преобразование может зависеть от текущей локали.
+
+            </p>
+<p>
+                Имена полей могут быть любыми.
+
+            </p>
+<p>
+                Java Lucene по умолчанию использует для поиска поле "contents".
+                Zend_Search_Lucene по умолчанию производит поиск по всем полям,
+                но это поведение можно изменить. За подробностями см.
+                <a href="zend.search.query-language.html#zend.search.query-language.fields" title="22.4.2. Поля">Поля для поиска</a>.   
+
+            </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.search.index-creation.understanding-field-types"></a>22.1.3. Значение типов полей</h3></div></div></div>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    Поля <code class="code">Keyword</code> полностью сохраняются и индексируются,
+                    это означает, что можно не только производить поиск в них,
+                    но и отображать их в результатах поиска.
+                    Они не делятся на отдельные слова посредством разбиения
+                    на лексемы. Нумерованные поля БД обычно преобразуются в поля Keyword
+                    в Zend_Search_Lucene.
+
+                </p></li>
+<li><p>
+                    В полях <code class="code">UnIndexed</code> нельзя производить поиск,
+                    но они возвращаются в результатах поиска. Поля timestamp,
+                    ключевые поля, пути в файловой системе и другие
+                    внешние идентификаторы — хорошие кандидаты для того, чтобы
+                    быть полями UnIndexed.
+
+                </p></li>
+<li><p>
+                    Поля <code class="code">Binary</code> не разбиваются на лексемы и не индексируются,
+                    но сохраняются для возвращения в результатах поиска.
+                    Они могут использоваться для хранения любых данных,
+                    закодированных в виде бинарной строки — как, например,
+                    иконки.
+
+                </p></li>
+<li><p>
+                    Поля <code class="code">Text</code> сохраняются, разбиваются на лексемы
+                    и индексируются. Текстовые поля подходят для хранения
+                    такой информации, как темы и заголовки — в них нужно не
+                    только искать, но и возвращать с результатами поиска. 
+
+                </p></li>
+<li>
+<p>
+                    Поля <code class="code">UnStored</code> разбиваются на лексемы и индексируются, но
+                    не сохраняются в индексе. Тексты большого объема лучше
+                    индексировать, используя этот тип поля.
+                    Хранение таких данных создает индекс, который занимает много места
+                    на диске, поэтому если нужно искать в данных, но не выводить их, то
+                    используйте поле UnStored. Поля UnStored полезны,
+                    когда используется индекс Zend_Search_Lucene в
+                    комбинации с реляционной БД. Вы можете индексировать большие
+                    поля данных для поиска с помощью UnStored и извлекать их
+                    из реляционной БД, используя отдельные поля как
+                    идентификаторы.
+
+               </p>
+<div class="table">
+<a name="id4891558"></a><p class="title"><b>Таблица 22.1. Типы Zend_Search_Lucene_Field</b></p>
+<table summary="Типы Zend_Search_Lucene_Field" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Тип поля</th>
+<th>Сохраняется</th>
+<th>Индексируется</th>
+<th>Разбивается на лексемы</th>
+<th>Бинарное</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Keyword</td>
+<td>Да</td>
+<td>Да</td>
+<td>Нет</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>UnIndexed</td>
+<td>Да</td>
+<td>Нет</td>
+<td>Нет</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>Binary</td>
+<td>Да</td>
+<td>Нет</td>
+<td>Нет</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>Да</td>
+<td>Да</td>
+<td>Да</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>UnStored</td>
+<td>Нет</td>
+<td>Да</td>
+<td>Да</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4890880" href="#id4890880">7</a>] </sup>
+                             Сейчас поддерживается поиск по одному и нескольким
+                             элементам, фразам, булевы операторы и подзапросы.
+
+                           </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.rest.server.html">Пред.</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.search.index-creation.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">21.3. Zend_Rest_Server </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 22.2. Индексация</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

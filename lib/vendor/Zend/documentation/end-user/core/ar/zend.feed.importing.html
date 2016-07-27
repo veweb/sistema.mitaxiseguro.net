@@ -1,0 +1,107 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10.2. Importing Feeds with Zend_Feed</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="prev" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="next" href="zend.feed.findFeeds.html" title="10.3. Retrieving Feeds from Web Pages">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">10.2. Importing Feeds with Zend_Feed</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.html">السابق</a> </td>
+<th width="60%" align="center">فصل 10. Zend_Feed</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.feed.findFeeds.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.feed.importing"></a>10.2. Importing Feeds with Zend_Feed</h2></div></div></div>
+<p>
+        <code class="code">Zend_Feed</code> enables developers to retrieve feeds very easily. If you know the URI of a
+        feed, simply use the <code class="code">Zend_Feed::import()</code> method:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+$feed = Zend_Feed::import('http://feeds.example.com/feedName');
+
+?&gt;</pre>
+<p>
+        You can also use <code class="code">Zend_Feed</code> to fetch the contents of a feed from a file or the contents
+        of a PHP string variable:
+    </p>
+<pre class="programlisting">
+&lt;?php
+
+// importing a feed from a text file
+$feedFromFile = Zend_Feed::importFile('feed.xml');
+
+// importing a feed from a PHP string variable
+$feedFromPHP = Zend_Feed::importString($feedString);
+
+?&gt;</pre>
+<p>
+        In each of the examples above, an object of a class that extends <code class="code">Zend_Feed_Abstract</code> is
+        returned upon success, depending on the type of the feed. If an RSS feed were retrieved via one of
+        the import methods above, then a <code class="code">Zend_Feed_Rss</code> object would be returned. On the other
+        hand, if an Atom feed were imported, then a <code class="code">Zend_Feed_Atom</code> object is returned. The
+        import methods will also throw a <code class="code">Zend_Feed_Exception</code> object upon failure, such as an
+        unreadable or malformed feed.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.html">السابق</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.feed.html">أعلى</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.feed.findFeeds.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">فصل 10. Zend_Feed </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> 10.3. Retrieving Feeds from Web Pages</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

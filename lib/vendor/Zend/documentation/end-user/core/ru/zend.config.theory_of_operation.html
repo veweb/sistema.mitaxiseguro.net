@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.2. Основы работы</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="prev" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="next" href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.2. Основы работы</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.config.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 5. Zend_Config</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.adapters.ini.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.config.theory_of_operation"></a>5.2. Основы работы</h2></div></div></div>
+<p>
+        Конфигурационные данные передаются конструктору <code class="code">Zend_Config</code>
+        в виде ассоциативного массива, который может быть многомерным, что
+        дает возможность организовывать данные от общего к частному. Классы
+        адаптеров предназначены для того, чтобы преобразовать конфигурационные
+        данные из хранилища в ассоциативный массив для конструктора
+        <code class="code">Zend_Config</code>. Пользовательские скрипты могут также
+        передавать массивы непосредственно конструктору <code class="code">Zend_Config</code>
+        без использования класса адаптера, так как это может быть наиболее
+        подходящим решением в определенных ситуациях.
+
+    </p>
+<p>
+        <code class="code">Zend_Config</code> реализует интерфейсы <code class="code">Countable</code>
+        и <code class="code">Iterator</code> для того, чтобы обеспечить простой доступ
+        к конфигурационным данным. Поэтому применительно к объектам
+        <code class="code">Zend_Config</code> можно использовать функцию
+        <a href="http://php.net/count" target="_top"><code class="code">count()</code></a> и
+        такие конструкции языка PHP, как
+        <a href="http://php.net/foreach" target="_top"><code class="code">foreach</code></a>.
+
+    </p>
+<p>
+        По умолчанию через <code class="code">Zend_Config</code> конфигурационные данные
+        доступны только для чтения, и операция присваивания (например,
+        <code class="code">$config-&gt;database-&gt;host = 'example.com'</code>)
+        вызовет исключение. Это поведение, принятое по умолчанию,
+        может быть отменено при вызове конструктора и тогда
+        можно будет изменять конфигурационные данные.
+
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Замечание]" src="images/note.png"></td>
+<th align="left">Замечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+                Важно не путать изменение данных в памяти с сохранением
+                конфигурационных данных на физическом носителе данных. Инструменты
+                для создания и изменения конфигурационных данных для различных
+                носителей данных не входят в сферу назначений <code class="code">Zend_Config</code>.
+                Для этих целей доступны продукты сторонних разработчиков
+                с открытым исходным кодом к различным носителям информации. 
+
+            </p></td></tr>
+</table></div>
+<p>
+    </p>
+<p>
+        Классы адаптеров наследуют от класса <code class="code">Zend_Config</code>,
+        и, следовательно, имеют тот же функционал.
+
+    </p>
+<p>
+        Семейство классов <code class="code">Zend_Config</code> дает возможность
+        организовывать конфигурационные данные, разбивая их на разделы.
+        В объекты адаптеров <code class="code">Zend_Config</code> может быть загружен 
+        один определенный раздел, несколько разделов или все разделы
+        данных (если не указан ни один раздел).
+
+    </p>
+<p>
+        Классы адаптеров <code class="code">Zend_Config</code> поддерживают единую модель
+        наследования, которая позволяет одному разделу наследовать
+        конфигурационные данные из другого. Это сделано для того, чтобы
+        уменьшить или устранить необходимость дублирования конфигурационных
+        данных разного назначения. Наследующий раздел может замещать данные,
+        унаследованные от родительского раздела. Как и при наследовании классов PHP,
+        раздел может наследовать от родительского раздела, который в свою очередь
+        наследует от другого и т.д., но множественное наследование (т.е. раздел
+        C наследует напрямую от разделов A и B) не поддерживается. 
+
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.config.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.config.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.adapters.ini.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Глава 5. Zend_Config </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 5.3. Zend_Config_Ini</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

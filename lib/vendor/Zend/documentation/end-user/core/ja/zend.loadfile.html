@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1.2. Zend::loadFile()</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.html" title="第1章 Zend">
+<link rel="prev" href="zend.html" title="第1章 Zend">
+<link rel="next" href="zend.loadclass.html" title="1.3. Zend::loadClass()">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">1.2. Zend::loadFile()</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.html">前のページ</a> </td>
+<th width="60%" align="center">第1章 Zend</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.loadclass.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.loadfile"></a>1.2. Zend::loadFile()</h2></div></div></div>
+<p>
+    <code class="code">Zend::loadFile()</code> は、任意の PHP コードを含む PHP
+    ファイルを読み込みます。PHP 関数
+    <a href="http://php.net/include" target="_top"><code class="code">include()</code></a>
+    のラッパーで、失敗した場合には <code class="code">Zend_Exception</code> をスローします。
+    </p>
+<pre class="programlisting">&lt;?php
+
+Zend::loadFile($filename, $dirs=null, $once=false)
+
+?&gt;</pre>
+<p>
+    引数 <code class="code">$filename</code> には読み込むファイル名を指定します。
+    ここにはパス情報を含めてはいけません。<code class="code">$filename</code>
+    に対してはセキュリティチェックが行われます。
+    <code class="code">$filename</code> に含めることができるのは英数字、ダッシュ ("-")、
+    アンダースコア ("_") あるいはピリオド (".") だけです。
+    引数 <code class="code">$dirs</code> にはそのような制限はありません。
+    </p>
+<p>
+    引数 <code class="code">$dirs</code> にはファイルを探すディレクトリを指定します。
+    <code class="code">NULL</code> の場合は <code class="code">include_path</code> の中のみを対象とします。
+    文字列あるいは配列を指定すると、指定されたディレクトリをまず探した後で、それから
+    <code class="code">include_path</code> を探します。
+    </p>
+<p>
+    引数 <code class="code">$once</code> には、ファイルを読み込む際に使用する PHP 関数を
+    <a href="http://php.net/include" target="_top"><code class="code">include()</code></a> あるいは
+    <a href="http://php.net/include_once" target="_top"><code class="code">include_once()</code></a>
+    のどちらにするのかを論理値で指定します。
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.loadclass.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第1章 Zend </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 1.3. Zend::loadClass()</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

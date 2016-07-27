@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>17.4. 使用不同的Transport对象</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="prev" href="zend.mail.multiple-emails.html" title="17.3. 通过一个SMTP连接发送多个邮件">
+<link rel="next" href="zend.mail.html-mails.html" title="17.5. HTML邮件">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">17.4. 使用不同的Transport对象</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.mail.multiple-emails.html">上一页</a> </td>
+<th width="60%" align="center">第 17 章 Zend_Mail</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.mail.html-mails.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.mail.different-transports"></a>17.4. 使用不同的Transport对象</h2></div></div></div>
+<p>
+        有时你想想使用不同的连接来发送不同的邮件，你也可以不预先调用<code class="code">setDefaultTransport()</code>方法，而直接将Transport对象传递给<code class="code">send()</code>。
+        被传递的transport对象会在实际的<code class="code">send()</code>调用中替代缺省的transport：
+    </p>
+<div class="example">
+<a name="id4791576"></a><p class="title"><b>例 17.4. 使用不同的Transport对象</b></p>
+<pre class="programlisting">
+&lt;?php
+require_once 'Zend/Mail.php';
+$mail = new Zend_Mail();
+// build message...
+require_once 'Zend/Mail/Transport/Smtp.php';
+$tr1 = new Zend_Mail_Transport_Smtp('server@example.com');
+$tr2 = new Zend_Mail_Transport_Smtp('other_server@example.com');
+$mail-&gt;send($tr1);
+$mail-&gt;send($tr2);
+$mail-&gt;send();  // use default again
+?&gt;   </pre>
+</div>
+<div class="note"><table border="0" summary="Note: 外加的transports">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">外加的transports</th>
+</tr>
+<tr><td align="left" valign="top"><p>外加transport，需要实现<code class="code">Zend_Mail_Transport_Interface</code>接口。</p></td></tr>
+</table></div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.mail.multiple-emails.html">上一页</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.mail.html">上一级</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.mail.html-mails.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">17.3. 通过一个SMTP连接发送多个邮件 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 17.5. HTML邮件</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

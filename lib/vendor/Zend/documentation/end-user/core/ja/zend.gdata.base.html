@@ -1,0 +1,221 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>12.4. Google Base の使用法</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="prev" href="zend.gdata.clientlogin.html" title="12.3. ClientLogin による認証">
+<link rel="next" href="zend.gdata.blogger.html" title="12.5. Google Blogger の使用法">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.gdata.base.html#zend.gdata.base.query" title="12.4.1. データの問い合わせ">
+<link rel="subsection" href="zend.gdata.base.html#zend.gdata.base.post" title="12.4.2. Base のデータの更新">
+<link rel="subsection" href="zend.gdata.base.html#zend.gdata.base.metadata" title="12.4.3. Base のメタデータの問い合わせ">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">12.4. Google Base の使用法</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.gdata.clientlogin.html">前のページ</a> </td>
+<th width="60%" align="center">第12章 Zend_Gdata</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.gdata.blogger.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.gdata.base"></a>12.4. Google Base の使用法</h2></div></div></div>
+<p>
+        Google Base 用の Google Data API インターフェイスを使用すると、
+        Google Base のデータベースに対して問い合わせを行うアプリケーションを書くことができます。
+        たとえば製品やサービス、イベントなどについての問い合わせが可能です。
+        また、プログラムから Google Base にエントリを入力したり、
+        それを管理したりすることも可能です。
+    </p>
+<p>
+        Google Base API についての詳細な情報は
+        <a href="http://code.google.com/apis/base/" target="_top">http://code.google.com/apis/base/</a>
+        を参照ください。
+    </p>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.base.query"></a>12.4.1. データの問い合わせ</h3></div></div></div>
+<p>
+            <code class="code">setQuery()</code> メソッドを使用して検索するテキストを指定し、
+            Google Base に対して問い合わせます。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base();
+$gdataBase-&gt;setQuery('digital camera');
+$feed = $gdataBase-&gt;getBaseFeed();
+?&gt;</pre>
+<p>
+            このオブジェクトの使用法についての詳細は、
+            <a href="zend.feed.html#zend.feed.introduction" title="10.1. 導入">Zend_Feed</a>
+            のドキュメントを参照ください。
+        </p>
+<p>
+            Google Base では、属性をもとにした問い合わせもサポートしています。
+            属性の条件を指定するには <code class="code">addAttribute()</code> メソッドを使用します。
+            このメソッドのパラメータは、
+            属性の名前とその値、そしてオプションで演算子となります。
+            デフォルトの演算子は ':' で、これは、文字列が一致することを表します。
+        </p>
+<p>
+            属性による問い合わせは、テキストによる問い合わせと組み合わせることができます。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base();
+$gdataBase-&gt;setQuery('digital camera');
+$gdataBase-&gt;addAttributeQuery('price', '50 USD', '&lt;');
+$feed = $gdataBase-&gt;getBaseFeed();
+?&gt;</pre>
+<p>
+            <code class="code">addAttributeQuery()</code> を使用して複数の属性を指定することもできます。
+            同じ属性に対して複数の条件を指定することも可能です。
+        </p>
+<p>
+            属性についての条件をクリアするには
+            <code class="code">unsetAttributeQuery()</code> メソッドを使用します。
+            パラメータには属性名を指定します。同一の属性に対して複数の条件を指定している場合は、
+            そのずべてが削除されます。このメソッドのパラメータを指定しなかった場合は、
+            属性に関するすべての条件が削除されます。
+        </p>
+<p>
+            <code class="code">addAttribute()</code> メソッドでは、
+            括弧や否定、そして論理演算子などの拡張構文はサポートしていません
+            そのようなものについては、
+            <code class="code">setQuery()</code> メソッドを使用して文字列で指定します。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base();
+$gdataBase-&gt;setQuery('digital camera ( [price &lt; 50 USD] | [location: @"Mountain View, CA 94043"] )');
+$feed = $gdataBase-&gt;getBaseFeed();
+?&gt;</pre>
+<p>
+            結果のフィードは、さまざまな条件で並べ替えることができます。
+            並べ替えの条件を指定するには <code class="code">setOrderby()</code>
+            メソッドを使用します。よく使用する値には
+            <code class="code">modification-time</code> や
+            <code class="code">name</code> あるいは <code class="code">relevancy</code> などがあります。
+            より高度なランキング指定を
+            <a href="http://code.google.com/apis/base/ranking-lang-spec.html" target="_top">Ranking Language</a>
+            を用いて行うことも可能です。デフォルトでは、返されるエントリの並び順は
+            <code class="code">relevancy</code> (関連性) の順となります。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.base.post"></a>12.4.2. Base のデータの更新</h3></div></div></div>
+<p>
+            データを更新するには、Zend_Gdata_Base オブジェクトに二つのものが必要です。
+            ひとつは認証済みの Http クライアント、そしてもうひとつはデベロッパーキーです。
+        </p>
+<p>
+            デベロッパーキーは、通常は 54 文字の英数字による文字列です。
+            デベロッパーキーの取得方法については
+            <a href="http://code.google.com/apis/base/starting-out.html#authDev" target="_top">http://code.google.com/apis/base/starting-out.html#authDev</a>
+            を参照ください。
+        </p>
+<p>
+            デベロッパーキーを設定するには、Zend_Gdata_Base
+            のコンストラクタのオプションの第二パラメータを使用します。
+            既存のオブジェクトに対してデベロッパーキーを設定するには
+            <code class="code">setDeveloperKey()</code> メソッドを使用します。
+            Zend_Gdata_Base オブジェクトに対していちどデベロッパーキーを設定すると、
+            それ以降のリクエストではキーが自動的に送信されます。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base($authenticatedHttpClient);
+$gdataBase-&gt;setDeveloperKey($myDeveloperKey);
+?&gt;</pre>
+<p>
+            エントリを Google Base に投稿するには <code class="code">post()</code>
+            メソッドを使用します。これは Zend_Gdata クラス群の共通メソッドです。
+            XML エントリの要素についての詳細は
+            Google Base Data API のドキュメントを参照ください。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.gdata.base.metadata"></a>12.4.3. Base のメタデータの問い合わせ</h3></div></div></div>
+<p>
+            Google Base のフィードの itemtypes に対する問い合わせを行うには
+            <code class="code">getItemTypesFeed()</code> メソッドを使用します。
+            このメソッドの最初のパラメータはロケールです。たとえば
+            "en_US" のようになります。二番目のパラメータはオプションで、
+            項目の型を指定します。型を指定した場合は、
+            このメソッドはその型の属性のフィードを返します。
+            指定しなかった場合は、すべての型のフィードを返します。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base();
+
+// すべての型の一覧を取得します
+$itemTypes = $gdataBase-&gt;getItemTypesFeed('en_US');
+
+// 型が 'jobs' である属性の一覧を取得します
+$jobsAttributes = $gdataBase-&gt;getItemTypesFeed('en_US', 'jobs');
+?&gt;</pre>
+<p>
+            指定した型の項目についての統計情報、たとえばそれぞれの属性の値ごとの
+            Google Base のエントリ数などを問い合わせることも可能です。
+            このような問い合わせには <code class="code">getItemTypeAttributesFeed()</code>
+            メソッドを使用します。
+        </p>
+<pre class="programlisting">&lt;?php
+$gdataBase = new Zend_Gdata_Base();
+$jobsAttributesStatistics = $gdataBase-&gt;getItemTypeAttributesFeed('jobs');
+?&gt;</pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.gdata.clientlogin.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.gdata.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.gdata.blogger.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">12.3. ClientLogin による認証 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 12.5. Google Blogger の使用法</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

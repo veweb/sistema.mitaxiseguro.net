@@ -1,0 +1,398 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Глава 13. Zend_Http</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="index.html" title="Руководство разработчика">
+<link rel="prev" href="zend.gdata.exception.html" title="12.9. Catching Gdata Exceptions">
+<link rel="next" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - Advanced Usage">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="section" href="zend.http.html#zend.http.client" title="13.1. Zend_Http_Client - Введение">
+<link rel="section" href="zend.http.client.advanced.html" title="13.2. Zend_Http_Client - Advanced Usage">
+<link rel="section" href="zend.http.client.adapters.html" title="13.3. Zend_Http_Client - Connection Adapters">
+<link rel="section" href="zend.http.cookies.html" title="13.4. Zend_Http_Cookie and Zend_Http_CookieJar">
+<link rel="section" href="zend.http.response.html" title="13.5. Zend_Http_Response">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Глава 13. Zend_Http</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.gdata.exception.html">Пред.</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.http.client.advanced.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ru">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.http"></a>Глава 13. Zend_Http</h2></div></div></div>
+<div class="toc">
+<p><b>Содержание</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.http.html#zend.http.client">13.1. Zend_Http_Client - Введение</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.introduction">13.1.1. Введение</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.configuration">13.1.2. Параметры конфигурации</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.basic-requests">13.1.3. Выполнение базовых HTTP-запросов</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.html#zend.http.client.parameters">13.1.4. Добавление параметров GET и POST</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.advanced.html">13.2. Zend_Http_Client - Advanced Usage</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.redirections">13.2.1. HTTP Redirections</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.cookies">13.2.2. Adding Cookies and Using Cookie Persistence</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.custom_headers">13.2.3. Setting Custom Request Headers</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.file_uploads">13.2.4. File Uploads</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.raw_post_data">13.2.5. Sending Raw POST Data</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.http_authentication">13.2.6. HTTP Authentication</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.advanced.html#zend.http.client.multiple_requests">13.2.7. Sending Multiple Requests With the Same Client</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.client.adapters.html">13.3. Zend_Http_Client - Connection Adapters</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapters.overview">13.3.1. Overview</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#id4852646">13.3.2. The Socket Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.proxy">13.3.3. The Proxy Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.test">13.3.4. The Test Adapter</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.client.adapters.html#zend.http.client.adapter.extending">13.3.5. Creating your own connection adapters</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.cookies.html">13.4. Zend_Http_Cookie and Zend_Http_CookieJar</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.introduction">13.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.instantiating">13.4.2. Instantiating Zend_Http_Cookie Objects</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.accessors">13.4.3. Zend_Http_Cookie getter methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookie.matching">13.4.4. Zend_Http_Cookie: Matching against a scenario</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar">13.4.5. The Zend_Http_CookieJar Class: Instantiation</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.adding_cookies">13.4.6. Adding Cookies to a Zend_Http_CookieJar object</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.cookies.html#zend.http.cookies.cookiejar.getting_cookies">13.4.7. Retrieving Cookies From a Zend_Http_CookieJar object</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.http.response.html">13.5. Zend_Http_Response</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.introduction">13.5.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.testers">13.5.2. Boolean Tester Methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.acessors">13.5.3. Accessor Methods</a></span></dt>
+<dt><span class="sect2"><a href="zend.http.response.html#zend.http.response.static_parsers">13.5.4. Static HTTP Response Parsers</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.http.client"></a>13.1. Zend_Http_Client - Введение</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.introduction"></a>13.1.1. Введение</h3></div></div></div>
+<p>
+            Zend_Http_Client предоставляет простой интерфейс для выполнения
+            HTTP-запросов. Zend_Http_Client поддерживает как большинство простых
+            возможностей, ожидаемых от любого HTTP-клиента, так и более сложные
+            функции, такие, как HTTP-аутентификация и выгрузка файлов. При
+            успешно выполненных запросах (и большинстве неуспешно выполненных)
+            возвращается объект Zend_Http_Response, который предоставляет доступ
+            к заголовкам и телу ответа (см. <a href="zend.http.response.html" title="13.5. Zend_Http_Response">Раздел 13.5, «Zend_Http_Response»</a>).
+
+        </p>
+<p>
+            Конструктор класса опционально принимает URL (может быть строкой или
+            объектом Zend_Uri_Http) и массив конфирурационных параметров. Оба
+            параметра могут быть опущены и установлены позднее через методы
+            <code class="code">setUri()</code> и <code class="code">setConfig()</code>.
+
+            </p>
+<div class="example">
+<a name="id4849397"></a><p class="title"><b>Пример 13.1. Инстанцирование объекта Zend_Http_Client</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    $client = new Zend_Http_Client('http://example.org', array(
+        'maxredirects' =&gt; 0,
+        'timeout'      =&gt; 30));
+        
+    // Этот код делает то же самое:
+    $client = new Zend_Http_Client();
+    $client-&gt;setUri('http://example.org');
+    $client-&gt;setConfig(array(
+        'maxredirects' =&gt; 0,
+        'timeout'      =&gt; 30));
+
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.configuration"></a>13.1.2. Параметры конфигурации</h3></div></div></div>
+<p>
+            Конструктор и метод <code class="code">setConfig()</code> принимают ассоциативный
+            массив параметров конфигурации. Установка этих параметров является
+            опциональной, поскольку все они имеют значения по умолчанию.
+
+            </p>
+<div class="table">
+<a name="id4849802"></a><p class="title"><b>Таблица 13.1. Параметры конфигурации Zend_Http_Client</b></p>
+<table summary="Параметры конфигурации Zend_Http_Client" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Параметр</th>
+<th>Описание</th>
+<th>Тип</th>
+<th>Значение по умолчанию</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>maxredirects</td>
+<td>
+                                Максимальное количество последующих
+                                перенаправлений (0 = ни одного перенаправления)
+
+                            </td>
+<td>integer</td>
+<td>5</td>
+</tr>
+<tr>
+<td>strictredirects</td>
+<td>
+                                Строгое следование спецификации RFC при
+                                перенаправлениях (см. <a href="zend.http.client.advanced.html#zend.http.client.redirections" title="13.2.1. HTTP Redirections">Раздел 13.2.1, «HTTP Redirections»</a>)
+
+                            </td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>useragent</td>
+<td>
+                                Идентификатор агента пользователя (отправляется
+                                в заголовке запроса)
+
+                            </td>
+<td>string</td>
+<td>'Zend_Http_Client'</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>
+                                Таймаут соединения в секундах
+
+                            </td>
+<td>integer</td>
+<td>10</td>
+</tr>
+<tr>
+<td>httpversion</td>
+<td>
+                                Версия протокола HTTP
+
+                            </td>
+<td>float (1.1 or 1.0)</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>adapter</td>
+<td>
+                                Используемый класс адаптера соединения
+                                (см. <a href="zend.http.client.adapters.html" title="13.3. Zend_Http_Client - Connection Adapters">Раздел 13.3, «Zend_Http_Client - Connection Adapters»</a>)
+
+                            </td>
+<td>mixed</td>
+<td>'Zend_Http_Client_Adapter_Socket'</td>
+</tr>
+<tr>
+<td>keepalive</td>
+<td>
+                                Включение поддержки соединения keep-alive с
+                                сервером. Может быть полезно и повышает
+                                поизводительность, если выполняется несколько
+                                последовательных запросов к одному и тому же
+                                серверу.
+
+                            </td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.basic-requests"></a>13.1.3. Выполнение базовых HTTP-запросов</h3></div></div></div>
+<p>
+            Выполнение простых HTTP-запросов с использованием метода
+            <code class="code">request()</code> довольно простое, и редко требуется больше
+            кода, чем в эти три строчки:
+
+            </p>
+<div class="example">
+<a name="id4850430"></a><p class="title"><b>Пример 13.2. Выполнение простого запроса GET</b></p>
+<pre class="programlisting">
+&lt;?php
+    require_once 'Zend/Http/Client.php';
+
+    $client = new Zend_Http_Client('http://example.org');
+    $response = $client-&gt;request();
+?&gt;</pre>
+</div>
+<p>
+            Метод <code class="code">request()</code> принимает один необязательный параметр
+            - метод запроса. Это могут быть методы GET, POST, PUT, HEAD, DELETE,
+            TRACE, OPTIONS или CONNECT, определенные в протоколе HTTP.
+
+            <sup>[<a name="id4850472" href="#ftn.id4850472">1</a>]</sup>.
+            Для удобства все они определены как константы класса:
+            Zend_Http_Request::GET, Zend_Http_Request::POST и т.д.                    
+
+        </p>
+<p>
+            Если метод запроса не был указан, то используемый метод определяется
+            последним вызовом <code class="code">setMethod()</code>. Если
+            <code class="code">setMethod()</code> не был вызван, то по умолчанию используется
+            метод GET (см. пример выше). 
+
+            </p>
+<div class="example">
+<a name="id4850524"></a><p class="title"><b>Пример 13.3. Использование методов запроса, отличных от GET</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Выполнение запроса POST
+    $response = $client-&gt;request('POST');
+    
+    // Еще один способ сделать то же самое:
+    $client-&gt;setMethod(Zend_Http_Client::POST);
+    $response = $client-&gt;request();
+?&gt;</pre>
+</div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.http.client.parameters"></a>13.1.4. Добавление параметров GET и POST</h3></div></div></div>
+<p>
+            Добавление параметров GET в HTTP-запрос довольно простое, это может
+            быть сделано посредством определения параметров как часть URL или с
+            использованием метода <code class="code">setParameterGet()</code>. Этот метод
+            принимает имя параметра GET и его значение первый и второй аргументы
+            соответственно. Метод <code class="code">setParameterGet()</code>
+            может также принимать ассоциативный массив пар имя =&gt; значение, что
+            удобно, если нужно установить несколько параметров GET.
+
+            </p>
+<div class="example">
+<a name="id4850606"></a><p class="title"><b>Пример 13.4. Установка параметров GET</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Установка параметра GET с использованием метода setParameterGet
+    $client-&gt;setParameterGet('knight', 'lancelot');
+
+    // Эвивалентный код с установкой через URL:
+    $client-&gt;setUri('http://example.com/index.php?knight=lancelot');
+    
+    // Добавление нескольких параметров в одном вызове
+    $client-&gt;setParameterGet(array(
+        'first_name'  =&gt; 'Bender',
+        'middle_name' =&gt; 'Bending'
+        'made_in'     =&gt; 'Mexico',
+    ));
+?&gt;</pre>
+</div>
+<p>
+        </p>
+<p>
+            В то время как параметры GET могут отправляться с любыми методами
+            запроса, параметры POST могут отправляться только в теле запроса
+            POST. Добавление параметров POST к запросу очень похоже на
+            добавление параметров GET и выполняется через метод
+            <code class="code">setParameterPost()</code>.
+
+            </p>
+<div class="example">
+<a name="id4850643"></a><p class="title"><b>Пример 13.5. Установка параметров POST</b></p>
+<pre class="programlisting">
+&lt;?php
+    // Установка параметра POST
+    $client-&gt;setParameterPost('language', 'fr');
+    
+    // Установка нескольких параметров POST,
+    // один из них - с несколькими значениями
+    $client-&gt;setParameterPost(array(
+        'language'  =&gt; 'es',
+        'country'   =&gt; 'ar',
+        'selection' =&gt; array(45, 32, 80)
+    ));
+?&gt;</pre>
+</div>
+<p>
+            
+            Заметьте, что отправляя запрос POST, вы можете установить как
+            параметры POST, так и параметры GET. С другой стороны, хотя
+            установка параметров POST для не-POST запросов не вызывает ошибки,
+            она не имеет практического смысла. Если запрос не производится по
+            методу POST, то параметры POST просто игнорируются.
+
+        </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4850472" href="#id4850472">1</a>] </sup>
+                См. RFC 2616 - <a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_top">http://www.w3.org/Protocols/rfc2616/rfc2616.html</a>.
+              </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.gdata.exception.html">Пред.</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.http.client.advanced.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">12.9. Catching Gdata Exceptions </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> 13.2. Zend_Http_Client - Advanced Usage</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

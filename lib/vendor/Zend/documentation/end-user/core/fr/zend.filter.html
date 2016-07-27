@@ -1,0 +1,161 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapitre 11. Zend_Filter</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="index.html" title="Guide de référence du programmeur">
+<link rel="prev" href="zend.feed.custom-feed.html" title="10.8. Classes personnalisées pour les flux et entrées">
+<link rel="next" href="zend.filter.filter_chains.html" title="11.2. Filter Chains">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="section" href="zend.filter.html#zend.filter.filter" title="11.1. Zend_Filter">
+<link rel="section" href="zend.filter.filter_chains.html" title="11.2. Filter Chains">
+<link rel="section" href="zend.filter.writing_filters.html" title="11.3. Writing Filters">
+<link rel="section" href="zend.filter.input.html" title="11.4. Zend_Filter_Input">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapitre 11. Zend_Filter</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.feed.custom-feed.html">Précédent</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.filter.filter_chains.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="fr">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.filter"></a>Chapitre 11. Zend_Filter</h2></div></div></div>
+<div class="toc">
+<p><b>Table des matières</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.filter.html#zend.filter.filter">11.1. Zend_Filter</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.filter.html#zend.filter.filter.introduction">11.1.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.html#zend.filter.filter.usecases">11.1.2. Exemples d'utilisation</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.filter.filter_chains.html">11.2. Filter Chains</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.writing_filters.html">11.3. Writing Filters</a></span></dt>
+<dt><span class="sect1"><a href="zend.filter.input.html">11.4. Zend_Filter_Input</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction">11.4.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction.whitelist">11.4.2. Filtrage par liste blanche</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction.blind">11.4.3. Filtrage à l'aveugle</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.introduction.blacklist">11.4.4. Filtrage par liste noire</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.theoryofoperation">11.4.5. Fonctionnement</a></span></dt>
+<dt><span class="sect2"><a href="zend.filter.input.html#zend.filter.input.usecases">11.4.6. Exemples d'utilisation</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.filter.filter"></a>11.1. Zend_Filter</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.filter.introduction"></a>11.1.1. Introduction</h3></div></div></div>
+<p>
+     <code class="literal">Zend_Filter</code> fournit une bibliothèque de méthodes statiques permettant de filtrer des données.
+     Pour le filtrage des données passées en entrée, voyez plutôt le <a href="zend.filter.input.html" title="11.4. Zend_Filter_Input">Section 11.4, « Zend_Filter_Input »</a>
+     car ce composant constitue une plate-forme dédiée au filtrage des données passées en
+     entrée, et il utilise les méthodes fournies par cette classe.
+     Toutefois, comme <code class="literal">Zend_Filter_Input</code> est conçu en priorité pour fonctionner avec des tableaux,
+     <code class="literal">Zend_Filter</code> reste utile pour le filtrage de variables scalaires,
+     du fait du comportement de ses méthodes qui agissent de la même manière que les fonctions PHP dédiées aux chaînes :
+    </p>
+<pre class="programlisting">
+    &lt;?php
+
+    $nomUtilisateurAlpha = Zend_Filter::getAlpha('Jean123Dupond');
+
+    /* $nomUtilisateurAlpha = 'JeanDupond'; */
+
+    ?&gt;
+    </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.filter.filter.usecases"></a>11.1.2. Exemples d'utilisation</h3></div></div></div>
+<p>
+      Dans chacun de ces exemples d'utilisation, <code class="literal">$valeur</code> représente une valeur scalaire arbitraire.
+    </p>
+<p>Filtrage par liste blanche :</p>
+<pre class="programlisting">
+    &lt;?php
+
+    if ($email = Zend_Filter::testEmail($value)) {
+        /* $email constitue une adresse e-mail valide */
+    } else {
+        /* $email ne constitue pas une adresse e-mail valide */
+    }
+
+    ?&gt;
+    </pre>
+<p>Filtrage à l'aveugle :</p>
+<pre class="programlisting">
+    &lt;?php
+
+    $nomAlpha = Zend_Filter::getAlpha($valeur);
+
+    ?&gt;
+    </pre>
+<p>Filtrage par liste noire :</p>
+<pre class="programlisting">
+    &lt;?php
+
+    $commentaireSansBalises = Zend_Filter::noTags($valeur);
+
+    ?&gt;
+    </pre>
+</div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.feed.custom-feed.html">Précédent</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.filter.filter_chains.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">10.8. Classes personnalisées pour les flux et entrées </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 11.2. Filter Chains</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

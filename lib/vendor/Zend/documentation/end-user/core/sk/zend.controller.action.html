@@ -1,0 +1,246 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.5. Action Controllers</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmer's Reference Guide">
+<link rel="up" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="prev" href="zend.controller.providedsubclasses.html" title="7.4. Provided Subclasses">
+<link rel="next" href="zend.controller.plugins.html" title="7.6. Plugins">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.introduction" title="7.5.1. Uvod">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.initialization" title="7.5.2. Inicializácia objektu">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.prepostdispatch" title="7.5.3. Pre- and Post-Dispatch Hooks">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.accessors" title="7.5.4. Accessors">
+<link rel="subsection" href="zend.controller.action.html#zend.controller.action.utilmethods" title="7.5.5. Utility Methods">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.5. Action Controllers</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.providedsubclasses.html">Prev</a> </td>
+<th width="60%" align="center">Chapter 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.plugins.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.action"></a>7.5. Action Controllers</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.introduction"></a>7.5.1. Uvod</h3></div></div></div>
+<p>
+            <code class="code">Zend_Controller_Action</code> je abstraktná trieda ktorá sa
+            používa na vytvorenie skupiny akcii, ktoré sa používajú
+            pri WWW sídle vytvorenom na základe vzoru Model-View-Controller
+            (MVC).
+		</p>
+<p>
+            Pre použitie Zend_Controller_Action je potrebne vytvoriť odvodenú
+            triedu (alebo odvodenú triedu ktorá bude základom pre ostatné
+            skupiny akcii). Najčastejšie sa vytvára odvodená trieda ktorej
+            metódy zodpovedajú akciám ktoré je potrebné vytvoriť na svojom WWW sídle.
+            Trieda Zend_Controller automaticky používa ako akcie všetky metódy,
+            ktoré končia na 'Action'.
+        </p>
+<p>
+            Ako príklad, uvedieme nasledujúcu odvodenú triedu:
+        </p>
+<pre class="programlisting">
+class FooController extends Zend_Controller_Action
+{
+    public function barAction()
+    {
+        // do something
+    }
+
+    public function bazAction()
+    {
+        // do something
+    }
+}
+</pre>
+<p>
+            Uvedená odvodená trieda FooController (skupina akcii 'Foo') definuje
+            dve akcie: 'bar' a 'baz'.
+        </p>
+<p>
+            Nasledujúca časť približuje možnosti, ktoré môžu byt realizované 
+            zmenou metód v odvodenej triede, ako napríklad vlastnú inicializačnú
+            postupnosť, ošetrenie neexistujúcich (zlých) akcii, definovanie 
+            operácii ktoré sa majú vykonať pred a po vykonaní akcie a ďalšie iné
+            činnosti.
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.initialization"></a>7.5.2. Inicializácia objektu</h3></div></div></div>
+<p>
+            Je možne zmeniť konštruktor objektu, ale tento postup nie je
+            odporúčaný. Metóda Zend_Controller_Action::__construct() realizuje
+            niekoľko dôležitých úloh ako napríklad registráciu request, response
+            objektov a tiež ľubovoľné vlastné parametre ktoré boli predané 
+            z front controller-a. Ak je potrebné zmeniť konštruktor objektu, je
+            vhodné, zavolať rodičovský konštruktor 
+            parent::__construct($request, $response, $invokeArgs)
+        </p>
+<p>
+            Vhodnejšie je predefinovať metódu init(), ktorá sa vola ako posledná
+            z konštruktoru __construct(). V tejto metóde sa napríklad môžeme 
+            pripojiť k databáze:
+        </p>
+<pre class="programlisting">
+class FooController extends Zend_Controller_Action
+{
+    public function init()
+    {
+        $this-&gt;db = Zend_Db::factory('Pdo_Mysql', array(
+            'host'     =&gt; 'myhost',
+            'username' =&gt; 'user',
+            'password' =&gt; 'XXXXXXX',
+            'dbname'   =&gt; 'website'
+        ));
+    }
+}
+</pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.prepostdispatch"></a>7.5.3. Pre- and Post-Dispatch Hooks</h3></div></div></div>
+<p>
+            Zend_Controller_Action ponúka dve metódy, preDispatch() a postDispatch(),
+            ktoré môžu byť vyvolané pri vyžiadanej akcii. Je ich možné použiť
+            na rôzne úkony ako napríklad na znovu overenie prístupových práv ešte pred
+            samostatnou akciou (ak sa zavolá _forward() v metóde preDispatch()
+            akcia bude preskočená), alebo uloženie vygenerovaného obsahu (postDispatch()).
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.accessors"></a>7.5.4. Accessors</h3></div></div></div>
+<p>
+            A number of objects and variables are registered with the object,
+            and each has accessor methods.
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                <span class="emphasis"><em>Request Object</em></span>: getRequest() may be
+                used to retrieve the request object used to call the action.
+            </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>Response Object</em></span>: getResponse() may be
+                    used to retrieve the response object aggregating the final
+                    response. Some typical calls might look like:
+                </p>
+<pre class="programlisting">
+$this-&gt;getResponse()-&gt;setHeader('Content-Type', 'text/xml');
+$this-&gt;getResponse()-&gt;appendBody($content);
+</pre>
+</li>
+<li><p>
+                    <span class="emphasis"><em>Invocation Arguments</em></span>: the front
+                    controller may push parameters into the router, dispatcher,
+                    and action controller. To retrieve these, use
+                    getInvokeArg($key); alternatively, fetch the entire list
+                    using getInvokeArgs().
+                </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>Request parameters</em></span>: The request object
+                    aggregates request parameters, such as any _GET or _POST
+                    parameters, or user parameters specified in the URL's path
+                    information. To retrieve these, use _getParam($key) or
+                    _getAllParams(). You may also set request parameters using
+                    _setParam(); this is useful when forwarding to additional
+                    actions.
+                </p>
+<p>
+                    To test whether or not a parameter exists (useful for
+                    logical branching), use _hasParam($key).
+                </p>
+</li>
+</ul></div>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.action.utilmethods"></a>7.5.5. Utility Methods</h3></div></div></div>
+<p>
+            Besides the accessors, Zend_Controller_Action has several utility
+            methods for performing common tasks from within your action methods
+            (or from pre-/post-dispatch).
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                    <span class="emphasis"><em>_forward($controller, $action, $params = array())</em></span>: 
+                    perform another action. If called in preDispatch(), the
+                    currently requested action will be skipped in favor of the
+                    new one. Otherwise, after the current action is processed,
+                    the action requested in _forward() will be executed.
+                </p></li>
+<li>
+<p>
+                    <span class="emphasis"><em>_redirect($url, $code = 302)</em></span>: redirect
+                    to another location. This method takes a URL and an optional
+                    HTTP status code. The redirect is performed immediately and
+                    program execution is halted.
+                </p>
+<p>
+                    If a status code is provided, it will be passed to the PHP
+                    header() command when the redirect is performed.
+                </p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.providedsubclasses.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.plugins.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.4. Provided Subclasses </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 7.6. Plugins</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

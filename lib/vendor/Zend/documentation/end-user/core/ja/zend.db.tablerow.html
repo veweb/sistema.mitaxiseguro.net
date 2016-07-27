@@ -1,0 +1,195 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.5. Zend_Db_Table_Row</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="prev" href="zend.db.table.html" title="9.4. Zend_Db_Table">
+<link rel="next" href="zend.db.tablerowset.html" title="9.6. Zend_Db_Table_Rowset">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.introduction" title="9.5.1. 導入">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.fetch" title="9.5.2. 行の取得">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.modify" title="9.5.3. 値の変更">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.5. Zend_Db_Table_Row</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.table.html">前のページ</a> </td>
+<th width="60%" align="center">第9章 Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.tablerowset.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.tablerow"></a>9.5. Zend_Db_Table_Row</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.introduction"></a>9.5.1. 導入</h3></div></div></div>
+<p>
+            Zend_Db_Table_Row は、Zend Framework の行データゲートウェイです。
+            一般に、Zend_Db_Table_Row のインスタンスを直接生成することはありません。
+            その代わりに、Zend_Db_Table::find() や Zend_Db_Table::fetchRow()
+            の返す結果として Zend_Db_Table_Row を取得します。
+            取得した Zend_Db_Table_Row を用いてレコードの値を編集し
+            (クラスのプロパティとして表されます)、
+            save() を使用して変更内容をもとのテーブルに反映させます。
+        </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.fetch"></a>9.5.2. 行の取得</h3></div></div></div>
+<p>
+            最初に Zend_Db_Table クラスのインスタンスを作成します。
+        </p>
+<pre class="programlisting">&lt;?php
+// アダプタを設定します
+require_once 'Zend/Db.php';
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// すべての Zend_Db_Table オブジェクトに対するデフォルトアダプタを設定します
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+
+// データベースのテーブルに接続します
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+<p>
+            次に、Zend_Db_Table::find() に単一のキーを指定するか
+            Zend_Db_Table::fetchRow() を使用して、データベースから 1 行のレコードを取得します。
+            返される結果は Zend_Db_Table_Row オブジェクトであり、
+            "underscore_words" 形式のカラム名を "camelCaps"
+            形式に変換したものが、そのオブジェクトのプロパティとなります。
+            例えば、テーブルのカラム "first_name" の内容が、
+            オブジェクトのプロパティ "firstName" に対応します。
+        </p>
+<pre class="programlisting">&lt;?php
+// テーブルから、レコードを Zend_Db_Table_Row オブジェクトとして取得します
+$row = $table-&gt;fetchRow('first_name = "Robin"');
+
+//
+// $row は Zend_Db_Table_Row オブジェクトで、
+// テーブルのカラムに対応する public プロパティを持っています
+//
+// $row-&gt;id = '3'
+// $row-&gt;nobleTitle = 'Sir'
+// $row-&gt;firstName = 'Robin'
+// $row-&gt;favoriteColor = 'yellow'
+//
+
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.modify"></a>9.5.3. 値の変更</h3></div></div></div>
+<p>
+            行の値を変更するのは簡単です。単にオブジェクトのプロパティを変更すればよいのです。
+            変更した後に、save() を使用してその内容をテーブルに書き戻します。
+        </p>
+<pre class="programlisting">&lt;?php
+// データベースのテーブルに接続します
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+
+// テーブルから、レコードを Zend_Db_Table_Row オブジェクトとして取得します
+$row = $table-&gt;fetchRow('first_name = "Robin"');
+
+//
+// $row は Zend_Db_Table_Row オブジェクトで、
+// テーブルのカラムに対応する public プロパティを持っています
+//
+// $row-&gt;id = '3'
+// $row-&gt;nobleTitle = 'Sir'
+// $row-&gt;firstName = 'Robin'
+// $row-&gt;favoriteColor = 'yellow'
+//
+// 「好きな色」を変更してテーブルに書き戻します
+$row-&gt;favoriteColor = 'blue';'
+$row-&gt;save();
+?&gt;
+        </pre>
+<p>
+            しかし、主キーの値を変更することはできません。変更しようとすると
+            Zend_Db_Table_Row は例外をスローします。
+        </p>
+<pre class="programlisting">&lt;?php
+// データベースのテーブルに接続します
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+
+// テーブルから、レコードを Zend_Db_Table_Row オブジェクトとして取得します
+$row = $table-&gt;fetchRow('first_name = "Robin"');
+
+// 主キーである "id" を変更できますか?
+try {
+    $row-&gt;id = 5;
+    echo "We should not see this message, as an exception was thrown.";
+} catch (Zend_Db_Table_RowException $e) {
+    echo $e-&gt;getMessage();
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.table.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.tablerowset.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.4. Zend_Db_Table </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 9.6. Zend_Db_Table_Rowset</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

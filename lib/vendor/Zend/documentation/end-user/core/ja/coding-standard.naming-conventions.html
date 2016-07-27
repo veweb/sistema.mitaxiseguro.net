@@ -1,0 +1,258 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.3. 命名規約</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="prev" href="coding-standard.php-file-formatting.html" title="A.2. PHP ファイルの書式">
+<link rel="next" href="coding-standard.coding-style.html" title="A.4. コーディングスタイル">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes" title="A.3.1. クラス">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces" title="A.3.2. インターフェイス">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames" title="A.3.3. ファイル名">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.functions-and-methods" title="A.3.4. 関数およびメソッド">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.variables" title="A.3.5. 変数">
+<link rel="subsection" href="coding-standard.naming-conventions.html#coding-standard.naming-conventions.constants" title="A.3.6. 定数">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.3. 命名規約</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="coding-standard.php-file-formatting.html">前のページ</a> </td>
+<th width="60%" align="center">付録 A. Zend Framework PHP 標準コーディング規約</th>
+<td width="20%" align="right"> <a accesskey="n" href="coding-standard.coding-style.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="coding-standard.naming-conventions"></a>A.3. 命名規約</h2></div></div></div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.classes"></a>A.3.1. クラス</h3></div></div></div>
+<p>
+                Zend Framework では、クラスの名前が保存先ディレクトリに直接対応するような
+                命名規約を採用しています。Zend Framework の最上位レベルのディレクトリが
+                "Zend/" ディレクトリです。この配下に、すべてのクラスが階層構造で保存されます。
+            </p>
+<p>
+                クラス名には英数字のみが使用できます。クラス名に数字を使用することは可能ですが、
+                お勧めしません。アンダースコアはパス区切り文字としてのみ使用可能です。
+                ファイル名が "Zend/Db/Table.php" の場合、クラス名を
+                "Zend_Db_Table" としなければなりません。
+            </p>
+<p>
+                クラス名が複数の単語から成り立つ場合は、
+                それぞれの単語の最初の文字を大文字にしなければなりません。
+                大文字を連続して使用することはできません。例えば
+                "Zend_PDF" というクラス名は許可されません。代わりに
+                "Zend_Pdf" を使用します。
+            </p>
+<p>
+                Zend もしくは協力会社が作成した Zend Framework
+                のファイルで配布物中に含まれているものは、すべて "Zend_"
+                という名前で始まらなければなりません。また、それらは
+                "Zend/" ディレクトリ階層に配置されなければなりません。
+            </p>
+<p>
+                使用可能なクラス名の例は以下のとおりです。
+
+                </p>
+<pre class="programlisting">
+Zend_Db
+
+Zend_View
+
+Zend_View_Helper
+</pre>
+<p>
+
+                <span class="emphasis"><em>重要:</em></span> フレームワークとともに動作するが、
+                フレームワークの一部ではないファイル (例えば、Zend や協力会社ではなく
+                エンドユーザによって書かれたコード) は、決して "Zend_"
+                で始まる名前を使用してはいけません。
+            </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.interfaces"></a>A.3.2. インターフェイス</h3></div></div></div>
+<p>
+                インターフェイスクラスもその他のクラスと同じ規約に従う必要があります
+                (上を参照ください)。ただし、名前の最後に "Interface"
+                を含めなければなりません。例えばこのようになります。
+
+                </p>
+<pre class="programlisting">
+Zend_Log_Adapter_Interface
+Zend_Controller_Dispatcher_Interface</pre>
+<p>
+            </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.filenames"></a>A.3.3. ファイル名</h3></div></div></div>
+<p>
+                すべてのファイルにおいて、使用可能な文字は英数字・アンダースコア
+                およびダッシュ文字 ("-") のみです。空白文字は使用できません。
+            </p>
+<p>
+                PHP コードを含むすべてのファイルの拡張子は ".php" でなければなりません。
+                以下の例は、この節の最初のほうで示した例のクラスに対応するファイル名の例です。
+
+                </p>
+<pre class="programlisting">
+Zend/Db.php
+
+Zend/Controller/Front.php
+
+Zend/View/Helper/FormRadio.php</pre>
+<p>
+
+                ファイル名は、上で説明したとおりの方式でクラス名と対応していなければなりません。
+            </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.functions-and-methods"></a>A.3.4. 関数およびメソッド</h3></div></div></div>
+<p>
+                関数名に含めることができるのは英数字のみです。
+                アンダースコアを使用してはいけません。
+                数字を含めることは可能ですが、お勧めしません。
+            </p>
+<p>
+                関数名は小文字で始めなければなりません。
+                関数名が複数の単語で構成されている場合は、
+                各単語の最初の文字を大文字にしなければなりません。
+                一般に、この方式は "camelCaps"
+                と呼ばれています。
+            </p>
+<p>
+                関数名は省略しすぎないようにしましょう。
+                コードを理解しやすくするため、
+                現実的な範囲でできるだけ詳細な名前をつけるようにしましょう。
+            </p>
+<p>
+                条件を満たす関数名の例を示します。
+
+                </p>
+<pre class="programlisting">
+filterInput()
+
+getElementById()
+
+widgetFactory()</pre>
+<p>
+            </p>
+<p>
+                オブジェクト指向のプログラミングでは、
+                オブジェクトにアクセスするためのメソッドは "get" あるいは "set"
+                のいずれかで始めなければなりません。singleton や factory
+                などのデザインパターンを使用する場合は、
+                メソッド名にパターンの名前を含めるようにしましょう。こうすることで、
+                どのパターンを使っているのかがわかりやすくなります。
+            </p>
+<p>
+                グローバル関数は、できる限り使用しないようにしましょう。
+                このような関数は、静的クラスにまとめることを推奨します。
+            </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.variables"></a>A.3.5. 変数</h3></div></div></div>
+<p>
+                変数名に含めることができるのは英数字のみです。
+                アンダースコアを使用してはいけません。
+                数字を含めることは可能ですが、お勧めしません。
+            </p>
+<p>
+                クラス内で "private" あるいは "protected"
+                と宣言されている変数については、変数名の最初にアンダースコア
+                1 文字をつけなければなりません。アンダースコアを使用できるのは、
+                この場合のみです。"public" と宣言されている変数については、
+                決してアンダースコアで始めてはいけません。
+            </p>
+<p>
+                関数名と同様 (上の 3.3 を参照ください)、
+                変数名も常に小文字で開始する "camelCaps" 方式を使用しなければなりません。
+            </p>
+<p>
+                変数名は省略しすぎないようにしましょう。現実的な範囲で、
+                できるだけ詳細な名前をつけるべきです。"$i" や "$n"
+                のような省略形が許されるのは、小さなループ内で使用する場合のみです。
+                ループが 20 行以上のコードになるようなら、
+                そのループ変数にはそれなりの名前をつけるべきです。
+            </p>
+</div>
+<div class="sect2" lang="ja">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="coding-standard.naming-conventions.constants"></a>A.3.6. 定数</h3></div></div></div>
+<p>
+                定数名には英数字およびアンダースコアを使用することができます。
+                定数名には数字を使用してもかまいません。
+            </p>
+<p>
+                定数名は、常にすべて大文字にします。
+            </p>
+<p>
+                可読性を上げるため、定数名の単語の間はアンダースコアで区切らなければなりません。
+                例えば <code class="code">EMBED_SUPPRESS_EMBED_EXCEPTION</code> は許されますが、
+                <code class="code">EMBED_SUPPRESSEMBEDEXCEPTION</code> は許されません。
+            </p>
+<p>
+                定数を宣言する際には、クラスのメンバとして "const"
+                で定義しなければなりません。"define"
+                によるグローバル定数の宣言も可能ですが、お勧めしません。
+            </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="coding-standard.php-file-formatting.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="coding-standard.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="coding-standard.coding-style.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">A.2. PHP ファイルの書式 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> A.4. コーディングスタイル</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

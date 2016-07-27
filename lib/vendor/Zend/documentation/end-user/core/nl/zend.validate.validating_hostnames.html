@@ -1,0 +1,144 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>27.5. Validating Hostnames</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Referentiegids voor de programmeur">
+<link rel="up" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="prev" href="zend.validate.validating_email_addresses.html" title="27.4. Validating Email Addresses">
+<link rel="next" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.html" title="Hoofdstuk 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Hoofdstuk 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Hoofdstuk 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Hoofdstuk 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Hoofdstuk 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Hoofdstuk 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Hoofdstuk 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Hoofdstuk 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Hoofdstuk 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Hoofdstuk 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Hoofdstuk 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Hoofdstuk 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Hoofdstuk 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Hoofdstuk 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Hoofdstuk 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Hoofdstuk 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Hoofdstuk 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Hoofdstuk 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Hoofdstuk 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Hoofdstuk 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Hoofdstuk 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Hoofdstuk 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Hoofdstuk 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Hoofdstuk 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Hoofdstuk 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Hoofdstuk 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Hoofdstuk 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Hoofdstuk 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Hoofdstuk 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Bijlage A. Zend Framework Programmeer Standaard">
+<link rel="appendix" href="copyrights.html" title="Bijlage B. Auteursrechtinformatie">
+<link rel="index" href="the.index.html" title="Register">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">27.5. Validating Hostnames</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.validate.validating_email_addresses.html">Terug</a> </td>
+<th width="60%" align="center">Hoofdstuk 27. Zend_Validate</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.view.html">Volgende</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="nl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.validate.validating_hostnames"></a>27.5. Validating Hostnames</h2></div></div></div>
+<p>
+        Zend_Validate_Hostname allows you to validate a hostname against a set of known specifications.
+        It is possible to check for three different types of hostnames: a DNS Hostname (i.e.
+        domain.com), IP address (i.e. 1.2.3.4), and Local hostnames (i.e. localhost). By default only
+        DNS hostnames are matched.
+    </p>
+<p>
+        <span class="strong"><strong>Basic usage</strong></span>
+    </p>
+<p>
+        A basic example of usage is below:
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/Hostname.php';
+$validator = new Zend_Validate_Hostname();
+if ($validator-&gt;isValid($hostname)) {
+    // ostname appears to be valid
+} else {
+    // hostname is invalid; print the reasons
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+        This will match the hostname <code class="code">$hostname</code> and on failure populate
+        <code class="code">$validator-&gt;getMessages()</code> with useful error messages.
+
+    </p>
+<p>
+        <span class="strong"><strong>Validating different types of hostnames</strong></span>
+    </p>
+<p>
+        You may find you also want to match IP addresses, Local hostnames, or a combination of all
+        allowed types. This can be done by passing a parameter to Zend_Validate_Hostname when you
+        instantiate it. The paramter should be an integer which determines what types of hostnames
+        are allowed. You are encouraged to use the Zend_Validate_Hostname constants to do this.
+    </p>
+<p>
+        The Zend_Validate_Hostname constants are: <code class="code">ALLOW_DNS</code> to allow only DNS hostnames,
+        <code class="code">ALLOW_IP</code> to allow IP addresses, <code class="code">ALLOW_LOCAL</code> to allow local network
+        names, and <code class="code">ALLOW_ALL</code> to allow all three types. To just check for IP addresses
+        you can use the example below:
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/Hostname.php';
+$validator = new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_IP);
+if ($validator-&gt;isValid($hostname)) {
+    // ostname appears to be valid
+} else {
+    // hostname is invalid; print the reasons
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+    </p>
+<p>
+        As well as using <code class="code">ALLOW_ALL</code> to accept all hostnames types you can combine
+        these types to allow for combinations. For example, to accept DNS and Local hostnames
+        instantiate your Zend_Validate_Hostname object as so:
+        </p>
+<pre class="programlisting">&lt;?php
+$validator = new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_DNS | Zend_Validate_Hostname::ALLOW_IP);
+}</pre>
+<p>
+
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.validate.validating_email_addresses.html">Terug</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.validate.html">Omhoog</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.view.html">Volgende</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">27.4. Validating Email Addresses </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Begin</a></td>
+<td width="40%" align="right" valign="top"> Hoofdstuk 28. Zend_View</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

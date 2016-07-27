@@ -1,0 +1,137 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>27.2. バリデータチェイン</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="prev" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="next" href="zend.validate.writing_validators.html" title="27.3. バリデータの書き方">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">27.2. バリデータチェイン</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.validate.html">前のページ</a> </td>
+<th width="60%" align="center">第27章 Zend_Validate</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.validate.writing_validators.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.validate.validator_chains"></a>27.2. バリデータチェイン</h2></div></div></div>
+<p>
+        ひとつの値に対して、複数のバリデータを指定した順に適用しなければならないことがよくあります。
+        以下のコードは、
+        <a href="zend.validate.html#zend.validate.introduction" title="27.1. 導入">導入</a>
+        で説明した例を解決するための方法を示すものです。
+        ユーザ名が 6 文字から 12 文字までの英数字であるかどうかを検証します。
+
+        </p>
+<pre class="programlisting">&lt;?php
+// バリデータチェイン機能を使用します
+require_once 'Zend/Validate.php';
+
+// この例で使用するバリデータです
+require_once 'Zend/Validate/StringLength.php';
+require_once 'Zend/Validate/Alnum.php';
+
+// バリデータチェインを作成し、そこにバリデータを追加します
+$validatorChain = new Zend_Validate();
+$validatorChain-&gt;addValidator(new Zend_Validate_StringLength(6, 12))
+               -&gt;addValidator(new Zend_Validate_Alnum());
+
+// ユーザ名を検証します
+if ($validatorChain-&gt;isValid($username)) {
+    // ユーザ名は検証を通過しました
+} else {
+    // ユーザ名の検証に失敗しました。理由を表示します
+    foreach ($validatorChain-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+        バリデータは、<code class="code">Zend_Validate</code> に追加した順に適用されます。
+        上の例では、まずユーザ名の長さが 6 文字から 12 文字までの間であるかどうかを調べます。
+        その後で、英数字のみであるかどうかだけを調べます。
+        二番目の検証である「英数字かどうか」は、最初の検証である
+        「6 文字から 12 文字まで」が成功したかどうかにかかわらず行われます。
+        つまり、もし両方の検証に失敗した場合は、<code class="code">getMessages()</code>
+        は両方の検証失敗メッセージを返すことになります。
+    </p>
+<p>
+        検証が失敗した時点で、その後の検証を行わずにチェインを抜け出したいこともあるでしょう。
+        <code class="code">Zend_Validate</code> はそのような使用法もサポートしています。
+        そのためには、<code class="code">addValidator()</code>
+        メソッドの二番目のパラメータを使用します。
+        <code class="code">$breakChainOnFailure</code> を <code class="code">true</code>
+        に設定すると、そのバリデータが失敗した時点でチェインを抜け出します。
+        これにより、後に続く不要な検証や不適切な検証を行わずにすみます。
+        上の例を次のように書き直すと、長さの検証に失敗した場合は
+        英数字の検証を行わなくなります。
+
+        </p>
+<pre class="programlisting">&lt;?php
+$validatorChain-&gt;addValidator(new Zend_Validate_StringLength(6, 12), true)
+               -&gt;addValidator(new Zend_Validate_Alnum());</pre>
+<p>
+
+    </p>
+<p>
+        <code class="code">Zend_Validate_Interface</code> を実装したオブジェクトなら何でも、
+        バリデータチェインで使用できます。
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.validate.html">前のページ</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.validate.html">上に戻る</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.validate.writing_validators.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第27章 Zend_Validate </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 27.3. バリデータの書き方</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

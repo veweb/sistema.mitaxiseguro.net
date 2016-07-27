@@ -1,0 +1,150 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Capítulo 27. Zend_Validate</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="index.html" title="Guia de Referência do Programador">
+<link rel="prev" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="next" href="zend.validate.validator_chains.html" title="27.2. Validator Chains">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="section" href="zend.validate.html#zend.validate.introduction" title="27.1. Introduction">
+<link rel="section" href="zend.validate.validator_chains.html" title="27.2. Validator Chains">
+<link rel="section" href="zend.validate.writing_validators.html" title="27.3. Writing Validators">
+<link rel="section" href="zend.validate.validating_email_addresses.html" title="27.4. Validating Email Addresses">
+<link rel="section" href="zend.validate.validating_hostnames.html" title="27.5. Validating Hostnames">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Capítulo 27. Zend_Validate</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.uri.html">Anterior</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.validate.validator_chains.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.validate"></a>Capítulo 27. Zend_Validate</h2></div></div></div>
+<div class="toc">
+<p><b>Índice</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.validate.html#zend.validate.introduction">27.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validator_chains.html">27.2. Validator Chains</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.writing_validators.html">27.3. Writing Validators</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_email_addresses.html">27.4. Validating Email Addresses</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_hostnames.html">27.5. Validating Hostnames</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.validate.introduction"></a>27.1. Introduction</h2></div></div></div>
+<p>
+        The Zend_Validate component provides a set of commonly needed validators. It also provides a simple
+        validator chaining mechanism by which multiple validators may be applied to a single datum in a
+        user-defined order.
+    </p>
+<p>
+        <span class="strong"><strong>What is a validator?</strong></span>
+    </p>
+<p>
+        A validator examines its input with respect to some requirements and produces a boolean result -
+        whether the input successfully validates against the requirements. If the input does not meet the
+        requirements, a validator may additionally provide information about which requirement(s) the input
+        does not meet.
+    </p>
+<p>
+        For example, a web application might require that a username be between six and twelve characters in
+        length and may only contain alphanumeric characters. A validator can be used for ensuring that
+        usernames meet these requirements. If a chosen username does not meet one or both of the requirements,
+        it would be useful to know which of the requirements the username fails to meet.
+    </p>
+<p>
+        Having defined validation in this way provides the foundation for
+        <code class="code">Zend_Validate_Interface</code>, which defines two methods, <code class="code">isValid()</code> and
+        <code class="code">getMessages()</code>. The <code class="code">isValid()</code> method performs validation upon the provided
+        value, returning <code class="code">true</code> if and only if the value passes against the validation criteria. If
+        <code class="code">isValid()</code> returns <code class="code">false</code>, the <code class="code">getMessages()</code> is provided to
+        return an array of messages explaining the reason(s) for validation failure.
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            The <code class="code">getMessages()</code> returns validation failure messages for the most recent
+            <code class="code">isValid()</code> call only, since <code class="code">isValid()</code> clears any messages existing from a previous <code class="code">isValid()</code> call.
+        </p></td></tr>
+</table></div>
+<p>
+        The following example illustrates validation of an e-mail address:
+
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/EmailAddress.php';
+$validator = new Zend_Validate_EmailAddress();
+if ($validator-&gt;isValid($email)) {
+    // email appears to be valid
+} else {
+    // email is invalid; print the reasons
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.uri.html">Anterior</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.validate.validator_chains.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Capítulo 26. Zend_Uri </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> 27.2. Validator Chains</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

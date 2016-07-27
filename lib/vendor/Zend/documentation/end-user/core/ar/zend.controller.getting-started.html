@@ -1,0 +1,300 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.2. البداية</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="دليل المبرمج">
+<link rel="up" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="prev" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="next" href="zend.controller.subclassing.html" title="7.3. Subclassing">
+<link rel="chapter" href="zend.html" title="فصل 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="فصل 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="فصل 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="فصل 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="فصل 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="فصل 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="فصل 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="فصل 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="فصل 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="فصل 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="فصل 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="فصل 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="فصل 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="فصل 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="فصل 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="فصل 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="فصل 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="فصل 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="فصل 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="فصل 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="فصل 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="فصل 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="فصل 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="فصل 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="فصل 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="فصل 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="فصل 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="فصل 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="فصل 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="ملحق A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="ملحق B. معلومات حقوق الملكية">
+<link rel="index" href="the.index.html" title="فهرس">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.introduction" title="7.2.1. مقدمة">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.server-configuration" title="7.2.2. إعدادات السيرفر">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.bootstrap" title="7.2.3. ملف الـ Bootstrap">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.getting-started.directory-structure" title="7.2.4. هيكلة المجلدات">
+<link rel="subsection" href="zend.controller.getting-started.html#zend.controller.overview.defaultcontroller" title="7.2.5. الـ Controller الأساسى">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.2. البداية</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.html">السابق</a> </td>
+<th width="60%" align="center">فصل 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.subclassing.html">التالي</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ar">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.getting-started"></a>7.2. البداية</h2></div></div></div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.introduction"></a>7.2.1. مقدمة</h3></div></div></div>
+<p>
+                تم بناء <code class="code">Zend_Controller</code> و فى اعتبارنا ان يكون قابل للتمدد بسهولة, سواء عن طريق إن شاء 
+                subclasses ترث من الـ class الموجودة او إنشاء classes جديدة تعتمد على الـ interfaces 
+                أو الـ abstract classes العدبدة التى تتكون منها عائلة الـ controller .
+		</p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.server-configuration"></a>7.2.2. إعدادات السيرفر</h3></div></div></div>
+<p>
+            تم بناء Zend_Controller ليدعم المواقع الجديدة بميزة الـ URIs النظيفة 
+            <sup>[<a name="id4799659" href="#ftn.id4799659">1</a>]</sup> 
+            , و هذا يحتاج الى ان تكون هذه الأعدادت مدعومة فى الـ webserver الخاص بك, اى يجب ان تتوفر خاصية 
+            اعادة كتابة الـ URIs لكى تتمكن من اعادة توجيه كل الطلبات فى موقعك الى ملف واحد , و هنا نحن نسميه "index.php" 
+            , و الذى بدوره سيكون  
+            <sup>[<a name="bootstrap" href="#ftn.bootstrap">2</a>]</sup>bootstrap 
+            و سيشغل <code class="code">Zend_Controller_Front</code>. 
+            على سيرفرات الـ Apache هذا يتم التحكم به من خلال module اختيارى اسمه mod_rewrite.
+		</p>
+<p>
+			الخطوة الأولى لإعداد السيرفر هى النجاح فى تركيب و تشغيل mod_rewrite. الخطوة التالية هى وضع ملفين فى 
+            الـ  
+            <sup>[<a name="document-root" href="#ftn.document-root">3</a>]</sup>document root 
+             و هما : htaccess. و ملف index.php . 
+            ملف htaccess. يتم استخدامه من قبل Apache و يجب ان يحتوى على  اوامر mod_rewrite لتقوم بإعادة تحويل 
+            كل الطلبات الى index.php . 
+            لأسباب تنتمى إلى عملية التطوير , يكن من الأسهل كتابة امر mod_rewrite يقوم بتحويل كل الطلبات الى index.php 
+            ما عدا التى تحتوى امتداد ملفات معينة , و هنا مثال لملف htaccess. مماثل :
+        </p>
+<pre class="programlisting">
+RewriteEngine on
+RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php
+</pre>
+<p>
+            فى المثال , كل الطلبات التى لا تحتوى اى من امتدادات الملفات المذكورة فى الأعلى , سيتم تحويلها الى index.php . 
+            هذا مفيد فى اثناء عملية التطوير, بينما فى مرحلة الإنتاج  يجب ان يتم كتابة اوامر اعادة التوجيه بحيث يتم 
+            إستثناء مجلدات معينة و ليس  امتدادات ملفات.
+		</p>
+<div class="note"><table border="0" summary="Note:  مكان ملف الـ bootstrap">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[ملاحظة]" src="images/note.png"></td>
+<th align="left"> مكان ملف الـ bootstrap</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+    			ملف الـ bootstrap يجب ان يكون ملف الـ PHP الوحيد المحفوظ فى الـ document root.			
+    		</p></td></tr>
+</table></div>
+<p>
+            الوظائف الأساسية لـ Zend_Controller ايضا تدعم الـ URLs 
+            التى تستخدم البرامترات العادية -- على سبيل المثال , 
+            <code class="code">index.php?controller=foo&amp;action=bar</code>.
+            ايضاً, هناك router أخر و هو <code class="code">Zend_Controller_RewriteRouter</code> 
+            و الذى يعمل فى العديد من البيئات , حتى الكثير من التى لا تحتوى امكانيات تتشابه مع 
+            ما تقوم به mod_rewrite , فإن كنت لا تستطيع أن تستخدم mod_rewrite أو 
+            ما يعادلها , فمازال بأمكانك أن تستخدم Zend_Controller فى موقعك.
+        </p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.bootstrap"></a>7.2.3. ملف الـ Bootstrap</h3></div></div></div>
+<p>
+            بعد الإنتهاء من ملف htaccess. , قم بإنشاء ملف جديد اسمه <code class="code">index.php</code> , 
+            السبب من إنشاء index.php هو ان يكون  
+            <sup>[<a href="#ftn.bootstrap">2</a>]</sup>bootstrap 
+            لـ Zend_Controller_Front , و الذى يجب ان يكون خارج الـ  
+            <sup>[<a href="#ftn.document-root">3</a>]</sup>document root.
+		</p>
+<div class="note"><table border="0" summary="Note:  مكان ملف الـ bootstrap">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[ملاحظة]" src="images/note.png"></td>
+<th align="left"> مكان ملف الـ bootstrap</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+    			ملف الـ bootstrap يجب ان يكون ملف الـ PHP الوحيد المحفوظ فى الـ document root.			
+    		</p></td></tr>
+</table></div>
+<p>
+            لأسباب امنية, ينصح إطار عمل Zend بأن لا يتم وضع اى ملف PHP فى مجلدات يمكن الوصول إليها من خلال الـ 
+            webserver (اى المجلدات فى document root) . بالرغم من أن هذا لا يمكن تنفيذه فى بعض الحالات, مثل فى سيرفرات 
+            الأستضافة المتشاركة, يجب ان تعتبر هذا من العادات الجيدة و التى يجب ان تعتمد عليها كلما امكن.  
+		</p>
+<p>
+			قم بإنشاء ملف الـ bootstrap المسمى index.php و ضعه فى الـ document root ليقوم بتشغيل 
+            Zend_Controller_Front :
+
+        </p>
+<pre class="programlisting">&lt;?php
+				
+require_once 'Zend/Controller/Front.php';
+
+Zend_Controller_Front::run('/path/to/your/controllers');
+
+?&gt;</pre>
+<p>
+			إقرأ الجزء القادم بالنسبة الى <code class="code">path/to/your/controllers/</code>.
+
+			كما هو موضح فى ملف <code class="code">README.txt</code>, المجلد الذى يحتوى مكتبة إطار عمل Zend يجب 
+            ان يكون فى الـ <code class="code">include_path</code>. إذا لم تقم بعمل هذا فى ملف php.ini , يمكنك أستخدام 
+            <code class="code">()set_include_path</code> فى بداية الملف قبل <code class="code">()require_once</code>.
+		</p>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.getting-started.directory-structure"></a>7.2.4. هيكلة المجلدات</h3></div></div></div>
+<p>
+			ينصح فى المواقع التى تعتمد على إطار عمل Zend ان تتشارك جميعها فى هيكلة موحدة لمجلداتها , ربما هذا لا يمكن 
+            تطبيقه فى بعض الحالات و لكن يفضل ان تطبقه فى اغلب او كل تطبيقاتك , فعند اختياراك ان تلتزم بهذه الهيكلة 
+            سيكن من السهل فهم الكود من قبل اى شخص يألف بنية إطار عمل Zend .
+		</p>
+<p>	
+            بنية المجلدات المقترحة تتكون من مجلدين اساسيين , مجلد اسمه library ( سيحتوى المكتبات الخاصة بـ Zend و غيرها) و 
+             المجلد الثانى يسمى application .
+		</p>
+<pre class="programlisting">
+/application
+  /models
+  /views
+  /controllers
+/document_root
+  /images
+  /styles
+  .htaccess
+  index.php
+/library
+  /Zend
+</pre>
+<div class="note"><table border="0" summary="Note: تحت الإنشاء">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[ملاحظة]" src="images/note.png"></td>
+<th align="left">تحت الإنشاء</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+			هذا القسم لم ينتهى بعد و مازال تحت البناء و يمكن ان يتغير محتواه فى اى وقت.
+        </p></td></tr>
+</table></div>
+</div>
+<div class="sect2" lang="ar">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.overview.defaultcontroller"></a>7.2.5. الـ Controller الأساسى</h3></div></div></div>
+<p>
+			كل تطبيق يجب ان يوفر controller أساسى. هذا هو الـ controller الذى سيتم 
+            إستخدامه إن لم يتم تحديد controller معين فى الـ URI, مثال على URI مماثل يمكن ان نراه هنا:
+        </p>
+<pre class="programlisting">
+http://framework.zend.com/
+</pre>
+<p>
+            طبقاً للأعدادات الأساسية , الـ controller الأساسى يجب أن يحمل 
+            الأسم <code class="code">IndexController</code> و أن يكن فى ملف 
+            يحمل الأسم <code class="code">IndexController.php</code> , 
+            داخلياً, سيتم تعريفه على انه الـ controller صاحب الأسم 'index' .
+        </p>
+<p>
+            يمكنك أن تغير الـ controller الأساسى قبل عمل dispatch للـ 
+            front controller عن طريق إستدعاء <code class="code">setDefaultController()</code> 
+            من خلال كائن الـ front controller أو كائن الـ dispatcher , عند قيامك بهذا ,
+            إستخدم قواعد التسمية الداخلية للـ controllers , أى أن , الـ class المسمى 
+            <code class="code">HomeController</code> (الموجود فى الملف 
+            <code class="code">HomeController.php</code> ) سيتم الأشارة إليه على 
+            انه <code class="code">home</code>.
+        </p>
+<p>
+            الـ controllers يجب أن يرثوا من <code class="code">Zend_Controller_Action</code> 
+            و أن يوضعوا فى مجلد الـ controllers .
+        </p>
+<pre class="programlisting">&lt;?php
+				
+require_once 'Zend/Controller/Action.php';
+
+class IndexController extends Zend_Controller_Action 
+{
+	public function indexAction()
+	{
+		echo 'Hello from IndexController';
+	}
+
+	public function noRouteAction()
+	{
+		$this-&gt;_redirect('/');
+	}
+}
+
+?&gt;</pre>
+<p>
+            المزيد من المعلومات عن الـ controllers و الـ actions الأساسية , 
+            مع كيفية كتابة action controller classes , سيتم عرضها فى 
+            فصول أخرى.
+        </p>
+<div class="note"><table border="0" summary="Note: تحت الإنشاء">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[ملاحظة]" src="images/note.png"></td>
+<th align="left">تحت الإنشاء</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+    			هذا القسم لم ينتهى بعد و مازال تحت البناء و يمكن ان يتغير محتواه فى اى وقت.
+            </p></td></tr>
+</table></div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a name="ftn.id4799659" href="#id4799659">1</a>] </sup>
+                الـ URIs النظيفة : مثلا عنوان مثل 
+                <code class="code">
+                http://www.site.com/index.php?q=cat&amp;id=45
+                 </code> 
+                 لا يعتبر نظيف , و لكن هذا يعتبر نظيف <code class="code">
+                http://www.site.come/cat/45 
+                </code> , و هذا يعطى نفس قيمة الأول .
+                </p></div>
+<div class="footnote"><p><sup>[<a name="ftn.bootstrap" href="#bootstrap">2</a>] </sup>
+                منطقة بداية تشغيل برنامج
+                </p></div>
+<div class="footnote"><p><sup>[<a name="ftn.document-root" href="#document-root">3</a>] </sup>
+                document root او المجلد الجزرى هو المجلد الرئيسى فى موقعك حيث يتمكن المستخدم من الوصول إليه بمجرد كتابة 
+                إسم الموقع فقط.
+                </p></div>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.html">السابق</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">أعلى</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.subclassing.html">التالي</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">فصل 7. Zend_Controller </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">البداية</a></td>
+<td width="40%" align="right" valign="top"> 7.3. Subclassing</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

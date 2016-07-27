@@ -1,0 +1,151 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.3. Advanced Use</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Руководство разработчика">
+<link rel="up" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="prev" href="zend.acl.refining.html" title="2.2. Refining Access Controls">
+<link rel="next" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.html" title="Глава 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Глава 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Глава 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Глава 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Глава 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Глава 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Глава 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Глава 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Глава 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Глава 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Глава 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Глава 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Глава 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Глава 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Глава 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Глава 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Глава 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Глава 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Глава 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Глава 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Глава 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Глава 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Глава 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Глава 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Глава 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Глава 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Глава 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Глава 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Глава 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Приложение A. Стандарт кодирования на PHP в Zend Framework'е">
+<link rel="appendix" href="copyrights.html" title="Приложение B. Copyright Information">
+<link rel="index" href="the.index.html" title="Предметный указатель">
+<link rel="subsection" href="zend.acl.advanced.html#zend.acl.advanced.storing" title="2.3.1. Storing ACL Data for Persistence">
+<link rel="subsection" href="zend.acl.advanced.html#zend.acl.advanced.assertions" title="2.3.2. Writing Conditional ACL Rules with Assertions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.3. Advanced Use</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.acl.refining.html">Пред.</a> </td>
+<th width="60%" align="center">Глава 2. Zend_Acl</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.auth.html">След.</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="ru">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.acl.advanced"></a>2.3. Advanced Use</h2></div></div></div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.advanced.storing"></a>2.3.1. Storing ACL Data for Persistence</h3></div></div></div>
+<p>
+        Zend_Acl was designed in such a way that it does not require any particular backend technology such
+        as a database or cache server for storage of the ACL data. Its complete PHP implementation enables
+        customized administration tools to be built upon Zend_Acl with relative ease and flexibility. Many
+        situations require some form of interactive maintenance of the ACL, and Zend_Acl provides methods
+        setting up, and querying against, the access controls of an application.
+        </p>
+<p>
+        Storage of ACL data is therefore left as a task for the developer, since use cases are expected to
+        vary widely for various situations. Because Zend_Acl is serializable, ACL objects may be serialized
+        with PHP's <a href="http://php.net/serialize" target="_top"><code class="code">serialize()</code></a> function, and the
+        results may be stored anywhere the developer should desire, such as a file, database, or caching
+        mechanism.
+        </p>
+</div>
+<div class="sect2" lang="ru">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.acl.advanced.assertions"></a>2.3.2. Writing Conditional ACL Rules with Assertions</h3></div></div></div>
+<p>
+        Sometimes a rule for allowing or denying an Role access to a Resource should not be absolute but dependent
+        upon various criteria. For example, suppose that certain access should be allowed, but only between the
+        hours of 8:00am and 5:00pm. Another example would be denying access because a request comes from an
+        IP address that has been flagged as a source of abuse. Zend_Acl has built-in support for implementing
+        rules based on whatever conditions the developer needs.
+        </p>
+<p>
+        Zend_Acl provides support for conditional rules with <code class="code">Zend_Acl_Assert_Interface</code>. In order
+        to use the rule assertion interface, a developer writes a class that implements the
+        <code class="code">assert()</code> method of the interface:
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl/Assert/Interface.php';
+
+class CleanIPAssertion implements Zend_Acl_Assert_Interface
+{
+    public function assert(Zend_Acl $acl, Zend_Acl_Role_Interface $role = null,
+                           Zend_Acl_Resource_Interface $resource = null, $privilege = null)
+    {
+        return $this-&gt;_isCleanIP($_SERVER['REMOTE_ADDR']);
+    }
+
+    protected function _isCleanIP($ip)
+    {
+        // ...
+    }
+}</pre>
+<p>
+        Once an assertion class is available, the developer must supply an instance of the assertion class
+        when assigning conditional rules. A rule that is created with an assertion only applies when the
+        assertion method returns true.
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Acl.php';
+
+$acl = new Zend_Acl();
+$acl-&gt;allow(null, null, null, new CleanIPAssertion());</pre>
+<p>
+        The above code creates a conditional allow rule that allows access to all privileges on everything
+        by everyone, except when the requesting IP is "blacklisted." If a request comes in from an IP that
+        is not considered "clean," then the allow rule does not apply. Since the rule applies to all Roles,
+        all Resources, and all privileges, an "unclean" IP would result in a denial of access. This is a special
+        case, however, and it should be understood that in all other cases (i.e., where a specific Role,
+        Resource, or privilege is specified for the rule), a failed assertion results in the rule not applying,
+        and other rules would be used to determine whether access is allowed or denied.
+        </p>
+<p>
+        The <code class="code">assert()</code> method of an assertion object is passed the ACL, Role, Resource, and privilege
+        to which the authorization query (i.e., <code class="code">isAllowed()</code>) applies, in order to provide
+        a context for the assertion class to determine its conditions where needed.
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.acl.refining.html">Пред.</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.acl.html">Уровень выше</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.auth.html">След.</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2.2. Refining Access Controls </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td>
+<td width="40%" align="right" valign="top"> Глава 3. Zend_Auth</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

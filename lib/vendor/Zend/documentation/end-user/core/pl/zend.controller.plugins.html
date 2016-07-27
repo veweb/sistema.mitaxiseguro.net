@@ -1,0 +1,217 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>7.6. Wtyczki</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Przewodnik Programisty">
+<link rel="up" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="prev" href="zend.controller.action.html" title="7.5. Action Controllers">
+<link rel="next" href="zend.controller.modular.html" title="7.7. Użycie konwencjonalnej modularnej struktury katalogów">
+<link rel="chapter" href="zend.html" title="Rozdział 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Rozdział 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Rozdział 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Rozdział 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Rozdział 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Rozdział 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Rozdział 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Rozdział 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Rozdział 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Rozdział 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Rozdział 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Rozdział 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Rozdział 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Rozdział 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Rozdział 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Rozdział 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Rozdział 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Rozdział 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Rozdział 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Rozdział 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Rozdział 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Rozdział 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Rozdział 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Rozdział 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Rozdział 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Rozdział 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Rozdział 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Rozdział 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Rozdział 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Dodatek A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Dodatek B. Informacje o prawach autorskich">
+<link rel="index" href="the.index.html" title="Indeks">
+<link rel="subsection" href="zend.controller.plugins.html#zend.controller.plugins.introduction" title="7.6.1. Wprowadzenie">
+<link rel="subsection" href="zend.controller.plugins.html#zend.controller.plugins.writing" title="7.6.2. Pisanie wtyczek">
+<link rel="subsection" href="zend.controller.plugins.html#zend.controller.plugins.using" title="7.6.3. Użycie wtyczek">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">7.6. Wtyczki</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.controller.action.html">Poprzedni</a> </td>
+<th width="60%" align="center">Rozdział 7. Zend_Controller</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.controller.modular.html">Następny</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="pl">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.controller.plugins"></a>7.6. Wtyczki</h2></div></div></div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.plugins.introduction"></a>7.6.1. Wprowadzenie</h3></div></div></div>
+<p>
+            Architektura kontrolera zawiera także system wtyczek, który pozwala
+            programiście na wykonanie własnego kodu, gdy następują określone
+            zdarzenia w trakcie trwania procesu kontrolera. Kontroler frontowy
+            używa agenta wtyczek jako rejeestru dla wtyczek programisty,
+            a agent wtyczek jest odpowiedzialny za to, że metody zdarzeń są
+            wywoływane dla każdej wtyczki zarejestrowanej w kontrolerze 
+            frontowym.
+        </p>
+<p>
+            Metody zdarzeń są zdefiniowane w klasie abstrakcyjnej
+            <code class="code">Zend_Controller_Plugin_Abstract</code>, z której dziedziczy
+            każda klasa wtyczki:
+
+            </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                        <code class="code">routeStartup()</code> jest wywoływana zanim <code class="code">Zend_Controller_Front</code>
+                        zacznie określać parametry żądania na podstawie tras.
+                    </p></li>
+<li><p>
+                        <code class="code">routeShutdown()</code> jest wywoływana gdy <code class="code">Zend_Controller_Router</code>
+                        kończy pracę, gdy Zend_Controller_Front wychodzi z routera.
+                    </p></li>
+<li><p>
+                        <code class="code">dispatchLoopStartup()</code> jest wywoływana zanim <code class="code">Zend_Controller_Front</code>
+                        wejdzie w pętlę uruchomieniową.
+                    </p></li>
+<li><p>
+                        <code class="code">preDispatch()</code> jest wywoływana przed uruchomieniem 
+                        akcji przez <code class="code">Zend_Controller_Dispatcher</code>. Pozwala
+                        to na uzyskanie funkcjonalności proxy lub filtra. Przez
+                        nadpisanie żądania i zresetowanie flagi uruchomienia (poprzez 
+                        <code class="code">Zend_Controller_Request_Abstract::setDispatched(false)</code>),
+                        obecna akcja może zostać ominięta.
+                    </p></li>
+<li><p>
+                        <code class="code">postDispatch()</code> jest wywoływana po uruchomieniu
+                        akcji przez <code class="code">Zend_Controller_Dispatcher</code>. Pozwala
+                        to na uzyskanie funkcjonalności proxy lub filtra. Przez
+                        nadpisanie żądania i zresetowanie flagi uruchomienia (poprzez 
+                        <code class="code">Zend_Controller_Request_Abstract::setDispatched(false)</code>), 
+                        może zostać określona nowa akcja do uruchomienia.
+                    </p></li>
+<li><p>
+                        <code class="code">dispatchLoopShutdown()</code> jest wywoływana gdy <code class="code">Zend_Controller_Front</code> zakończy pętlę uruchomieniową.
+                    </p></li>
+</ul></div>
+<p>
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.plugins.writing"></a>7.6.2. Pisanie wtyczek</h3></div></div></div>
+<p>
+        W celu napisania klasy wtyczki, w prosty sposób rozszerz klasę 
+        abstrakcyjną <code class="code">Zend_Controller_Plugin_Abstract</code>:
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Controller/Plugin/Abstract.php';
+
+class MyPlugin extends Zend_Controller_Plugin_Abstract
+{
+    // ...
+}</pre>
+<p>
+        </p>
+<p>
+        Żadna z metod klasy <code class="code">Zend_Controller_Plugin_Abstract</code> nie jest
+        abstrakcyjna, co oznacza, że nie jest konieczne implementowanie wszystkich
+        dostępnych metod zdarzeń opisanych powyżej. Autor wtyczki może 
+        zaimplementować tylko te metody zdarzeń, które są mu rzeczywiście potrzebne.
+        </p>
+<p>
+        <code class="code">Zend_Controller_Plugin_Abstract</code> udostępnia także obiekty 
+        żądania i odpowiedzi wtyczkom kontrolera za pomocą metod 
+        <code class="code">getRequest()</code> oraz <code class="code">getResponse()</code>, odpowiednio.
+        </p>
+</div>
+<div class="sect2" lang="pl">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.controller.plugins.using"></a>7.6.3. Użycie wtyczek</h3></div></div></div>
+<p>
+        Klasy wtyczek są rejestrowane za pomocą metody 
+        <code class="code">Zend_Controller_Front::registerPlugin()</code>, aż do momentu 
+        uruchomienia. Poniższy kod pokazuje w jaki sposób wtyczka może być użyta
+        przez kontroler:
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Controller/Front.php';
+require_once 'Zend/Controller/Router.php';
+require_once 'Zend/Controller/Plugin/Abstract.php';
+
+class MyPlugin extends Zend_Controller_Plugin_Abstract
+{
+    public function routeStartup()
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;routeStartup() called&lt;/p&gt;');
+    }
+
+    public function routeShutdown($request)
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;routeShutdown() called&lt;/p&gt;');
+    }
+
+    public function dispatchLoopStartup($request)
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;dispatchLoopStartup() called&lt;/p&gt;');
+    }
+
+    public function preDispatch($request)
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;preDispatch() called&lt;/p&gt;');
+    }
+
+    public function postDispatch($request)
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;postDispatch() called&lt;/p&gt;');
+    }
+
+    public function dispatchLoopShutdown()
+    {
+        $this-&gt;getResponse()-&gt;appendBody('&lt;p&gt;dispatchLoopShutdown() called&lt;/p&gt;');
+    }
+}
+
+$controller = Zend_Controller_Front::getInstance();
+$controller-&gt;setControllerDirectory('/path/to/controllers')
+           -&gt;setRouter(new Zend_Controller_Router())
+           -&gt;registerPlugin(new MyPlugin());
+$response = $controller-&gt;dispatch();
+
+echo $response;</pre>
+<p>
+        </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.controller.action.html">Poprzedni</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.controller.html">Początek rozdziału</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.controller.modular.html">Następny</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">7.5. Action Controllers </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Spis treści</a></td>
+<td width="40%" align="right" valign="top"> 7.7. Użycie konwencjonalnej modularnej struktury katalogów</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

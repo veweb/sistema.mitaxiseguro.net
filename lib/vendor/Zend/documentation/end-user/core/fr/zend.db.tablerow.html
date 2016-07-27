@@ -1,0 +1,195 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.5. Zend_Db_Table_Row</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="prev" href="zend.db.table.html" title="9.4. Zend_Db_Table">
+<link rel="next" href="zend.db.tablerowset.html" title="9.6. Zend_Db_Table_Rowset">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.introduction" title="9.5.1. Introduction">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.fetch" title="9.5.2. Aller chercher une ligne">
+<link rel="subsection" href="zend.db.tablerow.html#zend.db.table.row.modify" title="9.5.3. Modifier les valeurs">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.5. Zend_Db_Table_Row</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.table.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.tablerowset.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.tablerow"></a>9.5. Zend_Db_Table_Row</h2></div></div></div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.introduction"></a>9.5.1. Introduction</h3></div></div></div>
+<p>
+            <code class="code">Zend_Db_Table_Row</code> constitue la passerelle du Framework Zend avec les données des lignes de votre base de données. 
+            En général, vous n'instanciez pas directement <code class="code">Zend_Db_Table_Row</code>; vous obtenez plutôt un objet Zend_Db_Table_Row comme 
+            valeur de renvoi des méthodes <code class="code">Zend_Db_Table::find()</code> et <code class="code">Zend_Db_Table::fetchRow()</code>. Une fois que vous disposez d'un objet 
+            <code class="code">Zend_Db_Table_Row</code>, vous pouvez modifier les valeurs de l'enregistrement associé (représentées sous forme de propriétés de la classe) 
+            et ensuite enregistrer les changements dans la table avec la méthode <code class="code">save()</code>.
+        </p>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.fetch"></a>9.5.2. Aller chercher une ligne</h3></div></div></div>
+<p>
+             La première chose à faire consiste à instancier la classe <code class="code">Zend_Db_Table</code>.
+        </p>
+<pre class="programlisting">&lt;?php
+// définition d'un adaptateur
+require_once 'Zend/Db.php';
+$parametres = array (
+    'adapter'  =&gt; 'PDO_MYSQL',
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'arthur',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory($parametres);
+
+// on définit l'adaptateur par défaut de tous les objets Zend_Db_Table
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+
+// on se relie à une table de la base de données
+class TableRonde extends Zend_Db_Table {}
+$table = new TableRonde();
+?&gt;
+        </pre>
+<p>
+             Puis, on obtient un enregistrement particulier de la base de données en passant une clé à la méthode <code class="code">Zend_Db_Table::find()</code>
+             ou en utilisant la méthode <code class="code">Zend_Db_Table::fetchRow()</code>. Le résultat renvoyé sera un objet <code class="code">Zend_Db_Table_Row</code> dont chaque propriété 
+             est un nom au format "notationCamel" correspondant au nom d'une colonne de la table au format "mots_separes_par_tirets_bas". 
+             À titre d'exemple, la colonne dont le nom sera "nom_de_famille" correspondra à la propriété "nomDeFamille" au sein de l'objet.
+        </p>
+<pre class="programlisting">&lt;?php
+// on va chercher un enregistrement particulier de la table sous forme d'objet
+// Zend_Db_Table_Row
+$ligne = $table-&gt;fetchRow('prenom = "Robin"');
+
+//
+// $ligne constitue maintenant un objet Zend_Db_Table_Row dont les propriétés
+// publiques sont associées aux colonnes de la table :
+//
+// $ligne-&gt;id = '3'
+// $ligne-&gt;titre = 'Sire'
+// $ligne-&gt;prenom = 'Robin'
+// $ligne-&gt;couleurPreferee = 'jaune'
+//
+
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="fr">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.row.modify"></a>9.5.3. Modifier les valeurs</h3></div></div></div>
+<p>
+             Modifier les valeurs de la ligne est très simple : travaillez simplement en manipulant les propriétés de l'objet 
+             comme vous le feriez avec n'importe quel objet. Lorsque vous avez terminé, vous pouvez ensuite enregistrer de nouveau 
+             la ligne dans la table avec la méthode <code class="code">save()</code>.
+        </p>
+<pre class="programlisting">&lt;?php
+// connexion à une table de la base de données
+class TableRonde extends Zend_Db_Table {}
+$table = new TableRonde();
+
+// on va chercher un enregistrement particulier de la table sous forme d'objet
+// Zend_Db_Table_Row
+$ligne = $table-&gt;fetchRow('prenom = "Robin"');
+
+//
+// $ligne constitue maintenant un objet Zend_Db_Table_Row dont les propriétés
+// publiques sont associées aux colonnes de la table :
+//
+// $ligne-&gt;id = '3'
+// $ligne-&gt;titre = 'Sire'
+// $ligne-&gt;prenom = 'Robin'
+// $ligne-&gt;couleurPreferee = 'jaune'
+//
+// on change la couleur préférée et on enregistre le changement dans la table
+$ligne-&gt;couleurPreferee = 'bleu';'
+$ligne-&gt;save();
+?&gt;
+        </pre>
+<p>
+             Toutefois, il n'est pas permis de changer la valeur d'une clé primaire; si vous faites cela, <code class="code">Zend_Db_Table_Row</code> lancera une exception.
+        </p>
+<pre class="programlisting">&lt;?php
+// connexion à une table de la base de données
+class TableRonde extends Zend_Db_Table {}
+$table = new TableRonde();
+
+// on va chercher un enregistrement particulier de la table sous forme d'objet
+// Zend_Db_Table_Row
+$ligne = $table-&gt;fetchRow('prenom = "Robin"');
+
+// peut-on changer la clé primaire "id"?
+try {
+    $ligne-&gt;id = 5;
+    echo "Vous ne devriez pas voir ce message, car une exception devrait se 
+déclencher.";
+} catch (Zend_Db_Table_RowException $e) {
+    echo $e-&gt;getMessage();
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.table.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.tablerowset.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.4. Zend_Db_Table </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> 9.6. Zend_Db_Table_Rowset</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

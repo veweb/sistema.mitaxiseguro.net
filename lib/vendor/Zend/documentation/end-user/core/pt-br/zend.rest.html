@@ -1,0 +1,119 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Capítulo 21. Zend_Rest</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guia de Referência do Programador">
+<link rel="up" href="index.html" title="Guia de Referência do Programador">
+<link rel="prev" href="zend.pdf.usage.html" title="20.6. Zend_Pdf module usage example.">
+<link rel="next" href="zend.rest.client.html" title="21.2. Zend_Rest_Client">
+<link rel="chapter" href="zend.html" title="Capítulo 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Capítulo 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Capítulo 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Capítulo 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Capítulo 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Capítulo 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Capítulo 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Capítulo 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Capítulo 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Capítulo 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Capítulo 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Capítulo 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Capítulo 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Capítulo 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Capítulo 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Capítulo 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Capítulo 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Capítulo 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Capítulo 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Capítulo 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Capítulo 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Capítulo 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Capítulo 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Capítulo 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Capítulo 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Capítulo 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Capítulo 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Capítulo 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Capítulo 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Apêndice A. Padrões de Codificação do Framework Zend para PHP">
+<link rel="appendix" href="copyrights.html" title="Apêndice B. Informação de Direitos Autorais">
+<link rel="index" href="the.index.html" title="Índice Remissivo">
+<link rel="section" href="zend.rest.html#zend.rest.introduction" title="21.1. Introduction">
+<link rel="section" href="zend.rest.client.html" title="21.2. Zend_Rest_Client">
+<link rel="section" href="zend.rest.server.html" title="21.3. Zend_Rest_Server">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Capítulo 21. Zend_Rest</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.pdf.usage.html">Anterior</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.rest.client.html">Próxima</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.rest"></a>Capítulo 21. Zend_Rest</h2></div></div></div>
+<div class="toc">
+<p><b>Índice</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.rest.html#zend.rest.introduction">21.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="zend.rest.client.html">21.2. Zend_Rest_Client</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.introduction">21.2.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.return">21.2.2. Responses</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.client.html#zend.rest.client.args">21.2.3. Request Arguments</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.rest.server.html">21.3. Zend_Rest_Server</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.introduction">21.3.1. Introduction</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.usage">21.3.2. REST Server Usage</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.args">21.3.3. Calling a Zend_Rest_Server Service</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.customstatus">21.3.4. Sending A Custom Status</a></span></dt>
+<dt><span class="sect2"><a href="zend.rest.server.html#zend.rest.server.customxml">21.3.5. Returning Custom XML Responses</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="pt-br">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.rest.introduction"></a>21.1. Introduction</h2></div></div></div>
+<p>
+        REST Web Services use service-specific XML formats. These ad-hoc
+        standards mean that the manner for accessing a REST web service is
+        different for each service. REST web services typically use URL
+        parameters (GET data) or path information for requesting data and POST
+        data for sending data.
+    </p>
+<p>
+        The Zend Framework provides both Client and Server capabilities, which,
+        when used together allow for a much more "local" interface experience
+        via virtual object property access.  The Server component features
+        automatic exposition of functions and classes using a meaningful and
+        simple XML format. When accessing these services using the Client, it is
+        possible to easily retrieve the return data from the remote call. Should
+        you wish to use the client with a non-Zend_Rest_Server based service, it
+        will still provide easier data access.
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.pdf.usage.html">Anterior</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.rest.client.html">Próxima</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">20.6. Zend_Pdf module usage example. </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td>
+<td width="40%" align="right" valign="top"> 21.2. Zend_Rest_Client</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

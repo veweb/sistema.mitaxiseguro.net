@@ -1,0 +1,221 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第6章 Zend_Console_Getopt</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="up" href="index.html" title="プログラマ向けリファレンスガイド">
+<link rel="prev" href="zend.config.adapters.xml.html" title="5.4. Zend_Config_Xml">
+<link rel="next" href="zend.console.getopt.rules.html" title="6.2. Getopt の規則の宣言">
+<link rel="chapter" href="zend.html" title="第1章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第2章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第3章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第4章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第5章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第6章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第7章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第8章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第9章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第10章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第11章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第12章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第13章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第14章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第15章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第16章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第17章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第18章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第19章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第20章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第21章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第22章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第23章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第24章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第25章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第26章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第27章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第28章 Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="第29章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="付録 A. Zend Framework PHP 標準コーディング規約">
+<link rel="appendix" href="copyrights.html" title="付録 B. 著作権に関する情報">
+<link rel="index" href="the.index.html" title="目次">
+<link rel="section" href="zend.console.getopt.html#zend.console.getopt.introduction" title="6.1. Getopt について">
+<link rel="section" href="zend.console.getopt.rules.html" title="6.2. Getopt の規則の宣言">
+<link rel="section" href="zend.console.getopt.fetching.html" title="6.3. オプションおよび引数の取得">
+<link rel="section" href="zend.console.getopt.configuration.html" title="6.4. Zend_Console_Getopt の設定">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第6章 Zend_Console_Getopt</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.config.adapters.xml.html">前のページ</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.console.getopt.rules.html">次のページ</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="ja">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.console.getopt"></a>第6章 Zend_Console_Getopt</h2></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.console.getopt.html#zend.console.getopt.introduction">6.1. Getopt について</a></span></dt>
+<dt><span class="sect1"><a href="zend.console.getopt.rules.html">6.2. Getopt の規則の宣言</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.rules.html#zend.console.getopt.rules.short">6.2.1. 短い形式のオプションの宣言</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.rules.html#zend.console.getopt.rules.long">6.2.2. 長い形式のオプションの宣言</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.console.getopt.fetching.html">6.3. オプションおよび引数の取得</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.exceptions">6.3.1. Getopt の例外処理</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.byname">6.3.2. 名前によるオプションの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.reporting">6.3.3. オプションの取得</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.fetching.html#zend.console.getopt.fetching.remainingargs">6.3.4. 非オプション引数の取得</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="zend.console.getopt.configuration.html">6.4. Zend_Console_Getopt の設定</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addrules">6.4.1. オプションの規則の追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addhelp">6.4.2. ヘルプメッセージの追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addaliases">6.4.3. オプションのエイリアスの追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.addargs">6.4.4. 引数リストの追加</a></span></dt>
+<dt><span class="sect2"><a href="zend.console.getopt.configuration.html#zend.console.getopt.configuration.config">6.4.5. 設定の追加</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="sect1" lang="ja">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.console.getopt.introduction"></a>6.1. Getopt について</h2></div></div></div>
+<p>
+        <code class="code">Zend_Console_Getopt</code> クラスは、
+        コマンドラインアプリケーションでのオプションや引数の処理を助けるものです。
+    </p>
+<p>
+        ユーザは、アプリケーションを実行する際にコマンドライン引数を指定することができます。
+        これらの引数はアプリケーションにとって何らかの意味を持つものであり、
+        何らかの振る舞いを変更したりリソースを選択したり、パラメータを設定したりします。
+        多くのオプションには、慣例となっている意味があります。
+        たとえば "<code class="code">--verbose</code>" は、多くのアプリケーションで
+        出力内容をさらに追加します。
+        その他のオプションには、アプリケーションによって意味が異なるものもあります。
+        たとえば "<code class="code">-c</code>" は、
+        <span><strong class="command">grep</strong></span>、<span><strong class="command">ls</strong></span> および
+        <span><strong class="command">tar</strong></span> でそれぞれ違う機能を表します。
+    </p>
+<p>
+        以下で用語の定義をします。これらの用語はいろいろな意味で用いられますが、
+        このドキュメントでは、ここで定義した意味で使用します。
+    </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+                "引数 (argument)": 
+                コマンドラインで、コマンド名の後にあらわれる文字列。
+                引数には、オプションが付くこともありますし
+                付かないこともあります。引数により、
+                コマンドの操作対象となるリソースを指定します。
+            </p></li>
+<li><p>
+                "オプション (option)": 
+                引数のうち、そのコマンドのデフォルトの振る舞いを
+                何らかの方法で変更するもの。
+            </p></li>
+<li><p>
+                "フラグ (flag)": オプションの最初の部分で、
+		そのオプションの目的を表すもの。フラグの前には、
+		慣習的にひとつあるいはふたつのダッシュ
+                ("<code class="code">-</code>" あるいは "<code class="code">--</code>")
+                をつけることになっています。
+		ひとつのダッシュをつけるのは、
+		一文字のフラグかあるいは一文字フラグのクラスタの場合です。
+		ふたつのダッシュをつけるのは複数文字からなるフラグの場合です。
+		長い形式のフラグはクラスタ化できません。
+            </p></li>
+<li>
+<p>
+                "パラメータ (parameter)": オプションの二番目の部分で、
+                フラグとともに使用するデータの値を指定します。
+                これは、オプションがそれを受け付ける場合に限ります。
+                たとえば、多くのコマンドは
+                "<code class="code">--verbose</code>" オプションを受け付けますが、
+                このオプションには一般的にパラメータを指定しません。
+                しかし、"<code class="code">--user</code>" のようなオプションは、
+                たいていの場合はその後にパラメータが必要です。
+	    </p>
+<p>
+		パラメータはフラグ引数の後で別の引数として指定することもできますし、
+		あるいは同一の引数文字列の一部として指定することもできます。
+		この場合は、フラグとパラメータを等号 ("<code class="code">=</code>") で連結します。
+		後者の形式は、長いフラグでのみサポートしています。
+		たとえば、
+		<code class="code">-u username</code>、<code class="code">--user username</code>
+		あるいは <code class="code">--user=username</code> といった形式を
+		<code class="code">Zend_Console_Getopt</code> でサポートしています。
+            </p>
+</li>
+<li><p>
+	        "クラスタ (cluster)": 複数の一文字のフラグを組み合わせ、
+		ひとつのダッシュの後に文字列としてつなげたもの。
+		たとえば "<span><strong class="command">ls -1str</strong></span>"
+		は四つのフラグのクラスタを使用しています。
+                このコマンドは "<span><strong class="command">ls -1 -s -t -r</strong></span>"
+                と同等です。クラスタ化できるのは一文字のフラグだけで、
+                長い形式のフラグはクラスタ化できません。
+	    </p></li>
+</ul></div>
+<p>
+        たとえば "<code class="code">mysql --user=root mydatabase</code>" において、
+        "<code class="code">mysql</code>" は <span class="emphasis"><em>コマンド</em></span>、
+        "<code class="code">--user=root</code>" は <span class="emphasis"><em>オプション</em></span>、
+        "<code class="code">--user</code>" は <span class="emphasis"><em>フラグ</em></span>、
+        "<code class="code">root</code>" はオプションに対する <span class="emphasis"><em>パラメータ</em></span>
+        となります。また "<code class="code">mydatabase</code>" は、
+        この定義によると引数ですがオプションではありません。
+    </p>
+<p>
+        <code class="code">Zend_Console_Getopt</code> が提供するインターフェイスには、
+        「アプリケーションで使用可能なフラグの宣言」
+        「無効なフラグが指定された場合のエラー表示および使用法の表示」
+        「ユーザが指定したフラグのアプリケーションへの通知」
+        などがあります。
+    </p>
+<div class="note"><table border="0" summary="Note: Getopt はアプリケーションフレームワークではありません">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">Getopt はアプリケーションフレームワークではありません</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+	    <code class="code">Zend_Console_Getopt</code> はdoes 
+	    フラグやパラメータの意味を解釈するわけ <span class="emphasis"><em>ではなく</em></span>、
+	    またアプリケーションのワークフローを実装したりコードを起動したりするものでもありません。
+	    それらの処理については、アプリケーション内で自分で実装しなければなりません。
+	    <code class="code">Zend_Console_Getopt</code> クラスを使用すると、
+	    コマンドラインをパースし、ユーザが指定したオプションを
+	    オブジェクト指向のメソッドで取得できるようになります。
+	    しかし、その情報をもとにアプリケーションで何らかの処理を行うのは別の
+	    PHP クラスの仕事です。
+	</p></td></tr>
+</table></div>
+<p>
+        これ以降の節で、<code class="code">Zend_Console_Getopt</code> の使用法を説明します。
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.config.adapters.xml.html">前のページ</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.console.getopt.rules.html">次のページ</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">5.4. Zend_Config_Xml </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">ホーム</a></td>
+<td width="40%" align="right" valign="top"> 6.2. Getopt の規則の宣言</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

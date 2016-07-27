@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Kapitel 5. Zend_Config</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="up" href="index.html" title="Programmierer Referenzhandbuch">
+<link rel="prev" href="zend.cache.backends.html" title="4.4. Zend_Cache Backends">
+<link rel="next" href="zend.config.theory_of_operation.html" title="5.2. Theory of Operation">
+<link rel="chapter" href="zend.html" title="Kapitel 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Kapitel 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Kapitel 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Kapitel 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Kapitel 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Kapitel 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Kapitel 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Kapitel 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Kapitel 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Kapitel 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Kapitel 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Kapitel 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Kapitel 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Kapitel 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Kapitel 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Kapitel 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Kapitel 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Kapitel 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Kapitel 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Kapitel 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Kapitel 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Kapitel 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Kapitel 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Kapitel 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Kapitel 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Kapitel 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Kapitel 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Kapitel 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Kapitel 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Anhang A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Anhang B. Urheberrecht Informationen">
+<link rel="index" href="the.index.html" title="Stichwortverzeichnis">
+<link rel="section" href="zend.config.html#zend.config.introduction" title="5.1. Einleitung">
+<link rel="section" href="zend.config.theory_of_operation.html" title="5.2. Theory of Operation">
+<link rel="section" href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini">
+<link rel="section" href="zend.config.adapters.xml.html" title="5.4. Zend_Config_Xml">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Kapitel 5. Zend_Config</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.cache.backends.html">Zurück</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.config.theory_of_operation.html">Weiter</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="de">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.config"></a>Kapitel 5. Zend_Config</h2></div></div></div>
+<div class="toc">
+<p><b>Inhaltsverzeichnis</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.config.html#zend.config.introduction">5.1. Einleitung</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.theory_of_operation.html">5.2. Theory of Operation</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.adapters.ini.html">5.3. Zend_Config_Ini</a></span></dt>
+<dt><span class="sect1"><a href="zend.config.adapters.xml.html">5.4. Zend_Config_Xml</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="de">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.config.introduction"></a>5.1. Einleitung</h2></div></div></div>
+<p>
+        <code class="code">Zend_Config</code> wurde entworfen um den Zugriff auf und die Verwendung von Konfigurations-Daten zu vereinfachen. <code class="code">Zend_Config</code> stellt diese Konfigurations-Daten innerhalb der Applikation über eine verschachtelte Objekt-Struktur zur Verfügung. Die Konfigurations-Daten können aus verschiedenen Datenquellen gelesen werden, die hierarchische Datenspeicherung unterstützen. Derzeit stellt <code class="code">Zend_Config</code> mit <a href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini"><code class="code">Zend_Config_Ini</code></a> und <a href="zend.config.adapters.xml.html" title="5.4. Zend_Config_Xml"><code class="code">Zend_Config_Xml</code></a> Adapter für das Einlesen von Daten aus Textfiles zur Verfügung.
+    </p>
+<div class="example">
+<a name="id4793190"></a><p class="title"><b>Beispiel 5.1. Zend-Config ohne Adapter benutzen</b></p>
+<p>
+            In der Regel geht man davon aus, dass Anwender eine der Adapter-Klassen wie <a href="zend.config.adapters.ini.html" title="5.3. Zend_Config_Ini"><code class="code">Zend_Config_Ini</code></a> oder <a href="zend.config.adapters.xml.html" title="5.4. Zend_Config_Xml"><code class="code">Zend_Config_Xml</code></a> verwenden. Wenn die Konfigurations-Daten aber als PHP-Array vorliegen, können diese auch einfach an den <code class="code">Zend_Config</code>-Konstruktor übergeben werden, um dann über die objektorientierte Schnittstelle auf sie zugreifen zu können:
+        </p>
+<pre class="programlisting">&lt;?php
+// Gegeben ist ein Array mit Konfigurations-Daten
+$configArray = array(
+    'webhost' =&gt; 'www.example.com',
+    'database' =&gt; array(
+        'type'     =&gt; 'pdo_mysql',
+        'host'     =&gt; 'db.example.com',
+        'username' =&gt; 'dbuser',
+        'password' =&gt; 'geheim',
+        'name'     =&gt; 'dbname'
+    )
+);
+
+// Erstelle das objektorientierte Interface zum Datenzugriff
+require_once 'Zend/Config.php';
+$config = new Zend_Config($configArray);
+
+// Gebe einen Eintrag aus (Ausgabe ist 'www.example.com')
+echo $config-&gt;webhost;
+
+// Konfigurations-Daten benutzen, um eine Datenbank-Verbindung her zu stellen
+$myApplicationObject-&gt;databaseConnect($config-&gt;database-&gt;type,
+                                      $config-&gt;database-&gt;host,
+                                      $config-&gt;database-&gt;username,
+                                      $config-&gt;database-&gt;password,
+                                      $config-&gt;database-&gt;name);</pre>
+</div>
+<p>
+        Wie das Beispiel oben zeigt, kann man über <code class="code">Zend_Config</code> auf die Konfigurations-Daten aus dem übergebenen Array so zugreifen, wie auf die Eigenschaften einer verschachtelten Objekt-Struktur.
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.cache.backends.html">Zurück</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.config.theory_of_operation.html">Weiter</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.4. Zend_Cache Backends </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Zum Anfang</a></td>
+<td width="40%" align="right" valign="top"> 5.2. Theory of Operation</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

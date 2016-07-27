@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>14.3. Objets JSON</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guide de référence du programmeur">
+<link rel="up" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="prev" href="zend.json.basics.html" title="14.2. Utilisation de base">
+<link rel="next" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.html" title="Chapitre 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapitre 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapitre 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapitre 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapitre 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapitre 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapitre 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapitre 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapitre 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapitre 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapitre 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapitre 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapitre 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapitre 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapitre 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapitre 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapitre 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapitre 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapitre 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapitre 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapitre 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapitre 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapitre 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapitre 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapitre 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapitre 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapitre 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapitre 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapitre 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Annexe A. Convention de codage PHP du Framework Zend">
+<link rel="appendix" href="copyrights.html" title="Annexe B. Informations de copyright">
+<link rel="index" href="the.index.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">14.3. Objets JSON</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.json.basics.html">Précédent</a> </td>
+<th width="60%" align="center">Chapitre 14. Zend_Json</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.locale.html">Suivant</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="fr">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.json.objects"></a>14.3. Objets JSON</h2></div></div></div>
+<p>
+        Lorsque vous encodez des objets PHP en tant que JSON, toutes les propriétés publiques de cet objet sont encodées dans un objet JSON.
+    </p>
+<p>
+        Bien que les objets Javascript correspondent de très près aux tableau associatifs de PHP, décoder des objets JSON pose une légère difficulté.
+        Certains suggèrent qu'un identifiant de classe soit passé, et qu'une instance de cette classe soit créée et définie avec les paires clé/valeur des 
+        objets JSON; d'autres pensent que cela pourrait poser un risque de sécurité potentiel.
+    </p>
+<p>
+        Par défaut, <code class="code">Zend_Json</code> décodera des objets JSON comme en tableaux associatifs. Cependant, si vous désirez avoir un objet en retour, vous
+        pouvez le spécifier :
+        </p>
+<pre class="programlisting">&lt;?php
+// Décode des objets en tant qu'objets
+$phpNatif = Zend_Json::decode($valeurEncodee, Zend_Json::TYPE_OBJECT);
+?&gt;</pre>
+<p>
+        Tous les objets sont ainsi décodés et retournés comme des objets de type <code class="code">StdClass</code>, avec leurs propriétés correspondantes aux paires
+        clé/valeur de la notation JSON.
+    </p>
+<p>
+        La recommandation du Framework Zend est que le développeur doit décider comment décoder les objets JSON.
+        Si un objet d'un type spécifié doit être créé, il peut être créé dans le code du développeur et définit avec les valeurs
+        décodées en utilisant <code class="code">Zend_Json</code>.
+    </p>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.json.basics.html">Précédent</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.json.html">Niveau supérieur</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.locale.html">Suivant</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">14.2. Utilisation de base </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Sommaire</a></td>
+<td width="40%" align="right" valign="top"> Chapitre 15. Zend_Locale</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

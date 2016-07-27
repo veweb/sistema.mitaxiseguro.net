@@ -1,0 +1,430 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>9.4. Zend_Db_Table</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Guía de Referencia del Programador">
+<link rel="up" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="prev" href="zend.db.select.html" title="9.3. Zend_Db_Select">
+<link rel="next" href="zend.db.tablerow.html" title="9.5. Zend_Db_Table_Row">
+<link rel="chapter" href="zend.html" title="Chapter 1. Zend">
+<link rel="chapter" href="zend.acl.html" title="Chapter 2. Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="Chapter 3. Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="Chapter 4. Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="Chapter 5. Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="Chapter 6. Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="Chapter 7. Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="Chapter 8. Zend_Date">
+<link rel="chapter" href="zend.db.html" title="Chapter 9. Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="Chapter 10. Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="Chapter 11. Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="Chapter 12. Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="Chapter 13. Zend_Http">
+<link rel="chapter" href="zend.json.html" title="Chapter 14. Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="Chapter 15. Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="Chapter 16. Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="Chapter 17. Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="Chapter 18. Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="Chapter 19. Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="Chapter 20. Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="Chapter 21. Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="Chapter 22. Zend_Search">
+<link rel="chapter" href="zend.server.html" title="Chapter 23. Zend_Server">
+<link rel="chapter" href="zend.service.html" title="Chapter 24. Zend_Service">
+<link rel="chapter" href="zend.session.html" title="Chapter 25. Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="Chapter 26. Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="Chapter 27. Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="Chapter 28. Zend_View">
+<link rel="chapter" href="zend.xmlrpc.html" title="Chapter 29. Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="Appendix A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="Appendix B. Copyright Information">
+<link rel="index" href="the.index.html" title="Index">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.introduction" title="9.4.1. Introduction">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.getting-started" title="9.4.2. Getting Started">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.name-and-key" title="9.4.3. Table Name and Primary Key">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.insert" title="9.4.4. Inserting Rows">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.udpate" title="9.4.5. Updating Rows">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.delete" title="9.4.6. Deleting Rows">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.findbykey" title="9.4.7. Finding Rows by Primary Key">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchonerow" title="9.4.8. Fetching One Row">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.fetchmultiple" title="9.4.9. Fetching Multiple Rows">
+<link rel="subsection" href="zend.db.table.html#zend.db.table.domain-logic" title="9.4.10. Adding Domain Logic">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">9.4. Zend_Db_Table</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.db.select.html">Prev</a> </td>
+<th width="60%" align="center">Chapter 9. Zend_Db</th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">Next</a>
+</td>
+</tr>
+</table></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.db.table"></a>9.4. Zend_Db_Table</h2></div></div></div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.introduction"></a>9.4.1. Introduction</h3></div></div></div>
+<p>
+            Zend_Db_Table is a TableModule for the Zend Framework.  It
+            connects to your database via Zend_Db_Adapter, examines a table
+            for its schema, then aids you in manipulating and fetching
+            rows from that table.
+        </p>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.getting-started"></a>9.4.2. Getting Started</h3></div></div></div>
+<p>
+            The first thing to do is feed the abstract Zend_Db_Table class
+            a default database adapter; unless you specify otherwise,
+            all Zend_Db_Table instances will use this default adapter.
+        </p>
+<pre class="programlisting">&lt;?php
+// set up an adapter
+require_once 'Zend/Db.php';
+$params = array (
+    'host'     =&gt; '127.0.0.1',
+    'username' =&gt; 'malory',
+    'password' =&gt; '******',
+    'dbname'   =&gt; 'camelot'
+);
+
+$db = Zend_Db::factory('PDO_MYSQL', $params);
+
+// set the default adapter for all Zend_Db_Table objects
+require_once 'Zend/Db/Table.php';
+Zend_Db_Table::setDefaultAdapter($db);
+?&gt;
+        </pre>
+<p>
+            Next, let's assume that you have a table in your database
+            called "round_table".  To use Zend_Db_Table with that database
+            table, simply extend Zend_Db_Table to create a new class called
+            RoundTable (note how we "camelize" the round_table name).
+            Then we can examine, manipulate rows, and fetch results from
+            the 'round_table' table in the database via that class.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+$table = new RoundTable();
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.name-and-key"></a>9.4.3. Table Name and Primary Key</h3></div></div></div>
+<p>
+            By default, Zend_Db_Table expects that the table name in the
+            database will be the same as its own class name (when converted
+            from CamelCaps to underscore_words).  Thus, a Zend_Db_Table class
+            called SomeTableName maps to an SQL table called 'some_table_name'.
+            If you want your class to map to something other than the
+            underscore form of the class name, override the $_name property
+            when defining your class.
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    // default table name is 'class_name'
+    // but we want to map to something else
+    protected $_name = 'another_table_name';
+}
+?&gt;
+        </pre>
+<p>
+            By default, Zend_Db_Table expects your table to have a primary
+            key named 'id'.  (It is better if this column is
+            auto-incremented, but is not required.)  If your primary key
+            is named something other than 'id', you can override the
+            $_primary property when defining your class.
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    // default primary key is 'id'
+    // but we want to use something else
+    protected $_primary = 'another_column_name';
+}
+?&gt;
+        </pre>
+<p>
+            Alternatively, you may set these in the _setup() method of
+            your extended class; just be sure to call the parent::_setup()
+            when you are done.
+        </p>
+<pre class="programlisting">&lt;?php
+class ClassName extends Zend_Db_Table
+{
+    protected function _setup()
+    {
+        $this-&gt;_name = 'another_table_name';
+        $this-&gt;_primary = 'another_column_name';
+        parent::_setup();
+    }
+}
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.insert"></a>9.4.4. Inserting Rows</h3></div></div></div>
+<p>
+            To insert a new row into your table, simply call insert()
+            with an associative array of column:value data.  The data
+            will be quoted for you automatically, and the last insert ID
+            will be returned.  (Note that this differs from
+            Zend_Db_Adapter::insert(), where the number of rows affected will
+            be returned.)
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// INSERT INTO round_table
+//     (noble_title, first_name, favorite_color)
+//     VALUES ("King", "Arthur", "blue")
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+
+$data = array(
+    'noble_title' =&gt; 'King',
+    'first_name'  =&gt; 'Arthur',
+    'favorite_color' =&gt; 'blue',
+)
+
+$id = $table-&gt;insert($data);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.udpate"></a>9.4.5. Updating Rows</h3></div></div></div>
+<p>
+            To update any number of rows in your table, call update()
+            with an associative array of column:value data to set, along
+            with a WHERE clause to determine which rows will be updated.
+            It will update the table and return the number of rows affected.
+        </p>
+<p>
+            The data to be set will be quoted for you automatically, but
+            the WHERE clause will not, so you need to quote that
+            yourself with the table's Zend_Db_Adapter object.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// UPDATE round_table
+//     SET favorite_color = "yellow"
+//     WHERE first_name = "Robin"
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$set = array(
+    'favorite_color' =&gt; 'yellow',
+)
+
+$where = $db-&gt;quoteInto('first_name = ?', 'Robin');
+
+$rows_affected = $table-&gt;update($set, $where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.delete"></a>9.4.6. Deleting Rows</h3></div></div></div>
+<p>
+            To delete any number of rows in your table, call delete()
+            with a WHERE clause to determine which rows will be deleted.
+            It will then return the number of rows deleted.
+        </p>
+<p>
+            The WHERE clause will not be quoted for you, so you need to
+            quote that yourself with the table's Zend_Db_Adapter object.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// DELETE FROM round_table
+//     WHERE first_name = "Patsy"
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('first_name = ?', 'Patsy');
+
+$rows_affected = $table-&gt;delete($where);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.findbykey"></a>9.4.7. Finding Rows by Primary Key</h3></div></div></div>
+<p>
+            As a convienience, you can easily retrieve rows from the
+            table using primary key values with the find() method.  This
+            method returns a Zend_Db_Table_Row object if you attempt to find()
+            only one key, or a Zend_Db_Table_Rowset object if you attempt to find()
+            multiple keys.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+
+// SELECT * FROM round_table WHERE id = "1"
+$row = $table-&gt;find(1);
+
+// SELECT * FROM round_table WHERE id IN("1", "2", 3")
+$rowset = $table-&gt;find(array(1, 2, 3));
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchonerow"></a>9.4.8. Fetching One Row</h3></div></div></div>
+<p>
+            While you can easily find() a row by its primary key, often you
+            will need to add various conditions when retrieving a row. Zend_Db_Table
+            provides fetchRow() for just this purpose.  Call fetchRow() with
+            a WHERE clause (and an optional ORDER clause), and Zend_Db_Table will
+            return a Zend_Db_Table_Row that with the first record that matches your
+            conditions.
+        </p>
+<p>
+            Note that your WHERE clause will not be quoted for you, so you
+            will need to quote it yourself with the table's Zend_Db_Adapter.
+        </p>
+<pre class="programlisting">&lt;?php
+//
+// SELECT * FROM round_table
+//     WHERE noble_title = "Sir"
+//     AND first_name = "Robin"
+//     ORDER BY favorite_color
+//
+
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+$where = $db-&gt;quoteInto('noble_title = ?', 'Sir')
+       . $db-&gt;quoteInto('AND first_name = ?', 'Robin');
+
+$order = 'favorite_color';
+
+$row = $table-&gt;fetchRow($where, $order);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.fetchmultiple"></a>9.4.9. Fetching Multiple Rows</h3></div></div></div>
+<p>
+            If you need to retrieve many rows at once, use the fetchAll()
+            method.  As with fetchRow(), it takes a WHERE and ORDER clause,
+            but also takes limit-count and limit-offset values to restrict
+            the number of rows returned.  It will return a Zend_Db_Table_Rowset
+            object with the selected records.
+        </p>
+<p>
+            Note that your WHERE clause will not be quoted for you, so you
+            will need to quote it yourself with the table's Zend_Db_Adapter.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table {}
+
+$table = new RoundTable();
+$db = $table-&gt;getAdapter();
+
+// SELECT * FROM round_table
+//     WHERE noble_title = "Sir"
+//     ORDER BY first_name
+//     LIMIT 10 OFFSET 20
+
+$where = $db-&gt;quoteInto('noble_title = ?', 'Sir');
+$order = 'first_name';
+$count = 10;
+$offset = 20;
+
+$rowset = $table-&gt;fetchRow($where, $order, $count, $offset);
+?&gt;
+        </pre>
+</div>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="zend.db.table.domain-logic"></a>9.4.10. Adding Domain Logic</h3></div></div></div>
+<p>
+            As a TableModule, Zend_Db_Table lends itself well to encapsulating
+            your own particular domain logic.  For example, you can override
+            the insert() and update() methods to manipulate or validate the
+            submitted data before it goes to the database.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table
+{
+    public function insert($data)
+    {
+        // add a timestamp
+        if (empty($data['created_on'])) {
+            $data['created_on'] = time();
+        }
+        return parent::insert($data);
+    }
+
+    public function update($data)
+    {
+        // add a timestamp
+        if (empty($data['updated_on'])) {
+            $data['updated_on'] = time();
+        }
+        return parent::update($data);
+    }
+}
+?&gt;
+        </pre>
+<p>
+            Similarly, you can add your own find() methods to look up
+            records by something other than their primary key.
+        </p>
+<pre class="programlisting">&lt;?php
+class RoundTable extends Zend_Db_Table
+{
+    public function findAllWithName($name)
+    {
+        $db = $this-&gt;getAdapter();
+        $where = $db-&gt;quoteInto("name = ?", $name);
+        $order = "first_name";
+        return $this-&gt;fetchAll($where, $order);
+    }
+}
+?&gt;
+        </pre>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.db.select.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="zend.db.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.db.tablerow.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">9.3. Zend_Db_Select </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> 9.5. Zend_Db_Table_Row</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>

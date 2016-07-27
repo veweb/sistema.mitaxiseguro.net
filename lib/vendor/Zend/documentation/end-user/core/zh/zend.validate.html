@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第 29 章 Zend_Validate</title>
+<link rel="stylesheet" href="dbstyle.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.69.1">
+<link rel="start" href="index.html" title="Zend Framework手册 中文版">
+<link rel="up" href="index.html" title="Zend Framework手册 中文版">
+<link rel="prev" href="zend.view.helpers.html" title="28.4. 视图助手（View Helper）">
+<link rel="next" href="zend.validate.validator_chains.html" title="29.2. 校验器链">
+<link rel="chapter" href="zend.html" title="第 1 章 Zend">
+<link rel="chapter" href="zend.acl.html" title="第 2 章 Zend_Acl">
+<link rel="chapter" href="zend.auth.html" title="第 3 章 Zend_Auth">
+<link rel="chapter" href="zend.cache.html" title="第 4 章 Zend_Cache">
+<link rel="chapter" href="zend.config.html" title="第 5 章 Zend_Config">
+<link rel="chapter" href="zend.console.getopt.html" title="第 6 章 Zend_Console_Getopt">
+<link rel="chapter" href="zend.controller.html" title="第 7 章 Zend_Controller">
+<link rel="chapter" href="zend.date.html" title="第 8 章 Zend_Date">
+<link rel="chapter" href="zend.db.html" title="第 9 章 Zend_Db">
+<link rel="chapter" href="zend.feed.html" title="第 10 章 Zend_Feed">
+<link rel="chapter" href="zend.filter.html" title="第 11 章 Zend_Filter">
+<link rel="chapter" href="zend.gdata.html" title="第 12 章 Zend_Gdata">
+<link rel="chapter" href="zend.http.html" title="第 13 章 Zend_Http">
+<link rel="chapter" href="zend.json.html" title="第 14 章 Zend_Json">
+<link rel="chapter" href="zend.locale.html" title="第 15 章 Zend_Locale">
+<link rel="chapter" href="zend.log.html" title="第 16 章 Zend_Log">
+<link rel="chapter" href="zend.mail.html" title="第 17 章 Zend_Mail">
+<link rel="chapter" href="zend.measure.html" title="第 18 章 Zend_Measure">
+<link rel="chapter" href="zend.mime.html" title="第 19 章 Zend_Mime">
+<link rel="chapter" href="zend.pdf.html" title="第 20 章 Zend_Pdf">
+<link rel="chapter" href="zend.rest.html" title="第 21 章 Zend_Rest">
+<link rel="chapter" href="zend.search.html" title="第 22 章 Zend_Search">
+<link rel="chapter" href="zend.server.html" title="第 23 章 Zend_Server">
+<link rel="chapter" href="zend.service.html" title="第 24 章 Zend_Service">
+<link rel="chapter" href="zend.session.html" title="第 25 章 Zend_Session">
+<link rel="chapter" href="zend.uri.html" title="第 26 章 Zend_Uri">
+<link rel="chapter" href="zend.validate.html" title="第 27 章 Zend_Validate">
+<link rel="chapter" href="zend.view.html" title="第 28 章 Zend_View">
+<link rel="chapter" href="zend.validate.html" title="第 29 章 Zend_Validate">
+<link rel="chapter" href="zend.xmlrpc.html" title="第 30 章 Zend_XmlRpc">
+<link rel="appendix" href="coding-standard.html" title="附录 A. Zend Framework PHP Coding Standard">
+<link rel="appendix" href="copyrights.html" title="附录 B. 版权信息">
+<link rel="index" href="the.index.html" title="索引">
+<link rel="section" href="zend.validate.html#zend.validate.introduction" title="29.1. 简介">
+<link rel="section" href="zend.validate.validator_chains.html" title="29.2. 校验器链">
+<link rel="section" href="zend.validate.writing_validators.html" title="29.3. 写校验器">
+<link rel="section" href="zend.validate.validating_email_addresses.html" title="29.4. 校验 Email 地址">
+<link rel="section" href="zend.validate.validating_hostnames.html" title="29.5. 校验主机名">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader"><table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第 29 章 Zend_Validate</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="zend.view.helpers.html">上一页</a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="zend.validate.validator_chains.html">下一页</a>
+</td>
+</tr>
+</table></div>
+<div class="chapter" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="zend.validate"></a>第 29 章 Zend_Validate</h2></div></div></div>
+<div class="toc">
+<p><b>目录</b></p>
+<dl>
+<dt><span class="sect1"><a href="zend.validate.html#zend.validate.introduction">29.1. 简介</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validator_chains.html">29.2. 校验器链</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.writing_validators.html">29.3. 写校验器</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_email_addresses.html">29.4. 校验 Email 地址</a></span></dt>
+<dt><span class="sect1"><a href="zend.validate.validating_hostnames.html">29.5. 校验主机名</a></span></dt>
+</dl>
+</div>
+<div class="sect1" lang="zh-cn">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="zend.validate.introduction"></a>29.1. 简介</h2></div></div></div>
+<p>
+        Zend_Validate 组件提供一组通用的校验器。它也提供了一个简单的校验器链机制，即在用户定义的顺序下，多个校验器可以被用于单个的数据。
+    </p>
+<p>
+        <span class="strong"><strong>什么是校验器（validator）?</strong></span>
+    </p>
+<p>
+        校验器根据要求检查它的输入并产生一个布尔结果--是否输入被成功校验。如果输入不符合要求，校验器另外地提供信息来说明输入不符合要求。
+    </p>
+<p>
+        例如，一个 web 应用可能要求一个用户名的长度在6 到12个字符并只包含数字和文字。一个校验器可以被用来确保用户名符合要求。如果一个用户名不符合一个或者全部两个要求，知道它到底不符合哪个要求将非常有用。
+    </p>
+<p>
+        用这种方法定义校验为<code class="code">Zend_Validate_Interface</code>提供了基础，它定义了两个方法，<code class="code">isValid()</code> 和 <code class="code">getMessages()</code>。<code class="code">isValid()</code>方法根据提供的值来校验，当且仅当这个值通过校验条件，它返回<code class="code">true</code>。如果<code class="code">isValid()</code>返回<code class="code">false</code>，<code class="code">getMessages()</code> 返回一个信息数组来解释校验失败的原因。    
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[注意]" src="images/note.png"></td>
+<th align="left">注意</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            <code class="code">getMessages()</code> 只为最近的<code class="code">isValid()</code>调用返回校验失败信息，因为 <code class="code">isValid()</code> 清楚先前 <code class="code">isValid</code> 调用的任何信息。
+        </p></td></tr>
+</table></div>
+<p>
+        下面的例子示例一个e-mail地址的校验：
+        </p>
+<pre class="programlisting">&lt;?php
+require_once 'Zend/Validate/EmailAddress.php';
+$validator = new Zend_Validate_EmailAddress();
+if ($validator-&gt;isValid($email)) {
+    // email appears to be valid
+} else {
+    // email is invalid; print the reasons
+    foreach ($validator-&gt;getMessages() as $message) {
+        echo "$message\n";
+    }
+}</pre>
+<p>
+
+    </p>
+</div>
+</div>
+<div class="navfooter"><table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="zend.view.helpers.html">上一页</a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="zend.validate.validator_chains.html">下一页</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">28.4. 视图助手（View Helper） </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">起始页</a></td>
+<td width="40%" align="right" valign="top"> 29.2. 校验器链</td>
+</tr>
+</table></div>
+<div class="revinfo"></div>
+</body>
+</html>
