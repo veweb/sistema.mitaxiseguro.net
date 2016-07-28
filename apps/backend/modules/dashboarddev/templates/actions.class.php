@@ -1,7 +1,7 @@
 <?php
 
 /**
- * dashboard actions.
+ * dashboard actions. prueba
  *
  * @package    sistem-taxi
  * @subpackage dashboard
