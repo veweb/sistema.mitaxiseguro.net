@@ -218,7 +218,7 @@ class dashboarddevActions extends sfActions
 /*/
 			
 
-			$con = mysql_connect("db461977375.db.1and1.com","dbo461977375","locames2013");
+			$con = mysql_connect("http://130.211.184.73","dbo461977375","QN76ptAq");
 			if (!$con)
 			  {
 			  die('Could not connect: ' . mysql_error());
