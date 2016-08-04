@@ -15,14 +15,17 @@
 		<?php foreach($unidades as $unidad): ?>
 			<?php
 		    $dteStart = new DateTime($unidad->getUpdatedAt()); 
-            $dteEnd   = new DateTime(date("Y-m-d H:i:s",(strtotime ("-2 Hours")) ));
+            $dteEnd   = new DateTime(date("Y-m-d H:i:s",(strtotime ("0 hours")) ));
 			$dteDiff  = $dteStart->diff($dteEnd); 
 			$diferencia = $dteDiff->format("%H:%I:%S");
 			$dias = $dteDiff->format('%R%a días');
 			$tiempo = explode(':', $diferencia);
 		     
 		 ?>
-		  <?php if((strval($tiempo[1]) > 5) and (strval($tiempo[0]) >= 0)): ?>	
+		 --------
+		 <?php echo (int)strval($tiempo[1]) ?>-->
+		 <?php echo (int)strval($tiempo[0])?><br>
+		  <?php if((strval($tiempo[1]) > 0) and (strval($tiempo[0]) >= 0)): ?>	
 			<tr>
 				<td><?php echo $no; ?></td>
 				<td><?php echo $unidad->getId(); ?></td>

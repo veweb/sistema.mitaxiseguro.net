@@ -325,7 +325,7 @@ function fancyConfirm(msg,callbackYes,callbackNo) {
                             */
   
          });
-   
+ 
  var callAjax = function(){
           $.ajax({
             method:'get',
@@ -337,7 +337,7 @@ function fancyConfirm(msg,callbackYes,callbackNo) {
             }
           });
         }
-        setInterval(callAjax,2000); 
+   //     setInterval(callAjax,2000); 
   
    function ok(data){
    	alertify.success(data+alertify.labels.ok );
@@ -353,7 +353,7 @@ function fancyConfirm(msg,callbackYes,callbackNo) {
           });
         }
          
-    setInterval(callAjax2,60000); 
+   // setInterval(callAjax2,5000); 
           
             
             
@@ -375,7 +375,7 @@ function fancyConfirm(msg,callbackYes,callbackNo) {
           });
         }
       //  setInterval(callAjax3,1000); 
-  
+   
     var callAjax4 = function(){
           $.ajax({
             method:'get',
@@ -385,7 +385,7 @@ function fancyConfirm(msg,callbackYes,callbackNo) {
             }
           });
         }
-       setInterval(callAjax4,1000); 
+//       setInterval(callAjax4,1000); 
 
 
  
@@ -520,18 +520,13 @@ function fancyConfirm(msg,callbackYes,callbackNo) {
             var end = $("#puntoD").val();
 				    var trafico = $("#trafico").val();
 				    var tipo_trafico = <?php if ($trafico == "" ) echo "2"; else echo $trafico; ?>;
-				    var precio = <?php foreach ($tarifas as $tarifa): 
-				     if( $tarifa->getId() == $trafico){ $precioreal = $tarifa->getMonto();  } else $precio ="6"; 
-				     endforeach;
-					   if ($precioreal != "") $precio = $precioreal;
-					   echo $precio;
-					  ?>;
+				    var precio =4.8; 
 				    
-				    var tipo= "<?php foreach ($tarifas as $tarifa): 
+				    var tipo= "<?php /*foreach ($tarifas as $tarifa): 
 				     if( $tarifa->getId() == $trafico){ $tiporeal =  $tarifa->getName();  }else $tipo =  "Sin Trafico";
 				     endforeach;
 					 if($tiporeal != "") $tipo = $tiporeal;
-					   echo $tipo;
+					   echo $tipo;*/
 					  ?>"; 
             var rendererOptions = {
                 draggable: true
@@ -1022,13 +1017,15 @@ google.maps.event.addListener(autocompleteD, 'place_changed', function() {
                         <?php if($unidad['estado'] == 1): ?> 
 			            <?php
 							    $dteStart = new DateTime($unidad['updated_at']); 
-					            $dteEnd   = new DateTime(date("Y-m-d H:i:s",(strtotime ("-1 Hours")) ));
+					            $dteEnd   = new DateTime(date("Y-m-d H:i:s",(strtotime ("-0 Hours")) ));
 								$dteDiff  = $dteStart->diff($dteEnd); 
 								$diferencia = $dteDiff->format("%H:%I:%S");
 								$tiempo = explode(':', $diferencia);
 							    //var_dump($tiempo);
+                $time1 = (int)strval($tiempo[1]);
+                $time2 = (int)strval($tiempo[0]);
 							 ?>
-			  <?php //if((strval($tiempo[1]) < 5) and (strval($tiempo[0]) < 1)): ?>	
+			  <?php if(($time1 <= 6) and ($time2 <= 1)): ?>	
                          <tr>
                          	<td class="radius"><input type="checkbox" name="unidad[]" value="<?php echo $unidad['id']; ?>" id="unidad" checked></td>
                          	<td>UNIDAD <?php echo $unidad['codigo'];  ?></td>
@@ -1041,7 +1038,7 @@ google.maps.event.addListener(autocompleteD, 'place_changed', function() {
                                         
                                       ?></td>
                          </tr>
-                         <?php //endif; ?>
+                         <?php endif; ?>
                          <?php endif; ?>
 
 						<?php endforeach;?>
@@ -1077,17 +1074,15 @@ google.maps.event.addListener(autocompleteD, 'place_changed', function() {
 						</div>
 						<div id="clientecorporativo">
 							<h4>Empresa:</h4>
-       
-              
-							<select  name="cliente[]" id="clienteempresa" />
-								<option value="0">--Seleccione una empresa --</option>
-								<?php  foreach ($empresas as $empresa=>$valor) : ?>
+       <select  name="cliente[]" id="clienteempresa" />
+                <option value="0">--Seleccione una empresa --</option>
+                <?php  foreach ($empresas as $empresa) : ?>
 
-								
-								<option value="<?php echo $valor; ?>"> <?php echo $valor; ?> </option>
-							
-							<?php  endforeach; ?>
-							</select>
+                
+                <option value="<?php echo $empresa->getId(); ?>"> <?php echo $empresa->getNombre(); ?> </option>
+              
+              <?php  endforeach; ?>
+              </select>
 						</div>
 						<div id="clienteservicio"></div>
 						<div id="datosc"></div>

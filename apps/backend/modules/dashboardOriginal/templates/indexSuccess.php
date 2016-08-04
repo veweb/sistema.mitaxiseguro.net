@@ -3,7 +3,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
 		
 
-
+e
 <script>
     
 </script>
@@ -761,21 +761,24 @@ function fancyConfirm(msg,callbackYes,callbackNo) {
 							<td id="placa">PLACA</td>
 							<td id="celular">CELULAR</td>
 							<td id="estado">Estado</td>
+							<td id="hora">Tiempo</td>
 						</tr>
 						<?php if(count($markerUnidades) != 0): ?>
 						<?php foreach ($markerUnidades as $unidad) : ?>
                         <?php if($unidad['estado'] == 1): ?> 
 			            <?php
-							    $dteStart = new DateTime($unidad['updated_at']); 
-					            $dteEnd   = new DateTime(date("Y-m-d H:i:s",(strtotime ("0 Hours")) ));
+							    //date_default_timezone_set('America/Guatemala');
+							    $dteStart = new DateTime($unidad['updated_at']); 	
+					            $dteEnd   = new DateTime(date("Y-m-d H:i:s",(strtotime ("-8 Hours")) ));
 								$dteDiff  = $dteStart->diff($dteEnd); 
 								$diferencia = $dteDiff->format("%H:%I:%S");
 								$tiempo = explode(':', $diferencia);
-								echo "Tiempo inicial: ".$dteStart." Tiempo final: ".$dteEnd." Diferencia1: ".$dteDiff." Diferencia real:  ".$diferencia." tiempo: ".$tiempo;
-							 ?>
- 
+								$hoy = date("Y-m-d H:i:s");   
+                                 // echo "tiempo1: ".$tiempo[1]." tiempo2: ".$tiempo[0]." ".$diferencia;  
+								 ?>
+
 							
-			  <?php //if((strval($tiempo[1]) < 5) and (strval($tiempo[0]) < 1)): ?>	
+			  <?php //if ((intval($tiempo[1]) < 60) and (intval($tiempo[0]) >= 1)): ?>	
                          <tr>
                          	<td class="radius"><input type="checkbox" name="unidad[]" value="<?php echo $unidad['id']; ?>" id="unidad" checked></td>
                          	<td>UNIDAD <?php echo $unidad['codigo'];  ?></td>
@@ -783,12 +786,11 @@ function fancyConfirm(msg,callbackYes,callbackNo) {
                          	<td><?php echo $unidades[0]->obtenerpiloto($unidad['id']); //echo $unidad->getPiloto()->getFirstName();//echo $unidad->getPiloto()->getFirstName()." ".$unidad->getPiloto()->getLastName(); ?></td>
                          	<td><?php echo $unidades[0]->obtenerplaca($unidad['id']);//echo $unidad->getUnidad()->getPlaca(); ?></td>
                          	<td><?php echo $unidades[0]->obtenertelefono($unidad['id']); ?></td>
-                            <td><?php 
-                                      echo $unidades[0]->obtenerestado($unidad['id']); 
-                                        
-                                      ?></td>
+                            <td><?php echo $unidades[0]->obtenerestado($unidad['id']);   ?></td>
+                            <td><?php echo "Minutos: ".$tiempo[1]; ?></td>
+
                          </tr>
-                         <?php //endif; ?>
+               <?php //endif; ?>
                          <?php endif; ?>
 
 						<?php endforeach;?>

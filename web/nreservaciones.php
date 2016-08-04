@@ -2,7 +2,7 @@
 
 
 
-$link = mysql_connect("db461977375.db.1and1.com","dbo461977375","locames2013");
+$link = mysql_connect("130.211.184.73","root","lQN76ptAq");
 if (!$link) {
     die('No pudo conectar: ' . mysql_error());
 }

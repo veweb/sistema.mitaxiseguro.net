@@ -56,7 +56,7 @@
          <li><a href="#">Clientes</a>
           <ul> 
             <li><a href="<?php echo url_for('empresa/index')?>">Empresa</a>
-            <li><a href="<?php echo url_for('colaborador/index')?>">Colaborador</a></li>
+            <li><a href="<?php echo url_for('ruta_corporativa/index')?>">Ruta Corporativa</a></li>
             <li><a href="<?php echo url_for('hora_pico/index')?>">Hora Pico</a></li>
              
            </ul> 
@@ -72,7 +72,7 @@
         		 
         	 </ul> 
        </li>
-       <li><a href="<?php echo url_for('@reservacion')?>">Reservaciones </a></li>
+      <!-- <li><a href="<?php// echo url_for('@reservacion')?>">Reservaciones </a></li>-->
       <!--  <li><a href="<?php /*echo url_for('dashboarddev/index')*/?>">Prueba </a></li>->
       </ul>
       <!--

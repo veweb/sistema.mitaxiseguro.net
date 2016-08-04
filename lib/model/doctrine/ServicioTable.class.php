@@ -20,20 +20,19 @@ class ServicioTable extends Doctrine_Table
 		
 		//echo "DATOS: ".$idunidad." ".$idtarifa." ".$name." ".$origen." ".$destino." ".$telefono." ".$comment;	
 		//exit;	
-		
-		$hoy = date("Y-m-d H:i:s"); 
+		  
 		$mensaje = new Servicio();
 		
 		$mensaje->setUnidadId(0);
 		$mensaje->setTarifaId($idtarifa);
 		$mensaje->setClientName($name);
 		$mensaje->setClientOrigen($origen);
-		$mensaje->setClientDestino($destino);  
+		$mensaje->setClientDestino($destino);  	
 		$mensaje->setClientPhone($telefono);
 		$mensaje->setDescription($comment);
 		$mensaje->setEstado(0);
 		$mensaje->setNotificacion(0);
-		$mensaje->setCreatedAt(date("Y-m-d H:i:s", (strtotime ("-1 Hours"))));
+		$mensaje->setCreatedAt(date("Y-m-d H:i:s", (strtotime ("-8 Hours"))));
 		$mensaje->save();
 		
 		 return $mensaje->getId();  

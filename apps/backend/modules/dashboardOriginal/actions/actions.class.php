@@ -193,13 +193,13 @@ class dashboardActions extends sfActions
 /*/
 			
 
-			$con = mysql_connect("http://130.211.184.73","dbo461977375","QN76ptAq");
+			$con = mysql_connect("130.211.184.73","root","lQN76ptAq");
 			if (!$con)
 			  {
 			  die('Could not connect: ' . mysql_error());
 			  }
 			 
-			 mysql_select_db("db461977375", $con);
+			 mysql_select_db("dbo461977375", $con);
 			 
 			  $sql="INSERT INTO  envio_unidad(id, unidad_id,servicio_id,estado,created_at,updated_at,created_by,updated_by) VALUES(NULL,".$unidades[$i].",".$idservicio.",0,NOW(),NOW(),1,1)";
 			   // echo $sql;

@@ -1,7 +1,34 @@
-empleado_empresa:
+colaborador:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                colaborador
+    module:               empleado_empresa
+    prefix_path:          /empleado_empresa
+    column:               id
+    with_wildcard_routes: true
+
+empleado_empresa_empleado_empresa2:
   class: sfDoctrineRouteCollection
   options:
     model:                empleadoEmpresa
+    module:               empleado_empresa2
+    prefix_path:          /empleado_empresa2
+    column:               id
+    with_wildcard_routes: true
+
+empleado_empresa_empleado_empresa:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                empleadoEmpresa
+    module:               empleado_empresa
+    prefix_path:          /empleado_empresa
+    column:               id
+    with_wildcard_routes: true
+
+colaborador:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                colaborador
     module:               colaborador
     prefix_path:          /colaborador
     column:               id
@@ -22,7 +49,7 @@ empresa:
     model:                empresa
     module:               empresa
     prefix_path:          /empresa
-    column:               empresa
+    column:               id
     with_wildcard_routes: true
 
 unidad_mensaje:

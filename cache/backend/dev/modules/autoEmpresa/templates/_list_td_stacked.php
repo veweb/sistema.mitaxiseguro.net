@@ -1,0 +1,3 @@
+<td colspan="9">
+  <?php echo __('%%id%% - %%nombre%% - %%direccion%% - %%telefono%% - %%email%% - %%contacto%% - %%created_at%% - %%updated_at%% - %%codigo%%', array('%%id%%' => link_to($empresa->getId(), 'empresa_edit', $empresa), '%%nombre%%' => $empresa->getNombre(), '%%direccion%%' => $empresa->getDireccion(), '%%telefono%%' => $empresa->getTelefono(), '%%email%%' => $empresa->getEmail(), '%%contacto%%' => $empresa->getContacto(), '%%created_at%%' => false !== strtotime($empresa->getCreatedAt()) ? format_date($empresa->getCreatedAt(), "f") : '&nbsp;', '%%updated_at%%' => false !== strtotime($empresa->getUpdatedAt()) ? format_date($empresa->getUpdatedAt(), "f") : '&nbsp;', '%%codigo%%' => $empresa->getCodigo()), 'messages') ?>
+</td>

@@ -21,9 +21,9 @@ class servicioActions extends sfActions
   	$this->servicio = $request->getParameter('id');
 	$this->servicios = Doctrine::getTable('servicio')->findById($request->getParameter('id'));
 
-	$con = mysql_connect("db461977375.db.1and1.com","dbo461977375","locames2013");
+	$con = mysql_connect("130.211.184.73","root","lQN76ptAq");
 	if (!$con){ die('Could not connect: ' . mysql_error()); }
-	mysql_select_db("db461977375", $con);
+	mysql_select_db("dbo461977375", $con);
 	$sql="SELECT * FROM  envio_unidad  WHERE  servicio_id= ".$request->getParameter('id');
 	$result = mysql_query($sql,$con);
 	$this->unidades = mysql_fetch_array($result);
@@ -48,9 +48,9 @@ class servicioActions extends sfActions
     ->set('estado', '?', 4)
     ->where('id  = ?', $request->getParameter('id'))
     ->execute();
-	$con = mysql_connect("db461977375.db.1and1.com","dbo461977375","locames2013");
+	$con = mysql_connect("130.211.184.73","root","lQN76ptAq");
 	if (!$con){ die('Could not connect: ' . mysql_error()); }
-	mysql_select_db("db461977375", $con);
+	mysql_select_db("dbo461977375", $con);
 	$sql="UPDATE envio_unidad SET estado = 4 WHERE servicio_id= ".$request->getParameter('id');
 	mysql_query($sql,$con);
 	mysql_close($con);
@@ -61,7 +61,7 @@ class servicioActions extends sfActions
     ->where('servicio_id  = ?', $request->getParameter('id'))
     ->execute();
 	*/
-	$this->forward('dashboard','index');
+	$this->forward('dashboarddev','index');
   }
 public function executeVerificado(sfWebRequest $request){
   	

@@ -24,7 +24,8 @@ class dashboarddevActions extends sfActions
 	$this->states = Doctrine::getTable('MapsStates')->findAll();
 	$this->towns = Doctrine::getTable('MapsTowns')->OrdenarAscendente();
 	$this->marker = Doctrine::getTable('Unidad')->findAll();
-	$this->tipoclientes = Doctrine::getTable('categoriaCliente')->findAll();	
+	$this->tipoclientes = Doctrine::getTable('categoriaCliente')->findAll();
+	$this->empresas = Doctrine::getTable('Empresa')->findAll();
 	$puntoA = $request->getParameter('puntoA'); 
 	$this->puntoB = $request->getParameter('puntoB');
 	$this->puntoC = $request->getParameter('puntoC');
@@ -162,6 +163,7 @@ class dashboarddevActions extends sfActions
 	$unidades = $request->getParameter('unidad');
 	$tarifas = $request->getParameter('tarifa');
 	$cliente = $request->getParameter('cliente');
+
     
    /* var_dump($cliente);    var_dump($unidades);
     var_dump($tarifas);
@@ -177,13 +179,13 @@ class dashboarddevActions extends sfActions
 
     if($total > 0){
 		if($cliente[0] == "1"){	
-	       $idservicio = Doctrine::getTable('Servicio')->enviarMensajeUnidades(0,$tarifas[0],$cliente[2],$cliente[3],$cliente[4],$cliente[5],$cliente[6]);
+	       $idservicio = Doctrine::getTable('Servicio')->enviarMensajeUnidades(0,$tarifas[0],$cliente[1],$cliente[2],$cliente[3],$cliente[4],$cliente[5]);
 		
        		if($cliente[7] != ""){
 
 	   		  Doctrine_Query::create()
-			  ->update('empleadoEmpresa u')
-			  ->set('u.primer_nombre','?',$cliente[2])
+			  ->update('colaborador u')
+			  ->set('u.nombre_completo','?',$cliente[2])
 			  ->set('u.comentarios', '?', $cliente[6])
 			  ->where('u.codigo = ?', $tarifas[0])
 			  ->execute();
@@ -218,13 +220,13 @@ class dashboarddevActions extends sfActions
 /*/
 			
 
-			$con = mysql_connect("http://130.211.184.73","dbo461977375","QN76ptAq");
+			$con = mysql_connect("130.211.184.73","root","lQN76ptAq");
 			if (!$con)
 			  {
 			  die('Could not connect: ' . mysql_error());
 			  }
 			 
-			 mysql_select_db("db461977375", $con);
+			 mysql_select_db("dbo461977375", $con);
 			 
 			  $sql="INSERT INTO  envio_unidad(id, unidad_id,servicio_id,estado,created_at,updated_at,created_by,updated_by) VALUES(NULL,".$unidades[$i].",".$idservicio.",0,NOW(),NOW(),1,1)";
 			   // echo $sql;
@@ -233,7 +235,7 @@ class dashboarddevActions extends sfActions
 			     mysql_query($sql,$con);
 			  
 			
-			 
+			 $this->redirect('dashboarddev/index');
 			 
 		    	mysql_close($con);
 	   }   
@@ -288,14 +290,17 @@ class dashboarddevActions extends sfActions
   public function executeColaborador(sfWebRequest $request){
   		$url = 'dashboarddev/llenaservicio';
         $empresa = $request->getParameter('empresa');
-        $idempresa = 
-        $colaboradores = Doctrine::getTable('EmpleadoEmpresa')->findByEmpresa($empresa);
+
+        $rutas = Doctrine::getTable('rutaCorporativa')->findByEmpresaId($empresa);
+         // echo count($rutas);
+       
         echo "<table id=colaboradorselect>";
         echo "<thead>";
         echo "<tr>";
+        echo "<td>Pasajeros</td>";
         echo "<th>Codigo</th>";
-        echo "<th>Codido Servicio</th>";
-        echo "<th>nombre</th>";
+        echo "<th>Trafico</th>";
+        echo "<th>Distancia</th>";
         echo "<th>Destino</th>";
         echo "<th>Seleccionar</th>";
         echo "</tr>";
@@ -303,14 +308,15 @@ class dashboarddevActions extends sfActions
         echo "<tbody>";
 
      //   echo "<option value=0>-- Seleccione un codigo colaborador --</option>";
-        foreach ($colaboradores as $colaborador) {
+        foreach ($rutas as $ruta) {
         //	echo "<option value='".$colaborador->getId()."'>".$colaborador->getPrimerNombre()." (".$colaborador->getCodigo().")/".$colaborador->getDestino()."</option>";
         	echo "<tr>";
-        	echo "<td >".$colaborador->getId()."</td>";
-        	echo "<td >".$colaborador->getCodigo()."</td>";
-        	echo "<td >".$colaborador->getPrimerNombre()."</td>";
-        	echo "<td >".$colaborador->getDestino()."</td>";
-        	echo "<td><b class=togle>Seleccionar<input type=hidden value=".$colaborador->getId()."></b></td>";
+        	echo "<td >".$ruta->getNombres1()."<br>".$ruta->getNombres2()."<br>".$ruta->getNombres3()."<br>".$ruta->getNombres4()."</td>";
+        	echo "<td >".$ruta->getCodigo()."</td>";
+        	echo "<td >".$ruta->getTrafico()."</td>";
+        	echo "<td >".$ruta->getDistancia()." (km)</td>";
+        	echo "<td >".$ruta->getDestino1()."<br>".$ruta->getDestino2()."<br>".$ruta->getDestino3()."<br>".$ruta->getDestino4()."</td>";
+        	echo "<td><b class=togle>Seleccionar<input type=hidden value=".$ruta->getId()."></b></td>";
         	echo "</tr>";
         }
         echo "</tbody>";
@@ -353,21 +359,21 @@ class dashboarddevActions extends sfActions
 
   public function executeLlenaservicio(sfWebRequest $request){
   		$id = $request->getParameter('id');
-  		$servicios = Doctrine::getTable('empleadoEmpresa')->findById($id);
-  		//conole.log(var_dump($servicios));
+  		$servicios = Doctrine::getTable('rutaCorporativa')->findById($id);
+  		//conole.log(var_dump($servicios));$servicios[0]->getZona1()
 
   		echo "<script>";
   		echo "$(document).ready(function(){";
-  		echo " var nombre = '".$servicios[0]->getPrimerNombre()."';";
-  		echo " var dir = '".$servicios[0]->getInicio()."';"; 
-  		echo " var dira = '".$servicios[0]->getDestino()."';"; 
-  		echo " var tarifa = '".$servicios[0]->getCodigo()."';"; 
-  		echo " var comentarios = 'Codigo Servicio:".$servicios[0]->getCodigo()."  ".$servicios[0]->getComentarios()."';"; 
+  		echo " var nombre = '".$servicios[0]->getNombres1()." / ".$servicios[0]->getNombres2()." / ".$servicios[0]->getNombres3()." / ".$servicios[0]->getNombres4()."';";
+  		echo " var dir = '';"; //".$servicios[0]->getInicio()."';"; 
+  		echo " var dira = '".$servicios[0]->getDestino1()." / ".$servicios[0]->getDestino2()." / ".$servicios[0]->getDestino3()." / ".$servicios[0]->getDestino4()."';"; 
+  		echo " var tarifa = '".trim($servicios[0]->getCodigo())."';"; 
+  		echo " var comentarios= '".$servicios[0]->getZona1()." / ".$servicios[0]->getZona3()." / ".$servicios[0]->getZona4()."';";
   		echo  "		
-  					$('.cambiarnombre').text('Nombre Colaborador:');
+  					$('.cambiarnombre').text('Pasajeros:');
   					$('#clienten').val(nombre);
   					$('#clientenom').show();
-  					$('#clientendir').val(dir); 
+  					$('#clientendir').val(); 
 		  			$('#clientedir').show();
 		  			$('#clientendira').val(dira);
 		  			$('#clientedira').show();

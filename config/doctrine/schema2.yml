@@ -410,7 +410,7 @@ EmpleadoEmpresa:
       notnull: true
       autoincrement: false
     hora_pico:
-      type: string(25)
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: false
@@ -440,7 +440,7 @@ EmpleadoEmpresa:
   relations:
     Empresa:
       local: empresa
-      foreign: id
+      foreign: empresa
       type: one
     Empresa_2:
       class: Empresa
@@ -451,7 +451,7 @@ Empresa:
   connection: doctrine
   tableName: empresa
   columns:
-    id:
+    empresa:
       type: integer(4)
       fixed: false
       unsigned: false
