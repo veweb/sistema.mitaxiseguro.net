@@ -163,7 +163,7 @@ class dashboarddevActions extends sfActions
 	$tarifas = $request->getParameter('tarifa');
 	$cliente = $request->getParameter('cliente');
     
-   // var_dump($cliente);
+   var_dump($cliente);
     console.log(var_dump($unidades));
     console.log(var_dump($tarifas));
     console.log(var_dump($cliente));

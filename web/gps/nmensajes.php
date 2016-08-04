@@ -7,7 +7,7 @@ if (!$link) {
     die('No pudo conectar: ' . mysql_error());
 }
 
-mysql_select_db("db461977375");
+mysql_select_db("dbo461977375");
 
 $qq = mysql_query("SELECT * FROM  mensaje_unidadtablet WHERE id_device='$id_device' AND estado = 0 ORDER BY mensaje_id DESC");
 //echo "SELECT * FROM  mensaje_unidadtablet WHERE id_device='$id_device' AND estado = 0 ORDER BY mensaje_id DESC";

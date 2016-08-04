@@ -7,7 +7,7 @@ if (!$link) {
     die('No pudo conectar: ' . mysql_error());
 }
 
-mysql_select_db("db461977375");
+mysql_select_db("dbo461977375");
 //echo "SELECT * FROM unidad_mensaje WHERE id_unidad = ".$table['id']." AND estado=0";
 $ms = mysql_query("SELECT * FROM respuesta WHERE mensaje_id = ".$_REQUEST['id']);
 //echo "SELECT * FROM mensaje WHERE unidad_id = ".$table['mensaje_id'];

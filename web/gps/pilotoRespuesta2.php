@@ -9,7 +9,7 @@ if (!$link) {
     die('No pudo conectar: ' . mysql_error());
 }
 
-mysql_select_db("db461977375");
+mysql_select_db("dbo461977375");
 
 
 //echo $resp;

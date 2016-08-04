@@ -8,7 +8,7 @@ if (!$link) {
     die('No pudo conectar: ' . mysql_error());
 }
 
-mysql_select_db("db461977375");
+mysql_select_db("dbo461977375");
 echo "INSERT INTO  respuesta_ts (id,respuesta,user_id,type,fecha) values(null,'".$respuesta."',".$user_id.",0,DATE_SUB(NOW(),INTERVAL 1 HOUR)) ";
 //echo "SELECT * FROM unidad_mensaje WHERE id_unidad = ".$table['id']." AND estado=0";
 $ms = mysql_query("INSERT INTO  respuesta_ts (id,respuesta,mensaje_id,user_id,type,fecha) values(null,'".$respuesta."',".$mensaje_id.",".$user_id.",0,DATE_SUB(NOW(),INTERVAL 1 HOUR)) ");

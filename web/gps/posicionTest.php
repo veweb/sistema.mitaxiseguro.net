@@ -9,7 +9,7 @@ if (!$link) {
     die('No pudo conectar: ' . mysql_error());
 }
 
-mysql_select_db("db461977375");
+mysql_select_db("dbo461977375");
 $pp = mysql_query("SELECT * FROM unidad WHERE id_device = '".$id_device."'");
 $existe = mysql_num_rows($pp);
 

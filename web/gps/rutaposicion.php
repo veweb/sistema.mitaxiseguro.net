@@ -9,7 +9,7 @@
     	die('No pudo conectar: ' . mysql_error());
 	}
 
-	mysql_select_db("db461977375");
+	mysql_select_db("dbo461977375");
 	$rutaquery = mysql_query("SELECT * FROM unidad WHERE id_device = '".$id_device."'");
 	$existe = mysql_num_rows($rutaquery);
 	if($existe != 0){
